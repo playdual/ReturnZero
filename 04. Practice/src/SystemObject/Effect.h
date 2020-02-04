@@ -1,29 +1,29 @@
-#pragma once
+ï»¿#pragma once
 
 class Effect
 {
 public:
 	Effect();
 	~Effect();
-	//ÀÌÆåÆ® ÃÊ±âÈ­(ÀÌÆåÆ® ÀÌ¹ÌÁö, ÀÌÆåÆ® ÇÑÇÁ·¹ÀÓ °¡·Î±æÀÌ, ¼¼·Î±æÀÌ FPS, ÀÌÆåÆ® ¼Óµµ)
+	//ì´í™íŠ¸ ì´ˆê¸°í™”(ì´í™íŠ¸ ì´ë¯¸ì§€, ì´í™íŠ¸ í•œí”„ë ˆì„ ê°€ë¡œê¸¸ì´, ì„¸ë¡œê¸¸ì´ FPS, ì´í™íŠ¸ ì†ë„)
 	HRESULT init(class Image* effectImage, int frameW, int frameH, int FPS, float elapsedTime);
 	void release();
 	void update();
 	void render(HDC _hdc);
 
-	//³»°¡ ¿øÇÏ´Â ÁÂÇ¥¿¡ ÀÌÆåÆ®ÅÍÆ®¸®±â
+	//ë‚´ê°€ ì›í•˜ëŠ” ì¢Œí‘œì— ì´í™íŠ¸í„°íŠ¸ë¦¬ê¸°
 	void startEffect(int x, int y);
-	//ÀÌÆåÆ® ¸ØÃß±â
+	//ì´í™íŠ¸ ë©ˆì¶”ê¸°
 	void stopEffect();
-	//ÀÌÆåÆ® Àç»ıÁßÀÎÁö »óÅÂ°ª °¡Á®¿À±â
+	//ì´í™íŠ¸ ì¬ìƒì¤‘ì¸ì§€ ìƒíƒœê°’ ê°€ì ¸ì˜¤ê¸°
 	bool getIsRunning() { return _isRunning; }
 
 private:
-	Image * _effectImage;		//ÀÌÆåÆ® ÀÌ¹ÌÁö
-	class Animation* _effectAni;		//ÀÌÆåÆ® ¾Ö´Ï¸ŞÀÌ¼Ç
+	Image * _effectImage;		//ì´í™íŠ¸ ì´ë¯¸ì§€
+	class Animation* _effectAni;		//ì´í™íŠ¸ ì• ë‹ˆë©”ì´ì…˜
 
-	int _x, _y;					//ÀÌÆåÆ® ÅÍÆ®¸± ÁÂÇ¥
-	float _elapsedTime;			//ÀÌÆåÆ® °æ°ú½Ã°£(¼Óµµ)
-	bool _isRunning;			//Àç»ıÁßÀÌ³Ä?
+	int _x, _y;					//ì´í™íŠ¸ í„°íŠ¸ë¦´ ì¢Œí‘œ
+	float _elapsedTime;			//ì´í™íŠ¸ ê²½ê³¼ì‹œê°„(ì†ë„)
+	bool _isRunning;			//ì¬ìƒì¤‘ì´ëƒ?
 };
 

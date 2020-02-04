@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Game/GameScene/Scene.h"
 #include "../ExObject/camel.h"
 

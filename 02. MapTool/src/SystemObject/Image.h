@@ -1,22 +1,22 @@
-#pragma once
+ï»¿#pragma once
 #include "SystemObject/Animation.h"
 class Image
 {
 public:
 	enum IMAGE_LOAD_KIND {
-		LOAD_RESOURCE,	//¸®·Î½º ·Îµù
-		LOAD_FILE,		//ÆÄÀÏ·Îµù
-		LOAD_EMPTY,		//ºó ºñÆ®¸Ê ÆÄÀÏ
+		LOAD_RESOURCE,	//ë¦¬ë¡œìŠ¤ ë¡œë”©
+		LOAD_FILE,		//íŒŒì¼ë¡œë”©
+		LOAD_EMPTY,		//ë¹ˆ ë¹„íŠ¸ë§µ íŒŒì¼
 		LOAD_END
 	};
 
 	typedef struct tagImage {
 		DWORD		resID;
-		HDC			hMemDC;		//¸Þ¸ð¸®
-		HBITMAP		hBit;		//ºñÆ®¸Ê
-		HBITMAP		hOBit1;		//±âÁ¸ ºñÆ®¸Ê
-		int			width;		//ÀÌ¹ÌÁö °¡·Î
-		int			height;		//ÀÌ¹ÌÁö ¼¼·Î
+		HDC			hMemDC;		//ë©”ëª¨ë¦¬
+		HBITMAP		hBit;		//ë¹„íŠ¸ë§µ
+		HBITMAP		hOBit1;		//ê¸°ì¡´ ë¹„íŠ¸ë§µ
+		int			width;		//ì´ë¯¸ì§€ ê°€ë¡œ
+		int			height;		//ì´ë¯¸ì§€ ì„¸ë¡œ
 		BYTE		loadType;
 		float		x, y;
 		int			currentFrameX;
@@ -52,19 +52,19 @@ public:
 	void release();
 
 public:
-	//ÀÌ¹ÌÁö ÆÄÀÏ·Î ÃÊ±âÈ­
+	//ì´ë¯¸ì§€ íŒŒì¼ë¡œ ì´ˆê¸°í™”
 	HRESULT init(int width, int height);
 	HRESULT init(const char* fileName, int width, int height, bool isTrans = false, COLORREF transColor = RGB(255, 0, 255));
 	HRESULT init(const char* fileName, int width, int height, int frameX, int frameY, bool isTrans = false, COLORREF transColor = RGB(255, 0, 255));
 	HRESULT init(const char* fileName, int x, int y, int width, int height, int frameX, int frameY, bool isTrans = false, COLORREF transColor = RGB(255, 0, 255));
 	void setTransColor(bool isTrans, COLORREF transColor);
 
-	//ÀÏ¹Ý ·»´õ
+	//ì¼ë°˜ ë Œë”
 	void render(HDC hdc);
 	void render(HDC hdc, int destX, int destY);
 	void render(HDC hdc, int destX, int destY, int srcX, int srcY, int srcWidth, int srcHeight);
 
-	//ÇÁ·¹ÀÓ ·»´õ
+	//í”„ë ˆìž„ ë Œë”
 	void frameRender(HDC hdc, int destX, int destY);
 	void frameRender(HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY);
 
@@ -81,7 +81,7 @@ public:
 	//animation render
 	void aniRender(HDC hdc, int destX, int destY, Animation* ani);
 
-	//ÀÌ¹ÌÁö ÇÚµé·¯
+	//ì´ë¯¸ì§€ í•¸ë“¤ëŸ¬
 	HDC getMemDC() { return _imageInfo->hMemDC; }
 	float getX()			{ return _imageInfo->x; }
 	float getY()			{ return _imageInfo->y; }
@@ -121,12 +121,12 @@ public:
 	}
 
 private:
-	LPIMAGE_INFO	_imageInfo;		//ÀÌ¹ÌÁö Á¤º¸
-	char			_fileName[255];	//ÀÌ¹ÌÁö ÀÌ¸§
-	bool			_isTrans;		//¹è°æ»ö ³¯¸®±â
-	COLORREF		_transColor;	//¹è°æ»ö ³¯¸± RGB
+	LPIMAGE_INFO	_imageInfo;		//ì´ë¯¸ì§€ ì •ë³´
+	char			_fileName[255];	//ì´ë¯¸ì§€ ì´ë¦„
+	bool			_isTrans;		//ë°°ê²½ìƒ‰ ë‚ ë¦¬ê¸°
+	COLORREF		_transColor;	//ë°°ê²½ìƒ‰ ë‚ ë¦´ RGB
 
-	BLENDFUNCTION	_blendFunc;		//¾ËÆÄºí·»µå¸¦ À§ÇÑ Á¤º¸
-	LPIMAGE_INFO	_blendImage;	//¾ËÆÄ ºí·»µå¸¦ »ç¿ëÇÏ±â À§ÇÑ ÀÌ¹ÌÁö
+	BLENDFUNCTION	_blendFunc;		//ì•ŒíŒŒë¸”ë Œë“œë¥¼ ìœ„í•œ ì •ë³´
+	LPIMAGE_INFO	_blendImage;	//ì•ŒíŒŒ ë¸”ë Œë“œë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•œ ì´ë¯¸ì§€
 };
 

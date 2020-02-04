@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "txtData.h"
 
 TxtData::TxtData()
@@ -13,7 +13,7 @@ bool TxtData::init()
 	return true;
 }
 
-//ÇÑÁÙÂ¥¸® µ¥ÀÌÅÍ¸¦ ´ã¾ÆµÑ°Í(¸ðµç µ¥ÀÌÅÍ¸¦ ÇÑÁÙ ´ÜÀ§·Î Â©¶ó¼­ ÁöÁ¤ÇÑ´Ù.)
+//í•œì¤„ì§œë¦¬ ë°ì´í„°ë¥¼ ë‹´ì•„ë‘˜ê²ƒ(ëª¨ë“  ë°ì´í„°ë¥¼ í•œì¤„ ë‹¨ìœ„ë¡œ ì§¤ë¼ì„œ ì§€ì •í•œë‹¤.)
 void TxtData::txtSave(char * saveFileName, std::vector<std::string> vStr)
 {
 
@@ -23,19 +23,19 @@ void TxtData::txtSave(char * saveFileName, std::vector<std::string> vStr)
 	_tcsncpy_s(str, 128, vectorArrayCombine(vStr), 128);
 
 	file = CreateFile
-	(saveFileName,			//»ý¼ºÇÒ ÆÄÀÏ¶Ç´Â ¿­ ÀåÄ¡³ª ÆÄÀÏÀÌ¸§
-		GENERIC_WRITE,		//ÆÄÀÏÀÌ³ª ÀåÄ¡¸¦ ¸¸µé°Å³ª ¿­¶§ »ç¿ëÇÒ ±ÇÇÑ
-		0,					//ÆÄÀÏ °øÀ¯ ¸ðµåÀÔ·Â
-		NULL,				//ÆÄÀÏ¶Ç´Â ÀåÄ¡¸¦ ¿­¶§ º¸¾È ¹× Æ¯¼º
-		CREATE_ALWAYS,		//ÆÄÀÏÀÌ³ª ÀåÄ¡¸¦ ¿­¶§ ÃëÇÒ Çàµ¿
-		FILE_ATTRIBUTE_NORMAL, //ÆÄÀÏÀÌ³ª ÀåÄ¡¸¦ ¿­¶§ °®°Ô µÉ Æ¯¼º
-		NULL);				//¸¸µé¾îÁú ÆÄÀÏÀÌ °®°Ô µÉ Æ¯¼º È®Àå Æ¯¼º¿¡ ´ëÇÑ Á¤º¸
+	(saveFileName,			//ìƒì„±í•  íŒŒì¼ë˜ëŠ” ì—´ ìž¥ì¹˜ë‚˜ íŒŒì¼ì´ë¦„
+		GENERIC_WRITE,		//íŒŒì¼ì´ë‚˜ ìž¥ì¹˜ë¥¼ ë§Œë“¤ê±°ë‚˜ ì—´ë•Œ ì‚¬ìš©í•  ê¶Œí•œ
+		0,					//íŒŒì¼ ê³µìœ  ëª¨ë“œìž…ë ¥
+		NULL,				//íŒŒì¼ë˜ëŠ” ìž¥ì¹˜ë¥¼ ì—´ë•Œ ë³´ì•ˆ ë° íŠ¹ì„±
+		CREATE_ALWAYS,		//íŒŒì¼ì´ë‚˜ ìž¥ì¹˜ë¥¼ ì—´ë•Œ ì·¨í•  í–‰ë™
+		FILE_ATTRIBUTE_NORMAL, //íŒŒì¼ì´ë‚˜ ìž¥ì¹˜ë¥¼ ì—´ë•Œ ê°–ê²Œ ë  íŠ¹ì„±
+		NULL);				//ë§Œë“¤ì–´ì§ˆ íŒŒì¼ì´ ê°–ê²Œ ë  íŠ¹ì„± í™•ìž¥ íŠ¹ì„±ì— ëŒ€í•œ ì •ë³´
 
 	WriteFile(file, str, 128, &write, NULL);
 	CloseHandle(file);
 
 }
-//ÇöÀç »ç¿ëÇÒ µ¥ÀÌÅÍ(ÇÑÁÙÂ¥¸® µ¥ÀÌÅÍ¸¦ ½°Ç¥ ´ÜÀ§·Î ¶ç¾î¼­ ÀúÀå)
+//í˜„ìž¬ ì‚¬ìš©í•  ë°ì´í„°(í•œì¤„ì§œë¦¬ ë°ì´í„°ë¥¼ ì‰¼í‘œ ë‹¨ìœ„ë¡œ ë„ì–´ì„œ ì €ìž¥)
 char * TxtData::vectorArrayCombine(std::vector<std::string> vArray)
 {
 	char str[128];
@@ -60,13 +60,13 @@ std::vector<std::string> TxtData::txtLoad(char * loadFileName)
 	DWORD read;
 
 	file = CreateFile
-	(loadFileName,			//»ý¼ºÇÒ ÆÄÀÏ¶Ç´Â ¿­ ÀåÄ¡³ª ÆÄÀÏÀÌ¸§
-		GENERIC_READ,		//ÆÄÀÏÀÌ³ª ÀåÄ¡¸¦ ¸¸µé°Å³ª ¿­¶§ »ç¿ëÇÒ ±ÇÇÑ
-		0,					//ÆÄÀÏ °øÀ¯ ¸ðµåÀÔ·Â
-		NULL,				//ÆÄÀÏ¶Ç´Â ÀåÄ¡¸¦ ¿­¶§ º¸¾È ¹× Æ¯¼º
-		OPEN_EXISTING,		//ÆÄÀÏÀÌ³ª ÀåÄ¡¸¦ ¿­¶§ ÃëÇÒ Çàµ¿
-		FILE_ATTRIBUTE_NORMAL, //ÆÄÀÏÀÌ³ª ÀåÄ¡¸¦ ¿­¶§ °®°Ô µÉ Æ¯¼º
-		NULL);				//¸¸µé¾îÁú ÆÄÀÏÀÌ °®°Ô µÉ Æ¯¼º È®Àå Æ¯¼º¿¡ ´ëÇÑ Á¤º¸
+	(loadFileName,			//ìƒì„±í•  íŒŒì¼ë˜ëŠ” ì—´ ìž¥ì¹˜ë‚˜ íŒŒì¼ì´ë¦„
+		GENERIC_READ,		//íŒŒì¼ì´ë‚˜ ìž¥ì¹˜ë¥¼ ë§Œë“¤ê±°ë‚˜ ì—´ë•Œ ì‚¬ìš©í•  ê¶Œí•œ
+		0,					//íŒŒì¼ ê³µìœ  ëª¨ë“œìž…ë ¥
+		NULL,				//íŒŒì¼ë˜ëŠ” ìž¥ì¹˜ë¥¼ ì—´ë•Œ ë³´ì•ˆ ë° íŠ¹ì„±
+		OPEN_EXISTING,		//íŒŒì¼ì´ë‚˜ ìž¥ì¹˜ë¥¼ ì—´ë•Œ ì·¨í•  í–‰ë™
+		FILE_ATTRIBUTE_NORMAL, //íŒŒì¼ì´ë‚˜ ìž¥ì¹˜ë¥¼ ì—´ë•Œ ê°–ê²Œ ë  íŠ¹ì„±
+		NULL);				//ë§Œë“¤ì–´ì§ˆ íŒŒì¼ì´ ê°–ê²Œ ë  íŠ¹ì„± í™•ìž¥ íŠ¹ì„±ì— ëŒ€í•œ ì •ë³´
 
 	ReadFile(file, str, 128, &read, NULL);
 	CloseHandle(file);

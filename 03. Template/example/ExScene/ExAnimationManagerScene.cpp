@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "ExAnimationManagerScene.h"
 
 
@@ -17,10 +17,10 @@ bool ExAnimationManagerScene::init()
 	_camel->init();
 
 	ufoImg = IMAGEMANAGER->addFrameImage("ufo", "../Common_Images/ufo.bmp", 530, 32, 10, 1, true, RGB(255, 0, 255));
-	ANIMANAGER->addDefAnimation("À¯Æ÷±âº»", "ufo", 10);
-	ufoAni = ANIMANAGER->findAnimation("À¯Æ÷±âº»");
+	ANIMANAGER->addDefAnimation("ìœ í¬ê¸°ë³¸", "ufo", 10);
+	ufoAni = ANIMANAGER->findAnimation("ìœ í¬ê¸°ë³¸");
 
-	EFFECTMANAGER->addEffect("À¯Æ÷ÀÌÆå", "ufo", 530, 32, 10, 1, 1, 0.3f, 100);
+	EFFECTMANAGER->addEffect("ìœ í¬ì´íŽ™", "ufo", 530, 32, 10, 1, 1, 0.3f, 100);
 
 	return true;
 }
@@ -29,11 +29,11 @@ void ExAnimationManagerScene::update(float _deltaTime)
 {
 	_camel->update(_deltaTime);
 	if (KEYMANAGER->isOnceKeyDown(P1_EVENT)) {
-		ufoAni = ANIMANAGER->findAnimation("À¯Æ÷±âº»");
-		ANIMANAGER->start("À¯Æ÷±âº»");
+		ufoAni = ANIMANAGER->findAnimation("ìœ í¬ê¸°ë³¸");
+		ANIMANAGER->start("ìœ í¬ê¸°ë³¸");
 	}
 	if (KEYMANAGER->isOnceKeyDown(GAME_RMOUSE)) {
-		EFFECTMANAGER->play("À¯Æ÷ÀÌÆå", 100, 100);
+		EFFECTMANAGER->play("ìœ í¬ì´íŽ™", 100, 100);
 	}
 }
 

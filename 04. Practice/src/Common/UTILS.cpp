@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "UTILS.h"
 
 namespace UTIL
@@ -225,21 +225,21 @@ namespace UTIL
 		bottom = 0;
 	}
 
-	//Æ÷ÀÎÆ®
+	//í¬ì¸íŠ¸
 	POINT PointMake(int x, int y)
 	{
 		POINT pt = { x ,y };
 		return pt;
 	}
 
-	//¼±±×¸®´Â ÇÔ¼ö
+	//ì„ ê·¸ë¦¬ëŠ” í•¨ìˆ˜
 	void LineMake(HDC hdc, int x1, int y1, int x2, int y2)
 	{
 		MoveToEx(hdc, x1, y1, NULL);
 		LineTo(hdc, x2, y2);
 	}
 
-	//RECT¸¸µé±â(ÁÂ»ó´Ü ±âÁØ)
+	//RECTë§Œë“¤ê¸°(ì¢Œìƒë‹¨ ê¸°ì¤€)
 	RECT RectMake(int x, int y, int width, int height)
 	{
 		RECT rc = { x,y, x + width, y + height };
@@ -252,7 +252,7 @@ namespace UTIL
 		return rc;
 	}
 
-	//RECT¸¸µé±â(Áß½ÉÁ¡À¸·Î ºÎÅÍ)
+	//RECTë§Œë“¤ê¸°(ì¤‘ì‹¬ì ìœ¼ë¡œ ë¶€í„°)
 	RECT RectMakeCenter(int x, int y, int width, int height)
 	{
 		RECT rc = { x - width / 2, y - height / 2, x + width / 2, y + height / 2 };
@@ -266,7 +266,7 @@ namespace UTIL
 		return rc;
 	}
 
-	//»ç°¢Çü ±×¸®±â
+	//ì‚¬ê°í˜• ê·¸ë¦¬ê¸°
 	void RectangleMake(HDC hdc, int x, int y, int width, int height)
 	{
 		Rectangle(hdc, x, y, x + width, y + height);
@@ -296,7 +296,7 @@ namespace UTIL
 		DeleteObject(curBrush);
 	}
 
-	//»ç°¢Çü ±×¸®±â(Áß½ÉÁ¡)
+	//ì‚¬ê°í˜• ê·¸ë¦¬ê¸°(ì¤‘ì‹¬ì )
 	void RectangleMakeCenter(HDC hdc, int x, int y, int width, int height)
 	{
 		Rectangle(hdc, x - (width / 2), y - (height / 2), x + (width / 2), y + (height / 2));
@@ -306,13 +306,13 @@ namespace UTIL
 		Rectangle(hdc, rect.left, rect.top, rect.right, rect.bottom);
 	}
 
-	//¿ø±×¸®±â
+	//ì›ê·¸ë¦¬ê¸°
 	void EllipseMake(HDC hdc, int x, int y, int width, int height)
 	{
 		Ellipse(hdc, x, y, x + width, y + height);
 	}
 
-	//¿ø±×¸®±â(Áß½ÉÁ¡)
+	//ì›ê·¸ë¦¬ê¸°(ì¤‘ì‹¬ì )
 	void EllipseMakeCenter(HDC hdc, int x, int y, int width, int height)
 	{
 		Ellipse(hdc, x - (width / 2), y - (height / 2), x + (width / 2), y + (height / 2));

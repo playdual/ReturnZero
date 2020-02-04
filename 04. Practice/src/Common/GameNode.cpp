@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "gameNode.h"
 bool GameNode::_managerInit = false;
 
@@ -39,7 +39,7 @@ HRESULT GameNode::init()
 
 void GameNode::release()
 {
-	//¸Å´ÏÀú ÇØÁ¦
+	//ë§¤ë‹ˆì € í•´ì œ
 	if (_managerInit) {
 		IMAGEMANAGER->release();
 		KEYMANAGER->release();

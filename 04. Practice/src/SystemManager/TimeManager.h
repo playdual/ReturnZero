@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "SystemObject/timer.h"
 
 class TimeManager {

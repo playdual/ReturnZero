@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "timeManager.h"
 DEFINITION_SINGLE(TimeManager)
 
@@ -35,21 +35,21 @@ void TimeManager::render(HDC hdc)
 	char str[256];
 
 	std::string strFrame;
-	//¹è°æ¸ðµå
+	//ë°°ê²½ëª¨ë“œ
 	SetBkMode(hdc, TRANSPARENT);
-	//»ö»ó
+	//ìƒ‰ìƒ
 	SetTextColor(hdc, RGB(0, 0, 255));
-	//µð¹ö±× ¸ðµå¶ó¸é
+	//ë””ë²„ê·¸ ëª¨ë“œë¼ë©´
 	if (_timer != nullptr)
 	{
 		//FPS
 		sprintf_s(str, "FPS :  %d", _timer->getFrameRate());
 		TextOut(hdc, 0, 0, str, strlen(str));
 
-		//ÀüÃ¼ °æ°ú ½Ã°£
+		//ì „ì²´ ê²½ê³¼ ì‹œê°„
 		sprintf_s(str, "worldTime :  %.2f", _timer->getWorldTime());
 		TextOut(hdc, 0, 20, str, strlen(str));
-		//ÇÑÇÁ·¹ÀÓ´ç °æ°ú½Ã°£
+		//í•œí”„ë ˆìž„ë‹¹ ê²½ê³¼ì‹œê°„
 		sprintf_s(str, "ElapsedTime :  %.4f", _timer->getElapsedTime());
 		TextOut(hdc, 0, 40, str, strlen(str));
 	}

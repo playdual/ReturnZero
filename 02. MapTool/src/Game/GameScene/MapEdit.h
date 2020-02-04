@@ -1,10 +1,10 @@
-#pragma once
+ï»¿#pragma once
 #include "Scene.h"
 
 class MapEdit : public Scene
 {
 private:
-	//¼¼ÀÌºê, ·Îµå, ÁöÇü, ¿ÀºêÁ§Æ®, Áö¿ì°³ µîµîµî
+	//ì„¸ì´ë¸Œ, ë¡œë“œ, ì§€í˜•, ì˜¤ë¸Œì íŠ¸, ì§€ìš°ê°œ ë“±ë“±ë“±
 	HANDLE file;
 	DWORD write;
 	int pos[2];

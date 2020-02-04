@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "SceneAstar.h"
 
 bool Astar::init()
@@ -61,24 +61,24 @@ void Astar::update(float _deltaTime)
 
 void Astar::render(HDC hdc)
 {
-	TextOut(hdc, 15, 75, "1 : 지우개", strlen("1 : 지우개"));
-	TextOut(hdc, 15, 95, "2 : 시작", strlen("2 : 시작"));
-	TextOut(hdc, 15, 115, "3 : 끝", strlen("3 : 끝"));
-	TextOut(hdc, 15, 135, "4 : 장애물", strlen("4 : 장애물"));
-	TextOut(hdc, 15, 155, "5 : 초기화", strlen("5 : 초기화"));
+	TextOut(hdc, 15, 75, "1 : 吏?곌컻", strlen("1 : 吏?곌컻"));
+	TextOut(hdc, 15, 95, "2 : ?쒖옉", strlen("2 : ?쒖옉"));
+	TextOut(hdc, 15, 115, "3 : ??, strlen("3 : ??));
+	TextOut(hdc, 15, 135, "4 : ?μ븷臾?, strlen("4 : ?μ븷臾?));
+	TextOut(hdc, 15, 155, "5 : 珥덇린??, strlen("5 : 珥덇린??));
 
 	char str[128];
 	if (astarState == ASTAR_STATE_END)
-		sprintf_s(str, "스페이스 눌러");
+		sprintf_s(str, "?ㅽ럹?댁뒪 ?뚮윭");
 	if (astarState == ASTAR_STATE_FOUND)
-		sprintf_s(str, "찾음");
+		sprintf_s(str, "李얠쓬");
 	if (astarState == ASTAR_STATE_NOWAY)
-		sprintf_s(str, "길없다");
+		sprintf_s(str, "湲몄뾾??);
 	if (astarState == ASTAR_STATE_SEARCHING)
-		sprintf_s(str, "찾고있음");
+		sprintf_s(str, "李얘퀬?덉쓬");
 
 	TextOut(hdc, 15, 200, str, strlen(str));
-	//newFont; //= CreateFont(9, 0, 0, 0, FW_NORMAL, false, false, ,"굴림");
+	//newFont; //= CreateFont(9, 0, 0, 0, FW_NORMAL, false, false, ,"援대┝");
 	//oldFont = (HFONT)SelectObject(hdc, newFont);
 
 	for (int i = 0; i < TILE_Y; ++i) {
@@ -92,13 +92,13 @@ void Astar::render(HDC hdc)
 		if (i == 0){
 			UTIL::BeginSolidColor(hdc, &newBrush, RGB(0, 255, 0));
 			UTIL::DrawRect(hdc, rc[i]);
-			sprintf_s(str, "시작점");
+			sprintf_s(str, "?쒖옉??);
 			DeleteObject(newBrush);
 		}
 		if (i == 1) {
 			UTIL::BeginSolidColor(hdc, &newBrush, RGB(255, 0, 0));
 			UTIL::DrawRect(hdc, rc[i]);
-			sprintf_s(str, "도착");
+			sprintf_s(str, "?꾩갑");
 			DeleteObject(newBrush);
 		}
 		if (i == 2) {
@@ -133,23 +133,23 @@ void Astar::afterRender(HDC hdc)
 
 void Astar::tileComposition()
 {
-	//비어있을때
+	//鍮꾩뼱?덉쓣??
 	if (KEYMANAGER->isOnceKeyDown(P1_UP)) {
 		type = TILE_TYPE_EMPTY;
 		color = RGB(255, 255, 255);
 	}
 
-	//스타트일때
+	//?ㅽ??몄씪??
 	else if (KEYMANAGER->isOnceKeyDown(P1_DOWN)) {
 		type = TILE_TYPE_START;
 		color = RGB(100, 255, 100);
 	}
-	//엔드일때
+	//?붾뱶?쇰븣
 	else if (KEYMANAGER->isOnceKeyDown(P1_LEFT)) {
 		type = TILE_TYPE_END;
 		color = RGB(255, 0, 0);
 	}
-	//장애물일때
+	//?μ븷臾쇱씪??
 	else if (KEYMANAGER->isOnceKeyDown(P1_RIGHT)) {
 		type = TILE_TYPE_WALL;
 		color = RGB(255, 255, 0);
@@ -229,7 +229,7 @@ void Astar::addOpenList()
 
 	if (Ci != 0) {
 		if (tile[Ci - 1][Cj].walkable) { 
-			//오픈 리스트에 포함이 안되어 있는 타일
+			//?ㅽ뵂 由ъ뒪?몄뿉 ?ы븿???덈릺???덈뒗 ???
 			if (!tile[Ci - 1][Cj].listOn) { 
 				tile[Ci - 1][Cj].listOn = true;
 				tile[Ci - 1][Cj].color = RGB(220, 255, 220);
@@ -237,10 +237,10 @@ void Astar::addOpenList()
 				tile[Ci - 1][Cj].parent = closedList[lastIndex];
 				openList.push_back(&tile[Ci - 1][Cj]);
 			}
-			// 오픈 리스트에 포함되어 있는 타일
+			// ?ㅽ뵂 由ъ뒪?몄뿉 ?ы븿?섏뼱 ?덈뒗 ???
 			else { 
 				if (Cg + 10 < tile[Ci - 1][Cj].G) {
-					// 기존 g값보다 새로 계산한 G값이 작다면
+					// 湲곗〈 g媛믩낫???덈줈 怨꾩궛??G媛믪씠 ?묐떎硫?
 					tile[Ci - 1][Cj].G = Cg + 10;
 					tile[Ci - 1][Cj].parent = closedList[lastIndex];
 				}
@@ -250,7 +250,7 @@ void Astar::addOpenList()
 			}
 		}
 		if (Cj != 0) {
-			//좌상단 타일의 왼쪽이나 아래에 벽이 없다면
+			//醫뚯긽????쇱쓽 ?쇱そ?대굹 ?꾨옒??踰쎌씠 ?녿떎硫?
 			if (tile[Ci - 1][Cj - 1].walkable && tile[Ci][Cj].walkable && tile[Ci][Cj - 1].walkable) {
 				if (!tile[Ci - 1][Cj - 1].listOn) {
 					tile[Ci - 1][Cj - 1].listOn = true;
@@ -268,7 +268,7 @@ void Astar::addOpenList()
 			}
 		}
 		if (Cj != TILE_X - 1) {
-			//우상단 타일의 왼쪽이나 아래에 벽이 없다면
+			//?곗긽????쇱쓽 ?쇱そ?대굹 ?꾨옒??踰쎌씠 ?녿떎硫?
 			if (tile[Ci - 1][Cj + 1].walkable && tile[Ci - 1][Cj].walkable && tile[Ci][Cj + 1].walkable) {
 				if (!tile[Ci - 1][Cj + 1].listOn) {
 					tile[Ci - 1][Cj + 1].listOn = true;
@@ -304,7 +304,7 @@ void Astar::addOpenList()
 			}
 		}
 	}
-	//우측 타일이 마지막열이 아니라면
+	//?곗륫 ??쇱씠 留덉?留됱뿴???꾨땲?쇰㈃
 	if (Cj != TILE_X - 1) {
 		if (tile[Ci][Cj + 1].walkable) {
 			if (!tile[Ci][Cj + 1].listOn) {
@@ -322,7 +322,7 @@ void Astar::addOpenList()
 			}
 		}
 	}
-	//마지막 행이 아니라면
+	//留덉?留??됱씠 ?꾨땲?쇰㈃
 	if (Ci != TILE_Y - 1) {
 		if (tile[Ci + 1][Cj].walkable) {
 			if (!tile[Ci + 1][Cj].listOn) {
@@ -340,7 +340,7 @@ void Astar::addOpenList()
 			}
 		}
 		if (Cj != 0) {
-			//좌하단 타일의 오른쪽이나 위에 벽이 없다면
+			//醫뚰븯????쇱쓽 ?ㅻⅨ履쎌씠???꾩뿉 踰쎌씠 ?녿떎硫?
 			if (tile[Ci + 1][Cj - 1].walkable && tile[Ci + 1][Cj].walkable && tile[Ci][Cj - 1].walkable) {
 				if (!tile[Ci + 1][Cj - 1].listOn) {
 					tile[Ci + 1][Cj - 1].listOn = true;
@@ -357,7 +357,7 @@ void Astar::addOpenList()
 				}
 			}
 		}
-		//우하단 마지막 열이 아니라면
+		//?고븯??留덉?留??댁씠 ?꾨땲?쇰㈃
 		if (Cj != TILE_X - 1) {
 			if (tile[Ci + 1][Cj + 1].walkable && tile[Ci + 1][Cj].walkable && tile[Ci][Cj + 1].walkable) {
 				if (!tile[Ci + 1][Cj + 1].listOn) {

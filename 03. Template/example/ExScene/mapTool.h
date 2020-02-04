@@ -1,23 +1,23 @@
-#pragma once
+ï»¿#pragma once
 #include"gameNode.h"
-#define TILESIZE 32 //¿À¸¥ÂÊ È­¸é Å¸ÀÏ »çÀÌÁî
-#define TILEX 20	//¿ŞÂÊÈ­¸é Å¸ÀÏ »çÀÌÁî X
-#define TILEY 20	//¿ŞÂÊÈ­¸é Å¸ÀÏ »çÀÌÁî Y
+#define TILESIZE 32 //ì˜¤ë¥¸ìª½ í™”ë©´ íƒ€ì¼ ì‚¬ì´ì¦ˆ
+#define TILEX 20	//ì™¼ìª½í™”ë©´ íƒ€ì¼ ì‚¬ì´ì¦ˆ X
+#define TILEY 20	//ì™¼ìª½í™”ë©´ íƒ€ì¼ ì‚¬ì´ì¦ˆ Y
 
 #define TILESIZEX TILEX * TILESIZE
 #define TILESIZEY TILEY * TILESIZE
 
-//È­¸é ¿À¸¥ÂÊ ÀÌ¹ÌÁö Å¸ÀÏ °¹¼ö
+//í™”ë©´ ì˜¤ë¥¸ìª½ ì´ë¯¸ì§€ íƒ€ì¼ ê°¯ìˆ˜
 #define SAMPLETILEX 20
 #define SAMPLETILEY 8
 
-//ÁöÇü(EX.¹âÀ»¶§ »ç¿îµå¸¦ ³ª°Ô ÇÏ°Å³ª ÀÌµ¿ÇÒ ¼ö ¾ø´Â Áö¿ªµîµî)
+//ì§€í˜•(EX.ë°Ÿì„ë•Œ ì‚¬ìš´ë“œë¥¼ ë‚˜ê²Œ í•˜ê±°ë‚˜ ì´ë™í•  ìˆ˜ ì—†ëŠ” ì§€ì—­ë“±ë“±)
 enum TERRAIN
 {
 	TR_CEMENT, TR_DESERT,TR_GRASS,TR_WATER,TR_END
 };
 
-//¿ÀºêÁ§Æ®(EX :ÁöÇüÀ§ÂÊ¿¡ ¹èÄ¡. ¿òÁ÷ÀÌ°Å³ª ºÎ¼­Áö°Å³ª ÇÏ´Â ³à¼® µîµî º¯È­¸¦ ÁÙ¼ö ÀÖ´Â ¹°Ã¼)
+//ì˜¤ë¸Œì íŠ¸(EX :ì§€í˜•ìœ„ìª½ì— ë°°ì¹˜. ì›€ì§ì´ê±°ë‚˜ ë¶€ì„œì§€ê±°ë‚˜ í•˜ëŠ” ë…€ì„ ë“±ë“± ë³€í™”ë¥¼ ì¤„ìˆ˜ ìˆëŠ” ë¬¼ì²´)
 enum OBJECT
 {
 	OBJ_BLOCK1,
@@ -29,7 +29,7 @@ enum OBJECT
 	OBJ_TANK2,
 	OBJ_NONE
 };
-//À§Ä¡ ÁÂÇ¥
+//ìœ„ì¹˜ ì¢Œí‘œ
 enum POS
 {
 	POS_FLAG1,
@@ -38,7 +38,7 @@ enum POS
 	POS_TANK2
 
 };
-//Å¸ÀÏ ±¸Á¶Ã¼
+//íƒ€ì¼ êµ¬ì¡°ì²´
 struct tagTile
 {
 	TERRAIN terrain;
@@ -50,7 +50,7 @@ struct tagTile
 	int objFrameX;
 	int objFrameY;
 };
-//ÀÌ¹ÌÁö Å¸ÀÏ ±¸Á¶Ã¼
+//ì´ë¯¸ì§€ íƒ€ì¼ êµ¬ì¡°ì²´
 struct tagSampleTile
 {
 	RECT rcTile;
@@ -58,7 +58,7 @@ struct tagSampleTile
 	int terrainFrameY;
 	
 };
-//ÇöÀç Å¸ÀÏ ±¸Á¶Ã¼
+//í˜„ì¬ íƒ€ì¼ êµ¬ì¡°ì²´
 struct tagCurrentTile
 {
 	int x;
@@ -67,7 +67,7 @@ struct tagCurrentTile
 class mainGame :  public gameNode
 {
 private:
-	//¼¼ÀÌºê, ·Îµå, ÁöÇü, ¿ÀºêÁ§Æ®, Áö¿ì°³ µîµîµî
+	//ì„¸ì´ë¸Œ, ë¡œë“œ, ì§€í˜•, ì˜¤ë¸Œì íŠ¸, ì§€ìš°ê°œ ë“±ë“±ë“±
 	HWND _btnSave;
 	HWND _btnLoad;
 	HWND _btnTerrainDraw;
@@ -86,10 +86,10 @@ public:
 	mainGame();
 	~mainGame();
 
-	virtual HRESULT init();	//ÃÊ±âÈ­
-	virtual void release();//ÇØÁ¦
-	virtual void update();//¿¬»êÇÏ´Â°÷
-	virtual void render(/*HDC hdc*/);//±×¸®´Â°÷
+	virtual HRESULT init();	//ì´ˆê¸°í™”
+	virtual void release();//í•´ì œ
+	virtual void update();//ì—°ì‚°í•˜ëŠ”ê³³
+	virtual void render(/*HDC hdc*/);//ê·¸ë¦¬ëŠ”ê³³
 
 
 
@@ -129,7 +129,7 @@ LRESULT gameNode::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lPara
 			break;
 		}
 		break;
-		//ÇÁ·Î±×·¥ ½ÇÇàÁß »ç¿ëÀÚ°¡ ¸Ş´º Ç×¸ñÀ» ¼±ÅÃÇÏ¸é ¹ß»ıÇÏ´Â ¸Ş¼¼ÁöÀÓ.
+		//í”„ë¡œê·¸ë¨ ì‹¤í–‰ì¤‘ ì‚¬ìš©ìê°€ ë©”ë‰´ í•­ëª©ì„ ì„ íƒí•˜ë©´ ë°œìƒí•˜ëŠ” ë©”ì„¸ì§€ì„.
 	case WM_COMMAND:
 		switch (LOWORD(wParam))
 		{

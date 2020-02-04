@@ -1,26 +1,26 @@
-#pragma once
+﻿#pragma once
 #define PI		3.141592653
 #define PI2		PI*2
 
 namespace UTIL
 {
-	//실수형 점
+	//?ㅼ닔????
 	typedef struct _tagFpoint {
 		float x, y;
 	}FPOINT, *PFPOINT;
 
-	//원
+	//??
 	typedef struct _tagCircle {
 		FPOINT p;
 		int radius;
 	}Circle, *PCircle;
 
-	//실수형 사각형
+	//?ㅼ닔???ш컖??
 	typedef struct _tagFrect {
 		float left, top, right, bottom;
 	}FRECT, *PFRECT;
 
-	//정수형 사각형
+	//?뺤닔???ш컖??
 	typedef struct _tagIrect {
 		int left, top, right, bottom;
 		_tagIrect()
@@ -43,26 +43,26 @@ namespace UTIL
 		}
 	}IRECT, *PIRECT;
 
-	//랜덤값 가져오기
+	//?쒕뜡媛?媛?몄삤湲?
 	int getInt(int num);
 	int getFromIntTo(int fromNum, int toNum);
 
-	//거리
+	//嫄곕━
 	float getDistance(float startX, float startY, float endX, float endY);
-	//두 점으로 각도 구하기
+	//???먯쑝濡?媛곷룄 援ы븯湲?
 	float getAngle(float x1, float y1, float x2, float y2);
 
-	//원충돌
+	//?먯땐??
 	bool isCircleCircleCollision(Circle& c1, Circle& c2);
 
-	//사각형과 사각형충돌
+	//?ш컖?뺢낵 ?ш컖?뺤땐??
 	bool isRectRectCollision(const RECT & rect1, const RECT& rect2);
 	bool isRectRectCollision(const RECT & rect1, const FRECT & rect2);
 	bool isRectRectCollision(const FRECT & rect1, const FRECT & rect2);
 	bool isRectRectCollision(const IRECT& rect1, const IRECT & rect2);
 	bool isRectRectCollision(const IRECT& rect1, const RECT & rect2);
 
-	//점과 사각형 충돌
+	//?먭낵 ?ш컖??異⑸룎
 	bool isPointRectCollision(const POINT & point, const RECT& rect);
 	bool isPointRectCollision(const POINT & point, const FRECT& rect);
 	bool isPointRectCollision(const FPOINT & point, const RECT& rect);
@@ -77,27 +77,27 @@ namespace UTIL
 	bool isRectColorSame(HDC _targetImgDC, const IRECT& rect, int _division = 1, int _divisionY = 1, COLORREF _targetColor = RGB(255, 0, 255));
 
 
-	//점 만들기
+	//??留뚮뱾湲?
 	POINT PointMake(int x, int y);
 
-	//RECT만들기(좌상단 기준)
+	//RECT留뚮뱾湲?醫뚯긽??湲곗?)
 	RECT RectMake(int x, int y, int width, int height);
 	RECT RectMakeCenter(int x, int y, int width, int height);
 	FRECT FRectMake(float x, float y, float width, float height);
 	FRECT FRectMakeCenter(float x, float y, float width, float height);
 	
-	//선그리기
+	//?좉렇由ш린
 	void LineMake(HDC hdc, int x1, int y1, int x2, int y2);
 
-	//사각형 그리기
+	//?ш컖??洹몃━湲?
 	void RectangleMake(HDC hdc, int x, int y, int width, int height);
 	void drawRect(HDC hdc, const RECT& rect);
 	
-	//사각형 그리기(중심점)
+	//?ш컖??洹몃━湲?以묒떖??
 	void RectangleMakeCenter(HDC hdc, int x, int y, int width, int height);
 	void DrawRect(HDC hdc, const RECT& rect);
 	
-	//원그리기
+	//?먭렇由ш린
 	void EllipseMake(HDC hdc, int x, int y, int width, int height);
 	void EllipseMakeCenter(HDC hdc, int x, int y, int width, int height);
 

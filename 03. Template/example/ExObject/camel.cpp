@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "camel.h"
 #include "SystemManager/AnimationManager.h"
 

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "mainGame.h"
 mainGame::mainGame()
 {
@@ -34,7 +34,7 @@ void mainGame::update()
 void mainGame::render(/*HDC hdc*/)
 {
 	
-	//Èò»ö ºñÆ®¸Ê
+	//í°ìƒ‰ ë¹„íŠ¸ë§µ
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 	//===================================================
 	IMAGEMANAGER->render("tilemap", getMemDC(), WINSIZEX - IMAGEMANAGER->findImage("tilemap")->getWidth(), 0);
@@ -50,7 +50,7 @@ void mainGame::render(/*HDC hdc*/)
 
 	TIMEMANAGER->render(getMemDC());
 	//=================================================
-	//¹é¹öÆÛÀÇ ³»¿ëÀ» HDC¿¡ ±×¸°´Ù.(°Çµå¸®Áö¸»°Í.)
+	//ë°±ë²„í¼ì˜ ë‚´ìš©ì„ HDCì— ê·¸ë¦°ë‹¤.(ê±´ë“œë¦¬ì§€ë§ê²ƒ.)
 	this->getBackBuffer()->render(getHDC(), 0, 0);
 }
 
@@ -65,7 +65,7 @@ void mainGame::maptoolSetup()
 
 	_ctrSelect = CTRL_TERRAINDRAW;
 
-	//¿À¸¥ÂÊ »ùÇÃ ¸Ê ¼ÂÆÃ
+	//ì˜¤ë¥¸ìª½ ìƒ˜í”Œ ë§µ ì…‹íŒ…
 	for (int i = 0; i < SAMPLETILEY; i++)
 	{
 		for (int j = 0; j < SAMPLETILEX; j++)
@@ -73,7 +73,7 @@ void mainGame::maptoolSetup()
 			_sampleTiles[i* SAMPLETILEX + j].terrainFrameX = j;
 			_sampleTiles[i* SAMPLETILEX + j].terrainFrameY = i;
 
-			//ÁÂÇ¥°ª ¼³Á¤
+			//ì¢Œí‘œê°’ ì„¤ì •
 			SetRect(&_sampleTiles[i*SAMPLETILEX + j].rcTile,
 				(WINSIZEX - IMAGEMANAGER->findImage("tilemap")->getWidth()) + j * TILESIZE,
 				i* TILESIZE, (WINSIZEX - IMAGEMANAGER->findImage("tilemap")->getWidth()) + j * TILESIZE + TILESIZE,
@@ -81,7 +81,7 @@ void mainGame::maptoolSetup()
 		}
 	}
 
-	//¿ÞÂÊ ¸Ê ¼ÂÆÃ
+	//ì™¼ìª½ ë§µ ì…‹íŒ…
 	for (int i = 0; i < TILEY; i++)
 	{
 		for (int j = 0; j < TILEX; j++)
@@ -93,7 +93,7 @@ void mainGame::maptoolSetup()
 				i*TILESIZE + TILESIZE);
 		}
 	}
-	//Ã³À½ ±ò·ÁÀÖ´Â Å¸ÀÏ
+	//ì²˜ìŒ ê¹”ë ¤ìžˆëŠ” íƒ€ì¼
 	for (int i = 0; i < TILEX*TILEY; i++)
 	{
 		_tiles[i].terrainFrameX = 3;
@@ -110,7 +110,7 @@ void mainGame::maptoolSetup()
 
 void mainGame::setMap()
 {
-	//¿À¸¥ÂÊ »ùÇÃ
+	//ì˜¤ë¥¸ìª½ ìƒ˜í”Œ
 	for (int i = 0; i < SAMPLETILEX* SAMPLETILEY; i++)
 	{
 		if (PtInRect(&_sampleTiles[i].rcTile, m_ptMouse))
@@ -120,7 +120,7 @@ void mainGame::setMap()
 			break;
 		}
 	}
-	//¿ÞÂÊ Å¸ÀÏ
+	//ì™¼ìª½ íƒ€ì¼
 	for (int i = 0; i < TILEX* TILEY; i++)
 	{
 		if (PtInRect(&_tiles[i].rc, m_ptMouse))
@@ -150,35 +150,35 @@ void mainGame::setMap()
 		}
 	}
 }
-//¿©±â Ã¤¿ö¶ó
+//ì—¬ê¸° ì±„ì›Œë¼
 
 
 void mainGame::save()
 {
 }
-//¿©±âµµ...
+//ì—¬ê¸°ë„...
 void mainGame::load()
 {
 }
 
 TERRAIN mainGame::terrainSelect(int frameX, int frameY)
 {
-	//½Ã¸àÆ®
+	//ì‹œë©˜íŠ¸
 	if (frameX == 1 && frameY == 0)
 	{
 		return TR_CEMENT;
 	}
-	//Èë¹Ù´Ú
+	//í™ë°”ë‹¥
 	else if (frameX == 2 && frameY == 0)
 	{
 		return TR_DESERT;
 	}
-	//ÀÜµð
+	//ìž”ë””
 	else if (frameX == 3 && frameY == 0)
 	{
 		return TR_GRASS;
 	}
-	//¹°
+	//ë¬¼
 	else if (frameX == 4 && frameY == 0)
 	{
 		return TR_WATER;
