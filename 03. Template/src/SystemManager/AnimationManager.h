@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #include "SystemObject/Animation.h"
 
 class AnimationManager
@@ -11,11 +11,11 @@ public:
 	void deleteALL();
 
 public:
-	//ì²˜ìŒë¶€í„° ëê¹Œì§€
+	//Ã³À½ºÎÅÍ ³¡±îÁö
 	void addDefAnimation(std::string animationKeyName, char* imageKeyName, int fps, bool reverse = false, bool loop = false);
-	//ë°°ì—´ì— ë‹´ì•„ì„œ
+	//¹è¿­¿¡ ´ã¾Æ¼­
 	void addAnimation(std::string animationKeyName, char* imageKeyName, int* playArr, int arrLen, int fps, bool loop = false);
-	//êµ¬ê°„
+	//±¸°£
 	void addAnimation(std::string animationKeyName, char* imageKeyName, int start, int end, int fps,bool reverse =  false, bool loop = false);
 	Animation* findAnimation(std::string animationKeyName);
 

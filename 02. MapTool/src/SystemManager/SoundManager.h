@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "../../vendor/fmod/inc/fmod.hpp"
 #define CHNNEL_MAX 50
 

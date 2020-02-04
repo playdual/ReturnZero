@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "stdafx.h"
 #include "Common/SystemManagers.h"
 #include "Game/GameObject/Object.h"

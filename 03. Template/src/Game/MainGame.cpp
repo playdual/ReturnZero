@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+#include "stdafx.h"
 #include "MainGame.h"
 #include "GameScene/SampleScene.h"
 #include "GameScene/SceneAstar.h"
@@ -17,8 +17,8 @@ HRESULT MainGame::init()
 	GameNode::init();
 	
 	//add Scene
-	IMAGEMANAGER->addImage("?щ굹", "../00. Common/Images/?щ굹.bmp", 0, 0, WINSIZEX, WINSIZEY);
-	SOUNDMANAGER->addStream("諛곌꼍??, "../00. Common/Sounds/?섎쭔遊?mp3", true);
+	IMAGEMANAGER->addImage("사나", "../00. Common/Images/사나.bmp", 0, 0, WINSIZEX, WINSIZEY);
+	SOUNDMANAGER->addStream("배경음", "../00. Common/Sounds/나만봄.mp3", true);
 
 	SCENEMANAGER->addScene("Sample", new SampleScene);
 	SCENEMANAGER->changeScene("Sample");

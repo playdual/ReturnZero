@@ -1,4 +1,4 @@
-ï»¿#pragma once
+#pragma once
 #include "SystemObject/Image.h"
 
 class ImageManager {
@@ -7,16 +7,16 @@ public:
 	void release();
 
 public:
-	//í‚¤ê°’ìœ¼ë¡œ ë¹ˆ ë¹„íŠ¸ë§µ ì¶”ê°€
+	//Å°°ªÀ¸·Î ºó ºñÆ®¸Ê Ãß°¡
 	Image* addImage(std::string strKey, int width, int height);
 	Image* addImage(std::string strKey, const char* fileName, int width, int height, bool isTrans = false, COLORREF transCollor = RGB(0, 0, 0));
 	Image* addImage(std::string strKey, const char* fileName, int x, int y, int width, int height, bool isTrans = false, COLORREF transCollor = RGB(0, 0, 0));
 
-	//í”„ë ˆì„ ë¹„íŠ¸ë§µ ì¶”ê°€
+	//ÇÁ·¹ÀÓ ºñÆ®¸Ê Ãß°¡
 	Image* addFrameImage(std::string strKey, const char* fileName, int width, int height, int frameX, int frameY, bool isTrans, COLORREF transCollor);
 	Image* addFrameImage(std::string strKey, const char* fileName, float x, float y, int width, int height, int frameX, int frameY, bool isTrans, COLORREF transCollor);
 	
-	//ì´ë¯¸ì§€ ì°¾ê¸°, ì‚­ì œ
+	//ÀÌ¹ÌÁö Ã£±â, »èÁ¦
 	Image* findImage(std::string strkey);
 	bool deleteImage(std::string strKey);
 	bool deleteAll();

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "Scene.h"
 
 class TownScene :
@@ -19,8 +19,5 @@ public:
 	void debugRender(HDC hdc) override;
 
 private:
-	Image* m_image;
-	int m_count;
-	float m_deltaTime;
+	Image* image;
 };
-

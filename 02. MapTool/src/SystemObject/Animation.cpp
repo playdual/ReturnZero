@@ -1,4 +1,4 @@
-ï»¿#include "stdafx.h"
+#include "stdafx.h"
 #include "animation.h"
 
 Animation::Animation()
@@ -14,19 +14,19 @@ Animation::~Animation()
 
 HRESULT Animation::init(int totalW, int totalH, int frameW, int frameH)
 {
-	//ê°€ë¡œ í”„ë ˆì„ ê°¯ìˆ˜
+	//°¡·Î ÇÁ·¹ÀÓ °¹¼ö
 	_frameWidth = frameW;
 	int frameWidthNum = totalW / _frameWidth;
 
-	//ì„¸ë¡œ í”„ë ˆì„ ê°¯ìˆ˜
+	//¼¼·Î ÇÁ·¹ÀÓ °¹¼ö
 	_frameHeight = frameH;
 	int frameHeightNum = totalH / _frameHeight;
 
-	//ì´ í”„ë ˆì„ ìˆ˜
+	//ÃÑ ÇÁ·¹ÀÓ ¼ö
 	_frameNum = frameWidthNum * frameHeightNum;
 
 
-	//í”„ë ˆì„ ìœ„ì¹˜ ëª©ë¡ ì…‹íŒ… í•˜ì.
+	//ÇÁ·¹ÀÓ À§Ä¡ ¸ñ·Ï ¼ÂÆÃ ÇÏÀÚ.
 	_frameList.clear();
 
 	for (int i = 0; i < frameHeightNum; i++)
@@ -37,49 +37,49 @@ HRESULT Animation::init(int totalW, int totalH, int frameW, int frameH)
 			framePos.x = j * _frameWidth;
 			framePos.y = i * _frameHeight;
 
-			//í”„ë ˆì„ ìœ„ì¹˜ ëª©ë¡ ì¶”ê°€í•˜ê¸°
+			//ÇÁ·¹ÀÓ À§Ä¡ ¸ñ·Ï Ãß°¡ÇÏ±â
 			_frameList.push_back(framePos);
 		}
 	}
 
-	//ê¸°ë³¸ í”„ë ˆì„ìœ¼ë¡œ ì…‹íŒ…í•˜ì.
+	//±âº» ÇÁ·¹ÀÓÀ¸·Î ¼ÂÆÃÇÏÀÚ.
 	setDefPlayFrame();
 	return S_OK;
 }
 
 void Animation::setDefPlayFrame(bool reverse, bool loop)
 {
-	//ë£¨í”„ì—¬ë¶€
+	//·çÇÁ¿©ºÎ
 	_loop = loop;
-	//ëª©ë¡ ì´ˆê¸°í™”
+	//¸ñ·Ï ÃÊ±âÈ­
 	_playList.clear();
 
 	if (reverse)
 	{
-		//ë¦¬ë²„ìŠ¤ í›„ 1ë²ˆ ì¸ë±ìŠ¤ ê¹Œì§€
+		//¸®¹ö½º ÈÄ 1¹ø ÀÎµ¦½º ±îÁö
 		if (_loop)
 		{
-			//ì •ë°©í–¥
+			//Á¤¹æÇâ
 			for (int i = 0; i < _frameNum; i++)
 			{
 				_playList.push_back(i);
 			}
-			//ì—­ë°©í–¥
+			//¿ª¹æÇâ
 			for (int i = _frameNum - 1; i > 0; i--)
 			{
 				_playList.push_back(i);
 			}
 
 		}
-		//ë¦¬ë²„ìŠ¤ í›„ 0ë²ˆê¹Œì§€
+		//¸®¹ö½º ÈÄ 0¹ø±îÁö
 		else
 		{
-			//ì •
+			//Á¤
 			for (int i = 0; i < _frameNum; i++)
 			{
 				_playList.push_back(i);
 			}
-			//ì—­
+			//¿ª
 			for (int i = _frameNum - 1; i >= 0; i--)
 			{
 				_playList.push_back(i);
@@ -88,7 +88,7 @@ void Animation::setDefPlayFrame(bool reverse, bool loop)
 	}
 	else
 	{
-		//ì •ë°©í–¥
+		//Á¤¹æÇâ
 		for (int i = 0; i < _frameNum; i++)
 		{
 			_playList.push_back(i);
@@ -108,47 +108,47 @@ void Animation::setPlayFrame(int * playArr, int arrLen, bool loop)
 
 }
 
-//ì‹œì‘ê³¼ ë
+//½ÃÀÛ°ú ³¡
 void Animation::setPlayFrame(int start, int end, bool reverse, bool loop)
 {
 	_loop = loop;
 	_playList.clear();
 
-	//ì‹œì‘ê³¼ ëì´ ê°™ì€ê²½ìš°(í”„ë ˆì„êµ¬ê°„) ì¬ìƒ í•˜ì§€ ë§ì
+	//½ÃÀÛ°ú ³¡ÀÌ °°Àº°æ¿ì(ÇÁ·¹ÀÓ±¸°£) Àç»ı ÇÏÁö ¸»ÀÚ
 	if (start == end)
 	{
 		_playList.clear();
 		stop();
 		return;
 	}
-	//ì‹œì‘ í”„ë ˆì„ì´ ë í”„ë ˆì„ë³´ë‹¤ í¬ë©´
+	//½ÃÀÛ ÇÁ·¹ÀÓÀÌ ³¡ ÇÁ·¹ÀÓº¸´Ù Å©¸é
 	else if (start > end)
 	{
-		//ë¦¬ë²„ìŠ¤ í›„ 1ë²ˆê¹Œì§€ë§Œ
+		//¸®¹ö½º ÈÄ 1¹ø±îÁö¸¸
 		if (reverse)
 		{
 			if (_loop)
 			{
-				//ì •
+				//Á¤
 				for (int i = start; i >= end; i--)
 				{
 					_playList.push_back(i);
 				}
-				//ì—­
+				//¿ª
 				for (int i = end + 1; i < start; i++)
 				{
 					_playList.push_back(i);
 				}
 			}
-			//ë¦¬ë²„ìŠ¤ í›„ 0ë²ˆê¹Œì§€
+			//¸®¹ö½º ÈÄ 0¹ø±îÁö
 			else
 			{
-				//ì •
+				//Á¤
 				for (int i = start; i >= end; i--)
 				{
 					_playList.push_back(i);
 				}
-				//ì—­
+				//¿ª
 				for (int i = end + 1; i <= start; i++)
 				{
 					_playList.push_back(i);
@@ -163,12 +163,12 @@ void Animation::setPlayFrame(int start, int end, bool reverse, bool loop)
 			}
 		}
 	}
-	//ì •ìƒì ìœ¼ë¡œ ì‹œì‘í”„ë ˆì„ ë í”„ë ˆì„ë³´ë‹¤ ì‘ë‹¤ë©´
+	//Á¤»óÀûÀ¸·Î ½ÃÀÛÇÁ·¹ÀÓ ³¡ ÇÁ·¹ÀÓº¸´Ù ÀÛ´Ù¸é
 	else
 	{
 		if (reverse)
 		{
-			//ë¦¬ë²„ìŠ¤ í›„ 1ë²ˆ
+			//¸®¹ö½º ÈÄ 1¹ø
 			if (_loop)
 			{
 				for (int i = start; i <= end; i++)
@@ -180,14 +180,14 @@ void Animation::setPlayFrame(int start, int end, bool reverse, bool loop)
 					_playList.push_back(i);
 				}
 			}
-			//ë¦¬ë²„ìŠ¤ í›„ 0ë²ˆ ê¹Œì§€
+			//¸®¹ö½º ÈÄ 0¹ø ±îÁö
 			else
-			{	//ì •
+			{	//Á¤
 				for (int i = start; i <= end; i++)
 				{
 					_playList.push_back(i);
 				}
-				//ì—­
+				//¿ª
 				for (int i = end - 1; i <= start; i--)
 				{
 					_playList.push_back(i);
@@ -196,7 +196,7 @@ void Animation::setPlayFrame(int start, int end, bool reverse, bool loop)
 		}
 		else
 		{
-			//ì •
+			//Á¤
 			for (int i = start; i <= end; i++)
 			{
 				_playList.push_back(i);
@@ -212,12 +212,12 @@ void Animation::setFPS(int framePerSec)
 
 void Animation::frameUpdate(float elapsedTime)
 {
-	//í”Œë ˆì´ ì¤‘ì„?
+	//ÇÃ·¹ÀÌ ÁßÀÓ?
 	if (_play)
 	{
 		_elapsedSec += elapsedTime;
 
-		//í”„ë ˆì„ ì—…ë°ì´íŠ¸ ì‹œê°„ì´ ë˜ì—ˆë‹¤ë©´
+		//ÇÁ·¹ÀÓ ¾÷µ¥ÀÌÆ® ½Ã°£ÀÌ µÇ¾ú´Ù¸é
 		if (_elapsedSec >= _frameUpdateSec)
 		{
 			_elapsedSec -= _frameUpdateSec;

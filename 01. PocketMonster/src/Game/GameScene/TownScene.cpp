@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+#include "stdafx.h"
 #include "TownScene.h"
 
 TownScene::TownScene()
@@ -13,7 +13,7 @@ TownScene::~TownScene()
 bool TownScene::init()
 {
 	SOUNDMANAGER->playSound("배경음", Channel::eChannelBgm);
-	m_image = IMAGEMANAGER->findImage("배경");
+	image = IMAGEMANAGER->findImage("배경");
 	return true;
 }
 
@@ -24,7 +24,7 @@ void TownScene::update(float _deltaTime)
 
 void TownScene::render(HDC hdc)
 {
-	m_image->render(hdc);
+	image->render(hdc);
 }
 
 void TownScene::afterRender(HDC hdc)

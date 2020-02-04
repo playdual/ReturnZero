@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+#include "stdafx.h"
 #include "Scene.h"
 
 LRESULT Scene::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)

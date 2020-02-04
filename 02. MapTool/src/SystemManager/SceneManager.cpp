@@ -1,4 +1,4 @@
-ï»¿#include "stdafx.h"
+#include "stdafx.h"
 #include "sceneManager.h"
 DEFINITION_SINGLE(SceneManager)
 
@@ -68,18 +68,18 @@ bool SceneManager::changeScene(std::string sceneName)
 {
 	miSceneList find = _mSceneList.find(sceneName);
 
-	//ëª»ì°¾ìœ¼ë©´ E_FAIL
+	//¸øÃ£À¸¸é E_FAIL
 	if (find == _mSceneList.end())
 		return false;
 
-	//ë°”ê¾¸ë ¤ëŠ”ì”¬ì´ í˜„ìž¬ì”¬ì´ëž‘ ê°™ì•„ë„ E_FAIL
+	//¹Ù²Ù·Á´Â¾ÀÀÌ ÇöÀç¾ÀÀÌ¶û °°¾Æµµ E_FAIL
 	if (find->second == _currentScene)
 		return false;
 
-	//ì—¬ê¸°ê¹Œì§€ ì™”ë‹¤ë©´ ë¬¸ì œê°€ ì—†ë‹¤ ì¦‰ ì”¬ì„ ì´ˆê¸°í™”í•˜ê³  ë³€ê²½í•˜ìž.
+	//¿©±â±îÁö ¿Ô´Ù¸é ¹®Á¦°¡ ¾ø´Ù Áï ¾ÀÀ» ÃÊ±âÈ­ÇÏ°í º¯°æÇÏÀÚ.
 	if (SUCCEEDED(find->second->init()))
 	{
-		//í˜¹ì‹œ ê¸°ì¡´ì— ì”¬ì´ ìžˆë‹¤ë©´ ë¦´ë¦¬ì¦ˆ
+		//È¤½Ã ±âÁ¸¿¡ ¾ÀÀÌ ÀÖ´Ù¸é ¸±¸®Áî
 		if (_currentScene)_currentScene->release();
 
 		_currentScene = find->second;

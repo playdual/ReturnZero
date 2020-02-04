@@ -1,4 +1,4 @@
-ï»¿#include "stdafx.h"
+#include "stdafx.h"
 #include "EffectManager.h"
 #include "ImageManager.h"
 #include "SystemObject/Effect.h"
@@ -19,22 +19,22 @@ HRESULT EffectManager::init()
 
 void EffectManager::release()
 {
-	viTotalEffect vIter;		//ëª¨ë“  ì´í™íŠ¸ ê´€ë¦¬í•  ë²¡í„°
-	miEffect mIter;				//ì´í™íŠ¸í´ë˜ìŠ¤ ë‹´ê²¨ìˆëŠ” ë…€ì„
+	viTotalEffect vIter;		//¸ğµç ÀÌÆåÆ® °ü¸®ÇÒ º¤ÅÍ
+	miEffect mIter;				//ÀÌÆåÆ®Å¬·¡½º ´ã°ÜÀÖ´Â ³à¼®
 
 	for (vIter = m_vTotalEffect.begin(); vIter != m_vTotalEffect.end(); ++vIter)
 	{
-		//ì´í™íŠ¸ê°€ ë‹´ê²¨ ìˆëŠ” ë§µ
+		//ÀÌÆåÆ®°¡ ´ã°Ü ÀÖ´Â ¸Ê
 		for (mIter = vIter->begin(); mIter != vIter->end();)
 		{
 			if (mIter->second.size() != 0)
 			{
-				//ì´í™íŠ¸ í´ë˜ìŠ¤ë¥¼ ë‹´ì€ ë²¡í„°
+				//ÀÌÆåÆ® Å¬·¡½º¸¦ ´ãÀº º¤ÅÍ
 				viEffect vArriter;
 
 				for (vArriter = mIter->second.begin(); vArriter != mIter->second.end();)
 				{
-					//ì´í™íŠ¸ í´ë˜ìŠ¤ ë¦´ë¦¬ì¦ˆ
+					//ÀÌÆåÆ® Å¬·¡½º ¸±¸®Áî
 					(*vArriter)->release();
 					SAFE_DELETE(*vArriter);
 					vArriter = mIter->second.erase(vArriter);
@@ -90,10 +90,10 @@ void EffectManager::addEffect(std::string effectKey, char * imageName, int image
 {
 
 	Image* img;
-	vEffect vEffectBuffer;	//ì´í™íŠ¸ ë²„í¼
-	mEffect mArrEffect;		//ë§µìœ¼ë¡œ ë§Œë“  ì´í™íŠ¸
+	vEffect vEffectBuffer;	//ÀÌÆåÆ® ¹öÆÛ
+	mEffect mArrEffect;		//¸ÊÀ¸·Î ¸¸µç ÀÌÆåÆ®
 
-							//ì´ë¯¸ì§€ê°€ ì´ë¯¸ì§€ë§¤ë‹ˆì €ì— ë“±ë¡ì´ ë˜ì–´ ìˆë‹¤ë©´
+							//ÀÌ¹ÌÁö°¡ ÀÌ¹ÌÁö¸Å´ÏÀú¿¡ µî·ÏÀÌ µÇ¾î ÀÖ´Ù¸é
 	if (IMAGEMANAGER->findImage(imageName))
 	{
 		img = IMAGEMANAGER->findImage(imageName);
@@ -103,16 +103,16 @@ void EffectManager::addEffect(std::string effectKey, char * imageName, int image
 		img = IMAGEMANAGER->addImage(effectKey, imageName, imageW, imageH, true, RGB(255, 0, 255));
 	}
 
-	//ë²„í¼ í¬ê¸°ë§Œí¼ ì´í™íŠ¸ë¥¼ í• ë‹¹í›„ ì´ˆê¸°í™” í•´ì„œ ë²¡í„°ë¡œ ë§Œë“ ë‹¤.
+	//¹öÆÛ Å©±â¸¸Å­ ÀÌÆåÆ®¸¦ ÇÒ´çÈÄ ÃÊ±âÈ­ ÇØ¼­ º¤ÅÍ·Î ¸¸µç´Ù.
 	for (int i = 0; i < buffer; i++)
 	{
 		vEffectBuffer.push_back(new Effect);
 		vEffectBuffer[i]->init(img, frameW, frameH, fps, elapsedTime);
 	}
 
-	//ë²¡í„° ë‹´ê¸´ ì´í™íŠ¸ ë²„í¼ë¥¼ ë§µì— ë„£ëŠ”ë‹¤.
+	//º¤ÅÍ ´ã±ä ÀÌÆåÆ® ¹öÆÛ¸¦ ¸Ê¿¡ ³Ö´Â´Ù.
 	mArrEffect.insert(make_pair(effectKey, vEffectBuffer));
-	//ë§µì— ë‹´ê¸´ ë²¡í„°ë¥¼ í† íƒˆë²¡í„°ì— ë‹´ì.
+	//¸Ê¿¡ ´ã±ä º¤ÅÍ¸¦ ÅäÅ»º¤ÅÍ¿¡ ´ãÀÚ.
 	m_vTotalEffect.push_back(mArrEffect);
 
 
@@ -128,11 +128,11 @@ void EffectManager::play(std::string effectKey, int x, int y)
 		for (mIter = vIter->begin(); mIter != vIter->end(); ++mIter)
 		{
 
-			//ì´í™íŠ¸ í‚¤ê°’ê³¼ ë¹„êµí•´ì„œ ê°™ì§€ ì•Šë‹¤ë©´ ë‹¤ìŒ ë§µìœ¼ë¡œ ë„˜ê¸°ì.
+			//ÀÌÆåÆ® Å°°ª°ú ºñ±³ÇØ¼­ °°Áö ¾Ê´Ù¸é ´ÙÀ½ ¸ÊÀ¸·Î ³Ñ±âÀÚ.
 			if (!(mIter->first == effectKey))break;
 
 
-			//ì´í™íŠ¸ í‚¤ê°’ê³¼ ì¼ì¹˜í•˜ë©´ ì´í™íŠ¸ë¥¼ í”Œë ˆì´ í•˜ì.
+			//ÀÌÆåÆ® Å°°ª°ú ÀÏÄ¡ÇÏ¸é ÀÌÆåÆ®¸¦ ÇÃ·¹ÀÌ ÇÏÀÚ.
 			viEffect vArrIter;
 			for (vArrIter = mIter->second.begin(); vArrIter != mIter->second.end(); ++vArrIter)
 			{
