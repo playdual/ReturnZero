@@ -1,6 +1,6 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "MainGame.h"
-#include "GameScene/TownScene.h"
+#include "GameScene/TestScene.h"
 
 MainGame::MainGame()
 {
@@ -13,12 +13,8 @@ HRESULT MainGame::init()
 {
 	GameNode::init();
 	
-	//add Scene
-	IMAGEMANAGER->addImage("배경", "Images/temp.bmp", 0, 0, WINSIZEX, WINSIZEY);
-	SOUNDMANAGER->addStream("배경음", "Sounds/NewBarkTown.mp3", true);
-
-	SCENEMANAGER->addScene("타운", new TownScene);
-	SCENEMANAGER->changeScene("타운");
+	SCENEMANAGER->addScene("테스트", new TestScene);
+	SCENEMANAGER->changeScene("테스트");
 
 	sceneInit = true;
 	return S_OK;

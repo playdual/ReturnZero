@@ -225,21 +225,21 @@ namespace UTIL
 		bottom = 0;
 	}
 
-	//í¬ì¸íŠ¸
+	//Æ÷ÀÎÆ®
 	POINT PointMake(int x, int y)
 	{
 		POINT pt = { x ,y };
 		return pt;
 	}
 
-	//ì„ ê·¸ë¦¬ëŠ” í•¨ìˆ˜
+	//¼±±×¸®´Â ÇÔ¼ö
 	void LineMake(HDC hdc, int x1, int y1, int x2, int y2)
 	{
 		MoveToEx(hdc, x1, y1, NULL);
 		LineTo(hdc, x2, y2);
 	}
 
-	//RECTë§Œë“¤ê¸°(ì¢Œìƒë‹¨ ê¸°ì¤€)
+	//RECT¸¸µé±â(ÁÂ»ó´Ü ±âÁØ)
 	RECT RectMake(int x, int y, int width, int height)
 	{
 		RECT rc = { x,y, x + width, y + height };
@@ -252,7 +252,7 @@ namespace UTIL
 		return rc;
 	}
 
-	//RECTë§Œë“¤ê¸°(ì¤‘ì‹¬ì ìœ¼ë¡œ ë¶€í„°)
+	//RECT¸¸µé±â(Áß½ÉÁ¡À¸·Î ºÎÅÍ)
 	RECT RectMakeCenter(int x, int y, int width, int height)
 	{
 		RECT rc = { x - width / 2, y - height / 2, x + width / 2, y + height / 2 };
@@ -266,7 +266,7 @@ namespace UTIL
 		return rc;
 	}
 
-	//ì‚¬ê°í˜• ê·¸ë¦¬ê¸°
+	//»ç°¢Çü ±×¸®±â
 	void RectangleMake(HDC hdc, int x, int y, int width, int height)
 	{
 		Rectangle(hdc, x, y, x + width, y + height);
@@ -296,7 +296,7 @@ namespace UTIL
 		DeleteObject(curBrush);
 	}
 
-	//ì‚¬ê°í˜• ê·¸ë¦¬ê¸°(ì¤‘ì‹¬ì )
+	//»ç°¢Çü ±×¸®±â(Áß½ÉÁ¡)
 	void RectangleMakeCenter(HDC hdc, int x, int y, int width, int height)
 	{
 		Rectangle(hdc, x - (width / 2), y - (height / 2), x + (width / 2), y + (height / 2));
@@ -306,13 +306,13 @@ namespace UTIL
 		Rectangle(hdc, rect.left, rect.top, rect.right, rect.bottom);
 	}
 
-	//ì›ê·¸ë¦¬ê¸°
+	//¿ø±×¸®±â
 	void EllipseMake(HDC hdc, int x, int y, int width, int height)
 	{
 		Ellipse(hdc, x, y, x + width, y + height);
 	}
 
-	//ì›ê·¸ë¦¬ê¸°(ì¤‘ì‹¬ì )
+	//¿ø±×¸®±â(Áß½ÉÁ¡)
 	void EllipseMakeCenter(HDC hdc, int x, int y, int width, int height)
 	{
 		Ellipse(hdc, x - (width / 2), y - (height / 2), x + (width / 2), y + (height / 2));
@@ -353,14 +353,6 @@ namespace UTIL
 	{
 		IRECT rc = { x - width / 2, y - height / 2, x + width / 2, y + height / 2 };
 		return rc;
-	}
-
-	void BeginSolidColor(HDC hdc, HBRUSH * brush, COLORREF color)
-	{
-		*brush = CreateSolidBrush(color);
-		*brush = (HBRUSH)SelectObject(hdc, *brush);
-
-
 	}
 
 	int getInt(int num)

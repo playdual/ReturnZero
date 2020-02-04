@@ -138,9 +138,49 @@ project "03. Template"
 	filter "configurations:Release"
 		optimize "On"
 
+project "04. Practice"
+	location "04. Practice"
+	kind "WindowedApp"
+	language "C++"
 
-project "04. WhiteBoard"
-	location "04. WhiteBoard"
+	pchheader "stdafx.h"
+	pchsource "04. Practice/src/stdafx.cpp"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
+	}
+	includedirs
+	{
+		"%{prj.name}/src",
+	}
+	libdirs
+	{
+		{ "vendor/fmod/lib"}
+	}
+	links
+	{
+		"fmod_vc.lib"
+	}
+
+	filter "system:windows"
+		cppdialect "C++17"
+		staticruntime "On"
+		systemversion "latest"
+
+	filter "configurations:Debug"
+		symbols "On"
+	
+	filter "configurations:Release"
+		optimize "On"
+
+
+project "05. WhiteBoard"
+	location "05. WhiteBoard"
 	kind "ConsoleApp"
 	language "C++"
 

@@ -1,6 +1,7 @@
-﻿#include "stdafx.h"
+#include "stdafx.h"
 #include "MainGame.h"
 #include "GameScene/SampleScene.h"
+#include "GameScene/SceneAstar.h"
 //#include "../example/ExScene/ExAnimationManagerScene.h"
 //#include "../example/ExScene/ExEffectManagerScene.h"
 
@@ -21,6 +22,14 @@ HRESULT MainGame::init()
 
 	SCENEMANAGER->addScene("Sample", new SampleScene);
 	SCENEMANAGER->changeScene("Sample");
+
+	auto astar = new Astar;
+	astar.init();
+	SCENEMANAGER->addScene("astar", new astar);
+	SCENEMANAGER->changeScene("astar");
+
+
+
 	sceneInit = true;
 	return S_OK;
 }

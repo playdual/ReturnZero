@@ -1,23 +1,21 @@
 #pragma once
 #include "Scene.h"
 
-class TownScene :
-	public Scene 
+class TestScene 
+	: public Scene 
 {
 public:
-	TownScene();
-	virtual ~TownScene();
-
-public:
 	bool init() override;
+	void update(float _deltaTime) override;
 	void release() override;
 
 public:
-	void update(float _deltaTime) override;
 	void render(HDC hdc) override;
 	void afterRender(HDC hdc) override;
 	void debugRender(HDC hdc) override;
 
+
 private:
-	Image* image;
+	std::vector<std::shared_ptr<Object>> objs;
+
 };
