@@ -8,6 +8,8 @@ public:
 	void render();
 
 	void rectInCamera(UTIL::IRECT& outRect, const UTIL::IRECT& realRect, bool& isOutput);
+	std::pair<int, int> pointInCamera(int x, int y);
+	
 	void setPosition(int* _posX, int* _posY);
 	
 	int getCameraX() { return m_cameraX; }

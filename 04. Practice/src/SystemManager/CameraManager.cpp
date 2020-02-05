@@ -38,6 +38,15 @@ void CameraManager::rectInCamera(UTIL::IRECT& outRect, const UTIL::IRECT& realRe
 	isOutput = false;
 }
 
+std::pair<int, int> CameraManager::pointInCamera(int x, int y)
+{
+	int retX = x - m_cameraX;
+	int retY = y - m_cameraY;
+
+	return {retX, retY};
+}
+
+
 void CameraManager::setPosition(int* _posX, int* _posY)
 {
 	m_targetedCameraX = _posX;

@@ -33,6 +33,10 @@ private:
 
 
 	Image* m_bg;
+	int bgX;
+	int bgY;
+	int bgOutX;
+	int bgOutY;
 	//float m_cameraX;
 	//float m_cameraY;
 };

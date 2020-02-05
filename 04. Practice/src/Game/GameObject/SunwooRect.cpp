@@ -12,7 +12,9 @@ bool SunwooRect::init()
 
 	CAMERAMANAGER->setPosition(&m_playerRect.left, &m_playerRect.top);
 	
-	m_bg =IMAGEMANAGER->addImage("bg", "Images/bg.bmp", 0, 0,WINSIZEX*2,WINSIZEY*2,true, RGB(255, 0, 255));
+	bgX = 0;
+	bgY = 0;
+	m_bg =IMAGEMANAGER->addImage("bg", "Images/bg.bmp", bgX, bgY, WINSIZEX*2,WINSIZEY*2,true, RGB(255, 0, 255));
 	return true;
 }
 
@@ -36,6 +38,10 @@ void SunwooRect::update(float _deltaTime)
 	}
 	CAMERAMANAGER->update();
 
+	auto[x, y] = CAMERAMANAGER->pointInCamera(bgX, bgY);
+
+	bgOutX = x;
+	bgOutY = y;
 
 	//output obstacle
 	//rectInCamera(m_obstacle, true);
@@ -48,7 +54,7 @@ void SunwooRect::update(float _deltaTime)
 
 void SunwooRect::render(HDC hdc)
 {
-	//m_bg->render(hdc, CAMERAMANAGER->getCameraX(),CAMERAMANAGER->getCameraY());
+	m_bg->render(hdc, bgOutX, bgOutY);
 	//player
 	UTIL::DrawColorRect(hdc, m_outPlayerRect, true, RGB(153, 255, 30));
 	//obstacle
