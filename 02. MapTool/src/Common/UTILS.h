@@ -23,6 +23,7 @@ namespace UTIL
 	//정수형 사각형
 	typedef struct _tagIrect {
 		int left, top, right, bottom;
+		int centerX, centerY;
 		_tagIrect()
 			:left(0), top(0), right(0), bottom(0)
 		{}
