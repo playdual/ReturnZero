@@ -1,6 +1,6 @@
 ﻿#include "stdafx.h"
 #include "MainGame.h"
-#include "GameScene/MapEdit.h"
+#include "GameScene/MapToolScene.h"
 
 MainGame::MainGame()
 {
@@ -14,8 +14,8 @@ HRESULT MainGame::init()
 	GameNode::init();
 	
 	//add Scene
-	SCENEMANAGER->addScene("MapEddit", new MapEdit);
-	SCENEMANAGER->changeScene("MapEddit");
+	SCENEMANAGER->addScene("MapTool", new MapToolScene);
+	SCENEMANAGER->changeScene("MapTool");
 
 	return S_OK;
 }
