@@ -11,13 +11,13 @@ protected:
 	ITEM_TYPE m_type;
 
 public:
-	virtual bool init() override;
-	virtual void update(float _deltaTime) override;
+	virtual bool init() = 0;
+	virtual void update(float _deltaTime) =0;
 
-	virtual void render(HDC hdc) override;
-	virtual void afterRender(HDC hdc) override;
-	virtual void debugRender(HDC hdc) override;
-
+	virtual void render(HDC hdc) = 0;
+	virtual void afterRender(HDC hdc) = 0;
+	virtual void debugRender(HDC hdc) = 0;
+	 
 private:
 	Image*			m_img;				//�̹���
 	UTIL::IRECT		m_iRect;			//����(��ǥ��)
