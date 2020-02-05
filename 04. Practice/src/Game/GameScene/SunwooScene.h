@@ -1,5 +1,6 @@
 #pragma once
 #include "Game/GameScene/Scene.h"
+#include "Game/GameObject/Tile.h"
 
 class SunwooScene
 	: public Scene
@@ -18,4 +19,5 @@ public:
 private:
 	std::vector<std::shared_ptr<Object>> objs;
 
+	std::vector<std::shared_ptr<Tile>> Tiles;
 };

@@ -4,11 +4,15 @@
 
 bool SunwooRect::init()
 {
-	m_rect = UTIL::IRectMakeCenter(WINSIZEX/2, WINSIZEY/2, 150, 150);
-	m_obstacle = UTIL::IRectMakeCenter(WINSIZEX / 2 + 300, WINSIZEY / 2 -100, 150, 150);
+	
+	m_playerRect = UTIL::IRectMakeCenter(WINSIZEX/2, WINSIZEY/2, 150, 150);
+	m_outPlayerRect = UTIL::IRectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, 150, 150);
+	m_obstacleRect = UTIL::IRectMakeCenter(WINSIZEX / 2 + 500, WINSIZEY /  2 -100, 150, 150);
+	m_obstacleRect2 = UTIL::IRectMakeCenter(WINSIZEX / 2 + 1000, WINSIZEY /  2 -100, 150, 150);
+
+	CAMERAMANAGER->setPosition(&m_playerRect.left, &m_playerRect.top);
 
 	m_bg =IMAGEMANAGER->addImage("bg", "Images/bg.bmp", 0, 0,WINSIZEX*2,WINSIZEY*2,true, RGB(255, 0, 255));
-
 	return true;
 }
 
@@ -16,31 +20,48 @@ void SunwooRect::update(float _deltaTime)
 {
 	if (KEYMANAGER->isStayKeyDown(P1_LEFT))
 	{
-		m_cameraX -= 2;
-		//m_rect.moveLeft(5);
+		m_playerRect.moveLeft(2);
 	}
 	if (KEYMANAGER->isStayKeyDown(P1_RIGHT))
 	{
-		m_cameraX += 2;
+		m_playerRect.moveRight(2);
 	}
 	if (KEYMANAGER->isStayKeyDown(P1_UP))
 	{
-		m_cameraY -= 2;
-
+		m_playerRect.moveUp(2);
 	}
 	if (KEYMANAGER->isStayKeyDown(P1_DOWN))
 	{
-		m_cameraY += 2;
+		m_playerRect.moveDown(2);
 	}
+	
 
+
+	//output obstacle
+	//rectInCamera(m_obstacle, true);
+	rectInCamera(m_outObstacleRect, m_obstacleRect, isObstacleOut);
+	rectInCamera(m_outObstacleRect2, m_obstacleRect2, isObstacleOut);
+
+//	RECT temp;
+//	if(IntersectRect(&temp, &m_rect,))
 }
 
 void SunwooRect::render(HDC hdc)
 {
-	m_bg->render(hdc,-m_cameraX,-m_cameraY);
+	m_bg->render(hdc, CAMERAMANAGER->getCameraX(),CAMERAMANAGER->getCameraY());
+	//player
+	UTIL::DrawColorRect(hdc, m_outPlayerRect, true, RGB(153, 255, 30));
+	//obstacle
+	if (isObstacleOut)
+	{
+		UTIL::DrawColorRect(hdc, m_outObstacleRect, true, RGB(255, 100, 100));
 
-	UTIL::DrawColorRect(hdc, m_rect, true, RGB(153, 255, 30));
-	UTIL::DrawColorRect(hdc, m_obstacle, true, RGB(255, 0, 30));
+	}
+	if (isObstacleOut2)
+	{
+		UTIL::DrawColorRect(hdc, m_outObstacleRect2, true, RGB(5, 255, 100));
+	}
+	
 }
 
 void SunwooRect::afterRender(HDC hdc)
@@ -51,3 +72,5 @@ void SunwooRect::afterRender(HDC hdc)
 void SunwooRect::debugRender(HDC hdc)
 {
 }
+
+

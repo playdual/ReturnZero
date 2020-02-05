@@ -14,10 +14,22 @@ public:
 	void afterRender(HDC hdc) override;
 	void debugRender(HDC hdc) override;
 
+	void rectInCamera(UTIL::IRECT& outRect, const UTIL::IRECT& realRect, bool& isOutput);
+
 private:
-	UTIL::IRECT m_rect;
-	UTIL::IRECT m_obstacle;
+	UTIL::IRECT m_playerRect;
+	UTIL::IRECT m_outPlayerRect;
+
+	UTIL::IRECT m_obstacleRect;	
+	UTIL::IRECT m_outObstacleRect;
+	bool isObstacleOut = false;
+
+	UTIL::IRECT m_obstacleRect2;
+	UTIL::IRECT m_outObstacleRect2;
+	bool isObstacleOut2 = false;
+
+
 	Image* m_bg;
-	float m_cameraX;
-	float m_cameraY;
+	//float m_cameraX;
+	//float m_cameraY;
 };
