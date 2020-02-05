@@ -15,6 +15,7 @@ HRESULT MainGame::init()
 	
 	//add Scene
 	SCENEMANAGER->addScene("MapTool", new MapToolScene);
+	CAMEARAMANAGER->setCameraBox(100, 100, 1200, 700);
 	SCENEMANAGER->changeScene("MapTool");
 
 	return S_OK;
@@ -51,6 +52,7 @@ void MainGame::render()
 		SCENEMANAGER->debugRender(getMemDC());
 	if (m_showFPS)
 		TIMEMANAGER->render(getMemDC());
+	CAMEARAMANAGER->ExtraRender(getMemDC());
 
 	getBackBuffer()->render(getHDC(), 0, 0);
 }

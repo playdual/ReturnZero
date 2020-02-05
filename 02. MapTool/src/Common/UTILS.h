@@ -70,7 +70,6 @@ namespace UTIL
 	bool isPointRectCollision(const FPOINT & point, const FRECT& rect);
 	bool isPointRectCollision(const POINT & point, const IRECT & rect);
 
-
 	bool isPixelColorSame(HDC _targetImgDC, const int _x, const int _y, COLORREF _targetColor = RGB(255, 0, 255));
 	bool isPixelColorSame(HDC _targetImgDC, const POINT& _destPos, COLORREF _targetColor = RGB(255, 0, 255));
 

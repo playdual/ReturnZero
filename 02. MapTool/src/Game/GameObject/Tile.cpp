@@ -22,14 +22,16 @@ void Tile::init(TileType _type, Image* _img, bool _isAfterRender, bool _isMovabl
 	m_absTile.right = _BlockPositionX * TILE_WIDTH + TILE_WIDTH;
 	m_absTile.top = _BlockPositionY * TILE_HEIGHT;
 	m_absTile.bottom = _BlockPositionY * TILE_HEIGHT + TILE_HEIGHT;
-
-
+	
 }
 
 void Tile::update(float _deltaTime)
 {
+	CAMEARAMANAGER->setRelativePosition(m_absTile, m_outputTile, isCanprint);
 }
 
 void Tile::render(HDC hdc)
 {
+	if (isCanprint)
+		UTIL::drawRect(hdc, m_outputTile);
 }

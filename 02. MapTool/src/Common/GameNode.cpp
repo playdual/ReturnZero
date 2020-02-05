@@ -33,6 +33,7 @@ HRESULT GameNode::init()
 		SCENEMANAGER->init();
 		ANIMANAGER->init();
 		EFFECTMANAGER->init();
+		CAMEARAMANAGER->init();
 	}
 	return S_OK;
 }
@@ -49,6 +50,7 @@ void GameNode::release()
 		SCENEMANAGER->release();
 		ANIMANAGER->release();
 		EFFECTMANAGER->release();
+		CAMEARAMANAGER->release();
 
 		IMAGEMANAGER->Destroy();
 		KEYMANAGER->Destroy();
@@ -57,6 +59,7 @@ void GameNode::release()
 		SCENEMANAGER->Destroy();
 		ANIMANAGER->Destroy();
 		EFFECTMANAGER->Destroy();
+		CAMEARAMANAGER->Destroy();
 	}
 	ReleaseDC(m_hWnd, _hdc);
 }
