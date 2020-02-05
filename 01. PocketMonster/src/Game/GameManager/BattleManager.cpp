@@ -14,6 +14,8 @@ BattleManager::~BattleManager()
 HRESULT BattleManager::init()
 {
 	testRect = UTIL::IRectMake(100, 100, 100, 100);
+	m_player = std::make_shared<Character>();
+	m_player->init();
 	return true;
 }
 
@@ -29,6 +31,9 @@ void BattleManager::render(HDC hdc)
 {
 	testRect = UTIL::IRectMake(100, 100, 100, 100);
 	UTIL::DrawColorRect(hdc, testRect, true, RGB(150, 150, 150));
+	char str[100];
+	wsprintf(str, "%s", m_player->getName().c_str());
+	TextOut(hdc, 100, 100, str, strlen(str));
 }
 
 void BattleManager::afterRender(HDC hdc)

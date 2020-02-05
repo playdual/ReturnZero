@@ -1,4 +1,5 @@
 #pragma once
+#include"Game/GameObject/Character.h"
 class BattleManager
 {
 
@@ -13,6 +14,8 @@ public:
 
 private:
 	UTIL::IRECT testRect;
+
+	std::shared_ptr<Character> m_player;
 
 private:
 	DECLARE_SINGLE(BattleManager)
