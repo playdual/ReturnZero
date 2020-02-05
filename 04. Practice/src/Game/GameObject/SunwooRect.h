@@ -14,7 +14,10 @@ public:
 	void afterRender(HDC hdc) override;
 	void debugRender(HDC hdc) override;
 
-	void rectInCamera(UTIL::IRECT& outRect, const UTIL::IRECT& realRect, bool& isOutput);
+	int* CenterX(UTIL::IRECT rect);
+	int* CenterY(UTIL::IRECT rect);
+
+	//void rectInCamera(UTIL::IRECT& outRect, const UTIL::IRECT& realRect, bool& isOutput);
 
 private:
 	UTIL::IRECT m_playerRect;

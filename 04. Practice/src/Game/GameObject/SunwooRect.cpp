@@ -11,7 +11,7 @@ bool SunwooRect::init()
 	m_obstacleRect2 = UTIL::IRectMakeCenter(WINSIZEX / 2 + 1000, WINSIZEY /  2 -100, 150, 150);
 
 	CAMERAMANAGER->setPosition(&m_playerRect.left, &m_playerRect.top);
-
+	
 	m_bg =IMAGEMANAGER->addImage("bg", "Images/bg.bmp", 0, 0,WINSIZEX*2,WINSIZEY*2,true, RGB(255, 0, 255));
 	return true;
 }
@@ -34,13 +34,13 @@ void SunwooRect::update(float _deltaTime)
 	{
 		m_playerRect.moveDown(2);
 	}
-	
+	CAMERAMANAGER->update();
 
 
 	//output obstacle
 	//rectInCamera(m_obstacle, true);
-	rectInCamera(m_outObstacleRect, m_obstacleRect, isObstacleOut);
-	rectInCamera(m_outObstacleRect2, m_obstacleRect2, isObstacleOut);
+	CAMERAMANAGER->rectInCamera(m_outObstacleRect, m_obstacleRect, isObstacleOut);
+	CAMERAMANAGER->rectInCamera(m_outObstacleRect2, m_obstacleRect2, isObstacleOut2);
 
 //	RECT temp;
 //	if(IntersectRect(&temp, &m_rect,))
@@ -48,7 +48,7 @@ void SunwooRect::update(float _deltaTime)
 
 void SunwooRect::render(HDC hdc)
 {
-	m_bg->render(hdc, CAMERAMANAGER->getCameraX(),CAMERAMANAGER->getCameraY());
+	//m_bg->render(hdc, CAMERAMANAGER->getCameraX(),CAMERAMANAGER->getCameraY());
 	//player
 	UTIL::DrawColorRect(hdc, m_outPlayerRect, true, RGB(153, 255, 30));
 	//obstacle
@@ -72,5 +72,23 @@ void SunwooRect::afterRender(HDC hdc)
 void SunwooRect::debugRender(HDC hdc)
 {
 }
+
+int* SunwooRect::CenterX(UTIL::IRECT rect)
+{
+	int* CenterX;
+	CenterX = (&rect.left + (&rect.right - &rect.left) / 2);
+
+	return CenterX;
+}
+
+int* SunwooRect::CenterY(UTIL::IRECT rect)
+{
+	int* CenterY;
+	CenterY = (&rect.top + (&rect.bottom - &rect.top) / 2);
+
+	return CenterY;
+}
+
+
 
 
