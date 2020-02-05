@@ -96,7 +96,8 @@ namespace UTIL
 	//사각형 그리기(중심점)
 	void RectangleMakeCenter(HDC hdc, int x, int y, int width, int height);
 	void DrawRect(HDC hdc, const RECT& rect);
-	
+	void drawRect(HDC hdc, const UTIL::IRECT & rect);
+
 	//원그리기
 	void EllipseMake(HDC hdc, int x, int y, int width, int height);
 	void EllipseMakeCenter(HDC hdc, int x, int y, int width, int height);

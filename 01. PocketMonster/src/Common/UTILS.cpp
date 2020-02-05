@@ -305,7 +305,9 @@ namespace UTIL
 	void DrawRect(HDC hdc, const RECT & rect) {
 		Rectangle(hdc, rect.left, rect.top, rect.right, rect.bottom);
 	}
-
+	void DrawRect(HDC hdc, const IRECT & rect) {
+		Rectangle(hdc, rect.left, rect.top, rect.right, rect.bottom);
+	}
 	//원그리기
 	void EllipseMake(HDC hdc, int x, int y, int width, int height)
 	{
