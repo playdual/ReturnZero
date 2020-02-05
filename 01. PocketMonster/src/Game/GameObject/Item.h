@@ -19,16 +19,17 @@ public:
 	virtual void debugRender(HDC hdc) override;
 
 private:
-	Image*			m_img;				//ÀÌ¹ÌÁö
-	UTIL::IRECT		m_iRect;			//»óÀÚ(ÁÂÇ¥°ª)
-	std::string		m_name;				//ÀÌ¸§
-	int				m_count;			//°³¼ö
-	int				m_price;			//°¡°Ý
-	int				m_healHp;			//HpÈ¸º¹·®
-	int				m_hitDamage;		//µ¥¹ÌÁö·®
-	int				m_addAtk;			//°ø°Ý·Â 
-	int				m_catchPercentage;	//Æ÷ÄÏ¸ó Àâ´Â È®·ü
-	std::string		m_description;		//¼³¸í
+	Image*			m_img;				//ï¿½Ì¹ï¿½ï¿½ï¿½
+	UTIL::IRECT		m_iRect;			//ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½Ç¥ï¿½ï¿½)
+	std::string		m_name;				//ï¿½Ì¸ï¿½
+	int				m_count;			//ï¿½ï¿½ï¿½ï¿½
+	int				m_price;			//ï¿½ï¿½ï¿½ï¿½
+	int				m_healHp;			//HpÈ¸ï¿½ï¿½ï¿½ï¿½
+	int				m_hitDamage;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int				m_addAtk;			//ï¿½ï¿½ï¿½Ý·ï¿½ 
+	int				m_catchPercentage;	//ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ È®ï¿½ï¿½
+	std::string		m_description;		//ï¿½ï¿½ï¿½ï¿½
 };
 
-// 2020.02.04 item Å¬·¡½º »ó¼ÓÇØÁÖ´Â Å¬·¡½º·Î º¯°æÇÏ±â
+// 2020.02.04 item Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
+// 2020.02.04 item Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
