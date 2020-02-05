@@ -98,7 +98,6 @@ bool SceneManager::scenePush(std::string sceneName)
 
 	if (SUCCEEDED(find->second->init()))
 	{
-		//혹시 기존에 씬이 있다면 릴리즈
 		_currentScene = find->second;
 		sceneStack.push(find->second);
 

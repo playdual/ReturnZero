@@ -1,6 +1,6 @@
 #pragma once
 #include "Object.h"
-
+#include "Common/SystemManagers.h"
 
 
 class Item
@@ -21,7 +21,7 @@ public:
 private:
 	Image*			m_img;				//�̹���
 	UTIL::IRECT		m_iRect;			//����(��ǥ��)
-	std::string		m_name;				//�̸�
+	std::string		m_itemName;				//�̸�
 	int				m_count;			//����
 	int				m_price;			//����
 	int				m_healHp;			//Hpȸ����
