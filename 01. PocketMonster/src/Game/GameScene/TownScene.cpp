@@ -12,8 +12,10 @@ TownScene::~TownScene()
 
 bool TownScene::init()
 {
-	SOUNDMANAGER->playSound("배경음", Channel::eChannelBgm);
-	m_image = IMAGEMANAGER->findImage("배경");
+	SOUNDMANAGER->playSound("bgsound", Channel::eChannelBgm);
+	m_image = IMAGEMANAGER->findImage("bg");
+	BATTLEMANAGER->init();
+	
 	return true;
 }
 
@@ -25,6 +27,7 @@ void TownScene::update(float _deltaTime)
 void TownScene::render(HDC hdc)
 {
 	m_image->render(hdc);
+	BATTLEMANAGER->render(hdc);
 }
 
 void TownScene::afterRender(HDC hdc)
