@@ -1,5 +1,6 @@
 #include"stdafx.h"
 #include "BattleManager.h"
+#include "Common/SystemManagers.h"
 
 DEFINITION_SINGLE(BattleManager)
 
@@ -42,4 +43,9 @@ void BattleManager::afterRender(HDC hdc)
 
 void BattleManager::debugRender(HDC hdc)
 {
+}
+
+void BattleManager::battleStart()
+{
+	SCENEMANAGER->scenePush("battle");
 }

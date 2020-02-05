@@ -1,6 +1,7 @@
 ﻿#include "stdafx.h"
 #include "MainGame.h"
 #include "GameScene/TownScene.h"
+#include "GameScene/BattleScene.h"
 
 MainGame::MainGame()
 {
@@ -18,7 +19,8 @@ HRESULT MainGame::init()
 	SOUNDMANAGER->addStream("bgs", "Sounds/NewBarkTown.mp3", true);
 
 	SCENEMANAGER->addScene("town", new TownScene);
-	SCENEMANAGER->changeScene("town");
+	SCENEMANAGER->addScene("battle", new BattleScene);
+	SCENEMANAGER->scenePush("town");
 
 	sceneInit = true;
 	return S_OK;

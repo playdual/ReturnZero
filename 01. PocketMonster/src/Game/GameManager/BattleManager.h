@@ -12,6 +12,8 @@ public:
 	void afterRender(HDC hdc);
 	void debugRender(HDC hdc);
 
+	void battleStart();
+
 private:
 	UTIL::IRECT testRect;
 
