@@ -17,11 +17,14 @@ public:
 	void afterRender(HDC hdc) override;
 	void debugRender(HDC hdc) override;
 
+	//행동선택관련
 	void moveButton();
-	void select();
-
 	void moveSkillSelectButton();
+
 	void playerStayMotion();
+
+	void skillMotion();
+	void selectEnemyskill();
 
 	//void test();
 private:
@@ -52,7 +55,10 @@ private:
 	UTIL::IRECT m_playerPocketmon;
 	//플레이어 상태창
 	UTIL::IRECT m_playerStatus;
-
+	//스킬 이펙트
+	UTIL::IRECT m_playerAtkSkillEffect;
+	//스킬 이펙트
+	UTIL::IRECT m_enemyAtkSkillEffect;
 
 	//선택창 커서 움직임 변수
 	bool fight;
@@ -71,11 +77,17 @@ private:
 
 	//공격 턴 변수
 	bool playerTurn;
+	bool enemyTurn;
 
 	//적 상태창
 
 	//플레이어 대기상태 모션
 	bool motionUp;
+
+	//스킬사용 변수(플레이어, 적 공용)
+	bool playerAtkSkillOn;
+	bool enemyAtkSkillOn;
+	int m_skillCount;
 
 	//init안에 들어갈 내용들
 	/*

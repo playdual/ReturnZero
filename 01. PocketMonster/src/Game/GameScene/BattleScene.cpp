@@ -39,6 +39,9 @@ bool BattleScene::init()
 	m_playerPocketmon = UTIL::IRectMake(200, 329, 210, 209);
 	//플레이어 상태창
 	m_playerStatus = UTIL::IRectMake(535, 356, 446, 180);
+	//스킬 이팩트
+	m_playerAtkSkillEffect = UTIL::IRectMake(410, 165, 563, 365);
+	m_enemyAtkSkillEffect = UTIL::IRectMake(410, 165, 563, 365);
 	
 
 	//===================
@@ -63,9 +66,17 @@ bool BattleScene::init()
 	// 공격 턴 변수 //
 	//===============
 	playerTurn = true;
+	enemyTurn = false;
 	motionUp = true;
 	m_count = 0;
-	
+
+	//================
+	// 공격관련 변수 //
+	//================
+	playerAtkSkillOn = false;
+	enemyAtkSkillOn = false;
+	m_skillCount = 0;
+
 	
 	//moveOn = true;
 	return true;
@@ -81,14 +92,25 @@ void BattleScene::update(float _deltaTime)
 	if (playerTurn)
 	{
 		if (!playerAtkOn) moveButton();
-		select();
 		if (playerAtkOn) moveSkillSelectButton();
-		if (KEYMANAGER->isStayKeyDown(P1_X) && playerAtkOn)
+		if (KEYMANAGER->isOnceKeyDown(P1_X) && playerAtkOn)
 		{
 			playerAtkOn = false;
 		}
 		playerStayMotion();
 	}
+	
+	if(playerAtkSkillOn) skillMotion();
+	
+	if (enemyTurn)
+	{
+		selectEnemyskill();
+		skillMotion();
+	}
+
+	if(enemyAtkSkillOn) skillMotion();
+
+
 }
 
 void BattleScene::render(HDC hdc)
@@ -110,6 +132,7 @@ void BattleScene::afterRender(HDC hdc)
 
 void BattleScene::debugRender(HDC hdc)
 {
+	char str[111];
 	//배경
 	IMAGEMANAGER->findImage("battleTemp")->render(hdc);
 	//적
@@ -138,13 +161,25 @@ void BattleScene::debugRender(HDC hdc)
 			UTIL::drawRect(hdc, m_skillExplainRect);
 		}
 	}
-	else if (!playerTurn)
+	if (playerAtkSkillOn)
+	{
+		UTIL::drawRect(hdc, m_playerAtkSkillEffect);
+		wsprintf(str, "포켓몬 스킬 공격 !!! 영환이가 울부짖었다!! 크아아아아앙!!");
+		TextOut(hdc, 500,300, str, strlen(str));
+	}
+	if (enemyAtkSkillOn)
+	{
+		UTIL::drawRect(hdc, m_enemyAtkSkillEffect);
+		wsprintf(str, "준수가 얼굴로 반격한다!!! 크아아아아아아아아악!!!!");
+		TextOut(hdc, 500, 300, str, strlen(str));
+	}
+
+	/*else if (!playerTurn)
 	{
 		UTIL::drawRect(hdc, m_explainRect);
-	}
+	}*/
 		
 	//UTIL::DrawColorRect(hdc, m_selectRect, false, RGB(100, 100, 100));
-	char str[111];
 	wsprintf(str, "%d, %d", m_ptMouse.x, m_ptMouse.y);
 	TextOut(hdc, m_ptMouse.x, m_ptMouse.y - 20, str, strlen(str));
 
@@ -164,80 +199,73 @@ void BattleScene::moveButton()
 	//가방: 824, 595, 20, 40
 	//포켓몬: 618, 668, 20, 40
 	//도망: 824, 668, 20, 40
-	if (KEYMANAGER->isStayKeyDown(P1_RIGHT) && fight && !bag && !pocketmon && !run)
+	if (fight && !bag && !pocketmon && !run && KEYMANAGER->isOnceKeyDown(P1_RIGHT))
 	{
 		fight = false;
 		bag = true;
 		m_selectRect = UTIL::IRectMake(824, 595, 20, 40);
 	}
-	if (KEYMANAGER->isStayKeyDown(P1_RIGHT) && !fight && !bag && pocketmon && !run)
+	if (!fight && !bag && pocketmon && !run && KEYMANAGER->isOnceKeyDown(P1_RIGHT))
 	{
 		pocketmon = false;
 		run = true;
 		m_selectRect = UTIL::IRectMake(824, 668, 20, 40);
 	}
-	if (KEYMANAGER->isStayKeyDown(P1_LEFT) && !fight && bag && !pocketmon && !run)
+	if (!fight && bag && !pocketmon && !run && KEYMANAGER->isOnceKeyDown(P1_LEFT))
 	{
 		bag = false;
 		fight = true;
 		m_selectRect = UTIL::IRectMake(618, 595, 20, 40);
 	}
-	if (KEYMANAGER->isStayKeyDown(P1_LEFT) && !fight && !bag && !pocketmon && run)
+	if (!fight && !bag && !pocketmon && run && KEYMANAGER->isOnceKeyDown(P1_LEFT))
 	{
 		run = false;
 		pocketmon = true;
 		m_selectRect = UTIL::IRectMake(618, 668, 20, 40);
 	}
-	if (KEYMANAGER->isStayKeyDown(P1_DOWN) && fight && !bag && !pocketmon && !run)
+	if (fight && !bag && !pocketmon && !run && KEYMANAGER->isOnceKeyDown(P1_DOWN))
 	{
 		fight = false;
 		pocketmon = true;
 		m_selectRect = UTIL::IRectMake(618, 668, 20, 40);
 	}
-	if (KEYMANAGER->isStayKeyDown(P1_DOWN) && !fight && bag && !pocketmon && !run)
+	if (!fight && bag && !pocketmon && !run && KEYMANAGER->isOnceKeyDown(P1_DOWN))
 	{
 		bag = false;
 		run = true;
 		m_selectRect = UTIL::IRectMake(824, 668, 20, 40);
 	}
-	if (KEYMANAGER->isStayKeyDown(P1_UP) && !fight && !bag && pocketmon && !run)
+	if (!fight && !bag && pocketmon && !run && KEYMANAGER->isOnceKeyDown(P1_UP))
 	{
 		pocketmon = false;
 		fight = true;
 		m_selectRect = UTIL::IRectMake(618, 595, 20, 40);
 	}
-	if (KEYMANAGER->isStayKeyDown(P1_UP) && !fight && !bag && !pocketmon && run)
+	if (!fight && !bag && !pocketmon && run && KEYMANAGER->isOnceKeyDown(P1_UP))
 	{
 		run = false;
 		bag = true;
 		m_selectRect = UTIL::IRectMake(824, 595, 20, 40);
 	}
-}
 
-void BattleScene::select()
-{
-	if (KEYMANAGER->isStayKeyDown(P1_Z) && fight)
+	if (fight && KEYMANAGER->isOnceKeyDown(P1_Z) )
 	{
 		playerAtkOn = true;
 	}
-	if (KEYMANAGER->isStayKeyDown(P1_Z) && bag)
+	if (bag && KEYMANAGER->isOnceKeyDown(P1_Z))
 	{
 		//가방으로 씬체인지
 		//SCENEMANAGER->scenePush("bag");
 	}
-	if (KEYMANAGER->isStayKeyDown(P1_Z) && pocketmon)
+	if (pocketmon && KEYMANAGER->isOnceKeyDown(P1_Z))
 	{
 		//포켓몬으로 씬체인지
 		//SCENEMANAGER->scenePush("pocketmon");
 	}
-	if (KEYMANAGER->isStayKeyDown(P1_Z) && run)
+	if (run && KEYMANAGER->isOnceKeyDown(P1_Z))
 	{
 		SCENEMANAGER->scenePop();
 	}
-	/////////////////////////////z
-	
-
-
 
 }
 
@@ -248,57 +276,82 @@ void BattleScene::moveSkillSelectButton()
 	//skill_2: 318, 595, 20, 40
 	//skill_3: 39, 674, 20, 40
 	//skill_4: 318, 674, 20, 40
-	if (KEYMANAGER->isStayKeyDown(P1_RIGHT) && skill_1 && !skill_2 && !skill_3 && !skill_4)
+	if (skill_1 && !skill_2 && !skill_3 && !skill_4 && KEYMANAGER->isOnceKeyDown(P1_RIGHT))
 	{
 		skill_1 = false;
 		skill_2 = true;
 		m_skillSelectRect = UTIL::IRectMake(318, 595, 20, 40);
 	}
-	if (KEYMANAGER->isStayKeyDown(P1_RIGHT) && !skill_1 && !skill_2 && skill_3 && !skill_4)
+	if (!skill_1 && !skill_2 && skill_3 && !skill_4 && KEYMANAGER->isOnceKeyDown(P1_RIGHT))
 	{
 		skill_3 = false;
 		skill_4 = true;
 		m_skillSelectRect = UTIL::IRectMake(318, 674, 20, 40);
 	}
-	///////
-	if (KEYMANAGER->isStayKeyDown(P1_LEFT) && !skill_1 && skill_2 && !skill_3 && !skill_4)
+	if (!skill_1 && skill_2 && !skill_3 && !skill_4 && KEYMANAGER->isOnceKeyDown(P1_LEFT))
 	{
 		skill_2 = false;
 		skill_1 = true;
 		m_skillSelectRect = UTIL::IRectMake(39, 595, 20, 40);
 	}
-	if (KEYMANAGER->isStayKeyDown(P1_LEFT) && !skill_1 && !skill_2 && !skill_3 && skill_4)
+	if (!skill_1 && !skill_2 && !skill_3 && skill_4 && KEYMANAGER->isOnceKeyDown(P1_LEFT))
 	{
 		skill_4 = false;
 		skill_3 = true;
 		m_skillSelectRect = UTIL::IRectMake(39, 674, 20, 40);
 	}
-	///////
-	if (KEYMANAGER->isStayKeyDown(P1_UP) && !skill_1 && !skill_2 && skill_3 && !skill_4)
+	if (!skill_1 && !skill_2 && skill_3 && !skill_4 && KEYMANAGER->isOnceKeyDown(P1_UP))
 	{
 		skill_3 = false;
 		skill_1 = true;
 		m_skillSelectRect = UTIL::IRectMake(39, 595, 20, 40);
 	}
-	if (KEYMANAGER->isStayKeyDown(P1_UP) && !skill_1 && !skill_2 && !skill_3 && skill_4)
+	if (!skill_1 && !skill_2 && !skill_3 && skill_4 && KEYMANAGER->isOnceKeyDown(P1_UP))
 	{
 		skill_4 = false;
 		skill_2 = true;
 		m_skillSelectRect = UTIL::IRectMake(318, 595, 20, 40);
 	}
-	///////
-	if (KEYMANAGER->isStayKeyDown(P1_DOWN) && skill_1 && !skill_2 && !skill_3 && !skill_4)
+	if (skill_1 && !skill_2 && !skill_3 && !skill_4 && KEYMANAGER->isOnceKeyDown(P1_DOWN))
 	{
 		skill_1 = false;
 		skill_3 = true;
 		m_skillSelectRect = UTIL::IRectMake(39, 674, 20, 40);
 	}
-	if (KEYMANAGER->isStayKeyDown(P1_DOWN) && !skill_1 && skill_2 && !skill_3 && !skill_4)
+	if (!skill_1 && skill_2 && !skill_3 && !skill_4 && KEYMANAGER->isOnceKeyDown(P1_DOWN))
 	{
 		skill_2 = false;
 		skill_4 = true;
 		m_skillSelectRect = UTIL::IRectMake(318, 674, 20, 40);
 	}
+
+
+	if (KEYMANAGER->isOnceKeyDown(P1_Z))
+	{
+		playerTurn = false;
+		playerAtkSkillOn = true;
+	}
+
+	/*if (skill_1 && KEYMANAGER->isOnceKeyDown(P1_Z))
+	{
+		playerTurn = false;
+		atkSkillOn = true;
+	}
+	else if (skill_2 && KEYMANAGER->isOnceKeyDown(P1_Z))
+	{
+		playerTurn = false;
+		atkSkillOn = true;
+	}
+	else if (skill_3 && KEYMANAGER->isOnceKeyDown(P1_Z))
+	{
+		playerTurn = false;
+		atkSkillOn = true;
+	}
+	else if (skill_4 && KEYMANAGER->isOnceKeyDown(P1_Z))
+	{
+		playerTurn = false;
+		atkSkillOn = true;
+	}*/
 
 }
 
@@ -325,19 +378,26 @@ void BattleScene::playerStayMotion()
 	if (m_count > 10000) m_count = 0;
 
 }
-//
-//void BattleScene::test()
-//{
-//	if (KEYMANAGER->isStayKeyDown(P1_RIGHT) && moveOn)
-//	{
-//		moveOn = false;
-//	}
-//
-//	if (!moveOn)
-//	{
-//		x += 5;
-//		rect(x, y, w, h);
-//		if (x > 100) moveOn = true;
-//
-//	}
-//}
+void BattleScene::skillMotion()
+{
+	m_skillCount++;
+	if (m_skillCount > 100 && playerAtkSkillOn)
+	{
+		m_skillCount = 0;
+		playerAtkSkillOn = false;
+		enemyTurn = true;
+	}
+	if (m_skillCount > 300 && enemyAtkSkillOn)
+	{
+		m_skillCount = 0;
+		enemyAtkSkillOn = false;
+		playerTurn = true;
+		playerAtkOn = false;
+		enemyTurn = false;
+	}
+}
+
+void BattleScene::selectEnemyskill()
+{
+	enemyAtkSkillOn = true;
+}
