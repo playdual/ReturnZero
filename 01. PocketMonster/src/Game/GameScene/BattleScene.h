@@ -1,5 +1,18 @@
 #pragma once
 #include "Scene.h"
+
+//각 이미지별 정위치 좌표
+//플레이어 UI 정위치
+#define PLAYERBOTTOMX	0
+#define PLAYERIMGX		200
+#define PLAYERPOCKETMONX 200
+#define PLAYERSTATUSX 535
+
+// 적 UI 정위치
+#define ENEMYBOTTOMX	477
+#define ENEMYPOCKETMONX 664
+#define ENEMYSTATUSX 55
+
 class BattleScene
 	:public Scene
 {
@@ -16,6 +29,13 @@ public:
 	void render(HDC hdc) override;
 	void afterRender(HDC hdc) override;
 	void debugRender(HDC hdc) override;
+
+	
+	void wildBattleFunctions();
+	void npcBattleFunctions();
+
+	void wildBattleRender(HDC hdc);
+	void npcBattleRender(HDC hdc);
 
 	//행동선택관련
 	void moveButton();
@@ -51,6 +71,8 @@ private:
 	UTIL::IRECT m_enemyBottom;
 	//플레이어바닥
 	UTIL::IRECT m_playerBottom;
+	//플레이어 이미지
+	UTIL::IRECT m_playerImg;
 	//플레이어 포켓몬
 	UTIL::IRECT m_playerPocketmon;
 	//플레이어 상태창
@@ -59,6 +81,28 @@ private:
 	UTIL::IRECT m_playerAtkSkillEffect;
 	//스킬 이펙트
 	UTIL::IRECT m_enemyAtkSkillEffect;
+
+
+	//전투유형 변수 (npc 대결, 야생 전투)
+	bool wildBattle;
+	bool npcBattle;
+
+	//=====================
+	// 애니메이션 변수모음 //
+	//=====================
+	//전투 시작 인트로 화면
+	bool wildBattleIntroAni;
+	bool uiObjectRegularPosition;
+	bool playerImgSlideOut;
+	bool explainEnemyName;
+	int m_playerBottomX;
+	int m_playerimgX;
+	int m_playerPocketmonX;
+	int m_playerStatusX;
+	int m_enemyBottomX;
+	int m_enemyPocketmonX;
+	int m_enemyStatusX;
+
 
 	//선택창 커서 움직임 변수
 	bool fight;
@@ -88,6 +132,11 @@ private:
 	bool playerAtkSkillOn;
 	bool enemyAtkSkillOn;
 	int m_skillCount;
+
+	
+
+
+
 
 	//init안에 들어갈 내용들
 	/*
