@@ -23,4 +23,6 @@ private:
 	bool isMovable;
 	int m_BlockPositionX;
 	int m_BlockPositionY;
+
+
 };

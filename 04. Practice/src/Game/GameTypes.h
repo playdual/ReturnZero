@@ -9,5 +9,7 @@ enum class TileType
 	TileTypeTree
 };
 
-#define TILE_WIDTH 50
-#define TILE_HEIGHT 50
+#define TILE_WIDTH 100
+#define TILE_HEIGHT 100
+#define TILE_OFFSETX -38
+#define TILE_OFFSETY 33

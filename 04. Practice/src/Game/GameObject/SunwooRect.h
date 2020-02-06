@@ -14,11 +14,7 @@ public:
 	void afterRender(HDC hdc) override;
 	void debugRender(HDC hdc) override;
 
-	int* CenterX(UTIL::IRECT rect);
-	int* CenterY(UTIL::IRECT rect);
-
 	//void rectInCamera(UTIL::IRECT& outRect, const UTIL::IRECT& realRect, bool& isOutput);
-
 private:
 	UTIL::IRECT m_playerRect;
 	UTIL::IRECT m_outPlayerRect;
@@ -31,12 +27,23 @@ private:
 	UTIL::IRECT m_outObstacleRect2;
 	bool isObstacleOut2 = false;
 
+	HDC viewhdc;
 
 	Image* m_bg;
 	int bgX;
 	int bgY;
 	int bgOutX;
 	int bgOutY;
+
+	int m_playerRectMemory;
+	bool isMoveLeft=false;
+	bool isMoveRight=false;
+	bool isMoveUp=false;
+	bool isMoveDown=false;
+	bool isAnotherMove = false;
+
+
+	int count;
 	//float m_cameraX;
 	//float m_cameraY;
 };
