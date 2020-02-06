@@ -3,8 +3,8 @@
 
 bool MapToolScene::init()
 {
-	for (int i = 0; i < 30; ++i) {
-		for (int j = 0; j < 30; ++j) {
+	for (int i = 0; i < 5; ++i) {
+		for (int j = 0; j < 5; ++j) {
 			auto tile = std::make_shared<Tile>();
 			tile->init(TileType::TileTypeFloor, nullptr, false, true, j, i);
 			m_Tiles.push_back(tile);

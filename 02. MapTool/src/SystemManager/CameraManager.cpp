@@ -188,12 +188,12 @@ void CameraManager::moveCamera(int _distX, int _distY)
 	cameraY += _distY;
 }
 
-void CameraManager::update()
+void CameraManager::update(HDC _hdc)
 {
-	if (targetedX) {
-		cameraX = *targetedX - cameraTargetOffSetX;
-		cameraY = *targetedY - cameraTargetOffSetY;
-	}
+	PatBlt(_hdc, cameraX, cameraY, WINSIZEX, WINSIZEY, BLACKNESS);
+	SetViewportOrgEx(_hdc, -cameraX, -cameraY, NULL);
+
+
 }
 
 std::pair<int, int> CameraManager::getRelativePosition(const UTIL::IRECT & _rect, bool & _isCanPrinted)

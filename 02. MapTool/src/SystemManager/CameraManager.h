@@ -5,7 +5,7 @@ public:
 	void init();
 	void init(RECT& _cameraBox, int _cameraX, int _cameraY);
 	void init(int _cameraBoxLeft, int _cameraBoxTop, int _cameraBoxRight, int _cameraBoxBottom, int cameraX, int cameraY);
-	void update();
+	void update(HDC _hdc);
 	void release();
 	void ExtraRender(HDC hdc);
 

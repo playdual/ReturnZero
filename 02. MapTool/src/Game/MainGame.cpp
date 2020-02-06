@@ -38,12 +38,14 @@ void MainGame::update()
 	deltaTime = TIMEMANAGER->getElapsedTime();
 	EFFECTMANAGER->update();
 	SCENEMANAGER->update(deltaTime);
+	CAMEARAMANAGER->update(getHDC());
 	ANIMANAGER->update(deltaTime);
 }
 
 void MainGame::render()
 {
-	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
+	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, BLACKNESS);
+	CAMEARAMANAGER->ExtraRender(getHDC());
 
 	SCENEMANAGER->render(getMemDC());
 	SCENEMANAGER->afterRender(getMemDC());
@@ -52,7 +54,6 @@ void MainGame::render()
 		SCENEMANAGER->debugRender(getMemDC());
 	if (m_showFPS)
 		TIMEMANAGER->render(getMemDC());
-	CAMEARAMANAGER->ExtraRender(getMemDC());
 
 	getBackBuffer()->render(getHDC(), 0, 0);
 }

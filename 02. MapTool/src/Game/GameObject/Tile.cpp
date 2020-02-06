@@ -32,6 +32,5 @@ void Tile::update(float _deltaTime)
 
 void Tile::render(HDC hdc)
 {
-	if (isCanprint)
-		UTIL::drawRect(hdc, m_outputTile);
+	UTIL::DrawColorRect(hdc, m_absTile, true, RGB(255, 0, 0));
 }
