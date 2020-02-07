@@ -1,7 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "Game/GameObject/player.h"
-#include "Game/GameObject/Tile.h"
+#include "Game/GameObject/Map/Map.h"
 
 class TownScene :
 	public Scene 
@@ -23,5 +23,5 @@ public:
 private:
 	Image* image;
 	std::shared_ptr<player> m_player;
-	std::vector < Tile > m_map;
+	std::shared_ptr<Map> m_map;
 };

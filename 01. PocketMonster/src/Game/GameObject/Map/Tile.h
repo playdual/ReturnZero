@@ -11,6 +11,7 @@ public:
 	void update(float _deltaTime);
 	void render(HDC hdc);
 	void debugRender(HDC hdc);
+	void afterRender(HDC hdc);
 
 public:
 	int m_BlockPositionX;

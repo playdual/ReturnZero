@@ -13,7 +13,6 @@ MainGame::~MainGame()
 HRESULT MainGame::init()
 {
 	GameNode::init();
-	
 	MAPMANGER->init();
 
 	//add Scene
@@ -31,6 +30,8 @@ HRESULT MainGame::init()
 void MainGame::release()
 {
 	GameNode::release();
+	MAPMANGER->release();
+	MAPMANGER->Destroy();
 }  
 
 void MainGame::update()

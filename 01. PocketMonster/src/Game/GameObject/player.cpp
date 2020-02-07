@@ -110,9 +110,6 @@ void player::update(float _deltaTime)
 
 void player::render(HDC hdc)
 {
-
-	
-
 }
 
 void player::afterRender(HDC hdc)

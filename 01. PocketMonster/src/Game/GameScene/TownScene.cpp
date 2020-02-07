@@ -25,8 +25,7 @@ bool TownScene::init()
 void TownScene::update(float _deltaTime)
 {
 	m_player->update(_deltaTime);
-	for (auto& Tile : m_map)
-		Tile.update(_deltaTime);
+	m_map->update(_deltaTime);
 }
 
 void TownScene::render(HDC hdc)
@@ -40,8 +39,7 @@ void TownScene::afterRender(HDC hdc)
 
 void TownScene::debugRender(HDC hdc)
 {
-	for (auto& Tile : m_map)
-		Tile.debugRender(hdc);
+	m_map->debugRender(hdc);
 	m_player->debugRender(hdc);
 }
 

@@ -61,3 +61,7 @@ void Tile::debugRender(HDC hdc)
 		
 	}
 }
+
+void Tile::afterRender(HDC hdc)
+{
+}

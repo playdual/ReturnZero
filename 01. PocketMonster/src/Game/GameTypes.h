@@ -6,7 +6,8 @@ enum class TileType
 	TileTypeFloor,
 	TileTypeHouse,
 	TileTypeBush,
-	TileTypeTree
+	TileTypeTree,
+	TileTypeOutRange
 };
 
 #define TILE_WIDTH 100
