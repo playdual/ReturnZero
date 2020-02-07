@@ -38,7 +38,7 @@ TileType Map::getTileTypeFromIdex(int _x, int _y)
 {
 	if (_x * m_width + _y * m_height > m_width * m_height)
 		return TileType::TileTypeOutRange;
-	return m_tiles[_x * m_width + _y * m_height].m_Type;
+	return m_tiles[_x + _y * m_height].m_Type;
 }
 
 void Map::render(HDC hdc)

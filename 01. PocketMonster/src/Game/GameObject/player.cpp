@@ -15,6 +15,7 @@ player::player()
 	m_outPlayerRect = UTIL::IRectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, 100, 100);*/
 }
 
+
 player::~player()
 {
 }
@@ -33,11 +34,20 @@ bool player::init()
 void player::update(float _deltaTime)
 {
 
-	if (KEYMANAGER->isStayKeyDown(P1_LEFT)&&!isMoveLeft&&!isAnotherMove)
+	if (KEYMANAGER->isStayKeyDown(P1_LEFT) && !isMoveLeft && !isAnotherMove)
 	{
-		m_playerRectMemory = m_playerRect.left;
-		isAnotherMove = true;
-		isMoveLeft = true;
+		m_blockPositionX -= 1;
+
+		if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeTree)
+		{
+			m_blockPositionX += 1;
+		}
+		else
+		{
+			m_playerRectMemory = m_playerRect.left;
+			isAnotherMove = true;
+			isMoveLeft = true;
+		}
 	}
 	if (isMoveLeft)
 	{
@@ -49,13 +59,27 @@ void player::update(float _deltaTime)
 		{
 			isMoveLeft = false;
 			isAnotherMove = false;
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeBush)
+			{
+				isBattleStart();
+			}
+
 		}
 	}
-	if (KEYMANAGER->isStayKeyDown(P1_RIGHT)&&!isMoveRight&&!isAnotherMove)
+	if (KEYMANAGER->isStayKeyDown(P1_RIGHT) && !isMoveRight && !isAnotherMove)
 	{
-		m_playerRectMemory = m_playerRect.right;
-		isAnotherMove = true;
-		isMoveRight = true;
+		m_blockPositionX += 1;
+
+		if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeTree)
+		{
+			m_blockPositionX -= 1;
+		}
+		else
+		{
+			m_playerRectMemory = m_playerRect.right;
+			isAnotherMove = true;
+			isMoveRight = true;
+		}
 	}
 	if (isMoveRight)
 	{
@@ -67,13 +91,26 @@ void player::update(float _deltaTime)
 		{
 			isMoveRight = false;
 			isAnotherMove = false;
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeBush)
+			{
+				isBattleStart();
+			}
 		}
 	}
-	if (KEYMANAGER->isStayKeyDown(P1_UP) && !isMoveUp&&!isAnotherMove)
+	if (KEYMANAGER->isStayKeyDown(P1_UP) && !isMoveUp && !isAnotherMove)
 	{
-		m_playerRectMemory = m_playerRect.top;
-		isAnotherMove = true;
-		isMoveUp = true;
+		m_blockPositionY -= 1;
+
+		if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeTree)
+		{
+			m_blockPositionY += 1;
+		}
+		else
+		{
+			m_playerRectMemory = m_playerRect.top;
+			isAnotherMove = true;
+			isMoveUp = true;
+		}
 	}
 	if (isMoveUp)
 	{
@@ -83,16 +120,29 @@ void player::update(float _deltaTime)
 		}
 		else
 		{
+			
 			isMoveUp = false;
 			isAnotherMove = false;
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeBush)
+			{
+				isBattleStart();
+			}
 		}
 	}
 	if (KEYMANAGER->isStayKeyDown(P1_DOWN)&&!isMoveDown&&!isAnotherMove)
 	{
+		m_blockPositionY += 1;
+
+		if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeTree)
+		{
+			m_blockPositionY -= 1;
+		}
+		else
+		{
 		m_playerRectMemory = m_playerRect.bottom;
 		isAnotherMove = true;
 		isMoveDown = true;
-	}
+	}}
 	if (isMoveDown)
 	{
 		if (m_playerRect.bottom < m_playerRectMemory + TILE_HEIGHT)
@@ -101,10 +151,20 @@ void player::update(float _deltaTime)
 		}
 		else
 		{
+			
 			isMoveDown = false;
 			isAnotherMove = false;
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeBush)
+			{
+				isBattleStart();
+			}
 		}
 	}
+	if (isBattle)
+	{
+		std::cout << "BATTLE START!! " << std::endl;
+	}
+
 	CAMERAMANAGER->update();
 }
 
@@ -148,6 +208,27 @@ void player::reLocate(int blockX, int blockY)
 	m_playerRect.centerX = m_playerRect.left + (m_playerRect.right - m_playerRect.left) / 2;
 	m_playerRect.centerY = m_playerRect.top + (m_playerRect.bottom - m_playerRect.top) / 2;
 }
+
+void player::isBattleStart()
+{
+	if (isBattle == false)
+	{
+		srand(time(NULL));
+		m_BattleStart = rand() % 10;
+
+		if (m_BattleStart < 3)
+		{
+			isBattle = true;
+	
+		}
+		else
+		{
+			isBattle = false;
+		
+		}
+	}
+}
+
 
 
 

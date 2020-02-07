@@ -22,6 +22,7 @@ public:
 	int getPlayRectX();
 	int getPlayRectY();
 	void reLocate(int blockX, int blockY);
+	void isBattleStart();
 	//void rectInCamera(UTIL::IRECT& outRect, const UTIL::IRECT& realRect, bool& isOutput);
 private:
 	UTIL::IRECT m_playerRect;
@@ -50,8 +51,11 @@ private:
 	bool isMoveDown=false;
 	bool isAnotherMove = false;
 
-
+	
 	int count;
+	int m_BattleStart;
+	bool isBattle=false;
+	bool isBattleTemp=false;
 	//status == 불배열
 	//badge
 	//
