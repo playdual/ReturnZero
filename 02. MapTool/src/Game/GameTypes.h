@@ -11,7 +11,7 @@
 #define TILESIZEX TILEX * TILESIZE
 #define TILESIZEY TILEY * TILESIZE
 
-//화면 오른쪽 이미지 타일 갯수
+//ȭ�� ������ �̹��� Ÿ�� ����
 #define SAMPLETILEX 20
 #define SAMPLETILEY 8
 
@@ -36,13 +36,13 @@ enum CTRL
 	CTRL_END
 };
 
-//지형(EX.밟을때 사운드를 나게 하거나 이동할 수 없는 지역등등)
+//����(EX.������ ���带 ���� �ϰų� �̵��� �� ���� �������)
 enum TERRAIN
 {
 	TR_CEMENT, TR_DESERT, TR_GRASS, TR_WATER, TR_END
 };
 
-//오브젝트(EX :지형위쪽에 배치. 움직이거나 부서지거나 하는 녀석 등등 변화를 줄수 있는 물체)
+//������Ʈ(EX :�������ʿ� ��ġ. �����̰ų� �μ����ų� �ϴ� �༮ ��� ��ȭ�� �ټ� �ִ� ��ü)
 enum OBJECT
 {
 	OBJ_BLOCK1,
@@ -54,7 +54,7 @@ enum OBJECT
 	OBJ_TANK2,
 	OBJ_NONE
 };
-//위치 좌표
+//��ġ ��ǥ
 enum POS
 {
 	POS_FLAG1,
@@ -63,7 +63,7 @@ enum POS
 	POS_TANK2
 
 };
-//타일 구조체
+//Ÿ�� ����ü
 struct tagTile
 {
 	TERRAIN terrain;
@@ -75,7 +75,7 @@ struct tagTile
 	int objFrameX;
 	int objFrameY;
 };
-//이미지 타일 구조체
+//�̹��� Ÿ�� ����ü
 struct tagSampleTile
 {
 	RECT rcTile;
@@ -83,7 +83,7 @@ struct tagSampleTile
 	int terrainFrameY;
 
 };
-//현재 타일 구조체
+//���� Ÿ�� ����ü
 struct tagCurrentTile
 {
 	int x;

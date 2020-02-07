@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+#include "stdafx.h"
 #include "UTILS.h"
 
 namespace UTIL
@@ -196,8 +196,7 @@ namespace UTIL
 
 
 	bool operator==(const IRECT& rect1, const IRECT& rect2) {
-		if (rect1.left == rect2.left && rect1.right == rect2.right &&
-			rect1.top == rect2.top && rect1.bottom == rect2.bottom)
+		if (rect1.centerX == rect2.centerX && rect1.centerY == rect2.centerY)
 			return true;
 		return false;
 	}
@@ -205,24 +204,35 @@ namespace UTIL
 	void _tagIrect::moveUp(int dist) {
 		top -= dist;
 		bottom -= dist;
+		centerY -= dist;
 	}
 	void _tagIrect::moveDown(int dist) {
 		top += dist;
 		bottom += dist;
+		centerY += dist;
 	}
 	void _tagIrect::moveLeft(int dist) {
 		left -= dist;
 		right -= dist;
+		centerX -= dist;
 	}
 	void _tagIrect::moveRight(int dist) {
 		left += dist;
 		right += dist;
+		centerX += dist;
+	}
+	void _tagIrect::setCenter()
+	{
+		centerX = left + (right - left) / 2;
+		centerY = top + (bottom - top) / 2;
 	}
 	void _tagIrect::reset() {
 		left = 0;
 		top = 0;
 		right = 0;
 		bottom = 0;
+		centerX = 0;
+		centerY = 0;
 	}
 
 	//포인트

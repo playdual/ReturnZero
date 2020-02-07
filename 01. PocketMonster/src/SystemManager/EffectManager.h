@@ -1,5 +1,5 @@
-ï»¿#pragma once
-//ì´í™íŠ¸ í´ë˜ìŠ¤ ì „ë°©ì„ ì–¸
+#pragma once
+//ÀÌÆåÆ® Å¬·¡½º Àü¹æ¼±¾ğ
 class Effect;
 
 class EffectManager
@@ -10,23 +10,23 @@ public:
 	void update();
 	void render(HDC _hdc);
 
-	//ì´í™íŠ¸ ì¶”ê°€(í‚¤ê°’, ì´ë¯¸ì§€ ì´ë¦„, ì´ë¯¸ì§€ ê°€ë¡œ, ì„¸ë¡œ, í•œí”„ë ˆì„ ê°€ë¡œ, ì„¸ë¡œ, FPS, ì†ë„, ë²„í¼ê°¯ìˆ˜)
+	//ÀÌÆåÆ® Ãß°¡(Å°°ª, ÀÌ¹ÌÁö ÀÌ¸§, ÀÌ¹ÌÁö °¡·Î, ¼¼·Î, ÇÑÇÁ·¹ÀÓ °¡·Î, ¼¼·Î, FPS, ¼Óµµ, ¹öÆÛ°¹¼ö)
 	void addEffect(std::string effectKey, char* imageName, int imageW, int imageH, int frameW, int frameH, int fps, float elapsedTime, int buffer);
 	void play(std::string effectKey, int x, int y);
 	bool getIsPlay();
 
 private:
-	//ì´í™íŠ¸ í´ë˜ìŠ¤ ë‹´ì€ ë…€ì„
+	//ÀÌÆåÆ® Å¬·¡½º ´ãÀº ³à¼®
 	typedef std::vector<Effect*>vEffect;
 	typedef std::vector<Effect*>::iterator viEffect;
-	//ì´í™íŠ¸ í´ë˜ìŠ¤ê°€ ë‹´ê²¨ì ¸ ìˆëŠ” ë²¡í„°ë¥¼ ë‹´ì€ ë…€ì„
+	//ÀÌÆåÆ® Å¬·¡½º°¡ ´ã°ÜÁ® ÀÖ´Â º¤ÅÍ¸¦ ´ãÀº ³à¼®
 	typedef std::map<std::string, vEffect> mEffect;
 	typedef std::map<std::string, vEffect>::iterator miEffect;
-	//ëª¨ë“  ì´í™íŠ¸ë¥¼ ê´€ë¦¬í•  ë…€ì„
+	//¸ğµç ÀÌÆåÆ®¸¦ °ü¸®ÇÒ ³à¼®
 	typedef std::vector<mEffect> vTotalEffect;
 	typedef std::vector<mEffect>::iterator viTotalEffect;
 
-	//ì‹¤ì œ ëª¨ë“  ì´í™íŠ¸ê°€ ë‹´ê²¨ì ¸ ìˆëŠ” ë…€ì„
+	//½ÇÁ¦ ¸ğµç ÀÌÆåÆ®°¡ ´ã°ÜÁ® ÀÖ´Â ³à¼®
 	vTotalEffect m_vTotalEffect;
 
 	//í•˜ë‚˜ì˜ ì´íŒ©íŠ¸ê°€ êº¼ì§€ëŠ”ì§€ë¥¼ í™•ì¸í•´ì£¼ëŠ”ë° ì‚¬ìš©í•˜ëŠ” ë³€ìˆ˜

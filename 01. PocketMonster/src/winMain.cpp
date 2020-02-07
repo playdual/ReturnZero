@@ -5,6 +5,7 @@
 	#pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console" )
 #endif
 
+
 MainGame mg;
 HINSTANCE m_hInstance;
 HWND m_hWnd;
@@ -14,6 +15,8 @@ bool m_showFPS = false;
 bool m_showRect = false;
 bool m_debugMode = false;
 LPTSTR m_lpszClass = TEXT("경일 프로그래밍 18기");
+
+//메인게임
 
 //윈도우 클래스 이름
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);

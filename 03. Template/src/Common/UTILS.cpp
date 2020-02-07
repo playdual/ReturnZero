@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+#include "stdafx.h"
 #include "UTILS.h"
 
 namespace UTIL
@@ -225,21 +225,21 @@ namespace UTIL
 		bottom = 0;
 	}
 
-	//?ъ씤??
+	//포인트
 	POINT PointMake(int x, int y)
 	{
 		POINT pt = { x ,y };
 		return pt;
 	}
 
-	//?좉렇由щ뒗 ?⑥닔
+	//선그리는 함수
 	void LineMake(HDC hdc, int x1, int y1, int x2, int y2)
 	{
 		MoveToEx(hdc, x1, y1, NULL);
 		LineTo(hdc, x2, y2);
 	}
 
-	//RECT留뚮뱾湲?醫뚯긽??湲곗?)
+	//RECT만들기(좌상단 기준)
 	RECT RectMake(int x, int y, int width, int height)
 	{
 		RECT rc = { x,y, x + width, y + height };
@@ -252,7 +252,7 @@ namespace UTIL
 		return rc;
 	}
 
-	//RECT留뚮뱾湲?以묒떖?먯쑝濡?遺??
+	//RECT만들기(중심점으로 부터)
 	RECT RectMakeCenter(int x, int y, int width, int height)
 	{
 		RECT rc = { x - width / 2, y - height / 2, x + width / 2, y + height / 2 };
@@ -266,7 +266,7 @@ namespace UTIL
 		return rc;
 	}
 
-	//?ш컖??洹몃━湲?
+	//사각형 그리기
 	void RectangleMake(HDC hdc, int x, int y, int width, int height)
 	{
 		Rectangle(hdc, x, y, x + width, y + height);
@@ -296,7 +296,7 @@ namespace UTIL
 		DeleteObject(curBrush);
 	}
 
-	//?ш컖??洹몃━湲?以묒떖??
+	//사각형 그리기(중심점)
 	void RectangleMakeCenter(HDC hdc, int x, int y, int width, int height)
 	{
 		Rectangle(hdc, x - (width / 2), y - (height / 2), x + (width / 2), y + (height / 2));
@@ -306,13 +306,13 @@ namespace UTIL
 		Rectangle(hdc, rect.left, rect.top, rect.right, rect.bottom);
 	}
 
-	//?먭렇由ш린
+	//원그리기
 	void EllipseMake(HDC hdc, int x, int y, int width, int height)
 	{
 		Ellipse(hdc, x, y, x + width, y + height);
 	}
 
-	//?먭렇由ш린(以묒떖??
+	//원그리기(중심점)
 	void EllipseMakeCenter(HDC hdc, int x, int y, int width, int height)
 	{
 		Ellipse(hdc, x - (width / 2), y - (height / 2), x + (width / 2), y + (height / 2));

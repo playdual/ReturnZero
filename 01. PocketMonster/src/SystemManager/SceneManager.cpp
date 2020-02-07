@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+#include "stdafx.h"
 #include "sceneManager.h"
 DEFINITION_SINGLE(SceneManager)
 
@@ -68,18 +68,18 @@ bool SceneManager::changeScene(std::string sceneName)
 {
 	miSceneList find = _mSceneList.find(sceneName);
 
-	//못찾으면 E_FAIL
+	//��ã���� E_FAIL
 	if (find == _mSceneList.end())
 		return false;
 
-	//바꾸려는씬이 현재씬이랑 같아도 E_FAIL
+	//�ٲٷ��¾��� ������̶� ���Ƶ� E_FAIL
 	if (find->second == _currentScene)
 		return false;
 
-	//여기까지 왔다면 문제가 없다 즉 씬을 초기화하고 변경하자.
+	//������� �Դٸ� ������ ���� �� ���� �ʱ�ȭ�ϰ� ��������.
 	if (SUCCEEDED(find->second->init()))
 	{
-		//혹시 기존에 씬이 있다면 릴리즈
+		//Ȥ�� ������ ���� �ִٸ� ������
 		if (_currentScene)_currentScene->release();
 
 		_currentScene = find->second;

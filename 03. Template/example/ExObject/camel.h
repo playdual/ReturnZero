@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "Game/GameObject/Object.h"
 
 class camel :  public Object

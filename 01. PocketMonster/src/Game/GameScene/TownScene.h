@@ -1,5 +1,7 @@
-﻿#pragma once
+#pragma once
 #include "Scene.h"
+#include "Game/GameObject/player.h"
+#include "Game/GameObject/Map/Map.h"
 
 class TownScene :
 	public Scene 
@@ -19,8 +21,7 @@ public:
 	void debugRender(HDC hdc) override;
 
 private:
-	Image* m_image;
-	int m_count;
-	float m_deltaTime;
+	Image* image;
+	std::shared_ptr<player> m_player;
+	std::shared_ptr<Map> m_map;
 };
-

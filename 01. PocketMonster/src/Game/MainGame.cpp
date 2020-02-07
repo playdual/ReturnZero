@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+#include "stdafx.h"
 #include "MainGame.h"
 #include "GameScene/TownScene.h"
 #include "GameScene/BattleScene.h"
@@ -13,7 +13,8 @@ MainGame::~MainGame()
 HRESULT MainGame::init()
 {
 	GameNode::init();
-	
+	MAPMANGER->init();
+
 	//add Scene
 	IMAGEMANAGER->addImage("bg", "Images/temp.bmp", 0, 0, WINSIZEX, WINSIZEY);
 	SOUNDMANAGER->addStream("bgs", "Sounds/NewBarkTown.mp3", true);
@@ -29,6 +30,8 @@ HRESULT MainGame::init()
 void MainGame::release()
 {
 	GameNode::release();
+	MAPMANGER->release();
+	MAPMANGER->Destroy();
 }  
 
 void MainGame::update()

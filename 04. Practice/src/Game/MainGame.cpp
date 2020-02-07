@@ -1,6 +1,6 @@
-﻿#include "stdafx.h"
+#include "stdafx.h"
 #include "MainGame.h"
-#include "GameScene/TestScene.h"
+#include "GameScene/SunwooScene.h"
 
 MainGame::MainGame()
 {
@@ -13,7 +13,7 @@ HRESULT MainGame::init()
 {
 	GameNode::init();
 	
-	SCENEMANAGER->addScene("테스트", new TestScene);
+	SCENEMANAGER->addScene("테스트", new SunwooScene);
 	SCENEMANAGER->changeScene("테스트");
 
 	sceneInit = true;

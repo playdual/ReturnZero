@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+#include "stdafx.h"
 #include "UTILS.h"
 
 namespace UTIL
@@ -205,41 +205,44 @@ namespace UTIL
 	void _tagIrect::moveUp(int dist) {
 		top -= dist;
 		bottom -= dist;
+		centerY -= dist;
 	}
 	void _tagIrect::moveDown(int dist) {
 		top += dist;
 		bottom += dist;
+		centerY += dist;
 	}
 	void _tagIrect::moveLeft(int dist) {
 		left -= dist;
 		right -= dist;
+		centerX -= dist;
 	}
 	void _tagIrect::moveRight(int dist) {
 		left += dist;
 		right += dist;
+		centerX += dist;
 	}
 	void _tagIrect::reset() {
 		left = 0;
 		top = 0;
 		right = 0;
 		bottom = 0;
+		centerX = 0;
+		centerY = 0;
 	}
 
-	//포인트
 	POINT PointMake(int x, int y)
 	{
 		POINT pt = { x ,y };
 		return pt;
 	}
 
-	//선그리는 함수
 	void LineMake(HDC hdc, int x1, int y1, int x2, int y2)
 	{
 		MoveToEx(hdc, x1, y1, NULL);
 		LineTo(hdc, x2, y2);
 	}
 
-	//RECT만들기(좌상단 기준)
 	RECT RectMake(int x, int y, int width, int height)
 	{
 		RECT rc = { x,y, x + width, y + height };
@@ -252,7 +255,6 @@ namespace UTIL
 		return rc;
 	}
 
-	//RECT만들기(중심점으로 부터)
 	RECT RectMakeCenter(int x, int y, int width, int height)
 	{
 		RECT rc = { x - width / 2, y - height / 2, x + width / 2, y + height / 2 };
@@ -265,8 +267,7 @@ namespace UTIL
 
 		return rc;
 	}
-
-	//사각형 그리기
+	
 	void RectangleMake(HDC hdc, int x, int y, int width, int height)
 	{
 		Rectangle(hdc, x, y, x + width, y + height);
@@ -296,7 +297,6 @@ namespace UTIL
 		DeleteObject(curBrush);
 	}
 
-	//사각형 그리기(중심점)
 	void RectangleMakeCenter(HDC hdc, int x, int y, int width, int height)
 	{
 		Rectangle(hdc, x - (width / 2), y - (height / 2), x + (width / 2), y + (height / 2));
@@ -308,19 +308,17 @@ namespace UTIL
 	void DrawRect(HDC hdc, const IRECT & rect) {
 		Rectangle(hdc, rect.left, rect.top, rect.right, rect.bottom);
 	}
-	//원그리기
+
 	void EllipseMake(HDC hdc, int x, int y, int width, int height)
 	{
 		Ellipse(hdc, x, y, x + width, y + height);
 	}
 
-	//원그리기(중심점)
 	void EllipseMakeCenter(HDC hdc, int x, int y, int width, int height)
 	{
 		Ellipse(hdc, x - (width / 2), y - (height / 2), x + (width / 2), y + (height / 2));
 	}
 
-	//IRECT
 	void DrawColorRect(HDC hdc, const IRECT & rect, bool _cleanEdge, COLORREF color) {
 		HBRUSH oldBrush, curBrush;
 		HGDIOBJ oldPen;
@@ -347,13 +345,13 @@ namespace UTIL
 
 	IRECT IRectMake(int x, int y, int width, int height)
 	{
-		IRECT rc = { x,y, x + width, y + height };
+		IRECT rc( x,y, x + width, y + height );
 		return rc;
 	}
 
 	IRECT IRectMakeCenter(int x, int y, int width, int height)
 	{
-		IRECT rc = { x - width / 2, y - height / 2, x + width / 2, y + height / 2 };
+		IRECT rc(x - width / 2, y - height / 2, x + width / 2, y + height / 2 );
 		return rc;
 	}
 

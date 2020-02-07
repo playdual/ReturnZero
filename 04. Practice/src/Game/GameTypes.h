@@ -1,2 +1,15 @@
-﻿#pragma once
-//寃뚯엫 ?댁뿉???곗씠??Enum怨?援ъ“泥??깆쓣 ?뺤쓽 ?⑸땲??
+#pragma once
+//게임 내에서 쓰이는 Enum과 구조체 등을 정의 합니다.
+
+enum class TileType
+{
+	TileTypeFloor,
+	TileTypeHouse,
+	TileTypeBush,
+	TileTypeTree
+};
+
+#define TILE_WIDTH 100
+#define TILE_HEIGHT 100
+#define TILE_OFFSETX -38
+#define TILE_OFFSETY 33

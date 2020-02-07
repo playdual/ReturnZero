@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #define PI		3.141592653
 #define PI2		PI*2
 
@@ -23,23 +23,29 @@ namespace UTIL
 	//정수형 사각형
 	typedef struct _tagIrect {
 		int left, top, right, bottom;
+		int centerX, centerY;
 		_tagIrect()
 			:left(0), top(0), right(0), bottom(0)
 		{}
 		_tagIrect(int _left, int _top, int _right, int _bottom)
 			: left(_left), top(_top), right(_right), bottom(_bottom)
-		{}
+		{
+			setCenter();
+		}
 
 		void moveUp(int dist);
 		void moveDown(int dist);
 		void moveLeft(int dist);
 		void moveRight(int dist);
+		void setCenter();
 		void reset();
 		void operator=(const _tagIrect& rect) {
 			left = rect.left;
 			right = rect.right;
 			top = rect.top;
 			bottom = rect.bottom;
+			centerX = rect.centerX;
+			centerY = rect.centerY;
 		}
 	}IRECT, *PIRECT;
 
