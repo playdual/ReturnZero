@@ -9,6 +9,10 @@ bool BattleScene::init()
 {
 	IMAGEMANAGER->addImage("battleTemp", "images/battleTemp2.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 	
+	EFFECTMANAGER->addEffect("파이리스킬1", "images/pailiSkill_1.bmp", 35, 150, 35, 30, 1, 0.1f, 100);
+
+	m_pocketmonpaili = std::make_shared<PocketMon>();
+
 	//===============
 	// RECT 초기화 //
 	//===============
@@ -61,7 +65,7 @@ bool BattleScene::init()
 	//===========================
 	// 전투 애니케이션 관련 변수 //
 	//===========================
-	wildBattleIntroAni = true;
+	wildBattleIntroAniOn = true;
 	uiObjectRegularPosition = false;
 	playerImgSlideOut = false;
 
@@ -138,8 +142,15 @@ void BattleScene::debugRender(HDC hdc)
 	if (npcBattle) npcBattleRender(hdc);
 	
 	//디버깅 출력 내용 모음
+
+	if (KEYMANAGER->isStayKeyDown(GAME_LMOUSE))
+	{
+		EFFECTMANAGER->play("파이리스킬1", m_ptMouse.x, m_ptMouse.y);
+	}
 	wsprintf(str, "%d, %d", m_ptMouse.x, m_ptMouse.y);
 	TextOut(hdc, m_ptMouse.x, m_ptMouse.y - 20, str, strlen(str));
+
+	EFFECTMANAGER->render(hdc);
 
 	/*
 	wsprintf(str, "fight: %d, bag: %d, pocketmon: %d, run: %d", fight, bag, pocketmon, run);
@@ -155,72 +166,14 @@ void BattleScene::debugRender(HDC hdc)
 
 void BattleScene::wildBattleFunctions()
 {
-	if (wildBattleIntroAni)
-	{
-		////적 상태창 
-		//m_enemyStatus = UTIL::IRectMake(55, 80, 425, 130);
-		////적 포켓몬
-		//m_enemyPocketmon = UTIL::IRectMake(664, 165, 165, 181);
-		////적 바닥
-		//m_enemyBottom = UTIL::IRectMake(477, 228, 547, 159);
-		////플레이어바닥
-		//m_playerBottom = UTIL::IRectMake(0, 467, 534, 82);
-		////플레이어 이미지
-		//m_playerImg = UTIL::IRectMake(200, 329, 210, 209);
-		////플레이어 포켓몬
-		//m_playerPocketmon = UTIL::IRectMake(200, 329, 210, 209);
-		//플레이어 상태창
-		//m_playerStatus = UTIL::IRectMake(535, 356, 446, 180);
-		if (!uiObjectRegularPosition)
-		{
-			m_enemyBottomX+=10;
-			m_enemyPocketmonX+=10;
-			m_playerBottomX-=10;
-			m_playerimgX-=10;
-			m_playerPocketmonX-=10;
-			//적 바닥
-			m_enemyBottom = UTIL::IRectMake(m_enemyBottomX, 228, 547, 159);
-			//적 포켓몬
-			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
-			//플레이어바닥
-			m_playerBottom = UTIL::IRectMake(m_playerBottomX, 467, 534, 159);
-			//플레이어 이미지
-			m_playerImg = UTIL::IRectMake(m_playerimgX, 329, 210, 209);
-			//플레이어 포켓몬
-			m_playerPocketmon = UTIL::IRectMake(m_playerPocketmonX, 329, 210, 209);
-		}
-
-		if (m_enemyBottomX >= ENEMYBOTTOMX) uiObjectRegularPosition = true;
-		
-		if (uiObjectRegularPosition && !playerImgSlideOut)
-		{
-			m_enemyStatusX+=5;
-			//적 상태창 
-			m_enemyStatus = UTIL::IRectMake(m_enemyStatusX, 80, 425, 130);
-			if (m_enemyStatusX >= ENEMYSTATUSX)
-			{
-				//wildBattleIntroAni = false;
-				playerImgSlideOut = true;
-			}
-		}
-		if (playerImgSlideOut)
-		{
-			m_playerimgX -= 10;
-			m_playerStatusX -= 10;
-			//플레이어 이미지
-			m_playerImg = UTIL::IRectMake(m_playerimgX, 329, 210, 209);
-			//플레이어 상태창
-			m_playerStatus = UTIL::IRectMake(m_playerStatusX, 356, 446, 180);
-			if (m_playerStatusX <= PLAYERSTATUSX) wildBattleIntroAni = false;
-		}
-	}
+	if (wildBattleIntroAniOn) wildBattleIntroAni();
 	else 
 	{
 		if (playerTurn)
 		{
 			if (!playerAtkOn) moveButton();
 			if (playerAtkOn) moveSkillSelectButton();
-			if (KEYMANAGER->isOnceKeyDown(P1_X) && playerAtkOn) playerAtkOn = false;
+			if (playerAtkOn && KEYMANAGER->isOnceKeyDown(P1_X)) playerAtkOn = false;
 			playerStayMotion();
 		}
 
@@ -236,97 +189,88 @@ void BattleScene::wildBattleFunctions()
 	}
 }
 
-void BattleScene::npcBattleFunctions()
+void BattleScene::wildBattleIntroAni()
 {
-}
-
-void BattleScene::wildBattleRender(HDC hdc)
-{
-	HFONT myFont = CreateFont(30, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, "소야바른9");
-	HFONT oldFont = (HFONT)SelectObject(hdc, myFont);
-
-	char str[111];
-	std::string ccc = "카아아앙";
-	//배경
-	IMAGEMANAGER->findImage("battleTemp")->render(hdc);
-	if (wildBattleIntroAni)
+	////적 상태창 
+		//m_enemyStatus = UTIL::IRectMake(55, 80, 425, 130);
+		////적 포켓몬
+		//m_enemyPocketmon = UTIL::IRectMake(664, 165, 165, 181);
+		////적 바닥
+		//m_enemyBottom = UTIL::IRectMake(477, 228, 547, 159);
+		////플레이어바닥
+		//m_playerBottom = UTIL::IRectMake(0, 467, 534, 82);
+		////플레이어 이미지
+		//m_playerImg = UTIL::IRectMake(200, 329, 210, 209);
+		////플레이어 포켓몬
+		//m_playerPocketmon = UTIL::IRectMake(200, 329, 210, 209);
+		//플레이어 상태창
+		//m_playerStatus = UTIL::IRectMake(535, 356, 446, 180);
+	if (!uiObjectRegularPosition)
 	{
-		//적
-		UTIL::drawRect(hdc, m_enemyStatus);
-		UTIL::drawRect(hdc, m_enemyBottom);
-		UTIL::drawRect(hdc, m_enemyPocketmon);
-		//플레이어
-		UTIL::drawRect(hdc, m_playerBottom);
-		UTIL::drawRect(hdc, m_playerPocketmon);
-		UTIL::drawRect(hdc, m_playerImg);
-		UTIL::drawRect(hdc, m_playerStatus);
-		//설명창
-		UTIL::drawRect(hdc, m_explainRect);
-		if (uiObjectRegularPosition && !playerImgSlideOut)
-		{
-			wsprintf(str, "앗!! 야생의");
-			TextOut(hdc, 83, 584, str, strlen(str));
-			
-			wsprintf(str, "영환이가 튀어나왔다!!");
-			TextOut(hdc, 83, 584+40, str, strlen(str));
+		m_enemyBottomX += 10;
+		m_enemyPocketmonX += 10;
+		m_playerBottomX -= 10;
+		m_playerimgX -= 10;
+		m_playerPocketmonX -= 10;
+		//적 바닥
+		m_enemyBottom = UTIL::IRectMake(m_enemyBottomX, 228, 547, 159);
+		//적 포켓몬
+		m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
+		//플레이어바닥
+		m_playerBottom = UTIL::IRectMake(m_playerBottomX, 467, 534, 159);
+		//플레이어 이미지
+		m_playerImg = UTIL::IRectMake(m_playerimgX, 329, 210, 209);
+		//플레이어 포켓몬
+		m_playerPocketmon = UTIL::IRectMake(m_playerPocketmonX, 329, 210, 209);
+	}
 
-		}
-		if (playerImgSlideOut)
+	if (m_enemyBottomX >= ENEMYBOTTOMX) uiObjectRegularPosition = true;
+
+	if (uiObjectRegularPosition && !playerImgSlideOut)
+	{
+		m_enemyStatusX += 5;
+		//적 상태창 
+		m_enemyStatus = UTIL::IRectMake(m_enemyStatusX, 80, 425, 130);
+		if (m_enemyStatusX >= ENEMYSTATUSX)
 		{
-			wsprintf(str, "가랏 포켓영환!!!!");
-			TextOut(hdc, 83, 584, str, strlen(str));
+			//wildBattleIntroAni = false;
+			playerImgSlideOut = true;
 		}
 	}
-	else
+	if (playerImgSlideOut)
 	{
-		//적
-		UTIL::drawRect(hdc, m_enemyStatus);
-		UTIL::drawRect(hdc, m_enemyBottom);
-		UTIL::drawRect(hdc, m_enemyPocketmon);
-		//플레이어
-		UTIL::drawRect(hdc, m_playerBottom);
-		UTIL::drawRect(hdc, m_playerPocketmon);
-		UTIL::drawRect(hdc, m_playerStatus);
-
-		if (playerTurn)
-		{
-			//설명 + 선택창
-			if (!playerAtkOn)
-			{
-				UTIL::drawRect(hdc, m_explainRect);
-				//선택 커서
-				UTIL::drawRect(hdc, m_selectRect);
-			}
-
-			if (playerAtkOn)
-			{
-				UTIL::drawRect(hdc, m_skillListRect);
-				UTIL::drawRect(hdc, m_skillSelectRect);
-				UTIL::drawRect(hdc, m_skillExplainRect);
-			}
-		}
-		if (playerAtkSkillOn)
-		{
-			UTIL::drawRect(hdc, m_playerAtkSkillEffect);
-			wsprintf(str, "%s", ccc.c_str());
-			TextOut(hdc, 500, 330, str, strlen(str));
-
-			wsprintf(str, "포켓몬 스킬 공격 !!! 영환이가 울부짖었다!! 크아아아아앙!!");
-			TextOut(hdc, 500, 300, str, strlen(str));
-		}
-		if (enemyAtkSkillOn)
-		{
-			UTIL::drawRect(hdc, m_enemyAtkSkillEffect);
-			wsprintf(str, "준수가 얼굴로 반격한다!!! 크아아아아아아아아악!!!!");
-			TextOut(hdc, 500, 300, str, strlen(str));
-		}
+		m_playerimgX -= 10;
+		m_playerStatusX -= 10;
+		//플레이어 이미지
+		m_playerImg = UTIL::IRectMake(m_playerimgX, 329, 210, 209);
+		//플레이어 상태창
+		m_playerStatus = UTIL::IRectMake(m_playerStatusX, 356, 446, 180);
+		if (m_playerStatusX <= PLAYERSTATUSX) wildBattleIntroAniOn = false;
 	}
-	SelectObject(hdc, oldFont);
-	DeleteObject(myFont);
 }
 
-void BattleScene::npcBattleRender(HDC hdc)
+void BattleScene::playerStayMotion()
 {
+	m_count++;
+	if (m_count % 20 == 0 && motionUp)
+	{
+		motionUp = false;
+		//플레이어 포켓몬
+		m_playerPocketmon = UTIL::IRectMake(m_playerPocketmonX, 319, 210, 209);
+		//플레이어 상태창
+		m_playerStatus = UTIL::IRectMake(m_playerStatusX, 346, 446, 180);
+	}
+	else if (m_count % 20 == 0 && !motionUp)
+	{
+		motionUp = true;
+		//플레이어 포켓몬
+		m_playerPocketmon = UTIL::IRectMake(m_playerPocketmonX, 329, 210, 209);
+		//플레이어 상태창
+		m_playerStatus = UTIL::IRectMake(m_playerStatusX, 356, 446, 180);
+	}
+
+	if (m_count > 10000) m_count = 0;
+
 }
 
 void BattleScene::moveButton()
@@ -461,63 +405,33 @@ void BattleScene::moveSkillSelectButton()
 		m_skillSelectRect = UTIL::IRectMake(318, 674, 20, 40);
 	}
 
-
 	if (KEYMANAGER->isOnceKeyDown(P1_Z))
 	{
 		playerTurn = false;
 		playerAtkSkillOn = true;
 	}
 
-	/*if (skill_1 && KEYMANAGER->isOnceKeyDown(P1_Z))
-	{
-		playerTurn = false;
-		atkSkillOn = true;
-	}
-	else if (skill_2 && KEYMANAGER->isOnceKeyDown(P1_Z))
-	{
-		playerTurn = false;
-		atkSkillOn = true;
-	}
-	else if (skill_3 && KEYMANAGER->isOnceKeyDown(P1_Z))
-	{
-		playerTurn = false;
-		atkSkillOn = true;
-	}
-	else if (skill_4 && KEYMANAGER->isOnceKeyDown(P1_Z))
-	{
-		playerTurn = false;
-		atkSkillOn = true;
-	}*/
-
-}
-
-void BattleScene::playerStayMotion()
-{
-	m_count++;
-	if (m_count % 20 == 0 && motionUp)
-	{
-		motionUp = false;
-		//플레이어 포켓몬
-		m_playerPocketmon = UTIL::IRectMake(m_playerPocketmonX, 319, 210, 209);
-		//플레이어 상태창
-		m_playerStatus = UTIL::IRectMake(m_playerStatusX, 346, 446, 180);
-	}
-	else if (m_count % 20 == 0 && !motionUp)
-	{
-		motionUp = true;
-		//플레이어 포켓몬
-		m_playerPocketmon = UTIL::IRectMake(m_playerPocketmonX, 329, 210, 209);
-		//플레이어 상태창
-		m_playerStatus = UTIL::IRectMake(m_playerStatusX, 356, 446, 180);
-	}
-	
-	if (m_count > 10000) m_count = 0;
-
 }
 
 void BattleScene::skillMotion()
 {
+	//공격모션
+	//적 깜빡깜빡
+	//피달기
 	m_skillCount++;
+	if (playerAtkSkillOn)
+	{
+		//포켓몬 클래스에 스킬 모션이 시작됬음을 알리는 bool변수와, 스킬 번호를 보낸다.
+		if (skill_1) {}
+		if (skill_2) {}
+		if (skill_3) {}
+		if (skill_4) {}
+	}
+	else if (enemyAtkSkillOn)
+	{
+
+	}
+
 	if (m_skillCount > 100 && playerAtkSkillOn)
 	{
 		m_skillCount = 0;
@@ -537,4 +451,98 @@ void BattleScene::skillMotion()
 void BattleScene::selectEnemyskill()
 {
 	enemyAtkSkillOn = true;
+}
+
+void BattleScene::wildBattleRender(HDC hdc)
+{
+	HFONT myFont = CreateFont(30, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, "소야바른9");
+	HFONT oldFont = (HFONT)SelectObject(hdc, myFont);
+	SetBkMode(hdc, TRANSPARENT);
+
+	char str[111];
+	//배경
+	IMAGEMANAGER->findImage("battleTemp")->render(hdc);
+	//인트로 애니메이션 
+	if (wildBattleIntroAniOn)
+	{
+		//적
+		UTIL::drawRect(hdc, m_enemyStatus);
+		UTIL::drawRect(hdc, m_enemyBottom);
+		UTIL::drawRect(hdc, m_enemyPocketmon);
+		//플레이어
+		UTIL::drawRect(hdc, m_playerBottom);
+		UTIL::drawRect(hdc, m_playerPocketmon);
+		UTIL::drawRect(hdc, m_playerImg);
+		UTIL::drawRect(hdc, m_playerStatus);
+		//설명창
+		UTIL::drawRect(hdc, m_explainRect);
+		if (uiObjectRegularPosition && !playerImgSlideOut)
+		{
+			wsprintf(str, "앗!! 야생의");
+			TextOut(hdc, 83, 584, str, strlen(str));
+
+			wsprintf(str, "영환이가 튀어나왔다!!");
+			TextOut(hdc, 83, 584 + 40, str, strlen(str));
+
+		}
+		if (playerImgSlideOut)
+		{
+			wsprintf(str, "가랏 포켓영환!!!!");
+			TextOut(hdc, 83, 584, str, strlen(str));
+		}
+	}
+	//공격 애니메이션
+	else
+	{
+		//적
+		UTIL::drawRect(hdc, m_enemyStatus);
+		UTIL::drawRect(hdc, m_enemyBottom);
+		UTIL::drawRect(hdc, m_enemyPocketmon);
+		//플레이어
+		UTIL::drawRect(hdc, m_playerBottom);
+		UTIL::drawRect(hdc, m_playerPocketmon);
+		UTIL::drawRect(hdc, m_playerStatus);
+
+		if (playerTurn)
+		{
+			//설명 + 선택창
+			if (!playerAtkOn)
+			{
+				UTIL::drawRect(hdc, m_explainRect);
+				//선택 커서
+				UTIL::drawRect(hdc, m_selectRect);
+			}
+			
+			if (playerAtkOn)
+			{
+				UTIL::drawRect(hdc, m_skillListRect);
+				UTIL::drawRect(hdc, m_skillSelectRect);
+				UTIL::drawRect(hdc, m_skillExplainRect);
+			}
+		}
+		if (playerAtkSkillOn)
+		{
+			UTIL::drawRect(hdc, m_playerAtkSkillEffect);
+			wsprintf(str, "포켓몬 스킬 공격 !!! 영환이가 울부짖었다!! 크아아아아앙!!");
+			TextOut(hdc, 500, 300, str, strlen(str));
+		}
+		if (enemyAtkSkillOn)
+		{
+			UTIL::drawRect(hdc, m_enemyAtkSkillEffect);
+			wsprintf(str, "준수가 얼굴로 반격한다!!! 크아아아아아아아아악!!!!");
+			TextOut(hdc, 500, 300, str, strlen(str));
+		}
+	}
+	SelectObject(hdc, oldFont);
+	DeleteObject(myFont);
+}
+
+
+//npc 배틀 함수 모음
+void BattleScene::npcBattleFunctions()
+{
+}
+
+void BattleScene::npcBattleRender(HDC hdc)
+{
 }

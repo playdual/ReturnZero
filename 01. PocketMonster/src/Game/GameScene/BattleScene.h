@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.h"
+#include "Game/GameObject/PocketMon.h"
 
 //각 이미지별 정위치 좌표
 //플레이어 UI 정위치
@@ -34,6 +35,8 @@ public:
 	void wildBattleFunctions();
 	void npcBattleFunctions();
 
+	void wildBattleIntroAni();
+
 	void wildBattleRender(HDC hdc);
 	void npcBattleRender(HDC hdc);
 
@@ -48,7 +51,7 @@ public:
 
 	//void test();
 private:
-
+	std::shared_ptr<PocketMon> m_pocketmonpaili;
 	//bool moveOn;
 
 	int m_count;
@@ -91,7 +94,7 @@ private:
 	// 애니메이션 변수모음 //
 	//=====================
 	//전투 시작 인트로 화면
-	bool wildBattleIntroAni;
+	bool wildBattleIntroAniOn;
 	bool uiObjectRegularPosition;
 	bool playerImgSlideOut;
 	bool explainEnemyName;
