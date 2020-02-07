@@ -72,6 +72,8 @@ void MainGame::update()
 	EFFECTMANAGER->update();
 	SCENEMANAGER->update(deltaTime);
 	ANIMANAGER->update(deltaTime);
+
+	inven->update(deltaTime);
 }
 
 void MainGame::render()

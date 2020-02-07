@@ -1,4 +1,7 @@
 ﻿#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <fstream>
 #include "ItemManager.h"
 #include "Common/SystemManagers.h"
 #include "Game/GameObject/Items/Potion.h"
@@ -6,6 +9,8 @@
 #include "Game/GameObject/Items/StateHeal.h"
 #include "Game/GameObject/Items/Nutrient.h"
 #include "Game/GameObject/Items/SkillMachine.h"
+// 싱글톤을 할때는 cpp 파일에 적어줘야 한다.
+DEFINITION_SINGLE(ItemManager)
 
 // 싱글톤을 할때는 cpp 파일에 적어줘야 한다.
 DEFINITION_SINGLE(ItemManager)
