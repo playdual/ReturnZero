@@ -23,12 +23,16 @@ namespace UTIL
 	//������ �簢��
 	typedef struct _tagIrect {
 		int left, top, right, bottom;
+		int centerX, centerY;
 		_tagIrect()
 			:left(0), top(0), right(0), bottom(0)
 		{}
 		_tagIrect(int _left, int _top, int _right, int _bottom)
 			: left(_left), top(_top), right(_right), bottom(_bottom)
-		{}
+		{
+			centerX = left + (right - left) / 2;
+			centerY = top + (bottom - top) / 2;
+		}
 
 		void moveUp(int dist);
 		void moveDown(int dist);
@@ -40,6 +44,8 @@ namespace UTIL
 			right = rect.right;
 			top = rect.top;
 			bottom = rect.bottom;
+			centerX = rect.centerX;
+			centerY = rect.centerY;
 		}
 	}IRECT, *PIRECT;
 
