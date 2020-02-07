@@ -15,62 +15,30 @@ void CameraManager::release()
 
 void CameraManager::update()
 {
-//	m_cameraX = *m_targetedCameraX - WINSIZEX / 2;
-//	m_cameraY = *m_targetedCameraY - WINSIZEY / 2;
+	m_cameraX = *m_FocucedCameraX - m_cameraOffsetX_FromTarget;
+	m_cameraY = *m_FocucedCameraY - m_cameraOffsetY_FromTarget;
 }
 
-void CameraManager::render()
-{
-}
 
 void CameraManager::rectInCamera(UTIL::IRECT& outRect, const UTIL::IRECT& realRect, bool& isOutput)
 {
-	if (realRect.left - m_cameraX <= 1024 && realRect.top - m_cameraY <= 768)
-	{
-		outRect.left = realRect.left - m_cameraX;
-		outRect.right = realRect.right - m_cameraX;
-		outRect.top = realRect.top - m_cameraY;
-		outRect.bottom = realRect.bottom - m_cameraY;
-
-		isOutput = true;
-		return;
-	}
 	isOutput = false;
-}
+	outRect.left = realRect.left - m_cameraX;
+	outRect.top = realRect.top - m_cameraY;
+	outRect.right = realRect.right - m_cameraX;
+	outRect.bottom = realRect.bottom - m_cameraY;
 
-
-void CameraManager::rectInCamera(const UTIL::IRECT& realRect,bool& isOutput)
-{
-	if (realRect.left<=m_cameraX+WINSIZEX/2 && realRect.top<= m_cameraY+WINSIZEY/2)
-	{
+	if (((m_cameraX - m_outputExtra <= outRect.left) && (outRect.left <= WINSIZEX)) &&
+		((m_cameraY - m_outputExtra <= outRect.top) && (outRect.top <= WINSIZEY)))
 		isOutput = true;
-		return;
-	}
-	isOutput = false;
 }
 
-std::pair<int, int> CameraManager::pointInCamera(int x, int y)
+void CameraManager::setCameraFocus(int * _targetX, int * _targetY, int _cameraOffsetX, int _cameraOffsetY)
 {
-	int retX = x - m_cameraX;
-	int retY = y - m_cameraY;
-
-	return {retX, retY};
-}
-
-
-void CameraManager::setPosition(int* _posX, int* _posY)
-{
-	m_targetedCameraX = _posX;
-	m_targetedCameraY = _posY;
-
-	m_cameraX = *_posX - WINSIZEX / 2;
-	m_cameraY = *_posY - WINSIZEY / 2;
-}
-
-void CameraManager::setCamera(int _posX, int _posY)
-{
-	m_cameraX = _posX;
-	m_cameraY = _posY;
+	m_FocucedCameraX = _targetX;
+	m_FocucedCameraY = _targetY;
+	m_cameraOffsetX_FromTarget = _cameraOffsetX;
+	m_cameraOffsetY_FromTarget = _cameraOffsetY;
 }
 
 
