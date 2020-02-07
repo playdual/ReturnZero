@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "ImageManager.h"
 DEFINITION_SINGLE(ImageManager)
 
@@ -34,7 +34,7 @@ Image * ImageManager::addImage(std::string strKey, int width, int height)
 		return NULL;
 	}
 
-	//ÀÌ¹ÌÁö¸¦ ÀÌ¹ÌÁö ¸ñ·Ï¿¡ Ãß°¡
+	//ì´ë¯¸ì§€ë¥¼ ì´ë¯¸ì§€ ëª©ë¡ì— ì¶”ê°€
 	_mImageList.insert(make_pair(strKey, img));
 
 	return img;
@@ -53,7 +53,7 @@ Image * ImageManager::addImage(std::string strKey, const char * fileName, int wi
 		return NULL;
 	}
 
-	//ÀÌ¹ÌÁö¸¦ ÀÌ¹ÌÁö ¸ñ·Ï¿¡ Ãß°¡
+	//ì´ë¯¸ì§€ë¥¼ ì´ë¯¸ì§€ ëª©ë¡ì— ì¶”ê°€
 	_mImageList.insert(make_pair(strKey, img));
 
 	return img;
@@ -72,7 +72,7 @@ Image * ImageManager::addImage(std::string strKey, const char * fileName, int x,
 		return NULL;
 	}
 
-	//ÀÌ¹ÌÁö¸¦ ÀÌ¹ÌÁö ¸ñ·Ï¿¡ Ãß°¡
+	//ì´ë¯¸ì§€ë¥¼ ì´ë¯¸ì§€ ëª©ë¡ì— ì¶”ê°€
 	_mImageList.insert(make_pair(strKey, img));
 
 	return img;
@@ -91,7 +91,7 @@ Image * ImageManager::addFrameImage(std::string strKey, const char * fileName, i
 		return NULL;
 	}
 
-	//ÀÌ¹ÌÁö¸¦ ÀÌ¹ÌÁö ¸ñ·Ï¿¡ Ãß°¡
+	//ì´ë¯¸ì§€ë¥¼ ì´ë¯¸ì§€ ëª©ë¡ì— ì¶”ê°€
 	_mImageList.insert(make_pair(strKey, img));
 
 	return img;
@@ -110,7 +110,7 @@ Image * ImageManager::addFrameImage(std::string strKey, const char * fileName, f
 		return NULL;
 	}
 
-	//ÀÌ¹ÌÁö¸¦ ÀÌ¹ÌÁö ¸ñ·Ï¿¡ Ãß°¡
+	//ì´ë¯¸ì§€ë¥¼ ì´ë¯¸ì§€ ëª©ë¡ì— ì¶”ê°€
 	_mImageList.insert(make_pair(strKey, img));
 
 	return img;

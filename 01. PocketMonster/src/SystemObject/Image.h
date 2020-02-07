@@ -1,23 +1,23 @@
-#pragma once
+ï»¿#pragma once
 #include "SystemObject/Animation.h"
 
 class Image
 {
 public:
 	enum IMAGE_LOAD_KIND {
-		LOAD_RESOURCE,	//¸®·Î½º ·Îµù
-		LOAD_FILE,		//ÆÄÀÏ·Îµù
-		LOAD_EMPTY,		//ºó ºñÆ®¸Ê ÆÄÀÏ
+		LOAD_RESOURCE,	//ï¿½ï¿½ï¿½Î½ï¿½ ï¿½Îµï¿½
+		LOAD_FILE,		//ï¿½ï¿½ï¿½Ï·Îµï¿½
+		LOAD_EMPTY,		//ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		LOAD_END
 	};
 
 	typedef struct tagImage {
 		DWORD		resID;
-		HDC			hMemDC;		//¸Þ¸ð¸®
-		HBITMAP		hBit;		//ºñÆ®¸Ê
-		HBITMAP		hOBit1;		//±âÁ¸ ºñÆ®¸Ê
-		int			width;		//ÀÌ¹ÌÁö °¡·Î
-		int			height;		//ÀÌ¹ÌÁö ¼¼·Î
+		HDC			hMemDC;		//ï¿½Þ¸ï¿½
+		HBITMAP		hBit;		//ï¿½ï¿½Æ®ï¿½ï¿½
+		HBITMAP		hOBit1;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½
+		int			width;		//ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		int			height;		//ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		BYTE		loadType;
 		float		x, y;
 		int			currentFrameX;
@@ -53,19 +53,19 @@ public:
 	void release();
 
 public:
-	//ÀÌ¹ÌÁö ÆÄÀÏ·Î ÃÊ±âÈ­
+	//ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½Ê±ï¿½È­
 	HRESULT init(int width, int height);
 	HRESULT init(const char* fileName, int width, int height, bool isTrans = false, COLORREF transColor = RGB(255, 0, 255));
 	HRESULT init(const char* fileName, int width, int height, int frameX, int frameY, bool isTrans = false, COLORREF transColor = RGB(255, 0, 255));
 	HRESULT init(const char* fileName, int x, int y, int width, int height, int frameX, int frameY, bool isTrans = false, COLORREF transColor = RGB(255, 0, 255));
 	void setTransColor(bool isTrans, COLORREF transColor);
 
-	//ÀÏ¹Ý ·»´õ
+	//ï¿½Ï¹ï¿½ ï¿½ï¿½ï¿½ï¿½
 	void render(HDC hdc);
 	void render(HDC hdc, int destX, int destY);
 	void render(HDC hdc, int destX, int destY, int srcX, int srcY, int srcWidth, int srcHeight);
 
-	//ÇÁ·¹ÀÓ ·»´õ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	void frameRender(HDC hdc, int destX, int destY);
 	void frameRender(HDC hdc, int destX, int destY, int currentFrameX, int currentFrameY);
 
@@ -82,8 +82,8 @@ public:
 	//animation render
 	void aniRender(HDC hdc, int destX, int destY, Animation* ani);
 
-	//ÀÌ¹ÌÁö ÇÚµé·¯
-	HDC getMemDC() { return _imageInfo->hMemDC; }
+	//ì´ë¯¸ì§€ í•¸ë“¤ëŸ¬
+	HDC getMemDC()			{ return _imageInfo->hMemDC; }
 	float getX()			{ return _imageInfo->x; }
 	float getY()			{ return _imageInfo->y; }
 	int getWidth()			{ return _imageInfo->width; }
@@ -122,12 +122,12 @@ public:
 	}
 
 private:
-	LPIMAGE_INFO	_imageInfo;		//ÀÌ¹ÌÁö Á¤º¸
-	char			_fileName[255];	//ÀÌ¹ÌÁö ÀÌ¸§
-	bool			_isTrans;		//¹è°æ»ö ³¯¸®±â
-	COLORREF		_transColor;	//¹è°æ»ö ³¯¸± RGB
+	LPIMAGE_INFO	_imageInfo;		//ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	char			_fileName[255];	//ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
+	bool			_isTrans;		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	COLORREF		_transColor;	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ RGB
 
-	BLENDFUNCTION	_blendFunc;		//¾ËÆÄºí·»µå¸¦ À§ÇÑ Á¤º¸
-	LPIMAGE_INFO	_blendImage;	//¾ËÆÄ ºí·»µå¸¦ »ç¿ëÇÏ±â À§ÇÑ ÀÌ¹ÌÁö
+	BLENDFUNCTION	_blendFunc;		//ï¿½ï¿½ï¿½Äºï¿½ï¿½ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	LPIMAGE_INFO	_blendImage;	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½
 };
 

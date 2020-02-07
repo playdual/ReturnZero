@@ -1,10 +1,10 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Potion.h"
+#include "Common/SystemManagers.h"
 
-
-Potion::Potion(ItemType _type, UTIL::IRECT _rect, std::string _name, int _count, 
-	int _price, std::string _description, int _healHp, int _hitDamage)
-	: Item(_type/*,_img */, _rect, _name, _count, _price, _description), m_healHp(_healHp), m_hitDamage(_hitDamage)
+Potion::Potion(ItemType _type, Image* _potionImage, UTIL::IRECT _rect, std::string _name, int _count,
+	int _price, std::string _description, int _healHp, int _hitDamage )
+	: Item(_type, _potionImage, _rect, _name, _count, _price, _description), m_healHp(_healHp), m_hitDamage(_hitDamage),m_potionImage(_potionImage)
 {
 }
 
@@ -25,7 +25,8 @@ void Potion::update(float _deltaTime)
 
 void Potion::render(HDC hdc)
 {
-
+	if (m_img != nullptr)
+		m_img->render(hdc, 35, WINSIZEY - 160);
 }
 
 void Potion::afterRender(HDC hdc)
@@ -34,5 +35,5 @@ void Potion::afterRender(HDC hdc)
 
 void Potion::debugRender(HDC hdc)
 {
-	UTIL::drawRect(hdc, m_iRect);
+	UTIL::DrawRect(hdc, m_iRect);
 }

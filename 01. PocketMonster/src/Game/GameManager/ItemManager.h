@@ -1,5 +1,5 @@
-#pragma once
-#include "Game/GameObject/Item.h"
+﻿#pragma once
+#include "Game/GameObject/Items/Item.h"
 
 class ItemManager
 {
@@ -12,7 +12,7 @@ public:
 		std::string _itemName, int _count, int _price, std::string _descript, int _random);
 	
 	// potionItem creat
-	void addPotionItem(std::string _itemKey,/* char* _imageName,*/ int _x , int _y ,int _imageW, int _imageH, 
+	void addPotionItem(std::string _itemKey, const char* _imageName, int _x , int _y ,int _imageW, int _imageH, 
 		std::string _itemName, int _count , int _price, std::string _descript , int _healHp, int _hitDamage);
 
 	void addStateHeal(std::string _itemKey,/* char* _imageName,*/ int _x, int _y, int _imageW, int _imageH,
@@ -29,6 +29,10 @@ public:
 	
 private:
 	void itemTextInit();
+
+private:
+	itemText itemPotion;
+	const int m_itemCount = 14;
 
 private:
 	DECLARE_SINGLE(ItemManager)

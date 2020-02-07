@@ -1,121 +1,92 @@
-#include "stdafx.h"
-#include <iostream>
-#include <string>
-#include <fstream>
+ï»¿#include "stdafx.h"
 #include "ItemManager.h"
-#include "SystemManager/ImageManager.h"
+#include "Common/SystemManagers.h"
 #include "Game/GameObject/Items/Potion.h"
 #include "Game/GameObject/Items/MonsterBall.h"
 #include "Game/GameObject/Items/StateHeal.h"
 #include "Game/GameObject/Items/Nutrient.h"
 #include "Game/GameObject/Items/SkillMachine.h"
 
+// ì‹±ê¸€í†¤ì„ í• ë•ŒëŠ” cpp íŒŒì¼ì— ì ì–´ì¤˜ì•¼ í•œë‹¤.
+DEFINITION_SINGLE(ItemManager)
 
+ItemManager::ItemManager() {}
+ItemManager::~ItemManager() {}
+// ì‹±ê¸€í†¤ì„ í• ë•ŒëŠ” cpp íŒŒì¼ì— ì ì–´ì¤˜ì•¼ í•œë‹¤.
 using namespace std;
 
-enum KINDCOUNT
-{
-	ITEMKIND = 1, NAME, RECTX, RECTY, WIDTH, HEIGHT,
-	COUNT, PRICE, DESCRIPTION, HEALHP, DAMAGE, ADDABILITY, ATIBUTEKIND
-};
-enum ITEMCOUNT
-{
-	BALL =1 , HEALPOTION , STATEPOTION , NUTRIENT, SKILLMACHINE
-};
-
-struct itemText {
-	int					  itemKind[100];	//1
-	std::string				  name[100];	//2
-	int						 rectX[100];	//3
-	int						 rectY[100];	//4
-	int						 width[100];	//5	
-	int						height[100];	//6
-	int						 count[100];	//7
-	int					  	 price[100];	//8
-	std::string		   description[100];	//9
-	int						healHp[100];	//10
-	int						damage[100];	//11
-	int					addAbility[100];	//12
-	PockemonAttibute	atibuteKind[100];	//13
-};
-
-// ======= Àü¿ª ======
-itemText itemPotion;
-int m_itemCount = 14;
-// ======= Àü¿ª ======
-
-// ½Ì±ÛÅæÀ» ÇÒ¶§´Â cpp ÆÄÀÏ¿¡ Àû¾îÁà¾ß ÇÑ´Ù.
-DEFINITION_SINGLE(ItemManager)
-ItemManager::ItemManager(){}
-ItemManager::~ItemManager() {}
-// ½Ì±ÛÅæÀ» ÇÒ¶§´Â cpp ÆÄÀÏ¿¡ Àû¾îÁà¾ß ÇÑ´Ù.
 
 bool ItemManager::init()
 {
 	itemTextInit();
-	
+
 	for (int i = 0; i < m_itemCount; i++)
 	{
 		switch (itemPotion.itemKind[i])
 		{
 		case BALL:
-			addPokemonBallItem(itemPotion.name[i], WINSIZEX / 2, itemPotion.rectY[i],
-			itemPotion.width[i], itemPotion.height[i], itemPotion.name[i],
-			itemPotion.count[i], itemPotion.price[i], itemPotion.description[i] ,30);
+			addPokemonBallItem(itemPotion.name[i], WINSIZEX / 2 - 100, itemPotion.rectY[i],
+				itemPotion.width[i], itemPotion.height[i], itemPotion.name[i],
+				itemPotion.count[i], itemPotion.price[i], itemPotion.description[i], 30);
 
 
 		case HEALPOTION:
-			addPotionItem(itemPotion.name[i], WINSIZEX / 2, itemPotion.rectY[i],
-			itemPotion.width[i], itemPotion.height[i], itemPotion.name[i],
-			itemPotion.count[i], itemPotion.price[i], itemPotion.description[i], itemPotion.healHp[i], itemPotion.damage[i]);
+			addPotionItem(itemPotion.name[i], itemPotion.imageFileName[i].c_str(), WINSIZEX / 2 - 100, itemPotion.rectY[i],
+				itemPotion.width[i], itemPotion.height[i], itemPotion.name[i],
+				itemPotion.count[i], itemPotion.price[i], itemPotion.description[i], itemPotion.healHp[i], itemPotion.damage[i]);
 			break;
 
 		case STATEPOTION:
-			addStateHeal(itemPotion.name[i], WINSIZEX / 2, itemPotion.rectY[i],
-			itemPotion.width[i], itemPotion.height[i], itemPotion.name[i],
-			itemPotion.count[i], itemPotion.price[i], itemPotion.description[i]);
+			addStateHeal(itemPotion.name[i], WINSIZEX / 2 - 100, itemPotion.rectY[i],
+				itemPotion.width[i], itemPotion.height[i], itemPotion.name[i],
+				itemPotion.count[i], itemPotion.price[i], itemPotion.description[i]);
 			break;
 
 
 		case NUTRIENT:
-			addNutrient(itemPotion.name[i], WINSIZEX / 2, itemPotion.rectY[i],
-			itemPotion.width[i], itemPotion.height[i], itemPotion.name[i],
-			itemPotion.count[i], itemPotion.price[i], itemPotion.description[i] , itemPotion.addAbility[i]);
+			addNutrient(itemPotion.name[i], WINSIZEX / 2 - 100, itemPotion.rectY[i],
+				itemPotion.width[i], itemPotion.height[i], itemPotion.name[i],
+				itemPotion.count[i], itemPotion.price[i], itemPotion.description[i], itemPotion.addAbility[i]);
 			break;
 
 			//std::string _itemKey, PockemonAttibute _pokemonAttibute, int _x, int _y,
 		case SKILLMACHINE:
-			addSkillMachine(itemPotion.name[i],itemPotion.atibuteKind[i], WINSIZEX / 2, itemPotion.rectY[i],
-			itemPotion.width[i], itemPotion.height[i], itemPotion.name[i],
-			itemPotion.count[i], itemPotion.price[i], itemPotion.description[i], itemPotion.damage[i]);
+			addSkillMachine(itemPotion.name[i], itemPotion.atibuteKind[i], WINSIZEX / 2, itemPotion.rectY[i],
+				itemPotion.width[i], itemPotion.height[i], itemPotion.name[i],
+				itemPotion.count[i], itemPotion.price[i], itemPotion.description[i], itemPotion.damage[i]);
 			break;
-
-
-
 		default:
 			break;
 		}
 	}
 
-	//addPotionItem("ÃÊ±Ş HpÆ÷¼Ç", WINSIZEX / 2, 100, 400, 80, "ÃÊ±Ş HpÆ÷¼Ç", 3, 50, " Æ÷ÄÏ¸óÀÇ Ã¼·ÂÀ» 30¸¸Å­ È¸º¹ ½ÃÄÑÁØ´Ù.", 30, 0);
-	//addPotionItem("ÃÊ±Ş Powe	rUp Æ÷¼Ç", WINSIZEX / 2, 100, 400, 80, "ÃÊ±Ş PowerUp Æ÷¼Ç", 3, 50, " Æ÷ÄÏ¸óÀÇ °ø°İ·ÂÀ» 5¸¸Å­ ¿Ã·Á ÁØ´Ù.", 0, 5);
-	
+	//addPotionItem("ì´ˆê¸‰ Hpí¬ì…˜", WINSIZEX / 2, 100, 400, 80, "ì´ˆê¸‰ Hpí¬ì…˜", 3, 50, " í¬ì¼“ëª¬ì˜ ì²´ë ¥ì„ 30ë§Œí¼ íšŒë³µ ì‹œì¼œì¤€ë‹¤.", 30, 0);
+	//addPotionItem("ì´ˆê¸‰ Powe	rUp í¬ì…˜", WINSIZEX / 2, 100, 400, 80, "ì´ˆê¸‰ PowerUp í¬ì…˜", 3, 50, " í¬ì¼“ëª¬ì˜ ê³µê²©ë ¥ì„ 5ë§Œí¼ ì˜¬ë ¤ ì¤€ë‹¤.", 0, 5);
+
 	return true;
 }
- void ItemManager::addPokemonBallItem(std::string _itemKey, int _x, int _y, int _imageW, int _imageH, std::string _itemName, int _count, int _price, std::string _descript, int _random)
- {
- 	std::shared_ptr<Item> temp = std::make_shared<MonsterBall>(
- 		ItemType::ItemTypeBall, UTIL::IRectMake(_x, _y, _imageW, _imageH),
- 		_itemName, _count, _price, _descript,_random);
- 
- 	m_ItemList.insert(std::make_pair(_itemKey, temp));
- }
+void ItemManager::addPokemonBallItem(std::string _itemKey, int _x, int _y, int _imageW, int _imageH,
+	std::string _itemName, int _count, int _price, std::string _descript, int _random)
+{
+	//ë‚˜ì¤‘ì— ì‘ì—…í•˜ì‹œì˜¤,,
+	/*std::shared_ptr<Item> temp = std::make_shared<MonsterBall>(
+		ItemType::ItemTypeBall, UTIL::IRectMake(_x, _y, _imageW, _imageH),
+		_itemName, _count, _price, _descript, _random);
 
-void ItemManager::addPotionItem(std::string _itemKey,/* char* _imageName,*/ int _x, int _y, int _imageW, int _imageH, 
+	m_ItemList.insert(std::make_pair(_itemKey, temp));*/
+}
+
+void ItemManager::addPotionItem(std::string _itemKey, const char* _imageName, int _x, int _y, int _imageW, int _imageH,
 	std::string _itemName, int _count, int _price, std::string _descript, int _healHp, int _hitDamage)
 {
+
+	if (_imageName != NULL)
+		IMAGEMANAGER->addImage(_itemKey, _imageName, 100, 100);
+
 	std::shared_ptr<Item> temp = std::make_shared<Potion>(
-		ItemType::ItemTypePotion, UTIL::IRectMake(_x, _y , _imageW, _imageH),
+		ItemType::ItemTypePotion,
+		IMAGEMANAGER->findImage(_itemKey),
+		UTIL::IRectMake(_x, _y, _imageW, _imageH),
 		_itemName, _count, _price, _descript, _healHp, _hitDamage);
 
 	m_ItemList.insert(std::make_pair(_itemKey, temp));
@@ -123,33 +94,36 @@ void ItemManager::addPotionItem(std::string _itemKey,/* char* _imageName,*/ int 
 
 void ItemManager::addStateHeal(std::string _itemKey, int _x, int _y, int _imageW, int _imageH, std::string _itemName, int _count, int _price, std::string _descript)
 {
-	std::shared_ptr<Item> temp = std::make_shared<StateHeal>(
+	//ë‚˜ì¤‘ì— ì‘ì—…í•˜ì‹œì˜¤,,
+	/*std::shared_ptr<Item> temp = std::make_shared<StateHeal>(
 		ItemType::ITemTypeStatePotion, UTIL::IRectMake(_x, _y, _imageW, _imageH),
-		_itemName, _count, _price , _descript);
+		_itemName, _count, _price, _descript);
 
-	m_ItemList.insert(std::make_pair(_itemKey, temp));
+	m_ItemList.insert(std::make_pair(_itemKey, temp));*/
 }
 
 void ItemManager::addNutrient(std::string _itemKey, int _x, int _y, int _imageW, int _imageH, std::string _itemName, int _count, int _price, std::string _descript, int _addAbility)
 {
-	std::shared_ptr<Item> temp = std::make_shared<Nutrient>(
+	//ë‚˜ì¤‘ì— ì‘ì—…í•˜ì‹œì˜¤,,
+	/*std::shared_ptr<Item> temp = std::make_shared<Nutrient>(
 		ItemType::ItemTypeAbilityPotion, UTIL::IRectMake(_x, _y, _imageW, _imageH),
 		_itemName, _count, _price, _descript, _addAbility);
 
-	m_ItemList.insert(std::make_pair(_itemKey, temp));
+	m_ItemList.insert(std::make_pair(_itemKey, temp));*/
 }
 
 void ItemManager::addSkillMachine(std::string _itemKey, PockemonAttibute _pokemonAttibute, int _x, int _y, int _imageW, int _imageH, std::string _itemName, int _count, int _price, std::string _descript, int _damage)
 {
-	PockemonAttibute pockeAttibue;
-	 
+	//ë‚˜ì¤‘ì— ì‘ì—…í•˜ì‹œì˜¤,,
+	/*PockemonAttibute pockeAttibue;
+
 	std::shared_ptr<Item> temp = std::make_shared<SkillMachine>(
 		ItemType::ItemTypeSkillMachine,
 		pockeAttibue = _pokemonAttibute,
 		UTIL::IRectMake(_x, _y, _imageW, _imageH),
 		_itemName, _count, _price, _descript, _damage);
 
-	m_ItemList.insert(std::make_pair(_itemKey, temp));
+	m_ItemList.insert(std::make_pair(_itemKey, temp));*/
 }
 
 std::shared_ptr<Item> ItemManager::findItem(std::string _itemKey)
@@ -205,92 +179,96 @@ void ItemManager::itemTextInit()
 			{
 			case ITEMKIND:
 				itemPotion.itemKind[i] = atoi(ptr);
-				cout << "ITEMKIND : " << itemPotion.itemKind[i] << endl;
+				//cout << "ITEMKIND : " << itemPotion.itemKind[i] << endl;
 				ptr = strtok(NULL, "#");
 
 			case NAME:
 				itemPotion.name[i] = ptr;
-				cout << "NAME : " << itemPotion.name[i] << endl;
+				//cout << "NAME : " << itemPotion.name[i] << endl;
 				ptr = strtok(NULL, "#");
 
+				if (itemPotion.itemKind[i] == 2)
+				{
+			case IMAGES:
+				itemPotion.imageFileName[i] = ptr;
+				ptr = strtok(NULL, "#");
+				}
 
-			if (itemPotion.itemKind[i] == 5)
-			{
+				if (itemPotion.itemKind[i] == 5)
+				{
 			case ATIBUTEKIND:
 				itemPotion.atibuteKind[i] = (PockemonAttibute)atoi(ptr);
-				cout << "ATIBUTE : " << (int)itemPotion.atibuteKind[i] << endl;
+				//cout << "ATIBUTE : " << (int)itemPotion.atibuteKind[i] << endl;
 				ptr = strtok(NULL, "#");
-			}
+				}
 
 			case RECTX:
 				itemPotion.rectX[i] = atoi(ptr);
-				cout << "RECTX : " << itemPotion.rectX[i] << endl;
+				//cout << "RECTX : " << itemPotion.rectX[i] << endl;
 				ptr = strtok(NULL, "#");
 
 			case RECTY:
 				itemPotion.rectY[i] = atoi(ptr);
-				cout << "RECTY : " << itemPotion.rectY[i] << endl;
+				//cout << "RECTY : " << itemPotion.rectY[i] << endl;
 				ptr = strtok(NULL, "#");
 
 			case WIDTH:
 				itemPotion.width[i] = atoi(ptr);
-				cout << "WIDTH : " << itemPotion.width[i] << endl;
+				//cout << "WIDTH : " << itemPotion.width[i] << endl;
 				ptr = strtok(NULL, "#");
 
 			case HEIGHT:
 				itemPotion.height[i] = atoi(ptr);
-				cout << "HEIGHT : " << itemPotion.height[i] << endl;
+				//cout << "HEIGHT : " << itemPotion.height[i] << endl;
 				ptr = strtok(NULL, "#");
 
 
 			case COUNT:
 				itemPotion.count[i] = atoi(ptr);
-				cout << "COUNT : " << itemPotion.count[i] << endl;
+				//cout << "COUNT : " << itemPotion.count[i] << endl;
 				ptr = strtok(NULL, "#");
 
 
 			case PRICE:
 				itemPotion.price[i] = atoi(ptr);
-				cout << "PRICE : " << itemPotion.price[i] << endl;
+				//cout << "PRICE : " << itemPotion.price[i] << endl;
 				ptr = strtok(NULL, "#");
 
 
 			case DESCRIPTION:
 				itemPotion.description[i] = ptr;
-				cout << "DESCRIPTION : " << itemPotion.description[i] << endl;
+				//cout << "DESCRIPTION : " << itemPotion.description[i] << endl;
 				ptr = strtok(NULL, "#");
 
 				if (itemPotion.itemKind[i] == 2)
 				{
 			case HEALHP:
 				itemPotion.healHp[i] = atoi(ptr);
-				cout << "HEALHP : " << itemPotion.healHp[i] << endl;
+				//cout << "HEALHP : " << itemPotion.healHp[i] << endl;
 				ptr = strtok(NULL, "#");
-
 				}
 
 				if (itemPotion.itemKind[i] == 2 || itemPotion.itemKind[i] == 5)
 				{
 			case DAMAGE:
 				itemPotion.damage[i] = atoi(ptr);
-				cout << "DAMAGE : " << itemPotion.damage[i] << endl;
+				//cout << "DAMAGE : " << itemPotion.damage[i] << endl;
 				ptr = strtok(NULL, "#");
-
 				}
 
 				if (itemPotion.itemKind[i] == 4)
 				{
 			case ADDABILITY:
 				itemPotion.addAbility[i] = atoi(ptr);
-				cout << "ADDABILITY : " << itemPotion.addAbility[i] << endl;
+				//cout << "ADDABILITY : " << itemPotion.addAbility[i] << endl;
 				ptr = strtok(NULL, "#");
 
 				}
 			default:
 				count = 0;
-				cout << endl;
+				//cout << endl;
 			}
 		}
-		ptr = strtok(NULL, "#");
+		//ptr = strtok(NULL, "#");
 	}
 }

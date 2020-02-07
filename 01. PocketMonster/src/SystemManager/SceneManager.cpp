@@ -1,5 +1,6 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "sceneManager.h"
+#include "Game/GameScene/BattleScene.h"
 DEFINITION_SINGLE(SceneManager)
 
 SceneManager::SceneManager()
@@ -68,18 +69,18 @@ bool SceneManager::changeScene(std::string sceneName)
 {
 	miSceneList find = _mSceneList.find(sceneName);
 
-	//��ã���� E_FAIL
+	//占쏙옙찾占쏙옙占쏙옙 E_FAIL
 	if (find == _mSceneList.end())
 		return false;
 
-	//�ٲٷ��¾��� ������̶� ���Ƶ� E_FAIL
+	//占쌕꾸뤄옙占승억옙占쏙옙 占쏙옙占쏙옙占쏙옙繭占?占쏙옙占싣듸옙 E_FAIL
 	if (find->second == _currentScene)
 		return false;
 
-	//������� �Դٸ� ������ ���� �� ���� �ʱ�ȭ�ϰ� ��������.
+	//占쏙옙占쏙옙占쏙옙占?占쌉다몌옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙 占십깍옙화占싹곤옙 占쏙옙占쏙옙占쏙옙占쏙옙.
 	if (SUCCEEDED(find->second->init()))
 	{
-		//Ȥ�� ������ ���� �ִٸ� ������
+		//혹占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쌍다몌옙 占쏙옙占쏙옙占쏙옙
 		if (_currentScene)_currentScene->release();
 
 		_currentScene = find->second;
@@ -104,6 +105,39 @@ bool SceneManager::scenePush(std::string sceneName)
 		return true;
 	}
 }
+//
+//bool SceneManager::battleScenePush(std::string sceneName, std::shared_ptr<player> _player);
+//{
+//	auto find = _mSceneList.find(sceneName);
+//
+//	if (find == _mSceneList.end())
+//		return false;
+//
+//	if (SUCCEEDED(find->second->init()))
+//	{
+//		_currentScene = find->second;
+//		sceneStack.push(find->second);
+//
+//		return true;
+//	}
+//}
+
+
+//bool SceneManager::battleScenePush(std::string sceneName, std::shared_ptr<player> _player)
+//{
+//	auto find = _mSceneList.find(sceneName);
+//
+//	if (find == _mSceneList.end())
+//		return false;
+//
+//	if (SUCCEEDED(find->second->init(_player)))
+//	{
+//		_currentScene = find->second;
+//		sceneStack.push(find->second);
+//
+//		return true;
+//	}
+//}
 
 bool SceneManager::scenePop()
 {
@@ -114,3 +148,4 @@ bool SceneManager::scenePop()
 	}
 	return false;
 }
+

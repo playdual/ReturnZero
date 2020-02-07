@@ -1,5 +1,6 @@
 ﻿#include "stdafx.h"
 #include "TownScene.h"
+#include "Common/GameManagers.h"
 
 TownScene::TownScene()
 {
@@ -26,6 +27,10 @@ void TownScene::update(float _deltaTime)
 {
 	m_player->update(_deltaTime);
 	m_map->update(_deltaTime);
+
+	if (KEYMANAGER->isOnceKeyDown(GAME_MENU)) {
+		SCENEMANAGER->scenePush("inven");
+	}
 }
 
 void TownScene::render(HDC hdc)

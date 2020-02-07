@@ -64,6 +64,7 @@ HRESULT Image::init(const char * fileName, int width, int height, bool isTrans, 
 		release();
 	for (int i = 0; i < 255; ++i) {
 		if (fileName[i] == NULL) {
+			_fileName[i] = NULL;
 			break;
 		}
 		_fileName[i] = fileName[i];
@@ -73,7 +74,7 @@ HRESULT Image::init(const char * fileName, int width, int height, bool isTrans, 
 	_imageInfo->loadType = LOAD_FILE;
 	_imageInfo->resID = 0;
 	_imageInfo->hMemDC = CreateCompatibleDC(hdc);
-	_imageInfo->hBit = (HBITMAP)LoadImage(m_hInstance, fileName, IMAGE_BITMAP, width, height, LR_LOADFROMFILE);
+	_imageInfo->hBit = (HBITMAP)LoadImage(m_hInstance, _fileName, IMAGE_BITMAP, width, height, LR_LOADFROMFILE);
 	_imageInfo->hOBit1 = (HBITMAP)SelectObject(_imageInfo->hMemDC, _imageInfo->hBit);
 	_imageInfo->width = width;
 	_imageInfo->height = height;
@@ -93,7 +94,13 @@ HRESULT Image::init(const char * fileName, int width, int height, bool isTrans, 
 	_blendImage->height = WINSIZEY;
 
 	int len = strlen(fileName);
-	strcpy_s(_fileName, len + 1, fileName);
+	for (int i = 0; i < 255; ++i) {
+		if (fileName[i] == NULL) {
+			_fileName[i] = NULL;
+			break;
+		}
+		_fileName[i] = fileName[i];
+	}
 	_isTrans = isTrans;
 	_transColor = transColor;
 

@@ -1,12 +1,12 @@
-#pragma once
-#include "Game/GameObject/Item.h"
+﻿#pragma once
+#include "Game/GameObject/Items/Item.h"
 
 class MonsterBall
 	: public Item
 {
 public:
-	MonsterBall(ItemType _type /*, Image* _img*/, UTIL::IRECT _rect, std::string _name,
-		int _count, int _price, std::string _description);
+	MonsterBall(ItemType _type , Image* _img, UTIL::IRECT _rect, std::string _name,
+		int _count, int _price, std::string _description, int _random);
 	~ MonsterBall();
 
 	virtual bool init() override;
@@ -17,7 +17,6 @@ public:
 	virtual void debugRender(HDC hdc) override;
 
 private:
-	int m_addAbility;
-
+	int m_random;
 };
 

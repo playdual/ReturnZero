@@ -1,6 +1,6 @@
 ﻿#include "stdafx.h"
 #include "player.h"
-#include <iostream>
+#include "Common/GameManagers.h"
 
 player::player()
 {
@@ -400,7 +400,7 @@ void player::isBattleStart()
 		srand(time(NULL));
 		m_BattleStart = rand() % 10;
 
-		if (m_BattleStart < 3)
+		if (m_BattleStart < 7)
 		{
 			isBattle = true;
 	

@@ -1,8 +1,8 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "SkillMachine.h"
 
-SkillMachine::SkillMachine(ItemType _type, PockemonAttibute _kind,UTIL::IRECT _rect, std::string _name, int _count, int _price, std::string _description, int _damage)
-	:Item(_type/*,_img */, _rect, _name, _count, _price, _description), pockemonKind(_kind), m_damage(_damage)
+SkillMachine::SkillMachine(ItemType _type, Image* _img, PockemonAttibute _kind,UTIL::IRECT _rect, std::string _name, int _count, int _price, std::string _description, int _damage)
+	:Item(_type, _img, _rect, _name, _count, _price, _description), pockemonKind(_kind), m_damage(_damage)
 {
 
 }

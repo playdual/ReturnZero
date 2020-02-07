@@ -1,5 +1,5 @@
-#pragma once
-#include "Object.h"
+﻿#pragma once
+#include "Game/GameObject/Object.h"
 
 class Character
 	: public Object
@@ -7,7 +7,7 @@ class Character
 protected:
 	std::string m_name;
 	std::string m_customName;
-	ITEM_TYPE m_type;
+	ItemType m_type;
 
 public:
 	bool init() override;

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "SystemManager/ImageManager.h"
 #include "SystemManager/KeyManager.h"
 #include "SystemManager/SceneManager.h"
@@ -7,6 +7,3 @@
 #include "SystemManager/AnimationManager.h"
 #include "SystemManager/EffectManager.h"
 #include "SystemManager/CameraManager.h"
-#include "Game/GameManager/BattleManager.h"
-#include "Game/GameManager/MapManager.h"
-#include "Game/GameManager/MapManager.h"

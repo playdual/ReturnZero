@@ -1,8 +1,5 @@
-#pragma once
+﻿#pragma once
 #include "stdafx.h"
-#include "Common/SystemManagers.h"
-#include "Game/GameObject/Object.h"
-#include "Common/UTILS.h"
 
 class Scene {
 public:
@@ -11,6 +8,7 @@ public:
 
 public:
 	virtual bool init() = 0;
+	//virtual bool init(std::shared_ptr<player> _player) = 0;
 	virtual void update(float _deltaTime) = 0;
 	virtual void release() = 0;
 

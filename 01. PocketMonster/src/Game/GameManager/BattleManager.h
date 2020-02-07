@@ -1,5 +1,7 @@
-#pragma once
-#include"Game/GameObject/Character.h"
+﻿#pragma once
+#include "Game/GameObject/Character/Character.h"
+#include "Game/GameObject/PocketMon/PocketMon.h"
+
 class BattleManager
 {
 
@@ -16,8 +18,9 @@ public:
 
 private:
 	UTIL::IRECT testRect;
-
 	std::shared_ptr<Character> m_player;
+
+	//std::vector<std::shared_ptr<PocketMon>> playerPocketmonVector;
 
 private:
 	DECLARE_SINGLE(BattleManager)

@@ -1,4 +1,4 @@
-#include"stdafx.h"
+﻿#include"stdafx.h"
 #include "BattleManager.h"
 #include "Common/SystemManagers.h"
 
@@ -49,3 +49,8 @@ void BattleManager::battleStart()
 {
 	SCENEMANAGER->scenePush("battle");
 }
+
+//void BattleManager::battleStart(std::shared_ptr<player> _player)
+//{
+//	SCENEMANAGER->scenePush("battle", _player);
+//}

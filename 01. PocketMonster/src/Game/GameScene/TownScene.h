@@ -1,6 +1,6 @@
-#pragma once
+﻿#pragma once
 #include "Scene.h"
-#include "Game/GameObject/player.h"
+#include "Game/GameObject/Character/player.h"
 #include "Game/GameObject/Map/Map.h"
 
 class TownScene :

@@ -23,9 +23,12 @@
 #include <algorithm>
 #include <bitset>
 #include <stack>
+#include <iostream>
+#include <fstream>
 
 // TODO: 프로그램에 필요한 추가 헤더는 여기에서 참조합니다.
 #include "Common/UTILS.h"
+
 
 //======================================
 //##			디파인문			  ##
@@ -47,7 +50,7 @@
 #define P1_Z            6
 #define P1_X            7
 
-
+#define GAME_MENU		47
 #define GAME_LMOUSE		48
 #define GAME_RMOUSE		49
 #define GAME_SHOWFPS    50

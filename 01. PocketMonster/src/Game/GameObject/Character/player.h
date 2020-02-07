@@ -1,8 +1,9 @@
-#pragma once
+﻿#pragma once
 #include "Game/GameObject/Object.h"
-#include"Common/SystemManagers.h"
-#include"Inventory.h"
-#include"PocketMon.h"
+#include "Common/SystemManagers.h"
+#include "Game/GameObject/Items/Inventory.h"
+#include "Game/GameObject/Pocketmon/PocketMon.h"
+
 class player
 	: public Object
 {
@@ -67,10 +68,10 @@ private:
 	int m_BattleStart;
 	bool isBattle=false;
 	bool isBattleTemp=false;
-	//status == 불배열
+	//status == 遺덈같??
 	//badge
 	//
-	//QUESTSTATE == 불배열
+	//QUESTSTATE == 遺덈같??
 	//money == int
 	int m_blockPositionX;
 	int m_blockPositionY;

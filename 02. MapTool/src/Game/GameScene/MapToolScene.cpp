@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "MapToolScene.h"
 
 bool MapToolScene::init()
@@ -75,8 +75,8 @@ void MapToolScene::render(HDC hdc)
 		tile->render(hdc);
 	}
 	if(startedSelect)
-		UTIL::drawRect(hdc, m_selectRect);
-	UTIL::drawRect(hdc, clientRect);
+		UTIL::DrawRect(hdc, m_selectRect);
+	UTIL::DrawRect(hdc, clientRect);
 }
 
 void MapToolScene::afterRender(HDC hdc)

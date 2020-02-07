@@ -1,13 +1,13 @@
-#pragma once
-#include "Game/GameObject/Item.h"
+﻿#pragma once
+#include "Game/GameObject/Items/Item.h"
 
 class Potion
 	: public Item
 {
 public:
-	Potion(ItemType _type /*, Image* _img*/, UTIL::IRECT _rect , std::string _name ,
+	Potion(ItemType _type , class Image* _potionImage, UTIL::IRECT _rect , std::string _name ,
 		int _count , int _price , std::string _description 
-		, int _healHp ,int _hitDamage);
+		, int _healHp ,int _hitDamage /*,char* _potionImage*/);
 	~Potion();
 		
 	virtual bool init() override;
@@ -16,10 +16,12 @@ public:
 	virtual void render(HDC hdc) override;
 	virtual void afterRender(HDC hdc) override;
 	virtual void debugRender(HDC hdc) override;
+	//char*		getImage() { return m_potionImage; }
 
 private:
      int	m_healHp;			//Hp
      int	m_hitDamage;		//PowerUp
+	 Image* m_potionImage;		//Image insert
 
 };
 

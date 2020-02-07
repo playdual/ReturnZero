@@ -39,7 +39,7 @@ HRESULT GameNode::init()
 
 void GameNode::release()
 {
-	//¸Å´ÏÀú ÇØÁ¦
+	//ë§¤ë‹ˆì € í•´ì œ
 	if (_managerInit) {
 		IMAGEMANAGER->release();
 		KEYMANAGER->release();

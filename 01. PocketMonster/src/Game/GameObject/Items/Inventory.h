@@ -1,8 +1,6 @@
-#pragma once
+﻿#pragma once
 #include "Item.h"
-#include "Items/Potion.h"
-#include "PocketMon.h"
-#include "Game/GameManager/ItemManager.h"
+#include "Game/GameObject/Pocketmon/PocketMon.h"
 
 class Inventory 
 {
@@ -17,7 +15,8 @@ public:
 	void afterRender(HDC hdc);
 	void debugRender(HDC hdc);
 
-
+	int		itemNum;
+	bool	nextText;
 
 	std::vector<std::shared_ptr<Item>> m_item;
 };

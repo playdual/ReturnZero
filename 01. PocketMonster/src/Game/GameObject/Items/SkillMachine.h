@@ -1,11 +1,11 @@
-#pragma once
-#include "Game/GameObject/Item.h"
+﻿#pragma once
+#include "Game/GameObject/Items/Item.h"
 
 class SkillMachine
 	: public Item
 {
 public:
-	SkillMachine(ItemType _type , PockemonAttibute _kind/*, Image* _img*/, UTIL::IRECT _rect, std::string _name,
+	SkillMachine(ItemType _type ,Image* img, PockemonAttibute _kind/*, Image* _img*/, UTIL::IRECT _rect, std::string _name,
 		int _count, int _price, std::string _description , int _damage);
 	~SkillMachine();
 

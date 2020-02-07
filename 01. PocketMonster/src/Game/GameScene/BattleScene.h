@@ -1,7 +1,6 @@
 ﻿#pragma once
 #include "Scene.h"
-#include "Game/GameObject/PocketMon.h"
-#include "Game/GameObject/Pocketmons/Paili.h"
+#include "Game/GameObject/Pocketmon/PocketMon.h"
 
 //각 이미지별 정위치 좌표
 //플레이어 UI 정위치
@@ -24,6 +23,7 @@ public:
 
 public:
 	bool init() override;
+	//bool init(std::shared_ptr<player> _player) override;
 	void release() override;
 
 public:
@@ -34,10 +34,39 @@ public:
 
 	
 	void wildBattleFunctions();
-	//void npcBattleFunctions();
+	void npcBattleFunctions();
 
+	//상황별 인트로
 	void wildBattleIntroAni();
+	void npcBattleIntroAni();
 
+	//포켓몬 공격 및 피격 이팩트 초기화
+	void pocketmonEffectInit();
+	
+	
+	//===================
+	// 오브젝트 UI 모음 //
+	//===================
+
+	//적
+	void enemyUiStatus(HDC hdc);
+	void enemyUiBottom(HDC hdc);
+	void enemyUiPocketmon(HDC hdc);
+
+
+	//플레이어
+	void playerUiBottom(HDC hdc);
+	void playerUiPoketmon(HDC hdc);
+	void playerUiImg(HDC hdc);
+	void playerUiStatus(HDC hdc);
+	void playerUiSkillList(HDC hdc);
+	void playerUiSkillExplain(HDC hdc);
+
+
+	//시스템
+	void explainRect(HDC hdc);
+
+	//렌더링
 	void wildBattleRender(HDC hdc);
 	void npcBattleRender(HDC hdc);
 
@@ -50,10 +79,13 @@ public:
 	void playerskillMotion();
 	void selectEnemyskill();
 
+	bool skillEffectAssemble(HDC _hdc, std::string * _skillName);
+	bool skillEffectAssemble(std::string _skillName);
+
 	//void test();
 private:
-	std::shared_ptr<Paili> m_player;
-	std::shared_ptr<Paili> m_enemy;
+	std::shared_ptr<PocketMon> m_player;
+	std::shared_ptr<PocketMon> m_wildEnemy;
 	//bool moveOn;
 
 	

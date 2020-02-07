@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "UTILS.h"
 
 namespace UTIL
@@ -67,7 +67,7 @@ namespace UTIL
 			std::swap(top, bottom);
 	}
 
-	//랜덤값 가져오기
+	//?쒕뜡媛?媛?몄삤湲?
 	int GetRndInt(int _zeroToNum)
 	{
 		return rand() % _zeroToNum;
@@ -90,7 +90,7 @@ namespace UTIL
 		return rand() / (float)RAND_MAX * (_toNum - _fromNum) + _fromNum;
 	}
 
-	//두 점사이의 거리 구하기
+	//???먯궗?댁쓽 嫄곕━ 援ы븯湲?
 	float GetDistance(int startX, int startY, int endX, int endY)
 	{
 		int x = endX - startX;
@@ -129,7 +129,7 @@ namespace UTIL
 		return sqrtf(x * x + y * y);
 	}
 
-	//두 점사이의 각도 구하기
+	//???먯궗?댁쓽 媛곷룄 援ы븯湲?
 	float GetAngle(int _srcX, int _srcY, int _targetX, int _targetY)
 	{
 		float dx = _srcX - _targetX;
@@ -203,7 +203,7 @@ namespace UTIL
 		return angle;
 	}
 
-	//점만들기
+	//?먮쭔?ㅺ린
 	POINT PointMake(int x, int y)
 	{
 		POINT pt = { x ,y };
@@ -214,13 +214,13 @@ namespace UTIL
 		return FPOINT(_x, _y);
 	}
 
-	//원 만들기
+	//??留뚮뱾湲?
 	Circle MakeCircle(float _x, float _y, int _radius)
 	{
 		return Circle(_x, _y, _radius);
 	}
 
-	//사각형 만들기
+	//?ш컖??留뚮뱾湲?
 	RECT RectMake(int x, int y, int width, int height)
 	{
 		RECT rc = { x,y, x + width, y + height };
@@ -252,7 +252,7 @@ namespace UTIL
 		return rc;
 	}
 
-	//선그리기
+	//?좉렇由ш린
 	void DrawLine(HDC _hdc, int _startX, int _startY, int _endX, int _endY)
 	{
 		MoveToEx(_hdc, _startX, _startY, NULL);
@@ -274,7 +274,7 @@ namespace UTIL
 		LineTo(_hdc, _end.x, _end.y);
 	}
 
-	//사각형 그리기
+	//?ш컖??洹몃━湲?
 	void DrawRect(HDC _hdc, const RECT & _rect, bool _isTransParent)
 	{
 		HBRUSH oldBrush;
@@ -335,7 +335,7 @@ namespace UTIL
 		DeleteObject(curBrush);
 	}
 
-	//타원 그리기
+	//???洹몃━湲?
 	void DrawEllipse(HDC _hdc, int _x, int _y, int _width, int _height, bool _isTransParent)
 	{
 		HBRUSH oldBrush;
@@ -426,7 +426,7 @@ namespace UTIL
 		DeleteObject(curBrush);
 	}
 
-	//원 그리기
+	//??洹몃━湲?
 	void DrawCircle(HDC _hdc, const Circle & _circle, bool _isTransParent)
 	{
 		HBRUSH oldBrush, curBrush;
@@ -459,8 +459,8 @@ namespace UTIL
 		DeleteObject(curBrush);
 	}
 
-	//텍스트 출력
-	void PrintText(HDC _hdc, char* _str, char * _font, int _destX, int _destY, 
+	//text out - 궁금하시면 어떻게 짯나 확인하시오..
+	void PrintText(HDC _hdc, const char* _str, const char * _font, int _destX, int _destY, 
 		int _fontSize, COLORREF _fontColor, bool _isBgTransParent, COLORREF _bgColor)
 	{
 		HFONT curFont, oldFont;
@@ -494,7 +494,7 @@ namespace UTIL
 			SetBkMode(_hdc, OPAQUE);		
 	}
 
-	//원과 원 충돌
+	//?먭낵 ??異⑸룎
 	bool isCircleCircleCollision(const Circle& _circle1, const Circle& _circle2) 
 	{
 		float dist = GetDistance(_circle1.p, _circle2.p);
@@ -503,7 +503,7 @@ namespace UTIL
 		return false;
 	}
 
-	//원과 사각형 충돌
+	//?먭낵 ?ш컖??異⑸룎
 	bool isCircleRectCollision(const Circle & _circle, RECT _rect)
 	{
 		_rect.left -= _circle.radius;
@@ -545,7 +545,7 @@ namespace UTIL
 		return false;
 	}
 
-	//원과 점 충돌
+	//?먭낵 ??異⑸룎
 	bool isCirclePointCollision(const Circle & _circle, const POINT& _point)
 	{
 		float dist = GetDistance(_circle.p, _point);
@@ -555,7 +555,7 @@ namespace UTIL
 	}
 
 
-	//사각형과 사각형 충돌
+	//?ш컖?뺢낵 ?ш컖??異⑸룎
 	bool isRectRectCollision(const RECT & rect1, const RECT & rect2)
 	{
 		if (rect1.left < rect2.right && rect1.right > rect2.left &&
@@ -597,7 +597,7 @@ namespace UTIL
 		return false;
 	}
 
-	//사각형과 점 충돌
+	//?ш컖?뺢낵 ??異⑸룎
 	bool isPointRectCollision(const POINT & point, const RECT & rect)
 	{
 		if ((rect.left < point.x && point.x < rect.right) &&
@@ -632,7 +632,7 @@ namespace UTIL
 		return false;
 	}
 
-	//픽셀 충돌
+	//?쎌? 異⑸룎
 	bool isPixelColorSame(HDC _targetImgDC, const POINT & _destPos, COLORREF _targetColor)
 	{
 		COLORREF originColor = GetPixel(_targetImgDC, _destPos.x, _destPos.y);

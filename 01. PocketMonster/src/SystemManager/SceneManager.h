@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Game/GameScene/Scene.h"
 
 class SceneManager {
@@ -17,6 +17,7 @@ public:
 	bool changeScene(std::string sceneName);
 	Scene* getCurScene() { return _currentScene; }
 	bool scenePush(std::string sceneName);
+	//bool battleScenePush(std::string sceneName, std::shared_ptr<player> _player);
 	bool scenePop();
 
 private:

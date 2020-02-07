@@ -1,12 +1,16 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "MainGame.h"
+#include "Common/GameManagers.h"
 #include "GameScene/TownScene.h"
 #include "GameScene/BattleScene.h"
+#include "GameScene/InvenScene.h"
+#include "GameObject/Items/Inventory.h"
 
 MainGame::MainGame()
 { 
 	
 }
+
 MainGame::~MainGame()
 {
 	
@@ -16,27 +20,21 @@ HRESULT MainGame::init()
 {
 	GameNode::init();
 	MAPMANGER->init();
+	ITEMMANAGER->init();
 
 	//add Scene
 	IMAGEMANAGER->addImage("bg", "Images/temp.bmp", 0, 0, WINSIZEX, WINSIZEY);
 	SOUNDMANAGER->addStream("bgs", "Sounds/NewBarkTown.mp3", true);
+	std::shared_ptr<Inventory> inven = std::make_shared<Inventory>();
+	inven->init();
 
 	SCENEMANAGER->addScene("town", new TownScene);
 	SCENEMANAGER->addScene("battle", new BattleScene);
+	SCENEMANAGER->addScene("inven",new InvenScene(inven));
 	SCENEMANAGER->scenePush("town");
 
-
-	inven = std::make_shared<Inventory>();
-	inven->init();
-
-	SCENEMANAGER->addScene("인벤씬",new InvenScene(inven));
- 	SCENEMANAGER->changeScene("인벤씬"); 
-	
+	SCENEMANAGER->changeScene("town");
 	sceneInit = true;
-
-
-
-
 
 	return S_OK;
 }
@@ -45,7 +43,10 @@ void MainGame::release()
 {
 	GameNode::release();
 	MAPMANGER->release();
+	POCKETMONMANAGER->release();
+
 	MAPMANGER->Destroy();
+	POCKETMONMANAGER->Destroy();
 }  
 
 void MainGame::update()
@@ -66,17 +67,15 @@ void MainGame::render()
 {
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 
-	//SCENEMANAGER->render(getMemDC());
-	//SCENEMANAGER->afterRender(getMemDC());
-	//EFFECTMANAGER->render(getMemDC());
-	//if(m_showRect)
-	//	SCENEMANAGER->debugRender(getMemDC());
-	//if (m_showFPS)
-	//	TIMEMANAGER->render(getMemDC());
+	SCENEMANAGER->render(getMemDC());
+	SCENEMANAGER->afterRender(getMemDC());
+	EFFECTMANAGER->render(getMemDC());
+	if(m_showRect)
+		SCENEMANAGER->debugRender(getMemDC());
+	if (m_showFPS)
+		TIMEMANAGER->render(getMemDC());
 
-	//getBackBuffer()->render(getHDC(), 0, 0);
-
-	//invenScene->debugRender(getHDC());
+	getBackBuffer()->render(getHDC(), 0, 0);
 }
 
 LRESULT MainGame::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)

@@ -1,8 +1,8 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "StateHeal.h"
 
-StateHeal::StateHeal(ItemType _type, UTIL::IRECT _rect, std::string _name, int _count, int _price, std::string _description)
-	:Item(_type/*,_img */, _rect, _name, _count, _price, _description)
+StateHeal::StateHeal(ItemType _type, Image* _img, UTIL::IRECT _rect, std::string _name, int _count, int _price, std::string _description)
+	:Item(_type, _img , _rect, _name, _count, _price, _description)
 {
 }
 

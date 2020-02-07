@@ -1,7 +1,6 @@
 ﻿#pragma once
 #include "Game/GameTypes.h"
 
-
 class Object
 {
 public:
