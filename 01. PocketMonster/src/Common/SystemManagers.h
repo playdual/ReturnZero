@@ -8,3 +8,4 @@
 #include "SystemManager/EffectManager.h"
 #include "SystemManager/CameraManager.h"
 #include "Game/GameManager/BattleManager.h"
+#include "Game/GameManager/MapManager.h"

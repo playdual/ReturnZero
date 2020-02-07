@@ -17,14 +17,7 @@ bool TownScene::init()
 	m_player->reLocate(3, 3);
 	m_player->init();
 	
-	//map init
-	for (int y = 0; y < 15; ++y) {
-		for (int x = 0; x < 15; ++x) {
-			Tile temptile;
-			temptile.init(TileType::TileTypeFloor, nullptr, false, true, x, y);
-			m_map.push_back(temptile);
-		}
-	}
+	m_map = MAPMANGER->findMap("test");
 	return true;
 }
 

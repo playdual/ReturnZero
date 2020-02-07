@@ -12,18 +12,20 @@ public:
 	void render(HDC hdc);
 	void debugRender(HDC hdc);
 
+public:
+	int m_BlockPositionX;
+	int m_BlockPositionY;
+	TileType m_Type;
 
 private:
 	UTIL::IRECT m_absTile;
 	UTIL::IRECT m_outputTile;
 	bool isCanprint = false;
 
-	TileType m_Type;
 	Image* m_img;
 	bool isAfterRender;
 	bool isMovable;
-	int m_BlockPositionX;
-	int m_BlockPositionY;
+
 
 
 };

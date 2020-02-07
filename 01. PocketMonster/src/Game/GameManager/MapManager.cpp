@@ -34,15 +34,20 @@ void MapManager::init()
 				else if (j == 7 || j == 8) {
 					temp.init(TileType::TileTypeTree, nullptr, false, false, j, i);
 				}
+				else
+				{
+					temp.init(TileType::TileTypeFloor, nullptr, false, true, j, i);
+				}
 			}
 			else {
 				temp.init(TileType::TileTypeFloor, nullptr, false, true, j, i);
 			}
-			house.push_back(temp);
+			test.push_back(temp);
 		}
 	}
 	MapList.insert(make_pair("world", world));
 	MapList.insert(make_pair("house", house));
+	MapList.insert(make_pair("test", test));
 }
 
 void MapManager::release()

@@ -41,6 +41,23 @@ void Tile::debugRender(HDC hdc)
 {
 	if (isCanprint)
 	{
-		UTIL::DrawColorRect(hdc, m_outputTile, false, RGB(255, 255, 255));
+		switch (m_Type)
+		{
+		case TileType::TileTypeFloor:
+			UTIL::DrawColorRect(hdc, m_outputTile, false, RGB(255, 255, 255));
+			break;
+		case TileType::TileTypeHouse:
+			UTIL::DrawColorRect(hdc, m_outputTile, false, RGB(255, 0, 0));
+			break;
+		case TileType::TileTypeBush:
+			UTIL::DrawColorRect(hdc, m_outputTile, false, RGB(0, 255, 0));
+			break;
+		case TileType::TileTypeTree:
+			UTIL::DrawColorRect(hdc, m_outputTile, false, RGB(0, 0, 255));
+			break;
+
+		}
+
+		
 	}
 }

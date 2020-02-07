@@ -9,7 +9,7 @@ public:
 
 public:
 	void addMap(std::string mapKey, char* fileName);
-	std::vector<Tile>& findMap(std::string mapKey);
+	std::vector<class Tile>& findMap(std::string mapKey);
 	std::vector<Tile>& getCurMap() { return curMap; }
 
 

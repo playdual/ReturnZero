@@ -14,6 +14,8 @@ HRESULT MainGame::init()
 {
 	GameNode::init();
 	
+	MAPMANGER->init();
+
 	//add Scene
 	IMAGEMANAGER->addImage("bg", "Images/temp.bmp", 0, 0, WINSIZEX, WINSIZEY);
 	SOUNDMANAGER->addStream("bgs", "Sounds/NewBarkTown.mp3", true);
