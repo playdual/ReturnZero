@@ -2,27 +2,37 @@
 #include "player.h"
 #include <iostream>
 
+player::player()
+{
+	/*m_blockPositionX = blockX;
+	m_blockPositionY = blockY;
+
+	m_playerRect.left = blockX * TILE_WIDTH;
+	m_playerRect.right = blockX * TILE_WIDTH + TILE_WIDTH;
+	m_playerRect.top = blockY * TILE_HEIGHT;
+	m_playerRect.bottom = blockY * TILE_HEIGHT + TILE_HEIGHT;
+
+	m_outPlayerRect = UTIL::IRectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, 100, 100);*/
+}
+
+player::~player()
+{
+}
+
 bool player::init()
 {
 	std::cout << "sunwoo Scene init!" << std::endl;
-	m_playerRect = UTIL::IRectMakeCenter(WINSIZEX/2, WINSIZEY/2, 100, 100);
-	m_outPlayerRect = UTIL::IRectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, 100, 100);
-	m_obstacleRect = UTIL::IRectMakeCenter(WINSIZEX / 2 + 300, WINSIZEY /  2 -100, 100, 100);
-	m_obstacleRect2 = UTIL::IRectMakeCenter(WINSIZEX / 2 + 1000, WINSIZEY /  2 -100, 100, 100);
-
-	//CAMERAMANAGER->setPosition(&m_playerRect.centerX, &m_playerRect.centerY);
+	m_outPlayerRect = UTIL::IRectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, TILE_WIDTH, TILE_HEIGHT);
+	CAMERAMANAGER->setCameraFocus(&m_playerRect.centerX, &m_playerRect.centerY,WINSIZEX/2,WINSIZEY/2);
+	CAMERAMANAGER->update();
 	bgX = 0;
 	bgY = 0;
-	m_bg =IMAGEMANAGER->addImage("bg", "Images/bg.bmp", bgX, bgY, WINSIZEX*2,WINSIZEY*2,true, RGB(255, 0, 255));
 	return true;
 }
 
 void player::update(float _deltaTime)
 {
-	//PatBlt(m_hdc, (m_playerRect.centerX - WINSIZEX / 2), (m_playerRect.centerY - WINSIZEY / 2), WINSIZEX, WINSIZEY, WHITENESS);
-	CAMERAMANAGER->setCamera(m_playerRect.centerX, m_playerRect.centerY);
 
-	SetViewportOrgEx(m_hdc, -(m_playerRect.centerX - WINSIZEX / 2), -(m_playerRect.centerY - WINSIZEY / 2), NULL);
 	if (KEYMANAGER->isStayKeyDown(P1_LEFT)&&!isMoveLeft&&!isAnotherMove)
 	{
 		m_playerRectMemory = m_playerRect.left;
@@ -95,41 +105,14 @@ void player::update(float _deltaTime)
 			isAnotherMove = false;
 		}
 	}
-	//CAMERAMANAGER->update();
-
-	//auto[x, y] = CAMERAMANAGER->pointInCamera(bgX, bgY);
-
-	//bgOutX = x;
-	//bgOutY = y;
-
-	//output obstacle
-	//rectInCamera(m_obstacle, true);
-	
-	//wntjr
-	//CAMERAMANAGER->rectInCamera(m_outObstacleRect, m_obstacleRect, isObstacleOut);
-	//CAMERAMANAGER->rectInCamera(m_outObstacleRect2, m_obstacleRect2, isObstacleOut2);
-
-//	RECT temp;
-//	if(IntersectRect(&temp, &m_rect,))
+	CAMERAMANAGER->update();
 }
 
 void player::render(HDC hdc)
 {
 
-	//m_bg->render(hdc, bgOutX, bgOutY);
-	//player
-	UTIL::DrawColorRect(hdc, m_playerRect, true, RGB(153, 255, 30));
-	//obstacle
-	/*if (isObstacleOut)
-	{*/
-		UTIL::DrawColorRect(hdc, m_obstacleRect, true, RGB(255, 100, 100));
-
-	//}
-	//if (isObstacleOut2)
-	//{
-		UTIL::DrawColorRect(hdc, m_obstacleRect2, true, RGB(5, 255, 100));
-	//}
 	
+
 }
 
 void player::afterRender(HDC hdc)
@@ -139,6 +122,8 @@ void player::afterRender(HDC hdc)
 
 void player::debugRender(HDC hdc)
 {
+	//player
+	UTIL::DrawColorRect(hdc, m_outPlayerRect, true, RGB(153, 255, 30));
 }
 
 int player::getPlayRectX()
@@ -150,6 +135,21 @@ int player::getPlayRectY()
 {
 
 	return m_playerRect.centerY;
+}
+
+void player::reLocate(int blockX, int blockY)
+{
+	
+	m_blockPositionX = blockX;
+	m_blockPositionY = blockY;
+
+	m_playerRect.left = blockX * TILE_WIDTH;
+	m_playerRect.right = blockX * TILE_WIDTH + TILE_WIDTH;
+	m_playerRect.top = blockY * TILE_HEIGHT;
+	m_playerRect.bottom = blockY * TILE_HEIGHT + TILE_HEIGHT;
+
+	m_playerRect.centerX = m_playerRect.left + (m_playerRect.right - m_playerRect.left) / 2;
+	m_playerRect.centerY = m_playerRect.top + (m_playerRect.bottom - m_playerRect.top) / 2;
 }
 
 

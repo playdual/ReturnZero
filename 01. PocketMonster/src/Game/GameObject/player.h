@@ -7,6 +7,10 @@ class player
 	: public Object
 {
 public:
+	player();
+	~player();
+
+
 	bool init() override;
 	void update(float _deltaTime) override;
 
@@ -17,6 +21,7 @@ public:
 
 	int getPlayRectX();
 	int getPlayRectY();
+	void reLocate(int blockX, int blockY);
 	//void rectInCamera(UTIL::IRECT& outRect, const UTIL::IRECT& realRect, bool& isOutput);
 private:
 	UTIL::IRECT m_playerRect;
@@ -52,6 +57,8 @@ private:
 	//
 	//QUESTSTATE == 불배열
 	//money == int
+	int m_blockPositionX;
+	int m_blockPositionY;
 
 
 

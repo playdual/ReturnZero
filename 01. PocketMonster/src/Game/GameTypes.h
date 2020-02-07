@@ -42,4 +42,4 @@ enum class SKILL
 	SKILL_MACHINE_1 ,
 	SKILL_MACHINE_2
 };
-};
+
