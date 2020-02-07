@@ -3,14 +3,14 @@
 #include "Game/GameObject/PocketMon.h"
 #include "Game/GameObject/Pocketmons/Paili.h"
 
-//°¢ ÀÌ¹ÌÁöº° Á¤À§Ä¡ ÁÂÇ¥
-//ÇÃ·¹ÀÌ¾î UI Á¤À§Ä¡
+//ê° ì´ë¯¸ì§€ë³„ ì •ìœ„ì¹˜ ì¢Œí‘œ
+//í”Œë ˆì´ì–´ UI ì •ìœ„ì¹˜
 #define PLAYERBOTTOMX	0
 #define PLAYERIMGX		200
 #define PLAYERPOCKETMONX 200
 #define PLAYERSTATUSX 535
 
-// Àû UI Á¤À§Ä¡
+// ì  UI ì •ìœ„ì¹˜
 #define ENEMYBOTTOMX	477
 #define ENEMYPOCKETMONX 664
 #define ENEMYSTATUSX 55
@@ -41,13 +41,13 @@ public:
 	void wildBattleRender(HDC hdc);
 	void npcBattleRender(HDC hdc);
 
-	//Çàµ¿¼±ÅÃ°ü·Ã
+	//í–‰ë™ì„ íƒê´€ë ¨
 	void moveButton();
 	void moveSkillSelectButton();
 
 	void playerStayMotion();
 
-	void skillMotion();
+	void playerskillMotion();
 	void selectEnemyskill();
 
 	//void test();
@@ -59,44 +59,44 @@ private:
 	
 	int m_count;
 	
-	//Çàµ¿¼±ÅÃ Ä¿¼­
+	//í–‰ë™ì„ íƒ ì»¤ì„œ
 	UTIL::IRECT m_selectRect;
-	//»óÈ²¼³¸íÃ¢
+	//ìƒí™©ì„¤ëª…ì°½
 	UTIL::IRECT m_explainRect;
-	//±â¼ú Ä¿¼­
+	//ê¸°ìˆ  ì»¤ì„œ
 	UTIL::IRECT m_skillSelectRect;
-	//±â¼ú ¸®½ºÆ®
+	//ê¸°ìˆ  ë¦¬ìŠ¤íŠ¸
 	UTIL::IRECT m_skillListRect;
-	//±â¼ú ¼³¸íÃ¢
+	//ê¸°ìˆ  ì„¤ëª…ì°½
 	UTIL::IRECT m_skillExplainRect;
-	//Àû »óÅÂÃ¢
+	//ì  ìƒíƒœì°½
 	UTIL::IRECT m_enemyStatus;
-	//Àû Æ÷ÄÏ¸ó
+	//ì  í¬ì¼“ëª¬
 	UTIL::IRECT m_enemyPocketmon;
-	//Àû ¹Ù´Ú
+	//ì  ë°”ë‹¥
 	UTIL::IRECT m_enemyBottom;
-	//ÇÃ·¹ÀÌ¾î¹Ù´Ú
+	//í”Œë ˆì´ì–´ë°”ë‹¥
 	UTIL::IRECT m_playerBottom;
-	//ÇÃ·¹ÀÌ¾î ÀÌ¹ÌÁö
+	//í”Œë ˆì´ì–´ ì´ë¯¸ì§€
 	UTIL::IRECT m_playerImg;
-	//ÇÃ·¹ÀÌ¾î Æ÷ÄÏ¸ó
+	//í”Œë ˆì´ì–´ í¬ì¼“ëª¬
 	UTIL::IRECT m_playerPocketmon;
-	//ÇÃ·¹ÀÌ¾î »óÅÂÃ¢
+	//í”Œë ˆì´ì–´ ìƒíƒœì°½
 	UTIL::IRECT m_playerStatus;
-	//½ºÅ³ ÀÌÆåÆ®
+	//ìŠ¤í‚¬ ì´í™íŠ¸
 	UTIL::IRECT m_playerAtkSkillEffect;
-	//½ºÅ³ ÀÌÆåÆ®
+	//ìŠ¤í‚¬ ì´í™íŠ¸
 	UTIL::IRECT m_enemyAtkSkillEffect;
 
 
-	//ÀüÅõÀ¯Çü º¯¼ö (npc ´ë°á, ¾ß»ı ÀüÅõ)
+	//ì „íˆ¬ìœ í˜• ë³€ìˆ˜ (npc ëŒ€ê²°, ì•¼ìƒ ì „íˆ¬)
 	bool wildBattle;
 	bool npcBattle;
 
 	//=====================
-	// ¾Ö´Ï¸ŞÀÌ¼Ç º¯¼ö¸ğÀ½ //
+	// ì• ë‹ˆë©”ì´ì…˜ ë³€ìˆ˜ëª¨ìŒ //
 	//=====================
-	//ÀüÅõ ½ÃÀÛ ÀÎÆ®·Î È­¸é
+	//ì „íˆ¬ ì‹œì‘ ì¸íŠ¸ë¡œ í™”ë©´
 	bool wildBattleIntroAniOn;
 	bool uiObjectRegularPosition;
 	bool playerImgSlideOut;
@@ -110,31 +110,31 @@ private:
 	int m_enemyStatusX;
 
 
-	//¼±ÅÃÃ¢ Ä¿¼­ ¿òÁ÷ÀÓ º¯¼ö
+	//ì„ íƒì°½ ì»¤ì„œ ì›€ì§ì„ ë³€ìˆ˜
 	bool fight;
 	bool bag;
 	bool pocketmon;
 	bool run;
 
-	//¼±ÅÃÇàµ¿ È°¼ºÈ­ Àû¿ë º¯¼ö
+	//ì„ íƒí–‰ë™ í™œì„±í™” ì ìš© ë³€ìˆ˜
 	bool playerAtkOn;
 
-	//½ºÅ³¼±ÅÃ Ä¿¼­ ¿òÁ÷ÀÓ º¯¼ö
+	//ìŠ¤í‚¬ì„ íƒ ì»¤ì„œ ì›€ì§ì„ ë³€ìˆ˜
 	bool skill_1;
 	bool skill_2;
 	bool skill_3;
 	bool skill_4;
 
-	//°ø°İ ÅÏ º¯¼ö
+	//ê³µê²© í„´ ë³€ìˆ˜
 	bool playerTurn;
 	bool enemyTurn;
 
-	//Àû »óÅÂÃ¢
+	//ì  ìƒíƒœì°½
 
-	//ÇÃ·¹ÀÌ¾î ´ë±â»óÅÂ ¸ğ¼Ç
+	//í”Œë ˆì´ì–´ ëŒ€ê¸°ìƒíƒœ ëª¨ì…˜
 	bool motionUp;
 
-	//½ºÅ³»ç¿ë º¯¼ö
+	//ìŠ¤í‚¬ì‚¬ìš© ë³€ìˆ˜
 	bool playerAtkSkillOn;
 	bool skillMotionOn; 
 
@@ -146,19 +146,19 @@ private:
 
 
 
-	//init¾È¿¡ µé¾î°¥ ³»¿ëµé
+	//initì•ˆì— ë“¤ì–´ê°ˆ ë‚´ìš©ë“¤
 	/*
-	1. ¹è°æ ÀÌ¹ÌÁö ÀúÀå (¸ŞÀÎ¿¡¼­ ·ÎµùÀ¸·Î ÁøÇàÇÏ°Ô µÉ ¼ö ÀÖÀ½)
-	2. m_selectRect À§Ä¡ ÃÊ±âÈ­
+	1. ë°°ê²½ ì´ë¯¸ì§€ ì €ì¥ (ë©”ì¸ì—ì„œ ë¡œë”©ìœ¼ë¡œ ì§„í–‰í•˜ê²Œ ë  ìˆ˜ ìˆìŒ)
+	2. m_selectRect ìœ„ì¹˜ ì´ˆê¸°í™”
 	
 	*/
 
 	/* 
 
 	*/
-	//update¾È¿¡ µé¾î°¥ ³»¿ëµé
+	//updateì•ˆì— ë“¤ì–´ê°ˆ ë‚´ìš©ë“¤
 	/*
-	1. ¹è°æ ÀÌ
+	1. ë°°ê²½ ì´
 	*/
 };
 
