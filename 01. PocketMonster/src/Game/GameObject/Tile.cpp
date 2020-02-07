@@ -41,10 +41,6 @@ void Tile::debugRender(HDC hdc)
 {
 	if (isCanprint)
 	{
-
 		UTIL::DrawColorRect(hdc, m_outputTile, false, RGB(255, 255, 255));
-
-		//sprintf_s(str, "(%d , %d)", _BlockPositionX,_BlockPositionY);
-		//TextOut(hdc, _BlockPositionX * TILE_WIDTH + TILE_OFFSETX + TILE_WIDTH / 2, _BlockPositionY * TILE_HEIGHT + TILE_OFFSETY + TILE_HEIGHT / 2, str, strlen(str));
 	}
 }

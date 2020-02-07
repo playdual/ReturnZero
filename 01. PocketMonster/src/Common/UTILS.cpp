@@ -220,7 +220,7 @@ namespace UTIL
 	void _tagIrect::moveRight(int dist) {
 		left += dist;
 		right += dist;
-		centerX -= dist;
+		centerX += dist;
 	}
 	void _tagIrect::reset() {
 		left = 0;

@@ -28,8 +28,8 @@ void CameraManager::rectInCamera(UTIL::IRECT& outRect, const UTIL::IRECT& realRe
 	outRect.right = realRect.right - m_cameraX;
 	outRect.bottom = realRect.bottom - m_cameraY;
 
-	if (((m_cameraX - m_outputExtra <= outRect.left) && (outRect.left <= WINSIZEX)) &&
-		((m_cameraY - m_outputExtra <= outRect.top) && (outRect.top <= WINSIZEY)))
+	if (((- m_outputExtra <= outRect.left) && (outRect.left <= WINSIZEX)) &&
+		((-m_outputExtra <= outRect.top)&&(outRect.top<=WINSIZEY)))
 		isOutput = true;
 }
 
