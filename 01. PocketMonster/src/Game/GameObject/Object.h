@@ -1,5 +1,4 @@
-#pragma once
-#include "Common/SystemManagers.h"
+﻿#pragma once
 #include "Game/GameTypes.h"
 
 class Object

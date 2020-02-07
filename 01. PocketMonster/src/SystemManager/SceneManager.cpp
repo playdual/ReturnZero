@@ -68,18 +68,18 @@ bool SceneManager::changeScene(std::string sceneName)
 {
 	miSceneList find = _mSceneList.find(sceneName);
 
-	//¸øÃ£À¸¸é E_FAIL
+	//ï¿½ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ E_FAIL
 	if (find == _mSceneList.end())
 		return false;
 
-	//¹Ù²Ù·Á´Â¾ÀÀÌ ÇöÀç¾ÀÀÌ¶û °°¾Æµµ E_FAIL
+	//ï¿½Ù²Ù·ï¿½ï¿½Â¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ ï¿½ï¿½ï¿½Æµï¿½ E_FAIL
 	if (find->second == _currentScene)
 		return false;
 
-	//¿©±â±îÁö ¿Ô´Ù¸é ¹®Á¦°¡ ¾ø´Ù Áï ¾ÀÀ» ÃÊ±âÈ­ÇÏ°í º¯°æÇÏÀÚ.
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	if (SUCCEEDED(find->second->init()))
 	{
-		//È¤½Ã ±âÁ¸¿¡ ¾ÀÀÌ ÀÖ´Ù¸é ¸±¸®Áî
+		//È¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if (_currentScene)_currentScene->release();
 
 		_currentScene = find->second;
@@ -98,7 +98,6 @@ bool SceneManager::scenePush(std::string sceneName)
 
 	if (SUCCEEDED(find->second->init()))
 	{
-		//È¤½Ã ±âÁ¸¿¡ ¾ÀÀÌ ÀÖ´Ù¸é ¸±¸®Áî
 		_currentScene = find->second;
 		sceneStack.push(find->second);
 

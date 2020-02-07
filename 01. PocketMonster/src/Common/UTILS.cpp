@@ -225,21 +225,21 @@ namespace UTIL
 		bottom = 0;
 	}
 
-	//Æ÷ÀÎÆ®
+	//ï¿½ï¿½ï¿½ï¿½Æ®
 	POINT PointMake(int x, int y)
 	{
 		POINT pt = { x ,y };
 		return pt;
 	}
 
-	//¼±±×¸®´Â ÇÔ¼ö
+	//ï¿½ï¿½ï¿½×¸ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
 	void LineMake(HDC hdc, int x1, int y1, int x2, int y2)
 	{
 		MoveToEx(hdc, x1, y1, NULL);
 		LineTo(hdc, x2, y2);
 	}
 
-	//RECT¸¸µé±â(ÁÂ»ó´Ü ±âÁØ)
+	//RECTï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½Â»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 	RECT RectMake(int x, int y, int width, int height)
 	{
 		RECT rc = { x,y, x + width, y + height };
@@ -252,7 +252,7 @@ namespace UTIL
 		return rc;
 	}
 
-	//RECT¸¸µé±â(Áß½ÉÁ¡À¸·Î ºÎÅÍ)
+	//RECTï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ß½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 	RECT RectMakeCenter(int x, int y, int width, int height)
 	{
 		RECT rc = { x - width / 2, y - height / 2, x + width / 2, y + height / 2 };
@@ -266,7 +266,7 @@ namespace UTIL
 		return rc;
 	}
 
-	//»ç°¢Çü ±×¸®±â
+	//ï¿½ç°¢ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
 	void RectangleMake(HDC hdc, int x, int y, int width, int height)
 	{
 		Rectangle(hdc, x, y, x + width, y + height);
@@ -296,7 +296,7 @@ namespace UTIL
 		DeleteObject(curBrush);
 	}
 
-	//»ç°¢Çü ±×¸®±â(Áß½ÉÁ¡)
+	//ï¿½ç°¢ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½(ï¿½ß½ï¿½ï¿½ï¿½)
 	void RectangleMakeCenter(HDC hdc, int x, int y, int width, int height)
 	{
 		Rectangle(hdc, x - (width / 2), y - (height / 2), x + (width / 2), y + (height / 2));
@@ -305,14 +305,16 @@ namespace UTIL
 	void DrawRect(HDC hdc, const RECT & rect) {
 		Rectangle(hdc, rect.left, rect.top, rect.right, rect.bottom);
 	}
-
-	//¿ø±×¸®±â
+	void DrawRect(HDC hdc, const IRECT & rect) {
+		Rectangle(hdc, rect.left, rect.top, rect.right, rect.bottom);
+	}
+	//ì›ê·¸ë¦¬ê¸°
 	void EllipseMake(HDC hdc, int x, int y, int width, int height)
 	{
 		Ellipse(hdc, x, y, x + width, y + height);
 	}
 
-	//¿ø±×¸®±â(Áß½ÉÁ¡)
+	//ï¿½ï¿½ï¿½×¸ï¿½ï¿½ï¿½(ï¿½ß½ï¿½ï¿½ï¿½)
 	void EllipseMakeCenter(HDC hdc, int x, int y, int width, int height)
 	{
 		Ellipse(hdc, x - (width / 2), y - (height / 2), x + (width / 2), y + (height / 2));

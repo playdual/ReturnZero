@@ -6,3 +6,4 @@
 #include "SystemManager/TimeManager.h"
 #include "SystemManager/AnimationManager.h"
 #include "SystemManager/EffectManager.h"
+#include "Game/GameManager/BattleManager.h"

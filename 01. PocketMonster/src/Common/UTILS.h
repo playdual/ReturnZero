@@ -4,23 +4,23 @@
 
 namespace UTIL
 {
-	//½Ç¼öÇü Á¡
+	//ï¿½Ç¼ï¿½ï¿½ï¿½ ï¿½ï¿½
 	typedef struct _tagFpoint {
 		float x, y;
 	}FPOINT, *PFPOINT;
 
-	//¿ø
+	//ï¿½ï¿½
 	typedef struct _tagCircle {
 		FPOINT p;
 		int radius;
 	}Circle, *PCircle;
 
-	//½Ç¼öÇü »ç°¢Çü
+	//ï¿½Ç¼ï¿½ï¿½ï¿½ ï¿½ç°¢ï¿½ï¿½
 	typedef struct _tagFrect {
 		float left, top, right, bottom;
 	}FRECT, *PFRECT;
 
-	//Á¤¼öÇü »ç°¢Çü
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ç°¢ï¿½ï¿½
 	typedef struct _tagIrect {
 		int left, top, right, bottom;
 		_tagIrect()
@@ -43,26 +43,26 @@ namespace UTIL
 		}
 	}IRECT, *PIRECT;
 
-	//·£´ı°ª °¡Á®¿À±â
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	int getInt(int num);
 	int getFromIntTo(int fromNum, int toNum);
 
-	//°Å¸®
+	//ï¿½Å¸ï¿½
 	float getDistance(float startX, float startY, float endX, float endY);
-	//µÎ Á¡À¸·Î °¢µµ ±¸ÇÏ±â
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
 	float getAngle(float x1, float y1, float x2, float y2);
 
-	//¿øÃæµ¹
+	//ï¿½ï¿½ï¿½æµ¹
 	bool isCircleCircleCollision(Circle& c1, Circle& c2);
 
-	//»ç°¢Çü°ú »ç°¢ÇüÃæµ¹
+	//ï¿½ç°¢ï¿½ï¿½ï¿½ï¿½ ï¿½ç°¢ï¿½ï¿½ï¿½æµ¹
 	bool isRectRectCollision(const RECT & rect1, const RECT& rect2);
 	bool isRectRectCollision(const RECT & rect1, const FRECT & rect2);
 	bool isRectRectCollision(const FRECT & rect1, const FRECT & rect2);
 	bool isRectRectCollision(const IRECT& rect1, const IRECT & rect2);
 	bool isRectRectCollision(const IRECT& rect1, const RECT & rect2);
 
-	//Á¡°ú »ç°¢Çü Ãæµ¹
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ç°¢ï¿½ï¿½ ï¿½æµ¹
 	bool isPointRectCollision(const POINT & point, const RECT& rect);
 	bool isPointRectCollision(const POINT & point, const FRECT& rect);
 	bool isPointRectCollision(const FPOINT & point, const RECT& rect);
@@ -77,27 +77,28 @@ namespace UTIL
 	bool isRectColorSame(HDC _targetImgDC, const IRECT& rect, int _division = 1, int _divisionY = 1, COLORREF _targetColor = RGB(255, 0, 255));
 
 
-	//Á¡ ¸¸µé±â
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	POINT PointMake(int x, int y);
 
-	//RECT¸¸µé±â(ÁÂ»ó´Ü ±âÁØ)
+	//RECTï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½Â»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 	RECT RectMake(int x, int y, int width, int height);
 	RECT RectMakeCenter(int x, int y, int width, int height);
 	FRECT FRectMake(float x, float y, float width, float height);
 	FRECT FRectMakeCenter(float x, float y, float width, float height);
 	
-	//¼±±×¸®±â
+	//ï¿½ï¿½ï¿½×¸ï¿½ï¿½ï¿½
 	void LineMake(HDC hdc, int x1, int y1, int x2, int y2);
 
-	//»ç°¢Çü ±×¸®±â
+	//ï¿½ç°¢ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
 	void RectangleMake(HDC hdc, int x, int y, int width, int height);
 	void drawRect(HDC hdc, const RECT& rect);
 	
-	//»ç°¢Çü ±×¸®±â(Áß½ÉÁ¡)
+	//ï¿½ç°¢ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½(ï¿½ß½ï¿½ï¿½ï¿½)
 	void RectangleMakeCenter(HDC hdc, int x, int y, int width, int height);
 	void DrawRect(HDC hdc, const RECT& rect);
-	
-	//¿ø±×¸®±â
+	void drawRect(HDC hdc, const UTIL::IRECT & rect);
+
+	//ì›ê·¸ë¦¬ê¸°
 	void EllipseMake(HDC hdc, int x, int y, int width, int height);
 	void EllipseMakeCenter(HDC hdc, int x, int y, int width, int height);
 

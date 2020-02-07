@@ -1,18 +1,29 @@
 #pragma once
-//°ÔÀÓ ³»¿¡¼­ ¾²ÀÌ´Â Enum°ú ±¸Á¶Ã¼ ¸ÞÅ©·Î µîÀ» Á¤ÀÇ ÇÕ´Ï´Ù.
+//ê²Œìž„ ë‚´ì—ì„œ ì“°ì´ëŠ” Enumê³¼ êµ¬ì¡°ì²´ ë©”í¬ë¡œ ë“±ì„ ì •ì˜ í•©ë‹ˆë‹¤.
 
-#define TILESIZE 32 //¿À¸¥ÂÊ È­¸é Å¸ÀÏ »çÀÌÁî
-#define TILEX 20	//¿ÞÂÊÈ­¸é Å¸ÀÏ »çÀÌÁî X
-#define TILEY 20	//¿ÞÂÊÈ­¸é Å¸ÀÏ »çÀÌÁî Y
+#define TILESIZE 32 //ì˜¤ë¥¸ìª½ í™”ë©´ íƒ€ì¼ ì‚¬ì´ì¦ˆ
+#define TILEX 20	//ì™¼ìª½í™”ë©´ íƒ€ì¼ ì‚¬ì´ì¦ˆ X
+#define TILEY 20	//ì™¼ìª½í™”ë©´ íƒ€ì¼ ì‚¬ì´ì¦ˆ Y
+#define TILE_WIDTH 100
+#define TILE_HEIGHT 100
+
 
 #define TILESIZEX TILEX * TILESIZE
 #define TILESIZEY TILEY * TILESIZE
 
-//È­¸é ¿À¸¥ÂÊ ÀÌ¹ÌÁö Å¸ÀÏ °¹¼ö
+//È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #define SAMPLETILEX 20
 #define SAMPLETILEY 8
 
-//¸ÊÅø¿¡¼­ »ç¿ëÇÒ ³à¼®
+enum class TileType
+{
+	TileTypeFloor,
+	TileTypeHouse,
+	TileTypeBush,
+	TileTypeTree
+};
+
+//ë§µíˆ´ì—ì„œ ì‚¬ìš©í•  ë…€ì„
 enum CTRL
 {
 	CTRL_SAVE,
@@ -25,13 +36,13 @@ enum CTRL
 	CTRL_END
 };
 
-//ÁöÇü(EX.¹âÀ»¶§ »ç¿îµå¸¦ ³ª°Ô ÇÏ°Å³ª ÀÌµ¿ÇÒ ¼ö ¾ø´Â Áö¿ªµîµî)
+//ï¿½ï¿½ï¿½ï¿½(EX.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï°Å³ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 enum TERRAIN
 {
 	TR_CEMENT, TR_DESERT, TR_GRASS, TR_WATER, TR_END
 };
 
-//¿ÀºêÁ§Æ®(EX :ÁöÇüÀ§ÂÊ¿¡ ¹èÄ¡. ¿òÁ÷ÀÌ°Å³ª ºÎ¼­Áö°Å³ª ÇÏ´Â ³à¼® µîµî º¯È­¸¦ ÁÙ¼ö ÀÖ´Â ¹°Ã¼)
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®(EX :ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½ï¿½Ä¡. ï¿½ï¿½ï¿½ï¿½ï¿½Ì°Å³ï¿½ ï¿½Î¼ï¿½ï¿½ï¿½ï¿½Å³ï¿½ ï¿½Ï´ï¿½ ï¿½à¼® ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½Ù¼ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Ã¼)
 enum OBJECT
 {
 	OBJ_BLOCK1,
@@ -43,7 +54,7 @@ enum OBJECT
 	OBJ_TANK2,
 	OBJ_NONE
 };
-//À§Ä¡ ÁÂÇ¥
+//ï¿½ï¿½Ä¡ ï¿½ï¿½Ç¥
 enum POS
 {
 	POS_FLAG1,
@@ -52,7 +63,7 @@ enum POS
 	POS_TANK2
 
 };
-//Å¸ÀÏ ±¸Á¶Ã¼
+//Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼
 struct tagTile
 {
 	TERRAIN terrain;
@@ -64,7 +75,7 @@ struct tagTile
 	int objFrameX;
 	int objFrameY;
 };
-//ÀÌ¹ÌÁö Å¸ÀÏ ±¸Á¶Ã¼
+//ï¿½Ì¹ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼
 struct tagSampleTile
 {
 	RECT rcTile;
@@ -72,7 +83,7 @@ struct tagSampleTile
 	int terrainFrameY;
 
 };
-//ÇöÀç Å¸ÀÏ ±¸Á¶Ã¼
+//ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼
 struct tagCurrentTile
 {
 	int x;

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "MainGame.h"
-#include "GameScene/MapEdit.h"
+#include "GameScene/MapToolScene.h"
 
 MainGame::MainGame()
 {
@@ -14,8 +14,9 @@ HRESULT MainGame::init()
 	GameNode::init();
 	
 	//add Scene
-	SCENEMANAGER->addScene("MapEddit", new MapEdit);
-	SCENEMANAGER->changeScene("MapEddit");
+	SCENEMANAGER->addScene("MapTool", new MapToolScene);
+	CAMEARAMANAGER->setCameraBox(100, 100, 1200, 700);
+	SCENEMANAGER->changeScene("MapTool");
 
 	return S_OK;
 }
@@ -37,12 +38,14 @@ void MainGame::update()
 	deltaTime = TIMEMANAGER->getElapsedTime();
 	EFFECTMANAGER->update();
 	SCENEMANAGER->update(deltaTime);
+	CAMEARAMANAGER->update(getHDC());
 	ANIMANAGER->update(deltaTime);
 }
 
 void MainGame::render()
 {
-	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
+	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, BLACKNESS);
+	CAMEARAMANAGER->ExtraRender(getHDC());
 
 	SCENEMANAGER->render(getMemDC());
 	SCENEMANAGER->afterRender(getMemDC());

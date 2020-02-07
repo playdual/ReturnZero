@@ -14,6 +14,7 @@
 #include <math.h>
 #include <assert.h>
 
+
 //STL
 #include <vector>
 #include <map>
@@ -43,6 +44,9 @@
 #define P1_RIGHT		3
 #define P1_EVENT		4
 #define P1_USEITEM		5
+#define P1_Z            6
+#define P1_X            7
+
 
 #define GAME_LMOUSE		48
 #define GAME_RMOUSE		49
