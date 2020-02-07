@@ -18,6 +18,7 @@ public:
 	//이펙트 재생중인지 상태값 가져오기
 	bool getIsRunning() { return _isRunning; }
 
+
 private:
 	Image * _effectImage;		//이펙트 이미지
 	class Animation* _effectAni;		//이펙트 애니메이션

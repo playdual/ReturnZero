@@ -11,7 +11,11 @@ bool BattleScene::init()
 	
 	EFFECTMANAGER->addEffect("파이리스킬1", "images/pailiSkill_1.bmp", 35, 150, 35, 30, 1, 0.1f, 100);
 
-	m_pocketmonpaili = std::make_shared<PocketMon>();
+	m_player = std::make_shared<Paili>();
+	m_player->init();
+
+	m_enemy = std::make_shared<Paili>();
+	m_enemy->init();
 
 	//===============
 	// RECT 초기화 //
@@ -99,6 +103,7 @@ bool BattleScene::init()
 	// 공격관련 변수 //
 	//================
 	playerAtkSkillOn = false;
+	skillMotionOn = false;
 	enemyAtkSkillOn = false;
 	m_skillCount = 0;
 
@@ -141,18 +146,27 @@ void BattleScene::debugRender(HDC hdc)
 	if (wildBattle) wildBattleRender(hdc);
 	if (npcBattle) npcBattleRender(hdc);
 	
-	//디버깅 출력 내용 모음
+	//========================
+	// 디버깅 출력 내용 모음 //
+	//========================
+		/*
+	//if (KEYMANAGER->isOnceKeyDown(GAME_LMOUSE))
+	//{
+	//	//EFFECTMANAGER->play("파이리스킬1", m_ptMouse.x, m_ptMouse.y);
+	//	//test = EFFECTMANAGER->getIsPlay();
+	//	//m_player->skillEffect(1);
+	//}
+	
+	//if(test) test = EFFECTMANAGER->getIsPlay();
 
-	if (KEYMANAGER->isStayKeyDown(GAME_LMOUSE))
-	{
-		EFFECTMANAGER->play("파이리스킬1", m_ptMouse.x, m_ptMouse.y);
-	}
-	wsprintf(str, "%d, %d", m_ptMouse.x, m_ptMouse.y);
+	//wsprintf(str, "%d", test);
+	//TextOut(hdc, 100, 100, str, strlen(str));
+
+	/*wsprintf(str, "%d, %d", m_ptMouse.x, m_ptMouse.y);
 	TextOut(hdc, m_ptMouse.x, m_ptMouse.y - 20, str, strlen(str));
 
-	EFFECTMANAGER->render(hdc);
 
-	/*
+
 	wsprintf(str, "fight: %d, bag: %d, pocketmon: %d, run: %d", fight, bag, pocketmon, run);
 	TextOut(hdc, 10, 10, str, strlen(str));
 
@@ -162,6 +176,8 @@ void BattleScene::debugRender(HDC hdc)
 	wsprintf(str, "m_count: %d", m_count);
 	TextOut(hdc, 10, 40, str, strlen(str));
 	*/
+
+	EFFECTMANAGER->render(hdc);
 }
 
 void BattleScene::wildBattleFunctions()
@@ -177,15 +193,15 @@ void BattleScene::wildBattleFunctions()
 			playerStayMotion();
 		}
 
-		if (playerAtkSkillOn) skillMotion();
+		if (playerAtkSkillOn) playerskillMotion();
 
 		if (enemyTurn)
 		{
 			selectEnemyskill();
-			skillMotion();
+			playerskillMotion();
 		}
 
-		if (enemyAtkSkillOn) skillMotion();
+		if (enemyAtkSkillOn) playerskillMotion();
 	}
 }
 
@@ -413,7 +429,7 @@ void BattleScene::moveSkillSelectButton()
 
 }
 
-void BattleScene::skillMotion()
+void BattleScene::playerskillMotion()
 {
 	//공격모션
 	//적 깜빡깜빡
@@ -422,22 +438,34 @@ void BattleScene::skillMotion()
 	if (playerAtkSkillOn)
 	{
 		//포켓몬 클래스에 스킬 모션이 시작됬음을 알리는 bool변수와, 스킬 번호를 보낸다.
-		if (skill_1) {}
+		if (skill_1 && !skillMotionOn)
+		{
+			m_player->skillEffect(1);
+			skillMotionOn = m_player->getSkillMotionOn();
+		}
 		if (skill_2) {}
 		if (skill_3) {}
 		if (skill_4) {}
 	}
+
+
 	else if (enemyAtkSkillOn)
 	{
 
 	}
 
-	if (m_skillCount > 100 && playerAtkSkillOn)
+	if (skillMotionOn && !m_player->getSkillMotionOn());
+	{
+		skillMotionOn = false;
+		playerAtkSkillOn = false;
+		enemyTurn = true;
+	}
+	/*if (m_skillCount > 100 && playerAtkSkillOn)
 	{
 		m_skillCount = 0;
 		playerAtkSkillOn = false;
 		enemyTurn = true;
-	}
+	}*/
 	if (m_skillCount > 300 && enemyAtkSkillOn)
 	{
 		m_skillCount = 0;

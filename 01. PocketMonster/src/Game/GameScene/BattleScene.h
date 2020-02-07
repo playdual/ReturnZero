@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "Game/GameObject/PocketMon.h"
+#include "Game/GameObject/Pocketmons/Paili.h"
 
 //각 이미지별 정위치 좌표
 //플레이어 UI 정위치
@@ -51,9 +52,11 @@ public:
 
 	//void test();
 private:
-	std::shared_ptr<PocketMon> m_pocketmonpaili;
+	std::shared_ptr<Paili> m_player;
+	std::shared_ptr<Paili> m_enemy;
 	//bool moveOn;
 
+	
 	int m_count;
 	
 	//행동선택 커서
@@ -131,8 +134,10 @@ private:
 	//플레이어 대기상태 모션
 	bool motionUp;
 
-	//스킬사용 변수(플레이어, 적 공용)
+	//스킬사용 변수
 	bool playerAtkSkillOn;
+	bool skillMotionOn; 
+
 	bool enemyAtkSkillOn;
 	int m_skillCount;
 

@@ -10,15 +10,16 @@ class PocketMon
 	: public Object
 {
 public:
-	bool init() override;
-	void update(float _deltaTime) override;
+	virtual bool init()=0;
+	virtual void update(float _deltaTime) = 0;
 
 public:
-	void render(HDC hdc) override;
-	void afterRender(HDC hdc) override;
-	void debugRender(HDC hdc) override;
+	virtual void render(HDC hdc) = 0;
+	virtual void afterRender(HDC hdc) = 0;
+	virtual void debugRender(HDC hdc) = 0;
+	virtual void skillEffect(int _skillNum) = 0;
 
-private:
+protected:
 	std::shared_ptr<Image> m_pocketmonFrontImg;
 	std::shared_ptr<Image> m_pocketmonBackImg;
 	std::string m_name;

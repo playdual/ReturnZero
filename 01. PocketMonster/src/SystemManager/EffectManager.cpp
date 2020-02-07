@@ -138,6 +138,7 @@ void EffectManager::play(std::string effectKey, int x, int y)
 			viEffect vArrIter;
 			for (vArrIter = mIter->second.begin(); vArrIter != mIter->second.end(); ++vArrIter)
 			{
+				vArrIterIsPlay = vArrIter;
 				if ((*vArrIter)->getIsRunning())
 					continue;
 				(*vArrIter)->startEffect(x, y);
@@ -145,4 +146,9 @@ void EffectManager::play(std::string effectKey, int x, int y)
 			}
 		}
 	}
+}
+
+bool EffectManager::getIsPlay()
+{
+	return (*vArrIterIsPlay)->getIsRunning();
 }
