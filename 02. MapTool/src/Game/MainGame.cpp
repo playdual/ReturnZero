@@ -38,14 +38,14 @@ void MainGame::update()
 	deltaTime = TIMEMANAGER->getElapsedTime();
 	EFFECTMANAGER->update();
 	SCENEMANAGER->update(deltaTime);
-	CAMEARAMANAGER->update(getHDC());
+	//CAMEARAMANAGER->update(getHDC());
 	ANIMANAGER->update(deltaTime);
 }
 
 void MainGame::render()
 {
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, BLACKNESS);
-	CAMEARAMANAGER->ExtraRender(getHDC());
+	//CAMEARAMANAGER->ExtraRender(getHDC());
 
 	SCENEMANAGER->render(getMemDC());
 	SCENEMANAGER->afterRender(getMemDC());

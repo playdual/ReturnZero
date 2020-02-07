@@ -190,10 +190,10 @@ void CameraManager::moveCamera(int _distX, int _distY)
 
 void CameraManager::update(HDC _hdc)
 {
-	PatBlt(_hdc, cameraX, cameraY, WINSIZEX, WINSIZEY, BLACKNESS);
+	/*PatBlt(_hdc, cameraX, cameraY, WINSIZEX, WINSIZEY, BLACKNESS);
 	SetViewportOrgEx(_hdc, -cameraX, -cameraY, NULL);
 
-
+*/
 }
 
 std::pair<int, int> CameraManager::getRelativePosition(const UTIL::IRECT & _rect, bool & _isCanPrinted)
@@ -202,8 +202,8 @@ std::pair<int, int> CameraManager::getRelativePosition(const UTIL::IRECT & _rect
 	int relativeX = _rect.left - cameraX;
 	int relativeY = _rect.top - cameraY;
 
-	if ((-extraX + cameraBox.left <= relativeX && relativeX <= cameraBox.right) &&
-		(-extraY + cameraBox.top <= relativeY && relativeY <= cameraBox.bottom))
+	if ((-extraX  <= relativeX && relativeX <= WINSIZEX) &&
+		(-extraY  <= relativeY && relativeY <= WINSIZEY))
 		_isCanPrinted = true;
 
 	return {relativeX, relativeY};
@@ -273,8 +273,8 @@ void CameraManager::setRelativePosition(const UTIL::IRECT & _absRect, UTIL::IREC
 	_outRect.right = _absRect.right - cameraX;
 	_outRect.bottom = _absRect.bottom - cameraY;
 
-	if ((-extraX + cameraBox.left <= _outRect.left && _outRect.left <= cameraBox.right) &&
-		(-extraY + cameraBox.top <= _outRect.top && _outRect.top <= cameraBox.bottom))
+	if ((-extraX <= _outRect.left && _outRect.left <= uiX) &&
+		(-extraY <= _outRect.top && _outRect.top <= WINSIZEY))
 		_isCanPrinted = true;
 }
 

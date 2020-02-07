@@ -11,8 +11,10 @@ public:
 	void update(float _deltaTime);
 	void render(HDC hdc);
 
+public:
+	void setColor();
 
-private:
+public:
 	UTIL::IRECT m_absTile;
 	UTIL::IRECT m_outputTile;
 	bool isCanprint = false;
@@ -23,4 +25,6 @@ private:
 	bool isMovable;
 	int m_BlockPositionX;
 	int m_BlockPositionY;
+
+	COLORREF color = RGB(255, 255, 255);
 };

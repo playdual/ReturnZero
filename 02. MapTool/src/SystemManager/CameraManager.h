@@ -47,8 +47,10 @@ private:
 	int extraX = 100;
 	int extraY = 100;
 
+	int uiX = 1000;
+
 	RECT cameraBox;
-	//¿©¹é¿ë
+	//ì—¬ë°±ìš©
 	RECT cameraExtraLeft;
 	RECT cameraExtraTop;
 	RECT cameraExtraRight;
