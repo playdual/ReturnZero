@@ -65,3 +65,12 @@ std::vector<Tile>& MapManager::findMap(std::string mapKey)
 	curMap = map->second;
 	return map->second;
 }
+
+TileType MapManager::getTileTypeFromIndex(int _x, int _y)
+{
+	for (int i = 0; i < curMap.size(); ++i) {
+		if (curMap[i].m_BlockPositionX == _x && curMap[i].m_BlockPositionY == _y) {
+			return curMap[i].m_Type;
+		}
+	}
+}

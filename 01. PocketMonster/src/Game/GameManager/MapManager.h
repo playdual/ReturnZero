@@ -11,7 +11,7 @@ public:
 	void addMap(std::string mapKey, char* fileName);
 	std::vector<Tile>& findMap(std::string mapKey);
 	std::vector<Tile>& getCurMap() { return curMap; }
-
+	TileType getTileTypeFromIndex(int _x, int _y);
 
 private:
 	std::map<std::string, std::vector<Tile>> MapList;
