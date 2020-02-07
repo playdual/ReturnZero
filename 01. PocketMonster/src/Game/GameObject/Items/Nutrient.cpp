@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Nutrient.h"
 
-Nutrient::Nutrient(ItemType _type, PockemonAttibute _kind, UTIL::IRECT _rect, std::string _name, int _count, int _price, std::string _description, int _addAbility)
+Nutrient::Nutrient(ItemType _type, UTIL::IRECT _rect, std::string _name, int _count, int _price, std::string _description, int _addAbility)
 	:Item(_type/*,_img */, _rect, _name, _count, _price, _description), m_addAbility(_addAbility)
 {
 

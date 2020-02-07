@@ -3,7 +3,6 @@
 #include "Game/GameManager/ItemManager.h"
 Inventory::Inventory()
 {
-
 }
 
 Inventory::~Inventory()
@@ -12,8 +11,7 @@ Inventory::~Inventory()
 
 bool Inventory::init()
 {
-	m_item.push_back(ITEMMANAGER->findItem("초급 Hp포션"));
-	m_item.push_back(ITEMMANAGER->findItem("초급 PowerUp 포션"));
+
 
 	return true;
 }

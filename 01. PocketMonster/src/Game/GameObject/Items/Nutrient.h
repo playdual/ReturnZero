@@ -5,7 +5,7 @@ class Nutrient
 	: public Item
 {
 public:
-	Nutrient(ItemType _type, PockemonAttibute _kind/*, Image* _img*/, UTIL::IRECT _rect, std::string _name,
+	Nutrient(ItemType _type /*, Image* _img*/, UTIL::IRECT _rect, std::string _name,
 		int _count, int _price, std::string _description, int _addAbility);
 	~Nutrient();
 

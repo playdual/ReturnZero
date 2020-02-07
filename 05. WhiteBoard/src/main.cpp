@@ -8,7 +8,7 @@ using namespace std;
 enum KINDCOUNT
 {
 	ITEMKIND = 1, NAME , RECTX , RECTY , WIDTH , HEIGHT ,
-	COUNT , PRICE , DESCRIPTION , HEALHP , DAMAGE , ADDABILITY 
+	COUNT , PRICE , DESCRIPTION , HEALHP , DAMAGE , ADDABILITY  , ATIBUTEKIND
 };
 struct potionText {
 	int		itemKind[100];		//1
@@ -23,6 +23,7 @@ struct potionText {
 	int		healHp[100];		//10
 	int		damage[100];		//11
 	int		addAbility[100];	//12
+	int		atibuteKind[100];	//13
 };
 
 int main(void)
@@ -79,6 +80,13 @@ int main(void)
 				cout << "NAME : " << itemPotion.name[i] << endl;
 				ptr = strtok(NULL, "#");
 
+			if (itemPotion.itemKind[i] == 5)
+			{
+			case ATIBUTEKIND:
+				itemPotion.atibuteKind[i] = atoi(ptr);
+				cout << "ATIBUTE : " << itemPotion.atibuteKind[i] << endl;
+				ptr = strtok(NULL, "#");
+			}
 
 			case RECTX:
 				itemPotion.rectX[i] = atoi(ptr);
@@ -101,12 +109,13 @@ int main(void)
 				cout << "HEIGHT : " << itemPotion.height[i] << endl;
 				ptr = strtok(NULL, "#");
 
-
+			if (itemPotion.itemKind[i] != 5)
+			{
 			case COUNT:
 				itemPotion.count[i] = atoi(ptr);
 				cout << "COUNT : " << itemPotion.count[i] << endl;
 				ptr = strtok(NULL, "#");
-
+			}
 
 			case PRICE:
 				itemPotion.price[i] = atoi(ptr);
@@ -141,10 +150,13 @@ int main(void)
 			{
 			case ADDABILITY:
 				itemPotion.addAbility[i] = atoi(ptr);
+
 				cout << "ADDABILITY : " << itemPotion.addAbility[i] << endl;
 				ptr = strtok(NULL, "#");
 
 			}
+
+		
 			default:
 				 count = 0;
 				 cout << endl;

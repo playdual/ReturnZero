@@ -17,7 +17,8 @@ enum class TileType
 enum class ItemType
 {
 	ItemTypePotion= 0,			 // 회복템
-	ItemTypeBall,				     // 포켓몬볼
+	ITemTypeStatePotion,		 // stateHealPotion
+	ItemTypeBall,				 // 포켓몬볼
 	ItemTypeImportant,		     // 중요한 아이템??
 	ItemTypeSkillMachine,		 // 스킬 머신
 	ItemTypeEquipable,			 // 물건 장착
