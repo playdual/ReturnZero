@@ -3,35 +3,47 @@
 #include "Common/SystemManagers.h"
 
 
-
-
-class Item
+class Item 
 	: public Object
 {
+public:
+	Item(ItemType _type /*, Image* _img*/,  UTIL::IRECT _rect, std::string _name,
+		int _count, int _price, std::string _description);
+	~Item();
+
 protected:
-	std::string m_name;
-	ITEM_TYPE m_type;
+
+   ItemType			m_type;				//
+   Image*			m_img;			    // now not init Image
+   UTIL::IRECT		m_iRect;			//
+   std::string		m_ItemName;			// item Count
+   int				m_count;			// 
+   int				m_price;			//
+   std::string		m_description;		//
+	
 
 public:
 	virtual bool init() = 0;
-	virtual void update(float _deltaTime) =0;
+	virtual void update(float _deltaTime) = 0;
+
+	virtual void render(HDC hdc) = 0;
+	virtual void afterRender(HDC hdc) = 0;
+	virtual void debugRender(HDC hdc) = 0;
+
+	UTIL::IRECT getRect()	  { return m_iRect; }
+	Image*		getImage()	  { return m_img; }
+	int			getCount()	  { return m_count; }
+	std::string getItemName() { return m_ItemName; }
+	std::string getDescript() { return m_description; }
 
 	virtual void render(HDC hdc) = 0;
 	virtual void afterRender(HDC hdc) = 0;
 	virtual void debugRender(HDC hdc) = 0;
 	 
 private:
-	Image*			m_img;				//�̹���
-	UTIL::IRECT		m_iRect;			//����(��ǥ��)
-	std::string		m_itemName;				//�̸�
-	int				m_count;			//����
-	int				m_price;			//����
-	int				m_healHp;			//Hpȸ����
-	int				m_hitDamage;		//��������
-	int				m_addAtk;			//���ݷ� 
-	int				m_catchPercentage;	//���ϸ� ��� Ȯ��
-	std::string		m_description;		//����
+	
+
 };
 
-// 2020.02.04 item Ŭ���� ������ִ� Ŭ������ �����ϱ�
-// 2020.02.04 item Ŭ���� ������ִ� Ŭ������ �����ϱ�
+// 2020.02.04 item 
+// 2020.02.04 item 

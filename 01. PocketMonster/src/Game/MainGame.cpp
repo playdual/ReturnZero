@@ -4,10 +4,12 @@
 #include "GameScene/BattleScene.h"
 
 MainGame::MainGame()
-{
+{ 
+	
 }
 MainGame::~MainGame()
 {
+	
 }
 
 HRESULT MainGame::init()
@@ -23,7 +25,19 @@ HRESULT MainGame::init()
 	SCENEMANAGER->addScene("battle", new BattleScene);
 	SCENEMANAGER->scenePush("town");
 
+
+	inven = std::make_shared<Inventory>();
+	inven->init();
+
+	SCENEMANAGER->addScene("인벤씬",new InvenScene(inven));
+ 	SCENEMANAGER->changeScene("인벤씬"); 
+	
 	sceneInit = true;
+
+
+
+
+
 	return S_OK;
 }
 
@@ -52,15 +66,17 @@ void MainGame::render()
 {
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
 
-	SCENEMANAGER->render(getMemDC());
-	SCENEMANAGER->afterRender(getMemDC());
-	EFFECTMANAGER->render(getMemDC());
-	if(m_showRect)
-		SCENEMANAGER->debugRender(getMemDC());
-	if (m_showFPS)
-		TIMEMANAGER->render(getMemDC());
+	//SCENEMANAGER->render(getMemDC());
+	//SCENEMANAGER->afterRender(getMemDC());
+	//EFFECTMANAGER->render(getMemDC());
+	//if(m_showRect)
+	//	SCENEMANAGER->debugRender(getMemDC());
+	//if (m_showFPS)
+	//	TIMEMANAGER->render(getMemDC());
 
-	getBackBuffer()->render(getHDC(), 0, 0);
+	//getBackBuffer()->render(getHDC(), 0, 0);
+
+	//invenScene->debugRender(getHDC());
 }
 
 LRESULT MainGame::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)

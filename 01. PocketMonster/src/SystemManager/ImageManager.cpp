@@ -12,6 +12,7 @@ ImageManager::~ImageManager()
 
 HRESULT ImageManager::init()
 {
+
 	return S_OK;
 }
 

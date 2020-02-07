@@ -14,32 +14,31 @@ enum class TileType
 #define TILE_WIDTH 100
 #define TILE_HEIGHT 100
 
-enum class ITEM_TYPE
+enum class ItemType
 {
-	ITEM_TYPE_RECOVERY = 0,			 // 회복템
-	ITEM_TYPE_BALL,				     // 포켓몬볼
-	ITEM_TYPE_IMPORTANT,		     // 중요한 아이템??
-	ITEM_TYPE_SKILL_MACHINE,		     // 스킬 머신
-	ITEM_TPYE_EQUIPABLE,			 // 물건 장착
-	ITEM_TYPE_ABILITY_POTION,		 // 능력 향상 포션
-	DEFAULT
+	ItemTypePotion= 0,			 // 회복템
+	ItemTypeBall,				     // 포켓몬볼
+	ItemTypeImportant,		     // 중요한 아이템??
+	ItemTypeSkillMachine,		 // 스킬 머신
+	ItemTypeEquipable,			 // 물건 장착
+	ItemTypeAbilityPotion,		 // 능력 향상 포션
 };
 
 
-enum class POCKETMON_ATTRIBUTE
+enum class PockemonAttibute
 {
-	POCKETMON_ATTRIBUTE_FIRE,
-	POCKETMON_ATTRIBUTE_STONE,
-	POCKETMON_ATTRIBUTE_WATER,
-	POCKETMON_ATTRIBUTE_GRASS
+	PockemonAttibuteFire,
+	PockemonAttibuteStone,
+	PockemonAttibuteWater,
+	PockemonAttibuteGrass
 };
 
-enum class SKILL
+enum class Skill
 {
-	SCRACH ,                                                                                                                                                                                                                                                                                                                                                                                                                                 
-	HOWL ,
-	FIRE ,
-	SKILL_MACHINE_1 ,
-	SKILL_MACHINE_2
+	Nomal,                                                                                                                                                                                                                                                                                                                                                                                                                                 
+	Skill1,
+	Skill2,
+	SkillMachine_1 ,
+	SkillMachine_2
 };
-
+};

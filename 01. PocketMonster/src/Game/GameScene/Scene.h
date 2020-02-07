@@ -6,7 +6,7 @@
 
 class Scene {
 public:
-	Scene() {};
+ 	Scene() {};
 	virtual ~Scene() {};
 
 public:
