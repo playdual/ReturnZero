@@ -1,7 +1,8 @@
 #pragma once
 #include "Game/GameObject/Object.h"
 #include"Common/SystemManagers.h"
-
+#include"Inventory.h"
+#include"PocketMon.h"
 class player
 	: public Object
 {
@@ -46,6 +47,18 @@ private:
 
 
 	int count;
+	//status == 불배열
+	//badge
+	//
+	//QUESTSTATE == 불배열
+	//money == int
+
+
+
 	//float m_cameraX;
 	//float m_cameraY;
+
+	std::vector<std::shared_ptr<PocketMon>> Pocketmons;
+	std::shared_ptr<Inventory> Inven;
+
 };
