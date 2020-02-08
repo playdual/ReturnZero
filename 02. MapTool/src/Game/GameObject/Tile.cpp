@@ -32,8 +32,14 @@ void Tile::update(float _deltaTime)
 
 void Tile::render(HDC hdc)
 {
-	if(isCanprint)
-		UTIL::DrawColorRect(hdc, m_outputTile, true, color);
+	if (isCanprint) {
+		if (m_img) {
+			m_img->render(hdc, m_outputTile.left, m_outputTile.top);
+		}
+		else {
+			UTIL::DrawColorRect(hdc, m_outputTile, true, color);
+		}	
+	}
 }
 
 void Tile::setColor()
@@ -46,4 +52,35 @@ void Tile::setColor()
 			color = RGB(255, 255, 255);
 		}
 	}
+}
+
+void Tile::setAttributeTile(TileAttribute _attribute)
+{
+	m_Type = _attribute.type;
+	switch (_attribute.type)
+	{
+	case TileType::TileTypeFloor:
+		isMovable = true;
+		break;
+	case TileType::TileTypeHouse:
+		isMovable = false;
+		break;
+	case TileType::TileTypeBush:
+		isMovable = true;
+		break;
+	case TileType::TileTypeTree:
+		isMovable = false;
+		break;
+	}
+	isAfterRender = _attribute.isAfterRender;
+	m_img = IMAGEMANAGER->findImage(_attribute.tileKeyname);
+}
+
+void Tile::resetAttribute()
+{
+	SAFE_DELETE(m_img);
+	isMovable = false;
+	isAfterRender = false;
+	m_Type = TileType::TileTypeNone;
+
 }

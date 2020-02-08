@@ -13,6 +13,8 @@ public:
 
 public:
 	void setColor();
+	void setAttributeTile(TileAttribute _attribute);
+	void resetAttribute();
 
 public:
 	UTIL::IRECT m_absTile;
@@ -20,7 +22,7 @@ public:
 	bool isCanprint = false;
 
 	TileType m_Type;
-	Image* m_img;
+	Image* m_img = nullptr;
 	bool isAfterRender;
 	bool isMovable;
 	int m_BlockPositionX;

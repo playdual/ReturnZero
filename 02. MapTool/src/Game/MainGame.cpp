@@ -12,7 +12,15 @@ MainGame::~MainGame()
 HRESULT MainGame::init()
 {
 	GameNode::init();
-	
+	//add rsc
+	IMAGEMANAGER->addImage("Bush1", "Images/Bush/Bush1.bmp", 50, 50);
+	IMAGEMANAGER->addImage("Bush1t", "Images/Bush/Bush1.bmp", 100, 100);
+	IMAGEMANAGER->addImage("GrassTile1", "Images/Tile/GrassTile1.bmp", 50, 50);
+	IMAGEMANAGER->addImage("GrassTile1t", "Images/Tile/GrassTile1.bmp", 100, 100);
+	IMAGEMANAGER->addImage("Tree1", "Images/Tree/Tree1.bmp", 50, 50);
+	IMAGEMANAGER->addImage("Tree1t", "Images/Tree/Tree1.bmp", 100, 100);
+
+
 	//add Scene
 	SCENEMANAGER->addScene("MapTool", new MapToolScene);
 	CAMEARAMANAGER->setCameraBox(100, 100, 1200, 700);

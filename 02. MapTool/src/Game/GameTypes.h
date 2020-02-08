@@ -7,7 +7,6 @@
 #define TILE_WIDTH 100
 #define TILE_HEIGHT 100
 
-
 #define TILESIZEX TILEX * TILESIZE
 #define TILESIZEY TILEY * TILESIZE
 
@@ -20,7 +19,9 @@ enum class TileType
 	TileTypeFloor,
 	TileTypeHouse,
 	TileTypeBush,
-	TileTypeTree
+	TileTypeTree,
+	TileTypeOutRange,
+	TileTypeNone
 };
 
 //맵툴에서 사용할 녀석
@@ -88,4 +89,10 @@ struct tagCurrentTile
 {
 	int x;
 	int y;
+};
+
+struct TileAttribute {
+	TileType type;
+	std::string tileKeyname;
+	bool isAfterRender;
 };
