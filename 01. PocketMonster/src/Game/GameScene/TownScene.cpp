@@ -30,6 +30,7 @@ void TownScene::update(float _deltaTime)
 
 void TownScene::render(HDC hdc)
 {
+	m_player->render(hdc);
 	
 }
 

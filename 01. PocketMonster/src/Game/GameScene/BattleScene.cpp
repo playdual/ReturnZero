@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "BattleScene.h"
 
 BattleScene::BattleScene(){}
@@ -9,7 +9,7 @@ bool BattleScene::init()
 {
 	IMAGEMANAGER->addImage("battleTemp", "images/battleTemp2.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 	
-	EFFECTMANAGER->addEffect("ÆÄÀÌ¸®½ºÅ³1", "images/pailiSkill_1.bmp", 35, 150, 35, 30, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("íŒŒì´ë¦¬ìŠ¤í‚¬1", "images/pailiSkill_1.bmp", 35, 150, 35, 30, 1, 0.1f, 100);
 
 	m_player = std::make_shared<Paili>();
 	m_player->init();
@@ -18,9 +18,9 @@ bool BattleScene::init()
 	m_enemy->init();
 
 	//===============
-	// RECT ÃÊ±âÈ­ //
+	// RECT ì´ˆê¸°í™” //
 	//===============
-	//UI ¿ÀºêÁ§Æ® À§Ä¡ ÃÊ±âÈ­
+	//UI ì˜¤ë¸Œì íŠ¸ ìœ„ì¹˜ ì´ˆê¸°í™”
 	m_playerBottomX = WINSIZEX;
 	m_playerimgX = 1224;
 	m_playerPocketmonX= 1224;
@@ -29,52 +29,52 @@ bool BattleScene::init()
 	m_enemyPocketmonX = -360;
 	m_enemyStatusX = -425;
 
-	//¹è°æÈ­¸é
-	//Àû »óÅÂÃ¢ 
+	//ë°°ê²½í™”ë©´
+	//ì  ìƒíƒœì°½ 
 	m_enemyStatus = UTIL::IRectMake(m_enemyStatusX, 80, 425, 130);
-	//Àû ¹Ù´Ú
+	//ì  ë°”ë‹¥
 	 m_enemyBottom = UTIL::IRectMake(m_enemyBottomX, 228, 547, 159);
-	//Àû Æ÷ÄÏ¸ó
+	//ì  í¬ì¼“ëª¬
 	m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
-	//ÇÃ·¹ÀÌ¾î¹Ù´Ú
+	//í”Œë ˆì´ì–´ë°”ë‹¥
 	m_playerBottom = UTIL::IRectMake(m_playerBottomX, 467, 547, 159);
-	//ÇÃ·¹ÀÌ¾î ÀÌ¹ÌÁö
+	//í”Œë ˆì´ì–´ ì´ë¯¸ì§€
 	m_playerImg = UTIL::IRectMake(m_playerimgX, 329, 210, 209);
-	//ÇÃ·¹ÀÌ¾î Æ÷ÄÏ¸ó
+	//í”Œë ˆì´ì–´ í¬ì¼“ëª¬
 	m_playerPocketmon = UTIL::IRectMake(m_playerPocketmonX, 329, 210, 209);
-	//ÇÃ·¹ÀÌ¾î »óÅÂÃ¢
+	//í”Œë ˆì´ì–´ ìƒíƒœì°½
 	m_playerStatus = UTIL::IRectMake(m_playerStatusX, 356, 446, 180);
-	//½ºÅ³ ÀÌÆÑÆ®
+	//ìŠ¤í‚¬ ì´íŒ©íŠ¸
 	m_playerAtkSkillEffect = UTIL::IRectMake(410, 165, 563, 365);
 	m_enemyAtkSkillEffect = UTIL::IRectMake(410, 165, 563, 365);
 	
 	//===========
-	// ´ë±â»óÅÂ //
+	// ëŒ€ê¸°ìƒíƒœ //
 	//===========
-	//Çàµ¿ ¼±ÅÃÃ¢
+	//í–‰ë™ ì„ íƒì°½
 	m_selectRect = UTIL::IRectMake(618, 595, 20, 40);
 	m_explainRect = UTIL::IRectMake(0, 538, WINSIZEX, WINSIZEY - 538);
 
-	//½ºÅ³ ¼±ÅÃÃ¢
+	//ìŠ¤í‚¬ ì„ íƒì°½
 	m_skillSelectRect = UTIL::IRectMake(39, 595, 20, 40);
 	m_skillListRect = UTIL::IRectMake(0, 538, 605, WINSIZEY - 538);
 	m_skillExplainRect = UTIL::IRectMake(610, 538, WINSIZEX - 610, WINSIZEY - 538);
 
 	//===================
-	// ÀüÅõÀ¯ÇüÁ¶Àıº¯¼ö //
+	// ì „íˆ¬ìœ í˜•ì¡°ì ˆë³€ìˆ˜ //
 	//===================
 	wildBattle = true;
 	npcBattle = false;
 	
 	//===========================
-	// ÀüÅõ ¾Ö´ÏÄÉÀÌ¼Ç °ü·Ã º¯¼ö //
+	// ì „íˆ¬ ì• ë‹ˆì¼€ì´ì…˜ ê´€ë ¨ ë³€ìˆ˜ //
 	//===========================
 	wildBattleIntroAniOn = true;
 	uiObjectRegularPosition = false;
 	playerImgSlideOut = false;
 
 	//===================
-	// ¼±ÅÃÃ¢ Á¶Àı º¯¼ö //
+	// ì„ íƒì°½ ì¡°ì ˆ ë³€ìˆ˜ //
 	//===================
 	fight = true;
 	bag = false;
@@ -84,7 +84,7 @@ bool BattleScene::init()
 	playerAtkOn = false;
 
 	//===================
-	// ½ºÅ³Ã¢ Á¶Àı º¯¼ö //
+	// ìŠ¤í‚¬ì°½ ì¡°ì ˆ ë³€ìˆ˜ //
 	//===================
 	skill_1 = true;
 	skill_2 = false;
@@ -92,7 +92,7 @@ bool BattleScene::init()
 	skill_4 = false;
 
 	//===============
-	// °ø°İ ÅÏ º¯¼ö //
+	// ê³µê²© í„´ ë³€ìˆ˜ //
 	//===============
 	playerTurn = true;
 	enemyTurn = false;
@@ -100,7 +100,7 @@ bool BattleScene::init()
 	m_count = 0;
 
 	//================
-	// °ø°İ°ü·Ã º¯¼ö //
+	// ê³µê²©ê´€ë ¨ ë³€ìˆ˜ //
 	//================
 	playerAtkSkillOn = false;
 	skillMotionOn = false;
@@ -147,12 +147,12 @@ void BattleScene::debugRender(HDC hdc)
 	if (npcBattle) npcBattleRender(hdc);
 	
 	//========================
-	// µğ¹ö±ë Ãâ·Â ³»¿ë ¸ğÀ½ //
+	// ë””ë²„ê¹… ì¶œë ¥ ë‚´ìš© ëª¨ìŒ //
 	//========================
 		/*
 	//if (KEYMANAGER->isOnceKeyDown(GAME_LMOUSE))
 	//{
-	//	//EFFECTMANAGER->play("ÆÄÀÌ¸®½ºÅ³1", m_ptMouse.x, m_ptMouse.y);
+	//	//EFFECTMANAGER->play("íŒŒì´ë¦¬ìŠ¤í‚¬1", m_ptMouse.x, m_ptMouse.y);
 	//	//test = EFFECTMANAGER->getIsPlay();
 	//	//m_player->skillEffect(1);
 	//}
@@ -207,19 +207,19 @@ void BattleScene::wildBattleFunctions()
 
 void BattleScene::wildBattleIntroAni()
 {
-	////Àû »óÅÂÃ¢ 
+	////ì  ìƒíƒœì°½ 
 		//m_enemyStatus = UTIL::IRectMake(55, 80, 425, 130);
-		////Àû Æ÷ÄÏ¸ó
+		////ì  í¬ì¼“ëª¬
 		//m_enemyPocketmon = UTIL::IRectMake(664, 165, 165, 181);
-		////Àû ¹Ù´Ú
+		////ì  ë°”ë‹¥
 		//m_enemyBottom = UTIL::IRectMake(477, 228, 547, 159);
-		////ÇÃ·¹ÀÌ¾î¹Ù´Ú
+		////í”Œë ˆì´ì–´ë°”ë‹¥
 		//m_playerBottom = UTIL::IRectMake(0, 467, 534, 82);
-		////ÇÃ·¹ÀÌ¾î ÀÌ¹ÌÁö
+		////í”Œë ˆì´ì–´ ì´ë¯¸ì§€
 		//m_playerImg = UTIL::IRectMake(200, 329, 210, 209);
-		////ÇÃ·¹ÀÌ¾î Æ÷ÄÏ¸ó
+		////í”Œë ˆì´ì–´ í¬ì¼“ëª¬
 		//m_playerPocketmon = UTIL::IRectMake(200, 329, 210, 209);
-		//ÇÃ·¹ÀÌ¾î »óÅÂÃ¢
+		//í”Œë ˆì´ì–´ ìƒíƒœì°½
 		//m_playerStatus = UTIL::IRectMake(535, 356, 446, 180);
 	if (!uiObjectRegularPosition)
 	{
@@ -228,15 +228,15 @@ void BattleScene::wildBattleIntroAni()
 		m_playerBottomX -= 10;
 		m_playerimgX -= 10;
 		m_playerPocketmonX -= 10;
-		//Àû ¹Ù´Ú
+		//ì  ë°”ë‹¥
 		m_enemyBottom = UTIL::IRectMake(m_enemyBottomX, 228, 547, 159);
-		//Àû Æ÷ÄÏ¸ó
+		//ì  í¬ì¼“ëª¬
 		m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
-		//ÇÃ·¹ÀÌ¾î¹Ù´Ú
+		//í”Œë ˆì´ì–´ë°”ë‹¥
 		m_playerBottom = UTIL::IRectMake(m_playerBottomX, 467, 534, 159);
-		//ÇÃ·¹ÀÌ¾î ÀÌ¹ÌÁö
+		//í”Œë ˆì´ì–´ ì´ë¯¸ì§€
 		m_playerImg = UTIL::IRectMake(m_playerimgX, 329, 210, 209);
-		//ÇÃ·¹ÀÌ¾î Æ÷ÄÏ¸ó
+		//í”Œë ˆì´ì–´ í¬ì¼“ëª¬
 		m_playerPocketmon = UTIL::IRectMake(m_playerPocketmonX, 329, 210, 209);
 	}
 
@@ -245,7 +245,7 @@ void BattleScene::wildBattleIntroAni()
 	if (uiObjectRegularPosition && !playerImgSlideOut)
 	{
 		m_enemyStatusX += 5;
-		//Àû »óÅÂÃ¢ 
+		//ì  ìƒíƒœì°½ 
 		m_enemyStatus = UTIL::IRectMake(m_enemyStatusX, 80, 425, 130);
 		if (m_enemyStatusX >= ENEMYSTATUSX)
 		{
@@ -257,9 +257,9 @@ void BattleScene::wildBattleIntroAni()
 	{
 		m_playerimgX -= 10;
 		m_playerStatusX -= 10;
-		//ÇÃ·¹ÀÌ¾î ÀÌ¹ÌÁö
+		//í”Œë ˆì´ì–´ ì´ë¯¸ì§€
 		m_playerImg = UTIL::IRectMake(m_playerimgX, 329, 210, 209);
-		//ÇÃ·¹ÀÌ¾î »óÅÂÃ¢
+		//í”Œë ˆì´ì–´ ìƒíƒœì°½
 		m_playerStatus = UTIL::IRectMake(m_playerStatusX, 356, 446, 180);
 		if (m_playerStatusX <= PLAYERSTATUSX) wildBattleIntroAniOn = false;
 	}
@@ -271,17 +271,17 @@ void BattleScene::playerStayMotion()
 	if (m_count % 20 == 0 && motionUp)
 	{
 		motionUp = false;
-		//ÇÃ·¹ÀÌ¾î Æ÷ÄÏ¸ó
+		//í”Œë ˆì´ì–´ í¬ì¼“ëª¬
 		m_playerPocketmon = UTIL::IRectMake(m_playerPocketmonX, 319, 210, 209);
-		//ÇÃ·¹ÀÌ¾î »óÅÂÃ¢
+		//í”Œë ˆì´ì–´ ìƒíƒœì°½
 		m_playerStatus = UTIL::IRectMake(m_playerStatusX, 346, 446, 180);
 	}
 	else if (m_count % 20 == 0 && !motionUp)
 	{
 		motionUp = true;
-		//ÇÃ·¹ÀÌ¾î Æ÷ÄÏ¸ó
+		//í”Œë ˆì´ì–´ í¬ì¼“ëª¬
 		m_playerPocketmon = UTIL::IRectMake(m_playerPocketmonX, 329, 210, 209);
-		//ÇÃ·¹ÀÌ¾î »óÅÂÃ¢
+		//í”Œë ˆì´ì–´ ìƒíƒœì°½
 		m_playerStatus = UTIL::IRectMake(m_playerStatusX, 356, 446, 180);
 	}
 
@@ -291,10 +291,10 @@ void BattleScene::playerStayMotion()
 
 void BattleScene::moveButton()
 {
-	//½Î¿î´Ù: 618, 595, 20, 40
-	//°¡¹æ: 824, 595, 20, 40
-	//Æ÷ÄÏ¸ó: 618, 668, 20, 40
-	//µµ¸Á: 824, 668, 20, 40
+	//ì‹¸ìš´ë‹¤: 618, 595, 20, 40
+	//ê°€ë°©: 824, 595, 20, 40
+	//í¬ì¼“ëª¬: 618, 668, 20, 40
+	//ë„ë§: 824, 668, 20, 40
 	if (fight && !bag && !pocketmon && !run && KEYMANAGER->isOnceKeyDown(P1_RIGHT))
 	{
 		fight = false;
@@ -350,12 +350,12 @@ void BattleScene::moveButton()
 	}
 	if (bag && KEYMANAGER->isOnceKeyDown(P1_Z))
 	{
-		//°¡¹æÀ¸·Î ¾ÀÃ¼ÀÎÁö
+		//ê°€ë°©ìœ¼ë¡œ ì”¬ì²´ì¸ì§€
 		//SCENEMANAGER->scenePush("bag");
 	}
 	if (pocketmon && KEYMANAGER->isOnceKeyDown(P1_Z))
 	{
-		//Æ÷ÄÏ¸óÀ¸·Î ¾ÀÃ¼ÀÎÁö
+		//í¬ì¼“ëª¬ìœ¼ë¡œ ì”¬ì²´ì¸ì§€
 		//SCENEMANAGER->scenePush("pocketmon");
 	}
 	if (run && KEYMANAGER->isOnceKeyDown(P1_Z))
@@ -367,7 +367,7 @@ void BattleScene::moveButton()
 
 void BattleScene::moveSkillSelectButton()
 {
-	//½ºÅ³ ¼±ÅÃÃ¢
+	//ìŠ¤í‚¬ ì„ íƒì°½
 	//skill_1: 39, 595, 20, 40
 	//skill_2: 318, 595, 20, 40
 	//skill_3: 39, 674, 20, 40
@@ -431,13 +431,13 @@ void BattleScene::moveSkillSelectButton()
 
 void BattleScene::playerskillMotion()
 {
-	//°ø°İ¸ğ¼Ç
-	//Àû ±ôºı±ôºı
-	//ÇÇ´Ş±â
+	//ê³µê²©ëª¨ì…˜
+	//ì  ê¹œë¹¡ê¹œë¹¡
+	//í”¼ë‹¬ê¸°
 	m_skillCount++;
 	if (playerAtkSkillOn)
 	{
-		//Æ÷ÄÏ¸ó Å¬·¡½º¿¡ ½ºÅ³ ¸ğ¼ÇÀÌ ½ÃÀÛ‰çÀ½À» ¾Ë¸®´Â boolº¯¼ö¿Í, ½ºÅ³ ¹øÈ£¸¦ º¸³½´Ù.
+		//í¬ì¼“ëª¬ í´ë˜ìŠ¤ì— ìŠ¤í‚¬ ëª¨ì…˜ì´ ì‹œì‘ë¬ìŒì„ ì•Œë¦¬ëŠ” boolë³€ìˆ˜ì™€, ìŠ¤í‚¬ ë²ˆí˜¸ë¥¼ ë³´ë‚¸ë‹¤.
 		if (skill_1 && !skillMotionOn)
 		{
 			m_player->skillEffect(1);
@@ -483,61 +483,61 @@ void BattleScene::selectEnemyskill()
 
 void BattleScene::wildBattleRender(HDC hdc)
 {
-	HFONT myFont = CreateFont(30, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, "¼Ò¾ß¹Ù¸¥9");
+	HFONT myFont = CreateFont(30, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, "ì†Œì•¼ë°”ë¥¸9");
 	HFONT oldFont = (HFONT)SelectObject(hdc, myFont);
 	SetBkMode(hdc, TRANSPARENT);
 
 	char str[111];
-	//¹è°æ
+	//ë°°ê²½
 	IMAGEMANAGER->findImage("battleTemp")->render(hdc);
-	//ÀÎÆ®·Î ¾Ö´Ï¸ŞÀÌ¼Ç 
+	//ì¸íŠ¸ë¡œ ì• ë‹ˆë©”ì´ì…˜ 
 	if (wildBattleIntroAniOn)
 	{
-		//Àû
+		//ì 
 		UTIL::drawRect(hdc, m_enemyStatus);
 		UTIL::drawRect(hdc, m_enemyBottom);
 		UTIL::drawRect(hdc, m_enemyPocketmon);
-		//ÇÃ·¹ÀÌ¾î
+		//í”Œë ˆì´ì–´
 		UTIL::drawRect(hdc, m_playerBottom);
 		UTIL::drawRect(hdc, m_playerPocketmon);
 		UTIL::drawRect(hdc, m_playerImg);
 		UTIL::drawRect(hdc, m_playerStatus);
-		//¼³¸íÃ¢
+		//ì„¤ëª…ì°½
 		UTIL::drawRect(hdc, m_explainRect);
 		if (uiObjectRegularPosition && !playerImgSlideOut)
 		{
-			wsprintf(str, "¾Ñ!! ¾ß»ıÀÇ");
+			wsprintf(str, "ì•—!! ì•¼ìƒì˜");
 			TextOut(hdc, 83, 584, str, strlen(str));
 
-			wsprintf(str, "¿µÈ¯ÀÌ°¡ Æ¢¾î³ª¿Ô´Ù!!");
+			wsprintf(str, "ì˜í™˜ì´ê°€ íŠ€ì–´ë‚˜ì™”ë‹¤!!");
 			TextOut(hdc, 83, 584 + 40, str, strlen(str));
 
 		}
 		if (playerImgSlideOut)
 		{
-			wsprintf(str, "°¡¶ù Æ÷ÄÏ¿µÈ¯!!!!");
+			wsprintf(str, "ê°€ë í¬ì¼“ì˜í™˜!!!!");
 			TextOut(hdc, 83, 584, str, strlen(str));
 		}
 	}
-	//°ø°İ ¾Ö´Ï¸ŞÀÌ¼Ç
+	//ê³µê²© ì• ë‹ˆë©”ì´ì…˜
 	else
 	{
-		//Àû
+		//ì 
 		UTIL::drawRect(hdc, m_enemyStatus);
 		UTIL::drawRect(hdc, m_enemyBottom);
 		UTIL::drawRect(hdc, m_enemyPocketmon);
-		//ÇÃ·¹ÀÌ¾î
+		//í”Œë ˆì´ì–´
 		UTIL::drawRect(hdc, m_playerBottom);
 		UTIL::drawRect(hdc, m_playerPocketmon);
 		UTIL::drawRect(hdc, m_playerStatus);
 
 		if (playerTurn)
 		{
-			//¼³¸í + ¼±ÅÃÃ¢
+			//ì„¤ëª… + ì„ íƒì°½
 			if (!playerAtkOn)
 			{
 				UTIL::drawRect(hdc, m_explainRect);
-				//¼±ÅÃ Ä¿¼­
+				//ì„ íƒ ì»¤ì„œ
 				UTIL::drawRect(hdc, m_selectRect);
 			}
 			
@@ -551,13 +551,13 @@ void BattleScene::wildBattleRender(HDC hdc)
 		if (playerAtkSkillOn)
 		{
 			UTIL::drawRect(hdc, m_playerAtkSkillEffect);
-			wsprintf(str, "Æ÷ÄÏ¸ó ½ºÅ³ °ø°İ !!! ¿µÈ¯ÀÌ°¡ ¿ïºÎÂ¢¾ú´Ù!! Å©¾Æ¾Æ¾Æ¾Æ¾Ó!!");
+			wsprintf(str, "í¬ì¼“ëª¬ ìŠ¤í‚¬ ê³µê²© !!! ì˜í™˜ì´ê°€ ìš¸ë¶€ì§–ì—ˆë‹¤!! í¬ì•„ì•„ì•„ì•„ì•™!!");
 			TextOut(hdc, 500, 300, str, strlen(str));
 		}
 		if (enemyAtkSkillOn)
 		{
 			UTIL::drawRect(hdc, m_enemyAtkSkillEffect);
-			wsprintf(str, "ÁØ¼ö°¡ ¾ó±¼·Î ¹İ°İÇÑ´Ù!!! Å©¾Æ¾Æ¾Æ¾Æ¾Æ¾Æ¾Æ¾Æ¾Ç!!!!");
+			wsprintf(str, "ì¤€ìˆ˜ê°€ ì–¼êµ´ë¡œ ë°˜ê²©í•œë‹¤!!! í¬ì•„ì•„ì•„ì•„ì•„ì•„ì•„ì•„ì•…!!!!");
 			TextOut(hdc, 500, 300, str, strlen(str));
 		}
 	}
@@ -566,7 +566,7 @@ void BattleScene::wildBattleRender(HDC hdc)
 }
 
 
-//npc ¹èÆ² ÇÔ¼ö ¸ğÀ½
+//npc ë°°í‹€ í•¨ìˆ˜ ëª¨ìŒ
 void BattleScene::npcBattleFunctions()
 {
 }

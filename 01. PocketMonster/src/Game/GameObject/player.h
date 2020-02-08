@@ -45,12 +45,23 @@ private:
 	int bgOutY;
 
 	int m_playerRectMemory;
+	int m_playerCurrentArrowMemory; //Up = 0, Down = 1, Left = 2, Right =3
+	int m_playerBeforeArrowMemory; //Up = 0, Down = 1, Left = 2, Right =3
+
+	bool isEqulArrow=false;
+
 	bool isMoveLeft=false;
 	bool isMoveRight=false;
 	bool isMoveUp=false;
 	bool isMoveDown=false;
 	bool isAnotherMove = false;
 
+	bool isLeft = false;
+	bool isRight = false;
+	bool isUp = false;
+	bool isDown = false;
+
+	float m_CurrentTime=0;
 	
 	int count;
 	int m_BattleStart;
@@ -65,9 +76,19 @@ private:
 	int m_blockPositionY;
 
 
+	//player image
+	Image* m_playerImg;
+	Animation* m_aniplayer;
+	Animation* m_aniplayerDown;
+	Animation* m_aniplayerUp;
+	Animation* m_aniplayerLeft;
+	Animation* m_aniplayerRight;
+	Animation* m_aniplayerMoveDown;
+	Animation* m_aniplayerMoveUp;
+	Animation* m_aniplayerMoveLeft;
+	Animation* m_aniplayerMoveRight;
 
-	//float m_cameraX;
-	//float m_cameraY;
+	
 
 	std::vector<std::shared_ptr<PocketMon>> Pocketmons;
 	std::shared_ptr<Inventory> Inven;
