@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "SunwooScene.h"
 #include "Game/GameObject/SunwooRect.h"
 bool SunwooScene::init()
@@ -33,18 +33,22 @@ void SunwooScene::release()
 
 void SunwooScene::render(HDC hdc)
 {
-	for (auto& Tile : Tiles)
-	Tile->render(hdc);
+	//for (auto& Tile : Tiles)
+	//Tile->render(hdc);
 
-	//for (int y = 0; y < 100; ++y) {
-	//	for (int x = 0; x < 100; ++x) {
-	//		tile->render(hdc);
-	//		
-	//	}
-	//}
+	////for (int y = 0; y < 100; ++y) {
+	////	for (int x = 0; x < 100; ++x) {
+	////		tile->render(hdc);
+	////		
+	////	}
+	////}
 
-	for (auto& obj : objs)
-		obj->render(hdc);
+	//for (auto& obj : objs)
+	//	obj->render(hdc);
+	UTIL::IRECT rect = UTIL::IRectMake(50, 50, 100, 100);
+
+	UTIL::DrawEllipse(hdc, rect, true);
+	UTIL::PrintText(hdc, "하위", "님휘", 100, 100, 100, RGB(255, 0, 255));
 }
 
 void SunwooScene::afterRender(HDC hdc)

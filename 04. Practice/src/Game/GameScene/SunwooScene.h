@@ -6,6 +6,9 @@ class SunwooScene
 	: public Scene
 {
 public:
+	SunwooScene() {}
+	~SunwooScene() {}
+public:
 	bool init() override;
 	void update(float _deltaTime) override;
 	void release() override;

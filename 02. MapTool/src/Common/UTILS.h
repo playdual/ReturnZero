@@ -4,108 +4,213 @@
 
 namespace UTIL
 {
-	//Ω«ºˆ«¸ ¡°
+	//Ïã§ÏàòÌòï Ï†ê
 	typedef struct _tagFpoint {
+		_tagFpoint()
+			: x(0), y(0)
+		{}
+		_tagFpoint(float _x, float _y)
+			: x(_x), y(_y)
+		{}
+		_tagFpoint(const _tagFpoint& _point)
+			: x(_point.x), y(_point.y)
+		{}
 		float x, y;
 	}FPOINT, *PFPOINT;
-
-	//ø¯
+	//Ïõê
 	typedef struct _tagCircle {
-		FPOINT p;
-		int radius;
+		_tagCircle()
+			: radius(0)
+		{
+			p.x = 0;
+			p.y = 0;
+		}
+		_tagCircle(float _x, float _y, float _radius)
+			: radius(_radius)
+		{
+			p.x = _x;
+			p.y = _y;
+		}
+		_tagCircle(const POINT& _p, float _radius)
+			: radius(_radius)
+		{
+			p.x = _p.x;
+			p.y = _p.y;
+		}
+		_tagCircle(const _tagCircle& _circle)
+			: radius(_circle.radius)
+		{
+			p.x = _circle.p.x;
+			p.y = _circle.p.y;
+		}
+		POINT p;
+		float radius;
 	}Circle, *PCircle;
-
-	//Ω«ºˆ«¸ ªÁ∞¢«¸
+	//Ïã§ÏàòÌòï ÏÇ¨Í∞ÅÌòï(Í∏∞Îä• ÎØ∏Íµ¨ÌòÑ)
 	typedef struct _tagFrect {
 		float left, top, right, bottom;
 	}FRECT, *PFRECT;
-
-	//¡§ºˆ«¸ ªÁ∞¢«¸
+	//Ï†ïÏàòÌòï Í∏∞Îä• ÏÇ¨Í∞ÅÌòï
 	typedef struct _tagIrect {
 		int left, top, right, bottom;
 		int centerX, centerY;
 		_tagIrect()
-			:left(0), top(0), right(0), bottom(0)
+			:left(0), top(0), right(0), bottom(0), centerX(0), centerY(0)
 		{}
 		_tagIrect(int _left, int _top, int _right, int _bottom)
 			: left(_left), top(_top), right(_right), bottom(_bottom)
-		{}
-
+		{
+			alignment();
+			setCenter();
+		}
+		_tagIrect(const _tagIrect& rect)
+			: left(rect.left), top(rect.top), right(rect.right), bottom(rect.bottom)
+		{
+			alignment();
+			setCenter();
+		}
+		_tagIrect(const RECT& rect)
+			: left(rect.left), top(rect.top), right(rect.right), bottom(rect.bottom)
+		{
+			alignment();
+			setCenter();
+		}
+		_tagIrect(const POINT& _pt1, const POINT& _pt2)
+			: left(_pt1.x), top(_pt1.y), right(_pt2.x), bottom(_pt2.y)
+		{
+			alignment();
+			setCenter();
+		}
 		void moveUp(int dist);
 		void moveDown(int dist);
 		void moveLeft(int dist);
 		void moveRight(int dist);
+		void move(int _dx, int _dy);
 		void reset();
-		void operator=(const _tagIrect& rect) {
+		void alignment();
+		int getWidth();
+		int getHeight();
+		inline void operator=(const _tagIrect& rect) {
 			left = rect.left;
 			right = rect.right;
 			top = rect.top;
 			bottom = rect.bottom;
+			alignment();
+			centerX = rect.centerX;
+			centerY = rect.centerY;
 		}
+		inline void operator=(const RECT& rect) {
+			left = rect.left;
+			right = rect.right;
+			top = rect.top;
+			bottom = rect.bottom;
+			alignment();
+			setCenter();
+		}		
+	private:
+		void setCenter();
 	}IRECT, *PIRECT;
+	//IRECT operator override
+	bool operator==(const IRECT& rect1, const IRECT& rect2);
 
-	//∑£¥˝∞™ ∞°¡Æø¿±‚
-	int getInt(int num);
-	int getFromIntTo(int fromNum, int toNum);
 
-	//∞≈∏Æ
-	float getDistance(float startX, float startY, float endX, float endY);
-	//µŒ ¡°¿∏∑Œ ∞¢µµ ±∏«œ±‚
-	float getAngle(float x1, float y1, float x2, float y2);
+//================= MATH FUNCTION =======================
+	
+	//ÎûúÎç§Í∞í Í∞ÄÏ†∏Ïò§Í∏∞
+	int GetRndInt(int _zeroToNum);
+	int GetRndIntFromTo(int _fromNum, int _toNum);
+	float GetRndFloat(float _zeroToNum);
+	float GetRndFloatFromTo(float _fromNum, float _toNum);
 
-	//ø¯√Êµπ
-	bool isCircleCircleCollision(Circle& c1, Circle& c2);
+	//ÎëêÏ†êÏùò Í±∞Î¶¨ Íµ¨ÌïòÍ∏∞
+	float GetDistance(int _startX, int _startY, int _endX, int _endY);
+	float GetDistance(const POINT& _start, const POINT& _end);
+	float GetDistance(const POINT& _start, int _endX, int _endY);
+	float GetDistance(float _startX, float _startY, float _endX, float _endY);
+	float GetDistance(const FPOINT& _start, const FPOINT& _end);
+	float GetDistance(const FPOINT& _start, float _endX, float _endY);
 
-	//ªÁ∞¢«¸∞˙ ªÁ∞¢«¸√Êµπ
-	bool isRectRectCollision(const RECT & rect1, const RECT& rect2);
-	bool isRectRectCollision(const RECT & rect1, const FRECT & rect2);
-	bool isRectRectCollision(const FRECT & rect1, const FRECT & rect2);
-	bool isRectRectCollision(const IRECT& rect1, const IRECT & rect2);
-	bool isRectRectCollision(const IRECT& rect1, const RECT & rect2);
+	//ÎëêÏ†êÏùò Í∞ÅÎèÑ Íµ¨ÌïòÍ∏∞
+	float GetAngle(int _srcX, int _srcY, int _targetX, int _targetY);
+	float GetAngle(POINT _src, POINT _target);
+	float GetAngle(float _srcX, float _srcY, float _targetX, float _targetY);
+	float GetAngle(FPOINT _src, FPOINT _target);
 
-	//¡°∞˙ ªÁ∞¢«¸ √Êµπ
+
+//================== MAKE FUNCTION ==========================
+	//Ï†ê ÎßåÎì§Í∏∞
+	POINT PointMake(int _x, int _y);
+	FPOINT FPointMake(float _x, float _y);
+
+	//Ïõê ÎßåÎì§Í∏∞
+	Circle MakeCircle(float _x, float _y, int _radius);
+
+	//RECTÎßåÎì§Í∏∞(Ï¢åÏÉÅÎã® Í∏∞Ï§Ä)
+	RECT RectMake(int x, int y, int width, int height);
+	RECT RectMakeCenter(int x, int y, int width, int height);
+	FRECT FRectMake(float x, float y, float width, float height);
+	FRECT FRectMakeCenter(float x, float y, float width, float height);
+	IRECT IRectMake(int x, int y, int width, int height);
+	IRECT IRectMakeCenter(int x, int y, int width, int height);
+
+//================= Draw Function ==============================
+	//ÏÑ†Í∑∏Î¶¨Í∏∞
+	void DrawLine(HDC _hdc, int _startX, int _startY, int _endX, int _endY);
+	void DrawLine(HDC _hdc, const POINT& _start, const POINT& _end);
+	void DrawLine(HDC _hdc, float _startX, float _startY, float _endX, float _endY);
+	void DrawLine(HDC _hdc, const FPOINT& _start, const FPOINT& _end);
+
+	//ÏÇ¨Í∞ÅÌòï Í∑∏Î¶¨Í∏∞
+	void DrawRect(HDC _hdc, const RECT& _rect, bool _isTransParent = false);
+	void DrawRect(HDC _hdc, const IRECT& _rect, bool _isTransParent = false);
+	void DrawColorRect(HDC _hdc, const RECT& _rect, COLORREF _color = RGB(255, 255, 255), bool _cleanEdge = false);
+	void DrawColorRect(HDC _hdc, const IRECT& _rect, COLORREF _color = RGB(255, 255, 255), bool _cleanEdge = false);
+
+	//ÌÉÄÏõê Í∑∏Î¶¨Í∏∞
+	void DrawEllipse(HDC _hdc, int _x, int _y, int _width, int _height, bool _isTransParent = false);
+	void DrawEllipse(HDC _hdc, const RECT& _rect, bool _isTransParent = false);
+	void DrawEllipse(HDC _hdc, const IRECT& _rect, bool _isTransParent = false);
+	void DrawColorEllipse(HDC _hdc, int _x, int _y, int _width, int _height, COLORREF _color = RGB(255, 255, 255), bool _cleanEdge = false);
+	void DrawColorEllipse(HDC _hdc, const RECT& _rect, COLORREF _color = RGB(255, 255, 255), bool _cleanEdge = false);
+	void DrawColorEllipse(HDC _hdc, const IRECT& _rect, COLORREF _color = RGB(255, 255, 255), bool _cleanEdge = false);
+
+	//Ïõê Í∑∏Î¶¨Í∏∞
+	void DrawCircle(HDC _hdc, const Circle& _circle, bool _isTransParent = false);
+	void DrawColorCircle(HDC _hdc, const Circle& _circle, COLORREF _color = RGB(255, 255, 255), bool _cleanEdge = false);
+
+	//Text Ï∂úÎ†•
+	void PrintText(HDC _hdc, char* _str, char* _font, int _destX, int _destY, 
+		int _fontSize = 20, COLORREF _fontColor = RGB(0, 0, 0), bool _isBgTransParent = false, COLORREF _bgColor = RGB(255, 255, 255));
+
+//================== Collision Function ===========================
+	//ÏõêÍ≥º Ïõê Ï∂©Îèå
+	bool isCircleCircleCollision(const Circle& _circle1, const Circle& _circle2);
+
+	//ÏõêÍ≥º ÏÇ¨Í∞ÅÌòï Ï∂©Îèå
+	bool isCircleRectCollision(const Circle & _circle, RECT _rect);
+	bool isCircleRectCollision(const Circle & _circle, FRECT _rect);
+	bool isCircleRectCollision(const Circle & _circle, IRECT _rect);
+
+	//ÏõêÍ≥º Ï†ê Ï∂©Îèå
+	bool isCirclePointCollision(const Circle & _circle, int _pointX, int _pointY);
+	bool isCirclePointCollision(const Circle & _circle, const POINT& _point);
+
+	//ÏÇ¨Í∞ÅÌòïÍ≥º ÏÇ¨Í∞ÅÌòïÏ∂©Îèå
+	bool isRectRectCollision(const RECT& _rect1, const RECT& _rect2);
+	bool isRectRectCollision(const FRECT& _rect1, const FRECT& _rect2);
+	bool isRectRectCollision(const IRECT& _rect1, const IRECT& _rect2);
+	bool isRectRectCollision(const IRECT& _rect1, const RECT& _rect2);
+
+	//Ï†êÍ≥º ÏÇ¨Í∞ÅÌòï Ï∂©Îèå
 	bool isPointRectCollision(const POINT & point, const RECT& rect);
 	bool isPointRectCollision(const POINT & point, const FRECT& rect);
 	bool isPointRectCollision(const FPOINT & point, const RECT& rect);
 	bool isPointRectCollision(const FPOINT & point, const FRECT& rect);
 	bool isPointRectCollision(const POINT & point, const IRECT & rect);
 
+	//ÌîΩÏÖÄÏ∂©Îèå
 	bool isPixelColorSame(HDC _targetImgDC, const int _x, const int _y, COLORREF _targetColor = RGB(255, 0, 255));
 	bool isPixelColorSame(HDC _targetImgDC, const POINT& _destPos, COLORREF _targetColor = RGB(255, 0, 255));
-
-	bool isRectColorSame(HDC _targetImgDC, const RECT& rect, int _divisionX = 1, int _divisionY = 1, COLORREF _targetColor = RGB(255, 0, 255));
-	bool isRectColorSame(HDC _targetImgDC, const IRECT& rect, int _division = 1, int _divisionY = 1, COLORREF _targetColor = RGB(255, 0, 255));
-
-
-	//¡° ∏∏µÈ±‚
-	POINT PointMake(int x, int y);
-
-	//RECT∏∏µÈ±‚(¡¬ªÛ¥‹ ±‚¡ÿ)
-	RECT RectMake(int x, int y, int width, int height);
-	RECT RectMakeCenter(int x, int y, int width, int height);
-	FRECT FRectMake(float x, float y, float width, float height);
-	FRECT FRectMakeCenter(float x, float y, float width, float height);
-	
-	//º±±◊∏Æ±‚
-	void LineMake(HDC hdc, int x1, int y1, int x2, int y2);
-
-	//ªÁ∞¢«¸ ±◊∏Æ±‚
-	void RectangleMake(HDC hdc, int x, int y, int width, int height);
-	void drawRect(HDC hdc, const RECT& rect);
-	
-	//ªÁ∞¢«¸ ±◊∏Æ±‚(¡ﬂΩ…¡°)
-	void RectangleMakeCenter(HDC hdc, int x, int y, int width, int height);
-	void DrawRect(HDC hdc, const RECT& rect);
-	
-	//ø¯±◊∏Æ±‚
-	void EllipseMake(HDC hdc, int x, int y, int width, int height);
-	void EllipseMakeCenter(HDC hdc, int x, int y, int width, int height);
-
-	//IRECT
-	bool operator==(const IRECT& rect1, const IRECT& rect2);
-	void DrawColorRect(HDC hdc, const IRECT& rect, bool _cleanEdge = false, COLORREF color = RGB(0, 0, 0));
-	void DrawColorRect(HDC hdc, const RECT& rect, bool _cleanEdge = false, COLORREF color = RGB(0, 0, 0));
-	void drawRect(HDC hdc, const UTIL::IRECT& rect);
-	IRECT IRectMake(int x, int y, int width, int height);
-	IRECT IRectMakeCenter(int x, int y, int width, int height);
+	bool isRectColorSame(HDC _targetImgDC, const RECT& _rect, int _divisionX = 1, int _divisionY = 1, COLORREF _targetColor = RGB(255, 0, 255));
+	bool isRectColorSame(HDC _targetImgDC, const IRECT& _rect, int _division = 1, int _divisionY = 1, COLORREF _targetColor = RGB(255, 0, 255));
 }
