@@ -88,7 +88,7 @@ void MapToolScene::render(HDC hdc)
 		tile->render(hdc);
 	}
 	if(startedSelect)
-		UTIL::drawRect(hdc, m_selectRect);
+		UTIL::DrawRect(hdc, m_selectRect);
 	
 	UIrender(hdc);
 }
@@ -225,13 +225,13 @@ void MapToolScene::mainSelectUpdate()
 
 void MapToolScene::mainSelectRender(HDC hdc)
 {
-	UTIL::drawRect(hdc, tileSelectRect);
+	UTIL::DrawRect(hdc, tileSelectRect);
 	TextOut(hdc, tileSelectRect.left + textOffsetX, tileSelectRect.top + textOffsetY,
 		tileSelectStr, strlen(tileSelectStr));
-	UTIL::drawRect(hdc, treeSelectRect);
+	UTIL::DrawRect(hdc, treeSelectRect);
 	TextOut(hdc, treeSelectRect.left + textOffsetX, treeSelectRect.top + textOffsetY,
 		treeSelectStr, strlen(treeSelectStr));
-	UTIL::drawRect(hdc, bushSelectRect);
+	UTIL::DrawRect(hdc, bushSelectRect);
 	TextOut(hdc, bushSelectRect.left + textOffsetX, bushSelectRect.top + textOffsetY,
 		bushSelectStr, strlen(bushSelectStr));
 }
@@ -241,7 +241,7 @@ void MapToolScene::bushSelectUpdate()
 	backButtonUpdate();
 	if (KEYMANAGER->isStayKeyDown(GAME_LMOUSE))
 	{
-		for (auto& e : bushVector) {
+		for (auto& e : bushVector[page]) {
 			if (UTIL::isPointRectCollision(m_ptMouse, e.rect)) {
 				selectedAttribute = e.attribute;
 				break;
@@ -325,10 +325,10 @@ void MapToolScene::saveLoadUpdate()
 
 void MapToolScene::saveLoadRender(HDC hdc)
 {
-	UTIL::drawRect(hdc, saveSelectRect);
+	UTIL::DrawRect(hdc, saveSelectRect);
 	TextOut(hdc, saveSelectRect.left + textOffsetX, saveSelectRect.top + textOffsetY,
 		saveSelectStr, strlen(saveSelectStr));
-	UTIL::drawRect(hdc, loadSelectRect);
+	UTIL::DrawRect(hdc, loadSelectRect);
 	TextOut(hdc, loadSelectRect.left + textOffsetX, loadSelectRect.top + textOffsetY,
 		loadSelectStr, strlen(loadSelectStr));
 }
@@ -352,7 +352,7 @@ void MapToolScene::backButtonRender(HDC hdc)
 
 void MapToolScene::UIrender(HDC hdc)
 {
-	UTIL::drawRect(hdc, clientRect);
+	UTIL::DrawRect(hdc, clientRect);
 
 	if (m_mainSelect) 
 		mainSelectRender(hdc);

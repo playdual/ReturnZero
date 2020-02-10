@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #define PI		3.141592653
 #define PI2		PI*2
 
