@@ -21,6 +21,7 @@ HRESULT MainGame::init()
 	GameNode::init();
 	MAPMANGER->init();
 	ITEMMANAGER->init();
+	POCKETMONMANAGER->init();
 
 	//add Scene
 	IMAGEMANAGER->addImage("bg", "Images/temp.bmp", 0, 0, WINSIZEX, WINSIZEY);

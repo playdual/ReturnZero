@@ -20,7 +20,7 @@ void Map::init(char * _fileName)
 					}
 					else if (j == 2 || j == 1)
 					{
-						temp.init(TileType::TileTypeHouseDoor, nullptr, false, false, j, i);
+						temp.init(TileType::TileTypeNextMap, nullptr, false, false, j, i);
 					}
 					else
 					{

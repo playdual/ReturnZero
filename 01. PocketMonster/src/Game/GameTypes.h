@@ -7,6 +7,7 @@ enum class TileType
 	TileTypeHouse,
 	TileTypeBush,
 	TileTypeTree,
+	TileTypeNextMap,
 	TileTypeOutRange,
 	TileTypeNone
 };
