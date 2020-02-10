@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "player.h"
 #include <iostream>
 
@@ -347,7 +347,7 @@ void player::afterRender(HDC hdc)
 void player::debugRender(HDC hdc)
 {
 	//player
-	UTIL::DrawColorRect(hdc, m_outPlayerRect, true, RGB(153, 255, 30));
+	UTIL::DrawColorRect(hdc, m_outPlayerRect, RGB(153, 255, 30), true);
 	if (isMoveDown)
 		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top, m_aniplayerMoveDown);
 	else if (isMoveUp)

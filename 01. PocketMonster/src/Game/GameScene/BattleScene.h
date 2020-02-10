@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Scene.h"
 #include "Game/GameObject/PocketMon.h"
 #include "Game/GameObject/Pocketmons/Paili.h"
@@ -34,12 +34,12 @@ public:
 
 	
 	void wildBattleFunctions();
-	void npcBattleFunctions();
+	//void npcBattleFunctions();
 
 	void wildBattleIntroAni();
 
 	void wildBattleRender(HDC hdc);
-	void npcBattleRender(HDC hdc);
+	//void npcBattleRender(HDC hdc);
 	
 	//행동선택관련
 	void moveButton();
@@ -47,7 +47,7 @@ public:
 
 	void playerStayMotion();
 	void playerskillMotion();
-	void skillMotion();
+	//void skillMotion();
 	void selectEnemyskill();
 
 	//void test();

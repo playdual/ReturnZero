@@ -120,7 +120,7 @@ void BattleScene::release()
 void BattleScene::update(float _deltaTime)
 {
 	if (wildBattle) wildBattleFunctions();
-	if (npcBattle) npcBattleFunctions();
+	//if (npcBattle) npcBattleFunctions();
 }
 
 void BattleScene::render(HDC hdc)
@@ -144,7 +144,7 @@ void BattleScene::debugRender(HDC hdc)
 {
 	char str[200];
 	if (wildBattle) wildBattleRender(hdc);
-	if (npcBattle) npcBattleRender(hdc);
+	//if (npcBattle) npcBattleRender(hdc);
 	
 	//========================
 	// 디버깅 출력 내용 모음 //
@@ -491,86 +491,86 @@ void BattleScene::wildBattleRender(HDC hdc)
 	//배경
 	IMAGEMANAGER->findImage("battleTemp")->render(hdc);
 	//인트로 애니메이션 
-	if (wildBattleIntroAniOn)
-	{
-		//적
-		UTIL::drawRect(hdc, m_enemyStatus);
-		UTIL::drawRect(hdc, m_enemyBottom);
-		UTIL::drawRect(hdc, m_enemyPocketmon);
-		//플레이어
-		UTIL::drawRect(hdc, m_playerBottom);
-		UTIL::drawRect(hdc, m_playerPocketmon);
-		UTIL::drawRect(hdc, m_playerImg);
-		UTIL::drawRect(hdc, m_playerStatus);
-		//설명창
-		UTIL::drawRect(hdc, m_explainRect);
-		if (uiObjectRegularPosition && !playerImgSlideOut)
-		{
-			wsprintf(str, "앗!! 야생의");
-			TextOut(hdc, 83, 584, str, strlen(str));
+	//if (wildBattleIntroAniOn)
+	//{
+	//	//적
+	//	UTIL::drawRect(hdc, m_enemyStatus);
+	//	UTIL::drawRect(hdc, m_enemyBottom);
+	//	UTIL::drawRect(hdc, m_enemyPocketmon);
+	//	//플레이어
+	//	UTIL::drawRect(hdc, m_playerBottom);
+	//	UTIL::drawRect(hdc, m_playerPocketmon);
+	//	UTIL::drawRect(hdc, m_playerImg);
+	//	UTIL::drawRect(hdc, m_playerStatus);
+	//	//설명창
+	//	UTIL::drawRect(hdc, m_explainRect);
+	//	if (uiObjectRegularPosition && !playerImgSlideOut)
+	//	{
+	//		wsprintf(str, "앗!! 야생의");
+	//		TextOut(hdc, 83, 584, str, strlen(str));
 
-			wsprintf(str, "영환이가 튀어나왔다!!");
-			TextOut(hdc, 83, 584 + 40, str, strlen(str));
+	//		wsprintf(str, "영환이가 튀어나왔다!!");
+	//		TextOut(hdc, 83, 584 + 40, str, strlen(str));
 
-		}
-		if (playerImgSlideOut)
-		{
-			wsprintf(str, "가랏 포켓영환!!!!");
-			TextOut(hdc, 83, 584, str, strlen(str));
-		}
-	}
+	//	}
+	//	if (playerImgSlideOut)
+	//	{
+	//		wsprintf(str, "가랏 포켓영환!!!!");
+	//		TextOut(hdc, 83, 584, str, strlen(str));
+	//	}
+	//}
 	//공격 애니메이션
-	else
-	{
-		//적
-		UTIL::drawRect(hdc, m_enemyStatus);
-		UTIL::drawRect(hdc, m_enemyBottom);
-		UTIL::drawRect(hdc, m_enemyPocketmon);
-		//플레이어
-		UTIL::drawRect(hdc, m_playerBottom);
-		UTIL::drawRect(hdc, m_playerPocketmon);
-		UTIL::drawRect(hdc, m_playerStatus);
+	//else
+	//{
+	//	//적
+	//	UTIL::drawRect(hdc, m_enemyStatus);
+	//	UTIL::drawRect(hdc, m_enemyBottom);
+	//	UTIL::drawRect(hdc, m_enemyPocketmon);
+	//	//플레이어
+	//	UTIL::drawRect(hdc, m_playerBottom);
+	//	UTIL::drawRect(hdc, m_playerPocketmon);
+	//	UTIL::drawRect(hdc, m_playerStatus);
 
-		if (playerTurn)
-		{
-			//설명 + 선택창
-			if (!playerAtkOn)
-			{
-				UTIL::drawRect(hdc, m_explainRect);
-				//선택 커서
-				UTIL::drawRect(hdc, m_selectRect);
-			}
-			
-			if (playerAtkOn)
-			{
-				UTIL::drawRect(hdc, m_skillListRect);
-				UTIL::drawRect(hdc, m_skillSelectRect);
-				UTIL::drawRect(hdc, m_skillExplainRect);
-			}
-		}
-		if (playerAtkSkillOn)
-		{
-			UTIL::drawRect(hdc, m_playerAtkSkillEffect);
-			wsprintf(str, "포켓몬 스킬 공격 !!! 영환이가 울부짖었다!! 크아아아아앙!!");
-			TextOut(hdc, 500, 300, str, strlen(str));
-		}
-		if (enemyAtkSkillOn)
-		{
-			UTIL::drawRect(hdc, m_enemyAtkSkillEffect);
-			wsprintf(str, "준수가 얼굴로 반격한다!!! 크아아아아아아아아악!!!!");
-			TextOut(hdc, 500, 300, str, strlen(str));
-		}
-	}
+	//	if (playerTurn)
+	//	{
+	//		//설명 + 선택창
+	//		if (!playerAtkOn)
+	//		{
+	//			UTIL::drawRect(hdc, m_explainRect);
+	//			//선택 커서
+	//			UTIL::drawRect(hdc, m_selectRect);
+	//		}
+	//		
+	//		if (playerAtkOn)
+	//		{
+	//			UTIL::drawRect(hdc, m_skillListRect);
+	//			UTIL::drawRect(hdc, m_skillSelectRect);
+	//			UTIL::drawRect(hdc, m_skillExplainRect);
+	//		}
+	//	}
+	//	if (playerAtkSkillOn)
+	//	{
+	//		UTIL::drawRect(hdc, m_playerAtkSkillEffect);
+	//		wsprintf(str, "포켓몬 스킬 공격 !!! 영환이가 울부짖었다!! 크아아아아앙!!");
+	//		TextOut(hdc, 500, 300, str, strlen(str));
+	//	}
+	//	if (enemyAtkSkillOn)
+	//	{
+	//		UTIL::drawRect(hdc, m_enemyAtkSkillEffect);
+	//		wsprintf(str, "준수가 얼굴로 반격한다!!! 크아아아아아아아아악!!!!");
+	//		TextOut(hdc, 500, 300, str, strlen(str));
+	//	}
+	//}
 	SelectObject(hdc, oldFont);
 	DeleteObject(myFont);
 }
 
 
-//npc 배틀 함수 모음
-void BattleScene::npcBattleFunctions()
-{
-}
-
-void BattleScene::npcBattleRender(HDC hdc)
-{
-}
+////npc 배틀 함수 모음
+//void BattleScene::npcBattleFunctions()
+//{
+//}
+//
+//void BattleScene::npcBattleRender(HDC hdc)
+//{
+//}

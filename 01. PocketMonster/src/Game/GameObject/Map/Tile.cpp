@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Tile.h"
 
 Tile::Tile()
@@ -18,7 +18,7 @@ void Tile::init(TileType _type, Image* _img, bool _isAfterRender, bool _isMovabl
 	m_BlockPositionX = _BlockPositionX;
 	m_BlockPositionY = _BlockPositionY;
 
-	m_absTile.left = _BlockPositionX * TILE_WIDTH ;
+	m_absTile.left = _BlockPositionX * TILE_WIDTH;
 	m_absTile.right = _BlockPositionX * TILE_WIDTH + TILE_WIDTH;
 	m_absTile.top = _BlockPositionY * TILE_HEIGHT;
 	m_absTile.bottom = _BlockPositionY * TILE_HEIGHT + TILE_HEIGHT;
@@ -34,7 +34,7 @@ void Tile::update(float _deltaTime)
 
 void Tile::render(HDC hdc)
 {
-	
+
 }
 
 void Tile::debugRender(HDC hdc)
@@ -44,21 +44,20 @@ void Tile::debugRender(HDC hdc)
 		switch (m_Type)
 		{
 		case TileType::TileTypeFloor:
-			UTIL::DrawColorRect(hdc, m_outputTile, false, RGB(255, 255, 255));
+			UTIL::DrawColorRect(hdc, m_outputTile, RGB(255, 255, 255), false);
 			break;
 		case TileType::TileTypeHouse:
-			UTIL::DrawColorRect(hdc, m_outputTile, false, RGB(255, 0, 0));
+			UTIL::DrawColorRect(hdc, m_outputTile, RGB(255, 0, 0), false);
 			break;
 		case TileType::TileTypeBush:
-			UTIL::DrawColorRect(hdc, m_outputTile, false, RGB(0, 255, 0));
+			UTIL::DrawColorRect(hdc, m_outputTile, RGB(0, 255, 0), false);
 			break;
 		case TileType::TileTypeTree:
-			UTIL::DrawColorRect(hdc, m_outputTile, false, RGB(0, 0, 255));
+			UTIL::DrawColorRect(hdc, m_outputTile, RGB(0, 0, 255), false);
 			break;
 
 		}
 
-		
 	}
 }
 
