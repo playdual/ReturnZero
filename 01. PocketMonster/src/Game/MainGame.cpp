@@ -51,9 +51,11 @@ void MainGame::release()
 	GameNode::release();
 	MAPMANGER->release();
 	POCKETMONMANAGER->release();
+	ITEMMANAGER->release();
 
 	MAPMANGER->Destroy();
 	POCKETMONMANAGER->Destroy();
+	ITEMMANAGER->Destroy();
 }  
 
 void MainGame::update()

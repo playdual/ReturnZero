@@ -24,6 +24,8 @@ public:
 	void addSkillMachine(std::string _itemKey, PockemonAttibute _pokemonAttibute ,/* char* _imageName,*/ int _x, int _y, int _imageW, int _imageH,
 		std::string _itemName, int _count, int _price, std::string _descript, int _damage);
 
+	void release();
+
 	std::shared_ptr<Item> findItem(std::string _itemKey);
 	std::map<std::string ,std::shared_ptr<Item>> m_ItemList;
 	

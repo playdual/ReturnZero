@@ -40,20 +40,21 @@ public:
 	void wildBattleIntroAni();
 	void npcBattleIntroAni();
 
-	//포켓몬 공격 및 피격 이팩트 초기화
+	//포켓몬 공격 및 피격 이팩트 관련
 	void pocketmonEffectInit();
-	
+	bool skillEffectAssemble(HDC _hdc, std::string * _skillName);
+	bool skillEffectAssemble(std::string _skillName, HDC hdc);
+
 	
 	//===================
 	// 오브젝트 UI 모음 //
 	//===================
-
 	//적
 	void enemyUiStatus(HDC hdc);
 	void enemyUiBottom(HDC hdc);
 	void enemyUiPocketmon(HDC hdc);
-
-
+	void enemyUiMaxHp(HDC hdc);
+	void enemyUiCurrentHp(HDC hdc);
 	//플레이어
 	void playerUiBottom(HDC hdc);
 	void playerUiPoketmon(HDC hdc);
@@ -61,14 +62,16 @@ public:
 	void playerUiStatus(HDC hdc);
 	void playerUiSkillList(HDC hdc);
 	void playerUiSkillExplain(HDC hdc);
-
+	void playerUiMaxHp(HDC hdc);
+	void playerUiCurrentHp(HDC hdc);
+	void playerUiMaxExp(HDC hdc);
+	void plyaerUiCurrentExp(HDC hdc);
 
 	//시스템
 	void explainRect(HDC hdc);
+	void selectRect(HDC hdc);
+	void skillSelectRect(HDC hdc);
 
-	//렌더링
-	void wildBattleRender(HDC hdc);
-	void npcBattleRender(HDC hdc);
 
 	//행동선택관련
 	void moveButton();
@@ -76,16 +79,27 @@ public:
 
 	void playerStayMotion();
 
-	void playerskillMotion();
+	void selectPlayerSkillType();
 	void selectEnemyskill();
 
-	bool skillEffectAssemble(HDC _hdc, std::string * _skillName);
-	bool skillEffectAssemble(std::string _skillName);
+	//공격에 hp 변동 체크
+	//공격하면 현재 피가 달면서 current의 wigth 값이 줄어든다.
+	void playerPockatmonAttack(HDC hdc);
+	
+	//렌더링
+	void wildBattleRender(HDC hdc);
+	void npcBattleRender(HDC hdc);
 
-	//void test();
+
+	//스킬 이팩트 모듬
+	bool pailiFireShower(std::string _skillName, HDC hdc);
+
+	
 private:
-	std::shared_ptr<PocketMon> m_player;
-	std::shared_ptr<PocketMon> m_wildEnemy;
+	//test
+	PocketMon m_playerPocketmon;
+	PocketMon m_wildPocketmon;
+
 	//bool moveOn;
 
 	
@@ -107,14 +121,28 @@ private:
 	UTIL::IRECT m_enemyPocketmon;
 	//적 바닥
 	UTIL::IRECT m_enemyBottom;
+	//적 최대체력
+	UTIL::IRECT m_enemyMaxHp;
+	//적 현재체력
+	UTIL::IRECT m_enemyCurrentHp;
+
 	//플레이어바닥
 	UTIL::IRECT m_playerBottom;
 	//플레이어 이미지
 	UTIL::IRECT m_playerImg;
 	//플레이어 포켓몬
-	UTIL::IRECT m_playerPocketmon;
+	UTIL::IRECT m_playerPocketmonImg;
 	//플레이어 상태창
 	UTIL::IRECT m_playerStatus;
+	//플레이어 최대체력
+	UTIL::IRECT m_playerMaxHp;
+	//플레이어 현재체력
+	UTIL::IRECT m_playerCurrentHp;
+	//플레이어 최대경험치
+	UTIL::IRECT m_playerMaxExp;
+	//플레이어 현재경험치
+	UTIL::IRECT m_playerCurrentExp;
+
 	//스킬 이펙트
 	UTIL::IRECT m_playerAtkSkillEffect;
 	//스킬 이펙트
@@ -133,14 +161,20 @@ private:
 	bool uiObjectRegularPosition;
 	bool playerImgSlideOut;
 	bool explainEnemyName;
+	//적	 UI
+	int m_enemyBottomX;
+	int m_enemyPocketmonX;
+	int m_enemyStatusX;
+	int m_enemyHpX;
+	int m_wildPocketmonHpBarWigth;
+	//플레이어 UI
 	int m_playerBottomX;
 	int m_playerimgX;
 	int m_playerPocketmonX;
 	int m_playerStatusX;
-	int m_enemyBottomX;
-	int m_enemyPocketmonX;
-	int m_enemyStatusX;
-
+	int m_playerHpX;
+	int m_playerExp;
+	
 
 	//선택창 커서 움직임 변수
 	bool fight;
@@ -168,7 +202,7 @@ private:
 
 	//스킬사용 변수
 	bool playerAtkSkillOn;
-	bool skillMotionOn; 
+	bool playerSkillMotionOn; 
 
 	bool enemyAtkSkillOn;
 	int m_skillCount;

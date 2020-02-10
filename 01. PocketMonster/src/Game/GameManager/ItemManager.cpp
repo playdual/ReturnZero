@@ -126,6 +126,11 @@ void ItemManager::addSkillMachine(std::string _itemKey, PockemonAttibute _pokemo
 	m_ItemList.insert(std::make_pair(_itemKey, temp));*/
 }
 
+void ItemManager::release()
+{
+	m_ItemList.clear();
+}
+
 std::shared_ptr<Item> ItemManager::findItem(std::string _itemKey)
 {
 	auto& ret = m_ItemList.find(_itemKey);

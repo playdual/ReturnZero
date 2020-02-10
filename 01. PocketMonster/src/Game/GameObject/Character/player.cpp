@@ -366,7 +366,6 @@ void player::update(float _deltaTime)
 
 	if (isBattle)
 	{
-	
 		isMoveLeft = false;
 		isMoveRight = false;
 		isMoveUp = false;

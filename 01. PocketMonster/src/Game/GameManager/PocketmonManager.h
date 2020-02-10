@@ -1,6 +1,13 @@
 ﻿#pragma once
 #include "Game/GameObject/Pocketmon/PocketMon.h"
 
+/*
+기능
+1. 포켓몬들의 기본 정보를 보관하고 있다.
+2. 플레이어와 타운,  npc에 포켓몬의 정보를 복사해서 보내준다
+3. 벡터 1, 2, 3번 컨테이너에는 태초마을에서 플레이어가 선택하게 되는 포켓몬 정보가 들어있다.
+4. 포켓몬 레벨 확인 및 능력치 상승
+*/
 class PocketmonManager
 {
 	
@@ -13,9 +20,7 @@ public:
 	void afterRender(HDC hdc);
 	void debugRender(HDC hdc);
 
-	std::shared_ptr<PocketMon> getPlayerPocketmon();
-	std::shared_ptr<PocketMon> getNpcPocketmon();
-	std::shared_ptr<PocketMon> getWildPocketmon();
+	PocketMon getPocketmonInform();
 
 	PocketMon genPocketMon(std::string _name, int level);
 
@@ -33,9 +38,7 @@ public:
 	PocketMon genPoliwag(int level);//발챙이
 
 private:
-	std::vector<std::shared_ptr<PocketMon>> playerPocketmonVector;
-	std::vector<std::shared_ptr<PocketMon>> npcPocketmonVector;
-	std::vector<std::shared_ptr<PocketMon>> wildPocketmonVector;
+	std::vector<PocketMon> pocketmonVector;
 
 private:
 	DECLARE_SINGLE(PocketmonManager)
