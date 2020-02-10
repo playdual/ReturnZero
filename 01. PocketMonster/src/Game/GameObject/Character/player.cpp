@@ -30,7 +30,7 @@ bool player::init()
 	bgY = 0;
 
 	//player img
-	m_playerImg = IMAGEMANAGER->addFrameImage("playerimg", "images/player.bmp", 244, 260, 4, 3, true, RGB(255, 0, 255));
+	m_playerImg = IMAGEMANAGER->addFrameImage("playerimg", "images/newPlayer.bmp", 252, 408, 4, 5, true, RGB(255, 0, 255));
 
 	//player Base Arrow img
 
@@ -47,10 +47,10 @@ bool player::init()
 	ANIMANAGER->addAnimation("playerRight", "playerimg", right, 1, 1, true);
 
 	//player Move Arrow img
-	ANIMANAGER->addAnimation("playerMoveDown", "playerimg", 4, 5, 1 , false, true);
-	ANIMANAGER->addAnimation("playerMoveUp", "playerimg", 6, 7, 1, false, true);
-	ANIMANAGER->addAnimation("playerMoveLeft", "playerimg", 8, 9, 1, false, true);
-	ANIMANAGER->addAnimation("playerMoveRight", "playerimg", 10, 11, 1, false, true);
+	ANIMANAGER->addAnimation("playerMoveDown", "playerimg", 4, 7, 1 , false, true);
+	ANIMANAGER->addAnimation("playerMoveUp", "playerimg", 8, 11, 1, false, true);
+	ANIMANAGER->addAnimation("playerMoveLeft", "playerimg", 12, 15, 1, false, true);
+	ANIMANAGER->addAnimation("playerMoveRight", "playerimg", 16, 19, 1, false, true);
 
 
 	m_aniplayerDown = ANIMANAGER->findAnimation("playerDown");
@@ -92,7 +92,7 @@ void player::update(float _deltaTime)
 	else if (KEYMANAGER->isStayKeyDown(P1_LEFT) && !isMoveLeft && !isAnotherMove && m_CurrentTime>0.2f)
 	{
 		m_playerCurrentArrowMemory = 2;
-		isLeft = false;
+	
 
 		if(m_playerBeforeArrowMemory==2 && m_playerCurrentArrowMemory==2)
 		{
@@ -104,6 +104,7 @@ void player::update(float _deltaTime)
 			}
 			else
 			{
+				isLeft = false;
 				m_playerRectMemory = m_playerRect.left;
 				isAnotherMove = true;
 				isMoveLeft = true;
@@ -152,7 +153,7 @@ void player::update(float _deltaTime)
 	else if (KEYMANAGER->isStayKeyDown(P1_RIGHT) && !isMoveRight && !isAnotherMove && m_CurrentTime > 0.2f)
 	{
 		m_playerCurrentArrowMemory = 3;
-		isRight = false;
+		
 
 		if (m_playerBeforeArrowMemory == 3 && m_playerCurrentArrowMemory == 3)
 		{
@@ -160,10 +161,13 @@ void player::update(float _deltaTime)
 
 			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeTree)
 			{
+				
 				m_blockPositionX -= 1;
+			
 			}
 			else
 			{
+				isRight = false;
 				m_playerRectMemory = m_playerRect.right;
 				isAnotherMove = true;
 				isMoveRight = true;
@@ -206,7 +210,7 @@ void player::update(float _deltaTime)
 	else if (KEYMANAGER->isStayKeyDown(P1_UP) && !isMoveUp && !isAnotherMove && m_CurrentTime >0.2f)
 	{
 		m_playerCurrentArrowMemory = 1;
-		isUp = false;
+	
 
 		if (m_playerBeforeArrowMemory == 1 && m_playerCurrentArrowMemory == 1)
 		{
@@ -218,6 +222,7 @@ void player::update(float _deltaTime)
 			}
 			else
 			{
+				isUp = false;
 				m_playerRectMemory = m_playerRect.top;
 				isAnotherMove = true;
 				isMoveUp = true;
@@ -259,7 +264,7 @@ void player::update(float _deltaTime)
 	else if (KEYMANAGER->isStayKeyDown(P1_DOWN) && !isMoveDown && !isAnotherMove && m_CurrentTime >0.2f)
 	{
 		m_playerCurrentArrowMemory = 0;
-		isDown = false;
+	
 
 		if (m_playerBeforeArrowMemory == 0 && m_playerCurrentArrowMemory == 0)
 		{
@@ -271,6 +276,7 @@ void player::update(float _deltaTime)
 			}
 			else
 			{
+				isDown = false;
 				m_playerRectMemory = m_playerRect.bottom;
 				isAnotherMove = true;
 				isMoveDown = true;
@@ -336,18 +342,9 @@ void player::update(float _deltaTime)
 
 void player::render(HDC hdc)
 {
-	
-}
 
-void player::afterRender(HDC hdc)
-{
-
-}
-
-void player::debugRender(HDC hdc)
-{
 	//player
-	UTIL::DrawColorRect(hdc, m_outPlayerRect, RGB(153, 255, 30), true);
+
 	if (isMoveDown)
 		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top, m_aniplayerMoveDown);
 	else if (isMoveUp)
@@ -364,7 +361,16 @@ void player::debugRender(HDC hdc)
 		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top, m_aniplayerLeft);
 	else if (isRight)
 		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top, m_aniplayerRight);
+}
 
+void player::afterRender(HDC hdc)
+{
+
+}
+
+void player::debugRender(HDC hdc)
+{
+	UTIL::DrawColorRect(hdc, m_outPlayerRect, RGB(153, 255, 30), true);
 }
 
 int player::getPlayRectX()

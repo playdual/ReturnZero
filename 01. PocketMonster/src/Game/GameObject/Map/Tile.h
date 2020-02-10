@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include"Game/GameTypes.h"
 #include"Common/SystemManagers.h"
 class Tile
@@ -24,6 +24,9 @@ private:
 	bool isCanprint = false;
 
 	Image* m_img;
+	Image* m_Tile1;
+	Image* m_Bush1;
+	Image* m_Tree1;
 	bool isAfterRender;
 	bool isMovable;
 

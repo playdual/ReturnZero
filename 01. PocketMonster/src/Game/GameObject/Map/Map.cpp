@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Map.h"
 
 
@@ -17,6 +17,10 @@ void Map::init(char * _fileName)
 					}
 					else if (j == 7 || j == 8) {
 						temp.init(TileType::TileTypeTree, nullptr, false, false, j, i);
+					}
+					else if (j == 2 || j == 1)
+					{
+						temp.init(TileType::TileTypeHouseDoor, nullptr, false, false, j, i);
 					}
 					else
 					{
