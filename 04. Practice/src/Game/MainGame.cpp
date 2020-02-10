@@ -13,8 +13,8 @@ HRESULT MainGame::init()
 {
 	GameNode::init();
 	
-	SCENEMANAGER->addScene("테스트", new SunwooScene);
-	SCENEMANAGER->changeScene("테스트");
+	SCENEMANAGER->addScene("asdf", new SunwooScene);
+	SCENEMANAGER->changeScene("asdf");
 
 	sceneInit = true;
 	return S_OK;
