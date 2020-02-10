@@ -8,30 +8,32 @@ void Map::init(char * _fileName)
 	if (_fileName == nullptr) {
 		m_width = 15;
 		m_height = 15;
-		for (int i = 0; i < m_width; ++i) {
-			for (int j = 0; j < m_height; ++j) {
+		for (int y = 0; y < m_width; ++y) {
+			for (int x = 0; x < m_height; ++x) {
 				Tile temp;
-				if ((i == 0 && j==0)||(i==0&& j==1))
+				if ((y == 1 && x==1) || (y==1 && x==2))
 				{
-					temp.init(TileType::TileTypeNextMap, nullptr, false, false, j, i, "test2", 1, 2);
+					temp.init(TileType::TileTypeNextMap, nullptr, false, true, x, y, "test2", 2, 2);
 
 				}
-				else if (i == 3 || i == 4)
+				else if ((y == 3 && x==3) || (y == 3 && x == 4))
 				{
-					if (j == 3 || j == 4) {
-						temp.init(TileType::TileTypeBush, nullptr, false, true, j, i);
-					}
-					else if (j == 7 || j == 8) {
-						temp.init(TileType::TileTypeTree, nullptr, false, false, j, i);
-					}
-					else
-					{
-						temp.init(TileType::TileTypeFloor, nullptr, false, true, j, i);
-					}
+					temp.init(TileType::TileTypeBush, nullptr, false, true, x, y);
 				}
-				else {
-					temp.init(TileType::TileTypeFloor, nullptr, false, true, j, i);
+				else if ((y == 3 && x == 7) || (y == 3 &&x == 8))
+				{
+					temp.init(TileType::TileTypeTree, nullptr, false, false, x, y);
 				}
+				else if (y == 0 && x==0)
+				{
+					temp.init(TileType::TileTypeOutRange, nullptr, false, false, x, y);
+				}
+				else
+				{
+					temp.init(TileType::TileTypeFloor, nullptr, false, true, x, y);
+				}
+				
+				
 				m_tiles.push_back(temp);
 			}
 		}
@@ -40,7 +42,9 @@ void Map::init(char * _fileName)
 
 TileType Map::getTileTypeFromIdex(int _x, int _y)
 {
-	if (_x * m_width + _y * m_height > m_width * m_height)
+	if (_x < 0 || _y < 0)
+		return TileType::TileTypeOutRange;
+	if(_x >= m_width || _y >= m_height)
 		return TileType::TileTypeOutRange;
 	return m_tiles[_x + _y * m_height].m_Type;
 }

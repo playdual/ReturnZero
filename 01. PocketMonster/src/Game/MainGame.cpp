@@ -66,7 +66,7 @@ void MainGame::update()
 
 void MainGame::render()
 {
-	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, WHITENESS);
+	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, BLACKNESS);
 
 	SCENEMANAGER->render(getMemDC());
 	SCENEMANAGER->afterRender(getMemDC());

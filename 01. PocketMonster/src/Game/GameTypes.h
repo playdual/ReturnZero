@@ -1,5 +1,9 @@
 ﻿#pragma once
 //寃뚯엫 ?댁뿉???곗씠??Enum怨?援ъ“泥??깆쓣 ?뺤쓽 ?⑸땲??
+#define PLAYER_OFFSETY -25
+#define TILE_WIDTH 75
+#define TILE_HEIGHT 75
+
 
 enum class TileType
 {
@@ -12,8 +16,6 @@ enum class TileType
 	TileTypeNone
 };
 
-#define TILE_WIDTH 100
-#define TILE_HEIGHT 100
 
 enum class ItemType
 {

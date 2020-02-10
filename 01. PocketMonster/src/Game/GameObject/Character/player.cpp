@@ -2,6 +2,7 @@
 #include "player.h"
 #include "Common/GameManagers.h"
 
+
 player::player()
 {
 	/*m_blockPositionX = blockX;
@@ -30,7 +31,7 @@ bool player::init()
 	bgY = 0;
 
 	//player img
-	m_playerImg = IMAGEMANAGER->addFrameImage("playerimg", "images/newPlayer.bmp", 252, 408, 4, 5, true, RGB(255, 0, 255));
+	m_playerImg = IMAGEMANAGER->addFrameImage("playerimg", "images/newPlayer.bmp", 305, 510, 4, 5, true, RGB(255, 0, 255));
 
 	//player Base Arrow img
 
@@ -98,7 +99,9 @@ void player::update(float _deltaTime)
 		{
 			m_blockPositionX -= 1;
 
-			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeTree)
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeTree||
+				MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeOutRange
+				)
 			{
 				m_blockPositionX += 1;
 			}
@@ -141,10 +144,7 @@ void player::update(float _deltaTime)
 
 		}
 	}
-	if (KEYMANAGER->isOnceKeyUp(P1_LEFT))
-	{
-		isMoveLeftTest = false;
-	}
+
 	if (KEYMANAGER->isOnceKeyDown(P1_RIGHT) && m_playerBeforeArrowMemory != 3)
 	{
 		m_playerBeforeArrowMemory = 3;
@@ -164,8 +164,9 @@ void player::update(float _deltaTime)
 		{
 			m_blockPositionX += 1;
 
-			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeTree)
-			{
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeTree ||
+				MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeOutRange
+				) {
 				
 				m_blockPositionX -= 1;
 			
@@ -226,8 +227,9 @@ void player::update(float _deltaTime)
 		{
 			m_blockPositionY -= 1;
 
-			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeTree)
-			{
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeTree ||
+				MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeOutRange
+				) {
 				m_blockPositionY += 1;
 			}
 			else
@@ -286,8 +288,9 @@ void player::update(float _deltaTime)
 		{
 			m_blockPositionY += 1;
 
-			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeTree)
-			{
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeTree ||
+				MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeOutRange
+				) {
 				m_blockPositionY -= 1;
 			}
 			else
@@ -363,21 +366,21 @@ void player::render(HDC hdc)
 	//player
 
 	if (isMoveDown)
-		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top, m_aniplayerMoveDown);
+		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top+ PLAYER_OFFSETY, m_aniplayerMoveDown);
 	else if (isMoveUp)
-		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top, m_aniplayerMoveUp);
+		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top + PLAYER_OFFSETY, m_aniplayerMoveUp);
 	else if (isMoveLeft)
-		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top, m_aniplayerMoveLeft);
+		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top + PLAYER_OFFSETY, m_aniplayerMoveLeft);
 	else if (isMoveRight)
-		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top, m_aniplayerMoveRight);
+		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top + PLAYER_OFFSETY, m_aniplayerMoveRight);
 	else if (isDown)
-		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top, m_aniplayerDown);
+		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top + PLAYER_OFFSETY, m_aniplayerDown);
 	else if (isUp)
-		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top, m_aniplayerUp);
+		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top + PLAYER_OFFSETY, m_aniplayerUp);
 	else if (isLeft)
-		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top, m_aniplayerLeft);
+		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top + PLAYER_OFFSETY, m_aniplayerLeft);
 	else if (isRight)
-		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top, m_aniplayerRight);
+		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top + PLAYER_OFFSETY, m_aniplayerRight);
 }
 
 void player::afterRender(HDC hdc)
@@ -423,7 +426,7 @@ void player::isBattleStart()
 		srand(time(NULL));
 		m_BattleStart = rand() % 10;
 
-		if (m_BattleStart < 7)
+		if (m_BattleStart < 3)
 		{
 			isBattle = true;
 	
