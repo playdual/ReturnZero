@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "MapManager.h"
 DEFINITION_SINGLE(MapManager)
 
@@ -8,6 +8,7 @@ MapManager::~MapManager() {}
 void MapManager::init()
 {
 	addMap("test", nullptr);
+	addMap("test2", nullptr);
 }
 
 void MapManager::release()

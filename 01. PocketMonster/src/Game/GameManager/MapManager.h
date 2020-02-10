@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Game/GameObject/Map/Map.h"
 
 class MapManager
@@ -11,6 +11,7 @@ public:
 	void addMap(std::string mapKey, char* fileName);
 	std::shared_ptr<class Map> findMap(std::string mapKey);
 	std::shared_ptr<Map> getCurMap() { return curMap; }
+	Tile& getNextMapKey(int _x, int _y) { return curMap->getSpecifyTile(_x, _y); }
 
 public:
 	TileType getTileTypeFromIndex(int _x, int _y);

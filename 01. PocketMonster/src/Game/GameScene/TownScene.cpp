@@ -31,6 +31,24 @@ void TownScene::update(float _deltaTime)
 	if (KEYMANAGER->isOnceKeyDown(GAME_MENU)) {
 		SCENEMANAGER->scenePush("inven");
 	}
+
+	//배틀
+	if (m_player->getisBattle())
+	{
+		BATTLEMANAGER->battleStart();
+		m_player->BattleEnd();
+	}
+
+	if (m_player->getisChangeMap()) 
+	{
+		auto tile = MAPMANGER->getCurMap()->getSpecifyTile(m_player->getPlayerBlockX(), m_player->getPlayerBlockY());
+		m_map = MAPMANGER->findMap(tile.getNextMapKey());
+		m_player->reLocate(tile.getNextMapIdx().x, tile.getNextMapIdx().y);
+		m_player->MoveSetZero();
+		m_player->isNotChangeMap();
+	}
+
+	
 }
 
 void TownScene::render(HDC hdc)

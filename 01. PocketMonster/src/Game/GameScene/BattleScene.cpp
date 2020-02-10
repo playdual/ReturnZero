@@ -533,6 +533,7 @@ void BattleScene::moveButton()
 	if (run && KEYMANAGER->isOnceKeyDown(P1_Z))
 	{
 		//추가할꺼 - 플레이어에 setisBattle 함수를 써서 isbattle false로 바꿔주기
+		
 		SCENEMANAGER->scenePop();
 	}
 

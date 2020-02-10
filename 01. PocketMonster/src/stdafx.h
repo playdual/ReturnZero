@@ -50,6 +50,7 @@
 #define P1_Z            6
 #define P1_X            7
 
+#define GAME_CHANGEMAP  46
 #define GAME_MENU		47
 #define GAME_LMOUSE		48
 #define GAME_RMOUSE		49

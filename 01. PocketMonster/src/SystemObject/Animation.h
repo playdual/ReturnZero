@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 class Animation
 {
@@ -8,17 +8,17 @@ public:
 
 public:
 	HRESULT init(int totalW, int totalH, int frameW, int frameH);
-	//Ã³À½ºÎÅÍ ³¡±îÁö ¾Ö´Ï¸ŞÀÌ¼Ç ¼ÂÆÃ
+	//ì²˜ìŒë¶€í„° ëê¹Œì§€ ì• ë‹ˆë©”ì´ì…˜ ì…‹íŒ…
 
 public:
 	void setDefPlayFrame(bool reverse = false, bool loop = false);
-	//¹è¿­¿¡ ´ã°ÜÁ® ÀÖ´Â ¾Öµé¸¸
+	//ë°°ì—´ì— ë‹´ê²¨ì ¸ ìˆëŠ” ì• ë“¤ë§Œ
 	void setPlayFrame(int* playArr, int arrLen, bool loop = false);
-	//½ÃÀÛ°ú ³¡±¸°£À» Á¤ÇØ¼­
+	//ì‹œì‘ê³¼ ëêµ¬ê°„ì„ ì •í•´ì„œ
 	void setPlayFrame(int start, int end, bool reverse =  false, bool loop = false);
-	//ÃÊ´ç °»½Å È½¼ö
-	void setFPS(int framePerSec);
-	//ÇÁ·¹ÀÓ ¾÷µ¥ÀÌÆ® Å¸ÀÓ
+	//ì´ˆë‹¹ ê°±ì‹  íšŸìˆ˜
+	void setFPS(float framePerSec);
+	//í”„ë ˆì„ ì—…ë°ì´íŠ¸ íƒ€ì„
 	void frameUpdate(float elapsedTime);
 
 public:
@@ -34,17 +34,17 @@ public:
 	bool isPlay()			{ return _play; }
 	
 private:
-	std::vector<POINT> _frameList;			//ÇÁ·¹ÀÓÀ§Ä¡¸ñ·Ï
-	std::vector<int> _playList;				//ÇÃ·¹ÀÌ ¸ñ·Ï
+	std::vector<POINT> _frameList;			//í”„ë ˆì„ìœ„ì¹˜ëª©ë¡
+	std::vector<int> _playList;				//í”Œë ˆì´ ëª©ë¡
 
-	int _frameNum;							//ÇÁ·¹ÀÓ °¹¼ö
+	int _frameNum;							//í”„ë ˆì„ ê°¯ìˆ˜
 	int _frameWidth;
 	int _frameHeight;
 
 	bool _loop;
 	bool _play;
 
-	float _frameUpdateSec;					//ÇÁ·¹ÀÓ ¾÷µ¥ÀÌÆ®
-	float _elapsedSec;						//ÇÁ·¹ÀÓ °æ°ú½Ã°£
-	DWORD _nowPlayIndex;					//ÇöÀç ÇÃ·¹ÀÌ ÀÎµ¦½º
+	float _frameUpdateSec;					//í”„ë ˆì„ ì—…ë°ì´íŠ¸
+	float _elapsedSec;						//í”„ë ˆì„ ê²½ê³¼ì‹œê°„
+	DWORD _nowPlayIndex;					//í˜„ì¬ í”Œë ˆì´ ì¸ë±ìŠ¤
 };

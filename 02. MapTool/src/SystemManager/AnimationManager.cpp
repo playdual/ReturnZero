@@ -1,4 +1,4 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "AnimationManager.h"
 #include "TimeManager.h"
 #include "ImageManager.h"
@@ -42,7 +42,7 @@ void AnimationManager::render()
 
 void AnimationManager::addDefAnimation(std::string animationKeyName, char * imageKeyName, int fps, bool reverse, bool loop)
 {
-	//ÀÌ¹ÌÁö ¹× ¾Ö´Ï¸ŞÀÌ¼Ç ÃÊ±âÈ­
+	//ì´ë¯¸ì§€ ë° ì• ë‹ˆë©”ì´ì…˜ ì´ˆê¸°í™”
 	Image* img = IMAGEMANAGER->findImage(imageKeyName);
 	Animation* ani = new Animation;
 
@@ -50,13 +50,13 @@ void AnimationManager::addDefAnimation(std::string animationKeyName, char * imag
 	ani->setDefPlayFrame(reverse, loop);
 	ani->setFPS(fps);
 
-	//ÀÌ¹ÌÁö¿Í ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ÃÊ±âÈ­ ÈÄ ¸Ê¿¡ Ãß°¡ÇÑ´Ù.
+	//ì´ë¯¸ì§€ì™€ ì• ë‹ˆë©”ì´ì…˜ì„ ì´ˆê¸°í™” í›„ ë§µì— ì¶”ê°€í•œë‹¤.
 	_animation.insert(make_pair(animationKeyName, ani));
 }
 
-void AnimationManager::addAnimation(std::string animationKeyName, char * imageKeyName, int * playArr, int arrLen, int fps, bool loop)
+void AnimationManager::addAnimation(std::string animationKeyName, char * imageKeyName, int * playArr, int arrLen, float fps, bool loop)
 {
-	//ÀÌ¹ÌÁö ¹× ¾Ö´Ï¸ŞÀÌ¼Ç ÃÊ±âÈ­
+	//ì´ë¯¸ì§€ ë° ì• ë‹ˆë©”ì´ì…˜ ì´ˆê¸°í™”
 	Image* img = IMAGEMANAGER->findImage(imageKeyName);
 	Animation* ani = new Animation;
 
@@ -64,13 +64,13 @@ void AnimationManager::addAnimation(std::string animationKeyName, char * imageKe
 	ani->setPlayFrame(playArr, arrLen, loop);
 	ani->setFPS(fps);
 
-	//ÀÌ¹ÌÁö¿Í ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ÃÊ±âÈ­ ÈÄ ¸Ê¿¡ Ãß°¡ÇÑ´Ù.
+	//ì´ë¯¸ì§€ì™€ ì• ë‹ˆë©”ì´ì…˜ì„ ì´ˆê¸°í™” í›„ ë§µì— ì¶”ê°€í•œë‹¤.
 	_animation.insert(make_pair(animationKeyName, ani));
 }
 
 void AnimationManager::addAnimation(std::string animationKeyName, char * imageKeyName, int start, int end, int fps, bool reverse, bool loop)
 {
-	//ÀÌ¹ÌÁö ¹× ¾Ö´Ï¸ŞÀÌ¼Ç ÃÊ±âÈ­
+	//ì´ë¯¸ì§€ ë° ì• ë‹ˆë©”ì´ì…˜ ì´ˆê¸°í™”
 	Image* img = IMAGEMANAGER->findImage(imageKeyName);
 	Animation* ani = new Animation;
 
@@ -78,7 +78,7 @@ void AnimationManager::addAnimation(std::string animationKeyName, char * imageKe
 	ani->setPlayFrame(start, end, reverse, loop);
 	ani->setFPS(fps);
 
-	//ÀÌ¹ÌÁö¿Í ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ÃÊ±âÈ­ ÈÄ ¸Ê¿¡ Ãß°¡ÇÑ´Ù.
+	//ì´ë¯¸ì§€ì™€ ì• ë‹ˆë©”ì´ì…˜ì„ ì´ˆê¸°í™” í›„ ë§µì— ì¶”ê°€í•œë‹¤.
 	_animation.insert(std::make_pair(animationKeyName, ani));
 }
 

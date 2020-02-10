@@ -9,7 +9,8 @@ Tile::~Tile()
 {
 }
 
-void Tile::init(TileType _type, Image* _img, bool _isAfterRender, bool _isMovable, int _BlockPositionX, int _BlockPositionY)
+void Tile::init(TileType _type, Image* _img, bool _isAfterRender, bool _isMovable, int _BlockPositionX, int _BlockPositionY, std::string _nextMapKey, 
+	int _x, int _y)
 {
 	m_Tile1 = IMAGEMANAGER->addImage("GrassTile1", "images/GrassTile1.bmp", TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
 	m_Bush1 = IMAGEMANAGER->addImage("Bush1", "images/Bush1.bmp", TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
@@ -30,6 +31,11 @@ void Tile::init(TileType _type, Image* _img, bool _isAfterRender, bool _isMovabl
 	m_absTile.top = _BlockPositionY * TILE_HEIGHT;
 	m_absTile.bottom = _BlockPositionY * TILE_HEIGHT + TILE_HEIGHT;
 
+	if (m_Type == TileType::TileTypeNextMap) {
+		m_nextMapKey = _nextMapKey;
+		m_nextMapIdx.x = _x;
+		m_nextMapIdx.y = _y;
+	}
 
 }
 

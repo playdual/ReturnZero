@@ -11,16 +11,18 @@ void Map::init(char * _fileName)
 		for (int i = 0; i < m_width; ++i) {
 			for (int j = 0; j < m_height; ++j) {
 				Tile temp;
-				if (i == 3 || i == 4) {
+				if ((i == 0 && j==0)||(i==0&& j==1))
+				{
+					temp.init(TileType::TileTypeNextMap, nullptr, false, false, j, i, "test2", 1, 2);
+
+				}
+				else if (i == 3 || i == 4)
+				{
 					if (j == 3 || j == 4) {
 						temp.init(TileType::TileTypeBush, nullptr, false, true, j, i);
 					}
 					else if (j == 7 || j == 8) {
 						temp.init(TileType::TileTypeTree, nullptr, false, false, j, i);
-					}
-					else if (j == 2 || j == 1)
-					{
-						temp.init(TileType::TileTypeNextMap, nullptr, false, false, j, i);
 					}
 					else
 					{
@@ -34,8 +36,6 @@ void Map::init(char * _fileName)
 			}
 		}
 	}
-	
-
 }
 
 TileType Map::getTileTypeFromIdex(int _x, int _y)
@@ -43,6 +43,11 @@ TileType Map::getTileTypeFromIdex(int _x, int _y)
 	if (_x * m_width + _y * m_height > m_width * m_height)
 		return TileType::TileTypeOutRange;
 	return m_tiles[_x + _y * m_height].m_Type;
+}
+
+Tile& Map::getSpecifyTile(int _blockPositionX, int _blockPositionY)
+{
+	return m_tiles[_blockPositionX + _blockPositionY * m_height];
 }
 
 void Map::render(HDC hdc)

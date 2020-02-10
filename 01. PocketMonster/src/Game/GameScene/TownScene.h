@@ -20,6 +20,8 @@ public:
 	void afterRender(HDC hdc) override;
 	void debugRender(HDC hdc) override;
 
+
+
 private:
 	Image* image;
 	std::shared_ptr<player> m_player;

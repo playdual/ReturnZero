@@ -47,10 +47,10 @@ bool player::init()
 	ANIMANAGER->addAnimation("playerRight", "playerimg", right, 1, 1, true);
 
 	//player Move Arrow img
-	ANIMANAGER->addAnimation("playerMoveDown", "playerimg", 4, 7, 1 , false, true);
-	ANIMANAGER->addAnimation("playerMoveUp", "playerimg", 8, 11, 1, false, true);
-	ANIMANAGER->addAnimation("playerMoveLeft", "playerimg", 12, 15, 1, false, true);
-	ANIMANAGER->addAnimation("playerMoveRight", "playerimg", 16, 19, 1, false, true);
+	ANIMANAGER->addAnimation("playerMoveDown", "playerimg", 4, 7, 4 , false, true);
+	ANIMANAGER->addAnimation("playerMoveUp", "playerimg", 8, 11, 4, false, true);
+	ANIMANAGER->addAnimation("playerMoveLeft", "playerimg", 12, 15, 4, false, true);
+	ANIMANAGER->addAnimation("playerMoveRight", "playerimg", 16, 19, 4, false, true);
 
 
 	m_aniplayerDown = ANIMANAGER->findAnimation("playerDown");
@@ -108,6 +108,7 @@ void player::update(float _deltaTime)
 				m_playerRectMemory = m_playerRect.left;
 				isAnotherMove = true;
 				isMoveLeft = true;
+				isMoveLeftTest = true;
 			}
 		}
 	}
@@ -126,6 +127,10 @@ void player::update(float _deltaTime)
 				isBattleStart();
 			}
 
+			else if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeNextMap)
+			{
+				isChangeMap = true;
+			}
 
 			isLeft = true;
 			isRight = false;
@@ -138,7 +143,7 @@ void player::update(float _deltaTime)
 	}
 	if (KEYMANAGER->isOnceKeyUp(P1_LEFT))
 	{
-		
+		isMoveLeftTest = false;
 	}
 	if (KEYMANAGER->isOnceKeyDown(P1_RIGHT) && m_playerBeforeArrowMemory != 3)
 	{
@@ -186,6 +191,11 @@ void player::update(float _deltaTime)
 			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeBush)
 			{
 				isBattleStart();
+			}
+
+			else if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeNextMap)
+			{
+				isChangeMap = true;
 			}
 
 			isLeft = false;
@@ -242,6 +252,12 @@ void player::update(float _deltaTime)
 			{
 				isBattleStart();
 			}
+
+			else if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeNextMap)
+			{
+				isChangeMap = true;
+			}
+
 			isLeft = false;
 			isRight = false;
 			isUp = true;
@@ -296,34 +312,37 @@ void player::update(float _deltaTime)
 			{
 				isBattleStart();
 			}
+
+			else if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeNextMap)
+			{
+				isChangeMap = true;
+			}
+
 			isLeft = false;
 			isRight = false;
 			isUp = false;
 			isDown = true;
 			isMoveDown = false;
 			isAnotherMove = false;
-
-
-			
 		}
 	}
-		if (isMoveDown)ANIMANAGER->start("playerMoveDown");
-		else if (!isMoveDown)ANIMANAGER->stop("playerMoveDown");
-		if (isMoveUp)ANIMANAGER->start("playerMoveUp");
-		else if (!isMoveUp)ANIMANAGER->stop("playerMoveUp");
-		if (isMoveLeft)ANIMANAGER->start("playerMoveLeft");
-		else if (!isMoveLeft)ANIMANAGER->stop("playerMoveLeft");
-		if (isMoveRight)ANIMANAGER->start("playerMoveRight");
-		else if (!isMoveRight)ANIMANAGER->stop("playerMoveRight");
+		if (isMoveDown)ANIMANAGER->resume("playerMoveDown");
+		else if (!isMoveDown)ANIMANAGER->pause("playerMoveDown");
+		if (isMoveUp)ANIMANAGER->resume("playerMoveUp");
+		else if (!isMoveUp)ANIMANAGER->pause("playerMoveUp");
+		if (isMoveLeft)ANIMANAGER->resume("playerMoveLeft");
+		else if (!isMoveLeft)ANIMANAGER->pause("playerMoveLeft");
+		if (isMoveRight)ANIMANAGER->resume("playerMoveRight");
+		else if (!isMoveRight)ANIMANAGER->pause("playerMoveRight");
 
-		if (isDown)ANIMANAGER->start("playerDown");
-		else if (!isDown)ANIMANAGER->stop("playerDown");
-		if (isUp)ANIMANAGER->start("playerUp");
-		else if (!isUp)ANIMANAGER->stop("playerUp");
-		if (isLeft)ANIMANAGER->start("playerLeft");
-		else if (!isLeft)ANIMANAGER->stop("playerLeft");
-		if (isRight)ANIMANAGER->start("playerRight");
-		else if (!isRight)ANIMANAGER->stop("playerRight");
+		if (isDown)ANIMANAGER->resume("playerDown");
+		else if (!isDown)ANIMANAGER->pause("playerDown");
+		if (isUp)ANIMANAGER->resume("playerUp");
+		else if (!isUp)ANIMANAGER->pause("playerUp");
+		if (isLeft)ANIMANAGER->resume("playerLeft");
+		else if (!isLeft)ANIMANAGER->pause("playerLeft");
+		if (isRight)ANIMANAGER->resume("playerRight");
+		else if (!isRight)ANIMANAGER->pause("playerRight");
 	}
 
 	if (isBattle)
@@ -333,8 +352,6 @@ void player::update(float _deltaTime)
 		isMoveRight = false;
 		isMoveUp = false;
 		isMoveDown = false;
-		isBattle = false;
-		BATTLEMANAGER->battleStart();
 
 	}
 	CAMERAMANAGER->update();
@@ -417,6 +434,27 @@ void player::isBattleStart()
 		
 		}
 	}
+}
+
+void player::MoveSetZero()
+{
+	
+	isMoveDown = false;
+	isMoveUp = false;
+	isMoveLeft = false;
+	isMoveRight = false;
+	isAnotherMove = false;
+
+}
+
+bool player::getisChangeMap()
+{
+	return isChangeMap;
+}
+
+void player::isNotChangeMap()
+{
+	isChangeMap = false;
 }
 
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "Tile.h"
 
@@ -8,6 +8,7 @@ public:
 	void init(char* _fileName);
 	TileType getTileTypeFromIdex(int _x, int _y);
 	std::vector<class Tile>& getTiles() { return m_tiles; }
+	Tile& getSpecifyTile(int _blockPositionX, int _blockPositionY);
 
 public:
 	void render(HDC hdc);

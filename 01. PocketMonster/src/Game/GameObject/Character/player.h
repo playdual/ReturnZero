@@ -22,8 +22,15 @@ public:
 
 	int getPlayRectX();
 	int getPlayRectY();
+	int getPlayerBlockX() { return m_blockPositionX; }
+	int getPlayerBlockY() { return m_blockPositionY; }
 	void reLocate(int blockX, int blockY);
 	void isBattleStart();
+	bool getisBattle() { return isBattle; }
+	void BattleEnd() { isBattle = false; }
+	void MoveSetZero();
+	bool getisChangeMap();
+	void isNotChangeMap();
 	//void rectInCamera(UTIL::IRECT& outRect, const UTIL::IRECT& realRect, bool& isOutput);
 private:
 	UTIL::IRECT m_playerRect;
@@ -57,6 +64,8 @@ private:
 	bool isMoveDown=false;
 	bool isAnotherMove = false;
 
+	bool isMoveLeftTest = false;
+
 	bool isLeft = false;
 	bool isRight = false;
 	bool isUp = false;
@@ -76,6 +85,8 @@ private:
 	int m_blockPositionX;
 	int m_blockPositionY;
 
+	//Change Map
+	bool isChangeMap = false;
 
 	//player image
 	Image* m_playerImg;
@@ -88,7 +99,6 @@ private:
 	Animation* m_aniplayerMoveUp;
 	Animation* m_aniplayerMoveLeft;
 	Animation* m_aniplayerMoveRight;
-
 	
 
 	std::vector<std::shared_ptr<PocketMon>> Pocketmons;

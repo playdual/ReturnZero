@@ -7,11 +7,14 @@ public:
 	Tile();
 	~Tile();
 
-	void init(TileType _type, Image* _img, bool _isAfterRender, bool _isMovable, int _BlockPostionX, int _BlockPostionY);
+	void init(TileType _type, Image* _img, bool _isAfterRender, bool _isMovable, int _BlockPostionX, int _BlockPostionY
+		, std::string _nextMapKey = "", int _x = 0, int _y = 0);
 	void update(float _deltaTime);
 	void render(HDC hdc);
 	void debugRender(HDC hdc);
 	void afterRender(HDC hdc);
+	std::string getNextMapKey() { return m_nextMapKey; }
+	POINT getNextMapIdx() { return m_nextMapIdx; }
 
 public:
 	int m_BlockPositionX;
@@ -30,6 +33,6 @@ private:
 	bool isAfterRender;
 	bool isMovable;
 
-
-
+	std::string m_nextMapKey;
+	POINT m_nextMapIdx;
 };
