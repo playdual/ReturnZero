@@ -11,11 +11,11 @@ public:
 	void deleteALL();
 
 public:
-	//Ã³À½ºÎÅÍ ³¡±îÁö
+	//ì²˜ìŒë¶€í„° ëê¹Œì§€
 	void addDefAnimation(std::string animationKeyName, char* imageKeyName, int fps, bool reverse = false, bool loop = false);
-	//¹è¿­¿¡ ´ã¾Æ¼­
+	//ë°°ì—´ì— ë‹´ì•„ì„œ
 	void addAnimation(std::string animationKeyName, char* imageKeyName, int* playArr, int arrLen, int fps, bool loop = false);
-	//±¸°£
+	//êµ¬ê°„
 	void addAnimation(std::string animationKeyName, char* imageKeyName, int start, int end, int fps,bool reverse =  false, bool loop = false);
 	Animation* findAnimation(std::string animationKeyName);
 

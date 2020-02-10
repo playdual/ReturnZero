@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "TownScene.h"
 
 TownScene::TownScene()
@@ -30,6 +30,7 @@ void TownScene::update(float _deltaTime)
 
 void TownScene::render(HDC hdc)
 {
+	//m_player->render(hdc);
 	
 }
 

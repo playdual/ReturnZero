@@ -26,6 +26,7 @@ HRESULT KeyManager::init()
 	playerKey[P1_EVENT] = VK_SPACE;
 	playerKey[P1_USEITEM] = VK_TAB;
 
+	playerKey[GAME_W] = 'W';
 	playerKey[GAME_SHOWFPS] = VK_F1;
 	playerKey[GAME_RECTMODE] = VK_F2;
 	playerKey[GAME_DEBUGMODE] = VK_F3;

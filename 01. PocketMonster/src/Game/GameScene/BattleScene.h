@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Scene.h"
 #include "Game/GameObject/PocketMon.h"
 #include "Game/GameObject/Pocketmons/Paili.h"
@@ -34,7 +34,7 @@ public:
 
 	
 	void wildBattleFunctions();
-	void npcBattleFunctions();
+	//void npcBattleFunctions();
 
 	void wildBattleIntroAni();
 
