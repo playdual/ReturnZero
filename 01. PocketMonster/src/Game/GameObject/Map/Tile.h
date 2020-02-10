@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include"Game/GameTypes.h"
 #include"Common/SystemManagers.h"
+#include "Game/GameObject/Pocketmon/PocketMon.h"
+
 class Tile
 {
 public:
@@ -35,6 +37,8 @@ private:
 	bool isAfterRender;
 	bool isMovable;
 
-	std::string m_nextMapKey;
-	POINT m_nextMapIdx;
+	//포켓몬의 키값 이름, 포켓몬의 래벨
+	std::vector<std::pair<std::string, int>> m_innerPocketMonInfo;
+	std::string m_nextMapName;
+	POINT m_nextMapStartIdx;
 };

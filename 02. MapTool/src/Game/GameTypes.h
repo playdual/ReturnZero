@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 //게임 내에서 쓰이는 Enum과 구조체 메크로 등을 정의 합니다.
 
 #define TILESIZE 32 //오른쪽 화면 타일 사이즈
@@ -20,6 +20,7 @@ enum class TileType
 	TileTypeHouse,
 	TileTypeBush,
 	TileTypeTree,
+	TileTypeNextMap,
 	TileTypeOutRange,
 	TileTypeNone
 };

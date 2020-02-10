@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "Scene.h"
 #include "Game/GameObject/Tile.h"
@@ -30,12 +30,12 @@ public:
 	bool init() override;
 	void update(float _deltaTime) override;
 	void release() override;
+	void cameraMove();
 
 public:
 	void render(HDC hdc) override;
 	void afterRender(HDC hdc) override;
 	void debugRender(HDC hdc) override;
-	void cameraMove();
 
 public:
 	void treeVectorInit(int _pageCount);
@@ -45,26 +45,33 @@ public:
 public:
 	void UIupdate();
 	void UIrender(HDC hdc);
+	void TileWindowUpdate(float _deltaTime);
+	void TileWindowRender(HDC hdc);
 
-
+	//always
 	void mainSelectUpdate();
 	void mainSelectRender(HDC hdc);
+	void resetTileUpdate();
+	void resetTileRender(HDC hdc);
+	void backButtonUpdate();
+	void backButtonRender(HDC hdc);
+	void saveLoadUpdate();
+	void saveLoadRender(HDC hdc);
+	void resetSpecifyUpdate();
+	void resetSpecifyRender(HDC hdc);
+	void loadMap();
+	void saveMap();
+
+
+	//in each case
 	void bushSelectUpdate();
 	void bushSelectRender(HDC hdc);
 	void treeSelectUpdate();
 	void treeSelectRender(HDC hdc);
 	void tileSelectUpdate();
 	void tileSelectRender(HDC hdc);
-	void resetTileUpdate();
-	void resetTileRender(HDC hdc);
-
-	void saveLoadUpdate();
-	void saveLoadRender(HDC hdc);
-	void backButtonUpdate();
-	void backButtonRender(HDC hdc);
-
-	void loadMap();
-	void saveMap();
+	void specifyUpdate();
+	void specifyRender(HDC hdc);
 
 private:
 	int m_prevMouseX;
@@ -72,7 +79,6 @@ private:
 	int m_pickedMouseX;
 	int m_pickedMouseY;
 
-private:
 	bool m_isSettedMove = false;
 	bool m_isMouseMoveActive = false;
 	bool m_settedColor = false;
@@ -81,55 +87,86 @@ private:
 	bool onSelect;
 	bool startedSelect;
 
-	//for menu
+
+	//UI
 private:
 	bool m_mainSelect = true;
 	bool m_tileSelect = false;
 	bool m_treeSelect = false;
 	bool m_bushSelect = false;
+	bool m_specifySelect = false;
 
 private:
-	UTIL::IRECT clientRect;
+	//mainMenu
 	UTIL::IRECT tileSelectRect;
 	UTIL::IRECT treeSelectRect;
 	UTIL::IRECT bushSelectRect;
-	UTIL::IRECT saveSelectRect;
-	UTIL::IRECT loadSelectRect;
+	UTIL::IRECT setSpecifyRect;
+
+	//always
+	UTIL::IRECT clientRect;
 	UTIL::IRECT backButtonRect;
 	UTIL::IRECT resetTileButtonRect;
+	UTIL::IRECT resetSpecifyButtonRect;
+	UTIL::IRECT saveSelectRect;
+	UTIL::IRECT loadSelectRect;
 
-private:
+	//in each case
+	UTIL::IRECT pageFrontButton;
+	UTIL::IRECT pageBackButton;
+	UTIL::IRECT setNextMapButtonRect;
+	UTIL::IRECT setPocketMonButtonRect;
+
+	bool tileSelectRectSetted;
+	bool treeSelectRectSetted;
+	bool bushSelectRectSetted;
+	bool setSpecifyRectSetted;
+	bool resetTileButtonRectSetted;
+	bool backButtonRectSetted;
+
 	char* tileSelectStr = "tileSelect";
 	char* treeSelectStr = "treeSelect";
 	char* bushSelectStr = "bushSelect";
 	char* saveSelectStr = "saveSelect";
 	char* loadSelectStr = "loadSelect";
-
 	char* inTileSelectStr = "choose tile type";
 	char* inTreeSelectStr = "choose tree type";
 	char* inBushSelectStr = "choose bush type";
-	const int textOffsetX = 50;
+	char* specifyPocketStr = "input pocketMonInfo";
+	char* specifyNextMapStr = "input nextMapInfo";
+	char* specifySelectStr = "specify tile type";
+	char* settedInfo = "setted info : ";
+
+	const int textOffsetX = 20;
 	const int textOffsetY = 25;
 	const int inSelectStrX = 1200;
 	const int inSelectStrY = 20;
 	const int inUiTileWidth = 50;
 	const int inUiTileHeight = 50;
+	const int UIOffset = 1000;
+
+	bool m_settedPocketMon = false;
+	bool m_settedNextMap = false;
+
+	std::string settedNextMap;
+	POINT settedNextMapIdx;
+	std::string settedPocketMon;
+	int settedPocketMonLevel;
 
 private:
 	std::vector<std::vector<SelectTileData>> tileVector;
 	std::vector<std::vector<SelectTileData>> treeVector;
 	std::vector<std::vector<SelectTileData>> bushVector;
-
 	int tileSelectPage;
+	int tileSelectPageMax;
 	int treeSelectPage;
+	int treeSelectPageMax;
 	int bushSelectPage;
+	int bushSelectPageMax;
 
 private:
 	TileAttribute selectedAttribute;
-	void resetSelectedAttribute();
-
-public:
-	//virtual LRESULT MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);
+	void resetTileSelectedAttribute();
 
 private:
 	std::vector<std::shared_ptr<Tile>> m_Tiles;

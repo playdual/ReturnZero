@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Tile.h"
 
 Tile::Tile()
@@ -28,6 +28,10 @@ void Tile::init(TileType _type, Image* _img, bool _isAfterRender, bool _isMovabl
 void Tile::update(float _deltaTime)
 {
 	CAMEARAMANAGER->setRelativePosition(m_absTile, m_outputTile, isCanprint);
+	if (TileType::TileTypeBush != m_Type)
+		m_innerPocketMonInfo.clear();
+	if (m_Type != TileType::TileTypeNextMap)
+		m_nextMapName = "";
 }
 
 void Tile::render(HDC hdc)
@@ -37,7 +41,7 @@ void Tile::render(HDC hdc)
 			m_img->render(hdc, m_outputTile.left, m_outputTile.top);
 		}
 		else {
-			UTIL::DrawColorRect(hdc, m_outputTile, true, color);
+			UTIL::DrawColorRect(hdc, m_outputTile, color, true);
 		}	
 	}
 }
@@ -71,6 +75,8 @@ void Tile::setAttributeTile(TileAttribute _attribute)
 	case TileType::TileTypeTree:
 		isMovable = false;
 		break;
+	case TileType::TileTypeNextMap:
+		isMovable = true;
 	}
 	isAfterRender = _attribute.isAfterRender;
 	m_img = IMAGEMANAGER->findImage(_attribute.tileKeyname);
@@ -82,5 +88,23 @@ void Tile::resetAttribute()
 	isMovable = false;
 	isAfterRender = false;
 	m_Type = TileType::TileTypeNone;
+}
 
+void Tile::pushInnerPocketMon(std::string _pocketName, int _pocketLevel)
+{
+	if (m_Type == TileType::TileTypeBush) {
+		for (int i = 0; i < m_innerPocketMonInfo.size(); ++i)
+			if (m_innerPocketMonInfo[i].first == _pocketName)
+				return;
+		m_innerPocketMonInfo.push_back(std::make_pair(_pocketName, _pocketLevel));
+	}
+}
+
+void Tile::setNextMap(std::string _mapName, int _startBlockPositionX, int _startBlockPositionY)
+{
+	if (m_Type == TileType::TileTypeBush) {
+		m_nextMapName = _mapName;
+		m_nextMapStartIdx.x = _startBlockPositionX;
+		m_nextMapStartIdx.y = _startBlockPositionY;
+	}
 }
