@@ -43,8 +43,8 @@ public:
 
 	//포켓몬 공격 및 피격 이팩트 관련
 	void pocketmonEffectInit();
-	bool skillEffectAssemble(HDC _hdc, std::string * _skillName);
-	bool skillEffectAssemble(std::string _skillName, HDC hdc);
+	bool playerSkillEffectAssemble(std::string _skillName, HDC hdc);
+	void enemySkillEffectAssemble(std::string _skillName, HDC hdc);
 
 	
 	//===================
@@ -81,11 +81,12 @@ public:
 	void playerStayMotion();
 
 	void selectPlayerSkillType();
-	void selectEnemyskill();
+	std::string selectEnemyskill();
 
 	//공격에 hp 변동 체크
 	//공격하면 현재 피가 달면서 current의 wigth 값이 줄어든다.
 	void playerPockatmonAttack(HDC hdc);
+	
 	int checkDamage();
 	
 	//렌더링
@@ -94,8 +95,11 @@ public:
 
 
 	//스킬 이팩트 모듬
-	bool pailiFireShower(std::string _skillName, HDC hdc);
+	//플레이어
+	void pailiFireShower(std::string _skillName, HDC hdc);
 
+	//적
+	void 
 	
 private:
 	//test
@@ -223,6 +227,9 @@ private:
 	int m_enemyMinusHp;
 	int m_enemyCurrentMinusHp;
 	int m_enemyAlpha;
+	int m_playerAlpha;
+	//적
+	std::string enemySkillName;
 
 	//전투 승패 관련
 	bool pocketmonLose;

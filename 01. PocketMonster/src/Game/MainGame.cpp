@@ -19,10 +19,10 @@ MainGame::~MainGame()
 HRESULT MainGame::init()
 {
 	GameNode::init();
-	//rsc loading
-
+	IMAGEMANAGER->addImage("trainersMan", "Images/Trainers/trainers_man.bmp", 64 * 3, 64 * 3, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("pailiFront", "Images/pocketmons/pailiFront.bmp", 60 * 3, 61 * 3, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("pikachu", "Images/pocketmons/PikachuFront.bmp", 61 * 3, 61 * 3, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("pailiBack", "Images/pocketmons/pailiBack.bmp", 61 * 3, 61 * 3, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("pikachuFront", "Images/pocketmons/PikachuFront.bmp", 61 * 3, 61 * 3, true, RGB(255, 0, 255));
 
 	MAPMANGER->init();
 	ITEMMANAGER->init();
