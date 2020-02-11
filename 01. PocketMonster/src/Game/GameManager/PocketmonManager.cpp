@@ -61,6 +61,7 @@ HRESULT PocketmonManager::init()
 
 	//wildPocketmonVector.push_back(pocket2);
 
+	//포켓몬 벡터는 스트링으로만
 	for (int i = 0; i < 2; i++)
 	{
 		std::shared_ptr<PocketMon> pocket = std::make_shared<PocketMon>();
@@ -79,10 +80,11 @@ HRESULT PocketmonManager::init()
 		pocket->m_def = 13;
 		pocket->m_specialAtk = 17;
 		pocket->m_specialDef = 17;
-		pocket->m_dex = 19;
+		pocket->m_speed = 19;
 		pocket->m_maxExp = 742;
 		pocket->m_currentExp = 0;
-		pocket->skill_1 = "불꽃세례";
+	/*	pocket->skill_1 = "불꽃세례";*/
+		
 
 		if (i == 0) playerPocketmonVector.push_back(pocket);
 		else if (i == 1) wildPocketmonVector.push_back(pocket);
@@ -144,3 +146,325 @@ std::shared_ptr<PocketMon> PocketmonManager::getWildPocketmon()
 	}
 	return std::shared_ptr<PocketMon>();
 }
+
+PocketMon PocketmonManager::genPocketMon(std::string _name, int level)
+{
+	if (_name == "파이리")
+		return genCharmander(level);
+	else if (_name == "이상해씨")
+		return genBulbasaur(level);
+	else if (_name == "꼬부기")
+		return genSquirtle(level);
+	else if (_name == "구구")
+		return genPidgey(level);
+	else if (_name == "피카츄")
+		return genPikachu(level);
+	else if (_name == "캐터피")
+		return genCaterpie(level);
+	else if (_name == "꼬렛")
+		return genRattata(level);
+	else if (_name == "식스테일")
+		return genVulpix(level);
+	else if (_name == "뚜벅초")
+		return genOddish(level);
+	else if (_name == "발챙이")
+		return genPoliwag(level);
+}
+
+PocketMon PocketmonManager::genCharmander(int level)
+{
+	PocketMon pocket;
+	pocket.m_name = "파이리";
+	pocket.m_customName = "";
+	pocket.m_level = level;
+	pocket.m_maxHp = 20 + level * 6;
+	pocket.m_currentHp = pocket.m_maxHp;
+	pocket.m_maxExp = level * 20 + level * 2;
+	pocket.m_currentExp = 0;
+	pocket.m_wildExp = level * 10 + level * 1;
+	pocket.m_atk = 5 + level * 2;
+	pocket.m_specialAtk = 6 + level * 3;
+	pocket.m_def = 3 + level * 2;
+	pocket.m_specialDef = 4 + level * 2;
+	pocket.m_Attribute = PockemonAttibute::PockemonAttibuteFire;
+	pocket.m_speed = 2 * level;
+	pocket.gender = true;
+	pocket.m_pocketmonFrontImg = NULL;
+	pocket.m_pocketmonBackImg = NULL;
+
+	pocket.skillList.push_back(tackleProto);
+	if(level>7)pocket.skillList.push_back(emberProto);
+	if(level>13)pocket.skillList.push_back(flameThrowerProto);
+	if(level>30)pocket.skillList.push_back(fireBlastProto);
+
+	
+	return pocket;
+}
+
+PocketMon PocketmonManager::genBulbasaur(int level)
+{
+	PocketMon pocket;
+	pocket.m_name = "이상해씨";
+	pocket.m_customName = "";
+	pocket.m_level = level;
+	pocket.m_maxHp = 22 + level * 6;
+	pocket.m_currentHp = pocket.m_maxHp;
+	pocket.m_maxExp = level * 20 + level * 2;
+	pocket.m_currentExp = 0;
+	pocket.m_wildExp = level * 10 + level * 1;
+	pocket.m_atk = 6 + level * 2;
+	pocket.m_specialAtk = 5 + level * 3;
+	pocket.m_def = 3 + level * 3;
+	pocket.m_specialDef = 3 + level * 3;
+	pocket.m_Attribute = PockemonAttibute::PockemonAttibuteGrass;
+	pocket.m_speed = 10 + level;
+	pocket.gender = true;
+	pocket.m_pocketmonFrontImg = NULL;
+	pocket.m_pocketmonBackImg = NULL;
+
+	pocket.skillList.push_back(tackleProto);
+	if (level > 7)pocket.skillList.push_back(vineWhipProto);
+	if (level > 13)pocket.skillList.push_back(razorLeafProto);
+	if (level > 30)pocket.skillList.push_back(solarBeamProto);
+
+	return pocket;
+}
+
+PocketMon PocketmonManager::genSquirtle(int level)
+{
+	PocketMon pocket;
+	pocket.m_name = "꼬부기";
+	pocket.m_customName = "";
+	pocket.m_level = level;
+	pocket.m_maxHp = 21 + level * 6;
+	pocket.m_currentHp = pocket.m_maxHp;
+	pocket.m_maxExp = level * 20 + level * 2;
+	pocket.m_currentExp = 0;
+	pocket.m_wildExp = level * 10 + level * 1;
+	pocket.m_atk = 1 + level * 3;
+	pocket.m_specialAtk = 3 + level * 2;
+	pocket.m_def = 3 + level * 3;
+	pocket.m_specialDef = 4 + level * 3;
+	pocket.m_Attribute = PockemonAttibute::PockemonAttibuteWater;
+	pocket.m_speed = level+level;
+	pocket.gender = false;
+	pocket.m_pocketmonFrontImg = NULL;
+	pocket.m_pocketmonBackImg = NULL;
+
+	pocket.skillList.push_back(tackleProto);
+	if (level > 7)pocket.skillList.push_back(waterSaluteProto);
+	if (level > 13)pocket.skillList.push_back(brineProto);
+	if (level > 30)pocket.skillList.push_back(hydroPumpProto);
+
+	return pocket;
+}
+
+PocketMon PocketmonManager::genPidgey(int level)
+{
+	PocketMon pocket;
+	pocket.m_name = "구구";
+	pocket.m_customName = "";
+	pocket.m_level = level;
+	pocket.m_maxHp = 22 + level * 6;
+	pocket.m_currentHp = pocket.m_maxHp;
+	pocket.m_maxExp = level * 20 + level * 2;
+	pocket.m_currentExp = 0;
+	pocket.m_wildExp = level * 10 + level * 1;
+	pocket.m_atk = 5 + level*1 ;
+	pocket.m_specialAtk = 3 + level * 2;
+	pocket.m_def = 3 + level * 2;
+	pocket.m_specialDef = 4 + level * 2;
+	pocket.m_Attribute = PockemonAttibute::PockemonAttibuteFly;
+	pocket.m_speed = 3 + level +level;
+	pocket.gender = true;
+	pocket.m_pocketmonFrontImg = NULL;
+	pocket.m_pocketmonBackImg = NULL;
+
+	pocket.skillList.push_back(quickAttackProto);
+	if (level > 7)pocket.skillList.push_back(wingAttackProto);
+	if (level > 13)pocket.skillList.push_back(airSlashProto);
+	if (level > 30)pocket.skillList.push_back(hurricaneProto);
+
+
+	return pocket;
+}
+
+PocketMon PocketmonManager::genPikachu(int level)
+{
+	PocketMon pocket;
+	pocket.m_name = "피카츄";
+	pocket.m_customName = "";
+	pocket.m_level = level;
+	pocket.m_maxHp = 19 + level * 5;
+	pocket.m_currentHp = pocket.m_maxHp;
+	pocket.m_maxExp = level * 20 + level * 2;
+	pocket.m_currentExp = 0;
+	pocket.m_wildExp = level * 11 + level * 1;
+	pocket.m_atk = 1 + level * 2;
+	pocket.m_specialAtk = 1 + level * 3;
+	pocket.m_def = 1 + level * 2;
+	pocket.m_specialDef = 2 + level * 2;
+	pocket.m_Attribute = PockemonAttibute::PockemonAttibuteElectric;
+	pocket.m_speed = 5 + level + level;
+	pocket.gender = false;
+	pocket.m_pocketmonFrontImg = NULL;
+	pocket.m_pocketmonBackImg = NULL;
+
+	pocket.skillList.push_back(quickAttackProto);
+	if (level > 7)pocket.skillList.push_back(thunderWaveProto);
+	if (level > 13)pocket.skillList.push_back(thunderboltProto);
+	if (level > 30)pocket.skillList.push_back(thunderProto);
+
+
+	return pocket;
+}
+
+PocketMon PocketmonManager::genCaterpie(int level)
+{
+	PocketMon pocket;
+	pocket.m_name = "캐터피";
+	pocket.m_customName = "";
+	pocket.m_level = level;
+	pocket.m_maxHp = 13 + level * 5;
+	pocket.m_currentHp = pocket.m_maxHp;
+	pocket.m_maxExp = level * 20 + level * 2;
+	pocket.m_currentExp = 0;
+	pocket.m_wildExp = level * 9 + level * 1;
+	pocket.m_atk = 3 + level * 1;
+	pocket.m_specialAtk = 3 + level * 2;
+	pocket.m_def = 1 + level * 2;
+	pocket.m_specialDef = 1 + level * 3;
+	pocket.m_Attribute = PockemonAttibute::PockemonAttibuteNormal;
+	pocket.m_speed = 4 + level;
+	pocket.gender = false;
+	pocket.m_pocketmonFrontImg = NULL;
+	pocket.m_pocketmonBackImg = NULL;
+
+	pocket.skillList.push_back(tackleProto);
+	if (level > 4)pocket.skillList.push_back(scratchProto);
+	if (level > 10)pocket.skillList.push_back(quickAttackProto);
+	if (level > 20)pocket.skillList.push_back(megaPunchProto);
+
+
+
+	return pocket;
+}
+
+PocketMon PocketmonManager::genRattata(int level)
+{
+	PocketMon pocket;
+	pocket.m_name = "꼬렛";
+	pocket.m_customName = "";
+	pocket.m_level = level;
+	pocket.m_maxHp = 13 + level * 5;
+	pocket.m_currentHp = pocket.m_maxHp;
+	pocket.m_maxExp = level * 20 + level * 2;
+	pocket.m_currentExp = 0;
+	pocket.m_wildExp = level * 8 + level * 1;
+	pocket.m_atk = 6 + level * 1;
+	pocket.m_specialAtk = 4 + level * 2;
+	pocket.m_def = 2 + level * 2;
+	pocket.m_specialDef = 4 + level * 3;
+	pocket.m_Attribute = PockemonAttibute::PockemonAttibuteNormal;
+	pocket.m_speed = 5 + level;
+	pocket.gender = false;
+	pocket.m_pocketmonFrontImg = NULL;
+	pocket.m_pocketmonBackImg = NULL;
+
+	pocket.skillList.push_back(tackleProto);
+	if (level > 4)pocket.skillList.push_back(scratchProto);
+	if (level > 10)pocket.skillList.push_back(quickAttackProto);
+	if (level > 20)pocket.skillList.push_back(megaPunchProto);
+
+
+
+	return pocket;
+}
+
+PocketMon PocketmonManager::genVulpix(int level)
+{
+	PocketMon pocket;
+	pocket.m_name = "식스테일";
+	pocket.m_customName = "";
+	pocket.m_level = level;
+	pocket.m_maxHp = 14 + level * 5;
+	pocket.m_currentHp = pocket.m_maxHp;
+	pocket.m_maxExp = level * 20 + level * 2;
+	pocket.m_currentExp = 0;
+	pocket.m_wildExp = level * 10 + level * 1;
+	pocket.m_atk = 3 + level * 2;
+	pocket.m_specialAtk = 3 + level * 2;
+	pocket.m_def = 2 + level * 2;
+	pocket.m_specialDef = 2 + level * 3;
+	pocket.m_Attribute = PockemonAttibute::PockemonAttibuteFire;
+	pocket.m_speed = 2*level;
+	pocket.gender = true;
+	pocket.m_pocketmonFrontImg = NULL;
+	pocket.m_pocketmonBackImg = NULL;
+
+	pocket.skillList.push_back(quickAttackProto);
+	if (level > 7)pocket.skillList.push_back(emberProto);
+	if (level > 15)pocket.skillList.push_back(flameThrowerProto);
+	if (level > 23)pocket.skillList.push_back(fireBlastProto);
+
+	return pocket;
+}
+
+PocketMon PocketmonManager::genOddish(int level)
+{
+	PocketMon pocket;
+	pocket.m_name = "뚜벅초";
+	pocket.m_customName = "";
+	pocket.m_level = level;
+	pocket.m_maxHp = 14 + level * 5;
+	pocket.m_currentHp = pocket.m_maxHp;
+	pocket.m_maxExp = level * 20 + level * 2;
+	pocket.m_currentExp = 0;
+	pocket.m_wildExp = level * 10 + level * 1;
+	pocket.m_atk = 2 + level * 2;
+	pocket.m_specialAtk = 2 + level * 2;
+	pocket.m_def = 2 + level * 2;
+	pocket.m_specialDef = 2 + level * 3;
+	pocket.m_Attribute = PockemonAttibute::PockemonAttibuteGrass;
+	pocket.m_speed = 2 * level;
+	pocket.gender = true;
+	pocket.m_pocketmonFrontImg = NULL;
+	pocket.m_pocketmonBackImg = NULL;
+
+	pocket.skillList.push_back(tackleProto);
+	if (level > 6)pocket.skillList.push_back(vineWhipProto);
+	if (level > 13)pocket.skillList.push_back(razorLeafProto);
+	if (level > 25)pocket.skillList.push_back(solarBeamProto);
+
+	return pocket;
+}
+
+PocketMon PocketmonManager::genPoliwag(int level)
+{
+	PocketMon pocket;
+	pocket.m_name = "발챙이";
+	pocket.m_customName = "";
+	pocket.m_level = level;
+	pocket.m_maxHp = 14 + level * 5;
+	pocket.m_currentHp = pocket.m_maxHp;
+	pocket.m_maxExp = level * 20 + level * 2;
+	pocket.m_currentExp = 0;
+	pocket.m_wildExp = level * 10 + level * 1;
+	pocket.m_atk = 3 + level * 2;
+	pocket.m_specialAtk = 3 + level * 2;
+	pocket.m_def = 2 + level * 2;
+	pocket.m_specialDef = 2 + level * 2;
+	pocket.m_Attribute = PockemonAttibute::PockemonAttibuteWater;
+	pocket.m_speed = 2 * level;
+	pocket.gender = true;
+	pocket.m_pocketmonFrontImg = NULL;
+	pocket.m_pocketmonBackImg = NULL;
+
+	pocket.skillList.push_back(tackleProto);
+	if (level > 6)pocket.skillList.push_back(waterSaluteProto);
+	if (level > 13)pocket.skillList.push_back(brineProto);
+	if (level > 25)pocket.skillList.push_back(hydroPumpProto);
+
+	return pocket;
+}
+
