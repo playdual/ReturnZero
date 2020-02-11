@@ -43,15 +43,16 @@ PocketmonManager::~PocketmonManager()
 
 HRESULT PocketmonManager::init()
 {
-	IMAGEMANAGER->addImage("pailiFront", "Images/pocketmons/pailiFront.bmp", 60*3, 61*3, true, RGB(255, 0, 255));
+	
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		PocketMon pocket;
 
 		pocket.m_state = true;
 		pocket.m_name = "파이리";
 		pocket.m_customName = "영환파이리";
+		pocket.m_pocketmonBackImg = IMAGEMANAGER->findImage("pailiFront");
 		pocket.gender = false;
 		pocket.m_level = UTIL::GetRndIntFromTo(3,7);
 		pocket.m_maxHp = UTIL::GetRndIntFromTo(26,35);
@@ -62,8 +63,34 @@ HRESULT PocketmonManager::init()
 		pocket.m_specialDef = UTIL::GetRndIntFromTo(15,19);
 		pocket.m_dex = UTIL::GetRndIntFromTo(17, 19);
 		pocket.m_maxExp = UTIL::GetRndIntFromTo(742, 800);
+		pocket.m_wildExp = 100;
 		pocket.m_currentExp = 0;
 		pocket.skill_1 = "불꽃세례";
+		//pocket.skill_1force = 40;
+
+		pocketmonVector.push_back(pocket);
+	}
+
+	for (int i = 0; i < 1; i++)
+	{
+		PocketMon pocket;
+
+		pocket.m_state = true;
+		pocket.m_name = "피카츄";
+		pocket.m_pocketmonBackImg = IMAGEMANAGER->findImage("pikachu");
+		pocket.gender = false;
+		pocket.m_level = UTIL::GetRndIntFromTo(3, 7);
+		pocket.m_maxHp = UTIL::GetRndIntFromTo(26, 35);
+		pocket.m_currentHp = pocket.m_maxHp;
+		pocket.m_atk = UTIL::GetRndIntFromTo(12, 15);
+		pocket.m_def = UTIL::GetRndIntFromTo(7, 9);
+		pocket.m_specialAtk = UTIL::GetRndIntFromTo(15, 19);
+		pocket.m_specialDef = UTIL::GetRndIntFromTo(15, 19);
+		pocket.m_dex = UTIL::GetRndIntFromTo(17, 19);
+		pocket.m_maxExp = UTIL::GetRndIntFromTo(742, 800);
+		pocket.m_wildExp = 100;
+		pocket.m_currentExp = 0;
+		pocket.skill_1 = "전기쇼크";
 		//pocket.skill_1force = 40;
 
 		pocketmonVector.push_back(pocket);
@@ -93,9 +120,8 @@ void PocketmonManager::debugRender(HDC hdc)
 {
 }
 
-PocketMon PocketmonManager::getPocketmonInform()
+PocketMon PocketmonManager::getPocketmonInform(int i)
 {
-	int i = UTIL::GetRndIntFromTo(0, pocketmonVector.size()-1);
 	return pocketmonVector[i];
 }
 

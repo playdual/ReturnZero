@@ -13,8 +13,8 @@ bool BattleScene::init()
 	pocketmonEffectInit();
 	
 	//테스트용 포켓몬 정보 복사하기
-	m_playerPocketmon = POCKETMONMANAGER->getPocketmonInform();
-	m_wildPocketmon = POCKETMONMANAGER->getPocketmonInform();
+	m_playerPocketmon = POCKETMONMANAGER->getPocketmonInform(0);
+	m_wildPocketmon = POCKETMONMANAGER->getPocketmonInform(1);
 
 
 	//===============
@@ -27,6 +27,7 @@ bool BattleScene::init()
 	m_playerStatusX = 1524;
 	m_enemyBottomX = -547;
 	m_enemyPocketmonX = -360;
+	m_enemyPocketmonY = 165;
 	m_enemyStatusX = -425;
 	m_wildPocketmonHpBarWigth = 230;
 
@@ -36,7 +37,7 @@ bool BattleScene::init()
 	//적 바닥
 	 m_enemyBottom = UTIL::IRectMake(m_enemyBottomX, 228, 547, 159);
 	//적 포켓몬
-	m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
+	m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, m_enemyPocketmonY, 165, 181);
 	
 	
 	//플레이어바닥
@@ -120,9 +121,19 @@ bool BattleScene::init()
 	m_skillCount = 0;
 	m_enemyTwinkleCount = 0;
 	m_enemyMinusHp = 0;
+	m_enemyCurrentMinusHp = 0;
 	m_enemyAlpha = 255;
 	
-	//moveOn = true;
+
+	//=================
+	// 전투 승패 관련 //
+	//=================
+	
+	pocketmonLose = false;
+	playerLose = false;
+	enemyLose = false;
+	getExp = false;
+
 	return true;
 
 }
@@ -268,23 +279,21 @@ void BattleScene::debugRender(HDC hdc)
 	//========================
 	// 디버깅 출력 내용 모음 //
 	//========================
-		/*
-	//if (KEYMANAGER->isOnceKeyDown(GAME_LMOUSE))
-	//{
-	//	//EFFECTMANAGER->play("파이리스킬1", m_ptMouse.x, m_ptMouse.y);
-	//	//test = EFFECTMANAGER->getIsPlay();
-	//	//m_player->skillEffect(1);
-	//}
+	/*
+	if (KEYMANAGER->isOnceKeyDown(GAME_LMOUSE))
+	{
+		//EFFECTMANAGER->play("파이리스킬1", m_ptMouse.x, m_ptMouse.y);
+		//test = EFFECTMANAGER->getIsPlay();
+		//m_player->skillEffect(1);
+	}
 	
-	//if(test) test = EFFECTMANAGER->getIsPlay();
+	if(test) test = EFFECTMANAGER->getIsPlay();
 
-	//wsprintf(str, "%d", test);
-	//TextOut(hdc, 100, 100, str, strlen(str));
+	wsprintf(str, "%d", test);
+	TextOut(hdc, 100, 100, str, strlen(str));
 
-	/*wsprintf(str, "%d, %d", m_ptMouse.x, m_ptMouse.y);
+	wsprintf(str, "%d, %d", m_ptMouse.x, m_ptMouse.y);
 	TextOut(hdc, m_ptMouse.x, m_ptMouse.y - 20, str, strlen(str));
-
-
 
 	wsprintf(str, "fight: %d, bag: %d, pocketmon: %d, run: %d", fight, bag, pocketmon, run);
 	TextOut(hdc, 10, 10, str, strlen(str));
@@ -292,11 +301,13 @@ void BattleScene::debugRender(HDC hdc)
 	wsprintf(str, "s_1: %d, s_2: %d, s_3: %d, s_4: %d", skill_1, skill_2, skill_3, skill_4);
 	TextOut(hdc, 10, 25, str, strlen(str));
 
-	*/
-	
 	wsprintf(str, "포켓몬 hp: %d, m_enemyMinusHp: %d", m_wildPocketmon.m_currentHp, m_enemyMinusHp);
 	TextOut(hdc, 500, 300, str, strlen(str));
+	*/
 
+	wsprintf(str, "Exp: %d, m_skillCount: %d", m_playerPocketmon.m_currentExp, m_skillCount);
+	TextOut(hdc, 10, 25, str, strlen(str));
+	
 	wsprintf(str, "%d, %d", m_wildPocketmon.m_currentHp, m_wildPocketmonHpBarWigth);
 	TextOut(hdc, 10, 40, str, strlen(str));
 
@@ -316,9 +327,6 @@ void BattleScene::wildBattleFunctions()
 			if (playerAtkOn && KEYMANAGER->isOnceKeyDown(P1_X)) playerAtkOn = false;
 			playerStayMotion();
 		}
-
-		//if (playerAtkSkillOn) selectPlayerSkillType();
-
 		if (enemyTurn)
 		{
 			m_skillCount++;
@@ -396,6 +404,7 @@ void BattleScene::wildBattleIntroAni()
 void BattleScene::npcBattleIntroAni()
 {
 }
+
 void BattleScene::pocketmonEffectInit()
 {
 	//파이리 공격
@@ -460,7 +469,7 @@ void BattleScene::enemyUiBottom(HDC hdc)
 void BattleScene::enemyUiPocketmon(HDC hdc)
 {
 	UTIL::DrawRect(hdc, m_enemyPocketmon);
-	IMAGEMANAGER->findImage("pailiFront")->alphaRender(hdc, m_enemyPocketmon.left, m_enemyPocketmon.top, m_enemyAlpha);
+	m_wildPocketmon.m_pocketmonBackImg->alphaRender(hdc, m_enemyPocketmon.left, m_enemyPocketmon.top, m_enemyAlpha);
 }
 void BattleScene::enemyUiMaxHp(HDC hdc)
 {
@@ -815,18 +824,6 @@ void BattleScene::wildBattleRender(HDC hdc)
 
 void BattleScene::playerPockatmonAttack(HDC hdc)
 {
-	//플레이어 포켓몬이 적 포켓몬을 일반공격으로 때린다
-	//일반공격
-	//현재피는 = (-2~공격력) - 적 def(-2~방어)
-	/*m_wildPocketmon.m_currentHp -= UTIL::GetRndIntFromTo(m_playerPocketmon.m_atk - 2, m_playerPocketmon.m_atk)	- UTIL::GetRndIntFromTo(m_wildPocketmon.m_def - 2, m_wildPocketmon.m_def);
-	m_wildPocketmonHpBarWigth = (230 * m_wildPocketmon.m_currentHp) / m_wildPocketmon.m_maxHp;*/
-	//설명창에 스킬 설명
-	//적--
-	//이팩트 표시
-	//hp 달기
-	//특수공격
-
-
 	char str[100];
 
 	if (m_skillCount < 100 && !playerSkillExplainDone)
@@ -862,7 +859,7 @@ void BattleScene::playerPockatmonAttack(HDC hdc)
 }
 int BattleScene::checkDamage()
 {
-	return UTIL::GetRndIntFromTo(m_playerPocketmon.m_atk - 2, m_playerPocketmon.m_atk)	- UTIL::GetRndIntFromTo(m_wildPocketmon.m_def - 2, m_wildPocketmon.m_def);
+	return 8;/*m_playerPocketmon.m_atk	- m_wildPocketmon.m_def;*/
 }
 bool BattleScene::skillEffectAssemble(HDC _hdc, std::string * _skillName)
 {
@@ -909,12 +906,20 @@ bool BattleScene::pailiFireShower(std::string _skillName, HDC hdc)
 
 	if (enemyHpChange)
 	{
-		m_skillCount++;
-		m_wildPocketmon.m_currentHp -= m_skillCount;
-		m_wildPocketmonHpBarWigth = (230 * m_wildPocketmon.m_currentHp) / m_wildPocketmon.m_maxHp;
-		if (m_skillCount >= m_enemyMinusHp)
+		//m_skillCount++;
+		m_enemyCurrentMinusHp++;
+		m_wildPocketmon.m_currentHp--;
+		if (m_wildPocketmon.m_currentHp <= 0)
 		{
-			m_skillCount = 0;
+			m_wildPocketmon.m_currentHp = 0;
+			m_enemyMinusHp = 0;
+			enemyLose = true;
+		}
+		m_wildPocketmonHpBarWigth = (230 * m_wildPocketmon.m_currentHp) / m_wildPocketmon.m_maxHp;
+		if (m_enemyCurrentMinusHp == m_enemyMinusHp)
+		{
+			m_enemyCurrentMinusHp = 0;
+			//m_skillCount = 0;
 			m_enemyMinusHp = 0;
 			enemyHpChange = false;
 			explainEffect = true;
@@ -927,8 +932,9 @@ bool BattleScene::pailiFireShower(std::string _skillName, HDC hdc)
 		char str[100];
 		wsprintf(str, "효과는 굉장했다!!");
 		TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 10, str, strlen(str));
-		if (m_skillCount > 30)
+		if (m_skillCount > 40)
 		{
+			m_skillCount = 0;
 			playerSkillEffect = false;
 			playerSkillEffectDone = false;
 			explainEffect = false;
@@ -937,11 +943,55 @@ bool BattleScene::pailiFireShower(std::string _skillName, HDC hdc)
 			enemyTurn = true;
 		}
 	}
+
+	//적 움직이고
+	if (enemyLose)
+	{
+		wildBattleOutroAni(hdc);
+	}
+
 	//m_enemyPocketmon = UTIL::IRectMake()
 	//UTIL::DrawRect(hdc, m_enemyPocketmon);
 
 
 	return true;
+}
+
+void BattleScene::wildBattleOutroAni(HDC hdc)
+{
+	char str[100];
+	//적 포켓몬
+	m_enemyPocketmonY += 5;
+	m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, m_enemyPocketmonY, 165, 181);
+	if (m_enemyPocketmonY > WINSIZEY)
+	{
+		m_skillCount++;
+		wsprintf(str, "야생의 %s는(은)", m_wildPocketmon.m_name.c_str());
+		TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 10, str, strlen(str));
+
+		wsprintf(str, "쓰러졌다!", m_wildPocketmon.m_name.c_str());
+		TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 40, str, strlen(str));
+
+		if (m_skillCount > 50)
+		{
+			wsprintf(str, "%s는(은)", m_playerPocketmon.m_customName.c_str());
+			TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 10, str, strlen(str));
+
+			wsprintf(str, "%d 경험치를 얻었다!", m_wildPocketmon.m_wildExp);
+			TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 40, str, strlen(str));
+
+			if (!getExp)
+			{
+				getExp = true;
+				m_playerPocketmon.m_currentExp += m_wildPocketmon.m_wildExp;
+			}
+
+			if (m_skillCount > 1000)
+			{
+				SCENEMANAGER->scenePop();
+			}
+		}
+	}
 }
 
 
@@ -952,5 +1002,5 @@ bool BattleScene::skillEffectAssemble(std::string _skillName, HDC hdc)
 	if (_skillName == "불꽃세례") pailiFireShower(_skillName, hdc);
 
 
-	return false;
+	return true;
 }

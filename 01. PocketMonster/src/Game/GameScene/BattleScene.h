@@ -36,9 +36,10 @@ public:
 	void wildBattleFunctions();
 	void npcBattleFunctions();
 
-	//상황별 인트로
+	//상황별 Ani
 	void wildBattleIntroAni();
 	void npcBattleIntroAni();
+	void wildBattleOutroAni(HDC hdc);
 
 	//포켓몬 공격 및 피격 이팩트 관련
 	void pocketmonEffectInit();
@@ -165,6 +166,7 @@ private:
 	//적	 UI
 	int m_enemyBottomX;
 	int m_enemyPocketmonX;
+	int m_enemyPocketmonY;
 	int m_enemyStatusX;
 	int m_enemyHpX;
 	int m_wildPocketmonHpBarWigth;
@@ -192,6 +194,9 @@ private:
 	bool skill_3;
 	bool skill_4;
 
+	//===================
+	// 전투 시스템 관련 //
+	//===================
 	//공격 턴 변수
 	bool playerTurn;
 	bool enemyTurn;
@@ -216,10 +221,14 @@ private:
 	int m_skillCount;
 	int m_enemyTwinkleCount;
 	int m_enemyMinusHp;
+	int m_enemyCurrentMinusHp;
 	int m_enemyAlpha;
 
-
-	
+	//전투 승패 관련
+	bool pocketmonLose;
+	bool playerLose;
+	bool enemyLose;
+	bool getExp;
 
 
 

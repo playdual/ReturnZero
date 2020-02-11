@@ -8,8 +8,8 @@ void Map::init(char * _fileName)
 	if (_fileName == nullptr) {
 		m_width = 15;
 		m_height = 15;
-		m_playerStartPositionX = 10;
-		m_playerStartPositionY = 10;
+		m_playerStartPositionX = 4;
+		m_playerStartPositionY = 4;
 		for (int y = 0; y < m_width; ++y) {
 			for (int x = 0; x < m_height; ++x) {
 				Tile temp;

@@ -20,7 +20,7 @@ public:
 	void afterRender(HDC hdc);
 	void debugRender(HDC hdc);
 
-	PocketMon getPocketmonInform();
+	PocketMon getPocketmonInform(int i);
 
 	PocketMon genPocketMon(std::string _name, int level);
 
