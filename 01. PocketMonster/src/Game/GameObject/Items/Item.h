@@ -31,9 +31,10 @@ public:
 	UTIL::IRECT getRect()	  { return m_iRect; }
 	void		setRect(UTIL::IRECT _iRect) { m_iRect = _iRect; }
 	Image*		getImage()	  { return m_img; }
-	int			getCount()	  { return m_count; }
+  	int			getCount()	  { return m_count; }
 	std::string getItemName() { return m_ItemName; }
 	std::string getDescript() { return m_description; }
+	int			getItemNum()  { return m_itemNum;  }
 
 private:
 	

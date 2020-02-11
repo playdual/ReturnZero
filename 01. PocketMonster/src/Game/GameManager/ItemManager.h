@@ -7,11 +7,13 @@ public:
 	bool init();
 
 public:
-	// pokemonBall Item creat
+
+	void addClose(std::string _itemKey, const char* _imageName, int _x, int _y, int _imageW, int _imageH,
+		std::string _itemName, int _count, int _price, std::string _descript);
+	
 	void addPokemonBallItem(std::string _itemKey,/* char* _imageName,*/ int _x, int _y, int _imageW, int _imageH,
 		std::string _itemName, int _count, int _price, std::string _descript, int _random);
 	
-	// potionItem creat
 	void addPotionItem(std::string _itemKey, const char* _imageName, int _x , int _y ,int _imageW, int _imageH, 
 		std::string _itemName, int _count , int _price, std::string _descript , int _healHp, int _hitDamage);
 
@@ -34,7 +36,7 @@ private:
 
 private:
 	itemText itemPotion;
-	const int m_itemCount = 14;
+	const int m_itemCount = 15;
 
 private:
 	DECLARE_SINGLE(ItemManager)

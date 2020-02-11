@@ -40,8 +40,7 @@ Image * ImageManager::addImage(std::string strKey, int width, int height)
 	return img;
 }
 
-Image * ImageManager::addImage(std::string strKey, const char * fileName, int width, int height, bool isTrans, COLORREF transCollor)
-{
+Image * ImageManager::addImage(std::string strKey, const char * fileName, int width, int height, bool isTrans, COLORREF transCollor){
 	Image* img = findImage(strKey);
 	if (img)
 		return img;

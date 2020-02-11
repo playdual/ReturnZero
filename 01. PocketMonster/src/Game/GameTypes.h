@@ -34,7 +34,8 @@ enum class SkillClassify
 
 enum class ItemType
 {
-	ItemTypePotion= 0,			 // ?뚮났??
+	ItemTypeClose = 0,
+	ItemTypePotion,				 // ?뚮났??
 	ITemTypeStatePotion,		 // stateHealPotion
 	ItemTypeBall,				 // ?ъ폆紐щ낵
 	ItemTypeImportant,		     // 以묒슂???꾩씠???
@@ -68,11 +69,11 @@ enum class Skill
 enum KINDCOUNT
 {
 	ITEMKIND = 1, NAME, IMAGES, RECTX, RECTY, WIDTH, HEIGHT,
-	COUNT, PRICE, DESCRIPTION, HEALHP, DAMAGE, ADDABILITY, ATIBUTEKIND
+	COUNT, PRICE, DESCRIPTION, HEALHP, DAMAGE, ADDABILITY, ATIBUTEKIND ,RANDOM
 };
 enum ITEMCOUNT
 {
-	EXIT = 0, BALL , HEALPOTION, STATEPOTION, NUTRIENT, SKILLMACHINE
+	EXIT = 1, BALL , HEALPOTION, STATEPOTION, NUTRIENT, SKILLMACHINE ,IMPORTITEM
 };
 
 struct itemText {
@@ -85,11 +86,12 @@ struct itemText {
 	int						height[100];	//6
 	int						 count[100];	//7
 	int					  	 price[100];	//8
-	std::string		   description[100];	//9
+	std::string		   description[300];	//9
 	int						healHp[100];	//10
 	int						damage[100];	//11
 	int					addAbility[100];	//12
-	PockemonAttibute	atibuteKind[100];	//13
+	PockemonAttibute   atibuteKind[100];	//13
+	int						random[100];	//14
 };
 
 struct PocketSkill 
@@ -117,3 +119,9 @@ struct PocketSkill
 
 
 
+// 인벤씬 타입 //
+enum INVENSCENETYPE
+{
+	ITEM = 0 , IMPORT , POKEBALL
+};
+};

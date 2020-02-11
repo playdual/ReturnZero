@@ -9,6 +9,9 @@
 #include "Game/GameObject/Items/StateHeal.h"
 #include "Game/GameObject/Items/Nutrient.h"
 #include "Game/GameObject/Items/SkillMachine.h"
+#include "Game/GameObject/Items/Close.h"
+#include "Game/GameObject/Items/ImportItem.h"
+
 // 싱글톤을 할때는 cpp 파일에 적어줘야 한다.
 DEFINITION_SINGLE(ItemManager)
 
@@ -29,11 +32,17 @@ bool ItemManager::init()
 	{
 		switch (itemPotion.itemKind[i])
 		{
-		case BALL:
-			addPokemonBallItem(itemPotion.name[i], WINSIZEX / 2 - 100, itemPotion.rectY[i],
+		case EXIT :
+			addClose(itemPotion.name[i], itemPotion.imageFileName[i].c_str(), WINSIZEX / 2 - 100, itemPotion.rectY[i],
 				itemPotion.width[i], itemPotion.height[i], itemPotion.name[i],
-				itemPotion.count[i], itemPotion.price[i], itemPotion.description[i], 30);
+				itemPotion.count[i], itemPotion.price[i], itemPotion.description[i]);
+			break;
 
+		case BALL:
+			addPokemonBallItem(itemPotion.name[i], itemPotion.imageFileName[i].c_str(),WINSIZEX / 2 - 100, itemPotion.rectY[i],
+				itemPotion.width[i], itemPotion.height[i], itemPotion.name[i],
+				itemPotion.count[i], itemPotion.price[i], itemPotion.description[i],itemPotion.random[i]);
+			break;
 
 		case HEALPOTION:
 			addPotionItem(itemPotion.name[i], itemPotion.imageFileName[i].c_str(), WINSIZEX / 2 - 100, itemPotion.rectY[i],
@@ -47,7 +56,6 @@ bool ItemManager::init()
 				itemPotion.count[i], itemPotion.price[i], itemPotion.description[i]);
 			break;
 
-
 		case NUTRIENT:
 			addNutrient(itemPotion.name[i], WINSIZEX / 2 - 100, itemPotion.rectY[i],
 				itemPotion.width[i], itemPotion.height[i], itemPotion.name[i],
@@ -60,6 +68,13 @@ bool ItemManager::init()
 				itemPotion.width[i], itemPotion.height[i], itemPotion.name[i],
 				itemPotion.count[i], itemPotion.price[i], itemPotion.description[i], itemPotion.damage[i]);
 			break;
+
+		case IMPORTITEM:
+			addImportItem(itemPotion.name[i], itemPotion.imageFileName[i].c_str(), WINSIZEX / 2 - 100, itemPotion.rectY[i],
+				itemPotion.width[i], itemPotion.height[i], itemPotion.name[i],
+				itemPotion.count[i], itemPotion.price[i], itemPotion.description[i]);
+			break;
+
 		default:
 			break;
 		}
@@ -70,21 +85,38 @@ bool ItemManager::init()
 
 	return true;
 }
-void ItemManager::addPokemonBallItem(std::string _itemKey, int _x, int _y, int _imageW, int _imageH,
+void ItemManager::addClose(std::string _itemKey,const char * _imageName, int _x, int _y, int _imageW, int _imageH,
+	std::string _itemName, int _count, int _price, std::string _descript)
+{
+	if (_imageName != NULL)
+		IMAGEMANAGER->addImage(_itemKey, _imageName, 100, 100);
+
+	std::shared_ptr<Item> temp = std::make_shared<Close>(
+		ItemType::ItemTypeClose,
+		IMAGEMANAGER->findImage(_itemKey),
+		UTIL::IRectMake(_x, _y, _imageW, _imageH),
+		_itemName, _count, _price, _descript);
+	
+	m_ItemList.insert(std::make_pair(_itemKey, temp));
+}
+void ItemManager::addPokemonBallItem(std::string _itemKey, const char * _imageName, int _x, int _y, int _imageW, int _imageH,
 	std::string _itemName, int _count, int _price, std::string _descript, int _random)
 {
-	//나중에 작업하시오,,
-	/*std::shared_ptr<Item> temp = std::make_shared<MonsterBall>(
-		ItemType::ItemTypeBall, UTIL::IRectMake(_x, _y, _imageW, _imageH),
+	if (_imageName != NULL)
+		IMAGEMANAGER->addImage(_itemKey, _imageName, 100, 100);
+
+	std::shared_ptr<Item> temp = std::make_shared<MonsterBall>(
+		ItemType::ItemTypeBall,
+		IMAGEMANAGER->findImage(_itemKey),
+		UTIL::IRectMake(_x, _y, _imageW, _imageH),
 		_itemName, _count, _price, _descript, _random);
 
-	m_ItemList.insert(std::make_pair(_itemKey, temp));*/
+	m_ItemList.insert(std::make_pair(_itemKey, temp));
 }
 
 void ItemManager::addPotionItem(std::string _itemKey, const char* _imageName, int _x, int _y, int _imageW, int _imageH,
 	std::string _itemName, int _count, int _price, std::string _descript, int _healHp, int _hitDamage)
 {
-
 	if (_imageName != NULL)
 		IMAGEMANAGER->addImage(_itemKey, _imageName, 100, 100);
 
@@ -131,9 +163,18 @@ void ItemManager::addSkillMachine(std::string _itemKey, PockemonAttibute _pokemo
 	m_ItemList.insert(std::make_pair(_itemKey, temp));*/
 }
 
-void ItemManager::release()
+void ItemManager::addImportItem(std::string _itemKey, const char * _imageName, int _x, int _y, int _imageW, int _imageH, std::string _itemName, int _count, int _price, std::string _descript)
 {
-	m_ItemList.clear();
+	if (_imageName != NULL)
+		IMAGEMANAGER->addImage(_itemKey, _imageName, 100, 100);
+
+	std::shared_ptr<Item> temp = std::make_shared<ImportItem>(
+		ItemType::ItemTypeImportant,
+		IMAGEMANAGER->findImage(_itemKey),
+		UTIL::IRectMake(_x, _y, _imageW, _imageH),
+		_itemName, _count, _price, _descript);
+
+	m_ItemList.insert(std::make_pair(_itemKey, temp));
 }
 
 std::shared_ptr<Item> ItemManager::findItem(std::string _itemKey)
@@ -166,19 +207,19 @@ void ItemManager::itemTextInit()
 		}
 		readFile.close();
 	}
-	char myInputStr[5000];
+	char myInputStr[10000];
 	strcpy(myInputStr, inputStr.c_str());
-	//cout << myInputStr << endl;
 
 	char *ptr = strtok(myInputStr, "#");
+
 	int count = 0;
 
-	while (ptr != NULL)
+	while (*ptr != '\n')
 	{
 		char spaceBar = *ptr;
-		count++;
+ 		count++;
 
-		for (int i = 0; i < 14; i++)
+		for (int i = 0; i < m_itemCount; i++)
 		{
 			if (spaceBar == '\n')
 			{
@@ -189,91 +230,86 @@ void ItemManager::itemTextInit()
 			{
 			case ITEMKIND:
 				itemPotion.itemKind[i] = atoi(ptr);
-				//cout << "ITEMKIND : " << itemPotion.itemKind[i] << endl;
 				ptr = strtok(NULL, "#");
 
 			case NAME:
 				itemPotion.name[i] = ptr;
-				//cout << "NAME : " << itemPotion.name[i] << endl;
 				ptr = strtok(NULL, "#");
 
-				if (itemPotion.itemKind[i] == 2)
-				{
+ 			if (itemPotion.itemKind[i] == 1 || itemPotion.itemKind[i] == 3 
+ 				|| itemPotion.itemKind[i] == 2 || itemPotion.itemKind[i] == 7)
+			{
 			case IMAGES:
 				itemPotion.imageFileName[i] = ptr;
 				ptr = strtok(NULL, "#");
-				}
+			}
 
-				if (itemPotion.itemKind[i] == 5)
-				{
+			if (itemPotion.itemKind[i] == 6)
+			{
 			case ATIBUTEKIND:
 				itemPotion.atibuteKind[i] = (PockemonAttibute)atoi(ptr);
-				//cout << "ATIBUTE : " << (int)itemPotion.atibuteKind[i] << endl;
 				ptr = strtok(NULL, "#");
-				}
+			}
 
 			case RECTX:
 				itemPotion.rectX[i] = atoi(ptr);
-				//cout << "RECTX : " << itemPotion.rectX[i] << endl;
 				ptr = strtok(NULL, "#");
 
 			case RECTY:
 				itemPotion.rectY[i] = atoi(ptr);
-				//cout << "RECTY : " << itemPotion.rectY[i] << endl;
 				ptr = strtok(NULL, "#");
 
 			case WIDTH:
 				itemPotion.width[i] = atoi(ptr);
-				//cout << "WIDTH : " << itemPotion.width[i] << endl;
 				ptr = strtok(NULL, "#");
 
 			case HEIGHT:
 				itemPotion.height[i] = atoi(ptr);
-				//cout << "HEIGHT : " << itemPotion.height[i] << endl;
 				ptr = strtok(NULL, "#");
 
-
-			case COUNT:
-				itemPotion.count[i] = atoi(ptr);
-				//cout << "COUNT : " << itemPotion.count[i] << endl;
-				ptr = strtok(NULL, "#");
-
+			if (itemPotion.itemKind[i] != 6)
+			{
+			    case COUNT:
+			    itemPotion.count[i] = atoi(ptr);
+			    ptr = strtok(NULL, "#");
+			}
 
 			case PRICE:
 				itemPotion.price[i] = atoi(ptr);
-				//cout << "PRICE : " << itemPotion.price[i] << endl;
 				ptr = strtok(NULL, "#");
-
 
 			case DESCRIPTION:
 				itemPotion.description[i] = ptr;
-				//cout << "DESCRIPTION : " << itemPotion.description[i] << endl;
 				ptr = strtok(NULL, "#");
 
-				if (itemPotion.itemKind[i] == 2)
-				{
+			if (itemPotion.itemKind[i] == 3)
+			{
 			case HEALHP:
 				itemPotion.healHp[i] = atoi(ptr);
-				//cout << "HEALHP : " << itemPotion.healHp[i] << endl;
 				ptr = strtok(NULL, "#");
-				}
+			}
 
-				if (itemPotion.itemKind[i] == 2 || itemPotion.itemKind[i] == 5)
-				{
+			if (itemPotion.itemKind[i] == 3 || itemPotion.itemKind[i] == 6)
+			{
 			case DAMAGE:
 				itemPotion.damage[i] = atoi(ptr);
-				//cout << "DAMAGE : " << itemPotion.damage[i] << endl;
 				ptr = strtok(NULL, "#");
-				}
+			}
 
-				if (itemPotion.itemKind[i] == 4)
-				{
+			if (itemPotion.itemKind[i] == 5)
+			{
 			case ADDABILITY:
 				itemPotion.addAbility[i] = atoi(ptr);
-				//cout << "ADDABILITY : " << itemPotion.addAbility[i] << endl;
 				ptr = strtok(NULL, "#");
 
-				}
+			}
+
+			if (itemPotion.itemKind[i] == 2)
+			{
+			case RANDOM :
+				itemPotion.random[i] = atoi(ptr);
+				ptr = strtok(NULL, "#");
+			}
 			default:
 				count = 0;
 				//cout << endl;
