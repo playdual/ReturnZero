@@ -1,6 +1,7 @@
 ﻿
 #include "stdafx.h"
 #include "PocketmonManager.h"
+#include "Common/SystemManagers.h"
 
 PocketSkill tackleProto("몸통박치기", 25, 25, 20, 100, SkillType::SkillAttibuteNormal, SkillClassify::SkillTypeNormal);
 PocketSkill scratchProto("할퀴기", 15, 15, 40, 100, SkillType::SkillAttibuteNormal, SkillClassify::SkillTypeNormal);
@@ -42,6 +43,8 @@ PocketmonManager::~PocketmonManager()
 
 HRESULT PocketmonManager::init()
 {
+	IMAGEMANAGER->addImage("pailiFront", "Images/pocketmons/pailiFront.bmp", 60*3, 61*3, true, RGB(255, 0, 255));
+
 	for (int i = 0; i < 5; i++)
 	{
 		PocketMon pocket;
@@ -66,6 +69,7 @@ HRESULT PocketmonManager::init()
 		pocketmonVector.push_back(pocket);
 	}
 
+	
 	return S_OK;
 }
 

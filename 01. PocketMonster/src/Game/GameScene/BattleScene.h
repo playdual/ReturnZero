@@ -85,6 +85,7 @@ public:
 	//공격에 hp 변동 체크
 	//공격하면 현재 피가 달면서 current의 wigth 값이 줄어든다.
 	void playerPockatmonAttack(HDC hdc);
+	int checkDamage();
 	
 	//렌더링
 	void wildBattleRender(HDC hdc);
@@ -201,11 +202,22 @@ private:
 	bool motionUp;
 
 	//스킬사용 변수
+	//플레이어측
 	bool playerAtkSkillOn;
 	bool playerSkillMotionOn; 
-
+	bool playerSkillEffect;
+	bool playerHitEffect;
+	bool playerSkillExplainDone;
+	bool playerSkillEffectDone;
+	bool enemyHpChange;
+	bool explainEffect;
 	bool enemyAtkSkillOn;
+
 	int m_skillCount;
+	int m_enemyTwinkleCount;
+	int m_enemyMinusHp;
+	int m_enemyAlpha;
+
 
 	
 
