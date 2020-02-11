@@ -103,6 +103,10 @@ void Tile::setAttributeTile(TileAttribute _attribute)
 		break;
 	case TileType::TileTypeNextMap:
 		isMovable = true;
+		break;
+	case TileType::TileTypeNone:
+		resetAttribute();
+		break;
 	}
 	isAfterRender = _attribute.isAfterRender;
 	if (_attribute.tileKeyname != "") {
@@ -114,10 +118,10 @@ void Tile::setAttributeTile(TileAttribute _attribute)
 
 void Tile::resetAttribute()
 {
-	SAFE_DELETE(m_img);
+	m_img = nullptr;
 	isMovable = false;
 	isAfterRender = false;
-	m_Type = TileType::TileTypeNone;
+	isStartBlock = false;
 }
 
 void Tile::pushInnerPocketMon(std::string _pocketName, int _pocketLevel)

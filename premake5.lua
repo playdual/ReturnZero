@@ -55,9 +55,11 @@ project "01. PocketMonster"
 		systemversion "latest"
 
 	filter "configurations:Debug"
+		runtime "Debug"
 		symbols "On"
-	
+		
 	filter "configurations:Release"
+		runtime "Debug"
 		optimize "On"
 
 project "02. MapTool"
@@ -93,13 +95,15 @@ project "02. MapTool"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
+		staticruntime "on"
 		systemversion "latest"
 
 	filter "configurations:Debug"
+		runtime "Debug"
 		symbols "On"
 	
 	filter "configurations:Release"
+		runtime "Debug"
 		optimize "On"
 
 project "03. Template"
@@ -139,9 +143,11 @@ project "03. Template"
 		systemversion "latest"
 
 	filter "configurations:Debug"
+		runtime "Debug"
 		symbols "On"
 	
 	filter "configurations:Release"
+		runtime "Debug"
 		optimize "On"
 
 project "04. Practice"
@@ -180,9 +186,11 @@ project "04. Practice"
 		systemversion "latest"
 
 	filter "configurations:Debug"
+		runtime "Debug"
 		symbols "On"
 	
 	filter "configurations:Release"
+		runtime "Debug"
 		optimize "On"
 
 
@@ -218,7 +226,9 @@ project "05. WhiteBoard"
 		systemversion "latest"
 
 	filter "configurations:Debug"
+		runtime "Debug"
 		symbols "On"
 	
 	filter "configurations:Release"
+		runtime "Debug"
 		optimize "On"

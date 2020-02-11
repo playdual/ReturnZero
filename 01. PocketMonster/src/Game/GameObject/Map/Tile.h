@@ -18,7 +18,7 @@ public:
 	
 	int getOutputTileY();
 	std::string getNextMapKey() { return m_nextMapKey; }
-	POINT getNextMapIdx() { return m_nextMapIdx; }
+	POINT getNextMapIdx() { return m_nextMapStartIdx; }
 
 public:
 	int m_BlockPositionX;
@@ -39,6 +39,6 @@ private:
 
 	//포켓몬의 키값 이름, 포켓몬의 래벨
 	std::vector<std::pair<std::string, int>> m_innerPocketMonInfo;
-	std::string m_nextMapName;
+	std::string m_nextMapKey;
 	POINT m_nextMapStartIdx;
 };

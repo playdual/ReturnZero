@@ -585,7 +585,10 @@ void MapToolScene::TileWindowRender(HDC hdc)
 
 void MapToolScene::loadMap()
 {
-	
+	std::string readMapName;
+	std::cin >> readMapName;
+	JSONMANAGER->MapDataRead(readMapName);
+	MessageBox(m_hWnd, "save succefully done", "saved", MB_OK);
 }
 
 void MapToolScene::saveMap()

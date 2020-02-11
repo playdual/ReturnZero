@@ -32,6 +32,7 @@ void JsonRWManager::MapDataWrite(std::string _name, std::vector<std::shared_ptr<
 		tile["bPosX"] = map[i]->m_BlockPositionX;
 		tile["bPosY"] = map[i]->m_BlockPositionY;
 		tile["imageKey"] = map[i]->tileImageKey;
+		tile["nextMapName"] = "";
 		if (map[i]->m_nextMapName != "") {
 			tile["nextMapName"] = map[i]->m_nextMapName;
 			tile["nextMapX"] = map[i]->m_nextMapStartIdx.x;
@@ -51,7 +52,51 @@ void JsonRWManager::MapDataWrite(std::string _name, std::vector<std::shared_ptr<
 
 }
 
-void JsonRWManager::MapDataRead(std::string _name)
+Map JsonRWManager::MapDataRead(std::string _name)
 {
+	std::string filename = _name + ".json";
+	std::ifstream input(filename, std::ios::binary);
+
+	Json::Value root;
+	Json::Reader reader;
+	reader.parse(input, root);
+	input.close();
+
+	Map map;
+
+	std::string mapName = root["mapName"].asString();
+
+	int width = root["mapWidth"].asInt();
+	int height = root["mapHeight"].asInt();
+
+	int size = width * height;
+	map.m_height = height;
+	map.m_width = width;
+	map.m_tiles.resize(size);
+
+	std::string innerPocketName = "innerPocketName-";
+	std::string innerPocketLevel = "innerPocketLevel-";
+	for(int i = 0 ; i < size; ++i) {
+		std::string s = std::to_string(i);
+		Tile tile;
+		tile.m_Type = (TileType)root[s]["type"].asInt();
+		tile.m_BlockPositionX = root[s]["bPosX"].asInt();
+		tile.m_BlockPositionY = root[s]["bPosY"].asInt();
+		tile.tileImageKey = root[s]["imageKey"].asString();
+		tile.m_nextMapName = root[s]["nextMapName"].asString();
+		if (tile.m_nextMapName != "") {
+			tile.m_nextMapStartIdx.x = root[s]["nextMapX"].asInt();
+			tile.m_nextMapStartIdx.y = root[s]["nextMapY"].asInt();
+		}
+
+		int innerPocketCount = root[s]["innerPocketMonCnt"].asInt();
+		for (int j = 0; j < innerPocketCount; ++j) {
+			std::string name = root[s][innerPocketName + std::to_string(j)].asString();
+			int level = root[s][innerPocketLevel + std::to_string(j)].asInt();
+			tile.m_innerPocketMonInfo.push_back(std::make_pair(name, level));
+		}
+		map.m_tiles[i] = tile;
+	}
+	return map;
 }
 
