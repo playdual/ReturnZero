@@ -5,6 +5,11 @@
 class Map
 {
 public:
+	Map() {};
+	Map(std::vector<Tile> _tiles, int _width, int _height);
+	~Map() {};
+
+public:
 	void init(std::string _fileName);
 	TileType getTileTypeFromIdex(int _x, int _y);
 	std::vector<class Tile>& getTiles() { return m_tiles; }

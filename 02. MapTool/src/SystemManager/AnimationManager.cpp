@@ -54,7 +54,7 @@ void AnimationManager::addDefAnimation(std::string animationKeyName, char * imag
 	_animation.insert(make_pair(animationKeyName, ani));
 }
 
-void AnimationManager::addAnimation(std::string animationKeyName, char * imageKeyName, int * playArr, int arrLen, float fps, bool loop)
+void AnimationManager::addAnimation(std::string animationKeyName, char * imageKeyName, int * playArr, int arrLen, int fps, bool loop)
 {
 	//이미지 및 애니메이션 초기화
 	Image* img = IMAGEMANAGER->findImage(imageKeyName);

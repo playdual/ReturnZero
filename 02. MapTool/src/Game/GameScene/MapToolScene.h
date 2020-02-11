@@ -2,6 +2,7 @@
 
 #include "Scene.h"
 #include "Game/GameObject/Tile.h"
+#include "Game/GameObject/Map.h"
 
 struct SelectTileData {
 	int inUIpositionX, inUIpositionY;
@@ -23,7 +24,11 @@ class MapToolScene
 	: public Scene
 {
 public:
-	MapToolScene() {}
+	MapToolScene(std::string _mapName,int _width, int _height) {
+		mapName = _mapName;
+		mapWidth = _width;
+		mapHeight = _height;
+	}
 	~MapToolScene() {}
 
 public:
@@ -73,6 +78,7 @@ public:
 	void specifyUpdate();
 	void specifyRender(HDC hdc);
 	void activateSetNextMapBlock();
+	void activateSetStartPos();
 
 private:
 	int m_prevMouseX;
@@ -100,6 +106,7 @@ private:
 	bool m_bushSelect = false;
 	bool m_specifySelect = false;
 	bool m_nextMapSelect = false;
+	bool m_setStartPos = false;
 
 private:
 	//mainMenu
@@ -176,5 +183,10 @@ private:
 	void resetTileSelectedAttribute();
 
 private:
+	int mapWidth;
+	int mapHeight;
+	int mapStartX;
+	int mapStartY;
+	std::string mapName;
 	std::vector<std::shared_ptr<Tile>> m_Tiles;
 };

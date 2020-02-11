@@ -15,6 +15,10 @@ public:
 public:
 	void setColor();
 	void setAttributeTile(TileAttribute _attribute);
+	bool setStartBlock() { 
+		isStartBlock = !isStartBlock; 
+		return isStartBlock;
+	}
 	void resetAttribute();
 
 	void pushInnerPocketMon(std::string _pocketName, int _pocketLevel);
@@ -30,6 +34,7 @@ public:
 	Image* m_img = nullptr;
 	bool isAfterRender;
 	bool isMovable;
+	bool isStartBlock = false;
 	int m_BlockPositionX;
 	int m_BlockPositionY;
 	
@@ -39,5 +44,6 @@ public:
 	std::vector<std::pair<std::string, int>> m_innerPocketMonInfo;
 	std::string m_nextMapName;
 	std::string nextMapInfoStr;
+	std::string tileImageKey;
 	POINT m_nextMapStartIdx;
 };

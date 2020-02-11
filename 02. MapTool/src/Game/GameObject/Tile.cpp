@@ -59,11 +59,14 @@ void Tile::specialRender(HDC hdc)
 {
 	if (isCanprint) {
 		if (TileType::TileTypeNextMap == m_Type) {
-			UTIL::DrawColorRect(hdc, UTIL::IRECT(m_outputTile.left, m_outputTile.top, 
-				m_outputTile.left + 10, m_outputTile.top + 10), 
+			UTIL::DrawColorRect(hdc, UTIL::IRECT(m_outputTile.left, m_outputTile.top,
+				m_outputTile.left + 10, m_outputTile.top + 10),
 				RGB(0, 0, 0), true);
 			UTIL::PrintText(hdc, nextMapInfoStr.c_str(), "명조",
 				m_outputTile.left + 5, m_outputTile.top, 10, RGB(0, 0, 0), true);
+		}
+		if (isStartBlock) {
+			UTIL::DrawColorCircle(hdc, UTIL::Circle(m_outputTile.left + 5, m_outputTile.top + 5, 5), RGB(255, 0, 255), true);
 		}
 	}
 	
@@ -102,7 +105,11 @@ void Tile::setAttributeTile(TileAttribute _attribute)
 		isMovable = true;
 	}
 	isAfterRender = _attribute.isAfterRender;
-	m_img = IMAGEMANAGER->findImage(_attribute.tileKeyname);
+	if (_attribute.tileKeyname != "") {
+		m_img = IMAGEMANAGER->findImage(_attribute.tileKeyname);
+		tileImageKey = _attribute.tileKeyname;
+		tileImageKey.pop_back();
+	}	
 }
 
 void Tile::resetAttribute()

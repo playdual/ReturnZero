@@ -1,0 +1,213 @@
+{
+	"0" : 
+	{
+		"bPosX" : 0,
+		"bPosY" : 0,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "zxwnstn",
+		"nextMapX" : 10,
+		"nextMapY" : 10,
+		"type" : 4
+	},
+	"1" : 
+	{
+		"bPosX" : 1,
+		"bPosY" : 0,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"10" : 
+	{
+		"bPosX" : 0,
+		"bPosY" : 2,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"11" : 
+	{
+		"bPosX" : 1,
+		"bPosY" : 2,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"12" : 
+	{
+		"bPosX" : 2,
+		"bPosY" : 2,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"13" : 
+	{
+		"bPosX" : 3,
+		"bPosY" : 2,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"14" : 
+	{
+		"bPosX" : 4,
+		"bPosY" : 2,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"15" : 
+	{
+		"bPosX" : 0,
+		"bPosY" : 3,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"16" : 
+	{
+		"bPosX" : 1,
+		"bPosY" : 3,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"17" : 
+	{
+		"bPosX" : 2,
+		"bPosY" : 3,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"18" : 
+	{
+		"bPosX" : 3,
+		"bPosY" : 3,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"19" : 
+	{
+		"bPosX" : 4,
+		"bPosY" : 3,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"2" : 
+	{
+		"bPosX" : 2,
+		"bPosY" : 0,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"20" : 
+	{
+		"bPosX" : 0,
+		"bPosY" : 4,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"21" : 
+	{
+		"bPosX" : 1,
+		"bPosY" : 4,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"22" : 
+	{
+		"bPosX" : 2,
+		"bPosY" : 4,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"23" : 
+	{
+		"bPosX" : 3,
+		"bPosY" : 4,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"24" : 
+	{
+		"bPosX" : 4,
+		"bPosY" : 4,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"3" : 
+	{
+		"bPosX" : 3,
+		"bPosY" : 0,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"4" : 
+	{
+		"bPosX" : 4,
+		"bPosY" : 0,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "zxwnstn",
+		"nextMapX" : 10,
+		"nextMapY" : 10,
+		"type" : 4
+	},
+	"5" : 
+	{
+		"bPosX" : 0,
+		"bPosY" : 1,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"6" : 
+	{
+		"bPosX" : 1,
+		"bPosY" : 1,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"7" : 
+	{
+		"bPosX" : 2,
+		"bPosY" : 1,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"8" : 
+	{
+		"bPosX" : 3,
+		"bPosY" : 1,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"9" : 
+	{
+		"bPosX" : 4,
+		"bPosY" : 1,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"type" : 2
+	},
+	"mapHeight" : 5,
+	"mapName" : "hazel",
+	"mapWidth" : 5,
+	"startX" : 2,
+	"startY" : 4
+}

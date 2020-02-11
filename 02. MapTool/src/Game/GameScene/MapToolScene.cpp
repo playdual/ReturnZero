@@ -4,8 +4,8 @@
 bool MapToolScene::init()
 {
 	//tileSetup
-	for (int i = 0; i < 15; ++i) {
-		for (int j = 0; j < 15; ++j) {
+	for (int i = 0; i < mapHeight; ++i) {
+		for (int j = 0; j < mapWidth; ++j) {
 			auto tile = std::make_shared<Tile>();
 			tile->init(TileType::TileTypeFloor, nullptr, false, true, j, i);
 			m_Tiles.push_back(tile);
@@ -184,6 +184,9 @@ void MapToolScene::UIupdate()
 
 	if (KEYMANAGER->isOnceKeyDown(GAME_K)) {
 		activateSetNextMapBlock();
+	}
+	if (KEYMANAGER->isOnceKeyDown(GAME_L)) {
+		activateSetStartPos();
 	}
 }
 
@@ -394,7 +397,16 @@ void MapToolScene::specifyRender(HDC hdc)
 
 void MapToolScene::activateSetNextMapBlock()
 {
-	m_settedNextMap = !m_settedNextMap;
+	if (!m_setStartPos) {
+		m_settedNextMap = !m_settedNextMap;
+	}
+}
+
+void MapToolScene::activateSetStartPos()
+{
+	if (!m_settedNextMap) {
+		m_setStartPos = !m_setStartPos;
+	}
 }
 
 void MapToolScene::resetTileUpdate()
@@ -405,9 +417,10 @@ void MapToolScene::resetTileUpdate()
 	else {
 		resetTileButtonRectSetted = false;
 	}
-	if (KEYMANAGER->isStayKeyDown(GAME_LMOUSE)) {
-		if (resetTileButtonRectSetted)
+	if (resetTileButtonRectSetted) {
+		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
 			resetTileSelectedAttribute();
+		}
 	}
 }
 
@@ -496,8 +509,11 @@ void MapToolScene::UIrender(HDC hdc)
 	resetSpecifyRender(hdc);
 	saveLoadRender(hdc);
 
-	if (m_settedNextMap) {
+	if (m_settedNextMap && !m_setStartPos) {
 		UTIL::DrawColorRect(hdc, setActivateNextMapRect, RGB(255, 0, 255), true);
+	}
+	if (m_setStartPos && !m_settedNextMap) {
+		UTIL::DrawColorRect(hdc, setActivateNextMapRect, RGB(0, 255, 255), true);
 	}
 }
 
@@ -522,6 +538,12 @@ void MapToolScene::TileWindowUpdate(float _deltaTime)
 			m_selectRect.alignment();
 			for (auto& tile : m_Tiles) {
 				if (UTIL::isRectRectCollision(m_selectRect, tile->m_outputTile)) {
+					if (m_setStartPos) {
+						if (tile->setStartBlock()) {
+							mapStartX = tile->m_BlockPositionX;
+							mapStartY = tile->m_BlockPositionY;
+						}					
+					}
 					if (m_settedNextMap)
 						tile->setNextMapActivate();
 					else if (isSetAttribute)
@@ -529,8 +551,7 @@ void MapToolScene::TileWindowUpdate(float _deltaTime)
 					else if (isSetPocketMon)
 						tile->pushInnerPocketMon(settedPocketMon, settedPocketMonLevel);
 					else if (isSetNextMap)
-						tile->setNextMap(settedNextMap, settedNextMapIdx.x, settedNextMapIdx.y);
-					
+						tile->setNextMap(settedNextMap, settedNextMapIdx.x, settedNextMapIdx.y);		
 				}
 			}
 			m_selectRect.reset();
@@ -564,10 +585,13 @@ void MapToolScene::TileWindowRender(HDC hdc)
 
 void MapToolScene::loadMap()
 {
+	
 }
 
 void MapToolScene::saveMap()
 {
+	JSONMANAGER->MapDataWrite(mapName, m_Tiles, mapWidth, mapHeight, mapStartX, mapStartY);
+	MessageBox(m_hWnd, "save succefully done", "saved", MB_OK);
 }
 
 void MapToolScene::resetTileSelectedAttribute()
@@ -578,4 +602,6 @@ void MapToolScene::resetTileSelectedAttribute()
 	isSetAttribute = true;
 	isSetNextMap = false;
 	isSetPocketMon = false;
+	m_settedNextMap = false;
+	m_setStartPos = false;
 }

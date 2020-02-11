@@ -20,9 +20,12 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("Tree1", "Images/Tree/Tree1.bmp", 50, 50);
 	IMAGEMANAGER->addImage("Tree1t", "Images/Tree/Tree1.bmp", 100, 100);
 
+	std::string name;
+	int width, height;
+	std::cin >> name >> width >> height;
 
 	//add Scene
-	SCENEMANAGER->addScene("MapTool", new MapToolScene);
+	SCENEMANAGER->addScene("MapTool", new MapToolScene(name, width, height));
 	CAMEARAMANAGER->setCameraBox(100, 100, 1200, 700);
 	SCENEMANAGER->changeScene("MapTool");
 
