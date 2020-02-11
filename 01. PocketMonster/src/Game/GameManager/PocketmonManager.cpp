@@ -91,7 +91,7 @@ HRESULT PocketmonManager::init()
 		pocket.m_maxExp = UTIL::GetRndIntFromTo(742, 800);
 		pocket.m_wildExp = 100;
 		pocket.m_currentExp = 0;
-		pocket.m_skill_1 = "전기쇼크";
+		pocket.m_skill_1 = "피카츄백만볼트";
 		//pocket.skill_1force = 40;
 
 		pocketmonVector.push_back(pocket);

@@ -63,10 +63,10 @@ public:
 	void playerUiStatus(HDC hdc);
 	void playerUiSkillList(HDC hdc);
 	void playerUiSkillExplain(HDC hdc);
-	void playerUiMaxHp(HDC hdc);
-	void playerUiCurrentHp(HDC hdc);
-	void playerUiMaxExp(HDC hdc);
-	void plyaerUiCurrentExp(HDC hdc);
+	void playerUiMaxHp(HDC hdc, int _y);
+	void playerUiCurrentHp(HDC hdc, int _y);
+	void playerUiMaxExp(HDC hdc, int _y);
+	void plyaerUiCurrentExp(HDC hdc, int _y);
 
 	//시스템
 	void explainRect(HDC hdc);
@@ -79,8 +79,8 @@ public:
 	void moveSkillSelectButton();
 
 	void playerStayMotion();
+	void playerHpExpBarStayMotion(HDC hdc);
 
-	void selectPlayerSkillType();
 	std::string selectEnemyskill();
 
 	//공격에 hp 변동 체크
@@ -99,7 +99,8 @@ public:
 	void pailiFireShower(std::string _skillName, HDC hdc);
 
 	//적
-	void 
+	void picachu100v(std::string _skillName, HDC hdc);
+	
 	
 private:
 	//test
@@ -167,6 +168,7 @@ private:
 	bool uiObjectRegularPosition;
 	bool playerImgSlideOut;
 	bool explainEnemyName;
+	bool playerHpExpBarStayMotionOn;
 	//적	 UI
 	int m_enemyBottomX;
 	int m_enemyPocketmonX;
@@ -181,7 +183,8 @@ private:
 	int m_playerStatusX;
 	int m_playerHpX;
 	int m_playerExp;
-	
+	int m_playerPocketmonHpBarWigth;
+
 
 	//선택창 커서 움직임 변수
 	bool fight;
@@ -210,7 +213,7 @@ private:
 	//플레이어 대기상태 모션
 	bool motionUp;
 
-	//스킬사용 변수
+	//공격 이팩트 및 피격효과 구현
 	//플레이어측
 	bool playerAtkSkillOn;
 	bool playerSkillMotionOn; 
@@ -221,15 +224,23 @@ private:
 	bool enemyHpChange;
 	bool explainEffect;
 	bool enemyAtkSkillOn;
-
 	int m_skillCount;
 	int m_enemyTwinkleCount;
 	int m_enemyMinusHp;
 	int m_enemyCurrentMinusHp;
 	int m_enemyAlpha;
-	int m_playerAlpha;
 	//적
 	std::string enemySkillName;
+	bool enemySkillEffect;
+	bool enemySkillEffectDone;
+	bool enemyHitEffect;
+	bool playerHpChange;
+	bool enemyExplainEffect;
+	int m_playerAlpha;
+	int m_playerTwinkleCount;
+	int m_playerMinusHp;
+	int m_playerCurrentMinusHp;
+
 
 	//전투 승패 관련
 	bool pocketmonLose;
