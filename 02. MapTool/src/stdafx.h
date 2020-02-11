@@ -44,6 +44,7 @@
 #define P1_EVENT		4
 #define P1_USEITEM		5
 
+#define GAME_K			44
 #define GAME_RPAGE		45
 #define GAME_LPAGE		46
 #define GAME_W			47

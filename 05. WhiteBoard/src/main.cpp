@@ -1,289 +1,204 @@
-﻿#include <iostream>
-#include <string>
+﻿#include "json.h"
+
+#include <iostream>
 #include <fstream>
+#include <ostream>
+#include <Windows.h>
+#include <vector>
+
 using namespace std;
-  
-//addPotionItem("초급 Hp포션", WINSIZEX / 2, 100, 400, 80, "초급 Hp포션", 3, 50, " 포켓몬의 체력을 30만큼 회복 시켜준다.", 30, 0);
 
-enum KINDCOUNT
-{
-	ITEMKIND = 1, NAME , RECTX , RECTY , WIDTH , HEIGHT ,
-	COUNT , PRICE , DESCRIPTION , HEALHP , DAMAGE , ADDABILITY  , ATIBUTEKIND
-};
-struct potionText {
-	int		itemKind[100];		//1
-	string	name[100];			//2
-	int		rectX[100];			//3
-	int		rectY[100];			//4
-	int		width[100];			//5	
-	int		height[100];		//6
-	int		count[100];			//7
-	int		price[100];			//8
-	string	description[100];	//9
-	int		healHp[100];		//10
-	int		damage[100];		//11
-	int		addAbility[100];	//12
-	int		atibuteKind[100];	//13
-};
+struct Tile {
+	int type;
+	int m_BlockPositionX;
+	int m_BlockPositionY;
+	std::vector<std::pair<std::string, int>> m_innerPocketMonInfo;
+	std::string m_nextMapName;
+	POINT m_nextMapStartIdx;
 
-int main(void)
-{
-	std::string str;
-	std::string inputStr;
-	KINDCOUNT kindCount;
-	kindCount = ITEMKIND;
-
-	potionText itemPotion;
-
-	ifstream readFile;
-	readFile.open("text/itemList.txt");
-
-	if (readFile.is_open())
-	{
-		while (!readFile.eof())
-		{
-			getline(readFile, str);
-			readFile.imbue(std::locale("kor"));
-			inputStr += str;
-			inputStr += "\n";
+	void print() {
+		cout << type << endl
+			<< m_BlockPositionX << endl
+			<< m_BlockPositionY << endl
+			<< m_nextMapName << endl
+			<< m_nextMapStartIdx.x << endl
+			<< m_nextMapStartIdx.y << endl;
+		for (auto e : m_innerPocketMonInfo) {
+			cout << e.first << " " << e.second << endl;
 		}
-		readFile.close();
+		cout << endl;
 	}
-	char myInputStr[5000];
-	strcpy(myInputStr, inputStr.c_str());
-	//cout << myInputStr << endl;
+};
 
-	char *ptr = strtok(myInputStr, "#");
-	int count = 0;
-
-	while (ptr != NULL)
-	{
-		char spaceBar = *ptr;
-		count++;
-	
-		for (int i = 0; i < 14; i++)
-		{
-			if (spaceBar == '\n')
-			{
-				count = 0;
-				ptr = strtok(NULL, "#");
-			}
-			switch (kindCount)
-			{
-			case ITEMKIND:
-				itemPotion.itemKind[i] = atoi(ptr);
-				cout << "ITEMKIND : " << itemPotion.itemKind[i] << endl;
-				ptr = strtok(NULL, "#");
-
-			case NAME:
-				itemPotion.name[i] = ptr;
-				cout << "NAME : " << itemPotion.name[i] << endl;
-				ptr = strtok(NULL, "#");
-
-			if (itemPotion.itemKind[i] == 5)
-			{
-			case ATIBUTEKIND:
-				itemPotion.atibuteKind[i] = atoi(ptr);
-				cout << "ATIBUTE : " << itemPotion.atibuteKind[i] << endl;
-				ptr = strtok(NULL, "#");
-			}
-
-			case RECTX:
-				itemPotion.rectX[i] = atoi(ptr);
-				cout << "RECTX : " << itemPotion.rectX[i] << endl;
-				ptr = strtok(NULL, "#");
-
-			case RECTY:
-				itemPotion.rectY[i] = atoi(ptr);
-				cout << "RECTY : " << itemPotion.rectY[i] << endl;
-				ptr = strtok(NULL, "#");
-
-
-			case WIDTH:
-				itemPotion.width[i] = atoi(ptr);
-				cout << "WIDTH : " << itemPotion.width[i] << endl;
-				ptr = strtok(NULL, "#");
-
-			case HEIGHT:
-				itemPotion.height[i] = atoi(ptr);
-				cout << "HEIGHT : " << itemPotion.height[i] << endl;
-				ptr = strtok(NULL, "#");
-
-			if (itemPotion.itemKind[i] != 5)
-			{
-			case COUNT:
-				itemPotion.count[i] = atoi(ptr);
-				cout << "COUNT : " << itemPotion.count[i] << endl;
-				ptr = strtok(NULL, "#");
-			}
-
-			case PRICE:
-				itemPotion.price[i] = atoi(ptr);
-				cout << "PRICE : " << itemPotion.price[i] << endl;
-				ptr = strtok(NULL, "#");
-
-
-			case DESCRIPTION:
-				itemPotion.description[i] = ptr;
-				cout << "DESCRIPTION : " << itemPotion.description[i] << endl;
-				ptr = strtok(NULL, "#");
-
-			if (itemPotion.itemKind[i] == 2)
-			{
-				case HEALHP:
-				itemPotion.healHp[i] = atoi(ptr);
-				cout << "HEALHP : " << itemPotion.healHp[i] << endl;
-				ptr = strtok(NULL, "#");
-
-			}
-			
-			if ( itemPotion.itemKind[i] == 2 || itemPotion.itemKind[i] == 5)
-			{
-				case DAMAGE:
-				itemPotion.damage[i] = atoi(ptr);
-				cout << "DAMAGE : " << itemPotion.damage[i] << endl;
-				ptr = strtok(NULL, "#");
-				
-			}
-			
-			if (itemPotion.itemKind[i] == 4)
-			{
-			case ADDABILITY:
-				itemPotion.addAbility[i] = atoi(ptr);
-
-				cout << "ADDABILITY : " << itemPotion.addAbility[i] << endl;
-				ptr = strtok(NULL, "#");
-
-			}
-
-		
-			default:
-				 count = 0;
-				 cout << endl;
-			}
+void writer(vector<Tile>& v, string name) {
+	Json::Value root;
+	string innerPocketName = "innerPocketName-";
+	string innerPocketLevel = "innerPocketLevel-";
+	for (int i = 0; i < v.size(); ++i) {
+		Json::Value tile;
+		string s = to_string(i);
+		tile["type"] = v[i].type;
+		tile["bPosX"] = v[i].m_BlockPositionX;
+		tile["bPosY"] = v[i].m_BlockPositionY;
+		tile["nextMap"] = v[i].m_nextMapName;
+		tile["nextMapStartX"] = v[i].m_nextMapStartIdx.x;
+		tile["nextMapStartY"] = v[i].m_nextMapStartIdx.y;
+		tile["innerPocketMonCnt"] = v[i].m_innerPocketMonInfo.size();
+		for (int j = 0; j < v[i].m_innerPocketMonInfo.size(); ++j) {
+			tile[innerPocketName + to_string(j)] = v[i].m_innerPocketMonInfo[j].first;
+			tile[innerPocketLevel + to_string(j)] = v[i].m_innerPocketMonInfo[j].second;
 		}
-
-		//cout << ptr << endl;
-		ptr = strtok(NULL, "#");
+		root[s] = tile;
 	}
-
-	for (int i = 0; i < 15; i++)
-	{
-		cout << itemPotion.name[i] << endl;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//==========================================================
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//
-	//char practice[300] = "\n[몬스터볼]\n1.\n100\n210\n85";
-
-	//char* pract = strtok(practice, "\n");
-
-	//
-	//bool isFind = false;
-	//int count = 0;
-	//while (pract != NULL)
-	//{
-	//	count++;
-	//    char a = *pract;
-	//	string insertChar = pract;
-	//    if (a == '[')
-	//    {
-	//    	pract = strtok(NULL, "\n");
-	//		count -= 1;
-	//    	continue;
-	//    }
-	//	for (auto& c : insertChar)
-	//	{
-	//		if (c == '.')
-	//		{
-	//		   pract = strtok(NULL, "\n");
-	//		   continue;
-	//		}
-	//	}
-
-
-	//   //switch (count)
-	//   //{
-	//   //case 1:
-	//	  // num.a = atoi(pract);
-	//	  // cout << "a = "<< num.a << endl;
-	//	  //
-	//	  // break;
-
-	//   //case 2:
-	//	  // num.b = atoi(pract);
-	//	  // cout << "b = " << num.b << endl;
-	//	  // break;
-
-	//   //case 3:
-	//	  // num.c = atoi(pract);
-	//	  // cout << "c = " << num.c << endl;
-	//	  // break;
-
-	//   //default:
-	//	  // break;
-	//   //}
-	//   pract = strtok(NULL, "\n");
-
-	//}
-
-	//==========================================================
-
-	return 0;
+	ofstream ouput(name, ios::out);
+	ouput << root;
+	ouput.close();
 }
 
+vector<Tile> reader(std::string mapName) {
+	Json::Value root;
+	Json::Reader reader;
+	ifstream input(mapName, ifstream::binary);
+	reader.parse(input, root);
+	input.close();
+
+	vector<Tile> readTileVector;
+	string innerPocketName = "innerPocketName-";
+	string innerPocketLevel = "innerPocketLevel-";
+	for (auto& e : root) {
+		Tile tile;
+		tile.type = e["type"].asInt();
+		tile.m_BlockPositionX = e["bPosX"].asInt();
+		tile.m_BlockPositionY = e["bPosY"].asInt();
+		tile.m_nextMapName = e["nextMap"].asString();
+		tile.m_nextMapStartIdx.x = e["nextMapStartX"].asInt();
+		tile.m_nextMapStartIdx.y = e["nextMapStartY"].asInt();
+		int innerPocketCnt = e["innerPocketMonCnt"].asInt();
+		for (int i = 0; i < innerPocketCnt; ++i) {
+			string name = e[innerPocketName + to_string(i)].asString();
+			int level = e[innerPocketLevel + to_string(i)].asInt();
+			tile.m_innerPocketMonInfo.push_back(make_pair(name, level));
+		}
+		readTileVector.push_back(tile);
+	}
+	return readTileVector;
+}
+
+int main() {
+
+	string mapName = "sunwoo.json";
+	/*vector<Tile> map;
+
+	Tile tile;
+	tile.m_BlockPositionX = 13;
+	tile.m_BlockPositionY = 13;
+	tile.type = 13;
+	tile.m_innerPocketMonInfo.push_back(make_pair("fuck", 3));
+	tile.m_nextMapName = "nami";
+	tile.m_nextMapStartIdx.x = 10;
+	tile.m_nextMapStartIdx.y = 10;
+
+	Tile tile2;
+	tile2.m_BlockPositionX = 13;
+	tile2.m_BlockPositionY = 13;
+	tile2.type = 13;
+	tile2.m_innerPocketMonInfo.push_back(make_pair("YoungHwanZzang", 3));
+	tile2.m_innerPocketMonInfo.push_back(make_pair("JunsooZzang", 3));
+	tile2.m_nextMapName = "sandi";
+	tile2.m_nextMapStartIdx.x = 10;
+	tile2.m_nextMapStartIdx.y = 10;
+
+	Tile tile3;
+	tile3.m_BlockPositionY = 11;
+	tile3.m_BlockPositionX = 11;
+	tile3.type = 76;
+	tile3.m_nextMapName = "sunwoo";
+	tile3.m_nextMapStartIdx.x = 1;
+	tile3.m_nextMapStartIdx.y = 1;
+
+	map.push_back(tile);
+	map.push_back(tile2);
+	map.push_back(tile3);
+
+	writer(map, mapName);*/
+	auto a = reader(mapName);
+	/*auto vector = reader(mapName);*/
+
+	for (auto e : a)
+		e.print();
+
+	//Item temp;
+	//temp.name = "husidin";
+	//temp.xpos = 1000;
+	//temp.ypos = 100;
+	//temp.recovery = 400;
+	//temp.buyPrice = 80;
+	//temp.count = 5;
+	//temp.sellPrice = 300;
+	//temp.description = "it is good potion";
+
+	//Item temp2;
+	//temp2.name = "power";
+	//temp2.xpos = 10200;
+	//temp2.ypos = 1030;
+	//temp2.recovery = 1400;
+	//temp2.buyPrice = 480;
+	//temp2.count = 25;
+	//temp2.sellPrice = 3010;
+	//temp2.description = "it is good potion";
+
+	//Json::Value Medicine;
+	//Json::Value husidin;
+	//husidin["name"] = temp.name;
+	//husidin["xpos"] = temp.xpos;
+	//husidin["ypos"] = temp.ypos;
+	//husidin["recovery"] = temp.recovery;
+	//husidin["buyPrice"] = temp.count;
+	//husidin["count"] = temp.count;
+	//husidin["sellPrice"] = temp.sellPrice;
+	//husidin["description"] = temp.description;
+
+	//Json::Value power;
+	//power["name"] = temp2.name;
+	//power["xpos"] = temp2.xpos;
+	//power["ypos"] = temp2.ypos;
+	//power["recovery"] = temp2.recovery;
+	//power["buyPrice"] = temp2.count;
+	//power["count"] = temp2.count;
+	//power["sellPrice"] = temp2.sellPrice;
+	//power["description"] = temp2.description;
+
+
+	//Medicine["husidin"] = husidin;
+	//Medicine["power"] = power;
+	//////Json::StyledWriter writer;
+	//////string ret = writer.write(root);
+
+	//ofstream ouput("test.json", ios::out);
+	//ouput << Medicine;
+	////cout << Medicine << endl;
+	//ouput.close();
+
+
+	/*Json::Reader reader;
+	ifstream input(name, ifstream::binary);
+	reader.parse(input, root);
+	input.close();*/
+
+	//vector<Item> itemVector;
+
+	//Json::Value MedicineIn;
+	//Json::Reader reader;
+	//ifstream input("test.json", ifstream::binary);
+	//reader.parse(input, MedicineIn);  //json >> root; 
+	//input.close();
+
+	//for (auto e : MedicineIn) {
+	//	Item temp;
+	//	temp.init(e);
+	//	itemVector.push_back(temp);
+	//	//cout << e << endl;
+	//}
+	//for (auto e : itemVector)
+	//	e.show();
+}

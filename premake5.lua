@@ -40,11 +40,13 @@ project "01. PocketMonster"
 	}
 	libdirs
 	{
-		{ "vendor/fmod/lib"}
+		"vendor/fmod/lib",
+		"vendor/Json/lib"
 	}
 	links
 	{
-		"fmod_vc.lib"
+		"fmod_vc.lib",
+		"jsoncpp.lib"
 	}
 
 	filter "system:windows"
@@ -80,11 +82,13 @@ project "02. MapTool"
 	}
 	libdirs
 	{
-		{ "vendor/fmod/lib"}
+		"vendor/fmod/lib",
+		"vendor/Json/lib"
 	}
 	links
 	{
-		"fmod_vc.lib"
+		"fmod_vc.lib",
+		"jsoncpp.lib"
 	}
 
 	filter "system:windows"
@@ -120,11 +124,13 @@ project "03. Template"
 	}
 	libdirs
 	{
-		{ "vendor/fmod/lib"}
+		"vendor/fmod/lib",
+		"vendor/Json/lib"
 	}
 	links
 	{
-		"fmod_vc.lib"
+		"fmod_vc.lib",
+		"jsoncpp.lib"
 	}
 
 	filter "system:windows"
@@ -160,13 +166,14 @@ project "04. Practice"
 	}
 	libdirs
 	{
-		{ "vendor/fmod/lib"}
+		"vendor/fmod/lib",
+		"vendor/Json/lib"
 	}
 	links
 	{
-		"fmod_vc.lib"
+		"fmod_vc.lib",
+		"jsoncpp.lib"
 	}
-
 	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "On"
@@ -195,6 +202,15 @@ project "05. WhiteBoard"
 	includedirs
 	{
 		"%{prj.name}/src"
+	}
+	libdirs
+	{
+		"vendor/fmod/lib",
+		"vendor/Json/lib"
+	}
+	links
+	{
+		"jsoncpp.lib"
 	}
 	filter "system:windows"
 		cppdialect "C++17"

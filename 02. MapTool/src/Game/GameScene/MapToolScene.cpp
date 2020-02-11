@@ -28,7 +28,10 @@ bool MapToolScene::init()
 	bushSelectRect = UTIL::IRectMake(1150, 300, 200, 100);
 	setSpecifyRect = UTIL::IRectMake(1150, 400, 200, 100);
 	setNextMapButtonRect = UTIL::IRectMake(1150, 200, 200, 100);
-	setPocketMonButtonRect = UTIL::IRectMake(1150, 400, 200, 100);
+	setActivateNextMapRect = UTIL::IRectMake(1150, 500, 200, 50);
+
+
+	setPocketMonButtonRect = UTIL::IRectMake(1150, 300, 200, 100);
 
 	//TileBlockSetup
 	treeVectorInit(3);
@@ -165,6 +168,9 @@ void MapToolScene::UIupdate()
 {
 	if (m_mainSelect)
 		mainSelectUpdate();
+
+	if (m_tileSelect)
+		tileSelectUpdate();
 	if (m_bushSelect)
 		bushSelectUpdate();
 	if (m_treeSelect)
@@ -176,49 +182,35 @@ void MapToolScene::UIupdate()
 	resetSpecifyUpdate();
 	saveLoadUpdate();
 
+	if (KEYMANAGER->isOnceKeyDown(GAME_K)) {
+		activateSetNextMapBlock();
+	}
 }
 
 void MapToolScene::mainSelectUpdate()
 {
 	if (UTIL::isPointRectCollision(m_ptMouse, tileSelectRect)) {
-		tileSelectRectSetted = true;
-	}
-	else if (UTIL::isPointRectCollision(m_ptMouse, treeSelectRect)) {
-		treeSelectRectSetted = true;
-	}
-	else if (UTIL::isPointRectCollision(m_ptMouse, bushSelectRect)) {
-		bushSelectRectSetted = true;
-	}
-	else if (UTIL::isPointRectCollision(m_ptMouse, setSpecifyRect)) {
-		setSpecifyRectSetted = true;
-	}
-	else {
-		tileSelectRectSetted = false;
-		treeSelectRectSetted = false;
-		bushSelectRectSetted = false;
-		setSpecifyRectSetted = false;
-	}
-
-	if (tileSelectRectSetted) {
-		if (KEYMANAGER->isStayKeyDown(GAME_LMOUSE)) {
+		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
 			m_tileSelect = true;
 			m_mainSelect = false;
 		}
 	}
-	if (treeSelectRectSetted) {
-		if (KEYMANAGER->isStayKeyDown(GAME_LMOUSE)) {
+	if (UTIL::isPointRectCollision(m_ptMouse, treeSelectRect)) {
+		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
 			m_treeSelect = true;
 			m_mainSelect = false;
+
 		}
 	}
-	if (bushSelectRectSetted) {
-		if (KEYMANAGER->isStayKeyDown(GAME_LMOUSE)) {
+	if (UTIL::isPointRectCollision(m_ptMouse, bushSelectRect)) {
+		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
 			m_bushSelect = true;
 			m_mainSelect = false;
+
 		}
 	}
-	if (bushSelectRectSetted) {
-		if (KEYMANAGER->isStayKeyDown(GAME_LMOUSE)) {
+	if (UTIL::isPointRectCollision(m_ptMouse, setSpecifyRect)) {
+		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
 			m_specifySelect = true;
 			m_mainSelect = false;
 		}
@@ -248,16 +240,19 @@ void MapToolScene::bushSelectUpdate()
 		for (auto& e : bushVector[bushSelectPage]) {
 			if (UTIL::isPointRectCollision(m_ptMouse, e.rect)) {
 				selectedAttribute = e.attribute;
+				isSetAttribute = true;
+				isSetNextMap = false;
+				isSetPocketMon = false;
 				break;
 			}
 		}
 	}
-	if (KEYMANAGER->isStayKeyDown(GAME_LPAGE)) {
+	if (KEYMANAGER->isOnceKeyDown(GAME_LPAGE)) {
 		bushSelectPage -= 1;
 		if (bushSelectPage < 0)
 			bushSelectPage = bushSelectPageMax - 1;
 	}
-	if (KEYMANAGER->isStayKeyDown(GAME_RPAGE)) {
+	if (KEYMANAGER->isOnceKeyDown(GAME_RPAGE)) {
 		bushSelectPage += 1;
 		if (bushSelectPage >= bushSelectPageMax)
 			bushSelectPage = 0;
@@ -284,16 +279,19 @@ void MapToolScene::treeSelectUpdate()
 		for (auto& e : treeVector[treeSelectPage]) {
 			if (UTIL::isPointRectCollision(m_ptMouse, e.rect)) {
 				selectedAttribute = e.attribute;
+				isSetAttribute = true;
+				isSetNextMap = false;
+				isSetPocketMon = false;
 				break;
 			}
 		}
 	}
-	if (KEYMANAGER->isStayKeyDown(GAME_LPAGE)) {
+	if (KEYMANAGER->isOnceKeyDown(GAME_LPAGE)) {
 		treeSelectPage -= 1;
 		if (treeSelectPage < 0)
 			treeSelectPage = bushSelectPageMax - 1;
 	}
-	if (KEYMANAGER->isStayKeyDown(GAME_RPAGE)) {
+	if (KEYMANAGER->isOnceKeyDown(GAME_RPAGE)) {
 		treeSelectPage += 1;
 		if (treeSelectPage >= bushSelectPageMax)
 			treeSelectPage = 0;
@@ -316,20 +314,23 @@ void MapToolScene::treeSelectRender(HDC hdc)
 void MapToolScene::tileSelectUpdate()
 {
 	backButtonUpdate();
-	if (KEYMANAGER->isStayKeyDown(GAME_LMOUSE)) {
+	if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
 		for (auto& e : tileVector[tileSelectPage]) {
 			if (UTIL::isPointRectCollision(m_ptMouse, e.rect)) {
 				selectedAttribute = e.attribute;
+				isSetAttribute = true;
+				isSetNextMap = false;
+				isSetPocketMon = false;
 				break;
 			}
 		}
 	}
-	if (KEYMANAGER->isStayKeyDown(GAME_LPAGE)) {
+	if (KEYMANAGER->isOnceKeyDown(GAME_LPAGE)) {
 		tileSelectPage -= 1;
 		if (tileSelectPage < 0)
 			tileSelectPage = bushSelectPageMax - 1;
 	}
-	if (KEYMANAGER->isStayKeyDown(GAME_RPAGE)) {
+	if (KEYMANAGER->isOnceKeyDown(GAME_RPAGE)) {
 		tileSelectPage += 1;
 		if (tileSelectPage >= bushSelectPageMax)
 			tileSelectPage = 0;
@@ -352,17 +353,26 @@ void MapToolScene::tileSelectRender(HDC hdc)
 void MapToolScene::specifyUpdate()
 {
 	backButtonUpdate();
-	if (KEYMANAGER->isStayKeyDown(GAME_LMOUSE)) {
-		if (UTIL::isPointRectCollision(m_ptMouse, setPocketMonButtonRect)) {
+	if (UTIL::isPointRectCollision(m_ptMouse, setPocketMonButtonRect)) {
+		if (KEYMANAGER->isOnceKeyDown(GAME_LMOUSE)) {
 			std::cin >> settedPocketMon;
 			std::cin >> settedPocketMonLevel;
-			m_settedPocketMon = true;
+			isSetAttribute = false;
+			isSetNextMap = false;
+			isSetPocketMon = true;
+			settedSpecifyStr = settedPocketMon + " " + std::to_string(settedPocketMonLevel);
 		}
-		if (UTIL::isPointRectCollision(m_ptMouse, setNextMapButtonRect)) {
+	}
+	if(UTIL::isPointRectCollision(m_ptMouse, setNextMapButtonRect)){
+		if (KEYMANAGER->isOnceKeyDown(GAME_LMOUSE)) {
 			std::cin >> settedNextMap;
 			std::cin >> settedNextMapIdx.x;
 			std::cin >> settedNextMapIdx.y;
-			m_settedNextMap = true;
+			isSetAttribute = false;
+			isSetNextMap = true;
+			isSetPocketMon = false;
+			settedSpecifyStr = settedNextMap + " " + std::to_string(settedNextMapIdx.x) + " " 
+				+ std::to_string(settedNextMapIdx.y);
 		}
 	}
 }
@@ -378,12 +388,22 @@ void MapToolScene::specifyRender(HDC hdc)
 
 	TextOut(hdc, setNextMapButtonRect.left - 100 + textOffsetX, 100,
 		settedInfo, strlen(settedInfo));
+	TextOut(hdc, setNextMapButtonRect.left + textOffsetX, 100,
+		settedSpecifyStr.c_str(), settedSpecifyStr.length());
+}
+
+void MapToolScene::activateSetNextMapBlock()
+{
+	m_settedNextMap = !m_settedNextMap;
 }
 
 void MapToolScene::resetTileUpdate()
 {
 	if (UTIL::isPointRectCollision(m_ptMouse, resetTileButtonRect)) {
 		resetTileButtonRectSetted = true;
+	}
+	else {
+		resetTileButtonRectSetted = false;
 	}
 	if (KEYMANAGER->isStayKeyDown(GAME_LMOUSE)) {
 		if (resetTileButtonRectSetted)
@@ -398,13 +418,13 @@ void MapToolScene::resetTileRender(HDC hdc)
 
 void MapToolScene::saveLoadUpdate()
 {
-	if (KEYMANAGER->isStayKeyDown(GAME_LMOUSE)) {
-		if (UTIL::isPointRectCollision(m_ptMouse, saveSelectRect)) {
+	if (UTIL::isPointRectCollision(m_ptMouse, saveSelectRect)) {
+		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
 			saveMap();
-		}
-		if (UTIL::isPointRectCollision(m_ptMouse, loadSelectRect)) {
+	}
+	if (UTIL::isPointRectCollision(m_ptMouse, loadSelectRect)) {
+		if(GetAsyncKeyState(VK_LBUTTON) & 0x8000)
 			loadMap();
-		}
 	}
 }
 
@@ -420,13 +440,14 @@ void MapToolScene::saveLoadRender(HDC hdc)
 
 void MapToolScene::resetSpecifyUpdate()
 {
-	if (KEYMANAGER->isStayKeyDown(GAME_LMOUSE)) {
-		if (UTIL::isPointRectCollision(m_ptMouse, resetSpecifyButtonRect)) {
+	if (UTIL::isPointRectCollision(m_ptMouse, resetSpecifyButtonRect)) {
+		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
 			settedNextMap = "";
 			settedNextMapIdx.x = 0;
 			settedNextMapIdx.y = 0;
 			settedPocketMon = "";
 			settedPocketMonLevel = 0;
+			settedSpecifyStr = "";
 		}
 	}
 }
@@ -439,14 +460,7 @@ void MapToolScene::resetSpecifyRender(HDC hdc)
 void MapToolScene::backButtonUpdate()
 {
 	if (UTIL::isPointRectCollision(m_ptMouse, backButtonRect)) {
-		backButtonRectSetted = true;
-	}
-	else {
-		backButtonRectSetted = false;
-	}
-
-	if (backButtonRectSetted) {
-		if (KEYMANAGER->isStayKeyDown(GAME_LMOUSE)) {
+		if (GetAsyncKeyState(VK_LBUTTON) & 0x8000) {
 			m_mainSelect = true;
 			m_treeSelect = false;
 			m_bushSelect = false;
@@ -454,7 +468,6 @@ void MapToolScene::backButtonUpdate()
 			m_specifySelect = false;
 		}
 	}
-
 }
 
 void MapToolScene::backButtonRender(HDC hdc)
@@ -482,6 +495,10 @@ void MapToolScene::UIrender(HDC hdc)
 	resetTileRender(hdc);
 	resetSpecifyRender(hdc);
 	saveLoadRender(hdc);
+
+	if (m_settedNextMap) {
+		UTIL::DrawColorRect(hdc, setActivateNextMapRect, RGB(255, 0, 255), true);
+	}
 }
 
 void MapToolScene::TileWindowUpdate(float _deltaTime)
@@ -505,13 +522,20 @@ void MapToolScene::TileWindowUpdate(float _deltaTime)
 			m_selectRect.alignment();
 			for (auto& tile : m_Tiles) {
 				if (UTIL::isRectRectCollision(m_selectRect, tile->m_outputTile)) {
-					tile->setAttributeTile(selectedAttribute);
+					if (m_settedNextMap)
+						tile->setNextMapActivate();
+					else if (isSetAttribute)
+						tile->setAttributeTile(selectedAttribute);
+					else if (isSetPocketMon)
+						tile->pushInnerPocketMon(settedPocketMon, settedPocketMonLevel);
+					else if (isSetNextMap)
+						tile->setNextMap(settedNextMap, settedNextMapIdx.x, settedNextMapIdx.y);
+					
 				}
 			}
 			m_selectRect.reset();
 		}
 	}
-
 	if (KEYMANAGER->isOnceKeyDown(GAME_W))
 		m_settedColor = !m_settedColor;
 	if (m_settedColor && !m_isSettedMove) {
@@ -532,6 +556,7 @@ void MapToolScene::TileWindowRender(HDC hdc)
 	//tile Render
 	for (auto& tile : m_Tiles) {
 		tile->render(hdc);
+		tile->specialRender(hdc);
 	}
 	if (startedSelect)
 		UTIL::DrawRect(hdc, m_selectRect);
@@ -550,7 +575,7 @@ void MapToolScene::resetTileSelectedAttribute()
 	selectedAttribute.tileKeyname = "";
 	selectedAttribute.isAfterRender = false;
 	selectedAttribute.type = TileType::TileTypeNone;
-	m_settedNextMap = false;
-	m_settedPocketMon = false;
-
+	isSetAttribute = true;
+	isSetNextMap = false;
+	isSetPocketMon = false;
 }

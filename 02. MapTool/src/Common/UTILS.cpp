@@ -460,7 +460,7 @@ namespace UTIL
 	}
 
 	//?�스??출력
-	void PrintText(HDC _hdc, char* _str, char * _font, int _destX, int _destY, 
+	void PrintText(HDC _hdc, const char* _str, char * _font, int _destX, int _destY, 
 		int _fontSize, COLORREF _fontColor, bool _isBgTransParent, COLORREF _bgColor)
 	{
 		HFONT curFont, oldFont;

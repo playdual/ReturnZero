@@ -61,7 +61,7 @@ public:
 	void resetSpecifyRender(HDC hdc);
 	void loadMap();
 	void saveMap();
-
+	
 
 	//in each case
 	void bushSelectUpdate();
@@ -72,6 +72,7 @@ public:
 	void tileSelectRender(HDC hdc);
 	void specifyUpdate();
 	void specifyRender(HDC hdc);
+	void activateSetNextMapBlock();
 
 private:
 	int m_prevMouseX;
@@ -87,6 +88,9 @@ private:
 	bool onSelect;
 	bool startedSelect;
 
+	bool isSetAttribute = true;
+	bool isSetPocketMon = false;
+	bool isSetNextMap = false;
 
 	//UI
 private:
@@ -95,6 +99,7 @@ private:
 	bool m_treeSelect = false;
 	bool m_bushSelect = false;
 	bool m_specifySelect = false;
+	bool m_nextMapSelect = false;
 
 private:
 	//mainMenu
@@ -102,6 +107,7 @@ private:
 	UTIL::IRECT treeSelectRect;
 	UTIL::IRECT bushSelectRect;
 	UTIL::IRECT setSpecifyRect;
+	UTIL::IRECT setActivateNextMapRect;
 
 	//always
 	UTIL::IRECT clientRect;
@@ -152,6 +158,7 @@ private:
 	POINT settedNextMapIdx;
 	std::string settedPocketMon;
 	int settedPocketMonLevel;
+	std::string settedSpecifyStr;
 
 private:
 	std::vector<std::vector<SelectTileData>> tileVector;

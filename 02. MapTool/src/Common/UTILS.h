@@ -179,7 +179,7 @@ namespace UTIL
 	void DrawColorCircle(HDC _hdc, const Circle& _circle, COLORREF _color = RGB(255, 255, 255), bool _cleanEdge = false);
 
 	//Text 출력
-	void PrintText(HDC _hdc, char* _str, char* _font, int _destX, int _destY, 
+	void PrintText(HDC _hdc, const char* _str, char* _font, int _destX, int _destY, 
 		int _fontSize = 20, COLORREF _fontColor = RGB(0, 0, 0), bool _isBgTransParent = false, COLORREF _bgColor = RGB(255, 255, 255));
 
 //================== Collision Function ===========================

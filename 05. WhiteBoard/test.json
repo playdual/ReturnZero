@@ -1,0 +1,24 @@
+{
+	"husidin" : 
+	{
+		"buyPrice" : 5,
+		"count" : 5,
+		"description" : "it is good potion",
+		"name" : "husidin",
+		"recovery" : 400,
+		"sellPrice" : 300,
+		"xpos" : 1000,
+		"ypos" : 100
+	},
+	"power" : 
+	{
+		"buyPrice" : 25,
+		"count" : 25,
+		"description" : "it is good potion",
+		"name" : "power",
+		"recovery" : 1400,
+		"sellPrice" : 3010,
+		"xpos" : 10200,
+		"ypos" : 1030
+	}
+}

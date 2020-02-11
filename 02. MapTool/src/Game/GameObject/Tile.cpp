@@ -30,8 +30,11 @@ void Tile::update(float _deltaTime)
 	CAMEARAMANAGER->setRelativePosition(m_absTile, m_outputTile, isCanprint);
 	if (TileType::TileTypeBush != m_Type)
 		m_innerPocketMonInfo.clear();
-	if (m_Type != TileType::TileTypeNextMap)
+	if (m_Type != TileType::TileTypeNextMap) {
 		m_nextMapName = "";
+		m_nextMapStartIdx.x = -1;
+		m_nextMapStartIdx.y = -1;
+	}
 }
 
 void Tile::render(HDC hdc)
@@ -43,7 +46,27 @@ void Tile::render(HDC hdc)
 		else {
 			UTIL::DrawColorRect(hdc, m_outputTile, color, true);
 		}	
+		if (m_innerPocketMonInfo.size()) {
+			for (int i = 0; i < m_innerPocketMonInfo.size(); ++i) {
+				UTIL::PrintText(hdc, m_innerPocketMonInfo[i].first.c_str(), "명조",
+					m_outputTile.left + 5, m_outputTile.top + i * 20, 10, RGB(0, 0, 0), true);
+			}
+		}
 	}
+}
+
+void Tile::specialRender(HDC hdc)
+{
+	if (isCanprint) {
+		if (TileType::TileTypeNextMap == m_Type) {
+			UTIL::DrawColorRect(hdc, UTIL::IRECT(m_outputTile.left, m_outputTile.top, 
+				m_outputTile.left + 10, m_outputTile.top + 10), 
+				RGB(0, 0, 0), true);
+			UTIL::PrintText(hdc, nextMapInfoStr.c_str(), "명조",
+				m_outputTile.left + 5, m_outputTile.top, 10, RGB(0, 0, 0), true);
+		}
+	}
+	
 }
 
 void Tile::setColor()
@@ -93,6 +116,9 @@ void Tile::resetAttribute()
 void Tile::pushInnerPocketMon(std::string _pocketName, int _pocketLevel)
 {
 	if (m_Type == TileType::TileTypeBush) {
+		if (_pocketName == "") {
+			m_innerPocketMonInfo.clear();
+		}
 		for (int i = 0; i < m_innerPocketMonInfo.size(); ++i)
 			if (m_innerPocketMonInfo[i].first == _pocketName)
 				return;
@@ -102,9 +128,18 @@ void Tile::pushInnerPocketMon(std::string _pocketName, int _pocketLevel)
 
 void Tile::setNextMap(std::string _mapName, int _startBlockPositionX, int _startBlockPositionY)
 {
-	if (m_Type == TileType::TileTypeBush) {
-		m_nextMapName = _mapName;
-		m_nextMapStartIdx.x = _startBlockPositionX;
-		m_nextMapStartIdx.y = _startBlockPositionY;
+	if (m_Type == TileType::TileTypeNextMap) {
+		if (m_nextMapName == "") {
+			m_nextMapName = _mapName;
+			m_nextMapStartIdx.x = _startBlockPositionX;
+			m_nextMapStartIdx.y = _startBlockPositionY;
+			nextMapInfoStr += _mapName + " : " + std::to_string(_startBlockPositionX) + " " + std::to_string(_startBlockPositionY);
+		}
 	}
 }
+
+void Tile::setNextMapActivate()
+{
+	m_Type = TileType::TileTypeNextMap;
+}
+

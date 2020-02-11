@@ -10,6 +10,7 @@ public:
 	void init(TileType _type, Image* _img, bool _isAfterRender, bool _isMovable, int _BlockPostionX, int _BlockPostionY);
 	void update(float _deltaTime);
 	void render(HDC hdc);
+	void specialRender(HDC hdc);
 
 public:
 	void setColor();
@@ -18,6 +19,7 @@ public:
 
 	void pushInnerPocketMon(std::string _pocketName, int _pocketLevel);
 	void setNextMap(std::string _mapName, int _startBlockPositionX, int _startBlockPositionY);
+	void setNextMapActivate();
 
 public:
 	UTIL::IRECT m_absTile;
@@ -30,11 +32,12 @@ public:
 	bool isMovable;
 	int m_BlockPositionX;
 	int m_BlockPositionY;
-
+	
 	COLORREF color = RGB(255, 255, 255);
 
 public:
 	std::vector<std::pair<std::string, int>> m_innerPocketMonInfo;
 	std::string m_nextMapName;
+	std::string nextMapInfoStr;
 	POINT m_nextMapStartIdx;
 };
