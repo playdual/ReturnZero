@@ -14,7 +14,7 @@ void Tile::init(TileType _type, Image* _img, bool _isAfterRender, bool _isMovabl
 {
 	m_Tile1 = IMAGEMANAGER->addImage("GrassTile1", "images/GrassTile1.bmp", TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
 	m_Bush1 = IMAGEMANAGER->addImage("Bush1", "images/Bush1.bmp", TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
-	m_Tree1 = IMAGEMANAGER->addImage("Tree1", "images/Tree1.bmp", TILE_WIDTH, TILE_HEIGHT+20, true, RGB(255, 0, 255));
+	m_Tree1 = IMAGEMANAGER->addImage("Tree1", "images/Tree1.bmp", TILE_WIDTH, TILE_HEIGHT+23, true, RGB(255, 0, 255));
 	//Image Null
 	//m_NextMap1 = IMAGEMANAGER->addImage("NextMap1", "images/.bmp", TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
 
@@ -64,7 +64,7 @@ void Tile::render(HDC hdc)
 			m_Bush1->render(hdc, m_outputTile.left, m_outputTile.top);
 			break;
 		case TileType::TileTypeTree:
-			m_Tree1->render(hdc, m_outputTile.left, m_outputTile.top);
+			m_Tree1->render(hdc, m_outputTile.left, m_outputTile.top - 23);
 			break;
 		case TileType::TileTypeOutRange:
 			UTIL::DrawColorRect(hdc, m_outputTile, RGB(255, 0, 0), false);
@@ -106,4 +106,34 @@ void Tile::debugRender(HDC hdc)
 
 void Tile::afterRender(HDC hdc)
 {
+	if (isCanprint)
+	{
+		switch (m_Type)
+		{
+		case TileType::TileTypeFloor:
+			m_Tile1->render(hdc, m_outputTile.left, m_outputTile.top);
+			break;
+		case TileType::TileTypeHouse:
+			UTIL::DrawColorRect(hdc, m_outputTile, RGB(255, 0, 0), false);
+			break;
+		case TileType::TileTypeNextMap:
+			UTIL::DrawColorRect(hdc, m_outputTile, RGB(0, 0, 0), false);
+			break;
+		case TileType::TileTypeBush:
+			m_Bush1->render(hdc, m_outputTile.left, m_outputTile.top);
+			break;
+		case TileType::TileTypeTree:
+			m_Tree1->render(hdc, m_outputTile.left, m_outputTile.top - 23);
+			break;
+		case TileType::TileTypeOutRange:
+			UTIL::DrawColorRect(hdc, m_outputTile, RGB(255, 0, 0), false);
+			break;
+		}
+
+	}
+}
+
+int Tile::getOutputTileY()
+{
+	return m_outputTile.centerY;
 }

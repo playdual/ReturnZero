@@ -97,13 +97,12 @@ void player::update(float _deltaTime)
 
 		if(m_playerBeforeArrowMemory==2 && m_playerCurrentArrowMemory==2)
 		{
-			m_blockPositionX -= 1;
-
-			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeTree||
-				MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeOutRange
+			
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX-1, m_blockPositionY) == TileType::TileTypeTree||
+				MAPMANGER->getTileTypeFromIndex(m_blockPositionX-1, m_blockPositionY) == TileType::TileTypeOutRange
 				)
 			{
-				m_blockPositionX += 1;
+				//이동못하게 막기
 			}
 			else
 			{
@@ -125,21 +124,22 @@ void player::update(float _deltaTime)
 		else
 		{
 
-			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeBush)
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX-1, m_blockPositionY) == TileType::TileTypeBush)
 			{
 				isBattleStart();
 			}
 
-			else if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeNextMap)
+			else if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX-1, m_blockPositionY) == TileType::TileTypeNextMap)
 			{
 				isChangeMap = true;
 			}
-
+			//이동을 다했다면
 			isLeft = true;
 			isRight = false;
 			isUp = false;
 			isDown = false;
 			isAnotherMove = false;
+			m_blockPositionX -= 1;
 			isMoveLeft = false;
 
 		}
@@ -162,14 +162,11 @@ void player::update(float _deltaTime)
 
 		if (m_playerBeforeArrowMemory == 3 && m_playerCurrentArrowMemory == 3)
 		{
-			m_blockPositionX += 1;
 
-			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeTree ||
-				MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeOutRange
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX+1, m_blockPositionY) == TileType::TileTypeTree ||
+				MAPMANGER->getTileTypeFromIndex(m_blockPositionX+1, m_blockPositionY) == TileType::TileTypeOutRange
 				) {
-				
-				m_blockPositionX -= 1;
-			
+
 			}
 			else
 			{
@@ -189,12 +186,12 @@ void player::update(float _deltaTime)
 		}
 		else
 		{
-			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeBush)
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX+1, m_blockPositionY) == TileType::TileTypeBush)
 			{
 				isBattleStart();
 			}
 
-			else if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeNextMap)
+			else if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX+1, m_blockPositionY) == TileType::TileTypeNextMap)
 			{
 				isChangeMap = true;
 			}
@@ -204,6 +201,7 @@ void player::update(float _deltaTime)
 			isUp = false;
 			isDown = false;
 			isMoveRight = false;
+			m_blockPositionX += 1;
 			isAnotherMove = false;
 	
 			
@@ -225,12 +223,10 @@ void player::update(float _deltaTime)
 
 		if (m_playerBeforeArrowMemory == 1 && m_playerCurrentArrowMemory == 1)
 		{
-			m_blockPositionY -= 1;
-
-			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeTree ||
-				MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeOutRange
+		
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY-1) == TileType::TileTypeTree ||
+				MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY-1) == TileType::TileTypeOutRange
 				) {
-				m_blockPositionY += 1;
 			}
 			else
 			{
@@ -250,12 +246,12 @@ void player::update(float _deltaTime)
 		else
 		{
 
-			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeBush)
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY-1) == TileType::TileTypeBush)
 			{
 				isBattleStart();
 			}
 
-			else if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeNextMap)
+			else if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY-1) == TileType::TileTypeNextMap)
 			{
 				isChangeMap = true;
 			}
@@ -264,8 +260,9 @@ void player::update(float _deltaTime)
 			isRight = false;
 			isUp = true;
 			isDown = false;
-			isMoveUp = false;
+			m_blockPositionY -= 1;
 			isAnotherMove = false;
+			isMoveUp = false;
 	
 			
 		}
@@ -286,12 +283,11 @@ void player::update(float _deltaTime)
 
 		if (m_playerBeforeArrowMemory == 0 && m_playerCurrentArrowMemory == 0)
 		{
-			m_blockPositionY += 1;
 
-			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeTree ||
-				MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeOutRange
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY+1) == TileType::TileTypeTree ||
+				MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY+1) == TileType::TileTypeOutRange
 				) {
-				m_blockPositionY -= 1;
+
 			}
 			else
 			{
@@ -306,25 +302,28 @@ void player::update(float _deltaTime)
 	{
 		if (m_playerRect.bottom < m_playerRectMemory + TILE_HEIGHT)
 		{
+			isAfter = false;
 			m_playerRect.moveDown(5);
 		}
 		else
 		{
 
-			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeBush)
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY+1) == TileType::TileTypeBush)
 			{
 				isBattleStart();
 			}
 
-			else if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY) == TileType::TileTypeNextMap)
+			else if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY+1) == TileType::TileTypeNextMap)
 			{
 				isChangeMap = true;
 			}
 
+			isAfter = true;
 			isLeft = false;
 			isRight = false;
 			isUp = false;
 			isDown = true;
+			m_blockPositionY += 1;
 			isMoveDown = false;
 			isAnotherMove = false;
 		}
@@ -458,6 +457,11 @@ bool player::getisChangeMap()
 void player::isNotChangeMap()
 {
 	isChangeMap = false;
+}
+
+bool player::getisAfter()
+{
+	return isAfter;
 }
 
 

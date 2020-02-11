@@ -8,6 +8,8 @@ void Map::init(char * _fileName)
 	if (_fileName == nullptr) {
 		m_width = 15;
 		m_height = 15;
+		m_playerStartPositionX = 10;
+		m_playerStartPositionY = 10;
 		for (int y = 0; y < m_width; ++y) {
 			for (int x = 0; x < m_height; ++x) {
 				Tile temp;
@@ -38,6 +40,8 @@ void Map::init(char * _fileName)
 			}
 		}
 	}
+	m_playerPositionX = m_playerStartPositionX;
+	m_playerPositionY = m_playerStartPositionY;
 }
 
 TileType Map::getTileTypeFromIdex(int _x, int _y)
@@ -54,16 +58,33 @@ Tile& Map::getSpecifyTile(int _blockPositionX, int _blockPositionY)
 	return m_tiles[_blockPositionX + _blockPositionY * m_height];
 }
 
+void Map::setPlayerPosition(int _x, int _y)
+{
+	m_playerPositionX = _x;
+	m_playerPositionY = _y;
+}
+
 void Map::render(HDC hdc)
 {
-	for (auto& tile : m_tiles)
-		tile.render(hdc);
+	for (auto& tile : m_tiles) {
+		if(tile.m_BlockPositionY <= m_playerPositionY)
+			tile.render(hdc);
+	}
+	if (!isAfter)
+	{
+		for (auto& tile : m_tiles) {
+			tile.render(hdc);
+		}
+	}
 }
 
 void Map::update(float _deltaTime)
 {
+	
 	for (auto& tile : m_tiles)
 		tile.update(_deltaTime);
+
+	
 }
 
 void Map::debugRender(HDC hdc)
@@ -74,6 +95,12 @@ void Map::debugRender(HDC hdc)
 
 void Map::afterRender(HDC hdc)
 {
-	for (auto& tile : m_tiles)
-		tile.afterRender(hdc);
+	if (isAfter)
+	{
+		for (auto& tile : m_tiles) {
+			if (tile.m_BlockPositionY > m_playerPositionY)
+				tile.afterRender(hdc);
+		}
+	}
 }
+

@@ -13,6 +13,8 @@ public:
 	void render(HDC hdc);
 	void debugRender(HDC hdc);
 	void afterRender(HDC hdc);
+	
+	int getOutputTileY();
 	std::string getNextMapKey() { return m_nextMapKey; }
 	POINT getNextMapIdx() { return m_nextMapIdx; }
 

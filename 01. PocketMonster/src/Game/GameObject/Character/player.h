@@ -31,6 +31,7 @@ public:
 	void MoveSetZero();
 	bool getisChangeMap();
 	void isNotChangeMap();
+	bool getisAfter();
 	//void rectInCamera(UTIL::IRECT& outRect, const UTIL::IRECT& realRect, bool& isOutput);
 private:
 	UTIL::IRECT m_playerRect;
@@ -70,6 +71,8 @@ private:
 	bool isRight = false;
 	bool isUp = false;
 	bool isDown = false;
+
+	bool isAfter = true;
 
 	float m_CurrentTime=0;
 	

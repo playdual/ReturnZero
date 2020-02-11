@@ -15,10 +15,10 @@ bool TownScene::init()
 {
 	//player init
 	m_player = std::make_shared<player>();
-	m_player->reLocate(3, 3);
-	m_player->init();
 	
 	m_map = MAPMANGER->findMap("test");
+	m_player->reLocate(m_map->getStartPositionX(), m_map->getStartPositionY());
+	m_player->init();
 	return true;
 }
 
@@ -26,6 +26,7 @@ bool TownScene::init()
 void TownScene::update(float _deltaTime)
 {
 	m_player->update(_deltaTime);
+	m_map->setPlayerPosition(m_player->getPlayerBlockX(), m_player->getPlayerBlockY());
 	m_map->update(_deltaTime);
 
 	if (KEYMANAGER->isOnceKeyDown(GAME_MENU)) {
@@ -48,6 +49,7 @@ void TownScene::update(float _deltaTime)
 		m_player->isNotChangeMap();
 	}
 
+	m_map->setisAfter(m_player->getisAfter());
 	
 }
 
@@ -55,11 +57,14 @@ void TownScene::render(HDC hdc)
 {
 	m_map->render(hdc);
 	m_player->render(hdc);
-	
+
 }
 
 void TownScene::afterRender(HDC hdc)
 {
+	
+	m_map->afterRender(hdc);
+
 }
 
 void TownScene::debugRender(HDC hdc)
