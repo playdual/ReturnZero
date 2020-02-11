@@ -1,9 +1,14 @@
 ﻿#pragma once
 #include "Game/GameObject/Object.h"
-
+#include "Common/SystemManagers.h"
 class PocketMon
 	: public Object
 {
+public:
+	PocketMon();
+	PocketMon(const PocketMon& _pocket);
+	~PocketMon();
+
 public:
 	bool init() override;
 	void update(float _deltaTime) override;
@@ -18,8 +23,8 @@ public:
 
 public:
 	bool m_state; //1.플레이어, 2.npc, 3.야생
-	std::shared_ptr<class Image> m_pocketmonFrontImg;
-	std::shared_ptr<Image> m_pocketmonBackImg;
+	Image* m_pocketmonFrontImg;
+	Image* m_pocketmonBackImg;
 	std::string m_name;
 	std::string m_customName;
 	PockemonAttibute m_Attribute;
@@ -31,8 +36,9 @@ public:
 	int m_def;
 	int m_specialAtk;
 	int m_specialDef;
-	int m_dex;
+	int m_speed;
 	int m_maxExp;
 	int m_currentExp;
-	std::string skill_1;
+	int m_wildExp;
+	std::vector<PocketSkill> skillList;	//MaxSize4
 };

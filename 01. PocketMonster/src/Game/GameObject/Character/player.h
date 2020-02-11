@@ -32,18 +32,12 @@ public:
 	bool getisChangeMap();
 	void isNotChangeMap();
 	bool getisAfter();
+	bool getisMenu();
 	//void rectInCamera(UTIL::IRECT& outRect, const UTIL::IRECT& realRect, bool& isOutput);
 private:
 	UTIL::IRECT m_playerRect;
 	UTIL::IRECT m_outPlayerRect;
 
-	UTIL::IRECT m_obstacleRect;	
-	UTIL::IRECT m_outObstacleRect;
-	bool isObstacleOut = false;
-
-	UTIL::IRECT m_obstacleRect2;
-	UTIL::IRECT m_outObstacleRect2;
-	bool isObstacleOut2 = false;
 
 	HDC viewhdc;
 
@@ -90,6 +84,10 @@ private:
 
 	//Change Map
 	bool isChangeMap = false;
+
+	//Menu
+	bool ismenu = false;
+
 
 	//player image
 	Image* m_playerImg;

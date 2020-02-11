@@ -612,7 +612,7 @@ void BattleScene::playerskillMotion()
 		//플레이어 클래스의 스킬 이름을 가져온다.
 		if (skill_1 && !skillMotionOn)
 		{
-			skillEffectAssemble(m_player->skill_1);
+			//skillEffectAssemble(m_player->skill_1);
 			//skillMotionOn = m_player->getSkillMotionOn();
 		}
 		if (skill_2) {}

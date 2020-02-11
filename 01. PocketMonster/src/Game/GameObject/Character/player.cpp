@@ -30,6 +30,8 @@ bool player::init()
 	bgX = 0;
 	bgY = 0;
 
+	
+
 	//player img
 	m_playerImg = IMAGEMANAGER->addFrameImage("playerimg", "images/newPlayer.bmp", 305, 510, 4, 5, true, RGB(255, 0, 255));
 
@@ -75,9 +77,24 @@ bool player::init()
 void player::update(float _deltaTime)
 {
 
-	if(!isBattle)
+	if (!ismenu)
+	{	if (KEYMANAGER->isOnceKeyDown(GAME_MENUPROTO))
+		{
+			ismenu = true;
+		}
+	}
+	else if (ismenu)
+	{
+		if (KEYMANAGER->isOnceKeyDown(GAME_MENUPROTO) || KEYMANAGER->isOnceKeyDown(P1_X))
+		{
+			ismenu = false;
+		}
+	}
+
+	if(!isBattle && !ismenu)
 	{
 		m_CurrentTime += _deltaTime;
+
 
 	if (KEYMANAGER->isOnceKeyDown(P1_LEFT) && m_playerBeforeArrowMemory != 2)
 	{
@@ -380,16 +397,17 @@ void player::render(HDC hdc)
 		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top + PLAYER_OFFSETY, m_aniplayerLeft);
 	else if (isRight)
 		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top + PLAYER_OFFSETY, m_aniplayerRight);
+
 }
 
 void player::afterRender(HDC hdc)
 {
-
 }
 
 void player::debugRender(HDC hdc)
 {
 	UTIL::DrawColorRect(hdc, m_outPlayerRect, RGB(153, 255, 30), true);
+
 }
 
 int player::getPlayRectX()
@@ -464,6 +482,10 @@ bool player::getisAfter()
 	return isAfter;
 }
 
+bool player::getisMenu()
+{
+	return ismenu;
+}
 
 
 

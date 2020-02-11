@@ -26,4 +26,8 @@ private:
 	Image* image;
 	std::shared_ptr<player> m_player;
 	std::shared_ptr<Map> m_map;
+
+	//Menu
+	UTIL::IRECT m_menurect;
+	Image* m_menuImg;
 };

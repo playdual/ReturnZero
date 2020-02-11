@@ -19,9 +19,15 @@ MainGame::~MainGame()
 HRESULT MainGame::init()
 {
 	GameNode::init();
+	//rsc loading
+
+
 	MAPMANGER->init();
 	ITEMMANAGER->init();
 	POCKETMONMANAGER->init();
+
+
+
 
 	//add Scene
 	IMAGEMANAGER->addImage("bg", "Images/temp.bmp", 0, 0, WINSIZEX, WINSIZEY);

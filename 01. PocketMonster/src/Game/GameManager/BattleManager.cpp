@@ -6,6 +6,7 @@ DEFINITION_SINGLE(BattleManager)
 
 BattleManager::BattleManager()
 {
+	
 }
 
 BattleManager::~BattleManager()
