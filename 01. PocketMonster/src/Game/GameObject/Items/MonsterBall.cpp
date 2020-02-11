@@ -21,6 +21,8 @@ void MonsterBall::update(float _deltaTime)
 
 void MonsterBall::render(HDC hdc)
 {
+	if (m_img != nullptr)
+		m_img->render(hdc, 35, WINSIZEY - 160);
 }
 
 void MonsterBall::afterRender(HDC hdc)
@@ -29,4 +31,5 @@ void MonsterBall::afterRender(HDC hdc)
 
 void MonsterBall::debugRender(HDC hdc)
 {
+	UTIL::DrawRect(hdc, m_iRect);
 }

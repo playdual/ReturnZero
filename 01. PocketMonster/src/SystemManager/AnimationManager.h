@@ -11,7 +11,7 @@ public:
 	void deleteALL();
 
 public:
-	//처음부터 끝까지
+	//泥섏쓬遺???앷퉴吏
 	void addDefAnimation(std::string animationKeyName, char* imageKeyName, int fps, bool reverse = false, bool loop = false);
 	//배열에 담아서
 	void addAnimation(std::string animationKeyName, char* imageKeyName, int* playArr, int arrLen, float fps, bool loop = false);

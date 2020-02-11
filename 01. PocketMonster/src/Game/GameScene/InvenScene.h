@@ -18,11 +18,34 @@ public:
 	virtual void afterRender(HDC hdc) override;
 	virtual void debugRender(HDC hdc) override;
 
-	//이거는 왜 public으로 둔것?? 그럴필요가 없군요.
-	// 멤버 변수는 무조건(은 아니지만) private으로 둘것...
+	// 디폴트 사는 씬
+	void sellScene();
 
 private:
 	std::shared_ptr<Inventory> m_inven;
 	Image* m_BackGround;
+	
+	// 인벤창 가방 이미지 //
+	Image* m_ItemBag;
+	Image* m_ImportBag;
+	Image* m_PokeBallBag;
+	// 인벤 태그 이미지 //
+	Image* m_ItemTag;
+	Image* m_ImporTag;
+	Image* m_PokeBallTag;
+	//  인벤 화살표 UI 이미지 //
+	Image* m_nextArrow;
+	Image* m_beforeArrow;
+
+	INVENSCENETYPE m_invenSceneType;
+	//인벤씬 변경시 사용할 카운트
+	int		invenSceneCount;
+	bool	isChangeScene;
+	// UI 카운트 작업
+	int		moveCount ;
+	bool	isUp;
+
+	// 상점 연습 작업
+	int ShopCount;
 };
 

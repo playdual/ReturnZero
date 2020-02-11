@@ -34,8 +34,7 @@ public :
 	void setImportTag(bool _isImportTag) { m_isImportTag = _isImportTag;}
 	void setPokeBallTag(bool _isPokeBallTag) { m_isPokeBallTag = _isPokeBallTag;}
 
-
-
+	std::vector<std::shared_ptr<Item>> &getItemPotion() { return m_potionItem; }
 
 	void itemTagInit();
 	void ImportTagInit();
@@ -43,7 +42,8 @@ public :
 
 	int  m_itemCount;
 	bool m_itemInit;
-	bool	m_isPokeBallInit;
+	bool m_isPokeBallInit;
+
 	// 다른 태그로 넘어갔는지 체크 
 	bool m_isItemTag;
 	bool m_isImportTag;

@@ -24,6 +24,18 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("pailiBack", "Images/pocketmons/pailiBack.bmp", 61 * 3, 61 * 3, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("pikachuFront", "Images/pocketmons/PikachuFront.bmp", 61 * 3, 61 * 3, true, RGB(255, 0, 255));
 
+	//rsc
+	IMAGEMANAGER->addImage("인벤토리씬", "Images/InvenScene.bmp", 0, 0, WINSIZEX, WINSIZEY);
+	IMAGEMANAGER->addImage("아이템창", "Images/itemBag.bmp", 62 * 5, 64 * 5, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("임폴트창", "Images/importBag.bmp", 62 * 5, 64 * 5, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("포케볼창", "Images/ballBag.bmp", 62 * 5, 64 * 5, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("아이템창태그", "Images/ItemsTag.bmp", 67 * 5, 34 * 4, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("임폴트창태그", "Images/KeyItemsTag.bmp", 67 * 5, 34 * 4, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("포케볼창태그", "Images/BallTag.bmp", 67 * 5, 34 * 4, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("이전화면표시", "Images/BefoeImage.bmp", 18 * 5, 17 * 5, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("다음화면표시", "Images/NextImage.bmp", 18 * 5, 17 * 5, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("현재아이템표시", "Images/itemPointer.bmp", 28 * 4, 28 * 4, true, RGB(255, 0, 255));
+	
 	MAPMANGER->init();
 	ITEMMANAGER->init();
 	POCKETMONMANAGER->init();
@@ -34,12 +46,14 @@ HRESULT MainGame::init()
 	//add Scene
 	IMAGEMANAGER->addImage("bg", "Images/temp.bmp", 0, 0, WINSIZEX, WINSIZEY);
 	SOUNDMANAGER->addStream("bgs", "Sounds/NewBarkTown.mp3", true);
-	std::shared_ptr<Inventory> inven = std::make_shared<Inventory>();
+	IMAGEMANAGER->addImage("현재아이템표시", "Images/itemPointer.bmp", 28 * 5, 28 * 5, true, RGB(255, 0, 255));
+	inven = std::make_shared<Inventory>();
 	inven->init();
-
 	SCENEMANAGER->addScene("town", new TownScene);
 	SCENEMANAGER->addScene("battle", new BattleScene);
-	SCENEMANAGER->addScene("inven",new InvenScene(inven));
+
+
+	SCENEMANAGER->addScene("inven", new InvenScene(inven));
 	SCENEMANAGER->scenePush("town");
 
 	SCENEMANAGER->changeScene("town");

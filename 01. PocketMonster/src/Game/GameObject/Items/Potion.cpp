@@ -15,7 +15,6 @@ Potion::~Potion()
 
 bool Potion::init()
 {       
-
 	return true;
 }
 

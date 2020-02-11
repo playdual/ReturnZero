@@ -14,6 +14,9 @@ InvenScene::~InvenScene()
 
 bool InvenScene::init()
 {
+	//상점 연습 작업
+	ShopCount = 0;
+
 	moveCount = 0;
 	isUp = true;
 	// 인벤창 가방 이미지 add //
@@ -119,6 +122,11 @@ void InvenScene::update(float _deltaTime)
 			isUp = true;
 	}
 
+	if (ShopCount < 1)
+	{
+		//sellScene();
+		//ShopCount++;
+	}
 }
 
 void InvenScene::release()
@@ -183,10 +191,28 @@ void InvenScene::afterRender(HDC hdc)
 
 void InvenScene::debugRender(HDC hdc)
 {
-	// 이건 필요없는거라 지워야 해용
-	for (int i = 0; i < 5; i++)
+}
+
+void InvenScene::sellScene()
+{
+	int countTemp = 0;
+	auto& itemVector = m_inven->getItemPotion();
+
+	for (auto item = itemVector.begin() ;  item != itemVector.end(); )
 	{
-		UTIL::IRECT(WINSIZEX / 2, 100 + (i * 80), 400, 80);
+		if ((*item)->getItemName() == "상처약")
+		{
+			countTemp = (*item)->getCount();
+			countTemp--;
+			(*item)->m_count = countTemp;
+			
+			if (countTemp == 0) {
+				item = itemVector.erase(item);
+			}
+		}
+		else item++;
+
+		
 	}
 }
 

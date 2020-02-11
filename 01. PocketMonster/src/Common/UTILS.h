@@ -65,7 +65,7 @@ namespace UTIL
 		}
 		_tagIrect(const _tagIrect& rect)
 			: left(rect.left), top(rect.top), right(rect.right), bottom(rect.bottom)
-		{
+ 		{
 			alignment();
 			setCenter();
 		}

@@ -62,7 +62,7 @@ Scene * SceneManager::addScene(std::string sceneName, Scene* scene) {
 		return nullptr;
 	
 	_mSceneList.insert(make_pair(sceneName, scene));
-	return scene;
+ 	return scene;
 }
 
 bool SceneManager::changeScene(std::string sceneName)
