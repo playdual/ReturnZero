@@ -787,7 +787,7 @@ void BattleScene::wildBattleRender(HDC hdc)
 		playerUiPoketmon(hdc);
 		playerUiImg(hdc);
 		playerUiStatus(hdc);
-		playerHpExpBarStayMotion(hdc);
+		
 
 		//설명창
 		explainRect(hdc);
@@ -805,10 +805,7 @@ void BattleScene::wildBattleRender(HDC hdc)
 		playerUiBottom(hdc);
 		playerUiPoketmon(hdc);
 		playerUiStatus(hdc);
-		playerUiMaxHp(hdc,0);
-		playerUiCurrentHp(hdc,0);
-		playerUiMaxExp(hdc,0);
-		plyaerUiCurrentExp(hdc,0);
+		playerHpExpBarStayMotion(hdc);
 
 		if (playerTurn)
 		{
@@ -886,7 +883,7 @@ int BattleScene::checkDamage()
 {
 	if (!enemyTurn)
 	{
-		return 8;/*m_playerPocketmon.m_atk	- m_wildPocketmon.m_def;*/
+		return 30;/*m_playerPocketmon.m_atk	- m_wildPocketmon.m_def;*/
 	}
 	else if (enemyTurn)
 	{
@@ -1052,7 +1049,7 @@ void BattleScene::wildBattleOutroAni(HDC hdc)
 {
 	char str[100];
 	//적 포켓몬
-	m_enemyPocketmonY += 5;
+	m_enemyPocketmonY += 10;
 	m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, m_enemyPocketmonY, 165, 181);
 	if (m_enemyPocketmonY > WINSIZEY)
 	{
@@ -1065,6 +1062,7 @@ void BattleScene::wildBattleOutroAni(HDC hdc)
 
 		if (m_skillCount > 50)
 		{
+			explainRect(hdc);
 			wsprintf(str, "%s는(은)", m_playerPocketmon.m_customName.c_str());
 			TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 10, str, strlen(str));
 
@@ -1076,7 +1074,6 @@ void BattleScene::wildBattleOutroAni(HDC hdc)
 				getExp = true;
 				m_playerPocketmon.m_currentExp += m_wildPocketmon.m_wildExp;
 			}
-
 			if (m_skillCount > 150)
 			{
 				SCENEMANAGER->scenePop();
