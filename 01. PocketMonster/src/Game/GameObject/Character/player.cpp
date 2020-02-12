@@ -69,7 +69,7 @@ bool player::init()
 	//player Base Arrow(Start)
 	isDown = true;
 
-	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Charmander", 31)));
+	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Pikachu", 41)));
 	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Squirtle", 31)));
 
 	m_playerBeforeArrowMemory = 0;

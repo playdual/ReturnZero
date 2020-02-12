@@ -199,7 +199,8 @@ bool BattleScene::init(std::shared_ptr<player> _player, PocketMon& _pocketmon)
 	m_enemyPocketmonY = 165;
 	m_enemyStatusX = -425;
 	m_wildPocketmonHpBarWigth = 230;
-	m_playerPocketmonHpBarWigth = 230;
+	m_playerPocketmonHpBarWigth = checkHpBarWigth();
+	m_playerPocketmonExpBarWigth = checkExpBarWigth();
 
 	//배경화면
 	//적 상태창 
@@ -254,6 +255,7 @@ bool BattleScene::init(std::shared_ptr<player> _player, PocketMon& _pocketmon)
 	playerImgSlideOut = false;
 	playerHpExpBarStayMotionOn = false;
 
+
 	//===================
 	// 선택창 조절 변수 //
 	//===================
@@ -293,6 +295,9 @@ bool BattleScene::init(std::shared_ptr<player> _player, PocketMon& _pocketmon)
 	enemyHpChange = false;
 	explainEffect = false;
 	enemyAtkSkillOn = false;
+	battleEnd = false;
+	attributeOn = false;
+	plusAttribute = false;
 
 	m_skillCount = 0;
 	m_enemyTwinkleCount = 0;
@@ -300,9 +305,8 @@ bool BattleScene::init(std::shared_ptr<player> _player, PocketMon& _pocketmon)
 	m_enemyCurrentMinusHp = 0;
 	m_enemyAlpha = 255;
 	m_playerAlpha = 255;
-
-	//플레이어 포켓몬 스킬명 저장 
-	playerPocketmonSkillNameInit();
+	m_playerCurrentPlusExp = 0;
+	m_playerSelectSkillNumber = 0;
 
 	//적
 	enemySkillEffect = false;
@@ -314,8 +318,7 @@ bool BattleScene::init(std::shared_ptr<player> _player, PocketMon& _pocketmon)
 	m_playerTwinkleCount = 0;
 	m_playerMinusHp = 0;
 	m_playerCurrentMinusHp = 0;
-	//적 포켓몬 스킬명 저장 
-	enemyPocketmonSkillNameInit();
+	m_enemySelectSkillNumber = 0;
 
 	//=================
 	// 전투 승패 관련 //
@@ -324,57 +327,8 @@ bool BattleScene::init(std::shared_ptr<player> _player, PocketMon& _pocketmon)
 	pocketmonLose = false;
 	playerLose = false;
 	enemyLose = false;
-	getExp = false;
 
 	return true;	
-}
-
-void BattleScene::playerPocketmonSkillNameInit()
-{
-	int temp = 0;
-	for (auto it = selectPocketmon->skillList.begin(); it != selectPocketmon->skillList.end(); ++it)
-	{
-		switch (temp)
-		{
-		case 0:
-			m_playerFirstSkillName = it->name;
-			break;
-		case 1:
-			m_playerSecondSkillName = it->name;
-			break;
-		case 2:
-			m_playerThirdSkillName = it->name;
-			break;
-		case 3:
-			m_playerFourthSkillName = it->name;
-			break;
-		}
-		temp++;
-	}
-}
-void BattleScene::enemyPocketmonSkillNameInit()
-{
-
-	int temp = 0;
-	for (auto it = m_wildPocketmon.skillList.begin(); it != m_wildPocketmon.skillList.end(); ++it)
-	{
-		switch (temp)
-		{
-		case 0:
-			m_enemyFirstSkillName = it->name;
-			break;
-		case 1:
-			m_enemySecondSkillName = it->name;
-			break;
-		case 2:
-			m_enemyThirdSkillName = it->name;
-			break;
-		case 3:
-			m_enemyFourthSkillName = it->name;
-			break;
-		}
-		temp++;
-	}
 }
 
 void BattleScene::release()
@@ -571,7 +525,38 @@ void BattleScene::explainRect(HDC hdc)
 		}
 	}
 	
+	if (!wildBattleIntroAniOn && !playerAtkOn)
+	{
+		wsprintf(str, "%s는(은)", selectPocketmon->m_name.c_str());
+		TextOut(hdc, m_explainRect.left + 20, m_explainRect.top + 10, str, strlen(str));
 
+		wsprintf(str, "무엇을 할까?");
+		TextOut(hdc, m_explainRect.left + 20, m_explainRect.top + 40, str, strlen(str));
+
+		wsprintf(str, "싸운다");
+		TextOut(hdc, 649, 590, str, strlen(str));
+
+		wsprintf(str, "가방");
+		TextOut(hdc, 854, 590, str, strlen(str));
+
+		wsprintf(str, "포켓몬");
+		TextOut(hdc, 649, 666, str, strlen(str));
+
+		wsprintf(str, "도망간다");
+		TextOut(hdc, 854, 666, str, strlen(str));
+	}
+
+	if (enemyTurn)
+	{
+		if (!enemyExplainEffect)
+		{
+			wsprintf(str, "상대 %s의", m_wildPocketmon.m_name.c_str());
+			TextOut(hdc, m_explainRect.left + 20, m_explainRect.top + 10, str, strlen(str));
+
+			wsprintf(str, "%s 공격!", m_enemySelectSkillName.c_str());
+			TextOut(hdc, m_explainRect.left + 20, m_explainRect.top + 40, str, strlen(str));
+		}
+	}
 }
 void BattleScene::selectRect(HDC hdc)
 {
@@ -649,22 +634,22 @@ void BattleScene::playerUiSkillList(HDC hdc)
 	{
 		if (i == 0)
 		{
-			wsprintf(skillName[i], "%s", m_playerFirstSkillName.c_str());
+			wsprintf(skillName[i], "%s", selectPocketmon->skillList[i].name.c_str());
 			TextOut(hdc, 67, 595, skillName[i], strlen(skillName[i]));
 		}
 		else if (i == 1)
 		{
-			wsprintf(skillName[i], "%s", m_playerSecondSkillName.c_str());
+			wsprintf(skillName[i], "%s", selectPocketmon->skillList[i].name.c_str());
 			TextOut(hdc, 345, 595, skillName[i], strlen(skillName[i]));
 		}
 		else if (i == 2)
 		{
-			wsprintf(skillName[i], "%s", m_playerThirdSkillName.c_str());
+			wsprintf(skillName[i], "%s", selectPocketmon->skillList[i].name.c_str());
 			TextOut(hdc, 67, 676, skillName[i], strlen(skillName[i]));
 		}
 		else if (i == 3)
 		{
-			wsprintf(skillName[i], "%s", m_playerFourthSkillName.c_str());
+			wsprintf(skillName[i], "%s", selectPocketmon->skillList[i].name.c_str());
 			TextOut(hdc, 345, 676, skillName[i], strlen(skillName[i]));
 		}
 	}
@@ -715,31 +700,23 @@ std::string BattleScene::playerUiSkillType(SkillType _skillType)
 	{
 	case SkillType::SkillAttibuteFire:
 		return "불꽃";
-		break;
 	case SkillType::SkillAttibuteStone:
 		return "바위";
-		break;
 	case SkillType::SkillAttibuteWater:
 		return "물";
-		break;
 	case SkillType::SkillAttibuteGrass:
 		return "풀";
-		break;
 	case SkillType::SkillAttibuteFly:
 		return "비행";
-		break;
 	case SkillType::SkillAttibuteElectric:
 		return "전기";
-		break;
 	case SkillType::SkillAttibuteNormal:
 		return "노말";
-		break;
 	}
 }
 void BattleScene::playerUiMaxHp(HDC hdc, int _y)
 {
 	m_playerMaxHp = UTIL::IRectMake(m_playerStatus.left + 181, 431 + _y, 230, 30);
-	//UTIL::DrawRect(hdc, m_enemyMaxHp);
 	UTIL::DrawColorRect(hdc, m_playerMaxHp, RGB(120, 120, 120));
 }
 void BattleScene::playerUiCurrentHp(HDC hdc, int _y)
@@ -749,9 +726,23 @@ void BattleScene::playerUiCurrentHp(HDC hdc, int _y)
 }
 void BattleScene::playerUiMaxExp(HDC hdc, int _y)
 {
+	//플레이어 최대경험치
+	m_playerMaxExp = UTIL::IRectMake(m_playerStatus.left + 151, 500 + _y, 230, 30);
+	UTIL::DrawColorRect(hdc, m_playerMaxExp, RGB(120, 120, 120));
 }
 void BattleScene::plyaerUiCurrentExp(HDC hdc, int _y)
 {
+	//플레이어 현재경험치
+	m_playerCurrentExp = UTIL::IRectMake(m_playerStatus.left + 151, 500 + _y, m_playerPocketmonExpBarWigth, 30);
+	UTIL::DrawColorRect(hdc, m_playerCurrentExp, RGB(10, 70, 70));
+}
+int BattleScene::checkHpBarWigth()
+{
+	return 230 * selectPocketmon->m_currentHp / selectPocketmon->m_maxHp;;
+}
+int BattleScene::checkExpBarWigth()
+{
+	return 230 * selectPocketmon->m_currentExp / selectPocketmon->m_maxExp;
 }
 void BattleScene::playerStayMotion()
 {
@@ -931,10 +922,32 @@ void BattleScene::moveSkillSelectButton()
 	if (KEYMANAGER->isOnceKeyDown(P1_Z))
 	{
 		playerTurn = false;
-		//playerAtkSkillOn = true;
 		playerSkillMotionOn = true;
 	}
 
+	if (playerSkillMotionOn)
+	{
+		if (skill_1)
+		{
+			m_selectSkill = selectPocketmon->skillList[0].name;
+			m_playerSelectSkillNumber = 0;
+		}
+		else if (skill_2)
+		{
+			m_selectSkill = selectPocketmon->skillList[1].name;
+			m_playerSelectSkillNumber = 1;
+		}
+		else if (skill_3)
+		{
+			m_selectSkill = selectPocketmon->skillList[2].name;
+			m_playerSelectSkillNumber = 2;
+		}
+		else if (skill_4)
+		{
+			m_selectSkill = selectPocketmon->skillList[3].name;
+			m_playerSelectSkillNumber = 3;
+		}
+	}
 }
 
 //=================
@@ -943,14 +956,16 @@ void BattleScene::moveSkillSelectButton()
 
 std::string BattleScene::selectEnemyskill()
 {
-	int temp = 0;/*UTIL::GetRndIntFromTo(0, 3);*/
-	if (temp == 0)
-		return m_enemyFirstSkillName;
-	/*else if (temp == 1) return m_wildPocketmon.m_skill_2;
-	else if (temp == 2) return m_wildPocketmon.m_skill_3;
-	else if (temp == 3) return m_wildPocketmon.m_skill_4;*/
-
-	//enemyAtkSkillOn = true;
+	if (m_wildPocketmon.skillList.size() == 1)
+	{
+		m_enemySelectSkillNumber = 0;
+		return m_wildPocketmon.skillList[m_enemySelectSkillNumber].name;
+	}
+	else
+	{
+		m_enemySelectSkillNumber = UTIL::GetRndIntFromTo(0, m_wildPocketmon.skillList.size() - 1);
+		return m_wildPocketmon.skillList[m_enemySelectSkillNumber].name;
+	}
 }
 
 
@@ -983,7 +998,11 @@ void BattleScene::wildBattleRender(HDC hdc)
 		playerUiPoketmon(hdc);
 		playerUiImg(hdc);
 		playerUiStatus(hdc);
-		
+		playerUiMaxHp(hdc, 0);
+		playerUiCurrentHp(hdc, 0);
+		playerUiMaxExp(hdc, 0);
+		plyaerUiCurrentExp(hdc, 0);
+
 
 		//설명창
 		explainRect(hdc);
@@ -1027,8 +1046,9 @@ void BattleScene::wildBattleRender(HDC hdc)
 		}
 		if (enemyTurn)
 		{
+			m_enemySelectSkillName = selectEnemyskill();
 			explainRect(hdc);
-			enemySkillEffectAssemble(selectEnemyskill(), hdc);
+			enemySkillEffectAssemble(m_enemySelectSkillName, hdc);
 		}
 	}
 
@@ -1067,24 +1087,63 @@ void BattleScene::playerPockatmonAttack(HDC hdc)
 		m_skillCount = 0;
 		playerSkillExplainDone = true;
 	}
-	//{
-	//	//playerSkillEffect = true;
-	//}
 
 	if (playerSkillExplainDone)
 	{
-		playerSkillEffectAssemble(m_playerSecondSkillName, hdc);
+		playerSkillEffectAssemble(m_selectSkill, hdc);
 	}
 }
-int BattleScene::checkDamage()
+
+
+int BattleScene::basicDamage()
 {
-	if (!enemyTurn)
+	int temp = UTIL::GetRndIntFromTo(0, 9);
+	if (temp < 3)
 	{
-		return 30;/*m_playerPocketmon.m_atk	- m_wildPocketmon.m_def;*/
+		return selectPocketmon->skillList[m_playerSelectSkillNumber].power * selectPocketmon->m_atk * (selectPocketmon->m_level * 2 * 2 / 5 + 2) / m_wildPocketmon.m_def / 50 + 2;
 	}
-	else if (enemyTurn)
+	else
 	{
-		return 4;
+		return selectPocketmon->skillList[m_playerSelectSkillNumber].power * selectPocketmon->m_atk * (selectPocketmon->m_level * 1 * 2 / 5 + 2) / m_wildPocketmon.m_def / 50 + 2;
+	}
+}
+
+int BattleScene::spacialBasicDamage()
+{
+	int temp = UTIL::GetRndIntFromTo(0, 9);
+	if (temp < 3)
+	{
+		return selectPocketmon->skillList[m_playerSelectSkillNumber].power * selectPocketmon->m_specialAtk * (selectPocketmon->m_level * 2 * 2 / 5 + 2) / m_wildPocketmon.m_specialDef / 50 + 2;
+	}
+	else
+	{
+		return selectPocketmon->skillList[m_playerSelectSkillNumber].power * selectPocketmon->m_specialAtk * (selectPocketmon->m_level * 1 * 2 / 5 + 2) / m_wildPocketmon.m_specialDef / 50 + 2;
+	}
+}
+
+int BattleScene::enemyBasicDamage()
+{
+	int temp = UTIL::GetRndIntFromTo(0, 9);
+	if (temp < 3)
+	{
+		return m_wildPocketmon.skillList[m_enemySelectSkillNumber].power * m_wildPocketmon.m_atk * (m_wildPocketmon.m_level * 2 * 2 / 5 + 2) / selectPocketmon->m_def / 50 + 2;
+	}
+	else
+	{
+		return m_wildPocketmon.skillList[m_enemySelectSkillNumber].power * m_wildPocketmon.m_atk * (m_wildPocketmon.m_level * 1 * 2 / 5 + 2) / selectPocketmon->m_def / 50 + 2;
+	}
+}
+
+int BattleScene::enemySpacialBasicDamage()
+{
+	int temp = UTIL::GetRndIntFromTo(0, 9);
+	if (temp < 3)
+	{
+		return m_wildPocketmon.skillList[m_enemySelectSkillNumber].power * m_wildPocketmon.m_specialAtk * (m_wildPocketmon.m_level * 2 * 2 / 5 + 2) / selectPocketmon->m_specialDef / 50 + 2;
+	}
+	else
+	{
+		return m_wildPocketmon.skillList[m_enemySelectSkillNumber].power * m_wildPocketmon.m_specialAtk * (m_wildPocketmon.m_level * 1 * 2 / 5 + 2) / selectPocketmon->m_specialDef / 50 + 2;
 	}
 }
 
@@ -1099,7 +1158,100 @@ void BattleScene::npcBattleRender(HDC hdc)
 //==========================
 // 플레이어 공격 스킬 모음 //
 //==========================
-void BattleScene::pailiFireShower(std::string _skillName, HDC hdc)
+void BattleScene::tackleProto(std::string _skillName, HDC hdc)
+{
+	//1단계: 포켓몬 스킬 이팩트
+	if (!playerSkillEffect && !playerSkillEffectDone)
+	{
+		EFFECTMANAGER->play("불꽃세례", 707, 195);
+		playerSkillEffect = EFFECTMANAGER->getIsPlay();
+	}
+	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		playerSkillEffect = false;
+		playerSkillEffectDone = true;
+		playerHitEffect = true;
+	}
+
+	//2단계: 적 포켓몬 깜빡 깜빡
+	if (playerHitEffect)
+	{
+		m_enemyTwinkleCount++;
+		m_enemyAlpha = 0;
+		if (m_enemyTwinkleCount > 60)
+		{
+			m_enemyAlpha = 255;
+			m_enemyTwinkleCount = 0;
+			playerHitEffect = false;
+			enemyHpChange = true;
+			m_enemyMinusHp = checkDamage();
+		}
+	}
+
+	if (enemyHpChange)
+	{
+		m_enemyCurrentMinusHp++;
+		m_wildPocketmon.m_currentHp--;
+		if (m_wildPocketmon.m_currentHp <= 0)
+		{
+			m_wildPocketmon.m_currentHp = 0;
+			m_enemyMinusHp = 0;
+			enemyLose = true;
+		}
+		m_wildPocketmonHpBarWigth = (230 * m_wildPocketmon.m_currentHp) / m_wildPocketmon.m_maxHp;
+		if (m_enemyCurrentMinusHp == m_enemyMinusHp)
+		{
+			m_enemyCurrentMinusHp = 0;
+			m_enemyMinusHp = 0;
+			enemyHpChange = false;
+			explainEffect = true;
+		}
+	}
+	if (attributeOn)
+	{
+		explainEffect = false;
+		if (plusAttribute)
+		{
+			m_skillCount++;
+			char str[100];
+			wsprintf(str, "효과는 굉장했다!!");
+			TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 10, str, strlen(str));
+			if (m_skillCount > 40)
+			{
+				m_skillCount = 0;
+				playerSkillEffect = false;
+				playerSkillEffectDone = false;
+				explainEffect = false;
+				playerSkillMotionOn = false;
+				playerSkillExplainDone = false;
+				attributeOn = false;
+				enemyTurn = true;
+			}
+		}
+		else 
+		{
+			m_skillCount++;
+			char str[100];
+			wsprintf(str, "효과는 별로였다..");
+			TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 10, str, strlen(str));
+			if (m_skillCount > 40)
+			{
+				m_skillCount = 0;
+				playerSkillEffect = false;
+				playerSkillEffectDone = false;
+				explainEffect = false;
+				playerSkillMotionOn = false;
+				playerSkillExplainDone = false;
+				attributeOn = false;
+				enemyTurn = true;
+			}
+		}
+	}
+	
+	//적 움직이고
+	if (enemyLose) wildBattleOutroAni(hdc);
+}
+void BattleScene::emberProto(std::string _skillName, HDC hdc)
 {
 	//1단계: 포켓몬 스킬 이팩트
 	if (!playerSkillEffect && !playerSkillEffectDone)
@@ -1154,10 +1306,179 @@ void BattleScene::pailiFireShower(std::string _skillName, HDC hdc)
 		}
 	}
 
+	if (attributeOn)
+	{
+		explainEffect = false;
+		if (plusAttribute)
+		{
+			m_skillCount++;
+			char str[100];
+			wsprintf(str, "효과는 굉장했다!!");
+			TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 10, str, strlen(str));
+			if (m_skillCount > 40)
+			{
+				m_skillCount = 0;
+				playerSkillEffect = false;
+				playerSkillEffectDone = false;
+				explainEffect = false;
+				playerSkillMotionOn = false;
+				playerSkillExplainDone = false;
+				attributeOn = false;
+				enemyTurn = true;
+			}
+		}
+		else
+		{
+			m_skillCount++;
+			char str[100];
+			wsprintf(str, "효과는 별로였다..");
+			TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 10, str, strlen(str));
+			if (m_skillCount > 40)
+			{
+				m_skillCount = 0;
+				playerSkillEffect = false;
+				playerSkillEffectDone = false;
+				explainEffect = false;
+				playerSkillMotionOn = false;
+				playerSkillExplainDone = false;
+				attributeOn = false;
+				enemyTurn = true;
+			}
+		}
+	}
+
+	//적 움직이고
+	if (enemyLose) wildBattleOutroAni(hdc);
+}
+void BattleScene::flameThrowerProto(std::string _skillName, HDC hdc)
+{
+	//1단계: 포켓몬 스킬 이팩트
+	if (!playerSkillEffect && !playerSkillEffectDone)
+	{
+		EFFECTMANAGER->play("불꽃세례", 707, 195);
+		playerSkillEffect = EFFECTMANAGER->getIsPlay();
+	}
+	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		playerSkillEffect = false;
+		playerSkillEffectDone = true;
+		playerHitEffect = true;
+	}
+
+	//2단계: 적 포켓몬 깜빡 깜빡
+	if (playerHitEffect)
+	{
+		m_enemyTwinkleCount++;
+		m_enemyAlpha = 0;
+		if (m_enemyTwinkleCount > 60)
+		{
+			m_enemyAlpha = 255;
+			m_enemyTwinkleCount = 0;
+			playerHitEffect = false;
+			enemyHpChange = true;
+			m_enemyMinusHp = checkDamage();
+		}
+	}
+
+	if (enemyHpChange)
+	{
+		//m_skillCount++;
+		m_enemyCurrentMinusHp++;
+		m_wildPocketmon.m_currentHp--;
+		if (m_wildPocketmon.m_currentHp <= 0)
+		{
+			m_wildPocketmon.m_currentHp = 0;
+			m_enemyMinusHp = 0;
+			enemyLose = true;
+		}
+		m_wildPocketmonHpBarWigth = (230 * m_wildPocketmon.m_currentHp) / m_wildPocketmon.m_maxHp;
+		if (m_enemyCurrentMinusHp == m_enemyMinusHp)
+		{
+			m_enemyCurrentMinusHp = 0;
+			m_enemyMinusHp = 0;
+			enemyHpChange = false;
+			explainEffect = true;
+		}
+	}
+
 	if (explainEffect)
 	{
 		m_skillCount++;
 		char str[100];
+		//상성 체크해서 문자 리턴하도록 만들예정
+		wsprintf(str, "효과는 굉장했다!!");
+		TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 10, str, strlen(str));
+		if (m_skillCount > 40)
+		{
+			m_skillCount = 0;
+			playerSkillEffect = false;
+			playerSkillEffectDone = false;
+			explainEffect = false;
+			playerSkillMotionOn = false;
+			playerSkillExplainDone = false;
+			enemyTurn = true;
+		}
+	}
+
+	//적 움직이고
+	if (enemyLose) wildBattleOutroAni(hdc);
+}
+void BattleScene::fireBlastProto(std::string _skillName, HDC hdc)
+{
+	//1단계: 포켓몬 스킬 이팩트
+	if (!playerSkillEffect && !playerSkillEffectDone)
+	{
+		EFFECTMANAGER->play("불꽃세례", 707, 195);
+		playerSkillEffect = EFFECTMANAGER->getIsPlay();
+	}
+	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		playerSkillEffect = false;
+		playerSkillEffectDone = true;
+		playerHitEffect = true;
+	}
+
+	//2단계: 적 포켓몬 깜빡 깜빡
+	if (playerHitEffect)
+	{
+		m_enemyTwinkleCount++;
+		m_enemyAlpha = 0;
+		if (m_enemyTwinkleCount > 60)
+		{
+			m_enemyAlpha = 255;
+			m_enemyTwinkleCount = 0;
+			playerHitEffect = false;
+			enemyHpChange = true;
+			m_enemyMinusHp = checkDamage();
+		}
+	}
+
+	if (enemyHpChange)
+	{
+		//m_skillCount++;
+		m_enemyCurrentMinusHp++;
+		m_wildPocketmon.m_currentHp--;
+		if (m_wildPocketmon.m_currentHp <= 0)
+		{
+			m_wildPocketmon.m_currentHp = 0;
+			m_enemyMinusHp = 0;
+			enemyLose = true;
+		}
+		m_wildPocketmonHpBarWigth = (230 * m_wildPocketmon.m_currentHp) / m_wildPocketmon.m_maxHp;
+		if (m_enemyCurrentMinusHp == m_enemyMinusHp)
+		{
+			m_enemyCurrentMinusHp = 0;
+			m_enemyMinusHp = 0;
+			enemyHpChange = false;
+			explainEffect = true;
+		}
+	}
+
+	if (explainEffect)
+	{
+		m_skillCount++;
+		char str[100];
+		//상성 체크해서 문자 리턴하도록 만들예정
 		wsprintf(str, "효과는 굉장했다!!");
 		TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 10, str, strlen(str));
 		if (m_skillCount > 40)
@@ -1179,7 +1500,7 @@ void BattleScene::pailiFireShower(std::string _skillName, HDC hdc)
 //====================
 // 적 공격 스킬 모음 //
 //====================
-void BattleScene::picachu100v(std::string _skillName, HDC hdc)
+void BattleScene::quickAttackProto(std::string _skillName, HDC hdc)
 {
 	if (!enemySkillEffect && !enemySkillEffectDone)
 	{
@@ -1193,6 +1514,199 @@ void BattleScene::picachu100v(std::string _skillName, HDC hdc)
 		enemySkillEffectDone = true;
 	}
 
+	if (enemyHitEffect)
+	{
+		m_playerTwinkleCount++;
+		m_playerAlpha = 0;
+		if (m_playerTwinkleCount > 20)
+		{
+			m_playerAlpha = 255;
+			m_playerTwinkleCount = 0;
+			enemyHitEffect = false;
+			playerHpChange = true;
+			m_playerMinusHp = checkDamage();
+		}
+	}
+
+	if (playerHpChange)
+	{
+		m_playerCurrentMinusHp++;
+		selectPocketmon->m_currentHp--;
+		if (selectPocketmon->m_currentHp <= 0)
+		{
+			selectPocketmon->m_currentHp = 0;
+			m_playerMinusHp = 0;
+			playerLose = true;
+		}
+		if (m_playerCurrentMinusHp == m_playerMinusHp)
+		{
+			m_playerCurrentMinusHp = 0;
+			m_playerMinusHp = 0;
+			playerHpChange = false;
+			enemyExplainEffect = true;
+		}
+		m_playerPocketmonHpBarWigth = checkHpBarWigth();
+	}
+	
+	if (enemyExplainEffect)
+	{
+		m_skillCount++;
+		char str[100];
+		wsprintf(str, "효과는 굉장했다!!");
+		TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 10, str, strlen(str));
+		if (m_skillCount > 100)
+		{
+			m_skillCount = 0;
+			enemySkillEffectDone = false;
+			enemyExplainEffect = false;
+			enemyTurn = false;
+			playerAtkOn = false;
+			playerTurn = true;
+		}
+	}
+}
+void BattleScene::thunderWaveProto(std::string _skillName, HDC hdc)
+{
+	if (!enemySkillEffect && !enemySkillEffectDone)
+	{
+		EFFECTMANAGER->play("전광석화", 573, 317);
+		enemySkillEffect = true;
+	}
+	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		enemyHitEffect = true;
+		enemySkillEffect = false;
+		enemySkillEffectDone = true;
+	}
+	//플레이어 깜빡깜빡
+	if (enemyHitEffect)
+	{
+		m_playerTwinkleCount++;
+		m_playerAlpha = 0;
+		if (m_playerTwinkleCount > 20)
+		{
+			m_playerAlpha = 255;
+			m_playerTwinkleCount = 0;
+			enemyHitEffect = false;
+			playerHpChange = true;
+			m_playerMinusHp = checkDamage();
+		}
+	}
+
+	if (playerHpChange)
+	{
+		m_playerCurrentMinusHp++;
+		selectPocketmon->m_currentHp--;
+		if (selectPocketmon->m_currentHp <= 0)
+		{
+			selectPocketmon->m_currentHp = 0;
+			m_playerMinusHp = 0;
+			playerLose = true;
+		}
+		m_playerPocketmonHpBarWigth = (230 * selectPocketmon->m_currentHp) / selectPocketmon->m_maxHp;
+		if (m_playerCurrentMinusHp == m_playerMinusHp)
+		{
+			m_playerCurrentMinusHp = 0;
+			m_playerMinusHp = 0;
+			playerHpChange = false;
+			enemyExplainEffect = true;
+		}
+	}
+	if (enemyExplainEffect)
+	{
+		m_skillCount++;
+		char str[100];
+		wsprintf(str, "효과는 굉장했다!!");
+		TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 10, str, strlen(str));
+		if (m_skillCount > 40)
+		{
+			m_skillCount = 0;
+			enemySkillEffectDone = false;
+			enemyExplainEffect = false;
+			enemyTurn = false;
+			playerAtkOn = false;
+			playerTurn = true;
+		}
+	}
+}
+void BattleScene::thunderboltProto(std::string _skillName, HDC hdc)
+{
+	if (!enemySkillEffect && !enemySkillEffectDone)
+	{
+		EFFECTMANAGER->play("전광석화", 573, 317);
+		enemySkillEffect = true;
+	}
+	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		enemyHitEffect = true;
+		enemySkillEffect = false;
+		enemySkillEffectDone = true;
+	}
+	//플레이어 깜빡깜빡
+	if (enemyHitEffect)
+	{
+		m_playerTwinkleCount++;
+		m_playerAlpha = 0;
+		if (m_playerTwinkleCount > 20)
+		{
+			m_playerAlpha = 255;
+			m_playerTwinkleCount = 0;
+			enemyHitEffect = false;
+			playerHpChange = true;
+			m_playerMinusHp = checkDamage();
+		}
+	}
+
+	if (playerHpChange)
+	{
+		m_playerCurrentMinusHp++;
+		selectPocketmon->m_currentHp--;
+		if (selectPocketmon->m_currentHp <= 0)
+		{
+			selectPocketmon->m_currentHp = 0;
+			m_playerMinusHp = 0;
+			playerLose = true;
+		}
+		m_playerPocketmonHpBarWigth = (230 * selectPocketmon->m_currentHp) / selectPocketmon->m_maxHp;
+		if (m_playerCurrentMinusHp == m_playerMinusHp)
+		{
+			m_playerCurrentMinusHp = 0;
+			m_playerMinusHp = 0;
+			playerHpChange = false;
+			enemyExplainEffect = true;
+		}
+	}
+	if (enemyExplainEffect)
+	{
+		m_skillCount++;
+		char str[100];
+		wsprintf(str, "효과는 굉장했다!!");
+		TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 10, str, strlen(str));
+		if (m_skillCount > 40)
+		{
+			m_skillCount = 0;
+			enemySkillEffectDone = false;
+			enemyExplainEffect = false;
+			enemyTurn = false;
+			playerAtkOn = false;
+			playerTurn = true;
+		}
+	}
+}
+void BattleScene::thunderProto(std::string _skillName, HDC hdc)
+{
+	if (!enemySkillEffect && !enemySkillEffectDone)
+	{
+		EFFECTMANAGER->play("전광석화", 573, 317);
+		enemySkillEffect = true;
+	}
+	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		enemyHitEffect = true;
+		enemySkillEffect = false;
+		enemySkillEffectDone = true;
+	}
+	//플레이어 깜빡깜빡
 	if (enemyHitEffect)
 	{
 		m_playerTwinkleCount++;
@@ -1244,8 +1758,10 @@ void BattleScene::picachu100v(std::string _skillName, HDC hdc)
 	}
 }
 
-
-
+//==============
+// 상황별 Ani //
+//==============
+//플레이어 승리시
 void BattleScene::wildBattleOutroAni(HDC hdc)
 {
 	char str[100];
@@ -1270,12 +1786,16 @@ void BattleScene::wildBattleOutroAni(HDC hdc)
 			wsprintf(str, "%d 경험치를 얻었다!", m_wildPocketmon.m_wildExp);
 			TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 40, str, strlen(str));
 
-			if (!getExp)
+			m_playerCurrentPlusExp++;
+			selectPocketmon->m_currentExp++;
+			m_playerPocketmonExpBarWigth = checkExpBarWigth();
+			if (m_playerCurrentPlusExp == m_wildPocketmon.m_wildExp)
 			{
-				getExp = true;
-				selectPocketmon->m_currentExp += m_wildPocketmon.m_wildExp;
+				m_playerCurrentPlusExp = 0;
+				battleEnd = true;
 			}
-			if (m_skillCount > 150)
+			
+			if (battleEnd)
 			{
 				SCENEMANAGER->scenePop();
 			}
@@ -1287,14 +1807,4529 @@ void BattleScene::wildBattleOutroAni(HDC hdc)
 //포켓몬 스킬 이펙트들 모음
 bool BattleScene::playerSkillEffectAssemble(std::string _skillName, HDC hdc)
 {
-	//EFFECTMANAGER->play(_skillName, 300, 300);
-	if (_skillName == "불꽃세례") pailiFireShower(_skillName, hdc);
-
+	_skillName = "불꽃세례";
+	//파이리 스킬
+	if (_skillName == "몸통박치기") tackleProto(_skillName, hdc);
+	else if (_skillName == "불꽃세례") emberProto(_skillName, hdc);
+	else if (_skillName == "화염방사") flameThrowerProto(_skillName, hdc);
+	else if (_skillName == "불대문자") fireBlastProto(_skillName, hdc);
 
 	return true;
 }
 
 void BattleScene::enemySkillEffectAssemble(std::string _skillName, HDC hdc)
 {
-	if (_skillName == "전광석화") picachu100v(_skillName, hdc);
+	if (_skillName == "전광석화") quickAttackProto(_skillName, hdc);
+	else if (_skillName == "전기자석파") thunderWaveProto(_skillName, hdc);
+	else if (_skillName == "십만볼트") thunderboltProto(_skillName, hdc);
+	else if (_skillName == "번개") thunderProto(_skillName, hdc);
+}
+
+
+int BattleScene::checkDamage()
+{
+	if (!enemyTurn)
+	{
+		//포켓몬 타입별 상성
+		switch (selectPocketmon->m_Attribute)
+		{
+		case PockemonAttibute::PockemonAttibuteFire:
+			switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skillclassify)
+			{
+				//// 노공 ////
+			case SkillClassify::SkillTypeNormal:
+				switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					//불 vs 불    0.5
+					//불 vs 바위  0.5
+					//불 vs 물    0.5
+					//불 vs 풀    2
+					//불 vs 비행  
+					//불 vs 전기  
+					//불 vs 노멀  
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					//바위 vs 불   2
+					//바위 vs 바위 0.5
+					//바위 vs 물
+					//바위 vs 풀 
+					//바위 vs 비행 2  
+					//바위 vs 전기 
+					//바위 vs 노멀
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					//물 vs 불    2
+					//물 vs 바위  2
+					//물 vs 물    0.5
+					//물 vs 풀    0.5
+					//물 vs 비행
+					//물 vs 전기
+					//물 vs 노멀
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					//풀 vs 불   0.5
+					//풀 vs 바위 2
+					//풀 vs 물   2
+					//풀 vs 풀   0.5
+					//풀 vs 비행 0.5
+					//풀 vs 전기
+					//풀 vs 노멀
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					//비행 vs 불   
+					//비행 vs 바위 0.5
+					//비행 vs 물   
+					//비행 vs 풀   2
+					//비행 vs 비행 
+					//비행 vs 전기 0.5
+					//비행 vs 노멀
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					//전기 vs 불   
+					//전기 vs 바위
+					//전기 vs 물    2
+					//전기 vs 풀    0.5
+					//전기 vs 비행  2
+					//전기 vs 전기  0.5
+					//전기 vs 노멀
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					//노멀 vs 불 
+					//노멀 vs 바위  0.5
+					//노멀 vs 물
+					//노멀 vs 풀
+					//노멀 vs 비행
+					//노멀 vs 전기
+					//노멀 vs 노멀
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+				//// 특공 ////
+			case SkillClassify::SkillTypeSpecial:
+				switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+			}
+		case PockemonAttibute::PockemonAttibuteStone:
+			switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skillclassify)
+			{
+				//// 노공 ////
+			case SkillClassify::SkillTypeNormal:
+				switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+				//// 특공 ////
+			case SkillClassify::SkillTypeSpecial:
+				switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+			}
+		case PockemonAttibute::PockemonAttibuteWater:
+			switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skillclassify)
+			{
+				//// 노공 ////
+			case SkillClassify::SkillTypeNormal:
+				switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+				//// 특공 ////
+			case SkillClassify::SkillTypeSpecial:
+				switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+			}
+		case PockemonAttibute::PockemonAttibuteGrass:
+			switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skillclassify)
+			{
+				//// 노공 ////
+			case SkillClassify::SkillTypeNormal:
+				switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+				//// 특공 ////
+			case SkillClassify::SkillTypeSpecial:
+				switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+			}
+		case PockemonAttibute::PockemonAttibuteFly:
+			switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skillclassify)
+			{
+				//// 노공 ////
+			case SkillClassify::SkillTypeNormal:
+				switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+				//// 특공 ////
+			case SkillClassify::SkillTypeSpecial:
+				switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+			}
+		case PockemonAttibute::PockemonAttibuteElectric:
+			switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skillclassify)
+			{
+				//// 노공 ////
+			case SkillClassify::SkillTypeNormal:
+				switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+				//// 특공 ////
+			case SkillClassify::SkillTypeSpecial:
+				switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+			}
+		case PockemonAttibute::PockemonAttibuteNormal:
+			switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skillclassify)
+			{
+
+				//// 노공 ////
+			case SkillClassify::SkillTypeNormal:
+				switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return basicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return basicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return basicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+				//// 특공 ////
+			case SkillClassify::SkillTypeSpecial:
+				switch (selectPocketmon->skillList[m_playerSelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						attributeOn = true;
+						plusAttribute = true;
+						return spacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						attributeOn = true;
+						plusAttribute = false;
+						return spacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return spacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+			}
+		}
+	}
+	else if (enemyTurn)
+	{
+		switch (m_wildPocketmon.m_Attribute)
+		{
+		case PockemonAttibute::PockemonAttibuteFire:
+			switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skillclassify)
+			{
+				//// 노공 ////
+			case SkillClassify::SkillTypeNormal:
+				switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					//불 vs 불    0.5
+					//불 vs 바위  0.5
+					//불 vs 물    0.5
+					//불 vs 풀    2
+					//불 vs 비행  
+					//불 vs 전기  
+					//불 vs 노멀  
+					switch (selectPocketmon->m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					//바위 vs 불   2
+					//바위 vs 바위 0.5
+					//바위 vs 물
+					//바위 vs 풀 
+					//바위 vs 비행 2  
+					//바위 vs 전기 
+					//바위 vs 노멀
+					switch (selectPocketmon->m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					//물 vs 불    2
+					//물 vs 바위  2
+					//물 vs 물    0.5
+					//물 vs 풀    0.5
+					//물 vs 비행
+					//물 vs 전기
+					//물 vs 노멀
+					switch (selectPocketmon->m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					//풀 vs 불   0.5
+					//풀 vs 바위 2
+					//풀 vs 물   2
+					//풀 vs 풀   0.5
+					//풀 vs 비행 0.5
+					//풀 vs 전기
+					//풀 vs 노멀
+					switch (selectPocketmon->m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					//비행 vs 불   
+					//비행 vs 바위 0.5
+					//비행 vs 물   
+					//비행 vs 풀   2
+					//비행 vs 비행 
+					//비행 vs 전기 0.5
+					//비행 vs 노멀
+					switch (selectPocketmon->m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					//전기 vs 불   
+					//전기 vs 바위
+					//전기 vs 물    2
+					//전기 vs 풀    0.5
+					//전기 vs 비행  2
+					//전기 vs 전기  0.5
+					//전기 vs 노멀
+					switch (selectPocketmon->m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					//노멀 vs 불 
+					//노멀 vs 바위  0.5
+					//노멀 vs 물
+					//노멀 vs 풀
+					//노멀 vs 비행
+					//노멀 vs 전기
+					//노멀 vs 노멀
+					switch (selectPocketmon->m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+				//// 특공 ////
+			case SkillClassify::SkillTypeSpecial:
+				switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (selectPocketmon->m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (selectPocketmon->m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (selectPocketmon->m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (selectPocketmon->m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (selectPocketmon->m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (selectPocketmon->m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (selectPocketmon->m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+			}
+		case PockemonAttibute::PockemonAttibuteStone:
+			switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skillclassify)
+			{
+				//// 노공 ////
+			case SkillClassify::SkillTypeNormal:
+				switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+				//// 특공 ////
+			case SkillClassify::SkillTypeSpecial:
+				switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+			}
+		case PockemonAttibute::PockemonAttibuteWater:
+			switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skillclassify)
+			{
+				//// 노공 ////
+			case SkillClassify::SkillTypeNormal:
+				switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+				//// 특공 ////
+			case SkillClassify::SkillTypeSpecial:
+				switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+			}
+		case PockemonAttibute::PockemonAttibuteGrass:
+			switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skillclassify)
+			{
+				//// 노공 ////
+			case SkillClassify::SkillTypeNormal:
+				switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+				//// 특공 ////
+			case SkillClassify::SkillTypeSpecial:
+				switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+			}
+		case PockemonAttibute::PockemonAttibuteFly:
+			switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skillclassify)
+			{
+				//// 노공 ////
+			case SkillClassify::SkillTypeNormal:
+				switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+				//// 특공 ////
+			case SkillClassify::SkillTypeSpecial:
+				switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+			}
+		case PockemonAttibute::PockemonAttibuteElectric:
+			switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skillclassify)
+			{
+				//// 노공 ////
+			case SkillClassify::SkillTypeNormal:
+				switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+				//// 특공 ////
+			case SkillClassify::SkillTypeSpecial:
+				switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1.5 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+			}
+		case PockemonAttibute::PockemonAttibuteNormal:
+			switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skillclassify)
+			{
+				//// 노공 ////
+			case SkillClassify::SkillTypeNormal:
+				switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemyBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemyBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+				//// 특공 ////
+			case SkillClassify::SkillTypeSpecial:
+				switch (m_wildPocketmon.skillList[m_enemySelectSkillNumber].skilltype)
+				{
+				case SkillType::SkillAttibuteFire:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteStone:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteWater:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteGrass:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteFly:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteElectric:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1 * 2 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				case SkillType::SkillAttibuteNormal:
+					switch (m_wildPocketmon.m_Attribute)
+					{
+					case PockemonAttibute::PockemonAttibuteFire:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteStone:
+						return enemySpacialBasicDamage() * 1.5 * 0.5 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteWater:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteGrass:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteFly:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteElectric:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					case PockemonAttibute::PockemonAttibuteNormal:
+						return enemySpacialBasicDamage() * 1.5 * 1 * UTIL::GetRndIntFromTo(217, 255) / 255;
+					}
+				}
+			}
+		}
+	}
 }

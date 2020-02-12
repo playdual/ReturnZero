@@ -28,8 +28,6 @@ public:
 	bool init() override;
 	bool init(std::shared_ptr<player> _player, std::shared_ptr<player> _npc) override;
 	bool init(std::shared_ptr<player> _player, PocketMon& _pocketmon) override;
-	void playerPocketmonSkillNameInit();
-	void enemyPocketmonSkillNameInit();
 	void update(float _deltaTime) override;
 	void release() override;
 
@@ -74,6 +72,9 @@ public:
 	void playerUiCurrentHp(HDC hdc, int _y);
 	void playerUiMaxExp(HDC hdc, int _y);
 	void plyaerUiCurrentExp(HDC hdc, int _y);
+	int checkHpBarWigth();
+	int checkExpBarWigth();
+
 
 	//시스템
 	void explainRect(HDC hdc);
@@ -95,6 +96,10 @@ public:
 	void playerPockatmonAttack(HDC hdc);
 	
 	int checkDamage();
+	int basicDamage();
+	int spacialBasicDamage();
+	int enemyBasicDamage();
+	int enemySpacialBasicDamage();
 	
 	//렌더링
 	void wildBattleRender(HDC hdc);
@@ -102,11 +107,17 @@ public:
 
 
 	//스킬 이팩트 모듬
-	//플레이어
-	void pailiFireShower(std::string _skillName, HDC hdc);
+	//플레이어	
+	void tackleProto(std::string _skillName, HDC hdc);
+	void emberProto(std::string _skillName, HDC hdc);
+	void flameThrowerProto(std::string _skillName, HDC hdc);
+	void fireBlastProto(std::string _skillName, HDC hdc);
 
 	//적
-	void picachu100v(std::string _skillName, HDC hdc);
+	void quickAttackProto(std::string _skillName, HDC hdc);
+	void thunderWaveProto(std::string _skillName, HDC hdc);
+	void thunderboltProto(std::string _skillName, HDC hdc);
+	void thunderProto(std::string _skillName, HDC hdc);
 	
 	
 private:
@@ -193,6 +204,7 @@ private:
 	int m_playerHpX;
 	int m_playerExp;
 	int m_playerPocketmonHpBarWigth;
+	int m_playerPocketmonExpBarWigth;
 
 
 	//선택창 커서 움직임 변수
@@ -204,11 +216,12 @@ private:
 	//선택행동 활성화 적용 변수
 	bool playerAtkOn;
 
-	//스킬선택 커서 움직임 변수
+	//스킬선택 변수
 	bool skill_1;
 	bool skill_2;
 	bool skill_3;
 	bool skill_4;
+	std::string m_selectSkill;
 
 	//===================
 	// 전투 시스템 관련 //
@@ -233,15 +246,20 @@ private:
 	bool enemyHpChange;
 	bool explainEffect;
 	bool enemyAtkSkillOn;
+	bool battleEnd;
+	bool attributeOn;
+	bool plusAttribute;
+
 	int m_skillCount;
 	int m_enemyTwinkleCount;
 	int m_enemyMinusHp;
 	int m_enemyCurrentMinusHp;
 	int m_enemyAlpha;
-	std::string m_playerFirstSkillName;
-	std::string m_playerSecondSkillName;
-	std::string m_playerThirdSkillName;
-	std::string m_playerFourthSkillName;
+	int m_playerCurrentPlusExp;
+	int m_playerSelectSkillNumber;
+	
+
+
 	//적
 	std::string enemySkillName;
 	bool enemySkillEffect;
@@ -249,21 +267,23 @@ private:
 	bool enemyHitEffect;
 	bool playerHpChange;
 	bool enemyExplainEffect;
+	bool enemySkillNameExplain;
+	bool enemySkillResultExplain;
 	int m_playerAlpha;
 	int m_playerTwinkleCount;
 	int m_playerMinusHp;
 	int m_playerCurrentMinusHp;
-	std::string m_enemyFirstSkillName;
-	std::string m_enemySecondSkillName;
-	std::string m_enemyThirdSkillName;
-	std::string m_enemyFourthSkillName;
+	int m_enemySelectSkillNumber;
+
+	std::string m_enemySelectSkillName;
+
 
 
 	//전투 승패 관련
 	bool pocketmonLose;
 	bool playerLose;
 	bool enemyLose;
-	bool getExp;
+	
 
 
 
