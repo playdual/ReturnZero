@@ -35,6 +35,7 @@ public:
 	std::string getItemName() { return m_ItemName; }
 	std::string getDescript() { return m_description; }
 	int			getItemNum()  { return m_itemNum;  }
+	void		setItemNum(int _itemNum) { m_itemNum = _itemNum; }
 
 private:
 	

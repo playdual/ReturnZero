@@ -19,6 +19,10 @@ bool Inventory::init()
 	m_isSameNameClose = false;
 	m_itemCount = 0;
 
+	//사고팔고 임시 작업
+	isItemDelete = false;
+
+
 	// 인벤 태그 체크
 	m_isItemTag = true;
 	m_isImportTag = false;
@@ -198,6 +202,15 @@ void Inventory::debugRender(HDC hdc)
 	std::string descrip;
 	std::string multiPly;
 
+	if (isItemDelete)
+	{
+		count = 0;
+		itemNum = 0;
+		m_itemInit = false;
+		itemTagInit();
+		isItemDelete = false;
+	}
+
 	// show text 선언 //
 	for (auto&HealPotion : m_potionItem)
 	{
@@ -244,8 +257,16 @@ void Inventory::debugRender(HDC hdc)
 
 void Inventory::importRender(HDC hdc)
 {
-	ImportTagInit();
-
+	if (isItemDelete)
+	{
+		m_importPlaceCount = 0;
+		m_importNum = 0;
+		ImportTagInit();
+		m_isImportInit = false;
+		isItemDelete = false;
+	}
+		ImportTagInit();
+	
 	// show text 선언 //
 	std::string str;
 	int count;
@@ -309,8 +330,17 @@ void Inventory::importRender(HDC hdc)
 
 void Inventory::pokeBallRender(HDC hdc)
 {
-	pocketBallTagInit();
+	if (isItemDelete)
+	{
+		m_pokePlaceCount = 0;
+		m_pokeBallNum = 0;
+		pocketBallTagInit();
+		m_isPokeBallInit = false;
+		isItemDelete = false;
+	}
 
+	pocketBallTagInit();
+	 
 	// show text 선언 //
 	std::string str;
 	int count;
@@ -374,7 +404,15 @@ void Inventory::pokeBallRender(HDC hdc)
 void Inventory::itemTagInit()
 {
 	for (auto&item : m_potionItem)
-	{
+	{    // Item을 erase하게 될경우 다시 RECT값을 초기화 해준후 자리를 재배치 해준다.
+		if (isItemDelete)
+		{
+			item->m_iRect.left		= 412;
+			item->m_iRect.top		= 50;
+			item->m_iRect.right		= 812;
+			item->m_iRect.bottom	= 130;
+		}
+		
 		if (!m_itemInit)
 		{
 			item->m_iRect.top = item->getRect().top + (count * 80);
@@ -394,6 +432,13 @@ void Inventory::ImportTagInit()
 {
 	for (auto&item : m_importItem)
 	{
+		if (isItemDelete)
+		{
+			item->m_iRect.left = 412;
+			item->m_iRect.top = 50;
+			item->m_iRect.right = 812;
+			item->m_iRect.bottom = 130;
+		}
 		if (!m_isImportInit)
 		{
 			item->m_iRect.top = item->getRect().top + (m_importPlaceCount * 80);
@@ -413,6 +458,13 @@ void Inventory::pocketBallTagInit()
 {
 	for (auto&item : m_pockeBallItem)
 	{
+		if (isItemDelete)
+		{
+			item->m_iRect.left = 412;
+			item->m_iRect.top = 50;
+			item->m_iRect.right = 812;
+			item->m_iRect.bottom = 130;
+		}
 		if (!m_isPokeBallInit)
 		{
 			item->m_iRect.top = item->getRect().top + (m_pokePlaceCount * 80);

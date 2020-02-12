@@ -27,6 +27,8 @@ HRESULT KeyManager::init()
 	playerKey[P1_USEITEM] = VK_TAB;
 	playerKey[P1_Z] = 'Z';
 	playerKey[P1_X] = 'X';
+	playerKey[P1_q] = 'Q';
+
 	playerKey[GAME_MENUPROTO] = 'C';
 	playerKey[GAME_CHANGEMAP] = VK_TAB;
 	playerKey[GAME_MENU] = VK_RETURN;

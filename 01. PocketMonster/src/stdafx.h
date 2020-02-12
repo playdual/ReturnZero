@@ -49,6 +49,7 @@
 #define P1_USEITEM		5
 #define P1_Z            6
 #define P1_X            7
+#define P1_q			8
 
 #define GAME_MENUPROTO	45
 #define GAME_CHANGEMAP  46
