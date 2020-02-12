@@ -22,6 +22,22 @@ bool PocketmoninfoScene::init()
 	m_sub0On = IMAGEMANAGER->addImage("sun0On", "images/pocketmonBagSubOn.bmp", m_subRect0.left, m_subRect0.top, 651, 119, true, RGB(255, 0, 255));
 	m_sub0Off = IMAGEMANAGER->addImage("sun0Off", "images/pocketmonBagSubOff.bmp", m_subRect0.left, m_subRect0.top, 651, 119, true, RGB(255, 0, 255));
 
+	m_subRect1= UTIL::IRectMake(365, 153, 500, 100);
+	m_sub1On = IMAGEMANAGER->addImage("sun1On", "images/pocketmonBagSubOn.bmp", m_subRect1.left, m_subRect1.top, 651, 119, true, RGB(255, 0, 255));
+	m_sub1Off = IMAGEMANAGER->addImage("sun1Off", "images/pocketmonBagSubOff.bmp", m_subRect1.left, m_subRect1.top, 651, 119, true, RGB(255, 0, 255));
+
+	m_subRect2 = UTIL::IRectMake(365, 269, 500, 100);
+	m_sub2On = IMAGEMANAGER->addImage("sun2On", "images/pocketmonBagSubOn.bmp", m_subRect2.left, m_subRect2.top, 651, 119, true, RGB(255, 0, 255));
+	m_sub2Off = IMAGEMANAGER->addImage("sun2Off", "images/pocketmonBagSubOff.bmp", m_subRect2.left, m_subRect2.top, 651, 119, true, RGB(255, 0, 255));
+
+	m_subRect3 = UTIL::IRectMake(365, 385, 500, 100);
+	m_sub3On = IMAGEMANAGER->addImage("sun3On", "images/pocketmonBagSubOn.bmp", m_subRect3.left, m_subRect3.top, 651, 119, true, RGB(255, 0, 255));
+	m_sub3Off = IMAGEMANAGER->addImage("sun3Off", "images/pocketmonBagSubOff.bmp", m_subRect3.left, m_subRect3.top, 651, 119, true, RGB(255, 0, 255));
+
+	m_subRect4 = UTIL::IRectMake(365, 501, 500, 100);
+	m_sub4On = IMAGEMANAGER->addImage("sun4On", "images/pocketmonBagSubOn.bmp", m_subRect4.left, m_subRect4.top, 651, 119, true, RGB(255, 0, 255));
+	m_sub4Off = IMAGEMANAGER->addImage("sun4Off", "images/pocketmonBagSubOff.bmp", m_subRect4.left, m_subRect4.top, 651, 119, true, RGB(255, 0, 255));
+
 
 	m_indexCursor = 0;
 
@@ -38,7 +54,8 @@ void PocketmoninfoScene::update(float _deltaTime)
 	//마지막 인덱스는 취소키
 	m_indexCursorMax = Pocketmons.size();
 
-	if (KEYMANAGER->isOnceKeyDown(P1_X)) {
+	if (KEYMANAGER->isOnceKeyDown(P1_X)) 
+	{
 		SCENEMANAGER->scenePop();
 	}
 
@@ -91,13 +108,61 @@ void PocketmoninfoScene::render(HDC hdc)
 		m_mainOff->render(hdc, m_mainRect.left, m_mainRect.top+3);
 	}
 
-	if (m_indexCursor == 1)
+	if (Pocketmons.size() >= 2)
 	{
-		m_sub0On->render(hdc, m_subRect0.left, m_subRect0.top);
+		if (m_indexCursor == 1)
+		{
+			m_sub0On->render(hdc, m_subRect0.left, m_subRect0.top);
+		}
+		else
+		{
+			m_sub0Off->render(hdc, m_subRect0.left, m_subRect0.top);
+		}
+
 	}
-	else
+	if(Pocketmons.size() >= 3)
 	{
-		m_sub0Off->render(hdc, m_subRect0.left, m_subRect0.top);
+		if (m_indexCursor == 2)
+		{
+			m_sub1On->render(hdc, m_subRect1.left, m_subRect1.top);
+		}
+		else
+		{
+			m_sub1Off->render(hdc, m_subRect1.left, m_subRect1.top);
+		}
+	}
+	if (Pocketmons.size() >= 4)
+	{
+		if (m_indexCursor == 3)
+		{
+			m_sub2On->render(hdc, m_subRect2.left, m_subRect2.top);
+		}
+		else
+		{
+			m_sub2Off->render(hdc, m_subRect2.left, m_subRect2.top);
+		}
+	}
+	if (Pocketmons.size() >= 5)
+	{
+		if (m_indexCursor == 4)
+		{
+			m_sub3On->render(hdc, m_subRect3.left, m_subRect3.top);
+		}
+		else
+		{
+			m_sub3Off->render(hdc, m_subRect3.left, m_subRect3.top);
+		}
+	}
+	if (Pocketmons.size() >= 6)
+	{
+		if (m_indexCursor == 5)
+		{
+			m_sub4On->render(hdc, m_subRect4.left, m_subRect4.top);
+		}
+		else
+		{
+			m_sub4Off->render(hdc, m_subRect4.left, m_subRect4.top);
+		}
 	}
 }
 
@@ -109,6 +174,7 @@ void PocketmoninfoScene::debugRender(HDC hdc)
 {
 	UTIL::DrawColorRect(hdc, m_mainRect, false,false);
 	UTIL::DrawColorRect(hdc, m_subRect0, false,false);
+	UTIL::DrawColorRect(hdc, m_subRect1, false,false);
 
 	
 }
