@@ -301,6 +301,9 @@ bool BattleScene::init(std::shared_ptr<player> _player, PocketMon& _pocketmon)
 	m_enemyAlpha = 255;
 	m_playerAlpha = 255;
 
+	//플레이어 포켓몬 스킬명 저장 
+	playerPocketmonSkillNameInit();
+
 	//적
 	enemySkillEffect = false;
 	enemySkillEffectDone = false;
@@ -311,6 +314,8 @@ bool BattleScene::init(std::shared_ptr<player> _player, PocketMon& _pocketmon)
 	m_playerTwinkleCount = 0;
 	m_playerMinusHp = 0;
 	m_playerCurrentMinusHp = 0;
+	//적 포켓몬 스킬명 저장 
+	enemyPocketmonSkillNameInit();
 
 	//=================
 	// 전투 승패 관련 //
@@ -322,6 +327,54 @@ bool BattleScene::init(std::shared_ptr<player> _player, PocketMon& _pocketmon)
 	getExp = false;
 
 	return true;	
+}
+
+void BattleScene::playerPocketmonSkillNameInit()
+{
+	int temp = 0;
+	for (auto it = selectPocketmon->skillList.begin(); it != selectPocketmon->skillList.end(); ++it)
+	{
+		switch (temp)
+		{
+		case 0:
+			m_playerFirstSkillName = it->name;
+			break;
+		case 1:
+			m_playerSecondSkillName = it->name;
+			break;
+		case 2:
+			m_playerThirdSkillName = it->name;
+			break;
+		case 3:
+			m_playerFourthSkillName = it->name;
+			break;
+		}
+		temp++;
+	}
+}
+void BattleScene::enemyPocketmonSkillNameInit()
+{
+
+	int temp = 0;
+	for (auto it = m_wildPocketmon.skillList.begin(); it != m_wildPocketmon.skillList.end(); ++it)
+	{
+		switch (temp)
+		{
+		case 0:
+			m_enemyFirstSkillName = it->name;
+			break;
+		case 1:
+			m_enemySecondSkillName = it->name;
+			break;
+		case 2:
+			m_enemyThirdSkillName = it->name;
+			break;
+		case 3:
+			m_enemyFourthSkillName = it->name;
+			break;
+		}
+		temp++;
+	}
 }
 
 void BattleScene::release()
@@ -410,17 +463,8 @@ void BattleScene::wildBattleFunctions()
 		}
 		if (enemyTurn)
 		{
-			//m_skillCount++;
-			enemySkillName = selectEnemyskill();
+			//enemySkillName = selectEnemyskill();
 		}
-		/*	if (m_skillCount > 20)
-			{
-				m_skillCount = 0;
-				enemyTurn = false;
-				enemyAtkSkillOn = false;
-				playerTurn = true;
-			}
-		}*/
 	}
 }
 
@@ -497,7 +541,7 @@ void BattleScene::pocketmonEffectInit()
 
 	//적
 	//피카츄 공격
-	EFFECTMANAGER->addEffect("피카츄백만볼트", "images/attackEffect/picachu100v.bmp", 159*4, 550*4, 159*4, 110*4, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("전광석화", "images/attackEffect/picachu100v.bmp", 159*4, 550*4, 159*4, 110*4, 1, 0.1f, 100);
 }
 
 //========================
@@ -526,6 +570,8 @@ void BattleScene::explainRect(HDC hdc)
 			TextOut(hdc, m_explainRect.left + 20, m_explainRect.top + 10, str, strlen(str));
 		}
 	}
+	
+
 }
 void BattleScene::selectRect(HDC hdc)
 {
@@ -557,12 +603,11 @@ void BattleScene::enemyUiBottom(HDC hdc)
 void BattleScene::enemyUiPocketmon(HDC hdc)
 {
 	UTIL::DrawRect(hdc, m_enemyPocketmon);
-	m_wildPocketmon.m_pocketmonFrontImg->alphaRender(hdc, m_enemyPocketmon.left, m_enemyPocketmon.top, m_enemyAlpha);
+	//m_wildPocketmon.m_pocketmonFrontImg->alphaRender(hdc, m_enemyPocketmon.left, m_enemyPocketmon.top, m_enemyAlpha);
 }
 void BattleScene::enemyUiMaxHp(HDC hdc)
 {
 	m_enemyMaxHp = UTIL::IRectMake(m_enemyStatus.left+181, 155, 230, 30);
-	//UTIL::DrawRect(hdc, m_enemyMaxHp);
 	UTIL::DrawColorRect(hdc, m_enemyMaxHp, RGB(120, 120, 120));
 }
 void BattleScene::enemyUiCurrentHp(HDC hdc)
@@ -578,31 +623,118 @@ void BattleScene::playerUiBottom(HDC hdc)
 void BattleScene::playerUiPoketmon(HDC hdc)
 {
 	UTIL::DrawRect(hdc, m_playerPocketmonImg);
-	selectPocketmon->m_pocketmonBackImg->alphaRender(hdc, m_playerPocketmonImg.left, m_playerPocketmonImg.top, m_playerAlpha);
+	//selectPocketmon->m_pocketmonBackImg->alphaRender(hdc, m_playerPocketmonImg.left, m_playerPocketmonImg.top, m_playerAlpha);
 }
 void BattleScene::playerUiImg(HDC hdc)
 {
 	UTIL::DrawRect(hdc, m_playerImg);
-	IMAGEMANAGER->findImage("trainersMan")->alphaRender(hdc, m_playerImg.left, m_playerImg.top, m_playerAlpha);
+	//IMAGEMANAGER->findImage("trainersMan")->alphaRender(hdc, m_playerImg.left, m_playerImg.top, m_playerAlpha);
 }
 void BattleScene::playerUiStatus(HDC hdc)
 {
 	char str[100];
 	UTIL::DrawRect(hdc, m_playerStatus);
-	wsprintf(str, "%s", selectPocketmon->m_customName.c_str());
+	wsprintf(str, "%s", selectPocketmon->m_name.c_str());
 	TextOut(hdc, m_playerStatus.left + 10, m_playerStatus.top + 10, str, strlen(str));
 
 	wsprintf(str, "Lv %d", selectPocketmon->m_level);
 	TextOut(hdc, m_playerStatus.left + 310, m_playerStatus.top + 20, str, strlen(str));
-
 }
 void BattleScene::playerUiSkillList(HDC hdc)
 {
 	UTIL::DrawRect(hdc, m_skillListRect);
+
+	char skillName[4][100];	
+	for (int i = 0; i < selectPocketmon->skillList.size(); i++)
+	{
+		if (i == 0)
+		{
+			wsprintf(skillName[i], "%s", m_playerFirstSkillName.c_str());
+			TextOut(hdc, 67, 595, skillName[i], strlen(skillName[i]));
+		}
+		else if (i == 1)
+		{
+			wsprintf(skillName[i], "%s", m_playerSecondSkillName.c_str());
+			TextOut(hdc, 345, 595, skillName[i], strlen(skillName[i]));
+		}
+		else if (i == 2)
+		{
+			wsprintf(skillName[i], "%s", m_playerThirdSkillName.c_str());
+			TextOut(hdc, 67, 676, skillName[i], strlen(skillName[i]));
+		}
+		else if (i == 3)
+		{
+			wsprintf(skillName[i], "%s", m_playerFourthSkillName.c_str());
+			TextOut(hdc, 345, 676, skillName[i], strlen(skillName[i]));
+		}
+	}
 }
 void BattleScene::playerUiSkillExplain(HDC hdc)
 {
 	UTIL::DrawRect(hdc, m_skillExplainRect);
+	char str[100];
+	wsprintf(str, "PP");
+	TextOut(hdc, 649, 590, str, strlen(str));
+
+	if (skill_1)
+	{
+		wsprintf(str, "%d / %d", selectPocketmon->skillList[0].currentpp, selectPocketmon->skillList[0].maxpp);
+		TextOut(hdc, 863, 590, str, strlen(str));
+
+		wsprintf(str, "기술타입  / %s", playerUiSkillType(selectPocketmon->skillList[0].skilltype).c_str());
+		TextOut(hdc, 649, 670, str, strlen(str));
+	}
+	if (skill_2)
+	{
+		wsprintf(str, "%d / %d", selectPocketmon->skillList[1].currentpp, selectPocketmon->skillList[1].maxpp);
+		TextOut(hdc, 863, 590, str, strlen(str));
+
+		wsprintf(str, "기술타입  / %s", playerUiSkillType(selectPocketmon->skillList[1].skilltype).c_str());
+		TextOut(hdc, 649, 670, str, strlen(str));
+	}
+	if (skill_3)
+	{
+		wsprintf(str, "%d / %d", selectPocketmon->skillList[2].currentpp, selectPocketmon->skillList[2].maxpp);
+		TextOut(hdc, 863, 590, str, strlen(str));
+
+		wsprintf(str, "기술타입  / %s", playerUiSkillType(selectPocketmon->skillList[2].skilltype).c_str());
+		TextOut(hdc, 649, 670, str, strlen(str));
+	}
+	if (skill_4)
+	{
+		wsprintf(str, "%d / %d", selectPocketmon->skillList[3].currentpp, selectPocketmon->skillList[3].maxpp);
+		TextOut(hdc, 863, 590, str, strlen(str));
+
+		wsprintf(str, "기술타입  / %s", playerUiSkillType(selectPocketmon->skillList[3].skilltype).c_str());
+		TextOut(hdc, 649, 670, str, strlen(str));
+	}
+}
+std::string BattleScene::playerUiSkillType(SkillType _skillType)
+{
+	switch (_skillType)
+	{
+	case SkillType::SkillAttibuteFire:
+		return "불꽃";
+		break;
+	case SkillType::SkillAttibuteStone:
+		return "바위";
+		break;
+	case SkillType::SkillAttibuteWater:
+		return "물";
+		break;
+	case SkillType::SkillAttibuteGrass:
+		return "풀";
+		break;
+	case SkillType::SkillAttibuteFly:
+		return "비행";
+		break;
+	case SkillType::SkillAttibuteElectric:
+		return "전기";
+		break;
+	case SkillType::SkillAttibuteNormal:
+		return "노말";
+		break;
+	}
 }
 void BattleScene::playerUiMaxHp(HDC hdc, int _y)
 {
@@ -813,8 +945,7 @@ std::string BattleScene::selectEnemyskill()
 {
 	int temp = 0;/*UTIL::GetRndIntFromTo(0, 3);*/
 	if (temp == 0)
-		return "";
-		//return m_wildPocketmon.m_skill_1;
+		return m_enemyFirstSkillName;
 	/*else if (temp == 1) return m_wildPocketmon.m_skill_2;
 	else if (temp == 2) return m_wildPocketmon.m_skill_3;
 	else if (temp == 3) return m_wildPocketmon.m_skill_4;*/
@@ -919,8 +1050,17 @@ void BattleScene::playerPockatmonAttack(HDC hdc)
 		wsprintf(str, "%s의", selectPocketmon->m_name.c_str());
 		TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 10, str, strlen(str));
 
-		//wsprintf(str, "%s 공격!", m_playerPocketmon.m_skill_1.c_str());
-		TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 30, str, strlen(str));
+		int temp = 0;
+		for (auto it = selectPocketmon->skillList.begin(); it != selectPocketmon->skillList.end(); ++it)
+		{
+			if (temp == 1)
+			{
+				wsprintf(str, "%s 공격!", it->name.c_str());
+				TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 30, str, strlen(str));
+				break;
+			}
+			temp++;
+		}
 	}
 	else if (m_skillCount >= 100 && !playerSkillExplainDone)
 	{
@@ -933,16 +1073,8 @@ void BattleScene::playerPockatmonAttack(HDC hdc)
 
 	if (playerSkillExplainDone)
 	{
-		//playerSkillEffectAssemble(m_playerPocketmon.m_skill_1, hdc);
+		playerSkillEffectAssemble(m_playerSecondSkillName, hdc);
 	}
-
-	/*if (m_count > 200)
-	{
-		m_skillCount = 0;
-		playerAtkSkillOn = false;
-		enemyTurn = true;
-	}*/
-
 }
 int BattleScene::checkDamage()
 {
@@ -964,7 +1096,9 @@ void BattleScene::npcBattleRender(HDC hdc)
 {
 }
 
-//플레이어 공격 스킬 모음
+//==========================
+// 플레이어 공격 스킬 모음 //
+//==========================
 void BattleScene::pailiFireShower(std::string _skillName, HDC hdc)
 {
 	//1단계: 포켓몬 스킬 이팩트
@@ -1042,7 +1176,9 @@ void BattleScene::pailiFireShower(std::string _skillName, HDC hdc)
 	if (enemyLose) wildBattleOutroAni(hdc);
 }
 
-//적 공격 스킬 모음
+//====================
+// 적 공격 스킬 모음 //
+//====================
 void BattleScene::picachu100v(std::string _skillName, HDC hdc)
 {
 	if (!enemySkillEffect && !enemySkillEffectDone)
@@ -1160,5 +1296,5 @@ bool BattleScene::playerSkillEffectAssemble(std::string _skillName, HDC hdc)
 
 void BattleScene::enemySkillEffectAssemble(std::string _skillName, HDC hdc)
 {
-	if (_skillName == "피카츄백만볼트") picachu100v(_skillName, hdc);
+	if (_skillName == "전광석화") picachu100v(_skillName, hdc);
 }

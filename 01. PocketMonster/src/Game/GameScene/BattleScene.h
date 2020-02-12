@@ -28,6 +28,8 @@ public:
 	bool init() override;
 	bool init(std::shared_ptr<player> _player, std::shared_ptr<player> _npc) override;
 	bool init(std::shared_ptr<player> _player, PocketMon& _pocketmon) override;
+	void playerPocketmonSkillNameInit();
+	void enemyPocketmonSkillNameInit();
 	void update(float _deltaTime) override;
 	void release() override;
 
@@ -67,6 +69,7 @@ public:
 	void playerUiStatus(HDC hdc);
 	void playerUiSkillList(HDC hdc);
 	void playerUiSkillExplain(HDC hdc);
+	std::string playerUiSkillType(SkillType _skillType);
 	void playerUiMaxHp(HDC hdc, int _y);
 	void playerUiCurrentHp(HDC hdc, int _y);
 	void playerUiMaxExp(HDC hdc, int _y);
@@ -111,8 +114,7 @@ private:
 	std::vector<std::shared_ptr<PocketMon>> m_playerPocketmons ;
 	std::shared_ptr<PocketMon> selectPocketmon;
 	PocketMon m_wildPocketmon;
-	PocketMon* temp;
-	std::shared_ptr<PocketMon> temp2;
+
 
 	//bool moveOn;
 
@@ -236,6 +238,10 @@ private:
 	int m_enemyMinusHp;
 	int m_enemyCurrentMinusHp;
 	int m_enemyAlpha;
+	std::string m_playerFirstSkillName;
+	std::string m_playerSecondSkillName;
+	std::string m_playerThirdSkillName;
+	std::string m_playerFourthSkillName;
 	//적
 	std::string enemySkillName;
 	bool enemySkillEffect;
@@ -247,6 +253,10 @@ private:
 	int m_playerTwinkleCount;
 	int m_playerMinusHp;
 	int m_playerCurrentMinusHp;
+	std::string m_enemyFirstSkillName;
+	std::string m_enemySecondSkillName;
+	std::string m_enemyThirdSkillName;
+	std::string m_enemyFourthSkillName;
 
 
 	//전투 승패 관련
