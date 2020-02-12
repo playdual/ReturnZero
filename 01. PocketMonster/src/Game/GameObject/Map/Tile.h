@@ -19,6 +19,7 @@ public:
 	int getOutputTileY();
 	std::string getNextMapKey() { return m_nextMapKey; }
 	POINT getNextMapIdx() { return m_nextMapStartIdx; }
+	std::pair<std::string, int> getInnerPocketMon();
 
 public:
 	int m_BlockPositionX;

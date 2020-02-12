@@ -33,6 +33,7 @@ public:
 	void isNotChangeMap();
 	bool getisAfter();
 	bool getisMenu();
+	void setisMenu(bool ismenuvalue);
 	//void rectInCamera(UTIL::IRECT& outRect, const UTIL::IRECT& realRect, bool& isOutput);
 private:
 	UTIL::IRECT m_playerRect;
@@ -100,7 +101,6 @@ private:
 	Animation* m_aniplayerMoveUp;
 	Animation* m_aniplayerMoveLeft;
 	Animation* m_aniplayerMoveRight;
-	
 
 	std::vector<std::shared_ptr<PocketMon>> Pocketmons;
 	std::shared_ptr<Inventory> Inven;

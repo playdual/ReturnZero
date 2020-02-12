@@ -116,6 +116,13 @@ struct PocketSkill
 	}
 };
 
+struct MenuBar {
+	std::string menuName;
+	int menuNum;
+	MenuBar(std::string _name, int _num) 
+		: menuName(_name), menuNum(_num)
+	{}
+};
 
 // 인벤씬 타입 //
 enum INVENSCENETYPE

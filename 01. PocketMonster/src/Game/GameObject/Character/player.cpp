@@ -69,6 +69,9 @@ bool player::init()
 	//player Base Arrow(Start)
 	isDown = true;
 
+	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Charmander", 31)));
+	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Squirtle", 31)));
+
 	m_playerBeforeArrowMemory = 0;
 	m_playerCurrentArrowMemory = 0;
 	return true;
@@ -486,7 +489,10 @@ bool player::getisMenu()
 	return ismenu;
 }
 
-
+void player::setisMenu(bool ismenuvalue)
+{
+	ismenu = ismenuvalue;
+}
 
 
 

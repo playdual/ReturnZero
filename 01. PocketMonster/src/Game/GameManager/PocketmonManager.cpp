@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "PocketmonManager.h"
 #include "Common/SystemManagers.h"
+DEFINITION_SINGLE(PocketmonManager)
 
 PocketSkill tackleProto("몸통박치기", 25, 25, 20, 100, SkillType::SkillAttibuteNormal, SkillClassify::SkillTypeNormal);
 PocketSkill scratchProto("할퀴기", 15, 15, 40, 100, SkillType::SkillAttibuteNormal, SkillClassify::SkillTypeNormal);
@@ -30,7 +31,6 @@ PocketSkill wingAttackProto("날개치기", 15, 15, 50, 90, SkillType::SkillAtti
 PocketSkill airSlashProto("에어슬래시", 10, 10, 60, 85, SkillType::SkillAttibuteFly, SkillClassify::SkillTypeNormal);
 PocketSkill hurricaneProto("폭풍", 5, 5, 110, 70, SkillType::SkillAttibuteFly, SkillClassify::SkillTypeSpecial);
 
-DEFINITION_SINGLE(PocketmonManager)
 
 PocketmonManager::PocketmonManager()
 {
@@ -121,32 +121,27 @@ void PocketmonManager::debugRender(HDC hdc)
 {
 }
 
-PocketMon PocketmonManager::getPocketmonInform(int i)
-{
-	return pocketmonVector[i];
-}
-
 PocketMon PocketmonManager::genPocketMon(std::string _name, int level)
 {
-	if (_name == "파이리")
+	if (_name == "Charmander")
 		return genCharmander(level);
-	else if (_name == "이상해씨")
+	else if (_name == "Bulbasaur")
 		return genBulbasaur(level);
-	else if (_name == "꼬부기")
+	else if (_name == "Squirtle")
 		return genSquirtle(level);
-	else if (_name == "구구")
+	else if (_name == "Pidgey")
 		return genPidgey(level);
-	else if (_name == "피카츄")
+	else if (_name == "Pikachu")
 		return genPikachu(level);
-	else if (_name == "캐터피")
+	else if (_name == "Caterpie")
 		return genCaterpie(level);
-	else if (_name == "꼬렛")
+	else if (_name == "Rattata")
 		return genRattata(level);
-	else if (_name == "식스테일")
+	else if (_name == "Vulpix")
 		return genVulpix(level);
-	else if (_name == "뚜벅초")
+	else if (_name == "Oddish")
 		return genOddish(level);
-	else if (_name == "발챙이")
+	else if (_name == "Poliwag")
 		return genPoliwag(level);
 }
 

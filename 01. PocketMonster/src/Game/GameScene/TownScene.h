@@ -20,7 +20,10 @@ public:
 	void afterRender(HDC hdc) override;
 	void debugRender(HDC hdc) override;
 
-
+private:
+	void addMenu(MenuBar _newMenu);
+	void delMenu(MenuBar _targetMenu);
+	void menuUpdate();
 
 private:
 	Image* image;
@@ -29,5 +32,11 @@ private:
 
 	//Menu
 	UTIL::IRECT m_menurect;
+	UTIL::IRECT m_IndexMenuRect;
+	int m_menuIndex;
+	int m_menuIndexMax;
 	Image* m_menuImg;
+	Image* m_IndexMenuImg;
+
+	std::vector<MenuBar> Menu;
 };

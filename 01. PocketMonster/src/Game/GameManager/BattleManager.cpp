@@ -51,8 +51,9 @@ void BattleManager::battleStart()
 	SCENEMANAGER->scenePush("battle");
 }
 
-void BattleManager::battleStart(std::shared_ptr<player> _player, std::shared_ptr<player> _npc, std::shared_ptr<PocketMon> _pocketMon)
+void BattleManager::battleStart(std::shared_ptr<player> _player, std::shared_ptr<player> _npc, std::string _pocketMon, int level)
 {
+
 }
 
 //void BattleManager::battleStart(std::shared_ptr<player> _player)

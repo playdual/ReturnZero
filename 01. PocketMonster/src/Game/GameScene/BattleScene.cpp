@@ -12,10 +12,6 @@ bool BattleScene::init()
 	IMAGEMANAGER->addImage("battleTemp", "images/battleTemp2.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 	pocketmonEffectInit();
 	
-	//테스트용 포켓몬 정보 복사하기
-	m_playerPocketmon = POCKETMONMANAGER->getPocketmonInform(0);
-	m_wildPocketmon = POCKETMONMANAGER->getPocketmonInform(1);
-
 
 	//===============
 	// RECT 초기화 //

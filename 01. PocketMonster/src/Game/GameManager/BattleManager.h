@@ -16,7 +16,7 @@ public:
 	void debugRender(HDC hdc);
 
 	void battleStart(); // for Test
-	void battleStart(std::shared_ptr<player> _player, std::shared_ptr<player> _npc, std::shared_ptr<PocketMon> _pocketMon = nullptr);
+	void battleStart(std::shared_ptr<player> _player, std::shared_ptr<player> _npc, std::string _pocketMon = "", int level = 0);
 
 private:
 	UTIL::IRECT testRect;

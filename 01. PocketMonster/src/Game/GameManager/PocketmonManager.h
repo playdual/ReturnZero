@@ -20,12 +20,10 @@ public:
 	void afterRender(HDC hdc);
 	void debugRender(HDC hdc);
 
-	PocketMon getPocketmonInform(int i);
-
 	PocketMon genPocketMon(std::string _name, int level);
 
 
-public:
+private:
 	PocketMon genCharmander(int level);//파이리
 	PocketMon genBulbasaur(int level);//이상해씨
 	PocketMon genSquirtle(int level);//꼬부기

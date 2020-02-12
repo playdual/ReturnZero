@@ -25,6 +25,9 @@ PocketMon::PocketMon(const PocketMon& _pocket)
 	gender = _pocket.gender;
 	m_pocketmonFrontImg = _pocket.m_pocketmonFrontImg;
 	m_pocketmonBackImg = _pocket.m_pocketmonBackImg;
+	for (auto e : _pocket.skillList) {
+		skillList.push_back(e);
+	}
 }
 
 PocketMon::~PocketMon()

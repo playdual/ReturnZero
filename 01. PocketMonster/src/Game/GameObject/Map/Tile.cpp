@@ -163,3 +163,14 @@ int Tile::getOutputTileY()
 {
 	return m_outputTile.centerY;
 }
+
+std::pair<std::string, int> Tile::getInnerPocketMon()
+{
+	if (m_innerPocketmonInfo.size() == 0) {
+		return { "", 0 };
+	}
+	else {
+		int returnIdex = UTIL::GetRndInt(m_innerPocketmonInfo.size());
+		return m_innerPocketmonInfo[returnIdex];
+	}
+}
