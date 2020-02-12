@@ -1,0 +1,583 @@
+{
+	"0" : 
+	{
+		"bPosX" : 0,
+		"bPosY" : 0,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"1" : 
+	{
+		"bPosX" : 1,
+		"bPosY" : 0,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"10" : 
+	{
+		"bPosX" : 3,
+		"bPosY" : 1,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"11" : 
+	{
+		"bPosX" : 4,
+		"bPosY" : 1,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"12" : 
+	{
+		"bPosX" : 5,
+		"bPosY" : 1,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"13" : 
+	{
+		"bPosX" : 6,
+		"bPosY" : 1,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"14" : 
+	{
+		"bPosX" : 0,
+		"bPosY" : 2,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"15" : 
+	{
+		"bPosX" : 1,
+		"bPosY" : 2,
+		"imageKey" : "Bush1",
+		"innerPocketLevel-0" : 7,
+		"innerPocketLevel-1" : 5,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pikachu",
+		"innerPocketName-1" : "Piry",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"16" : 
+	{
+		"bPosX" : 2,
+		"bPosY" : 2,
+		"imageKey" : "Bush1",
+		"innerPocketLevel-0" : 7,
+		"innerPocketLevel-1" : 5,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pikachu",
+		"innerPocketName-1" : "Piry",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"17" : 
+	{
+		"bPosX" : 3,
+		"bPosY" : 2,
+		"imageKey" : "Bush1",
+		"innerPocketLevel-0" : 7,
+		"innerPocketLevel-1" : 5,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pikachu",
+		"innerPocketName-1" : "Piry",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"18" : 
+	{
+		"bPosX" : 4,
+		"bPosY" : 2,
+		"imageKey" : "Bush1",
+		"innerPocketLevel-0" : 7,
+		"innerPocketLevel-1" : 5,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pikachu",
+		"innerPocketName-1" : "Piry",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"19" : 
+	{
+		"bPosX" : 5,
+		"bPosY" : 2,
+		"imageKey" : "Bush1",
+		"innerPocketLevel-0" : 7,
+		"innerPocketLevel-1" : 5,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pikachu",
+		"innerPocketName-1" : "Piry",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"2" : 
+	{
+		"bPosX" : 2,
+		"bPosY" : 0,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"20" : 
+	{
+		"bPosX" : 6,
+		"bPosY" : 2,
+		"imageKey" : "Bush1",
+		"innerPocketLevel-0" : 7,
+		"innerPocketLevel-1" : 5,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pikachu",
+		"innerPocketName-1" : "Piry",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"21" : 
+	{
+		"bPosX" : 0,
+		"bPosY" : 3,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"22" : 
+	{
+		"bPosX" : 1,
+		"bPosY" : 3,
+		"imageKey" : "Bush1",
+		"innerPocketLevel-0" : 7,
+		"innerPocketLevel-1" : 5,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pikachu",
+		"innerPocketName-1" : "Piry",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"23" : 
+	{
+		"bPosX" : 2,
+		"bPosY" : 3,
+		"imageKey" : "Bush1",
+		"innerPocketLevel-0" : 7,
+		"innerPocketLevel-1" : 5,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pikachu",
+		"innerPocketName-1" : "Piry",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"24" : 
+	{
+		"bPosX" : 3,
+		"bPosY" : 3,
+		"imageKey" : "Bush1",
+		"innerPocketLevel-0" : 7,
+		"innerPocketLevel-1" : 5,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pikachu",
+		"innerPocketName-1" : "Piry",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"25" : 
+	{
+		"bPosX" : 4,
+		"bPosY" : 3,
+		"imageKey" : "Bush1",
+		"innerPocketLevel-0" : 7,
+		"innerPocketLevel-1" : 5,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pikachu",
+		"innerPocketName-1" : "Piry",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"26" : 
+	{
+		"bPosX" : 5,
+		"bPosY" : 3,
+		"imageKey" : "Bush1",
+		"innerPocketLevel-0" : 7,
+		"innerPocketLevel-1" : 5,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pikachu",
+		"innerPocketName-1" : "Piry",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"27" : 
+	{
+		"bPosX" : 6,
+		"bPosY" : 3,
+		"imageKey" : "Bush1",
+		"innerPocketLevel-0" : 7,
+		"innerPocketLevel-1" : 5,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pikachu",
+		"innerPocketName-1" : "Piry",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"28" : 
+	{
+		"bPosX" : 0,
+		"bPosY" : 4,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"29" : 
+	{
+		"bPosX" : 1,
+		"bPosY" : 4,
+		"imageKey" : "Bush1",
+		"innerPocketLevel-0" : 7,
+		"innerPocketLevel-1" : 5,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pikachu",
+		"innerPocketName-1" : "Piry",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"3" : 
+	{
+		"bPosX" : 3,
+		"bPosY" : 0,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"30" : 
+	{
+		"bPosX" : 2,
+		"bPosY" : 4,
+		"imageKey" : "Bush1",
+		"innerPocketLevel-0" : 7,
+		"innerPocketLevel-1" : 5,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pikachu",
+		"innerPocketName-1" : "Piry",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"31" : 
+	{
+		"bPosX" : 3,
+		"bPosY" : 4,
+		"imageKey" : "Bush1",
+		"innerPocketLevel-0" : 7,
+		"innerPocketLevel-1" : 5,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pikachu",
+		"innerPocketName-1" : "Piry",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"32" : 
+	{
+		"bPosX" : 4,
+		"bPosY" : 4,
+		"imageKey" : "Bush1",
+		"innerPocketLevel-0" : 7,
+		"innerPocketLevel-1" : 5,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pikachu",
+		"innerPocketName-1" : "Piry",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"33" : 
+	{
+		"bPosX" : 5,
+		"bPosY" : 4,
+		"imageKey" : "Bush1",
+		"innerPocketLevel-0" : 7,
+		"innerPocketLevel-1" : 5,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pikachu",
+		"innerPocketName-1" : "Piry",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"34" : 
+	{
+		"bPosX" : 6,
+		"bPosY" : 4,
+		"imageKey" : "Bush1",
+		"innerPocketLevel-0" : 7,
+		"innerPocketLevel-1" : 5,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pikachu",
+		"innerPocketName-1" : "Piry",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"35" : 
+	{
+		"bPosX" : 0,
+		"bPosY" : 5,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"36" : 
+	{
+		"bPosX" : 1,
+		"bPosY" : 5,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"37" : 
+	{
+		"bPosX" : 2,
+		"bPosY" : 5,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"38" : 
+	{
+		"bPosX" : 3,
+		"bPosY" : 5,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"39" : 
+	{
+		"bPosX" : 4,
+		"bPosY" : 5,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"4" : 
+	{
+		"bPosX" : 4,
+		"bPosY" : 0,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"40" : 
+	{
+		"bPosX" : 5,
+		"bPosY" : 5,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"41" : 
+	{
+		"bPosX" : 6,
+		"bPosY" : 5,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"42" : 
+	{
+		"bPosX" : 0,
+		"bPosY" : 6,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"43" : 
+	{
+		"bPosX" : 1,
+		"bPosY" : 6,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"44" : 
+	{
+		"bPosX" : 2,
+		"bPosY" : 6,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"45" : 
+	{
+		"bPosX" : 3,
+		"bPosY" : 6,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"46" : 
+	{
+		"bPosX" : 4,
+		"bPosY" : 6,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"47" : 
+	{
+		"bPosX" : 5,
+		"bPosY" : 6,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"48" : 
+	{
+		"bPosX" : 6,
+		"bPosY" : 6,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"49" : 
+	{
+		"bPosX" : 0,
+		"bPosY" : 7,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"5" : 
+	{
+		"bPosX" : 5,
+		"bPosY" : 0,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"50" : 
+	{
+		"bPosX" : 1,
+		"bPosY" : 7,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"51" : 
+	{
+		"bPosX" : 2,
+		"bPosY" : 7,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"52" : 
+	{
+		"bPosX" : 3,
+		"bPosY" : 7,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"53" : 
+	{
+		"bPosX" : 4,
+		"bPosY" : 7,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"54" : 
+	{
+		"bPosX" : 5,
+		"bPosY" : 7,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"55" : 
+	{
+		"bPosX" : 6,
+		"bPosY" : 7,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"6" : 
+	{
+		"bPosX" : 6,
+		"bPosY" : 0,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"7" : 
+	{
+		"bPosX" : 0,
+		"bPosY" : 1,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"8" : 
+	{
+		"bPosX" : 1,
+		"bPosY" : 1,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"9" : 
+	{
+		"bPosX" : 2,
+		"bPosY" : 1,
+		"imageKey" : "Tree1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"mapHeight" : 8,
+	"mapName" : "TestTown3",
+	"mapWidth" : 7,
+	"startX" : -842150451,
+	"startY" : -842150451
+}
