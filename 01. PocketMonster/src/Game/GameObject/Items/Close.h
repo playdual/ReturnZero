@@ -1,10 +1,10 @@
 ﻿#pragma once
-#include "Game/GameObject/Item.h"
+#include "Game/GameObject/Items/Item.h"
 class Close
 	:public Item
 {
 public:
-	Close(ItemType _type, Image* _potionImage, UTIL::IRECT _rect, std::string _name,
+	Close(ItemType _type, class Image* _potionImage, UTIL::IRECT _rect, std::string _name,
 		int _count, int _price, std::string _description);
 	~Close();
 
@@ -14,7 +14,5 @@ public:
 	virtual void render(HDC hdc) override;
 	virtual void afterRender(HDC hdc) override;
 	virtual void debugRender(HDC hdc) override;
-
-
 };
 

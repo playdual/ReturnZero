@@ -749,7 +749,9 @@ void BattleScene::moveSkillSelectButton()
 std::string BattleScene::selectEnemyskill()
 {
 	int temp = 0;/*UTIL::GetRndIntFromTo(0, 3);*/
-	if(temp == 0)	return m_wildPocketmon.m_skill_1;
+	if (temp == 0)
+		return "";
+		//return m_wildPocketmon.m_skill_1;
 	/*else if (temp == 1) return m_wildPocketmon.m_skill_2;
 	else if (temp == 2) return m_wildPocketmon.m_skill_3;
 	else if (temp == 3) return m_wildPocketmon.m_skill_4;*/
@@ -854,7 +856,7 @@ void BattleScene::playerPockatmonAttack(HDC hdc)
 		wsprintf(str, "%s의", m_playerPocketmon.m_name.c_str());
 		TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 10, str, strlen(str));
 
-		wsprintf(str, "%s 공격!", m_playerPocketmon.m_skill_1.c_str());
+		//wsprintf(str, "%s 공격!", m_playerPocketmon.m_skill_1.c_str());
 		TextOut(hdc, m_explainRect.left + 10, m_explainRect.top + 30, str, strlen(str));
 	}
 	else if (m_skillCount >= 100 && !playerSkillExplainDone)
@@ -868,7 +870,7 @@ void BattleScene::playerPockatmonAttack(HDC hdc)
 
 	if (playerSkillExplainDone)
 	{
-		playerSkillEffectAssemble(m_playerPocketmon.m_skill_1, hdc);
+		//playerSkillEffectAssemble(m_playerPocketmon.m_skill_1, hdc);
 	}
 
 	/*if (m_count > 200)

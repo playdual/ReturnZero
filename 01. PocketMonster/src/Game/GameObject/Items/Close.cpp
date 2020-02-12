@@ -1,5 +1,6 @@
 ﻿#include "stdafx.h"
 #include "Close.h"
+#include "Common/SystemManagers.h"
 
 Close::Close(ItemType _type, Image * _potionImage, UTIL::IRECT _rect, std::string _name, int _count, int _price, std::string _description)
 	:Item(_type, _potionImage, _rect, _name, _count, _price, _description)

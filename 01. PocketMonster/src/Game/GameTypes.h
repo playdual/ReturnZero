@@ -117,11 +117,8 @@ struct PocketSkill
 };
 
 
-
-
 // 인벤씬 타입 //
 enum INVENSCENETYPE
 {
 	ITEM = 0 , IMPORT , POKEBALL
-};
 };

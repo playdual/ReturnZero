@@ -33,8 +33,8 @@ void Tile::init(TileType _type, Image* _img, bool _isAfterRender, bool _isMovabl
 
 	if (m_Type == TileType::TileTypeNextMap) {
 		m_nextMapKey = _nextMapKey;
-		m_nextMapIdx.x = _x;
-		m_nextMapIdx.y = _y;
+		m_nextMapStartIdx.x = _x;
+		m_nextMapStartIdx.y = _y;
 	}
 
 }

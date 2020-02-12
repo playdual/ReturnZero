@@ -15,8 +15,6 @@
 // 싱글톤을 할때는 cpp 파일에 적어줘야 한다.
 DEFINITION_SINGLE(ItemManager)
 
-// 싱글톤을 할때는 cpp 파일에 적어줘야 한다.
-DEFINITION_SINGLE(ItemManager)
 
 ItemManager::ItemManager() {}
 ItemManager::~ItemManager() {}
@@ -175,6 +173,11 @@ void ItemManager::addImportItem(std::string _itemKey, const char * _imageName, i
 		_itemName, _count, _price, _descript);
 
 	m_ItemList.insert(std::make_pair(_itemKey, temp));
+}
+
+void ItemManager::release()
+{
+	m_ItemList.clear();
 }
 
 std::shared_ptr<Item> ItemManager::findItem(std::string _itemKey)

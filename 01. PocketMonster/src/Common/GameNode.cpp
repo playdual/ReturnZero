@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "gameNode.h"
 bool GameNode::_managerInit = false;
 
@@ -48,6 +48,7 @@ void GameNode::release()
 		SCENEMANAGER->release();
 		ANIMANAGER->release();
 		EFFECTMANAGER->release();
+		CAMERAMANAGER->release();
 
 		IMAGEMANAGER->Destroy();
 		KEYMANAGER->Destroy();
@@ -56,6 +57,7 @@ void GameNode::release()
 		SCENEMANAGER->Destroy();
 		ANIMANAGER->Destroy();
 		EFFECTMANAGER->Destroy();
+		CAMERAMANAGER->Destroy();
 	}
 	ReleaseDC(m_hWnd, _hdc);
 }

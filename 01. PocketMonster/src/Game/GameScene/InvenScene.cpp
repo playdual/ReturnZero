@@ -1,6 +1,6 @@
 ﻿#include "stdafx.h"
 #include "InvenScene.h"
-#include "Game/GameObject/Item.h"
+#include "Game/GameObject/Items/Item.h"
 
 
 InvenScene::InvenScene(std::shared_ptr<Inventory> _inven)

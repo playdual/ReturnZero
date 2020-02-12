@@ -41,13 +41,11 @@ HRESULT MainGame::init()
 	POCKETMONMANAGER->init();
 
 
-
-
 	//add Scene
 	IMAGEMANAGER->addImage("bg", "Images/temp.bmp", 0, 0, WINSIZEX, WINSIZEY);
 	SOUNDMANAGER->addStream("bgs", "Sounds/NewBarkTown.mp3", true);
 	IMAGEMANAGER->addImage("현재아이템표시", "Images/itemPointer.bmp", 28 * 5, 28 * 5, true, RGB(255, 0, 255));
-	inven = std::make_shared<Inventory>();
+	std::shared_ptr<Inventory> inven = std::make_shared<Inventory>();
 	inven->init();
 	SCENEMANAGER->addScene("town", new TownScene);
 	SCENEMANAGER->addScene("battle", new BattleScene);
@@ -55,7 +53,6 @@ HRESULT MainGame::init()
 
 	SCENEMANAGER->addScene("inven", new InvenScene(inven));
 	SCENEMANAGER->scenePush("town");
-
 	SCENEMANAGER->changeScene("town");
 	sceneInit = true;
 
@@ -86,8 +83,6 @@ void MainGame::update()
 	EFFECTMANAGER->update();
 	SCENEMANAGER->update(deltaTime);
 	ANIMANAGER->update(deltaTime);
-
-	inven->update(deltaTime);
 }
 
 void MainGame::render()

@@ -62,11 +62,11 @@ HRESULT PocketmonManager::init()
 		pocket.m_def = UTIL::GetRndIntFromTo(7, 9);
 		pocket.m_specialAtk = UTIL::GetRndIntFromTo(15,19);
 		pocket.m_specialDef = UTIL::GetRndIntFromTo(15,19);
-		pocket.m_dex = UTIL::GetRndIntFromTo(17, 19);
+		pocket.m_speed = UTIL::GetRndIntFromTo(17, 19);
 		pocket.m_maxExp = UTIL::GetRndIntFromTo(742, 800);
 		pocket.m_wildExp = 100;
 		pocket.m_currentExp = 0;
-		pocket.m_skill_1 = "불꽃세례";
+		//pocket.m_skill_1 = "불꽃세례";
 		//pocket.skill_1force = 40;
 
 		pocketmonVector.push_back(pocket);
@@ -87,11 +87,11 @@ HRESULT PocketmonManager::init()
 		pocket.m_def = UTIL::GetRndIntFromTo(7, 9);
 		pocket.m_specialAtk = UTIL::GetRndIntFromTo(15, 19);
 		pocket.m_specialDef = UTIL::GetRndIntFromTo(15, 19);
-		pocket.m_dex = UTIL::GetRndIntFromTo(17, 19);
+		pocket.m_speed = UTIL::GetRndIntFromTo(17, 19);
 		pocket.m_maxExp = UTIL::GetRndIntFromTo(742, 800);
 		pocket.m_wildExp = 100;
 		pocket.m_currentExp = 0;
-		pocket.m_skill_1 = "피카츄백만볼트";
+		//pocket.m_skill_1 = "피카츄백만볼트";
 		//pocket.skill_1force = 40;
 
 		pocketmonVector.push_back(pocket);

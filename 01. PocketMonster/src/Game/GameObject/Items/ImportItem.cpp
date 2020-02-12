@@ -1,5 +1,6 @@
 ﻿#include "stdafx.h"
 #include "ImportItem.h"
+#include "Common/SystemManagers.h"
 
 ImportItem::ImportItem(ItemType _type, Image * _potionImage, UTIL::IRECT _rect, std::string _name, int _count, int _price, std::string _description)
 	:Item(_type, _potionImage, _rect, _name, _count, _price, _description)

@@ -5,6 +5,7 @@ class ItemManager
 {
 public:
 	bool init();
+	void release();
 
 public:
 
@@ -28,7 +29,6 @@ public:
 
 	void addImportItem(std::string _itemKey, const char* _imageName, int _x, int _y, int _imageW, int _imageH,
 		std::string _itemName, int _count, int _price, std::string _descript);
-	void release();
 
 	std::shared_ptr<Item> findItem(std::string _itemKey);
 	std::map<std::string ,std::shared_ptr<Item>> m_ItemList;
