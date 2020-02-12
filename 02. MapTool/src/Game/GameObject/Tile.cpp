@@ -1,14 +1,6 @@
 ﻿#include "stdafx.h"
 #include "Tile.h"
 
-Tile::Tile()
-{
-}
-
-Tile::~Tile()
-{
-}
-
 void Tile::init(TileType _type, Image* _img, bool _isAfterRender, bool _isMovable, int _BlockPositionX, int _BlockPositionY)
 {
 	m_Type = _type;

@@ -5,6 +5,11 @@
 class Map
 {
 public:
+	Map();
+	Map(const Map& map);
+	~Map();
+
+public:
 	void init(char* _fileName);
 	TileType getTileTypeFromIdex(int _x, int _y);
 	std::vector<class Tile>& getTiles() { return m_tiles; }
@@ -34,4 +39,5 @@ private:
 	bool isAfter=true;
 	std::vector<Tile> m_tiles;
 	//tilesVector
+	friend class JsonRWManager;
 };

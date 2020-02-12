@@ -1,18 +1,16 @@
 ﻿#pragma once
-
 #include "Tile.h"
 
 class Map
 {
 public:
 	Map() {};
-	Map(std::vector<class Tile> _tiles, int _width, int _height);
 	~Map() {};
 
 public:
 	void init(std::string _fileName);
 	TileType getTileTypeFromIdex(int _x, int _y);
-	std::vector<Tile>& getTiles() { return m_tiles; }
+	std::vector<class Tile>& getTiles() { return m_tiles; }
 
 public:
 	void render(HDC hdc);

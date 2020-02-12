@@ -24,6 +24,10 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("pailiBack", "Images/pocketmons/pailiBack.bmp", 61 * 3, 61 * 3, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("pikachuFront", "Images/pocketmons/PikachuFront.bmp", 61 * 3, 61 * 3, true, RGB(255, 0, 255));
 
+	IMAGEMANAGER->addImage("GrassTile1", "images/GrassTile1.bmp", TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("Bush1", "images/Bush1.bmp", TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("Tree1", "images/Tree1.bmp", TILE_WIDTH, TILE_HEIGHT + 23, true, RGB(255, 0, 255));
+
 	//rsc
 	IMAGEMANAGER->addImage("인벤토리씬", "Images/InvenScene.bmp", 0, 0, WINSIZEX, WINSIZEY);
 	IMAGEMANAGER->addImage("아이템창", "Images/itemBag.bmp", 62 * 5, 64 * 5, true, RGB(255, 0, 255));
@@ -65,10 +69,12 @@ void MainGame::release()
 	MAPMANGER->release();
 	POCKETMONMANAGER->release();
 	ITEMMANAGER->release();
+	BATTLEMANAGER->release();
 
 	MAPMANGER->Destroy();
 	POCKETMONMANAGER->Destroy();
 	ITEMMANAGER->Destroy();
+	BATTLEMANAGER->Destroy();
 }  
 
 void MainGame::update()

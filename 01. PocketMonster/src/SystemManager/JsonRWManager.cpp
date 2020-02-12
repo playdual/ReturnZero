@@ -1,8 +1,7 @@
 ﻿#include "stdafx.h"
 #include "JsonRWManager.h"
 #include "../../vendor/Json/inc/json.h"
-#include "Game/GameObject/Map.h"
-#include "Game/GameObject/Tile.h"
+#include <fstream>
 
 DEFINITION_SINGLE(JsonRWManager)
 
@@ -34,28 +33,37 @@ void JsonRWManager::MapDataWrite(std::string _name, std::vector<std::shared_ptr<
 		tile["bPosY"] = map[i]->m_BlockPositionY;
 		tile["imageKey"] = map[i]->tileImageKey;
 		tile["nextMapName"] = "";
-		if (map[i]->m_nextMapName != "") {
-			tile["nextMapName"] = map[i]->m_nextMapName;
+		if (map[i]->m_nextMapKey != "") {
+			tile["nextMapName"] = map[i]->m_nextMapKey;
 			tile["nextMapX"] = map[i]->m_nextMapStartIdx.x;
 			tile["nextMapY"] = map[i]->m_nextMapStartIdx.y;
 		}		
-		tile["innerPocketMonCnt"] = map[i]->m_innerPocketMonInfo.size();
-		for (int j = 0; j < map[i]->m_innerPocketMonInfo.size(); ++j) {
-			tile[innerPocketName + std::to_string(j)] = map[i]->m_innerPocketMonInfo[j].first;
-			tile[innerPocketLevel + std::to_string(j)] = map[i]->m_innerPocketMonInfo[j].second;
+		tile["innerPocketMonCnt"] = map[i]->m_innerPocketmonInfo.size();
+		for (int j = 0; j < map[i]->m_innerPocketmonInfo.size(); ++j) {
+			tile[innerPocketName + std::to_string(j)] = map[i]->m_innerPocketmonInfo[j].first;
+			tile[innerPocketLevel + std::to_string(j)] = map[i]->m_innerPocketmonInfo[j].second;
 		}
 		root[s] = tile;
 	}
-	std::string filename = "../01. PocketMonster/Map/" + _name + ".json";
+	std::string filename = "Map/" + _name + ".json";
 	std::ofstream output(filename, std::ios::out);
 	output << root;
 	output.close();
 
 }
 
+bool JsonRWManager::init()
+{
+	return true;
+}
+
+void JsonRWManager::release()
+{
+}
+
 Map JsonRWManager::MapDataRead(std::string _name)
 {
-	std::string filename = "../01. PocketMonster/Map/" + _name + ".json";
+	std::string filename = "Map/" + _name + ".json";
 	std::ifstream input(filename, std::ios::binary);
 
 	Json::Value root;
@@ -69,6 +77,9 @@ Map JsonRWManager::MapDataRead(std::string _name)
 
 	int width = root["mapWidth"].asInt();
 	int height = root["mapHeight"].asInt();
+
+	map.m_playerStartPositionX = root["startX"].asInt();
+	map.m_playerStartPositionY = root["startY"].asInt();
 
 	int size = width * height;
 	map.m_height = height;
@@ -84,8 +95,8 @@ Map JsonRWManager::MapDataRead(std::string _name)
 		tile.m_BlockPositionX = root[s]["bPosX"].asInt();
 		tile.m_BlockPositionY = root[s]["bPosY"].asInt();
 		tile.tileImageKey = root[s]["imageKey"].asString();
-		tile.m_nextMapName = root[s]["nextMapName"].asString();
-		if (tile.m_nextMapName != "") {
+		tile.m_nextMapKey = root[s]["nextMapName"].asString();
+		if (tile.m_nextMapKey != "") {
 			tile.m_nextMapStartIdx.x = root[s]["nextMapX"].asInt();
 			tile.m_nextMapStartIdx.y = root[s]["nextMapY"].asInt();
 		}
@@ -94,7 +105,7 @@ Map JsonRWManager::MapDataRead(std::string _name)
 		for (int j = 0; j < innerPocketCount; ++j) {
 			std::string name = root[s][innerPocketName + std::to_string(j)].asString();
 			int level = root[s][innerPocketLevel + std::to_string(j)].asInt();
-			tile.m_innerPocketMonInfo.push_back(std::make_pair(name, level));
+			tile.m_innerPocketmonInfo.push_back(std::make_pair(name, level));
 		}
 		map.m_tiles[i] = tile;
 	}

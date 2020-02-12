@@ -1,6 +1,30 @@
 ﻿#include "stdafx.h"
 #include "Map.h"
 
+Map::Map()
+{
+
+}
+Map::Map(const Map& map) 
+{
+	m_width = map.m_width;
+	m_height = map.m_height;
+
+
+	m_playerStartPositionX = map.m_playerStartPositionX;
+	m_playerStartPositionY = map.m_playerStartPositionY;
+	m_playerPositionX = m_playerStartPositionX;
+	m_playerPositionY = m_playerStartPositionX;
+
+	m_tiles = map.m_tiles;
+	for (auto& e : m_tiles) {
+		e.init();
+	}
+}
+
+Map::~Map()
+{
+}
 
 void Map::init(char * _fileName)
 {

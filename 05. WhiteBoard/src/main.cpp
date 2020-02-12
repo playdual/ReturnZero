@@ -1,40 +1,67 @@
-﻿#include <vector>
-#include <memory>
-#include <iostream>
+﻿#include <iostream>
+#include <vector>
 using namespace std;
 
-struct some {
-	int x;
-	int y;
-	void something() {
-		cout << "hello world" << endl;
-	} 
+class Animal {
+protected:
+	int a = 0;
+	int b = 10;
+public:
+	virtual void howl() {
+		cout << "..." << endl;
+	}
+	virtual void update() 
+	{
+		a -= 1;
+	}
+	virtual void render() 
+	{
+		cout << b << endl;
+	}
+};
+
+class Cat
+	:public Animal
+{
+public:
+	void howl() {
+		cout << "야옹 야옹~" << endl;
+	}
+	virtual void update() {
+		Animal::update();
+		a += 2;
+	}
+	virtual void render() {
+		cout << a << endl;
+	}
+
+};
+class Dog
+	:public Animal
+{
+public:
+	void howl()  {
+		cout << "멍멍!~" << endl;
+	}
+	virtual void update() {
+		a += 1;
+	}
+	virtual void render() {
+		cout << a << endl;
+	}
 };
 
 int main() {
+	vector<Animal*> animals;
+	Animal* jimin = new Cat;
+	Animal* kyungJun = new Dog;
 
-	vector<shared_ptr<some>> v;
+	animals.push_back(jimin);
+	animals.push_back(kyungJun);
 
-	some* a = new some;
-
-	a->something();
-
-	for (auto& e : v) {
-		(*e).x = 3;
-		e->y = 4;
-	}
-
-
-	//이터레이터로 v 벡터의 처음부터       끝까지 돌아준다.
-	for (auto iter = v.begin(); iter != v.end(); )// 그런데 ++it을 안해준다.
+	for (int i = 0; i < animals.size(); ++i) 
 	{
-		if ((**iter).x == 2) 
-		{
-			//erase는 지우는 요소의 다음 이터레이터를 반환한다.
-			iter = v.erase(iter);
-		}
-		else {
-			++iter;
-		}
+		animals[i]->update();
+		animals[i]->render();
 	}
 }

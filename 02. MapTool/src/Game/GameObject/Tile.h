@@ -1,13 +1,14 @@
 ﻿#pragma once
 #include"Game/GameTypes.h"
 #include"Common/SystemManagers.h"
+
 class Tile
 {
 public:
-	Tile();
-	~Tile();
+	Tile() {};
+	~Tile() {};
 
-	void init(TileType _type, Image* _img, bool _isAfterRender, bool _isMovable, int _BlockPostionX, int _BlockPostionY);
+	void init(TileType _type, class Image* _img, bool _isAfterRender, bool _isMovable, int _BlockPostionX, int _BlockPostionY);
 	void update(float _deltaTime);
 	void render(HDC hdc);
 	void specialRender(HDC hdc);

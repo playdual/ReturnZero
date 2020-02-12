@@ -1,14 +1,6 @@
 ﻿#include "stdafx.h"
 #include "Map.h"
 
-
-Map::Map(std::vector<Tile> _tiles, int _width, int _height)
-{
-	m_width = _width;
-	m_height = _height;
-	m_tiles = _tiles;
-}
-
 void Map::init(std::string _fileName)
 {
 	//for test
