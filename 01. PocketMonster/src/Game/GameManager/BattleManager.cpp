@@ -1,6 +1,7 @@
 ﻿#include"stdafx.h"
 #include "BattleManager.h"
 #include "Common/SystemManagers.h"
+#include "PocketmonManager.h"
 
 DEFINITION_SINGLE(BattleManager)
 
@@ -51,9 +52,17 @@ void BattleManager::battleStart()
 	SCENEMANAGER->scenePush("battle");
 }
 
-void BattleManager::battleStart(std::shared_ptr<player> _player, std::shared_ptr<player> _npc, std::string _pocketMon, int level)
+void BattleManager::battleStart(std::shared_ptr<player> _player, std::shared_ptr<player> _npc, std::string _pocketmonName, int _level)
 {
-
+	if (_level != 0)
+	{
+		PocketMon temp = POCKETMONMANAGER->genPocketMon(_pocketmonName, _level);
+		SCENEMANAGER->battleScenePush(_player, temp);
+	}
+	else
+	{
+		SCENEMANAGER->battleScenePush(_player, _npc);
+	}
 }
 
 //void BattleManager::battleStart(std::shared_ptr<player> _player)

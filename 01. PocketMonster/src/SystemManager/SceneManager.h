@@ -1,5 +1,7 @@
 ﻿#pragma once
 #include "Game/GameScene/Scene.h"
+#include "Game/GameObject/Character/player.h"
+#include "Game/GameObject/Pocketmon/PocketMon.h"
 
 class SceneManager {
 public:
@@ -17,7 +19,8 @@ public:
 	bool changeScene(std::string sceneName);
 	Scene* getCurScene() { return _currentScene; }
 	bool scenePush(std::string sceneName);
-	//bool battleScenePush(std::string sceneName, std::shared_ptr<player> _player);
+	bool battleScenePush(std::shared_ptr<player> _player, std::shared_ptr<player> _npc);
+	bool battleScenePush(std::shared_ptr<player> _player, PocketMon& _pocketMon);
 	bool scenePop();
 
 private:

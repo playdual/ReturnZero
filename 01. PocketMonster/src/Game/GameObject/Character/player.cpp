@@ -74,6 +74,10 @@ bool player::init()
 
 	m_playerBeforeArrowMemory = 0;
 	m_playerCurrentArrowMemory = 0;
+
+	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("파이리", 40)));
+	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("파이리", 50)));
+		
 	return true;
 }
 

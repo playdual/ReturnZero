@@ -1,5 +1,7 @@
 ﻿#pragma once
 #include "stdafx.h"
+#include "Game/GameObject/Pocketmon/PocketMon.h"
+#include "Game/GameObject/Character/player.h"
 
 class Scene {
 public:
@@ -8,7 +10,8 @@ public:
 
 public:
 	virtual bool init() = 0;
-	//virtual bool init(std::shared_ptr<player> _player) = 0;
+	virtual bool init(std::shared_ptr<class player> _player, std::shared_ptr<player> _npc) { return true; };
+	virtual bool init(std::shared_ptr<player> _player, class PocketMon& _pocketmon) { return true; };
 	virtual void update(float _deltaTime) = 0;
 	virtual void release() = 0;
 

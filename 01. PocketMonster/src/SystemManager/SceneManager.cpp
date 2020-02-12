@@ -105,39 +105,33 @@ bool SceneManager::scenePush(std::string sceneName)
 		return true;
 	}
 }
-//
-//bool SceneManager::battleScenePush(std::string sceneName, std::shared_ptr<player> _player);
-//{
-//	auto find = _mSceneList.find(sceneName);
-//
-//	if (find == _mSceneList.end())
-//		return false;
-//
-//	if (SUCCEEDED(find->second->init()))
-//	{
-//		_currentScene = find->second;
-//		sceneStack.push(find->second);
-//
-//		return true;
-//	}
-//}
 
+bool SceneManager::battleScenePush(std::shared_ptr<player> _player, std::shared_ptr<player> _npc)
+{
+	auto find = _mSceneList.find("battle");
 
-//bool SceneManager::battleScenePush(std::string sceneName, std::shared_ptr<player> _player)
-//{
-//	auto find = _mSceneList.find(sceneName);
-//
-//	if (find == _mSceneList.end())
-//		return false;
-//
-//	if (SUCCEEDED(find->second->init(_player)))
-//	{
-//		_currentScene = find->second;
-//		sceneStack.push(find->second);
-//
-//		return true;
-//	}
-//}
+	if (SUCCEEDED(find->second->init(_player, _npc)))
+	{
+		_currentScene = find->second;
+		sceneStack.push(find->second);
+
+		return true;
+	}
+	return false;
+}
+
+bool SceneManager::battleScenePush(std::shared_ptr<player> _player, PocketMon & _pocketMon)
+{
+	auto find = _mSceneList.find("battle");
+
+	if (SUCCEEDED(find->second->init(_player, _pocketMon)))
+	{
+		_currentScene = find->second;
+		sceneStack.push(find->second);
+
+		return true;
+	}
+}
 
 bool SceneManager::scenePop()
 {

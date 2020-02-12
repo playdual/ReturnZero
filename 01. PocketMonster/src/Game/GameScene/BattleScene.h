@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Scene.h"
 #include "Game/GameObject/Pocketmon/PocketMon.h"
+#include "Game/GameObject/Character/player.h"
 
 //각 이미지별 정위치 좌표
 //플레이어 UI 정위치
@@ -14,6 +15,8 @@
 #define ENEMYPOCKETMONX 664
 #define ENEMYSTATUSX 55
 
+class player;
+class PocketMon;
 class BattleScene
 	:public Scene
 {
@@ -23,11 +26,12 @@ public:
 
 public:
 	bool init() override;
-	//bool init(std::shared_ptr<player> _player) override;
+	bool init(std::shared_ptr<player> _player, std::shared_ptr<player> _npc) override;
+	bool init(std::shared_ptr<player> _player, PocketMon& _pocketmon) override;
+	void update(float _deltaTime) override;
 	void release() override;
 
 public:
-	void update(float _deltaTime) override;
 	void render(HDC hdc) override;
 	void afterRender(HDC hdc) override;
 	void debugRender(HDC hdc) override;
@@ -103,9 +107,12 @@ public:
 	
 	
 private:
-	//test
-	PocketMon m_playerPocketmon;
+	
+	std::vector<std::shared_ptr<PocketMon>> m_playerPocketmons ;
+	std::shared_ptr<PocketMon> selectPocketmon;
 	PocketMon m_wildPocketmon;
+	PocketMon* temp;
+	std::shared_ptr<PocketMon> temp2;
 
 	//bool moveOn;
 

@@ -33,6 +33,7 @@ public:
 	void isNotChangeMap();
 	bool getisAfter();
 	bool getisMenu();
+	std::vector<std::shared_ptr<class PocketMon>>& getPocketmons() { return Pocketmons; }
 	void setisMenu(bool ismenuvalue);
 	//void rectInCamera(UTIL::IRECT& outRect, const UTIL::IRECT& realRect, bool& isOutput);
 private:
@@ -103,6 +104,6 @@ private:
 	Animation* m_aniplayerMoveRight;
 
 	std::vector<std::shared_ptr<PocketMon>> Pocketmons;
-	std::shared_ptr<Inventory> Inven;
+	std::shared_ptr<class Inventory> Inven;
 
 };
