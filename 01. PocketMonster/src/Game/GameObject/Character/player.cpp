@@ -1,7 +1,7 @@
 ﻿#include "stdafx.h"
 #include "player.h"
 #include "Common/GameManagers.h"
-
+#include "Game/GameScene/PocketmonBagScene.h"
 
 player::player()
 {
@@ -23,7 +23,7 @@ player::~player()
 
 bool player::init()
 {
-	std::cout << "sunwoo Scene init!" << std::endl;
+	std::cout << "Player init!" << std::endl;
 	m_outPlayerRect = UTIL::IRectMakeCenter(WINSIZEX / 2, WINSIZEY / 2, TILE_WIDTH, TILE_HEIGHT);
 	CAMERAMANAGER->setCameraFocus(&m_playerRect.centerX, &m_playerRect.centerY,WINSIZEX/2,WINSIZEY/2);
 	CAMERAMANAGER->update();
@@ -34,11 +34,6 @@ bool player::init()
 
 	//player img
 	m_playerImg = IMAGEMANAGER->addFrameImage("playerimg", "images/newPlayer.bmp", 305, 510, 4, 5, true, RGB(255, 0, 255));
-
-	//player Base Arrow img
-
-	//int arrlen[] = { 1,2,3,7,8 };
-	//ANIMATIONMANAGER->addAnimation("ani2", "camel", arrlen, 3, 5, true);
 
 	int down[] = { 0 };
 	int up[] = { 1 };
@@ -75,12 +70,17 @@ bool player::init()
 	m_playerBeforeArrowMemory = 0;
 	m_playerCurrentArrowMemory = 0;
 
+	SCENEMANAGER->addScene("PocketmonBagScene", new PocketmoninfoScene(Pocketmons));
+
 	return true;
 }
 
 void player::update(float _deltaTime)
 {
-
+	//temp
+	if (KEYMANAGER->isOnceKeyDown(P1_USEITEM)) {
+		Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Squirtle", 31)));
+	}
 	if (!ismenu)
 	{	if (KEYMANAGER->isOnceKeyDown(GAME_MENUPROTO))
 		{

@@ -29,10 +29,9 @@ bool TownScene::init()
 	//기본 메뉴 인덱스
 	m_menuIndex = 0;
 	//최대 메뉴갯수
-
+	
 
 	Menu.push_back(MenuBar("리포트", 3));
-	Menu.push_back(MenuBar("포켓몬", 0));
 	Menu.push_back(MenuBar("설정", 4));
 	Menu.push_back(MenuBar("가방", 1));
 	Menu.push_back(MenuBar("닫기", 5));
@@ -97,7 +96,23 @@ void TownScene::update(float _deltaTime)
 		//메뉴인덱스(화살표)
 		m_IndexMenuRect = UTIL::IRectMake(WINSIZEX / 2 + 230, 70 + m_menuIndex * 70, 15, 20);
 
+		//포켓몬 메뉴바 추가 삭제 알고리즘
+		if (m_player->getCountPocketMon() == 0) {
+			delMenu("포켓몬");
+			isPocketmonMenuOn = false;
+		}
+		else {
+			if (isPocketmonMenuOn == false) {
+				addMenu(MenuBar("포켓몬", 0));
+				isPocketmonMenuOn = true;
+			}
+		}
+
 		//메뉴끄기
+		if (Menu[m_menuIndex].menuName == "포켓몬" && KEYMANAGER->isOnceKeyDown(P1_Z))
+		{
+			SCENEMANAGER->scenePush("PocketmonBagScene");
+		}
 
 
 		if (Menu[m_menuIndex].menuName == "닫기" && KEYMANAGER->isOnceKeyDown(P1_Z))
@@ -157,10 +172,10 @@ void TownScene::addMenu(MenuBar _newMenu)
 	menuUpdate();
 }
 
-void TownScene::delMenu(MenuBar _targetMenu)
+void TownScene::delMenu(std::string _menuName)
 {
 	for (auto menubar = Menu.begin(); menubar != Menu.end(); ++menubar) {
-		if (menubar->menuName == _targetMenu.menuName) {
+		if (menubar->menuName == _menuName) {
 			Menu.erase(menubar);
 			break;
 		}

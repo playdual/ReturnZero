@@ -35,6 +35,7 @@ public:
 	bool getisMenu();
 	std::vector<std::shared_ptr<class PocketMon>>& getPocketmons() { return Pocketmons; }
 	void setisMenu(bool ismenuvalue);
+	int getCountPocketMon() { return Pocketmons.size(); }
 	//void rectInCamera(UTIL::IRECT& outRect, const UTIL::IRECT& realRect, bool& isOutput);
 private:
 	UTIL::IRECT m_playerRect;

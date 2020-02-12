@@ -22,7 +22,7 @@ public:
 
 private:
 	void addMenu(MenuBar _newMenu);
-	void delMenu(MenuBar _targetMenu);
+	void delMenu(std::string _menuName);
 	void menuUpdate();
 
 private:
@@ -37,6 +37,7 @@ private:
 	int m_menuIndexMax;
 	Image* m_menuImg;
 	Image* m_IndexMenuImg;
+	bool isPocketmonMenuOn = false;
 
 	std::vector<MenuBar> Menu;
 };
