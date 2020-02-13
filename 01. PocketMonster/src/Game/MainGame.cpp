@@ -19,30 +19,95 @@ MainGame::~MainGame()
 HRESULT MainGame::init()
 {
 	GameNode::init();
-	IMAGEMANAGER->addImage("trainersMan", "Images/Trainers/trainers_man.bmp", 64 * 3, 64 * 3, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("pailiFront", "Images/pocketmons/pailiFront.bmp", 60 * 3, 61 * 3, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("pailiBack", "Images/pocketmons/pailiBack.bmp", 61 * 3, 61 * 3, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("pikachuFront", "Images/pocketmons/PikachuFront.bmp", 61 * 3, 61 * 3, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("trainersMan",	"Images/Trainers/trainers_man.bmp", 64 * 3, 64 * 3, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("pailiFront",	"Images/pocketmons/pailiFront.bmp", 60 * 3, 61 * 3, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("pailiBack",		"Images/pocketmons/pailiBack.bmp", 61 * 3, 61 * 3, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("pikachuFront",	"Images/pocketmons/PikachuFront.bmp", 61 * 3, 61 * 3, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addImage("GrassTile1", "images/GrassTile1.bmp", TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("Bush1", "images/Bush1.bmp", TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("Tree1", "images/Tree1.bmp", TILE_WIDTH, TILE_HEIGHT + 23, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("GrassTile1",	"images/GrassTile1.bmp",		TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("Bush1",			"images/Bush1.bmp",				TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("Tree1",			"images/Tree1.bmp",				TILE_WIDTH, TILE_HEIGHT + 23, true, RGB(255, 0, 255));
 
 	//rsc
-	IMAGEMANAGER->addImage("인벤토리씬", "Images/InvenScene.bmp", 0, 0, WINSIZEX, WINSIZEY);
-	IMAGEMANAGER->addImage("아이템창", "Images/itemBag.bmp", 62 * 5, 64 * 5, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("임폴트창", "Images/importBag.bmp", 62 * 5, 64 * 5, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("포케볼창", "Images/ballBag.bmp", 62 * 5, 64 * 5, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("아이템창태그", "Images/ItemsTag.bmp", 67 * 5, 34 * 4, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("임폴트창태그", "Images/KeyItemsTag.bmp", 67 * 5, 34 * 4, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("포케볼창태그", "Images/BallTag.bmp", 67 * 5, 34 * 4, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("이전화면표시", "Images/BefoeImage.bmp", 18 * 5, 17 * 5, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("다음화면표시", "Images/NextImage.bmp", 18 * 5, 17 * 5, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("현재아이템표시", "Images/itemPointer.bmp", 28 * 4, 28 * 4, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("아이템인벤메뉴", "Images/menu.bmp", 63 * 5, 63 * 6, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("그외인벤메뉴", "Images/menu.bmp", 63 * 5, 63 * 5, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("인벤메뉴상세", "Images/invenMenuBottom.bmp", 182 *3, 29* 7, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("인벤토리씬",		"Images/InvenScene.bmp",		0, 0, WINSIZEX, WINSIZEY);
+	IMAGEMANAGER->addImage("아이템창",		"Images/itemBag.bmp",			62 * 5, 64 * 5, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("임폴트창",		"Images/importBag.bmp",			62 * 5, 64 * 5, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("포케볼창",		"Images/ballBag.bmp",			62 * 5, 64 * 5, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("아이템창태그",	"Images/ItemsTag.bmp",			67 * 5, 34 * 4, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("임폴트창태그",	"Images/KeyItemsTag.bmp",		67 * 5, 34 * 4, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("포케볼창태그",	"Images/BallTag.bmp",			67 * 5, 34 * 4, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("이전화면표시",	"Images/BefoeImage.bmp",		18 * 5, 17 * 5, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("다음화면표시",	"Images/NextImage.bmp",			18 * 5, 17 * 5, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("현재아이템표시", "Images/itemPointer.bmp",		28 * 4, 28 * 4, true, RGB(255, 0, 255));
 	
+	//pocketmon Img
+	IMAGEMANAGER->addImage("CharmanderFront",		"images/pocketmons/CharmanderFront.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("CharmanderBack",		"images/pocketmons/CharmanderBack.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CharmanderIcon",	"images/pocketmons/CharmanderIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("BulbasaurFront",		"images/pocketmons/BulbasaurFront.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("BulbasaurBack",			"images/pocketmons/BulbasaurBack.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("BulbasaurIcon",	"images/pocketmons/BulbasaurIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("SquirtleFront",			"images/pocketmons/SquirtleFront.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("SquirtleBack",			"images/pocketmons/SquirtleBack.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("SquirtleIcon",		"images/pocketmons/SquirtleIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("PidgeyFront",			"images/pocketmons/PidgeyFront.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("PidgeyBack",			"images/pocketmons/PidgeyBack.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("PidgeyIcon",		"images/pocketmons/PidgeyIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("PikachuFront",			"images/pocketmons/PikachuFront.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("PikachuBack",			"images/pocketmons/PikachuBack.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("PikachuIcon",		"images/pocketmons/PikachuIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("CaterpieFront",			"images/pocketmons/CaterpieFront.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("CaterpieBack",			"images/pocketmons/CaterpieBack.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("CaterpieIcon",		"images/pocketmons/CaterpieIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("RattataFront",			"images/pocketmons/RattataFront.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("RattataBack",			"images/pocketmons/RattataBack.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("RattataIcon",		"images/pocketmons/RattataIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("VulpixFront",			"images/pocketmons/VulpixFront.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("VulpixBack",			"images/pocketmons/VulpixBack.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("VulpixIcon",		"images/pocketmons/VulpixIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("OddishFront",			"images/pocketmons/OddishFront.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("OddishBack",			"images/pocketmons/OddishBack.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("OddishIcon",		"images/pocketmons/OddishIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("PoliwagFront",			"images/pocketmons/PoliwagFront.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("PoliwagBack",			"images/pocketmons/PoliwagBack.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("PoliwagIcon",		"images/pocketmons/PoliwagIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
+
+	//pocketMon Sex
+	IMAGEMANAGER->addImage("WomanSex",				"images/sexwoman.bmp", 30, 48, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("ManSex",				"images/sexman.bmp", 30, 48, true, RGB(255, 0, 255));
+
+	//pocketMon Bag UI
+	IMAGEMANAGER->addImage("Base",			"images/poketmonbagBase.bmp",		0, 0, WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("mainOn",		"images/pocketmonBagMainOn.bmp",	0, 0, 368, 287, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("mainOff",		"images/pocketmonBagMainOff.bmp",	0, 0, 367, 286, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("sun0On",		"images/pocketmonBagSubOn.bmp",		0, 0, 651, 119, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("sun0Off",		"images/pocketmonBagSubOff.bmp",	0, 0, 651, 119, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("sun1On",		"images/pocketmonBagSubOn.bmp",		0, 0, 651, 119, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("sun1Off",		"images/pocketmonBagSubOff.bmp",	0, 0, 651, 119, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("sun2On",		"images/pocketmonBagSubOn.bmp",		0, 0, 651, 119, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("sun2Off",		"images/pocketmonBagSubOff.bmp",	0, 0, 651, 119, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("sun3On",		"images/pocketmonBagSubOn.bmp",		0, 0, 651, 119, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("sun3Off",		"images/pocketmonBagSubOff.bmp",	0, 0, 651, 119, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("sun4On",		"images/pocketmonBagSubOn.bmp",		0, 0, 651, 119, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("sun4Off",		"images/pocketmonBagSubOff.bmp",	0, 0, 651, 119, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("cancleOn",		"images/cancleon.bmp",				0, 0, 250, 130, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("cancleOff",		"images/cancleoff.bmp",				0, 0, 250, 130, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage("BagHpBarGreen",	"images/HpBarGreen.bmp",			0, 0, 208, 15, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("BagHpBarYellow","images/HpBarYellow.bmp",			0, 0, 208, 15, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("BagHpBarRed",	"images/HpBarRed.bmp",				0, 0, 208, 15, true, RGB(255, 0, 255));
+	//
+
+
 	MAPMANGER->init();
 	ITEMMANAGER->init();
 	POCKETMONMANAGER->init();

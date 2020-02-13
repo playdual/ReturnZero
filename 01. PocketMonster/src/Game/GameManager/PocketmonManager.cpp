@@ -163,8 +163,9 @@ PocketMon PocketmonManager::genCharmander(int level)
 	pocket.m_Attribute = PockemonAttibute::PockemonAttibuteFire;
 	pocket.m_speed = 2 * level;
 	pocket.gender = true;
-	pocket.m_pocketmonFrontImg = NULL;
-	pocket.m_pocketmonBackImg = NULL;
+	pocket.m_pocketmonFrontImg = IMAGEMANAGER->findImage("CharmanderFront");
+	pocket.m_pocketmonBackImg = IMAGEMANAGER->findImage("CharmanderBack");
+	pocket.m_pocketmonIconImg = IMAGEMANAGER->findImage("CharmanderIcon");
 
 	pocket.skillList.push_back(tackleProto);
 	if(level>7)pocket.skillList.push_back(emberProto);
@@ -193,8 +194,9 @@ PocketMon PocketmonManager::genBulbasaur(int level)
 	pocket.m_Attribute = PockemonAttibute::PockemonAttibuteGrass;
 	pocket.m_speed = 10 + level;
 	pocket.gender = true;
-	pocket.m_pocketmonFrontImg = NULL;
-	pocket.m_pocketmonBackImg = NULL;
+	pocket.m_pocketmonFrontImg = IMAGEMANAGER->findImage("BulbasaurFront");
+	pocket.m_pocketmonBackImg = IMAGEMANAGER->findImage("BulbasaurBack");
+	pocket.m_pocketmonIconImg = IMAGEMANAGER->findImage("BulbasaurIcon");
 
 	pocket.skillList.push_back(tackleProto);
 	if (level > 7)pocket.skillList.push_back(vineWhipProto);
@@ -222,8 +224,9 @@ PocketMon PocketmonManager::genSquirtle(int level)
 	pocket.m_Attribute = PockemonAttibute::PockemonAttibuteWater;
 	pocket.m_speed = level+level;
 	pocket.gender = false;
-	pocket.m_pocketmonFrontImg = NULL;
-	pocket.m_pocketmonBackImg = NULL;
+	pocket.m_pocketmonFrontImg = IMAGEMANAGER->findImage("SquirtleFront");
+	pocket.m_pocketmonBackImg = IMAGEMANAGER->findImage("SquirtleBack");
+	pocket.m_pocketmonIconImg = IMAGEMANAGER->findImage("SquirtleIcon");
 
 	pocket.skillList.push_back(tackleProto);
 	if (level > 7)pocket.skillList.push_back(waterSaluteProto);
@@ -251,8 +254,9 @@ PocketMon PocketmonManager::genPidgey(int level)
 	pocket.m_Attribute = PockemonAttibute::PockemonAttibuteFly;
 	pocket.m_speed = 3 + level +level;
 	pocket.gender = true;
-	pocket.m_pocketmonFrontImg = NULL;
-	pocket.m_pocketmonBackImg = NULL;
+	pocket.m_pocketmonFrontImg = IMAGEMANAGER->findImage("PidgeyFront");
+	pocket.m_pocketmonBackImg = IMAGEMANAGER->findImage("PidgeyBack");
+	pocket.m_pocketmonIconImg = IMAGEMANAGER->findImage("PidgeyIcon");
 
 	pocket.skillList.push_back(quickAttackProto);
 	if (level > 7)pocket.skillList.push_back(wingAttackProto);
@@ -281,8 +285,10 @@ PocketMon PocketmonManager::genPikachu(int level)
 	pocket.m_Attribute = PockemonAttibute::PockemonAttibuteElectric;
 	pocket.m_speed = 5 + level + level;
 	pocket.gender = false;
-	pocket.m_pocketmonFrontImg = NULL;
-	pocket.m_pocketmonBackImg = NULL;
+	pocket.m_pocketmonFrontImg = IMAGEMANAGER->findImage("PikachuFront");
+	pocket.m_pocketmonBackImg = IMAGEMANAGER->findImage("PikachuBack");
+	pocket.m_pocketmonIconImg = IMAGEMANAGER->findImage("PikachuIcon");
+
 
 	pocket.skillList.push_back(quickAttackProto);
 	if (level > 7)pocket.skillList.push_back(thunderWaveProto);
@@ -311,8 +317,10 @@ PocketMon PocketmonManager::genCaterpie(int level)
 	pocket.m_Attribute = PockemonAttibute::PockemonAttibuteNormal;
 	pocket.m_speed = 4 + level;
 	pocket.gender = false;
-	pocket.m_pocketmonFrontImg = NULL;
-	pocket.m_pocketmonBackImg = NULL;
+	pocket.m_pocketmonFrontImg = IMAGEMANAGER->findImage("CaterpieFront");
+	pocket.m_pocketmonBackImg = IMAGEMANAGER->findImage("CaterpieBack");
+	pocket.m_pocketmonIconImg = IMAGEMANAGER->findImage("CaterpieIcon");
+
 
 	pocket.skillList.push_back(tackleProto);
 	if (level > 4)pocket.skillList.push_back(scratchProto);
@@ -342,8 +350,10 @@ PocketMon PocketmonManager::genRattata(int level)
 	pocket.m_Attribute = PockemonAttibute::PockemonAttibuteNormal;
 	pocket.m_speed = 5 + level;
 	pocket.gender = false;
-	pocket.m_pocketmonFrontImg = NULL;
-	pocket.m_pocketmonBackImg = NULL;
+	pocket.m_pocketmonFrontImg = IMAGEMANAGER->findImage("RattataFront");
+	pocket.m_pocketmonBackImg = IMAGEMANAGER->findImage("RattataBack");
+	pocket.m_pocketmonIconImg = IMAGEMANAGER->findImage("RattataIcon");
+
 
 	pocket.skillList.push_back(tackleProto);
 	if (level > 4)pocket.skillList.push_back(scratchProto);
@@ -373,8 +383,10 @@ PocketMon PocketmonManager::genVulpix(int level)
 	pocket.m_Attribute = PockemonAttibute::PockemonAttibuteFire;
 	pocket.m_speed = 2*level;
 	pocket.gender = true;
-	pocket.m_pocketmonFrontImg = NULL;
-	pocket.m_pocketmonBackImg = NULL;
+	pocket.m_pocketmonFrontImg = IMAGEMANAGER->findImage("VulpixFront");
+	pocket.m_pocketmonBackImg = IMAGEMANAGER->findImage("VulpixBack");
+	pocket.m_pocketmonIconImg = IMAGEMANAGER->findImage("VulpixIcon");
+
 
 	pocket.skillList.push_back(quickAttackProto);
 	if (level > 7)pocket.skillList.push_back(emberProto);
@@ -402,8 +414,10 @@ PocketMon PocketmonManager::genOddish(int level)
 	pocket.m_Attribute = PockemonAttibute::PockemonAttibuteGrass;
 	pocket.m_speed = 2 * level;
 	pocket.gender = true;
-	pocket.m_pocketmonFrontImg = NULL;
-	pocket.m_pocketmonBackImg = NULL;
+	pocket.m_pocketmonFrontImg = IMAGEMANAGER->findImage("OddishFront");
+	pocket.m_pocketmonBackImg = IMAGEMANAGER->findImage("OddishBack");
+	pocket.m_pocketmonIconImg = IMAGEMANAGER->findImage("OddishIcon");
+
 
 	pocket.skillList.push_back(tackleProto);
 	if (level > 6)pocket.skillList.push_back(vineWhipProto);
@@ -431,8 +445,10 @@ PocketMon PocketmonManager::genPoliwag(int level)
 	pocket.m_Attribute = PockemonAttibute::PockemonAttibuteWater;
 	pocket.m_speed = 2 * level;
 	pocket.gender = true;
-	pocket.m_pocketmonFrontImg = NULL;
-	pocket.m_pocketmonBackImg = NULL;
+	pocket.m_pocketmonFrontImg = IMAGEMANAGER->findImage("PoliwagFront");
+	pocket.m_pocketmonBackImg = IMAGEMANAGER->findImage("PoliwagBack");
+	pocket.m_pocketmonIconImg = IMAGEMANAGER->findImage("PoliwagIcon");
+
 
 	pocket.skillList.push_back(tackleProto);
 	if (level > 6)pocket.skillList.push_back(waterSaluteProto);

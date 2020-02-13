@@ -25,6 +25,7 @@ public:
 	bool m_state; //1.플레이어, 2.npc, 3.야생
 	Image* m_pocketmonFrontImg;
 	Image* m_pocketmonBackImg;
+	Image* m_pocketmonIconImg;
 	std::string m_name;
 	std::string m_customName;
 	PockemonAttibute m_Attribute;
