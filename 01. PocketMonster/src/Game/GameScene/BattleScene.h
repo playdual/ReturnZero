@@ -122,7 +122,7 @@ public:
 	
 private:
 	
-	std::vector<std::shared_ptr<PocketMon>> m_playerPocketmons ;
+	std::vector<std::shared_ptr<PocketMon>> m_playerPocketmons;
 	std::shared_ptr<PocketMon> selectPocketmon;
 	PocketMon m_wildPocketmon;
 

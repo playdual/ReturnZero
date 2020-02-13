@@ -86,7 +86,7 @@ void player::update(float _deltaTime)
 		Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Squirtle", 31)));
 	}
 	if (!ismenu)
-	{	if (KEYMANAGER->isOnceKeyDown(GAME_MENUPROTO))
+	{	if (KEYMANAGER->isOnceKeyDown(GAME_MENU))
 		{
 			ismenu = true;
 		}

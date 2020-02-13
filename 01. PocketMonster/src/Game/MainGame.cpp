@@ -38,8 +38,15 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("포케볼창태그",	"Images/BallTag.bmp",			67 * 5, 34 * 4, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("이전화면표시",	"Images/BefoeImage.bmp",		18 * 5, 17 * 5, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("다음화면표시",	"Images/NextImage.bmp",			18 * 5, 17 * 5, true, RGB(255, 0, 255));
+
 	IMAGEMANAGER->addImage("현재아이템표시", "Images/itemPointer.bmp",		28 * 4, 28 * 4, true, RGB(255, 0, 255));
-	
+	IMAGEMANAGER->addImage("아이템인벤메뉴", "Images/menu.bmp", 63 * 5, 63 * 6, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("그외인벤메뉴", "Images/menu.bmp", 63 * 5, 63 * 5, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("인벤메뉴상세", "Images/invenMenuBottom.bmp", 182 * 3, 29 * 7, true, RGB(255, 0, 255));
+
+
+
+
 	//pocketmon Img
 	IMAGEMANAGER->addImage("CharmanderFront",		"images/pocketmons/CharmanderFront.bmp", 100, 100, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("CharmanderBack",		"images/pocketmons/CharmanderBack.bmp", 100, 100, true, RGB(255, 0, 255));
@@ -105,9 +112,9 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("BagHpBarGreen",	"images/HpBarGreen.bmp",			0, 0, 208, 15, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("BagHpBarYellow","images/HpBarYellow.bmp",			0, 0, 208, 15, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("BagHpBarRed",	"images/HpBarRed.bmp",				0, 0, 208, 15, true, RGB(255, 0, 255));
+	
+	
 	//
-
-
 	MAPMANGER->init();
 	ITEMMANAGER->init();
 	POCKETMONMANAGER->init();
@@ -121,11 +128,9 @@ HRESULT MainGame::init()
 	inven->init();
 	SCENEMANAGER->addScene("town", new TownScene);
 	SCENEMANAGER->addScene("battle", new BattleScene);
-
-
 	SCENEMANAGER->addScene("inven", new InvenScene(inven));
 	SCENEMANAGER->scenePush("town");
-	SCENEMANAGER->changeScene("town");
+
 	sceneInit = true;
 
 	return S_OK;

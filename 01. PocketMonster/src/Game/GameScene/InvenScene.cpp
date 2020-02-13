@@ -225,7 +225,7 @@ void InvenScene::update(float _deltaTime)
 
 
 	//  =======================  인벤에서 물건 파는거 연습 ======================= //
-	if (KEYMANAGER->isOnceKeyDown(P1_q))
+	if (KEYMANAGER->isOnceKeyDown(P1_Q))
 	{
 		if(m_inven->m_isItemTag)
 			sellPotion();

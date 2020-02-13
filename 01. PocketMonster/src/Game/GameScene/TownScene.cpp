@@ -48,9 +48,9 @@ void TownScene::update(float _deltaTime)
 	m_map->setPlayerPosition(m_player->getPlayerBlockX(), m_player->getPlayerBlockY());
 	m_map->update(_deltaTime);
 
-	if (KEYMANAGER->isOnceKeyDown(GAME_MENU)) {
+	/*if (KEYMANAGER->isOnceKeyDown(GAME_MENU)) {
 		SCENEMANAGER->scenePush("inven");
-	}
+	}*/
 
 	//야생배틀
 	if (m_player->getisBattle())
@@ -108,12 +108,14 @@ void TownScene::update(float _deltaTime)
 			}
 		}
 
-		//메뉴끄기
 		if (Menu[m_menuIndex].menuName == "포켓몬" && KEYMANAGER->isOnceKeyDown(P1_Z))
 		{
 			SCENEMANAGER->scenePush("PocketmonBagScene");
 		}
-
+		if (Menu[m_menuIndex].menuName == "가방" && KEYMANAGER->isOnceKeyDown(P1_Z))
+		{
+			SCENEMANAGER->scenePush("inven");
+		}
 
 		if (Menu[m_menuIndex].menuName == "닫기" && KEYMANAGER->isOnceKeyDown(P1_Z))
 		{

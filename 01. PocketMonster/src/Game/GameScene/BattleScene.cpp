@@ -495,7 +495,7 @@ void BattleScene::pocketmonEffectInit()
 
 	//적
 	//피카츄 공격
-	EFFECTMANAGER->addEffect("전광석화", "images/attackEffect/picachu100v.bmp", 159*4, 550*4, 159*4, 110*4, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("전광석화", "images/attackEffect/100v.bmp", 159*4, 550*4, 159*4, 110*4, 1, 0.1f, 100);
 }
 
 //========================
@@ -848,12 +848,12 @@ void BattleScene::moveButton()
 	if (bag && KEYMANAGER->isOnceKeyDown(P1_Z))
 	{
 		//가방으로 씬체인지
-		//SCENEMANAGER->scenePush("bag");
+		SCENEMANAGER->scenePush("inven");
 	}
 	if (pocketmon && KEYMANAGER->isOnceKeyDown(P1_Z))
 	{
 		//포켓몬으로 씬체인지
-		//SCENEMANAGER->scenePush("pocketmon");
+		SCENEMANAGER->scenePush("PocketmonBagScene");
 	}
 	if (run && KEYMANAGER->isOnceKeyDown(P1_Z))
 	{
