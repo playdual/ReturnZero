@@ -34,7 +34,7 @@ enum class SkillClassify
 
 enum class ItemType
 {
-	ItemTypeClose = 0,s
+	ItemTypeClose = 0,
 	ItemTypePotion,				 // ?뚮났??
 	ITemTypeStatePotion,		 // stateHealPotion
 	ItemTypeBall,				 // ?ъ폆紐щ낵

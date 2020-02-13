@@ -269,6 +269,7 @@ private:
 	bool enemyExplainEffect;
 	bool enemySkillNameExplain;
 	bool enemySkillResultExplain;
+	bool enemySkillSelect;
 	int m_playerAlpha;
 	int m_playerTwinkleCount;
 	int m_playerMinusHp;
