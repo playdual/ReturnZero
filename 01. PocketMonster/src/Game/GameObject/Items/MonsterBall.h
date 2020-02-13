@@ -6,7 +6,7 @@ class MonsterBall
 {
 public:
 	MonsterBall(ItemType _type , Image* _img, UTIL::IRECT _rect, std::string _name,
-		int _count, int _price, std::string _description, int _random);
+		int _count, int _price, std::string _description, int _poketCatchPercent);
 	~ MonsterBall();
 
 	virtual bool init() override;
@@ -17,6 +17,6 @@ public:
 	virtual void debugRender(HDC hdc) override;
 
 private:
-	int m_random;
+	int m_poketCatchPercent;
 };
 

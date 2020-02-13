@@ -42,6 +42,7 @@ enum class ItemType
 	ItemTypeSkillMachine,		 // ?ㅽ궗 癒몄떊
 	ItemTypeEquipable,			 // 臾쇨굔 ?μ갑
 	ItemTypeAbilityPotion,		 // ?λ젰 ?μ긽 ?ъ뀡
+	ItemTypeNone
 };
 
 
@@ -91,7 +92,7 @@ struct itemText {
 	int						damage[100];	//11
 	int					addAbility[100];	//12
 	PockemonAttibute   atibuteKind[100];	//13
-	int						random[100];	//14
+	int			 poketCatchPercent[100];	//14
 };
 
 struct PocketSkill 
@@ -114,6 +115,19 @@ struct PocketSkill
 		skilltype = _skillType;
 		skillclassify = _skillClassify;
 	}
+};
+
+struct ItemInfo
+{
+	ItemType		type;
+	std::string		name;
+	int				damage;
+	int				healHp;
+	int				pocketCatchRatio;
+
+	ItemInfo() 
+		: name(""), type(ItemType::ItemTypeNone), damage(0), healHp(0), pocketCatchRatio(0)
+	{}
 };
 
 struct MenuBar {

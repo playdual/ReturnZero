@@ -6,6 +6,9 @@ Potion::Potion(ItemType _type, Image* _potionImage, UTIL::IRECT _rect, std::stri
 	int _price, std::string _description, int _healHp, int _hitDamage )
 	: Item(_type, _potionImage, _rect, _name, _count, _price, _description), m_healHp(_healHp), m_hitDamage(_hitDamage),m_potionImage(_potionImage)
 {
+	m_itemInfo.type = _type;
+	m_itemInfo.name = _name;
+	m_itemInfo.healHp = _healHp;
 }
 
 Potion::~Potion()

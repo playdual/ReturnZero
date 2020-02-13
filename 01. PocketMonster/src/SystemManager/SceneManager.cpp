@@ -140,6 +140,18 @@ bool SceneManager::scenePop()
 		sceneStack.pop();
 		_currentScene = sceneStack.top();
 	}
-	return false;
+	return true;
+}
+
+ItemInfo SceneManager::scenePop(bool _isGetInfom)
+{
+	ItemInfo ret;
+	if (sceneStack.size() > 1) {
+		ret = sceneStack.top()->getItemInfo();
+		sceneStack.top()->release();
+		sceneStack.pop();
+		_currentScene = sceneStack.top();
+	}
+	return ret;
 }
 

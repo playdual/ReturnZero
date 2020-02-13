@@ -39,7 +39,8 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("이전화면표시", "Images/BefoeImage.bmp", 18 * 5, 17 * 5, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("다음화면표시", "Images/NextImage.bmp", 18 * 5, 17 * 5, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("현재아이템표시", "Images/itemPointer.bmp", 28 * 4, 28 * 4, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("인벤메뉴", "Images/menu.bmp", 63 * 5, 63 * 6, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("아이템인벤메뉴", "Images/menu.bmp", 63 * 5, 63 * 6, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("그외인벤메뉴", "Images/menu.bmp", 63 * 5, 63 * 5, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("인벤메뉴상세", "Images/invenMenuBottom.bmp", 182 *3, 29* 7, true, RGB(255, 0, 255));
 	
 	MAPMANGER->init();
@@ -89,8 +90,7 @@ void MainGame::update()
 	TIMEMANAGER->update(60.f);
 	deltaTime = TIMEMANAGER->getElapsedTime();
 	EFFECTMANAGER->update();
-	SCENEMANAGER->update(deltaTime);
-	ANIMANAGER->update(deltaTime);
+	SCENEMANAGER->update(deltaTime);	ANIMANAGER->update(deltaTime);
 }
 
 void MainGame::render()

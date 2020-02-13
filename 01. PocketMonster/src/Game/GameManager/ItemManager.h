@@ -13,7 +13,7 @@ public:
 		std::string _itemName, int _count, int _price, std::string _descript);
 	
 	void addPokemonBallItem(std::string _itemKey,const char* _imageName, int _x, int _y, int _imageW, int _imageH,
-		std::string _itemName, int _count, int _price, std::string _descript, int _random);
+		std::string _itemName, int _count, int _price, std::string _descript, int _poketCatchPercent);
 	
 	void addPotionItem(std::string _itemKey, const char* _imageName, int _x , int _y ,int _imageW, int _imageH, 
 		std::string _itemName, int _count , int _price, std::string _descript , int _healHp, int _hitDamage);

@@ -22,6 +22,7 @@ public:
 	bool battleScenePush(std::shared_ptr<player> _player, std::shared_ptr<player> _npc);
 	bool battleScenePush(std::shared_ptr<player> _player, PocketMon& _pocketMon);
 	bool scenePop();
+	ItemInfo scenePop(bool _isGetInfom);
 
 private:
 	typedef std::map<std::string, Scene*> mSceneList;

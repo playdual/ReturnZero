@@ -2,9 +2,12 @@
 #include "MonsterBall.h"
 #include "Common/SystemManagers.h"
 
-MonsterBall::MonsterBall(ItemType _type, Image* _img, UTIL::IRECT _rect, std::string _name, int _count, int _price, std::string _description , int _random)
-	:Item(_type, _img, _rect, _name, _count, _price, _description), m_random(_random)
+MonsterBall::MonsterBall(ItemType _type, Image* _img, UTIL::IRECT _rect, std::string _name, int _count, int _price, std::string _description , int _poketCatchPercent)
+	:Item(_type, _img, _rect, _name, _count, _price, _description), m_poketCatchPercent(_poketCatchPercent)
 {
+	m_itemInfo.type = _type;
+	m_itemInfo.name = _name;
+	m_itemInfo.pocketCatchRatio = _poketCatchPercent;
 }
 
 MonsterBall::~MonsterBall()

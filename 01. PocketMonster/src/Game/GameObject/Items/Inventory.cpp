@@ -81,18 +81,18 @@ void Inventory::update(float _deltaTime)
 	std::string temp;
 
 	// add item to inven (change Rect width, height) 
-	if (KEYMANAGER->isOnceKeyDown(P1_DOWN))
+	if (!m_isOpenMenu)
 	{
-		// 아이템 목록 체크 //
-		if (m_isItemTag)
+		if (KEYMANAGER->isOnceKeyDown(P1_DOWN))
 		{
-			for (auto&item : m_potionItem)
+			// 아이템 목록 체크 //
+			if (m_isItemTag)
 			{
-				if (item->m_itemNum == m_itemCount)
+				for (auto&item : m_potionItem)
 				{
-					if (item->m_ItemName != "닫기")
+					if (item->m_itemNum == m_itemCount)
 					{
-						if (!m_isOpenMenu)
+						if (item->m_ItemName != "닫기")
 						{
 							m_itemCount++;
 							break;
@@ -100,17 +100,14 @@ void Inventory::update(float _deltaTime)
 					}
 				}
 			}
-		}
-		// 임포트 아이템 순서 //
-		else if (m_isImportTag)
-		{
-			for (auto&item : m_importItem)
+			// 임포트 아이템 순서 //
+			else if (m_isImportTag)
 			{
-				if (item->m_itemNum == m_importCount)
+				for (auto&item : m_importItem)
 				{
-					if (item->m_ItemName != "임폴트닫기")
+					if (item->m_itemNum == m_importCount)
 					{
-						if (!m_isOpenMenu)
+						if (item->m_ItemName != "임폴트닫기")
 						{
 							m_importCount++;
 							break;
@@ -118,17 +115,14 @@ void Inventory::update(float _deltaTime)
 					}
 				}
 			}
-		}
-		// 포켓볼 아이템 순서 //
-		else if (m_isPokeBallTag)
-		{
-			for (auto&item : m_pockeBallItem)
+			// 포켓볼 아이템 순서 //
+			else if (m_isPokeBallTag)
 			{
-				if (item->m_itemNum == m_pokeBallCount)
+				for (auto&item : m_pockeBallItem)
 				{
-					if (item->m_ItemName != "몬스터볼닫기")
+					if (item->m_itemNum == m_pokeBallCount)
 					{
-						if (!m_isOpenMenu)
+						if (item->m_ItemName != "몬스터볼닫기")
 						{
 							m_pokeBallCount++;
 							break;
@@ -137,69 +131,62 @@ void Inventory::update(float _deltaTime)
 				}
 			}
 		}
-	}
 
-	if (KEYMANAGER->isOnceKeyDown(P1_UP))
-	{
-		if (m_isItemTag)
+		if (!m_isOpenMenu)
 		{
-			for (auto&item : m_potionItem)
+			if (KEYMANAGER->isOnceKeyDown(P1_UP))
 			{
-				if (item->m_itemNum == m_itemCount)
+				if (m_isItemTag)
 				{
-					if (item->m_itemNum == 0)
-					{   // 첫번째 아이템 이름을 담아서 예외처리 해준다.
-						temp = item->m_ItemName;
-					}
-
-					if (item->m_ItemName != temp)
+					for (auto&item : m_potionItem)
 					{
-						if (!m_isOpenMenu)
+						if (item->m_itemNum == m_itemCount)
 						{
-							m_itemCount--;
-							break;
+							if (item->m_itemNum == 0)
+						      // 첫번째 아이템 이름을 담아서 예외처리 해준다.
+								temp = item->m_ItemName;
+							if (item->m_ItemName != temp)
+							{
+								m_itemCount--;
+								break;
+							}
 						}
 					}
 				}
-			}
-		}
-		// 임포트 아이템 순서 //
-		if (m_isImportTag)
-		{
-		    for (auto&item : m_importItem)
-		    {
-		    	if (item->m_itemNum == m_importCount)
-		    	{
-		    		// 마지막 아이템 네임인 닫기를 만나면 카운트를 세지 않도록 해준다.
-		    		if (item->m_itemNum == 0)
-		    			temp = item->m_ItemName;
-		    
-		    		if (item->m_ItemName != temp)
-		    		{
-						if (!m_isOpenMenu)
-						{
-							m_importCount--;
-							break;
-						}
-		    		}
-		    	}
-		    }
-		}
 
-		else if (m_isPokeBallTag)
-		{
-			for (auto&item : m_pockeBallItem)
-			{
-				if (item->m_itemNum == m_pokeBallCount)
+				// 임포트 아이템 순서 //
+				if (m_isImportTag)
 				{
-					if (item->m_itemNum == 0)
-						temp = item->m_ItemName;
-					if (item->m_ItemName != temp)
+					for (auto&item : m_importItem)
 					{
-						if (!m_isOpenMenu)
+						if (item->m_itemNum == m_importCount)
 						{
-							m_pokeBallCount--;
-							break;
+							// 마지막 아이템 네임인 닫기를 만나면 카운트를 세지 않도록 해준다.
+							if (item->m_itemNum == 0)
+								temp = item->m_ItemName;
+
+							if (item->m_ItemName != temp)
+							{
+								m_importCount--;
+								break;
+							}
+						}
+					}
+				}
+
+				else if (m_isPokeBallTag)
+				{
+					for (auto&item : m_pockeBallItem)
+					{
+						if (item->m_itemNum == m_pokeBallCount)
+						{
+							if (item->m_itemNum == 0)
+								temp = item->m_ItemName;
+							if (item->m_ItemName != temp)
+							{
+								m_pokeBallCount--;
+								break;
+							}
 						}
 					}
 				}

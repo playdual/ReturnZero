@@ -3,6 +3,7 @@
 #include "Game/GameObject/Pocketmon/PocketMon.h"
 #include "Game/GameObject/Character/player.h"
 
+#include "Game/GameTypes.h"
 class Scene {
 public:
  	Scene() {};
@@ -14,11 +15,17 @@ public:
 	virtual bool init(std::shared_ptr<player> _player, class PocketMon& _pocketmon) { return true; };
 	virtual void update(float _deltaTime) = 0;
 	virtual void release() = 0;
+	
 
 public:
 	virtual void render(HDC hdc) = 0;
 	virtual void afterRender(HDC hdc) = 0;
 	virtual void debugRender(HDC hdc) = 0;
+
+	virtual ItemInfo getItemInfo() {
+		ItemInfo ret;
+		return ret;
+	}
 
 public:
 	virtual LRESULT SceneProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);

@@ -39,7 +39,7 @@ bool ItemManager::init()
 		case BALL:
 			addPokemonBallItem(itemPotion.name[i], itemPotion.imageFileName[i].c_str(),WINSIZEX / 2 - 100, itemPotion.rectY[i],
 				itemPotion.width[i], itemPotion.height[i], itemPotion.name[i],
-				itemPotion.count[i], itemPotion.price[i], itemPotion.description[i],itemPotion.random[i]);
+				itemPotion.count[i], itemPotion.price[i], itemPotion.description[i],itemPotion.poketCatchPercent[i]);
 			break;
 
 		case HEALPOTION:
@@ -98,7 +98,7 @@ void ItemManager::addClose(std::string _itemKey,const char * _imageName, int _x,
 	m_ItemList.insert(std::make_pair(_itemKey, temp));
 }
 void ItemManager::addPokemonBallItem(std::string _itemKey, const char * _imageName, int _x, int _y, int _imageW, int _imageH,
-	std::string _itemName, int _count, int _price, std::string _descript, int _random)
+	std::string _itemName, int _count, int _price, std::string _descript, int _poketCatchPercent)
 {
 	if (_imageName != NULL)
 		IMAGEMANAGER->addImage(_itemKey, _imageName, 100, 100);
@@ -107,7 +107,7 @@ void ItemManager::addPokemonBallItem(std::string _itemKey, const char * _imageNa
 		ItemType::ItemTypeBall,
 		IMAGEMANAGER->findImage(_itemKey),
 		UTIL::IRectMake(_x, _y, _imageW, _imageH),
-		_itemName, _count, _price, _descript, _random);
+		_itemName, _count, _price, _descript, _poketCatchPercent);
 
 	m_ItemList.insert(std::make_pair(_itemKey, temp));
 }
@@ -310,7 +310,7 @@ void ItemManager::itemTextInit()
 			if (itemPotion.itemKind[i] == 2)
 			{
 			case RANDOM :
-				itemPotion.random[i] = atoi(ptr);
+				itemPotion.poketCatchPercent[i] = atoi(ptr);
 				ptr = strtok(NULL, "#");
 			}
 			default:

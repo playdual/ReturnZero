@@ -19,11 +19,12 @@ public:
    int				m_price;			//
    std::string		m_description;		//
    int				m_itemNum;
+   ItemInfo			m_itemInfo;
 
 public:
 	/*virtual bool init() override;
 	virtual void update(float _deltaTime) override;
-
+	 
 	virtual void render(HDC hdc) override;
 	virtual void afterRender(HDC hdc) override;
 	virtual void debugRender(HDC hdc) override;*/
@@ -32,10 +33,12 @@ public:
 	void		setRect(UTIL::IRECT _iRect) { m_iRect = _iRect; }
 	Image*		getImage()	  { return m_img; }
   	int			getCount()	  { return m_count; }
+
 	std::string getItemName() { return m_ItemName; }
 	std::string getDescript() { return m_description; }
 	int			getItemNum()  { return m_itemNum;  }
 	void		setItemNum(int _itemNum) { m_itemNum = _itemNum; }
+	ItemInfo	getItemInfo() { return m_itemInfo; }
 
 private:
 	

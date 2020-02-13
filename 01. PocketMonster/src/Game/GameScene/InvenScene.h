@@ -2,6 +2,13 @@
 #include "Game/GameScene/Scene.h"
 #include "Game/GameObject/Items/Inventory.h"
 
+
+struct InventoryResult {
+	//std::shre usedImtem = nullptr;
+	
+
+};
+
 class InvenScene 
 	: public Scene
 {
@@ -28,9 +35,7 @@ public:
 	void buyImportItem();
 	void buyPokeBallItem();
 
-	// 아이템 메뉴 
-	void menuChoice(HDC hdc);
-
+	ItemInfo getItemInfo() override;
 
 private:
 	std::shared_ptr<Inventory> m_inven;
@@ -48,7 +53,9 @@ private:
 	Image* m_nextArrow;
 	Image* m_beforeArrow;
 	// 인벤 선택 메뉴
-	Image* m_InvenMenu;
+	Image* m_ItemInvenMenu;
+	Image* m_otherInvenMenu;
+
 	Image* m_invenMenuBottom;
 	Image* m_currentPointer;
 
@@ -65,11 +72,19 @@ private:
 	int ShopCount;
 
 	// 인벤이 배틀씬 중 켜지느냐? 아니냐 / 타운씬에서 켜지느냐? 아니냐
-	bool isBattleScene;
-	std::string  m_invenChoiceMenu[5] = { "쓴다" , "건네다" , "버린다" , "그만둠" , "어떻게 할까요?" };
+	bool isTownInven;
+	bool isBattleInven;
+
+	std::string  m_itemChoiceMenu[5] = { "쓴다" , "건네다" , "버린다" , "그만둠" , "어떻게 할까요?" };
+	std::string  m_importChoiceMenu[4] = { "쓴다" , "등록" , "그만둠", "어떻게 할까요?" };
+	std::string  m_ballChoiceMenu[4] = { "건네다" , "버린다" , "그만둠", "어떻게 할까요?" };
 
 	// 메뉴창 작업
 	int pointerCount;
+
+
+private:
+	ItemInfo m_settedItemInfo;
 
 };
 
