@@ -22,6 +22,7 @@ enum class TileType
 	TileTypeTree,
 	TileTypeNextMap,
 	TileTypeOutRange,
+	TileTypeObject,
 	TileTypeNone
 };
 

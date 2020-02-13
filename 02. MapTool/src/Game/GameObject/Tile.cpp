@@ -1,12 +1,14 @@
 ﻿#include "stdafx.h"
 #include "Tile.h"
 
-void Tile::init(TileType _type, Image* _img, bool _isAfterRender, bool _isMovable, int _BlockPositionX, int _BlockPositionY)
+void Tile::init(TileType _type, std::string _imgKey, int _BlockPositionX, int _BlockPositionY)
 {
 	m_Type = _type;
-	m_img = _img;
-	hasAfterRender = _isAfterRender;
-	isMovable = _isMovable;
+	if (_imgKey != "") {
+		m_img = IMAGEMANAGER->findImage(_imgKey);
+		_imgKey.pop_back();
+		tileImageKey = _imgKey;
+	}
 	m_BlockPositionX = _BlockPositionX;
 	m_BlockPositionY = _BlockPositionY;
 
@@ -27,6 +29,13 @@ void Tile::update(float _deltaTime)
 		m_nextMapStartIdx.x = -1;
 		m_nextMapStartIdx.y = -1;
 	}
+	/*if (m_img == nullptr) {
+		tileImageKey = "";
+	}
+	if (!hasAfterRender) {
+		afterRenderImageKey = "";
+		m_afterImage = nullptr;
+	}*/
 }
 
 void Tile::render(HDC hdc)
@@ -44,6 +53,7 @@ void Tile::render(HDC hdc)
 					m_outputTile.left + 5, m_outputTile.top + i * 20, 10, RGB(0, 0, 0), true);
 			}
 		}
+		DrawRect(hdc, m_outputTile, true);
 	}
 }
 
@@ -78,29 +88,9 @@ void Tile::setColor()
 
 void Tile::setAttributeTile(TileAttribute _attribute)
 {
-	m_Type = _attribute.type;
-	switch (_attribute.type)
-	{
-	case TileType::TileTypeFloor:
-		isMovable = true;
-		break;
-	case TileType::TileTypeHouse:
-		isMovable = false;
-		break;
-	case TileType::TileTypeBush:
-		isMovable = true;
-		break;
-	case TileType::TileTypeTree:
-		isMovable = false;
-		break;
-	case TileType::TileTypeNextMap:
-		isMovable = true;
-		break;
-	case TileType::TileTypeNone:
-		resetAttribute();
-		break;
-	}
 	hasAfterRender = _attribute.isAfterRender;
+	if(!hasAfterRender)
+		m_Type = _attribute.type;
 	if (_attribute.tileKeyname != "") {
 		if (hasAfterRender) {
 			m_afterImage = IMAGEMANAGER->findImage(_attribute.tileKeyname);
@@ -113,15 +103,41 @@ void Tile::setAttributeTile(TileAttribute _attribute)
 			tileImageKey.pop_back();
 		}
 	}
+	else {
+		m_img = nullptr;
+		tileImageKey = "";
+	}
 }
 
 void Tile::resetAttribute()
 {
 	m_img = nullptr;
-	isMovable = false;
-	hasAfterRender = false;
 	m_afterImage = nullptr;
+	hasAfterRender = false;
 	isStartBlock = false;
+	m_nextMapName = "";
+	tileImageKey = "";
+	afterRenderImageKey = "";
+	m_nextMapStartIdx.x = 0;
+	m_nextMapStartIdx.y = 0;
+	objName = "";
+	m_innerPocketMonInfo.clear();
+}
+
+void Tile::resetInnerAttribute()
+{
+	isStartBlock = false;
+
+	m_nextMapName = "";
+	m_nextMapStartIdx.x = 0;
+	m_nextMapStartIdx.y = 0;
+	m_innerPocketMonInfo.clear();
+}
+
+void Tile::setObj(std::string _objName)
+{
+	m_Type = TileType::TileTypeObject;
+	objName = _objName;
 }
 
 void Tile::pushInnerPocketMon(std::string _pocketName, int _pocketLevel)
@@ -159,7 +175,40 @@ void Tile::afterRender(HDC hdc)
 	if (isCanprint && hasAfterRender) {
 		if (m_afterImage) {
 			m_afterImage->render(hdc, m_outputTile.left, m_outputTile.top);
-			UTIL::PrintText(hdc, "after!", "명조", m_outputTile.left, m_outputTile.top, 10);
+			UTIL::PrintText(hdc, "after!", "명조", m_outputTile.left + 70, m_outputTile.top + 90, 10);
+		}
+	}
+	if (isCanprint && tileImageKey != "") {
+		UTIL::PrintText(hdc, tileImageKey.c_str(), "명조", m_outputTile.left, m_outputTile.top + 80, 10);
+	}
+	if (isCanprint && objName != "") {
+		UTIL::PrintText(hdc, objName.c_str(), "명조", m_outputTile.left + 10, m_outputTile.top + 20, 15, false, RGB(0, 0, 0));
+	}
+
+	if (isCanprint) {
+		switch (m_Type)
+		{
+		case TileType::TileTypeFloor:
+			UTIL::PrintText(hdc, "Floor", "명조", m_outputTile.left, m_outputTile.top + 90, 10);
+			break;
+		case TileType::TileTypeHouse:
+			UTIL::PrintText(hdc, "House", "명조", m_outputTile.left, m_outputTile.top + 90, 10);
+			break;
+		case TileType::TileTypeBush:
+			UTIL::PrintText(hdc, "Bush", "명조", m_outputTile.left, m_outputTile.top + 90, 10);
+			break;
+		case TileType::TileTypeTree:
+			UTIL::PrintText(hdc, "Tree", "명조", m_outputTile.left, m_outputTile.top + 90, 10);
+			break;
+		case TileType::TileTypeNextMap:
+			UTIL::PrintText(hdc, "NextMap", "명조", m_outputTile.left, m_outputTile.top + 90, 10);
+			break;
+		case TileType::TileTypeObject:
+			UTIL::PrintText(hdc, "object", "명조", m_outputTile.left, m_outputTile.top + 90, 10);
+			break;
+		case TileType::TileTypeOutRange:
+			UTIL::PrintText(hdc, "OutRange", "명조", m_outputTile.left, m_outputTile.top + 90, 10);
+			break;
 		}
 	}
 }

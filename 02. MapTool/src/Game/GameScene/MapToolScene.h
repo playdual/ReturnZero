@@ -64,6 +64,8 @@ public:
 	void saveLoadRender(HDC hdc);
 	void resetSpecifyUpdate();
 	void resetSpecifyRender(HDC hdc);
+	void resetInnerAttributeUpdate();
+	void resetInnerAttributeRender(HDC hdc);
 	void loadMap();
 	void saveMap();
 	
@@ -77,6 +79,8 @@ public:
 	void tileSelectRender(HDC hdc);
 	void specifyUpdate();
 	void specifyRender(HDC hdc);
+	void typeSelectUpdate();
+	void typeSelectRender(HDC hdc);
 	void activateSetNextMapBlock();
 	void activateSetStartPos();
 	void activateSetAfterRender();
@@ -103,17 +107,19 @@ private:
 	bool isSetAttribute = true;
 	bool isSetPocketMon = false;
 	bool isSetNextMap = false;
-
+	bool isSetObj = false;
 	//UI
 private:
 	bool m_mainSelect = true;
 	bool m_tileSelect = false;
 	bool m_treeSelect = false;
 	bool m_bushSelect = false;
+	bool m_typeSelect = false;
 	bool m_specifySelect = false;
 	bool m_nextMapSelect = false;
 	bool m_setStartPos = false;
 	bool m_setAfterRenderImage = false;
+	bool m_resetInnerAttribute = false;
 
 private:
 	//mainMenu
@@ -122,6 +128,7 @@ private:
 	UTIL::IRECT bushSelectRect;
 	UTIL::IRECT setSpecifyRect;
 	UTIL::IRECT setActivateNextMapRect;
+	UTIL::IRECT setTileTypeRect;
 
 	//always
 	UTIL::IRECT clientRect;
@@ -130,12 +137,25 @@ private:
 	UTIL::IRECT resetSpecifyButtonRect;
 	UTIL::IRECT saveSelectRect;
 	UTIL::IRECT loadSelectRect;
+	UTIL::IRECT resetInnerAttributeRect;
+	UTIL::IRECT pointResetInnerAttributeRect;
+
 
 	//in each case
 	UTIL::IRECT pageFrontButton;
 	UTIL::IRECT pageBackButton;
 	UTIL::IRECT setNextMapButtonRect;
 	UTIL::IRECT setPocketMonButtonRect;
+	UTIL::IRECT setObjectButtonRect;
+
+	UTIL::IRECT tileTypeFloorRect;
+	UTIL::IRECT tileTypeHouseRect;
+	UTIL::IRECT tileTypeBushRect;
+	UTIL::IRECT tileTypeTreeRect;
+	UTIL::IRECT tileTypeNextMapRect;
+	UTIL::IRECT tileTypeOutRangeRect;
+	UTIL::IRECT tileTypeObjectRect;
+	UTIL::IRECT PointSelectedTypeRect;
 
 	bool tileSelectRectSetted;
 	bool treeSelectRectSetted;
@@ -143,6 +163,7 @@ private:
 	bool setSpecifyRectSetted;
 	bool resetTileButtonRectSetted;
 	bool backButtonRectSetted;
+	bool settedTileType = false;
 
 	char* tileSelectStr = "tileSelect";
 	char* treeSelectStr = "treeSelect";
@@ -173,6 +194,7 @@ private:
 	std::string settedPocketMon;
 	int settedPocketMonLevel;
 	std::string settedSpecifyStr;
+	std::string settedObjName;
 
 private:
 	std::vector<std::vector<SelectTileData>> tileVector;
@@ -187,6 +209,7 @@ private:
 
 private:
 	TileAttribute selectedAttribute;
+	TileType selectedTileType;
 	void resetTileSelectedAttribute();
 
 private:

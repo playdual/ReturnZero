@@ -12,18 +12,18 @@ void Map::init(std::string _fileName)
 				Tile temp;
 				if (i == 3 || i == 4) {
 					if (j == 3 || j == 4) {
-						temp.init(TileType::TileTypeBush, nullptr, false, true, j, i);
+						temp.init(TileType::TileTypeBush, "", j, i);
 					}
 					else if (j == 7 || j == 8) {
-						temp.init(TileType::TileTypeTree, nullptr, false, false, j, i);
+						temp.init(TileType::TileTypeTree, "",  j, i);
 					}
 					else
 					{
-						temp.init(TileType::TileTypeFloor, nullptr, false, true, j, i);
+						temp.init(TileType::TileTypeFloor, "", j, i);
 					}
 				}
 				else {
-					temp.init(TileType::TileTypeFloor, nullptr, false, true, j, i);
+					temp.init(TileType::TileTypeFloor, "", j, i);
 				}
 				m_tiles.push_back(temp);
 			}

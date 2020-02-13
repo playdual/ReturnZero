@@ -1,0 +1,262 @@
+{
+	"0" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 0,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"1" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 0,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"10" : 
+	{
+		"afterRenderImageKey" : "Tree1Top",
+		"bPosX" : 1,
+		"bPosY" : 2,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"11" : 
+	{
+		"afterRenderImageKey" : "Tree1Top",
+		"bPosX" : 2,
+		"bPosY" : 2,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"12" : 
+	{
+		"afterRenderImageKey" : "Tree1Top",
+		"bPosX" : 3,
+		"bPosY" : 2,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"13" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 2,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"14" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 2,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"15" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 3,
+		"imageKey" : "Tree1Bottom",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"16" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 3,
+		"imageKey" : "Tree1Bottom",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"17" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 3,
+		"imageKey" : "Tree1Bottom",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"18" : 
+	{
+		"afterRenderImageKey" : "House01",
+		"bPosX" : 4,
+		"bPosY" : 3,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"19" : 
+	{
+		"afterRenderImageKey" : "House02",
+		"bPosX" : 5,
+		"bPosY" : 3,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"2" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 0,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "3",
+		"nextMapX" : 3,
+		"nextMapY" : 0,
+		"type" : 4
+	},
+	"20" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 4,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"21" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 4,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"22" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 4,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "testmap",
+		"type" : 6
+	},
+	"23" : 
+	{
+		"afterRenderImageKey" : "House11",
+		"bPosX" : 4,
+		"bPosY" : 4,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"24" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 4,
+		"imageKey" : "House12",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"3" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 0,
+		"imageKey" : "Bush1",
+		"innerPocketLevel-0" : -842150451,
+		"innerPocketMonCnt" : 1,
+		"innerPocketName-0" : "",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"4" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 0,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"5" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 1,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"6" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 1,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"7" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 1,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"8" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 1,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"9" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 1,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"mapHeight" : 5,
+	"mapName" : "test",
+	"mapWidth" : 5,
+	"startX" : 1,
+	"startY" : 2
+}

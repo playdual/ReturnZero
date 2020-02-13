@@ -8,7 +8,7 @@ public:
 	Tile() {};
 	~Tile() {};
 
-	void init(TileType _type, class Image* _img, bool _isAfterRender, bool _isMovable, int _BlockPostionX, int _BlockPostionY);
+	void init(TileType _type, std::string _imgKey, int _BlockPostionX, int _BlockPostionY);
 	void update(float _deltaTime);
 	void render(HDC hdc);
 	void specialRender(HDC hdc);
@@ -22,10 +22,15 @@ public:
 		return isStartBlock;
 	}
 	void resetAttribute();
+	void resetInnerAttribute();
 
+	void setObj(std::string _objName);
 	void pushInnerPocketMon(std::string _pocketName, int _pocketLevel);
 	void setNextMap(std::string _mapName, int _startBlockPositionX, int _startBlockPositionY);
 	void setNextMapActivate();
+	void setTileType(TileType _type) {
+		m_Type = _type;
+	}
 
 public:
 	UTIL::IRECT m_absTile;
@@ -36,7 +41,6 @@ public:
 	Image* m_img = nullptr;
 	Image* m_afterImage = nullptr;
 	bool hasAfterRender;
-	bool isMovable;
 	bool isStartBlock = false;
 	int m_BlockPositionX;
 	int m_BlockPositionY;
@@ -49,5 +53,6 @@ public:
 	std::string nextMapInfoStr;
 	std::string tileImageKey;
 	std::string afterRenderImageKey;
+	std::string objName;
 	POINT m_nextMapStartIdx;
 };
