@@ -29,7 +29,7 @@ public:
 	void buyPokeBallItem();
 
 	// 아이템 메뉴 
-	void menuChoice();
+	void menuChoice(HDC hdc);
 
 
 private:
@@ -50,6 +50,7 @@ private:
 	// 인벤 선택 메뉴
 	Image* m_InvenMenu;
 	Image* m_invenMenuBottom;
+	Image* m_currentPointer;
 
 	INVENSCENETYPE m_invenSceneType;
 	//인벤씬 변경시 사용할 카운트
@@ -66,5 +67,9 @@ private:
 	// 인벤이 배틀씬 중 켜지느냐? 아니냐 / 타운씬에서 켜지느냐? 아니냐
 	bool isBattleScene;
 	std::string  m_invenChoiceMenu[5] = { "쓴다" , "건네다" , "버린다" , "그만둠" , "어떻게 할까요?" };
+
+	// 메뉴창 작업
+	int pointerCount;
+
 };
 

@@ -47,6 +47,9 @@ bool Inventory::init()
 	m_pokePlaceCount = 0;   // 렉트 위치값 변경을 위한 변수
 	m_isPokeBallInit = false;
 
+	// 인벤에서 메뉴창이 뜨면 카운트를 막아야한다.
+	m_isOpenMenu = false;
+
 	//nextText = true;
 
 	// =============== Item =============== //
@@ -89,8 +92,11 @@ void Inventory::update(float _deltaTime)
 				{
 					if (item->m_ItemName != "닫기")
 					{
-						m_itemCount++;
-						break;
+						if (!m_isOpenMenu)
+						{
+							m_itemCount++;
+							break;
+						}
 					}
 				}
 			}
@@ -104,8 +110,11 @@ void Inventory::update(float _deltaTime)
 				{
 					if (item->m_ItemName != "임폴트닫기")
 					{
- 						m_importCount++;
-						break;
+						if (!m_isOpenMenu)
+						{
+							m_importCount++;
+							break;
+						}
 					}
 				}
 			}
@@ -119,8 +128,11 @@ void Inventory::update(float _deltaTime)
 				{
 					if (item->m_ItemName != "몬스터볼닫기")
 					{
-						m_pokeBallCount++;
-						break;
+						if (!m_isOpenMenu)
+						{
+							m_pokeBallCount++;
+							break;
+						}
 					}
 				}
 			}
@@ -142,8 +154,11 @@ void Inventory::update(float _deltaTime)
 
 					if (item->m_ItemName != temp)
 					{
-						m_itemCount--;
-						break;
+						if (!m_isOpenMenu)
+						{
+							m_itemCount--;
+							break;
+						}
 					}
 				}
 			}
@@ -161,8 +176,11 @@ void Inventory::update(float _deltaTime)
 		    
 		    		if (item->m_ItemName != temp)
 		    		{
-		    			m_importCount--;
-		    			break;
+						if (!m_isOpenMenu)
+						{
+							m_importCount--;
+							break;
+						}
 		    		}
 		    	}
 		    }
@@ -178,8 +196,11 @@ void Inventory::update(float _deltaTime)
 						temp = item->m_ItemName;
 					if (item->m_ItemName != temp)
 					{
-						m_pokeBallCount--;
-						break;
+						if (!m_isOpenMenu)
+						{
+							m_pokeBallCount--;
+							break;
+						}
 					}
 				}
 			}

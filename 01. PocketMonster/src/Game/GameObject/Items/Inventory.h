@@ -26,6 +26,7 @@ public :
 	bool getSameNameInven() { return m_isSameNameClose; }
 	bool getitemCount() { return m_itemCount; }
 	int  getItemNum() { return itemNum; }
+	bool getOpenMenu() { return m_isOpenMenu; }
 
 	void setCloseInven(bool _isClose) { m_isCloseInven = _isClose; }
 	void setSameNameInven(bool _isSame) { m_isSameNameClose = _isSame; }
@@ -36,6 +37,8 @@ public :
 	void setImportTag(bool _isImportTag) { m_isImportTag = _isImportTag;}
 	void setPokeBallTag(bool _isPokeBallTag) { m_isPokeBallTag = _isPokeBallTag;}
 	void setIsDeleteItem(bool _isSellItme) { isItemDelete = _isSellItme; }
+	void setIsOpenMenu(bool _isOpenMenu) { m_isOpenMenu = _isOpenMenu; }
+	
 
 	std::vector<std::shared_ptr<Item>> &getItemPotion() { return m_potionItem; }
 	std::vector<std::shared_ptr<Item>> &getImportItem() { return m_importItem; }
@@ -80,8 +83,10 @@ private:
 	bool m_isSameNameClose;
 
 	//인벤 화살표시 이미지//
-
 	Image* m_currentArrow;
+
+	// 인벤에서 메뉴창이 뜨면 카운트를 막아야한다.
+	bool m_isOpenMenu;
 
 
 	
