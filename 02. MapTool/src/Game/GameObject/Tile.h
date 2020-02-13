@@ -12,6 +12,7 @@ public:
 	void update(float _deltaTime);
 	void render(HDC hdc);
 	void specialRender(HDC hdc);
+	void afterRender(HDC hdc);
 
 public:
 	void setColor();
@@ -33,7 +34,8 @@ public:
 
 	TileType m_Type;
 	Image* m_img = nullptr;
-	bool isAfterRender;
+	Image* m_afterImage = nullptr;
+	bool hasAfterRender;
 	bool isMovable;
 	bool isStartBlock = false;
 	int m_BlockPositionX;
@@ -46,5 +48,6 @@ public:
 	std::string m_nextMapName;
 	std::string nextMapInfoStr;
 	std::string tileImageKey;
+	std::string afterRenderImageKey;
 	POINT m_nextMapStartIdx;
 };

@@ -38,7 +38,10 @@ void JsonRWManager::MapDataWrite(std::string _name, std::vector<std::shared_ptr<
 			tile["nextMapName"] = map[i]->m_nextMapName;
 			tile["nextMapX"] = map[i]->m_nextMapStartIdx.x;
 			tile["nextMapY"] = map[i]->m_nextMapStartIdx.y;
-		}		
+		}
+		if (map[i]->m_afterImage) {
+			tile["afterRenderImageKey"] = map[i]->afterRenderImageKey;
+		}
 		tile["innerPocketMonCnt"] = map[i]->m_innerPocketMonInfo.size();
 		for (int j = 0; j < map[i]->m_innerPocketMonInfo.size(); ++j) {
 			tile[innerPocketName + std::to_string(j)] = map[i]->m_innerPocketMonInfo[j].first;

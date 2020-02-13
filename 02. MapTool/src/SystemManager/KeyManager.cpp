@@ -26,6 +26,7 @@ HRESULT KeyManager::init()
 	playerKey[P1_EVENT] = VK_SPACE;
 	playerKey[P1_USEITEM] = VK_TAB;
 
+	playerKey[GAME_J] = 'J';
 	playerKey[GAME_L] = 'L';
 	playerKey[GAME_K] = 'K';
 	playerKey[GAME_LPAGE] = VK_OEM_4;

@@ -1,122 +1,73 @@
 ﻿#include <iostream>
 #include <vector>
+#include <iomanip>
 using namespace std;
 
-class Animal {
-protected:
-	int a = 0;
-	int b = 10;
-public:
-	virtual void howl() {
-		cout << "..." << endl;
-	}
-	virtual void update() 
-	{
-		a -= 1;
-	}
-	virtual void render() 
-	{
-		cout << b << endl;
+struct info {
+	int age;
+	int tall;
+	int love;
+	int noise;
+
+	void print() {
+		cout << age << " " << tall << " " << love << " " << noise << endl;
 	}
 };
 
-void tempF(int& _temp)
+class Animal {
+
+public:
+	virtual void howl() = 0;
+	virtual info getInfo() = 0;
+
+	info in;
+};
+
+class Cat
+	: public Animal
 {
-	cout << _temp << endl;
-	cout << &_temp << endl;
+public:
+	virtual void howl() override
+	{
+		cout << "야옹 야옹" << endl;
+	}
+	virtual info getInfo() {
+		in.age = 3;
+		in.tall = 100;
+		in.love = 50;
+		return in;
+	}
+};
 
-	
-	int _second;
-	//값이 복사가 된 것
-	_second = _temp; 
-
-	int *_third;
-	//값이 갖고있는 주소값을 받아주는 것
-	_third = &_temp;
-
-	cout << endl << endl;
-
-	cout << "temp: " << _temp << endl;
-	cout << "&temp: " << &_temp << endl;
-
-	cout << endl << endl;
-
-	cout << "second: " << _second << endl;
-	cout << "&second: " << &_second << endl;
-
-	cout << endl << endl;
-
-	cout << "third: " << _third << endl;
-	cout << "*third: " << *_third << endl;
-	cout << "&third: " << &_third << endl;
-
-	int four;
-	
-}
-
+class Dog
+	: public Animal
+{
+public:
+	void howl() override
+	{
+		cout << "멍 멍!~" << endl;
+	}
+	virtual info getInfo() {
+		in.age = 3;
+		in.tall = 100;
+		in.noise = 50;
+		return in;
+	}
+};
 
 int main()
 {
-	vector<shared_ptr<some>> v;
-	shared_ptr<some> _some;
+	vector<shared_ptr<Animal>> animals;
 
-	int temp;
-	int temp2 = 85;
+	animals.push_back(make_shared<Cat>());
+	animals.push_back(make_shared<Dog>());
 
-
-	shared_ptr<some> aa = make_shared<some>();
-	v.push_back(aa);
-	shared_ptr<some> bb = make_shared<some>();
-	v.push_back(bb);
-	shared_ptr<some> cc = make_shared<some>();
-	v.push_back(cc);
-
-	cout << v.size() << endl;
-
-	/*for (auto it = v.begin(); it != v.end(); ++it)
-	{
-		_some = (*it);
-		cout << *it << endl;
-		cout << _some << endl;
-
-		break;
-	}*/
-
-	_some->something();
-	
-	cout << &temp2 << endl;
-	tempF(temp2);
+	for (auto e : animals) {
+		e->howl();
+		e->getInfo().print();
+	}
 
 
-
-
-
-
-		
-		
-		
-		
-		
-	//a->something();
-
-	//for (auto& e : v) {
-	//	(*e).x = 3;
-	//	e->y = 4;
-	//}
-
-
-	////이터레이터로 v 벡터의 처음부터       끝까지 돌아준다.
-	//for (auto iter = v.begin(); iter != v.end(); )// 그런데 ++it을 안해준다.
-	//{
-	//	if ((**iter).x == 2) 
-	//	{
-	//		//erase는 지우는 요소의 다음 이터레이터를 반환한다.
-	//		iter = v.erase(iter);
-	//	}
-	//	else {
-	//		++iter;
-	//	}
-	//}
 
 	return 0;
 }

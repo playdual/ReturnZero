@@ -5,12 +5,15 @@ bool MapToolScene::init()
 {
 	//tileSetup
 	for (int i = 0; i < mapHeight; ++i) {
-		for (int j = 0; j < mapWidth; ++j) {
+		for (int j = 1; j <= mapWidth; ++j) {
+			std::string key = "TechoTown_" + std::to_string(i * mapWidth + j) + "t";
 			auto tile = std::make_shared<Tile>();
-			tile->init(TileType::TileTypeFloor, nullptr, false, true, j, i);
+			tile->init(TileType::TileTypeFloor, IMAGEMANAGER->findImage(key), false, true, (j - 1), i);
 			m_Tiles.push_back(tile);
 		}
 	}
+
+
 	//ButtonSetup
 	//always
 	clientRect = UTIL::IRectMake(UIOffset, -10, WINSIZEX - UIOffset, WINSIZEY + 20);
@@ -34,9 +37,9 @@ bool MapToolScene::init()
 	setPocketMonButtonRect = UTIL::IRectMake(1150, 300, 200, 100);
 
 	//TileBlockSetup
-	treeVectorInit(3);
-	tileVectorInit(3);
-	bushVectorInit(3);
+	treeVectorInit(5);
+	tileVectorInit(5);
+	bushVectorInit(5);
 	resetTileSelectedAttribute();
 
 	return true;
@@ -67,6 +70,8 @@ void MapToolScene::render(HDC hdc)
 
 void MapToolScene::afterRender(HDC hdc)
 {
+	for (auto&e : m_Tiles)
+		e->afterRender(hdc);
 }
 
 void MapToolScene::debugRender(HDC hdc)
@@ -108,6 +113,13 @@ void MapToolScene::cameraMove()
 	m_prevMousey = m_ptMouse.y;
 }
 
+void MapToolScene::treeVectorPush(std::string imageKey, TileType _type, int page, int _size, bool _afterRender)
+{
+	for (int i = 1; i <= _size; ++i) {
+		std::string Key = imageKey + std::to_string(i);
+		treeVector[page][(i - 1)].setTileAttribute(Key, _type, false);
+	}
+}
 void MapToolScene::treeVectorInit(int _pageCount)
 {
 	treeSelectPage = 0;
@@ -123,7 +135,16 @@ void MapToolScene::treeVectorInit(int _pageCount)
 		}
 	}
 	TileType type = TileType::TileTypeTree;
-	treeVector[0][0].setTileAttribute("Tree1", type, false);
+	treeVector[0][0].setTileAttribute("Tree1Bottom", type, false);
+	treeVector[0][1].setTileAttribute("Tree1Top", type, false);
+}
+
+void MapToolScene::tileVectorPush(std::string imageKey,  TileType _type, int page, int _size, bool _afterRender)
+{
+	for (int i = 1; i <= _size; ++i) {
+		std::string Key = imageKey + std::to_string(i);
+		tileVector[page][(i - 1)].setTileAttribute(Key, _type, false);
+	}
 }
 
 void MapToolScene::tileVectorInit(int _pageCount)
@@ -140,10 +161,27 @@ void MapToolScene::tileVectorInit(int _pageCount)
 				inUiTileWidth, inUiTileHeight);
 		}
 	}
+
 	TileType type = TileType::TileTypeFloor;
 
 	//TODO : add another tile
 	tileVector[0][0].setTileAttribute("GrassTile1", type, false);
+	std::string House = "House";
+	for (int i = 0; i < 5; ++i) {
+		for (int j = 1; j < 6; ++j) {
+			std::string HouseKey = House + std::to_string(i) + std::to_string(j);
+			tileVector[1][i + (j - 1) * 5].setTileAttribute(HouseKey, TileType::TileTypeHouse, false);
+		}
+	}	
+	tileVectorPush("TownTile", TileType::TileTypeFloor, 2, 13, false);
+}
+
+void MapToolScene::bushVectorPush(std::string imageKey, TileType _type, int page, int _size, bool _afterRender)
+{
+	for (int i = 1; i <= _size; ++i) {
+		std::string Key = imageKey + std::to_string(i);
+		bushVector[page][(i - 1)].setTileAttribute(Key, _type, false);
+	}
 }
 
 void MapToolScene::bushVectorInit(int _pageCount)
@@ -188,6 +226,16 @@ void MapToolScene::UIupdate()
 	if (KEYMANAGER->isOnceKeyDown(GAME_L)) {
 		activateSetStartPos();
 	}
+	if (KEYMANAGER->isOnceKeyDown(GAME_J)) {
+		activateSetAfterRender();
+	}
+	if (m_setAfterRenderImage) {
+		selectedAttribute.isAfterRender = true;
+	}
+	else {
+		selectedAttribute.isAfterRender = false;
+	}
+
 }
 
 void MapToolScene::mainSelectUpdate()
@@ -397,15 +445,22 @@ void MapToolScene::specifyRender(HDC hdc)
 
 void MapToolScene::activateSetNextMapBlock()
 {
-	if (!m_setStartPos) {
+	if (!m_setStartPos && !m_setAfterRenderImage) {
 		m_settedNextMap = !m_settedNextMap;
 	}
 }
 
 void MapToolScene::activateSetStartPos()
 {
-	if (!m_settedNextMap) {
+	if (!m_settedNextMap && !m_setAfterRenderImage) {
 		m_setStartPos = !m_setStartPos;
+	}
+}
+
+void MapToolScene::activateSetAfterRender()
+{
+	if (!m_setStartPos && !m_settedNextMap) {
+		m_setAfterRenderImage = !m_setAfterRenderImage;
 	}
 }
 
@@ -496,7 +551,7 @@ void MapToolScene::UIrender(HDC hdc)
 		mainSelectRender(hdc);
 
 	if (m_bushSelect)
-		bushSelectRender(hdc);
+		bushSelectRender(hdc); 
 	if (m_treeSelect)
 		treeSelectRender(hdc);
 	if (m_tileSelect)
@@ -509,12 +564,16 @@ void MapToolScene::UIrender(HDC hdc)
 	resetSpecifyRender(hdc);
 	saveLoadRender(hdc);
 
-	if (m_settedNextMap && !m_setStartPos) {
+	if (m_settedNextMap && !m_setStartPos && !m_setAfterRenderImage) {
 		UTIL::DrawColorRect(hdc, setActivateNextMapRect, RGB(255, 0, 255), true);
 	}
-	if (m_setStartPos && !m_settedNextMap) {
+	if (m_setStartPos && !m_settedNextMap && !m_setAfterRenderImage) {
 		UTIL::DrawColorRect(hdc, setActivateNextMapRect, RGB(0, 255, 255), true);
 	}
+	if (m_setAfterRenderImage && !m_setStartPos && !m_settedNextMap) {
+		UTIL::DrawColorRect(hdc, setActivateNextMapRect, RGB(255, 255, 0), true);
+	}
+
 }
 
 void MapToolScene::TileWindowUpdate(float _deltaTime)
@@ -544,6 +603,7 @@ void MapToolScene::TileWindowUpdate(float _deltaTime)
 							mapStartY = tile->m_BlockPositionY;
 						}					
 					}
+
 					if (m_settedNextMap)
 						tile->setNextMapActivate();
 					else if (isSetAttribute)

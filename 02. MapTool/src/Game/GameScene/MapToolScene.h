@@ -79,6 +79,12 @@ public:
 	void specifyRender(HDC hdc);
 	void activateSetNextMapBlock();
 	void activateSetStartPos();
+	void activateSetAfterRender();
+
+
+	void tileVectorPush(std::string imageKey, TileType _type, int page, int _size, bool _afterRender);
+	void treeVectorPush(std::string imageKey, TileType _type, int page, int _size, bool _afterRender);
+	void bushVectorPush(std::string imageKey, TileType _type, int page, int _size, bool _afterRender);
 
 private:
 	int m_prevMouseX;
@@ -107,6 +113,7 @@ private:
 	bool m_specifySelect = false;
 	bool m_nextMapSelect = false;
 	bool m_setStartPos = false;
+	bool m_setAfterRenderImage = false;
 
 private:
 	//mainMenu

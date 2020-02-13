@@ -5,7 +5,7 @@ void Tile::init(TileType _type, Image* _img, bool _isAfterRender, bool _isMovabl
 {
 	m_Type = _type;
 	m_img = _img;
-	isAfterRender = _isAfterRender;
+	hasAfterRender = _isAfterRender;
 	isMovable = _isMovable;
 	m_BlockPositionX = _BlockPositionX;
 	m_BlockPositionY = _BlockPositionY;
@@ -100,19 +100,27 @@ void Tile::setAttributeTile(TileAttribute _attribute)
 		resetAttribute();
 		break;
 	}
-	isAfterRender = _attribute.isAfterRender;
+	hasAfterRender = _attribute.isAfterRender;
 	if (_attribute.tileKeyname != "") {
-		m_img = IMAGEMANAGER->findImage(_attribute.tileKeyname);
-		tileImageKey = _attribute.tileKeyname;
-		tileImageKey.pop_back();
-	}	
+		if (hasAfterRender) {
+			m_afterImage = IMAGEMANAGER->findImage(_attribute.tileKeyname);
+			afterRenderImageKey = _attribute.tileKeyname;
+			afterRenderImageKey.pop_back();
+		}
+		else {
+			m_img = IMAGEMANAGER->findImage(_attribute.tileKeyname);
+			tileImageKey = _attribute.tileKeyname;
+			tileImageKey.pop_back();
+		}
+	}
 }
 
 void Tile::resetAttribute()
 {
 	m_img = nullptr;
 	isMovable = false;
-	isAfterRender = false;
+	hasAfterRender = false;
+	m_afterImage = nullptr;
 	isStartBlock = false;
 }
 
@@ -146,3 +154,12 @@ void Tile::setNextMapActivate()
 	m_Type = TileType::TileTypeNextMap;
 }
 
+void Tile::afterRender(HDC hdc) 
+{
+	if (isCanprint && hasAfterRender) {
+		if (m_afterImage) {
+			m_afterImage->render(hdc, m_outputTile.left, m_outputTile.top);
+			UTIL::PrintText(hdc, "after!", "명조", m_outputTile.left, m_outputTile.top, 10);
+		}
+	}
+}
