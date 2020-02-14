@@ -32,6 +32,8 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("Tree1Bottomt",	"Images/Tile/Tree/Tree1Bottom.bmp", 100, 100, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Tree1Top",		"Images/Tile/Tree/Tree1Top.bmp", 50, 50, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Tree1Topt",		"Images/Tile/Tree/Tree1Top.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("TvTop",			"Images/afterRender/TvTop.bmp", 50, 50, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("TvTopt",		"Images/afterRender/TvTop.bmp", 100, 100, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("Flower",	"Images/Tile/Object/Flower1Frame.bmp", 250, 50, 5, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("Flowert",	"Images/Tile/Object/Flower1Frame.bmp", 500, 100, 5, 1, true, RGB(255, 0, 255));
 
@@ -46,15 +48,18 @@ HRESULT MainGame::init()
 			IMAGEMANAGER->addImage(tHouseKey, (BuildingPath + HouseKey + bmp).c_str(), 100, 100, true, RGB(255, 0, 255));
 		}
 	}
+
+	myloadImage("RedHouse_2F_", "Images/Tile/TechoTownInner/RedHouse_2F", 100);
 	myloadImage("profOhouseTop", "Images/afterRender", 7);
 	myloadImage("House0", "Images/afterRender", 5);
 	myloadImage("TechoTown_", "Images/TechoTown", 480);
 	myloadImage("MailBox", "Images/Tile/Object", 2);
 	myloadImage("BigTree", "Images/afterRender", 2);
+	myloadImage("BedTop", "Images/afterRender", 3);
 
 	std::string name;
 	int width, height;
-	std::cin >> name >> width >> height;
+	//std::cin >> name >> width >> height;
 
 	//add Scene
 	SCENEMANAGER->addScene("MapTool", new MapToolScene(name, width, height));

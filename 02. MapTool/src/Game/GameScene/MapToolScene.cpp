@@ -48,6 +48,16 @@ bool MapToolScene::init()
 			}
 		}
 	}
+	else if (mapName == "RedHouse2F") {
+		for (int i = 0; i < 9; ++i) {
+			for (int j = 1; j <= 11; ++j) {
+				std::string key = "RedHouse2F_" + std::to_string(i * mapWidth + j) + "t";
+				auto tile = std::make_shared<Tile>();
+				tile->init(TileType::TileTypeFloor, key, (j - 1), i);
+				m_Tiles.push_back(tile);
+			}
+		}
+	}
 	else {
 		for (int i = 0; i < mapHeight; ++i) {
 			for (int j = 0; j < mapWidth; ++j) {
@@ -57,6 +67,7 @@ bool MapToolScene::init()
 			}
 		}
 	}
+	
 
 
 	//ButtonSetup
