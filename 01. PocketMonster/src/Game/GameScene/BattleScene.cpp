@@ -16,7 +16,6 @@ bool BattleScene::init()
 
 bool BattleScene::init(std::shared_ptr<player> _player, std::shared_ptr<player> _npc)
 {
-	IMAGEMANAGER->addImage("battleTemp", "images/battleTemp2.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 	pocketmonEffectInit();
 
 	//테스트용 포켓몬 정보 복사하기
@@ -27,7 +26,6 @@ bool BattleScene::init(std::shared_ptr<player> _player, std::shared_ptr<player> 
 
 bool BattleScene::init(std::shared_ptr<player> _player, PocketMon& _pocketmon)
 {
-	IMAGEMANAGER->addImage("battleTemp", "images/battleTemp2.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 	pocketmonEffectInit();
 
 	//플레이어의 포켓몬 벡터를 가리키는 주소를 받아서 첫 번째 컨테이너의 값을 가리키는 주소를 가져온다
@@ -415,60 +413,63 @@ void BattleScene::enemyUiStatus(HDC hdc)
 {
 	char str[100];
 	//UTIL::DrawRect(hdc, m_enemyStatus);
-	
-	
+	IMAGEMANAGER->render("enemyStatus", hdc, m_enemyStatus.left, m_enemyStatus.top);
 	//이름
 	wsprintf(str, "%s", m_wildPocketmon.m_name.c_str());
-	TextOut(hdc, m_enemyStatus.left+10, m_enemyStatus.top+10, str, strlen(str));
+	TextOut(hdc, m_enemyStatus.left+30, m_enemyStatus.top+20, str, strlen(str));
 
 	//레벨
-	wsprintf(str, "Lv %d", m_wildPocketmon.m_level);
+	wsprintf(str, "    %d", m_wildPocketmon.m_level);
 	TextOut(hdc, m_enemyStatus.left + 310, m_enemyStatus.top + 20, str, strlen(str));
 
 }
 void BattleScene::enemyUiBottom(HDC hdc)
 {
-	UTIL::DrawRect(hdc, m_enemyBottom);
+	//UTIL::DrawRect(hdc, m_enemyBottom);
+	IMAGEMANAGER->render("enemyBottom", hdc, m_enemyBottom.left, m_enemyBottom.top);
 }
 void BattleScene::enemyUiPocketmon(HDC hdc)
 {
-	UTIL::DrawRect(hdc, m_enemyPocketmon);
+	//UTIL::DrawRect(hdc, m_enemyPocketmon);
 	m_wildPocketmon.m_pocketmonFrontImg->alphaRender(hdc, m_enemyPocketmon.left, m_enemyPocketmon.top, m_enemyAlpha);
 }
 void BattleScene::enemyUiMaxHp(HDC hdc)
 {
-	m_enemyMaxHp = UTIL::IRectMake(m_enemyStatus.left+181, 155, 230, 30);
+	m_enemyMaxHp = UTIL::IRectMake(m_enemyStatus.left + 165, 160, 230, 30);
 	UTIL::DrawColorRect(hdc, m_enemyMaxHp, RGB(120, 120, 120));
 }
 void BattleScene::enemyUiCurrentHp(HDC hdc)
 {
-	m_enemyCurrentHp = UTIL::IRectMake(m_enemyStatus.left + 181, 155, m_wildPocketmonHpBarWigth, 30);
+	m_enemyCurrentHp = UTIL::IRectMake(m_enemyStatus.left + 165, 160, m_wildPocketmonHpBarWigth, 30);
 	UTIL::DrawColorRect(hdc, m_enemyCurrentHp, RGB(10, 70, 70));
 }
 
 void BattleScene::playerUiBottom(HDC hdc)
 {
-	UTIL::DrawRect(hdc, m_playerBottom);
+	//UTIL::DrawRect(hdc, m_playerBottom);
+	IMAGEMANAGER->render("playerBottom", hdc, m_playerBottom.left, m_playerBottom.top);
 }
 void BattleScene::playerUiPoketmon(HDC hdc)
 {
-	UTIL::DrawRect(hdc, m_playerPocketmonImg);
-	selectPocketmon->m_pocketmonBackImg->alphaRender(hdc, m_playerPocketmonImg.left, m_playerPocketmonImg.top, m_playerAlpha);
+	//UTIL::DrawRect(hdc, m_playerPocketmonImg);
+	selectPocketmon->m_pocketmonBackImg->alphaRender(hdc, m_playerPocketmonImg.left, m_playerPocketmonImg.top+20, m_playerAlpha);
 }
 void BattleScene::playerUiImg(HDC hdc)
 {
-	UTIL::DrawRect(hdc, m_playerImg);
+	//UTIL::DrawRect(hdc, m_playerImg);
 	IMAGEMANAGER->findImage("trainersMan")->alphaRender(hdc, m_playerImg.left, m_playerImg.top, m_playerAlpha);
 }
 void BattleScene::playerUiStatus(HDC hdc)
 {
 	char str[100];
-	UTIL::DrawRect(hdc, m_playerStatus);
-	wsprintf(str, "%s", selectPocketmon->m_name.c_str());
-	TextOut(hdc, m_playerStatus.left + 10, m_playerStatus.top + 10, str, strlen(str));
+	//UTIL::DrawRect(hdc, m_playerStatus);
+	IMAGEMANAGER->render("playerStatus", hdc, m_playerStatus.left, m_playerStatus.top);
 
-	wsprintf(str, "Lv %d", selectPocketmon->m_level);
-	TextOut(hdc, m_playerStatus.left + 310, m_playerStatus.top + 20, str, strlen(str));
+	wsprintf(str, "%s", selectPocketmon->m_name.c_str());
+	TextOut(hdc, m_playerStatus.left + 70, m_playerStatus.top + 20, str, strlen(str));
+
+	wsprintf(str, "   %d", selectPocketmon->m_level);
+	TextOut(hdc, m_playerStatus.left + 360, m_playerStatus.top + 25, str, strlen(str));
 
 	wsprintf(str, "%d/  %d", selectPocketmon->m_currentHp, selectPocketmon->m_maxHp);
 	TextOut(hdc, m_playerStatus.left + 290, m_playerStatus.top + 115, str, strlen(str));
@@ -476,8 +477,8 @@ void BattleScene::playerUiStatus(HDC hdc)
 }
 void BattleScene::playerUiSkillList(HDC hdc)
 {
-	UTIL::DrawRect(hdc, m_skillListRect);
-
+	//UTIL::DrawRect(hdc, m_skillListRect);
+	IMAGEMANAGER->render("skillSelect", hdc, m_skillListRect.left, m_skillListRect.top);
 	char skillName[4][100];	
 	for (int i = 0; i < selectPocketmon->skillList.size(); i++)
 	{
@@ -502,45 +503,65 @@ void BattleScene::playerUiSkillList(HDC hdc)
 			TextOut(hdc, 345, 676, skillName[i], strlen(skillName[i]));
 		}
 	}
+	if (selectPocketmon->skillList.size() == 1)
+	{
+		wsprintf(skillName[1], "---");
+		TextOut(hdc, 345, 595, skillName[1], strlen(skillName[1]));
+		wsprintf(skillName[2], "---");
+		TextOut(hdc, 67, 676, skillName[2], strlen(skillName[2]));
+		wsprintf(skillName[3], "---");
+		TextOut(hdc, 345, 676, skillName[3], strlen(skillName[3]));
+	}
+	else if (selectPocketmon->skillList.size() == 2) 
+	{
+		wsprintf(skillName[2], "---");
+		TextOut(hdc, 67, 676, skillName[2], strlen(skillName[2]));
+		wsprintf(skillName[3], "---");
+		TextOut(hdc, 345, 676, skillName[3], strlen(skillName[3]));
+	}
+	else if (selectPocketmon->skillList.size() == 3) 
+	{
+		wsprintf(skillName[3], "---");
+		TextOut(hdc, 345, 676, skillName[3], strlen(skillName[3]));
+	}
+
 }
 void BattleScene::playerUiSkillExplain(HDC hdc)
 {
-	UTIL::DrawRect(hdc, m_skillExplainRect);
+	//UTIL::DrawRect(hdc, m_skillExplainRect);
 	char str[100];
-	wsprintf(str, "PP");
-	TextOut(hdc, 649, 590, str, strlen(str));
 
 	if (skill_1)
 	{
-		wsprintf(str, "%d / %d", selectPocketmon->skillList[0].currentpp, selectPocketmon->skillList[0].maxpp);
-		TextOut(hdc, 863, 590, str, strlen(str));
+		wsprintf(str, "%d   %d", selectPocketmon->skillList[0].currentpp, selectPocketmon->skillList[0].maxpp);
+		TextOut(hdc, 882, 597, str, strlen(str));
 
-		wsprintf(str, "기술타입  / %s", playerUiSkillType(selectPocketmon->skillList[0].skilltype).c_str());
-		TextOut(hdc, 649, 670, str, strlen(str));
+		wsprintf(str, "%s", playerUiSkillType(selectPocketmon->skillList[0].skilltype).c_str());
+		TextOut(hdc, 872, 685, str, strlen(str));
 	}
 	if (skill_2)
 	{
-		wsprintf(str, "%d / %d", selectPocketmon->skillList[1].currentpp, selectPocketmon->skillList[1].maxpp);
-		TextOut(hdc, 863, 590, str, strlen(str));
+		wsprintf(str, "%d   %d", selectPocketmon->skillList[1].currentpp, selectPocketmon->skillList[1].maxpp);
+		TextOut(hdc, 882, 597, str, strlen(str));
 
-		wsprintf(str, "기술타입  / %s", playerUiSkillType(selectPocketmon->skillList[1].skilltype).c_str());
-		TextOut(hdc, 649, 670, str, strlen(str));
+		wsprintf(str, "%s", playerUiSkillType(selectPocketmon->skillList[1].skilltype).c_str());
+		TextOut(hdc, 872, 685, str, strlen(str));
 	}
 	if (skill_3)
 	{
-		wsprintf(str, "%d / %d", selectPocketmon->skillList[2].currentpp, selectPocketmon->skillList[2].maxpp);
-		TextOut(hdc, 863, 590, str, strlen(str));
+		wsprintf(str, "%d   %d", selectPocketmon->skillList[2].currentpp, selectPocketmon->skillList[2].maxpp);
+		TextOut(hdc, 882, 597, str, strlen(str));
 
-		wsprintf(str, "기술타입  / %s", playerUiSkillType(selectPocketmon->skillList[2].skilltype).c_str());
-		TextOut(hdc, 649, 670, str, strlen(str));
+		wsprintf(str, "%s", playerUiSkillType(selectPocketmon->skillList[2].skilltype).c_str());
+		TextOut(hdc, 872, 685, str, strlen(str));
 	}
 	if (skill_4)
 	{
-		wsprintf(str, "%d / %d", selectPocketmon->skillList[3].currentpp, selectPocketmon->skillList[3].maxpp);
-		TextOut(hdc, 863, 590, str, strlen(str));
+		wsprintf(str, "%d   %d", selectPocketmon->skillList[3].currentpp, selectPocketmon->skillList[3].maxpp);
+		TextOut(hdc, 882, 597, str, strlen(str));
 
-		wsprintf(str, "기술타입  / %s", playerUiSkillType(selectPocketmon->skillList[3].skilltype).c_str());
-		TextOut(hdc, 649, 670, str, strlen(str));
+		wsprintf(str, "%s", playerUiSkillType(selectPocketmon->skillList[3].skilltype).c_str());
+		TextOut(hdc, 872, 685, str, strlen(str));
 	}
 }
 std::string BattleScene::playerUiSkillType(SkillType _skillType)
@@ -565,25 +586,26 @@ std::string BattleScene::playerUiSkillType(SkillType _skillType)
 }
 void BattleScene::playerUiMaxHp(HDC hdc, int _y)
 {
-	m_playerMaxHp = UTIL::IRectMake(m_playerStatus.left + 181, 431 + _y, 230, 30);
+	m_playerMaxHp = UTIL::IRectMake(m_playerStatus.left + 205, 438 + _y, 230, 30);
 	UTIL::DrawColorRect(hdc, m_playerMaxHp, RGB(120, 120, 120));
 }
 void BattleScene::playerUiCurrentHp(HDC hdc, int _y)
 {
-	m_playerCurrentHp = UTIL::IRectMake(m_playerStatus.left + 181, 431 + _y, m_playerPocketmonHpBarWigth, 30);
+	m_playerCurrentHp = UTIL::IRectMake(m_playerStatus.left + 205, 438 + _y, m_playerPocketmonHpBarWigth, 30);
 	UTIL::DrawColorRect(hdc, m_playerCurrentHp, RGB(10, 70, 70));
 }
 void BattleScene::playerUiMaxExp(HDC hdc, int _y)
 {
 	//플레이어 최대경험치
 	m_playerMaxExp = UTIL::IRectMake(m_playerStatus.left + 151, 500 + _y, 230, 30);
-	UTIL::DrawColorRect(hdc, m_playerMaxExp, RGB(120, 120, 120));
+	//UTIL::DrawColorRect(hdc, m_playerMaxExp, RGB(120, 120, 120));
 }
 void BattleScene::plyaerUiCurrentExp(HDC hdc, int _y)
 {
 	//플레이어 현재경험치
-	m_playerCurrentExp = UTIL::IRectMake(m_playerStatus.left + 151, 500 + _y, m_playerPocketmonExpBarWigth, 30);
-	UTIL::DrawColorRect(hdc, m_playerCurrentExp, RGB(10, 70, 70));
+	m_playerCurrentExp = UTIL::IRectMake(m_playerStatus.left + 137, 515 + _y, m_playerPocketmonExpBarWigth, 30);
+	//UTIL::DrawColorRect(hdc, m_playerCurrentExp, RGB(10, 70, 70));
+	IMAGEMANAGER->render("currentExp", hdc, m_playerCurrentExp.left, m_playerCurrentExp.top);
 }
 int BattleScene::checkHpBarWigth()
 {
@@ -608,9 +630,9 @@ void BattleScene::playerStayMotion()
 	{
 		motionUp = false;
 		//플레이어 포켓몬
-		m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 319, 210, 209);
+		m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 324, 210, 209);
 		//플레이어 상태창
-		m_playerStatus = UTIL::IRectMake(m_playerStatusX, 346, 446, 180);
+		m_playerStatus = UTIL::IRectMake(m_playerStatusX, 341, 446, 180);
 		playerHpExpBarStayMotionOn = true;
 	}
 	else if (m_count % 20 == 0 && !motionUp)
@@ -619,7 +641,7 @@ void BattleScene::playerStayMotion()
 		//플레이어 포켓몬
 		m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 329, 210, 209);
 		//플레이어 상태창
-		m_playerStatus = UTIL::IRectMake(m_playerStatusX, 356, 446, 180);
+		m_playerStatus = UTIL::IRectMake(m_playerStatusX, 351, 446, 180);
 		playerHpExpBarStayMotionOn = false;
 	}
 
@@ -630,10 +652,10 @@ void BattleScene::playerHpExpBarStayMotion(HDC hdc)
 {
 	if (playerHpExpBarStayMotionOn)
 	{
-		playerUiMaxHp(hdc, -10);
-		playerUiCurrentHp(hdc, -10);
-		playerUiMaxExp(hdc, -10);
-		plyaerUiCurrentExp(hdc, -10);
+		playerUiMaxHp(hdc, -5);
+		playerUiCurrentHp(hdc, -5);
+		playerUiMaxExp(hdc, -5);
+		plyaerUiCurrentExp(hdc, -5);
 	}
 	else if (!playerHpExpBarStayMotionOn)
 	{
@@ -727,7 +749,103 @@ void BattleScene::moveSkillSelectButton()
 	//skill_2: 318, 595, 20, 40
 	//skill_3: 39, 674, 20, 40
 	//skill_4: 318, 674, 20, 40
-	if (skill_1 && !skill_2 && !skill_3 && !skill_4 && KEYMANAGER->isOnceKeyDown(P1_RIGHT))
+	switch (selectPocketmon->skillList.size())
+	{
+	case 1:
+		break;
+	case 2:
+		if (skill_1 && !skill_2 && !skill_3 && !skill_4 && KEYMANAGER->isOnceKeyDown(P1_RIGHT))
+		{
+			skill_1 = false;
+			skill_2 = true;
+			m_skillSelectRect = UTIL::IRectMake(318, 595, 20, 40);
+		}
+		if (!skill_1 && skill_2 && !skill_3 && !skill_4 && KEYMANAGER->isOnceKeyDown(P1_LEFT))
+		{
+			skill_2 = false;
+			skill_1 = true;
+			m_skillSelectRect = UTIL::IRectMake(39, 595, 20, 40);
+		}
+		break;
+	case 3:
+		if (skill_1 && !skill_2 && !skill_3 && !skill_4 && KEYMANAGER->isOnceKeyDown(P1_RIGHT))
+		{
+			skill_1 = false;
+			skill_2 = true;
+			m_skillSelectRect = UTIL::IRectMake(318, 595, 20, 40);
+		}
+		if (!skill_1 && skill_2 && !skill_3 && !skill_4 && KEYMANAGER->isOnceKeyDown(P1_LEFT))
+		{
+			skill_2 = false;
+			skill_1 = true;
+			m_skillSelectRect = UTIL::IRectMake(39, 595, 20, 40);
+		}
+		if (skill_1 && !skill_2 && !skill_3 && !skill_4 && KEYMANAGER->isOnceKeyDown(P1_DOWN))
+		{
+			skill_1 = false;
+			skill_3 = true;
+			m_skillSelectRect = UTIL::IRectMake(39, 674, 20, 40);
+		}
+		if (!skill_1 && !skill_2 && skill_3 && !skill_4 && KEYMANAGER->isOnceKeyDown(P1_UP))
+		{
+			skill_3 = false;
+			skill_1 = true;
+			m_skillSelectRect = UTIL::IRectMake(39, 595, 20, 40);
+		}
+		break;
+	case 4:
+		if (skill_1 && !skill_2 && !skill_3 && !skill_4 && KEYMANAGER->isOnceKeyDown(P1_RIGHT))
+		{
+			skill_1 = false;
+			skill_2 = true;
+			m_skillSelectRect = UTIL::IRectMake(318, 595, 20, 40);
+		}
+		if (!skill_1 && !skill_2 && skill_3 && !skill_4 && KEYMANAGER->isOnceKeyDown(P1_RIGHT))
+		{
+			skill_3 = false;
+			skill_4 = true;
+			m_skillSelectRect = UTIL::IRectMake(318, 674, 20, 40);
+		}
+		if (!skill_1 && skill_2 && !skill_3 && !skill_4 && KEYMANAGER->isOnceKeyDown(P1_LEFT))
+		{
+			skill_2 = false;
+			skill_1 = true;
+			m_skillSelectRect = UTIL::IRectMake(39, 595, 20, 40);
+		}
+		if (!skill_1 && !skill_2 && !skill_3 && skill_4 && KEYMANAGER->isOnceKeyDown(P1_LEFT))
+		{
+			skill_4 = false;
+			skill_3 = true;
+			m_skillSelectRect = UTIL::IRectMake(39, 674, 20, 40);
+		}
+		if (!skill_1 && !skill_2 && skill_3 && !skill_4 && KEYMANAGER->isOnceKeyDown(P1_UP))
+		{
+			skill_3 = false;
+			skill_1 = true;
+			m_skillSelectRect = UTIL::IRectMake(39, 595, 20, 40);
+		}
+		if (!skill_1 && !skill_2 && !skill_3 && skill_4 && KEYMANAGER->isOnceKeyDown(P1_UP))
+		{
+			skill_4 = false;
+			skill_2 = true;
+			m_skillSelectRect = UTIL::IRectMake(318, 595, 20, 40);
+		}
+		if (skill_1 && !skill_2 && !skill_3 && !skill_4 && KEYMANAGER->isOnceKeyDown(P1_DOWN))
+		{
+			skill_1 = false;
+			skill_3 = true;
+			m_skillSelectRect = UTIL::IRectMake(39, 674, 20, 40);
+		}
+		if (!skill_1 && skill_2 && !skill_3 && !skill_4 && KEYMANAGER->isOnceKeyDown(P1_DOWN))
+		{
+			skill_2 = false;
+			skill_4 = true;
+			m_skillSelectRect = UTIL::IRectMake(318, 674, 20, 40);
+		}
+		break;
+	}
+
+	/*if (skill_1 && !skill_2 && !skill_3 && !skill_4 && KEYMANAGER->isOnceKeyDown(P1_RIGHT))
 	{
 		skill_1 = false;
 		skill_2 = true;
@@ -774,7 +892,7 @@ void BattleScene::moveSkillSelectButton()
 		skill_2 = false;
 		skill_4 = true;
 		m_skillSelectRect = UTIL::IRectMake(318, 674, 20, 40);
-	}
+	}*/
 
 	if (KEYMANAGER->isOnceKeyDown(P1_Z))
 	{
@@ -836,7 +954,8 @@ void BattleScene::wildBattleRender(HDC hdc)
 
 	char str[411];
 	//배경
-	IMAGEMANAGER->findImage("battleTemp")->render(hdc);
+	//IMAGEMANAGER->findImage("battleTemp")->render(hdc);
+	IMAGEMANAGER->findImage("backGroundImg")->render(hdc);
 
 	//인트로 애니메이션 
 	if (wildBattleIntroAniOn)

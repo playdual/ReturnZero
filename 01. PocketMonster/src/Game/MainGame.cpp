@@ -64,16 +64,16 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addFrameImage("playerimg", "images/newPlayer2.bmp", 64 * 4, 440, 4, 5, true, RGB(255, 0, 255));
 
 	//pocketmon Img
-	IMAGEMANAGER->addImage("CharmanderFront",		"images/pocketmons/CharmanderFront.bmp", 100, 100, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("CharmanderBack",		"images/pocketmons/CharmanderBack.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("CharmanderFront",		"images/pocketmons/CharmanderFront.bmp", 100*2, 100 * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("CharmanderBack",		"images/pocketmons/CharmanderBack.bmp", 100 * 2, 100 * 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("CharmanderIcon",	"images/pocketmons/CharmanderIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addImage("BulbasaurFront",		"images/pocketmons/BulbasaurFront.bmp", 100, 100, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("BulbasaurBack",			"images/pocketmons/BulbasaurBack.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("BulbasaurFront",		"images/pocketmons/BulbasaurFront.bmp", 100 * 2, 100 * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("BulbasaurBack",			"images/pocketmons/BulbasaurBack.bmp", 100 * 2, 100 * 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("BulbasaurIcon",	"images/pocketmons/BulbasaurIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addImage("SquirtleFront",			"images/pocketmons/SquirtleFront.bmp", 100, 100, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("SquirtleBack",			"images/pocketmons/SquirtleBack.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("SquirtleFront",			"images/pocketmons/SquirtleFront.bmp", 100 * 2 , 100 * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("SquirtleBack",			"images/pocketmons/SquirtleBack.bmp", 100 * 2, 100 * 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("SquirtleIcon",		"images/pocketmons/SquirtleIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
 
 	IMAGEMANAGER->addImage("PidgeyFront",			"images/pocketmons/PidgeyFront.bmp", 100, 100, true, RGB(255, 0, 255));
@@ -131,17 +131,23 @@ HRESULT MainGame::init()
 	
 	//sound
 	SOUNDMANAGER->addStream("NewBarkTown", "Sounds/NewBarkTown.mp3", true);
-
 	
-	IMAGEMANAGER->addImage("enemyStatus",	"images/BattleUi/enemyStatus.bmp",	0, 0, 100, 29, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("playerStatus",	"images/BattleUi/playerStatus.bmp",	0, 0, 104, 37, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("arrow",	"images/BattleUi/arrow.bmp",				0, 0, 6, 10, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("explainRect",	"images/BattleUi/explainRect.bmp",	240, 48, true, RGB(255, 0, 255));
+	//=============
+	// battle Ui //
+	//=============
+	IMAGEMANAGER->addImage("battleTemp", "images/battleTemp2.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("backGroundImg", "images/BattleUi/backGroundImg.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("enemyStatus",	"images/BattleUi/enemyStatus.bmp",	0, 0, 100*4+24, 29*4+22, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("playerStatus",	"images/BattleUi/playerStatus.bmp",	0, 0, 104*4+29, 37*4+30, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("arrow",	"images/BattleUi/arrow.bmp",				0, 0, 6*5, 10*5, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("explainRect",	"images/BattleUi/explainRect.bmp",	240*4+64, 48*4+38, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("npcPocketmonBall",	"images/BattleUi/npcPocketmonBall.bmp",	0, 0, 104, 12, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("playerPocketmonBall",	"images/BattleUi/playerPocketmonBall.bmp",	0, 0, 104, 12, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("skillSelect",	"images/BattleUi/skillSelect.bmp",	0, 0, 240, 48, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("stayArrow",	"images/BattleUi/stayArrow.bmp",		0, 0, 10, 6, true, RGB(255, 0, 255));
-	
+	IMAGEMANAGER->addImage("skillSelect",	"images/BattleUi/skillSelect.bmp",	0, 0, 240*4+64, 48*4+38, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("stayArrow",	"images/BattleUi/stayArrow.bmp",		0, 0, 10*4, 6*4, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("enemyBottom",	"images/BattleUi/enemyBottom.bmp",	0, 0, 128*4+34, 34*4+20, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("playerBottom",	"images/BattleUi/playerBottom.bmp",	0, 0, 120*4+34, 15*4+20, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("currentExp", "images/BattleUi/currentExp.bmp",	    0, 0, 7*4+246, 2*4+1, true, RGB(255, 0, 255));	
 	
 	//
 	MAPMANGER->init();

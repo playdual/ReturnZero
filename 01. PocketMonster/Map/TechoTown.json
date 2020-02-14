@@ -4822,6 +4822,6 @@
 	"mapHeight" : 20,
 	"mapName" : "TechoTown",
 	"mapWidth" : 24,
-	"startX" : 15,
-	"startY" : 8
+	"startX" : 3,
+	"startY" : 15
 }
