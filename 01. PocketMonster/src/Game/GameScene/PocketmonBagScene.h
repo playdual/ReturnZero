@@ -55,7 +55,6 @@ private:
 	Image* m_sub3HpBarRed;
 	Image* m_sub4HpBarRed;
 
-
 	UTIL::IRECT m_mainRect;
 	UTIL::IRECT m_mainIconRect;
 	UTIL::IRECT m_subRect0;
@@ -69,7 +68,6 @@ private:
 	UTIL::IRECT m_subRect4;
 	UTIL::IRECT m_subIconRect4;
 	UTIL::IRECT m_cancle;
-
 
 	int m_indexCursor;
 	int m_indexCursorMax;

@@ -4,6 +4,10 @@
 #define TILE_WIDTH 75
 #define TILE_HEIGHT 75
 
+#define INFO_ITEM		1
+#define INFO_CHANGEPOKE 2
+#define INFO_USEDITEM	3
+
 
 enum class TileType
 {
@@ -13,6 +17,7 @@ enum class TileType
 	TileTypeTree,
 	TileTypeNextMap,
 	TileTypeOutRange,
+	TileTypeObject,
 	TileTypeNone
 };
 enum class SkillType
@@ -119,15 +124,24 @@ struct PocketSkill
 
 struct ItemInfo
 {
-	ItemType		type;
-	std::string		name;
+	int				InfoType = INFO_ITEM;
 	int				damage;
 	int				healHp;
 	int				pocketCatchRatio;
+	std::string		name;
+	ItemType		type;
 
 	ItemInfo() 
 		: name(""), type(ItemType::ItemTypeNone), damage(0), healHp(0), pocketCatchRatio(0)
 	{}
+};
+struct ChangePocketInfo
+{
+	int	infoType = INFO_CHANGEPOKE;
+};
+struct UsedItemInfo
+{
+	int infoType = INFO_USEDITEM;
 };
 
 struct MenuBar {

@@ -21,11 +21,10 @@ public:
 	virtual void render(HDC hdc) = 0;
 	virtual void afterRender(HDC hdc) = 0;
 	virtual void debugRender(HDC hdc) = 0;
+	virtual void* getResult() { return m_sceneResult; }
 
-	virtual ItemInfo getItemInfo() {
-		ItemInfo ret;
-		return ret;
-	}
+protected:
+	void* m_sceneResult = nullptr;
 
 public:
 	virtual LRESULT SceneProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);

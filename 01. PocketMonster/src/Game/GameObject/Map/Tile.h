@@ -31,11 +31,20 @@ private:
 	UTIL::IRECT m_outputTile;
 	bool isCanprint = false;
 
-	Image* m_img;
+	Image* m_img = nullptr;
+	Image* m_afterRenderImg = nullptr;
+	int curIdx = 0;
+	float frameDelay = 0.3f;
+	float framePast = 0.f;
+
 	std::string tileImageKey;
+	std::string objName;
+	std::string afterRenderImageKey;
+	std::string m_nextMapName;
 
 	bool isAfterRender;
 	bool isMovable;
+	bool isFrame = false;
 
 	//포켓몬의 키값 이름, 포켓몬의 래벨
 	std::vector<std::pair<std::string, int>> m_innerPocketmonInfo;

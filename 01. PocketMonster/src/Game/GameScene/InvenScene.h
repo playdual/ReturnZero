@@ -35,7 +35,7 @@ public:
 	void buyImportItem();
 	void buyPokeBallItem();
 
-	ItemInfo getItemInfo() override;
+	ItemInfo getItemInfo();
 
 private:
 	std::shared_ptr<Inventory> m_inven;

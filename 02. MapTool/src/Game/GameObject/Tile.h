@@ -9,6 +9,7 @@ public:
 	~Tile() {};
 
 	void init(TileType _type, std::string _imgKey, int _BlockPostionX, int _BlockPostionY);
+	void init();
 	void update(float _deltaTime);
 	void render(HDC hdc);
 	void specialRender(HDC hdc);

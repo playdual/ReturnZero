@@ -16,17 +16,34 @@ MainGame::~MainGame()
 	
 }
 
+void MainGame::myloadImage(std::string defaultName, std::string path, int _size)
+{
+	std::string bmp = ".bmp";
+	path += '/';
+	for (int i = 1; i <= _size; ++i) {
+		std::string key = defaultName + std::to_string(i);
+		IMAGEMANAGER->addImage(key, (path + key + bmp).c_str(), TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
+	}
+}
+
 HRESULT MainGame::init()
 {
 	GameNode::init();
+	myloadImage("TechoTown_", "Images/TechoTown", 480);
+	myloadImage("BigTree", "Images/afterRender", 2);
+	myloadImage("profOhouseTop", "Images/afterRender", 7);
+	myloadImage("House0", "Images/afterRender", 5);
+
+	IMAGEMANAGER->addImage("MailBox2",		"Images/afterRender/MailBox2.bmp", TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("trainersMan",	"Images/Trainers/trainers_man.bmp", 64 * 3, 64 * 3, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("pailiFront",	"Images/pocketmons/pailiFront.bmp", 60 * 3, 61 * 3, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("pailiBack",		"Images/pocketmons/pailiBack.bmp", 61 * 3, 61 * 3, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("pikachuFront",	"Images/pocketmons/PikachuFront.bmp", 61 * 3, 61 * 3, true, RGB(255, 0, 255));
-
 	IMAGEMANAGER->addImage("GrassTile1",	"images/GrassTile1.bmp",		TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Bush1",			"images/Bush1.bmp",				TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Tree1",			"images/Tree1.bmp",				TILE_WIDTH, TILE_HEIGHT + 23, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Flower", "Images/Tile/Object/Flower1Frame.bmp", TILE_WIDTH * 5, TILE_HEIGHT, 5, 1, true, RGB(255, 0, 255));
+
 
 	//rsc
 	IMAGEMANAGER->addImage("인벤토리씬",		"Images/InvenScene.bmp",		0, 0, WINSIZEX, WINSIZEY);
@@ -43,9 +60,6 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("아이템인벤메뉴", "Images/menu.bmp", 63 * 5, 63 * 6, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("그외인벤메뉴", "Images/menu.bmp", 63 * 5, 63 * 5, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("인벤메뉴상세", "Images/invenMenuBottom.bmp", 182 * 3, 29 * 7, true, RGB(255, 0, 255));
-
-
-
 
 	//pocketmon Img
 	IMAGEMANAGER->addImage("CharmanderFront",		"images/pocketmons/CharmanderFront.bmp", 100, 100, true, RGB(255, 0, 255));
@@ -113,12 +127,13 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("BagHpBarYellow","images/HpBarYellow.bmp",			0, 0, 208, 15, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("BagHpBarRed",	"images/HpBarRed.bmp",				0, 0, 208, 15, true, RGB(255, 0, 255));
 	
-	
+	//sound
+	SOUNDMANAGER->addStream("NewBarkTown", "Sounds/NewBarkTown.mp3", true);
+
 	//
 	MAPMANGER->init();
 	ITEMMANAGER->init();
 	POCKETMONMANAGER->init();
-
 
 	//add Scene
 	IMAGEMANAGER->addImage("bg", "Images/temp.bmp", 0, 0, WINSIZEX, WINSIZEY);
@@ -130,9 +145,11 @@ HRESULT MainGame::init()
 	SCENEMANAGER->addScene("battle", new BattleScene);
 	SCENEMANAGER->addScene("inven", new InvenScene(inven));
 	SCENEMANAGER->scenePush("town");
-
 	sceneInit = true;
 
+	//now! our First Sound!
+	SOUNDMANAGER->playSound("NewBarkTown", Channel::eChannelBgm);
+	
 	return S_OK;
 }
 

@@ -8,8 +8,7 @@ MapManager::~MapManager() {}
 
 void MapManager::init()
 {
-	addMap("TestTown", "TestTown");
-	addMap("TestTown2", "TestTown2");
+	addMap("TechoTown", "TechoTown");
 }
 
 void MapManager::release()
@@ -27,8 +26,9 @@ void MapManager::addMap(std::string mapKey, std::string fileName)
 std::shared_ptr<Map> MapManager::findMap(std::string mapKey)
 {
 	auto map = MapList.find(mapKey);
-	if (map == MapList.end())
-		return nullptr;
+	if (map == MapList.end()) {
+		return curMap;
+	}
 
 	curMap = map->second;
 	return map->second;

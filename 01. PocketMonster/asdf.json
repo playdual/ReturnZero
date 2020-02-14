@@ -1,0 +1,47 @@
+{
+	"0" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 0,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"1" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 0,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"2" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 1,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"3" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 1,
+		"imageKey" : "GrassTile1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"mapHeight" : 2,
+	"mapName" : "asdf",
+	"mapWidth" : 2,
+	"startX" : 0,
+	"startY" : 0
+}

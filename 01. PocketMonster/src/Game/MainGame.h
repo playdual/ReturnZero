@@ -22,6 +22,7 @@ public:
 	LRESULT MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);
 
 private:
+	void myloadImage(std::string defaultName, std::string path, int _size);
 	float deltaTime;
 };
 

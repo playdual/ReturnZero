@@ -74,7 +74,7 @@ TileType Map::getTileTypeFromIdex(int _x, int _y)
 		return TileType::TileTypeOutRange;
 	if(_x >= m_width || _y >= m_height)
 		return TileType::TileTypeOutRange;
-	return m_tiles[_x + _y * m_height].m_Type;
+	return m_tiles[_x + _y * m_width].m_Type;
 }
 
 Tile& Map::getSpecifyTile(int _blockPositionX, int _blockPositionY)
@@ -90,16 +90,10 @@ void Map::setPlayerPosition(int _x, int _y)
 
 void Map::render(HDC hdc)
 {
-	for (auto& tile : m_tiles) {
-		if(tile.m_BlockPositionY <= m_playerPositionY)
+
+	for (auto& tile : m_tiles) 
 			tile.render(hdc);
-	}
-	if (!isAfter)
-	{
-		for (auto& tile : m_tiles) {
-			tile.render(hdc);
-		}
-	}
+
 }
 
 void Map::update(float _deltaTime)
@@ -119,12 +113,7 @@ void Map::debugRender(HDC hdc)
 
 void Map::afterRender(HDC hdc)
 {
-	if (isAfter)
-	{
-		for (auto& tile : m_tiles) {
-			if (tile.m_BlockPositionY > m_playerPositionY)
-				tile.afterRender(hdc);
-		}
-	}
+	for (auto& tile : m_tiles)
+		tile.afterRender(hdc);
 }
 

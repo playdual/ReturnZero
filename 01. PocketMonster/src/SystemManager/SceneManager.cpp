@@ -30,6 +30,7 @@ void SceneManager::release()
 		else iter++;
 	}
 	_mSceneList.clear();
+	eraseLastInfo();
 }
 
 void SceneManager::update(float deltaTime)
@@ -143,15 +144,44 @@ bool SceneManager::scenePop()
 	return true;
 }
 
-ItemInfo SceneManager::scenePop(bool _isGetInfom)
+void SceneManager::scenePush(std::string sceneName, void * pushInfo, bool isOnBattleScene)
 {
-	ItemInfo ret;
+}
+
+void SceneManager::eraseLastInfo()
+{
+	if (m_lastSceneReturnInfo != nullptr) {
+		switch (*(int*)m_lastSceneReturnInfo){
+		case INFO_ITEM:
+			{
+				ItemInfo* del = (ItemInfo*)m_lastSceneReturnInfo;
+				SAFE_DELETE(del);
+			}		
+			break;
+		case INFO_CHANGEPOKE:
+			{
+				ChangePocketInfo* del = (ChangePocketInfo*)m_lastSceneReturnInfo;
+				SAFE_DELETE(del);
+			}			
+			break;
+		case INFO_USEDITEM:
+			{
+				UsedItemInfo* del = (UsedItemInfo*)m_lastSceneReturnInfo;
+				SAFE_DELETE(del);
+			}
+		break;
+		}
+		m_lastSceneReturnInfo = nullptr;
+	}	
+}
+
+void SceneManager::scenePop(bool _isGetInfom)
+{
 	if (sceneStack.size() > 1) {
-		ret = sceneStack.top()->getItemInfo();
+		m_lastSceneReturnInfo = sceneStack.top()->getResult();
 		sceneStack.top()->release();
 		sceneStack.pop();
 		_currentScene = sceneStack.top();
 	}
-	return ret;
 }
 

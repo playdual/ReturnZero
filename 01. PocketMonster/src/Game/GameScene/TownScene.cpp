@@ -16,7 +16,7 @@ bool TownScene::init()
 	//player init
 	m_player = std::make_shared<player>();
 	
-	m_map = MAPMANGER->findMap("TestTown");
+	m_map = MAPMANGER->findMap("TechoTown");
 	m_player->reLocate(m_map->getStartPositionX(), m_map->getStartPositionY());
 	m_player->init();
 	
@@ -37,6 +37,9 @@ bool TownScene::init()
 	Menu.push_back(MenuBar("닫기", 5));
 	Menu.push_back(MenuBar("플레이어", 2));
 	
+
+
+
 	menuUpdate();
 	return true;
 }

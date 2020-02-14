@@ -21,6 +21,8 @@ public:
 public:
 	int m_width;
 	int m_height;
+	int m_playerStartPositionX;
+	int m_playerStartPositionY;
 
 	std::vector<Tile> m_tiles;
 };

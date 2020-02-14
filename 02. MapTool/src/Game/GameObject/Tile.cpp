@@ -1,6 +1,27 @@
 ﻿#include "stdafx.h"
 #include "Tile.h"
 
+void Tile::init()
+{
+	m_absTile.left = m_BlockPositionX * TILE_WIDTH;
+	m_absTile.right = m_BlockPositionX * TILE_WIDTH + TILE_WIDTH;
+	m_absTile.top = m_BlockPositionY * TILE_HEIGHT;
+	m_absTile.bottom = m_BlockPositionY * TILE_HEIGHT + TILE_HEIGHT;
+
+	if (tileImageKey != "") {
+		m_img = IMAGEMANAGER->findImage(tileImageKey + 't');
+	}
+
+	if (afterRenderImageKey != "") {
+		hasAfterRender = true;
+		m_afterImage = IMAGEMANAGER->findImage(afterRenderImageKey + 't');
+	}
+	if (m_nextMapName != ""){
+		nextMapInfoStr = m_nextMapName + " " + std::to_string(m_nextMapStartIdx.x) + 
+			" " + std::to_string(m_nextMapStartIdx.y);
+	}
+}
+
 void Tile::init(TileType _type, std::string _imgKey, int _BlockPositionX, int _BlockPositionY)
 {
 	m_Type = _type;
@@ -29,6 +50,9 @@ void Tile::update(float _deltaTime)
 		m_nextMapStartIdx.x = -1;
 		m_nextMapStartIdx.y = -1;
 	}
+	else if (m_nextMapName == "") {
+		nextMapInfoStr = "";
+	}
 	/*if (m_img == nullptr) {
 		tileImageKey = "";
 	}
@@ -42,7 +66,7 @@ void Tile::render(HDC hdc)
 {
 	if (isCanprint) {
 		if (m_img) {
-			m_img->render(hdc, m_outputTile.left, m_outputTile.top);
+			m_img->render(hdc, m_outputTile.left, m_outputTile.top, 0, 0, 100, 100);
 		}
 		else {
 			UTIL::DrawColorRect(hdc, m_outputTile, color, true);
@@ -88,24 +112,30 @@ void Tile::setColor()
 
 void Tile::setAttributeTile(TileAttribute _attribute)
 {
-	hasAfterRender = _attribute.isAfterRender;
-	if(!hasAfterRender)
+	if (_attribute.type == TileType::TileTypeNone) {
 		m_Type = _attribute.type;
-	if (_attribute.tileKeyname != "") {
-		if (hasAfterRender) {
-			m_afterImage = IMAGEMANAGER->findImage(_attribute.tileKeyname);
-			afterRenderImageKey = _attribute.tileKeyname;
-			afterRenderImageKey.pop_back();
-		}
-		else {
-			m_img = IMAGEMANAGER->findImage(_attribute.tileKeyname);
-			tileImageKey = _attribute.tileKeyname;
-			tileImageKey.pop_back();
-		}
+		resetAttribute();
 	}
 	else {
-		m_img = nullptr;
-		tileImageKey = "";
+		hasAfterRender = _attribute.isAfterRender;
+		if (!hasAfterRender)
+			m_Type = _attribute.type;
+		if (_attribute.tileKeyname != "") {
+			if (hasAfterRender) {
+				m_afterImage = IMAGEMANAGER->findImage(_attribute.tileKeyname);
+				afterRenderImageKey = _attribute.tileKeyname;
+				afterRenderImageKey.pop_back();
+			}
+			else {
+				m_img = IMAGEMANAGER->findImage(_attribute.tileKeyname);
+				tileImageKey = _attribute.tileKeyname;
+				tileImageKey.pop_back();
+			}
+		}
+		else {
+			m_img = nullptr;
+			tileImageKey = "";
+		}
 	}
 }
 
@@ -129,6 +159,10 @@ void Tile::resetInnerAttribute()
 	isStartBlock = false;
 
 	m_nextMapName = "";
+	afterRenderImageKey = "";
+	objName = "";
+	m_afterImage = nullptr;
+	hasAfterRender = false;
 	m_nextMapStartIdx.x = 0;
 	m_nextMapStartIdx.y = 0;
 	m_innerPocketMonInfo.clear();

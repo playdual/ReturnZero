@@ -1,5 +1,6 @@
 ﻿#include "stdafx.h"
 #include "MapToolScene.h"
+#include "../../vendor/Json/inc/json.h"
 
 //general
 void MapToolScene::update(float _deltaTime)
@@ -49,7 +50,7 @@ bool MapToolScene::init()
 	}
 	else {
 		for (int i = 0; i < mapHeight; ++i) {
-			for (int j = 1; j <= mapWidth; ++j) {
+			for (int j = 0; j < mapWidth; ++j) {
 				auto tile = std::make_shared<Tile>();
 				tile->init(TileType::TileTypeNone, "", j, i);
 				m_Tiles.push_back(tile);
@@ -77,10 +78,9 @@ bool MapToolScene::init()
 	bushSelectRect = UTIL::IRectMake(1150, 300, 200, 100);
 	setSpecifyRect = UTIL::IRectMake(1150, 400, 200, 100);
 	setTileTypeRect = UTIL::IRectMake(1150, 500, 200, 100);
-	setNextMapButtonRect = UTIL::IRectMake(1150, 150, 200, 100);
-	setPocketMonButtonRect = UTIL::IRectMake(1150, 250, 200, 100);
-	setObjectButtonRect = UTIL::IRectMake(1150, 350, 200, 100);
-
+	setNextMapButtonRect = UTIL::IRectMake(1150, 120, 200, 100);
+	setPocketMonButtonRect = UTIL::IRectMake(1150, 220, 200, 100);
+	setObjectButtonRect = UTIL::IRectMake(1150, 320, 200, 100);
 
 	tileTypeFloorRect		= UTIL::IRectMake(1100, 200, 75, 75);
 	tileTypeHouseRect		= UTIL::IRectMake(1200, 200, 75, 75);
@@ -93,9 +93,9 @@ bool MapToolScene::init()
 
 
 	//TileBlockSetup
-	treeVectorInit(5);
-	tileVectorInit(5);
-	bushVectorInit(5);
+	treeVectorInit(6);
+	tileVectorInit(6);
+	bushVectorInit(6);
 	resetTileSelectedAttribute();
 
 	return true;
@@ -162,6 +162,8 @@ void MapToolScene::treeVectorInit(int _pageCount)
 	TileType type = TileType::TileTypeTree;
 	treeVector[0][0].setTileAttribute("Tree1Bottom", type, false);
 	treeVector[0][1].setTileAttribute("Tree1Top", type, false);
+	treeVectorPush("BigTree", type, 1, 2, false);
+
 }
 
 void MapToolScene::tileVectorPush(std::string imageKey,  TileType _type, int page, int _size, bool _afterRender)
@@ -198,7 +200,11 @@ void MapToolScene::tileVectorInit(int _pageCount)
 			tileVector[1][i + (j - 1) * 5].setTileAttribute(HouseKey, TileType::TileTypeHouse, false);
 		}
 	}	
+	tileVector[0][1].setTileAttribute("Flower", TileType::TileTypeFloor, false);
 	tileVectorPush("TownTile", TileType::TileTypeFloor, 2, 13, false);
+	tileVectorPush("MailBox", TileType::TileTypeObject, 3, 2, false);
+	tileVectorPush("profOhouseTop", TileType::TileTypeHouse, 4, 7,  false);
+	tileVectorPush("House0", TileType::TileTypeFloor, 5, 5, false);
 }
 
 void MapToolScene::bushVectorPush(std::string imageKey, TileType _type, int page, int _size, bool _afterRender)
@@ -389,7 +395,7 @@ void MapToolScene::treeSelectRender(HDC hdc)
 {
 	for (auto& e : treeVector[treeSelectPage]) {
 		if (e.img)
-			e.img->render(hdc, e.inUIpositionX, e.inUIpositionY);
+			e.img->render(hdc, e.inUIpositionX, e.inUIpositionY, 0, 0, 50, 50);
 		else
 			UTIL::DrawRect(hdc, e.rect);
 	}
@@ -427,7 +433,7 @@ void MapToolScene::tileSelectRender(HDC hdc)
 {
 	for (auto& e : tileVector[tileSelectPage]) {
 		if (e.img)
-			e.img->render(hdc, e.inUIpositionX, e.inUIpositionY);
+			e.img->render(hdc, e.inUIpositionX, e.inUIpositionY, 0, 0, 50, 50);
 		else
 			UTIL::DrawRect(hdc, e.rect);
 	}
@@ -814,10 +820,68 @@ void MapToolScene::TileWindowRender(HDC hdc)
 
 void MapToolScene::loadMap()
 {
+	/*JSONMANAGER->MapDataRead(readMapName);
+	MessageBox(m_hWnd, "save succefully done", "saved", MB_OK);*/
 	std::string readMapName;
 	std::cin >> readMapName;
-	JSONMANAGER->MapDataRead(readMapName);
-	MessageBox(m_hWnd, "save succefully done", "saved", MB_OK);
+
+	std::string filename = "../01. PocketMonster/Map/" + readMapName + ".json";
+	std::ifstream input(filename, std::ios::binary);
+
+	Json::Value root;
+	Json::Reader reader;
+	bool result = reader.parse(input, root);
+	if (!result) {
+		std::cout << reader.getFormatedErrorMessages() << std::endl;
+	}
+	input.close();
+
+	mapName = root["mapName"].asString();
+
+	int width = root["mapWidth"].asInt();
+	int height = root["mapHeight"].asInt();
+	mapStartX = root["startX"].asInt();
+	mapStartY = root["startY"].asInt();
+	int startIndex = mapStartX * width + mapStartY;
+
+	int size = width * height;
+	mapWidth = width;
+	mapHeight = height;
+	m_Tiles.clear();
+	m_Tiles.resize(size);
+
+	std::string innerPocketName = "innerPocketName-";
+	std::string innerPocketLevel = "innerPocketLevel-";
+	for (int i = 0; i < size; ++i) {
+		std::string s = std::to_string(i);
+		std::shared_ptr<Tile> tile = std::make_shared<Tile>();
+		tile->m_Type = (TileType)root[s]["type"].asInt();
+		if (tile->m_Type == TileType::TileTypeObject) {
+			tile->objName = root[s]["objName"].asString();
+		}
+		if (i == startIndex) {
+			tile->isStartBlock = true;
+		}
+		tile->m_BlockPositionX = root[s]["bPosX"].asInt();
+		tile->m_BlockPositionY = root[s]["bPosY"].asInt();
+		tile->tileImageKey = root[s]["imageKey"].asString();
+		tile->afterRenderImageKey = root[s]["afterRenderImageKey"].asString();
+
+		tile->m_nextMapName = root[s]["nextMapName"].asString();
+		if (tile->m_nextMapName != "") {
+			tile->m_nextMapStartIdx.x = root[s]["nextMapX"].asInt();
+			tile->m_nextMapStartIdx.y = root[s]["nextMapY"].asInt();
+		}
+		int innerPocketCount = root[s]["innerPocketMonCnt"].asInt();
+		for (int j = 0; j < innerPocketCount; ++j) {
+			std::string name = root[s][innerPocketName + std::to_string(j)].asString();
+			int level = root[s][innerPocketLevel + std::to_string(j)].asInt();
+			tile->m_innerPocketMonInfo.push_back(std::make_pair(name, level));
+		}
+		tile->init();
+		m_Tiles[i] = tile;
+	}
+
 }
 
 void MapToolScene::saveMap()

@@ -12,6 +12,14 @@ Tile::~Tile()
 void Tile::init()
 {
 	m_img = IMAGEMANAGER->findImage(tileImageKey);
+
+	if (m_img->getMaxFrameX() > 2)
+		isFrame = true;
+
+	if (afterRenderImageKey != "") {
+		m_afterRenderImg = IMAGEMANAGER->findImage(afterRenderImageKey);
+		isAfterRender = true;
+	}
 	m_absTile.left = m_BlockPositionX * TILE_WIDTH;
 	m_absTile.right = m_BlockPositionX * TILE_WIDTH + TILE_WIDTH;
 	m_absTile.top = m_BlockPositionY * TILE_HEIGHT;
@@ -73,33 +81,24 @@ void Tile::init(TileType _type, Image* _img, bool _isAfterRender, bool _isMovabl
 void Tile::update(float _deltaTime)
 {
 	CAMERAMANAGER->rectInCamera(m_outputTile, m_absTile, isCanprint);
+	framePast += _deltaTime;
+	if (frameDelay < framePast) {
+		curIdx++;
+		if (curIdx > m_img->getMaxFrameX())
+			curIdx = 0;
+		framePast = 0.f;
+	}
 }
 
 void Tile::render(HDC hdc)
 {
 	if (isCanprint)
 	{
-		switch (m_Type)
-		{
-		case TileType::TileTypeFloor:
+		//flower or water
+		if (isFrame)
+			m_img->frameRender(hdc, m_outputTile.left, m_outputTile.top, curIdx, 0);
+		else
 			m_img->render(hdc, m_outputTile.left, m_outputTile.top);
-			break;
-		case TileType::TileTypeHouse:
-			UTIL::DrawColorRect(hdc, m_outputTile, RGB(255, 0, 0), false);
-			break;
-		case TileType::TileTypeNextMap:
-			UTIL::DrawColorRect(hdc, m_outputTile, RGB(0, 0, 0), false);
-			break;
-		case TileType::TileTypeBush:
-			m_img->render(hdc, m_outputTile.left, m_outputTile.top);
-			break;
-		case TileType::TileTypeTree:
-			m_img->render(hdc, m_outputTile.left, m_outputTile.top - 23);
-			break;
-		case TileType::TileTypeOutRange:
-			UTIL::DrawColorRect(hdc, m_outputTile, RGB(255, 0, 0), false);
-			break;
-		}
 	}
 }
 
@@ -124,6 +123,9 @@ void Tile::debugRender(HDC hdc)
 		case TileType::TileTypeTree:
 			UTIL::DrawColorRect(hdc, m_outputTile, RGB(0, 0, 255), false);
 			break;
+		case TileType::TileTypeObject:
+			UTIL::DrawColorRect(hdc, m_outputTile, RGB(10, 150, 245), true);
+			break;
 		case TileType::TileTypeOutRange:
 			UTIL::DrawColorRect(hdc, m_outputTile, RGB(255, 0, 0), false);
 			break;
@@ -133,30 +135,11 @@ void Tile::debugRender(HDC hdc)
 
 void Tile::afterRender(HDC hdc)
 {
-	if (isCanprint)
-	{
-		switch (m_Type)
-		{
-		case TileType::TileTypeFloor:
-			m_img->render(hdc, m_outputTile.left, m_outputTile.top);
-			break;
-		case TileType::TileTypeHouse:
-			UTIL::DrawColorRect(hdc, m_outputTile, RGB(255, 0, 0), false);
-			break;
-		case TileType::TileTypeNextMap:
-			UTIL::DrawColorRect(hdc, m_outputTile, RGB(0, 0, 0), false);
-			break;
-		case TileType::TileTypeBush:
-			m_img->render(hdc, m_outputTile.left, m_outputTile.top);
-			break;
-		case TileType::TileTypeTree:
-			m_img->render(hdc, m_outputTile.left, m_outputTile.top - 23);
-			break;
-		case TileType::TileTypeOutRange:
-			UTIL::DrawColorRect(hdc, m_outputTile, RGB(255, 0, 0), false);
-			break;
-		}
+	if (isCanprint && isAfterRender) {
+		if(m_afterRenderImg)
+			m_afterRenderImg->render(hdc, m_outputTile.left, m_outputTile.top);
 	}
+
 }
 
 int Tile::getOutputTileY()

@@ -1,0 +1,4827 @@
+{
+	"0" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"1" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_2",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"10" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_11",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"100" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_101",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"101" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_102",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"102" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_103",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"103" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_104",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"104" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_105",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"105" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_106",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"106" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_107",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"107" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_108",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"108" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_109",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"109" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_110",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"11" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_12",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"110" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_111",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"111" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_112",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"112" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_113",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"113" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_114",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"114" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_115",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"115" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_116",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"116" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_117",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"117" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_118",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"118" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_119",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"119" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_120",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"12" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_13",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"120" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_121",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"121" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_122",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"122" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_123",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"123" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_124",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"124" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_125",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"125" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_126",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"126" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_127",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"127" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_128",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"128" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_129",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"129" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_130",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"13" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_14",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"130" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_131",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"131" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_132",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"132" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_133",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"133" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_134",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"134" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_135",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"135" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_136",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"136" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_137",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"137" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_138",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"138" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_139",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"139" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_140",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"14" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_15",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"140" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_141",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"141" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_142",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"142" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_143",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"143" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 5,
+		"imageKey" : "TechoTown_144",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"144" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_145",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"145" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_146",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"146" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_147",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"147" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_148",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"148" : 
+	{
+		"afterRenderImageKey" : "MailBox2",
+		"bPosX" : 4,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_149",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"149" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_150",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"15" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_16",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"150" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_151",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"151" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_152",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"152" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_153",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"153" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_154",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"154" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_155",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"155" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_156",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"156" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_157",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"157" : 
+	{
+		"afterRenderImageKey" : "MailBox2",
+		"bPosX" : 13,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_158",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"158" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_159",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"159" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_160",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"16" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_17",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"160" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_161",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"161" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_162",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"162" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_163",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"163" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_164",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"164" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_165",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"165" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_166",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"166" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_167",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"167" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 6,
+		"imageKey" : "TechoTown_168",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"168" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_169",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"169" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_170",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"17" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_18",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"170" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_171",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"171" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_172",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"172" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_173",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "MailBox",
+		"type" : 6
+	},
+	"173" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_174",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"174" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_175",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "RedHouse",
+		"nextMapX" : 5,
+		"nextMapY" : 3,
+		"type" : 4
+	},
+	"175" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_176",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"176" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_177",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"177" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_178",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"178" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_179",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"179" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_180",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"18" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_19",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"180" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_181",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"181" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_182",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "MailBox",
+		"type" : 6
+	},
+	"182" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_183",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"183" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_184",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "RedHouse",
+		"nextMapX" : 5,
+		"nextMapY" : 3,
+		"type" : 4
+	},
+	"184" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_185",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"185" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_186",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"186" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_187",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"187" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_188",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"188" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_189",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"189" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_190",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"19" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_20",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"190" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_191",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"191" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 7,
+		"imageKey" : "TechoTown_192",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"192" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_193",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"193" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_194",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"194" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_195",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"195" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_196",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"196" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_197",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"197" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_198",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"198" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_199",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"199" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_200",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"2" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_3",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"20" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_21",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"200" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_201",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"201" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_202",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"202" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_203",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"203" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_204",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"204" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_205",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"205" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_206",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"206" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_207",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"207" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_208",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"208" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_209",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"209" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_210",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"21" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_22",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"210" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_211",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"211" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_212",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"212" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_213",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"213" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_214",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"214" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_215",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"215" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 8,
+		"imageKey" : "TechoTown_216",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"216" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_217",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"217" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_218",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"218" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_219",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"219" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_220",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"22" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_23",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"220" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_221",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"221" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_222",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"222" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_223",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"223" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_224",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"224" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_225",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"225" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_226",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"226" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_227",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"227" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_228",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"228" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_229",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"229" : 
+	{
+		"afterRenderImageKey" : "profOhouseTop1",
+		"bPosX" : 13,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_230",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"23" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_24",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"230" : 
+	{
+		"afterRenderImageKey" : "profOhouseTop2",
+		"bPosX" : 14,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_231",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"231" : 
+	{
+		"afterRenderImageKey" : "profOhouseTop3",
+		"bPosX" : 15,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_232",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"232" : 
+	{
+		"afterRenderImageKey" : "profOhouseTop4",
+		"bPosX" : 16,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_233",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"233" : 
+	{
+		"afterRenderImageKey" : "profOhouseTop5",
+		"bPosX" : 17,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_234",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"234" : 
+	{
+		"afterRenderImageKey" : "profOhouseTop6",
+		"bPosX" : 18,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_235",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"235" : 
+	{
+		"afterRenderImageKey" : "profOhouseTop7",
+		"bPosX" : 19,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_236",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"236" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_237",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"237" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_238",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"238" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_239",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"239" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 9,
+		"imageKey" : "TechoTown_240",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"24" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_25",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"240" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_241",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"241" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_242",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"242" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_243",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"243" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_244",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"244" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_245",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"245" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_246",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"246" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_247",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"247" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_248",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"248" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_249",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"249" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_250",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"25" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_26",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"250" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_251",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"251" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_252",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"252" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_253",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"253" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_254",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"254" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_255",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"255" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_256",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"256" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_257",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"257" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_258",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"258" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_259",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"259" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_260",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"26" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_27",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"260" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_261",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"261" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_262",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"262" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_263",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"263" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 10,
+		"imageKey" : "TechoTown_264",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"264" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_265",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"265" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_266",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"266" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_267",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"267" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_268",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"268" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_269",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"269" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_270",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"27" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_28",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"270" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_271",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"271" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_272",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"272" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_273",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"273" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_274",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "MileStone",
+		"type" : 6
+	},
+	"274" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_275",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"275" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_276",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"276" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_277",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"277" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_278",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"278" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_279",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"279" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_280",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"28" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_29",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"280" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_281",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"281" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_282",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"282" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_283",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"283" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_284",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"284" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_285",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"285" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_286",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"286" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_287",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"287" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 11,
+		"imageKey" : "TechoTown_288",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"288" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 12,
+		"imageKey" : "TechoTown_289",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"289" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 12,
+		"imageKey" : "TechoTown_290",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"29" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_30",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"290" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 12,
+		"imageKey" : "TechoTown_291",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"291" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 12,
+		"imageKey" : "TechoTown_292",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"292" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 12,
+		"imageKey" : "TechoTown_293",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"293" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 12,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"294" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 12,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"295" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 12,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"296" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 12,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"297" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 12,
+		"imageKey" : "TechoTown_298",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"298" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 12,
+		"imageKey" : "TechoTown_299",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"299" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 12,
+		"imageKey" : "TechoTown_300",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"3" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_4",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"30" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_31",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"300" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 12,
+		"imageKey" : "TechoTown_301",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"301" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 12,
+		"imageKey" : "TechoTown_302",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"302" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 12,
+		"imageKey" : "TechoTown_303",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"303" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 12,
+		"imageKey" : "TechoTown_304",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"304" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 12,
+		"imageKey" : "TechoTown_305",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"305" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 12,
+		"imageKey" : "TechoTown_306",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"306" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 12,
+		"imageKey" : "TechoTown_307",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"307" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 12,
+		"imageKey" : "TechoTown_308",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"308" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 12,
+		"imageKey" : "TechoTown_309",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"309" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 12,
+		"imageKey" : "TechoTown_310",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"31" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_32",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"310" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 12,
+		"imageKey" : "TechoTown_311",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"311" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 12,
+		"imageKey" : "TechoTown_312",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"312" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 13,
+		"imageKey" : "TechoTown_313",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"313" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 13,
+		"imageKey" : "TechoTown_314",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"314" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 13,
+		"imageKey" : "TechoTown_315",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"315" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 13,
+		"imageKey" : "TechoTown_316",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"316" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 13,
+		"imageKey" : "TechoTown_317",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"317" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 13,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"318" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 13,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"319" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 13,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"32" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_33",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"320" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 13,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"321" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 13,
+		"imageKey" : "TechoTown_322",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"322" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 13,
+		"imageKey" : "TechoTown_323",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"323" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 13,
+		"imageKey" : "TechoTown_324",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"324" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 13,
+		"imageKey" : "TechoTown_325",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"325" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 13,
+		"imageKey" : "TechoTown_326",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"326" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 13,
+		"imageKey" : "TechoTown_327",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"327" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 13,
+		"imageKey" : "TechoTown_328",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"328" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 13,
+		"imageKey" : "TechoTown_329",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "profOHouse",
+		"nextMapX" : 4,
+		"nextMapY" : 8,
+		"type" : 4
+	},
+	"329" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 13,
+		"imageKey" : "TechoTown_330",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"33" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_34",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"330" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 13,
+		"imageKey" : "TechoTown_331",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"331" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 13,
+		"imageKey" : "TechoTown_332",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 1
+	},
+	"332" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 13,
+		"imageKey" : "TechoTown_333",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"333" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 13,
+		"imageKey" : "TechoTown_334",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"334" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 13,
+		"imageKey" : "TechoTown_335",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"335" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 13,
+		"imageKey" : "TechoTown_336",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"336" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_337",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"337" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_338",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"338" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_339",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"339" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_340",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"34" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_35",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"340" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_341",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"341" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_342",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "MileStone2",
+		"type" : 6
+	},
+	"342" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_343",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"343" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_344",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"344" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_345",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"345" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_346",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"346" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_347",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"347" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_348",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"348" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_349",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"349" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_350",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"35" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_36",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"350" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_351",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"351" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_352",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"352" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_353",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"353" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_354",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"354" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_355",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"355" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_356",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"356" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_357",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"357" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_358",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"358" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_359",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"359" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 14,
+		"imageKey" : "TechoTown_360",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"36" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_37",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"360" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_361",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"361" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_362",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"362" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_363",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"363" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_364",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"364" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_365",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"365" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_366",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"366" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_367",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"367" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_368",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"368" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_369",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"369" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_370",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"37" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_38",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"370" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_371",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"371" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_372",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"372" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_373",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"373" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_374",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"374" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_375",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"375" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_376",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"376" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_377",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"377" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_378",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"378" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_379",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"379" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_380",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"38" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_39",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"380" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_381",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"381" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_382",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"382" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_383",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"383" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 15,
+		"imageKey" : "TechoTown_384",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"384" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_385",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"385" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_386",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"386" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_387",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"387" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 16,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"388" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 16,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"389" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_390",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"39" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_40",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"390" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_391",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"391" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_392",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"392" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_393",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"393" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_394",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"394" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_395",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"395" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_396",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"396" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_397",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"397" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_398",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"398" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_399",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"399" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_400",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"4" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_5",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"40" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_41",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"400" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_401",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "MileStone",
+		"type" : 6
+	},
+	"401" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_402",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"402" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_403",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"403" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_404",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"404" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_405",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"405" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_406",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"406" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_407",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"407" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 16,
+		"imageKey" : "TechoTown_408",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"408" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_409",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"409" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_410",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"41" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_42",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"410" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_411",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"411" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 17,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"412" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 17,
+		"imageKey" : "Bush1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"413" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_414",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"414" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_415",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"415" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_416",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"416" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_417",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"417" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_418",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"418" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_419",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"419" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_420",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"42" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_43",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"420" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_421",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"421" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_422",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"422" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_423",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"423" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_424",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"424" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_425",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"425" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_426",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"426" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_427",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"427" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_428",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"428" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_429",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"429" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_430",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"43" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_44",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"430" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_431",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"431" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 17,
+		"imageKey" : "TechoTown_432",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"432" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_433",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"433" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_434",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"434" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_435",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"435" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_436",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"436" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_437",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"437" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_438",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"438" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_439",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"439" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_440",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"44" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_45",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"440" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_441",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"441" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_442",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"442" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_443",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"443" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_444",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"444" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_445",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"445" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_446",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"446" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_447",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"447" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_448",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"448" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_449",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"449" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_450",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"45" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_46",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"450" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_451",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"451" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_452",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"452" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_453",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"453" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_454",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"454" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_455",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"455" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 18,
+		"imageKey" : "TechoTown_456",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"456" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_457",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"457" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_458",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"458" : 
+	{
+		"afterRenderImageKey" : "BigTree1",
+		"bPosX" : 2,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_459",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"459" : 
+	{
+		"afterRenderImageKey" : "BigTree2",
+		"bPosX" : 3,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_460",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"46" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_47",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"460" : 
+	{
+		"afterRenderImageKey" : "BigTree1",
+		"bPosX" : 4,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_461",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"461" : 
+	{
+		"afterRenderImageKey" : "BigTree2",
+		"bPosX" : 5,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_462",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"462" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_463",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"463" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_464",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"464" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_465",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"465" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_466",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"466" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_467",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"467" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_468",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"468" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_469",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"469" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_470",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"47" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 1,
+		"imageKey" : "TechoTown_48",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"470" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_471",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"471" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_472",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"472" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_473",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"473" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_474",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"474" : 
+	{
+		"afterRenderImageKey" : "BigTree1",
+		"bPosX" : 18,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_475",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"475" : 
+	{
+		"afterRenderImageKey" : "BigTree2",
+		"bPosX" : 19,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_476",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"476" : 
+	{
+		"afterRenderImageKey" : "BigTree1",
+		"bPosX" : 20,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_477",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"477" : 
+	{
+		"afterRenderImageKey" : "BigTree2",
+		"bPosX" : 21,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_478",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"478" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_479",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"479" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 19,
+		"imageKey" : "TechoTown_480",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"48" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_49",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"49" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_50",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"5" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_6",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"50" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_51",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"51" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_52",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"52" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_53",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"53" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_54",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"54" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_55",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"55" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_56",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"56" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_57",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"57" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_58",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"58" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_59",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"59" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_60",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"6" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_7",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"60" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_61",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"61" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_62",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"62" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_63",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"63" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_64",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"64" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_65",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"65" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_66",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"66" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_67",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"67" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_68",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"68" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_69",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"69" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_70",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"7" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_8",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"70" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_71",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"71" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 2,
+		"imageKey" : "TechoTown_72",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"72" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_73",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"73" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_74",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"74" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_75",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"75" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_76",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"76" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_77",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"77" : 
+	{
+		"afterRenderImageKey" : "House01",
+		"bPosX" : 5,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_78",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"78" : 
+	{
+		"afterRenderImageKey" : "House02",
+		"bPosX" : 6,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_79",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"79" : 
+	{
+		"afterRenderImageKey" : "House03",
+		"bPosX" : 7,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_80",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"8" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_9",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"80" : 
+	{
+		"afterRenderImageKey" : "House04",
+		"bPosX" : 8,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_81",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"81" : 
+	{
+		"afterRenderImageKey" : "House05",
+		"bPosX" : 9,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_82",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"82" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_83",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"83" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_84",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"84" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_85",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"85" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_86",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"86" : 
+	{
+		"afterRenderImageKey" : "House01",
+		"bPosX" : 14,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_87",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"87" : 
+	{
+		"afterRenderImageKey" : "House02",
+		"bPosX" : 15,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_88",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"88" : 
+	{
+		"afterRenderImageKey" : "House03",
+		"bPosX" : 16,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_89",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"89" : 
+	{
+		"afterRenderImageKey" : "House04",
+		"bPosX" : 17,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_90",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"9" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 0,
+		"imageKey" : "TechoTown_10",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"90" : 
+	{
+		"afterRenderImageKey" : "House05",
+		"bPosX" : 18,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_91",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"91" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_92",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"92" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_93",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"93" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_94",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"94" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_95",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"95" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 3,
+		"imageKey" : "TechoTown_96",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"96" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_97",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"97" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_98",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"98" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_99",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"99" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 4,
+		"imageKey" : "TechoTown_100",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"mapHeight" : 20,
+	"mapName" : "TechoTown",
+	"mapWidth" : 24,
+	"startX" : 15,
+	"startY" : 8
+}

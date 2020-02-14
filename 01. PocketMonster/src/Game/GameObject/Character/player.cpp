@@ -123,13 +123,9 @@ void player::update(float _deltaTime)
 		if(m_playerBeforeArrowMemory==2 && m_playerCurrentArrowMemory==2)
 		{
 			
-			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX-1, m_blockPositionY) == TileType::TileTypeTree||
-				MAPMANGER->getTileTypeFromIndex(m_blockPositionX-1, m_blockPositionY) == TileType::TileTypeOutRange
-				)
-			{
-				//이동못하게 막기
-			}
-			else
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX-1, m_blockPositionY) == TileType::TileTypeFloor||
+				MAPMANGER->getTileTypeFromIndex(m_blockPositionX-1, m_blockPositionY) == TileType::TileTypeNextMap ||
+				MAPMANGER->getTileTypeFromIndex(m_blockPositionX-1, m_blockPositionY) == TileType::TileTypeBush )
 			{
 				isLeft = false;
 				m_playerRectMemory = m_playerRect.left;
@@ -188,17 +184,15 @@ void player::update(float _deltaTime)
 		if (m_playerBeforeArrowMemory == 3 && m_playerCurrentArrowMemory == 3)
 		{
 
-			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX+1, m_blockPositionY) == TileType::TileTypeTree ||
-				MAPMANGER->getTileTypeFromIndex(m_blockPositionX+1, m_blockPositionY) == TileType::TileTypeOutRange
-				) {
-
-			}
-			else
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX + 1, m_blockPositionY) == TileType::TileTypeFloor ||
+				MAPMANGER->getTileTypeFromIndex(m_blockPositionX + 1, m_blockPositionY) == TileType::TileTypeNextMap ||
+				MAPMANGER->getTileTypeFromIndex(m_blockPositionX + 1, m_blockPositionY) == TileType::TileTypeBush )
 			{
 				isRight = false;
 				m_playerRectMemory = m_playerRect.right;
 				isAnotherMove = true;
 				isMoveRight = true;
+				
 			}
 		}
 	}
@@ -249,11 +243,9 @@ void player::update(float _deltaTime)
 		if (m_playerBeforeArrowMemory == 1 && m_playerCurrentArrowMemory == 1)
 		{
 		
-			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY-1) == TileType::TileTypeTree ||
-				MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY-1) == TileType::TileTypeOutRange
-				) {
-			}
-			else
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY - 1) == TileType::TileTypeFloor ||
+				MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY - 1) == TileType::TileTypeNextMap ||
+				MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY - 1) == TileType::TileTypeBush )
 			{
 				isUp = false;
 				m_playerRectMemory = m_playerRect.top;
@@ -309,12 +301,9 @@ void player::update(float _deltaTime)
 		if (m_playerBeforeArrowMemory == 0 && m_playerCurrentArrowMemory == 0)
 		{
 
-			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY+1) == TileType::TileTypeTree ||
-				MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY+1) == TileType::TileTypeOutRange
-				) {
-
-			}
-			else
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY + 1) == TileType::TileTypeFloor ||
+				MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY + 1) == TileType::TileTypeNextMap ||
+				MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY + 1) == TileType::TileTypeBush )
 			{
 				isDown = false;
 				m_playerRectMemory = m_playerRect.bottom;

@@ -21,8 +21,12 @@ public:
 	bool scenePush(std::string sceneName);
 	bool battleScenePush(std::shared_ptr<player> _player, std::shared_ptr<player> _npc);
 	bool battleScenePush(std::shared_ptr<player> _player, PocketMon& _pocketMon);
+	
 	bool scenePop();
-	ItemInfo scenePop(bool _isGetInfom);
+	void scenePop(bool _dummy);
+	void scenePush(std::string sceneName, void* pushInfo, bool isOnBattleScene);
+	void eraseLastInfo();
+	void* getLastSceneReturnInfo() { return m_lastSceneReturnInfo; }
 
 private:
 	typedef std::map<std::string, Scene*> mSceneList;
@@ -32,6 +36,7 @@ private:
 	Scene* _currentScene = nullptr;
 	mSceneList _mSceneList;
 	std::stack<Scene*> sceneStack;
+	void* m_lastSceneReturnInfo = nullptr;
 
 private:
 	DECLARE_SINGLE(SceneManager)

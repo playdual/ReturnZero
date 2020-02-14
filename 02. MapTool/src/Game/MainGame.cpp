@@ -14,9 +14,9 @@ void MainGame::myloadImage(std::string defaultName, std::string path, int _size)
 	path += '/';
 	for (int i = 1; i <= _size; ++i) {
 		std::string key = defaultName + std::to_string(i);
-		IMAGEMANAGER->addImage(key, (path + key + bmp).c_str(), 50, 50, true);
+		IMAGEMANAGER->addImage(key, (path + key + bmp).c_str(), 50, 50, true, RGB(255, 0, 255));
 		std::string tKey = key + 't';
-		IMAGEMANAGER->addImage(tKey, (path + key + bmp).c_str(), 100, 100, true);
+		IMAGEMANAGER->addImage(tKey, (path + key + bmp).c_str(), 100, 100, true, RGB(255, 0, 255));
 	}
 }
 
@@ -32,6 +32,8 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("Tree1Bottomt",	"Images/Tile/Tree/Tree1Bottom.bmp", 100, 100, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Tree1Top",		"Images/Tile/Tree/Tree1Top.bmp", 50, 50, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Tree1Topt",		"Images/Tile/Tree/Tree1Top.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Flower",	"Images/Tile/Object/Flower1Frame.bmp", 250, 50, 5, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Flowert",	"Images/Tile/Object/Flower1Frame.bmp", 500, 100, 5, 1, true, RGB(255, 0, 255));
 
 	std::string house = "House";
 	std::string BuildingPath = "Images/Tile/Buildings/";
@@ -44,8 +46,11 @@ HRESULT MainGame::init()
 			IMAGEMANAGER->addImage(tHouseKey, (BuildingPath + HouseKey + bmp).c_str(), 100, 100, true, RGB(255, 0, 255));
 		}
 	}
+	myloadImage("profOhouseTop", "Images/afterRender", 7);
+	myloadImage("House0", "Images/afterRender", 5);
 	myloadImage("TechoTown_", "Images/TechoTown", 480);
-
+	myloadImage("MailBox", "Images/Tile/Object", 2);
+	myloadImage("BigTree", "Images/afterRender", 2);
 
 	std::string name;
 	int width, height;

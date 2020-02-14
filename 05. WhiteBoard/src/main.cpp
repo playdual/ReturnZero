@@ -1,99 +1,62 @@
 ﻿#include <iostream>
 #include <vector>
 #include <iomanip>
+#include <Windows.h>
+#include <string>
 using namespace std;
+#define INFO_1 1;
+#define INFO_2 2;
+#define INFO_3 3;
 
-struct info {
-	int age;
-	int tall;
-	int love;
-	int noise;
-
-	void print() {
-		cout << age << " " << tall << " " << love << " " << noise << endl;
-	}
+struct Info {
+	int InfoType = INFO_1;
+	int value;
+	string value2;
 };
-
-class Animal {
-
-public:
-	virtual void howl() = 0;
-	virtual info getInfo() = 0;
-
-	info in;
+struct Info2 {
+	int InfoType = INFO_2;
+	float value;
+	int name;
 };
-
-class Cat
-	: public Animal
-{
-public:
-	virtual void howl() override
-	{
-		cout << "야옹 야옹" << endl;
-	}
-	virtual info getInfo() {
-		in.age = 3;
-		in.tall = 100;
-		in.love = 50;
-		return in;
-	}
+struct Info3 {
+	int InfoType = INFO_3;
+	float value;
+	vector<int> v;
 };
+Info ret;
+Info2 ret2;
+Info3 ret3;
 
-class Dog
-	: public Animal
-{
-public:
-	void howl() override
-	{
-		cout << "멍 멍!~" << endl;
-	}
-	virtual info getInfo() {
-		in.age = 3;
-		in.tall = 100;
-		in.noise = 50;
-		return in;
-	}
-};
-
-int main()
-{
-	vector<shared_ptr<Animal>> animals;
-
-	animals.push_back(make_shared<Cat>());
-	animals.push_back(make_shared<Dog>());
-
-	for (auto e : animals) {
-		e->howl();
-		e->getInfo().print();
-	}
-
-
-int main() {
-
-	return 0;
+void* getInfo() {
+	Info3* returnInfo = new Info3;
+	return (void*)returnInfo;
 }
 
-//vector<shared_ptr<some>> v;
-//
-//some* a = new some;
-//
-//a->something();
-//
-//for (auto& e : v) {
-//	(*e).x = 3;
-//	e->y = 4;
-//}
-//
-//
-////이터레이터로 v 벡터의 처음부터       끝까지 돌아준다.
-//for (auto iter = v.begin(); iter != v.end(); )// 그런데 ++it을 안해준다.
-//{
-//	if ((**iter).x == 2)
-//	{
-//		//erase는 지우는 요소의 다음 이터레이터를 반환한다.
-//		iter = v.erase(iter);
-//	}
-//	else {
-//		++iter;
-//	}
-//}
+int main() {
+	/*_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	void* info = new Info;
+	cout << *(int*)getInfo() << endl;*/
+
+	//보이드 포인터는 가르키는 대상의 자료형을 미정으로 두는 것이다.
+
+	void* ret = getInfo();
+	int* int_ret = (int*)ret;
+	cout << *int_ret << endl;
+
+	int result = *int_ret;
+	Info temp1;
+	Info2 temp2;
+	Info3 temp3;
+	switch (result)
+	{
+	case 1:
+		temp1 = *((Info*)ret);
+		break;
+	case 2:
+		temp2 = *((Info2*)ret);
+		break;
+	case 3:
+		temp3 = *((Info3*)ret);
+		break;
+	}	
+}
