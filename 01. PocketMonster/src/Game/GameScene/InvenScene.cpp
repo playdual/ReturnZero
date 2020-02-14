@@ -36,6 +36,7 @@ bool InvenScene::init()
 	m_otherInvenMenu = IMAGEMANAGER->findImage("그외인벤메뉴");
 	m_invenMenuBottom = IMAGEMANAGER->findImage("인벤메뉴상세");
 	m_currentPointer = IMAGEMANAGER->findImage("현재아이템표시");
+	m_battleSceneInvenMenu = IMAGEMANAGER->findImage("배틀씬인벤메뉴");
 
 	m_invenSceneType = ITEM;    // 디폴트 아이템창  = ITEM
 	invenSceneCount = 0;		// 아이템창 렌더 시켜줄 카운트
@@ -49,6 +50,10 @@ bool InvenScene::init()
 	// 인벤 선택 메뉴
 	pointerCount = 0;
 
+	// 아이템을 버리겠습니까?
+	m_isThrowItem = false;
+	m_throwItemCount = 0;
+
 	return true;
 }
 
@@ -56,6 +61,14 @@ void InvenScene::update(float _deltaTime)
 {
 	m_inven->update(_deltaTime);
 	
+	//isFromBattleScene = true로 임시로 만든 키
+	if (KEYMANAGER->isOnceKeyDown(P1_P))
+	{
+		isFromBattleScene = true;
+		isTownInven = false;
+	}
+
+
 	if (m_inven->getOpenMenu() == false)
 	{
 		if (KEYMANAGER->isOnceKeyDown(P1_X))
@@ -149,7 +162,7 @@ void InvenScene::update(float _deltaTime)
 			isUp = true;
 	}
 	// 인벤씬에서 메뉴 나오게 하는 작업
-	if (!isTownInven)
+	if (!isTownInven && !isFromBattleScene)
 	{
 	  if (KEYMANAGER->isOnceKeyDown(P1_Z))
 	  {
@@ -158,7 +171,7 @@ void InvenScene::update(float _deltaTime)
 	  }
 	}
 
-	if (m_inven->getOpenMenu() == true)
+	if (m_inven->getOpenMenu() == true && isTownInven == true)
 	{
 	   if (KEYMANAGER->isOnceKeyDown(P1_UP))
 	   {
@@ -172,9 +185,8 @@ void InvenScene::update(float _deltaTime)
 			  pointerCount !=2 && invenSceneCount == 2)
 	   	   pointerCount++;  
 	   }
-
-	  if (isTownInven)
-	  {
+	   
+	   // 타운인벤메뉴일 경우 메뉴에 따른 상호작용 //
 		  if (pointerCount == 3 && invenSceneCount == 0 ||
 			  pointerCount == 2 && invenSceneCount == 1 ||
 			  pointerCount == 2 && invenSceneCount == 2)
@@ -184,9 +196,17 @@ void InvenScene::update(float _deltaTime)
 				  pointerCount = 0;
 				  isTownInven = false;
 				  m_inven->setIsOpenMenu(false);
-
 			  }
 		  }
+
+		  if ( pointerCount == 2 && invenSceneCount == 0)
+		  {
+			  if (KEYMANAGER->isOnceKeyDown(P1_Z))
+			  {
+				  m_isThrowItem = true;
+			  }
+		  }
+
 		  //  그만하기 외 count 값 빼주기
 		  if (pointerCount != 3 && invenSceneCount == 0 )
 		  {
@@ -209,20 +229,70 @@ void InvenScene::update(float _deltaTime)
 				  sellPokeBall();
 			  }
 		  }
-	  }
-	   
-
-	   if (KEYMANAGER->isOnceKeyDown(P1_X))
-	   {
-		   isTownInven = false;
-		   m_inven->setIsOpenMenu(false);
-	   }
-
-	}
-
 	
 
+       if (KEYMANAGER->isOnceKeyDown(P1_X))
+	   {
+	     isTownInven = false;
+	     m_inven->setIsOpenMenu(false);
+	   }
+	}
+	// ===================== 배틀인벤메뉴일 경우 메뉴에 따른 상호작용 ===================== //
+	if (m_inven->getOpenMenu() == false && isFromBattleScene == true)
+	{
+		if (!isBattleInven)
+		{
+			if (KEYMANAGER->isOnceKeyDown(P1_Z))
+			{
+				isBattleInven = true;
+				m_inven->setIsOpenMenu(true);
+			}
+		}
+	}
+	if (m_inven->getOpenMenu() == true && isFromBattleScene == true)
+	{
+		if (KEYMANAGER->isOnceKeyDown(P1_UP))
+		{
+			if (pointerCount != 0)
+				pointerCount--;
+		}
+		if (KEYMANAGER->isOnceKeyDown(P1_DOWN))
+		{
+			if (pointerCount == 0 && invenSceneCount != 1)
+				pointerCount++;
+		}
+		if (pointerCount == 1 && invenSceneCount == 0 ||
+			pointerCount == 0 && invenSceneCount == 1 ||
+			pointerCount == 1 && invenSceneCount == 2 )
+		{			
+			if (KEYMANAGER->isOnceKeyDown(P1_Z))
+			{
+				isBattleInven = false;
+				m_inven->setIsOpenMenu(false);
+				isFromBattleScene = false;
+			}
+		}
+		if (KEYMANAGER->isOnceKeyDown(P1_Z))
+		{
+			if (pointerCount == 0 && invenSceneCount == 0  )
+				sellPotion();
+			if(pointerCount == 2 && invenSceneCount == 0)
+				sellPotion();
+		}
+	}
+	// ====================== 아이템 버리기 카운트 ==================== //
+	if (m_isThrowItem)
+	{
+		if (KEYMANAGER->isOnceKeyDown(P1_DOWN))
+			m_throwItemCount++;
 
+		if (KEYMANAGER->isOnceKeyUp(P1_UP))
+		{
+			if(m_throwItemCount != 0)
+			m_throwItemCount--;
+		}
+
+	}
 
 	//  =======================  인벤에서 물건 파는거 연습 ======================= //
 	if (KEYMANAGER->isOnceKeyDown(P1_Q))
@@ -241,6 +311,7 @@ void InvenScene::update(float _deltaTime)
 
 void InvenScene::release()
 {
+	
 }
 
 void InvenScene::render(HDC hdc)
@@ -263,6 +334,7 @@ void InvenScene::render(HDC hdc)
 		// 움직이는 작업을 해야함 //
 		m_nextArrow->render(hdc, 250 + moveCount, WINSIZEY / 2 - 110);
 
+		// =============== 타운에서 인벤 꺼냈을때 메뉴창 =============== //
 		if (isTownInven)
 		{
 			auto& itemVector = m_inven->getItemPotion();
@@ -276,7 +348,9 @@ void InvenScene::render(HDC hdc)
 				}
 				if ((*item)->getItemNum() == m_inven->m_itemCount && (*item)->getItemName() != "닫기")
 				{
-					m_ItemInvenMenu->render(hdc, WINSIZEX / 2 + 200, WINSIZEY / 2 + 60);
+					if(!m_isThrowItem)
+					m_ItemInvenMenu->render(hdc, WINSIZEX / 2 + 200, WINSIZEY / 2 );
+
 					m_invenMenuBottom->render(hdc, 170, WINSIZEY / 2 + 173);
 					item++;
 				}
@@ -292,14 +366,18 @@ void InvenScene::render(HDC hdc)
 					{
 						if (i <= 3)
 						{
-							UTIL::PrintText(hdc, m_itemChoiceMenu[i].c_str(), "소야바른9", WINSIZEX / 2 + 315, WINSIZEY / 2 + 115 + (i * 75), 55, RGB(0, 0, 0));
-							m_currentPointer->render(hdc, WINSIZEX / 2 + 230, WINSIZEY / 2 + 75 + (pointerCount * 75));
+							if (!m_isThrowItem)
+							{
+								UTIL::PrintText(hdc, m_itemChoiceMenu[i].c_str(), "소야바른9", WINSIZEX / 2 + 315, WINSIZEY / 2 + 55 + (i * 75), 55, RGB(0, 0, 0));
+								m_currentPointer->render(hdc, WINSIZEX / 2 + 230, WINSIZEY / 2 + 20 + (pointerCount * 75));
+							}
 						}
 						if (i == 4)
 						{
 							if (m_inven->m_itemCount == (*item)->getItemNum())
 							{
 								UTIL::PrintText(hdc, (*item)->getItemName().c_str(), "소야바른9", 200, WINSIZEY - 170, 55, RGB(0, 0, 0), true);
+								if(!m_isThrowItem)
 								UTIL::PrintText(hdc, m_itemChoiceMenu[i].c_str(), "소야바른9", 200, WINSIZEY - 100, 55, RGB(0, 0, 0), true);
 								break;
 							}
@@ -308,6 +386,57 @@ void InvenScene::render(HDC hdc)
 					}
 					else
 						item++;
+				}
+			}
+		}
+
+		// =============== 배틀씬에서 인벤 꺼냈을때 메뉴창 =============== //
+
+		if (isBattleInven)
+		{
+			auto& itemVector = m_inven->getItemPotion();
+
+			for (auto item = itemVector.begin(); item != itemVector.end();)
+			{
+				if ((*item)->getItemNum() == m_inven->m_itemCount && (*item)->getItemName() == "닫기")
+				{
+					m_inven->setIsOpenMenu(false);
+					isTownInven = false;
+				}
+				if ((*item)->getItemNum() == m_inven->m_itemCount && (*item)->getItemName() != "닫기")
+				{
+					m_battleSceneInvenMenu->render(hdc, WINSIZEX / 2 + 200, WINSIZEY / 2 + 167);
+					m_invenMenuBottom->render(hdc, 170, WINSIZEY / 2 + 173);
+					item++;
+				}
+
+				else item++;
+			}
+
+			for (int i = 0; i < 3; i++)
+			{
+				for (auto item = itemVector.begin(); item != itemVector.end();)
+				{
+					if ((*item)->getItemNum() == m_inven->m_itemCount && (*item)->getItemName() != "닫기")
+					{
+						if (i <= 1)
+						{
+							UTIL::PrintText(hdc, m_battleSceneItemMenu[i].c_str(), "소야바른9", WINSIZEX / 2 + 315, WINSIZEY / 2 + 210 + (i * 75), 55, RGB(0, 0, 0));
+							m_currentPointer->render(hdc, WINSIZEX / 2 + 230, WINSIZEY / 2 + 170 + (pointerCount * 75));
+						}
+						if (i == 2)
+						{
+							if (m_inven->m_itemCount == (*item)->getItemNum())
+							{
+								UTIL::PrintText(hdc, (*item)->getItemName().c_str(), "소야바른9", 200, WINSIZEY - 170, 55, RGB(0, 0, 0), true);
+								UTIL::PrintText(hdc, m_battleSceneItemMenu[i].c_str(), "소야바른9", 200, WINSIZEY - 100, 55, RGB(0, 0, 0), true);
+								break;
+							}
+						}
+						item++;
+					}
+					else
+					item++;
 				}
 			}
 		}
@@ -367,7 +496,55 @@ void InvenScene::render(HDC hdc)
 				}
 			}
 		}
-	
+		// =============== 배틀씬에서 인벤 꺼냈을때 메뉴창 =============== //
+		if (isBattleInven)
+		{
+			auto& itemVector = m_inven->getImportItem();
+
+			for (auto item = itemVector.begin(); item != itemVector.end();)
+			{
+				if ((*item)->getItemNum() == m_inven->m_importCount && (*item)->getItemName() == "임폴트닫기")
+				{
+					m_inven->setIsOpenMenu(false);
+					isTownInven = false;
+				}
+				if ((*item)->getItemNum() == m_inven->m_importCount && (*item)->getItemName() != "임폴트닫기")
+				{
+					m_battleSceneInvenMenu->render(hdc, WINSIZEX / 2 + 200, WINSIZEY / 2 + 167);
+					m_invenMenuBottom->render(hdc, 170, WINSIZEY / 2 + 173);
+					item++;
+				}
+
+				else item++;
+			}
+
+			for (int i = 0; i < 2; i++)
+			{
+				for (auto item = itemVector.begin(); item != itemVector.end();)
+				{
+					if ((*item)->getItemNum() == m_inven->m_importCount && (*item)->getItemName() != "임폴트닫기")
+					{
+						if (i == 0)
+						{
+							UTIL::PrintText(hdc, m_battleSceneImportMenu[i].c_str(), "소야바른9", WINSIZEX / 2 + 315, WINSIZEY / 2 + 245 + (i * 75), 55, RGB(0, 0, 0));
+							m_currentPointer->render(hdc, WINSIZEX / 2 + 230, WINSIZEY / 2 + 210 + (pointerCount * 75));
+						}
+						if (i == 1)
+						{
+							if (m_inven->m_importCount == (*item)->getItemNum())
+							{
+								UTIL::PrintText(hdc, (*item)->getItemName().c_str(), "소야바른9", 200, WINSIZEY - 170, 55, RGB(0, 0, 0), true);
+								UTIL::PrintText(hdc, m_battleSceneImportMenu[i].c_str(), "소야바른9", 200, WINSIZEY - 100, 55, RGB(0, 0, 0), true);
+								break;
+							}
+						}
+						item++;
+					}
+					else
+						item++;
+				}
+			}
+		}
 
 		// 움직이는 작업을 해야함
 		m_nextArrow->render(hdc, 250 + moveCount, WINSIZEY / 2 - 110);
@@ -427,13 +604,105 @@ void InvenScene::render(HDC hdc)
 				}
 			}
 		}
+		// =============== 배틀씬에서 인벤 꺼냈을때 메뉴창 =============== //
+		if (isBattleInven)
+		{
+			auto& itemVector = m_inven->getPokeBall();
+
+			for (auto item = itemVector.begin(); item != itemVector.end();)
+			{
+				if ((*item)->getItemNum() == m_inven->m_pokeBallCount && (*item)->getItemName() == "몬스터볼닫기")
+				{
+					m_inven->setIsOpenMenu(false);
+					isTownInven = false;
+				}
+				if ((*item)->getItemNum() == m_inven->m_pokeBallCount && (*item)->getItemName() != "몬스터볼닫기")
+				{
+					m_battleSceneInvenMenu->render(hdc, WINSIZEX / 2 + 200, WINSIZEY / 2 + 167);
+					m_invenMenuBottom->render(hdc, 170, WINSIZEY / 2 + 173);
+					item++;
+				}
+
+				else item++;
+			}
+
+			for (int i = 0; i < 3; i++)
+			{
+				for (auto item = itemVector.begin(); item != itemVector.end();)
+				{
+					if ((*item)->getItemNum() == m_inven->m_pokeBallCount && (*item)->getItemName() != "몬스터볼닫기")
+					{
+						if (i <= 1)
+						{
+							UTIL::PrintText(hdc, m_battleSceneItemMenu[i].c_str(), "소야바른9", WINSIZEX / 2 + 315, WINSIZEY / 2 + 210 + (i * 75), 55, RGB(0, 0, 0));
+							m_currentPointer->render(hdc, WINSIZEX / 2 + 230, WINSIZEY / 2 + 170 + (pointerCount * 75));
+						}
+						if (i == 2)
+						{
+							if (m_inven->m_pokeBallCount == (*item)->getItemNum())
+							{
+								UTIL::PrintText(hdc, (*item)->getItemName().c_str(), "소야바른9", 200, WINSIZEY - 170, 55, RGB(0, 0, 0), true);
+								UTIL::PrintText(hdc, m_battleSceneItemMenu[i].c_str(), "소야바른9", 200, WINSIZEY - 100, 55, RGB(0, 0, 0), true);
+								break;
+							}
+						}
+						item++;
+					}
+					else
+						item++;
+				}
+			}
+		}
+
+		// =============== 아이템 버리는 작업 =============== //
+		if (m_isThrowItem)
+		{	
+			std::string frontNum = "X 00";
+			std::string Num = std::to_string(m_throwItemCount);
+
+			m_battleSceneInvenMenu->render(hdc, WINSIZEX / 2 + 200, WINSIZEY / 2 + 167);
+			auto& itemVector = m_inven->getItemPotion();
+
+			for (auto item = itemVector.begin(); item != itemVector.end();)
+			{
+				if (m_inven->m_itemCount == (*item)->getItemNum())
+				{
+					UTIL::PrintText(hdc, (*item)->getItemName().c_str(), "소야바른9", 200, WINSIZEY - 170, 55, RGB(0, 0, 0), true);
+					UTIL::PrintText(hdc, Num.c_str(), "소야바른9", 250, WINSIZEY - 170, 55, RGB(0, 0, 0), true);
+					UTIL::PrintText(hdc, m_throwItem[0].c_str(), "소야바른9", 200, WINSIZEY - 100, 55, RGB(0, 0, 0), true);
+					
+					UTIL::PrintText(hdc, frontNum.c_str(), "소야바른9", 250, WINSIZEY - 170, 55, RGB(0, 0, 0), true);
+					m_currentPointer->render(hdc, WINSIZEX / 2 + 230, WINSIZEY / 2 + 210 + (pointerCount * 75));
+					item++;
+
+
+					break;
+				}
+				else item++;
+			}
+			
+		
+		}
+
+		
+
+
+
+
+
+
+
+
+
+
+
 
 		// 움직이는 작업을 해야함
 		m_beforeArrow->render(hdc, 10 - moveCount, WINSIZEY / 2 - 110);
 		break;
 
 	default:
-		break;
+		break; 
 	}
 
 }

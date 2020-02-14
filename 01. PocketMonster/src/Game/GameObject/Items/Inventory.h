@@ -26,6 +26,7 @@ public :
 	bool getSameNameInven() { return m_isSameNameClose; }
 	bool getitemCount() { return m_itemCount; }
 	int  getItemNum() { return itemNum; }
+
 	bool getOpenMenu() { return m_isOpenMenu; }
 
 	void setCloseInven(bool _isClose) { m_isCloseInven = _isClose; }
@@ -87,9 +88,6 @@ private:
 
 	// 인벤에서 메뉴창이 뜨면 카운트를 막아야한다.
 	bool m_isOpenMenu;
-
-
-	
 
 	//bool	nextText;
 };

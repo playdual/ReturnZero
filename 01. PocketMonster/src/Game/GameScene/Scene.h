@@ -26,6 +26,9 @@ public:
 protected:
 	void* m_sceneResult = nullptr;
 
+protected:
+	bool isFromBattleScene = false;   // 공통 
+
 public:
 	virtual LRESULT SceneProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam);
 };

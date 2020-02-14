@@ -55,6 +55,7 @@ private:
 	// 인벤 선택 메뉴
 	Image* m_ItemInvenMenu;
 	Image* m_otherInvenMenu;
+	Image* m_battleSceneInvenMenu;
 
 	Image* m_invenMenuBottom;
 	Image* m_currentPointer;
@@ -75,9 +76,19 @@ private:
 	bool isTownInven;
 	bool isBattleInven;
 
+	//아이템 버릴때 쓰는 문장
+	std::string  m_throwItem[5] = { "몇개 버릴까요?", "개 버려도" , "괜찮겠습니까?" , "를(을)" ,"개 버렸습니다."};
+	std::string  m_throwAnser[2] = { "예", "아니오" };
+	bool m_isThrowItem;
+	int m_throwItemCount;
+	
+
 	std::string  m_itemChoiceMenu[5] = { "쓴다" , "건네다" , "버린다" , "그만둠" , "어떻게 할까요?" };
 	std::string  m_importChoiceMenu[4] = { "쓴다" , "등록" , "그만둠", "어떻게 할까요?" };
 	std::string  m_ballChoiceMenu[4] = { "건네다" , "버린다" , "그만둠", "어떻게 할까요?" };
+
+	std::string m_battleSceneItemMenu[3] = { "쓴다" , "그만둠" , "어떻게 할까요?" };
+	std::string m_battleSceneImportMenu[2] = { "그만둠" , "어떻게 할까요?" };
 
 	// 메뉴창 작업
 	int pointerCount;
