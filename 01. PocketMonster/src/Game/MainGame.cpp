@@ -131,6 +131,17 @@ HRESULT MainGame::init()
 	//sound
 	SOUNDMANAGER->addStream("NewBarkTown", "Sounds/NewBarkTown.mp3", true);
 
+	
+	IMAGEMANAGER->addImage("enemyStatus",	"images/BattleUi/enemyStatus.bmp",	0, 0, 100, 29, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("playerStatus",	"images/BattleUi/playerStatus.bmp",	0, 0, 104, 37, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("arrow",	"images/BattleUi/arrow.bmp",				0, 0, 6, 10, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("explainRect",	"images/BattleUi/explainRect.bmp",	240, 48, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("npcPocketmonBall",	"images/BattleUi/npcPocketmonBall.bmp",	0, 0, 104, 12, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("playerPocketmonBall",	"images/BattleUi/playerPocketmonBall.bmp",	0, 0, 104, 12, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("skillSelect",	"images/BattleUi/skillSelect.bmp",	0, 0, 240, 48, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("stayArrow",	"images/BattleUi/stayArrow.bmp",		0, 0, 10, 6, true, RGB(255, 0, 255));
+	
+	
 	//
 	MAPMANGER->init();
 	ITEMMANAGER->init();

@@ -61,7 +61,7 @@ void TownScene::update(float _deltaTime)
 		Tile& curTile = m_map->getSpecifyTile(m_player->getPlayerBlockX(), m_player->getPlayerBlockY());
 		auto innerPocketmon = curTile.getInnerPocketMon();
 		//BATTLEMANAGER->battleStart(m_player, nullptr, innerPocketmon.first, innerPocketmon.second);
-		BATTLEMANAGER->battleStart(m_player, nullptr, "Squirtle", 31);
+		BATTLEMANAGER->battleStart(m_player, nullptr, "Squirtle", 101);
 		m_player->BattleEnd();
 	}
 

@@ -43,7 +43,9 @@ public:
 	//상황별 Ani
 	void wildBattleIntroAni();
 	void npcBattleIntroAni();
-	void wildBattleOutroAni(HDC hdc);
+	void wildBattleOutAni(HDC hdc);
+	void playerPocketmonLoseAni(HDC hdc);
+	void playerLoseAni(HDC hdc);
 
 	//포켓몬 공격 및 피격 이팩트 관련
 	void pocketmonEffectInit();
@@ -74,13 +76,13 @@ public:
 	void plyaerUiCurrentExp(HDC hdc, int _y);
 	int checkHpBarWigth();
 	int checkExpBarWigth();
-
+	bool checkPossiblePocketmon();
 
 	//시스템
 	void explainRect(HDC hdc);
 	void selectRect(HDC hdc);
 	void skillSelectRect(HDC hdc);
-
+	void playerPocketmonChange();
 
 	//행동선택관련
 	void moveButton();
@@ -119,9 +121,16 @@ public:
 	void thunderboltProto(std::string _skillName, HDC hdc);
 	void thunderProto(std::string _skillName, HDC hdc);
 	
+	//공통 출력 문구
+	void enemyHpChangFromPlayerAtk();
+	void playerHpChangFromEnemyAtk();
+
+	void playerAtkResultOutput(HDC hdc);
+	void enemyAtkResultOutput(HDC hdc);
 	
 private:
 	
+	std::shared_ptr<player> trainer;
 	std::vector<std::shared_ptr<PocketMon>> m_playerPocketmons;
 	std::shared_ptr<PocketMon> selectPocketmon;
 	PocketMon m_wildPocketmon;
@@ -175,6 +184,8 @@ private:
 	//스킬 이펙트
 	UTIL::IRECT m_enemyAtkSkillEffect;
 
+	//포켓몬 체인지 관련
+	bool playerPocketmonChangeOn;
 
 	//전투유형 변수 (npc 대결, 야생 전투)
 	bool wildBattle;
@@ -275,6 +286,7 @@ private:
 	int m_playerMinusHp;
 	int m_playerCurrentMinusHp;
 	int m_enemySelectSkillNumber;
+	int m_playerPocketmonY;
 
 	std::string m_enemySelectSkillName;
 
@@ -284,6 +296,9 @@ private:
 	bool pocketmonLose;
 	bool playerLose;
 	bool enemyLose;
+	bool emptyBattlePocketmon;
+	int m_loseAniCount;
+	int playerPocketmonsNumber;
 	
 
 
