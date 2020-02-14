@@ -29,10 +29,10 @@ void MainGame::myloadImage(std::string defaultName, std::string path, int _size)
 HRESULT MainGame::init()
 {
 	GameNode::init();
-	myloadImage("TechoTown_", "Images/TechoTown", 480);
-	myloadImage("BigTree", "Images/afterRender", 2);
-	myloadImage("profOhouseTop", "Images/afterRender", 7);
-	myloadImage("House0", "Images/afterRender", 5);
+	myloadImage("TechoTown_",		"Images/TechoTown", 480);
+	myloadImage("BigTree",			"Images/afterRender", 2);
+	myloadImage("profOhouseTop",	"Images/afterRender", 7);
+	myloadImage("House0",			"Images/afterRender", 5);
 
 	IMAGEMANAGER->addImage("MailBox2",		"Images/afterRender/MailBox2.bmp", TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("trainersMan",	"Images/Trainers/trainers_man.bmp", 64 * 3, 64 * 3, true, RGB(255, 0, 255));
@@ -61,6 +61,7 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("그외인벤메뉴", "Images/menu.bmp", 63 * 5, 63 * 5, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("배틀씬인벤메뉴", "Images/menu.bmp", 63 * 5, 68 * 3, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("인벤메뉴상세", "Images/invenMenuBottom.bmp", 182 * 3, 29 * 7, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("playerimg", "images/newPlayer2.bmp", 64 * 4, 440, 4, 5, true, RGB(255, 0, 255));
 
 	//pocketmon Img
 	IMAGEMANAGER->addImage("CharmanderFront",		"images/pocketmons/CharmanderFront.bmp", 100, 100, true, RGB(255, 0, 255));

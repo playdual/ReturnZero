@@ -1,8 +1,8 @@
 ﻿#pragma once
 //寃뚯엫 ?댁뿉???곗씠??Enum怨?援ъ“泥??깆쓣 ?뺤쓽 ?⑸땲??
-#define PLAYER_OFFSETY -25
-#define TILE_WIDTH 75
-#define TILE_HEIGHT 75
+#define PLAYER_OFFSETY -27
+#define TILE_WIDTH 60
+#define TILE_HEIGHT 60
 
 #define INFO_ITEM		1
 #define INFO_CHANGEPOKE 2
