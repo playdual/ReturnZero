@@ -125,10 +125,21 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("cancleOn",		"images/cancleon.bmp",				0, 0, 250, 130, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("cancleOff",		"images/cancleoff.bmp",				0, 0, 250, 130, true, RGB(255, 0, 255));
 
+	IMAGEMANAGER->addImage("mainSwapOn", "images/pocketmonBagMainSwapChoose.bmp",			0, 0, 368, 287, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("mainSwapOff", "images/pocketmonBagMainSwapUnChoose.bmp",		0, 0, 367, 286, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("subSwapOn", "images/pocketmonBagSubSwapChoose.bmp",		0, 0, 651, 119, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("subSwapOff", "images/pocketmonBagSubSwapUnChoose.bmp",	0, 0, 651, 119, true, RGB(255, 0, 255));
+
 	IMAGEMANAGER->addImage("BagHpBarGreen",	"images/HpBarGreen.bmp",			0, 0, 208, 15, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("BagHpBarYellow","images/HpBarYellow.bmp",			0, 0, 208, 15, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("BagHpBarRed",	"images/HpBarRed.bmp",				0, 0, 208, 15, true, RGB(255, 0, 255));
 	
+
+	//Menu and Cursor
+	IMAGEMANAGER->addImage("MainMenuimg",			"images/menu.bmp",			0,0, 300, 530, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("PokemonMenuimg",		"images/menu.bmp",			0,0, 250, 360, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("menuindeximg",			"images/menuindex.bmp",		0,0, 30, 50, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("PokemonMenuindeximg",	"images/menuindex.bmp",		0,0, 30, 50, true, RGB(255, 0, 255));
 	//sound
 	SOUNDMANAGER->addStream("NewBarkTown", "Sounds/NewBarkTown.mp3", true);
 	

@@ -22,10 +22,10 @@ bool TownScene::init()
 	
 	//menu
 	m_menurect = UTIL::IRectMake(WINSIZEX / 2 + 200, 10, 300, 530);
-	m_menuImg = IMAGEMANAGER->addImage("menuimg", "images/menu.bmp", 300, 530, true, RGB(255, 0, 255));
+	m_menuImg = IMAGEMANAGER->findImage("MainMenuimg");
 
 	m_IndexMenuRect = UTIL::IRectMake(WINSIZEX / 2 + 230, 70, 15, 20);
-	m_IndexMenuImg = IMAGEMANAGER->addImage("menuindeximg", "images/menuindex.bmp", 30, 50, true, RGB(255, 0, 255));
+	m_IndexMenuImg = IMAGEMANAGER->findImage("menuindeximg");
 	//기본 메뉴 인덱스
 	m_menuIndex = 0;
 	//최대 메뉴갯수

@@ -54,6 +54,21 @@ private:
 	Image* m_sub2HpBarRed;
 	Image* m_sub3HpBarRed;
 	Image* m_sub4HpBarRed;
+	Image* m_Menu;
+	Image* m_MenuCursor;
+
+	Image* m_mainSwapOn;
+	Image* m_mainSwapOff;
+	Image* m_sub0SwapOn;
+	Image* m_sub0SwapOff;
+	Image* m_sub1SwapOn;
+	Image* m_sub1SwapOff;
+	Image* m_sub2SwapOn;
+	Image* m_sub2SwapOff;
+	Image* m_sub3SwapOn;
+	Image* m_sub3SwapOff;
+	Image* m_sub4SwapOn;
+	Image* m_sub4SwapOff;
 
 	UTIL::IRECT m_mainRect;
 	UTIL::IRECT m_mainIconRect;
@@ -69,9 +84,26 @@ private:
 	UTIL::IRECT m_subIconRect4;
 	UTIL::IRECT m_cancle;
 
+	UTIL::IRECT m_MenuRect;
+	UTIL::IRECT m_MenuCursorRect;
+
+
 	int m_indexCursor;
 	int m_indexCursorMax;
+
+	int m_indexCursorMenu1;
+	int m_indexCursorMenu1Max;
+
 	int m_pocketMonFrameIdx = 0;
+
+	int m_InBagMenuIndex;
+	int m_InBagMenuFromBattleIndex;
+
+	bool isSwap = false;
+	int m_swapIndexFirst;
+	int m_swapIndexSecond;
+	int m_swapIndexMax;
+
 	float frameDelay = 0.5f;
 	float pastTime = 0.f;
 
