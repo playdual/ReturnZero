@@ -10,7 +10,7 @@ public:
 
 public:
 	bool init() override;
-	bool init(void* _info, bool isOnBattleScene) override;
+	bool init(void* _info, bool isOnbattle) override;
 	void update(float _deltaTime) override;
 	void release() override;
 

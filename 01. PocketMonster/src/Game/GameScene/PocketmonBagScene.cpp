@@ -14,6 +14,9 @@ PocketmoninfoScene::~PocketmoninfoScene()
 
 bool PocketmoninfoScene::init()
 {
+
+
+
 	m_Base = IMAGEMANAGER->findImage("Base");
 
 	m_mainRect = UTIL::IRectMake(5, 78, 318, 220);
@@ -95,6 +98,14 @@ bool PocketmoninfoScene::init()
 	m_indexCursorMenu1 = 0;
 	m_indexCursorMenu1Max = 0;;
 
+	m_isOnbattle = false;
+	return true;
+}
+
+bool PocketmoninfoScene::init(void* _info, bool isOnbattle)
+{
+	init();
+	m_isOnbattle = isOnbattle;
 
 	if (_info != nullptr)
 	{
@@ -114,6 +125,8 @@ bool PocketmoninfoScene::init()
 
 void PocketmoninfoScene::update(float _deltaTime)
 {
+
+	//TEMP
 	//temp
 	//if (KEYMANAGER->isStayKeyDown(P1_Z))
 	//{
@@ -246,110 +259,126 @@ void PocketmoninfoScene::update(float _deltaTime)
 			}
 		}
 
-		//X누르면 기본화면으로 돌아가기
-		if (KEYMANAGER->isOnceKeyDown(P1_X))
-		{
-			SCENEMANAGER->scenePop();
-		}
-		//Z를 누르면 포켓몬 관한 메뉴가 나오기
-		if (m_indexCursor != m_indexCursorMax && KEYMANAGER->isOnceKeyDown(P1_Z))
-		{
-			m_InBagMenuIndex = 1;
-		}
-	}
+			//X누르면 기본화면으로 돌아가기
+			if (KEYMANAGER->isOnceKeyDown(P1_X))
+			{
+				SCENEMANAGER->scenePop();
+			}
+			
+			//Z를 누르면 포켓몬 관한 메뉴가 나오기
+			if (m_indexCursor != m_indexCursorMax && !m_isOnbattle &&KEYMANAGER->isOnceKeyDown(P1_Z))
+			{
+				m_InBagMenuIndex = 1;
+			}
 
-	//메뉴 인덱스 1
-	if (m_InBagMenuIndex == 1 && isSwap == false)
-	{
-		m_MenuRect = UTIL::IRectMake(775, 400, 100, 100);
-		m_MenuCursorRect = UTIL::IRectMake(795, 450+m_indexCursorMenu1*70, 50, 50);
-
-		if (KEYMANAGER->isOnceKeyDown(P1_UP) && isSwap == false)
-		{
-			m_indexCursorMenu1--;
-
-		}
-		else if (KEYMANAGER->isOnceKeyDown(P1_DOWN) && isSwap == false)
-		{
-			m_indexCursorMenu1++;
-		}
-
-		m_swapIndexFirst = m_indexCursor;
-
-		m_indexCursorMenu1Max = 3;
-
-		if (m_indexCursorMenu1 == 0 && KEYMANAGER->isOnceKeyDown(P1_Z))
-		{
-			//상태보기
-		}
-		if (m_indexCursorMenu1 == 1 && KEYMANAGER->isOnceKeyDown(P1_Z))
-		{
-			//순서변경
-			isSwap = true;
-		}
-		if (m_indexCursorMenu1 == 2 &&KEYMANAGER->isOnceKeyDown(P1_Z))
-		{
-			//지닌물건
+			//배틀씬에서 인벤씬에서 넘어왔을 때 포켓몬한테 아이템 사용
+			if (m_indexCursor != m_indexCursorMax && m_isOnbattle && KEYMANAGER->isOnceKeyDown(P1_Z))
+			{
+				isItemUse = true;
+				Pocketmons[m_indexCursor]->m_currentHp += 1;
+			
+			}
+			/*if (isItemUse && KEYMANAGER->isOnceKeyDown(P1_T))
+			{
+				SCENEMANAGER->scenePop();
+				isItemUse = false;
+				m_isOnbattle = false;
+			}*/
 		}
 
-		//그만둔다
-		if (KEYMANAGER->isOnceKeyDown(P1_X))
+		//메뉴 인덱스 1
+		if (m_InBagMenuIndex == 1 && isSwap == false)
 		{
-			isSwap = false;
-			m_InBagMenuIndex = 0;
+			m_MenuRect = UTIL::IRectMake(775, 400, 100, 100);
+			m_MenuCursorRect = UTIL::IRectMake(795, 450 + m_indexCursorMenu1 * 70, 50, 50);
+
+			if (KEYMANAGER->isOnceKeyDown(P1_UP) && isSwap == false)
+			{
+				m_indexCursorMenu1--;
+
+			}
+			else if (KEYMANAGER->isOnceKeyDown(P1_DOWN) && isSwap == false)
+			{
+				m_indexCursorMenu1++;
+			}
+
+			m_swapIndexFirst = m_indexCursor;
+
+			m_indexCursorMenu1Max = 3;
+
+			if (m_indexCursorMenu1 == 0 && KEYMANAGER->isOnceKeyDown(P1_Z))
+			{
+				//상태보기
+			}
+			if (m_indexCursorMenu1 == 1 && KEYMANAGER->isOnceKeyDown(P1_Z))
+			{
+				//순서변경
+				isSwap = true;
+			}
+			if (m_indexCursorMenu1 == 2 && KEYMANAGER->isOnceKeyDown(P1_Z))
+			{
+				//지닌물건
+			}
+
+			//그만둔다
+			if (KEYMANAGER->isOnceKeyDown(P1_X))
+			{
+				isSwap = false;
+				m_InBagMenuIndex = 0;
+			}
+			if (m_indexCursorMenu1 == 3 && KEYMANAGER->isOnceKeyDown(P1_Z))
+			{
+				isSwap = false;
+				m_InBagMenuIndex = 0;
+			}
+
+
 		}
-		if (m_indexCursorMenu1 == 3 && KEYMANAGER->isOnceKeyDown(P1_Z))
+		if (isSwap == true)
 		{
-			isSwap = false;
-			m_InBagMenuIndex = 0;
+			m_swapIndexMax = Pocketmons.size();
+
+			if (KEYMANAGER->isOnceKeyDown(P1_X))
+			{
+				isSwap = false;
+				m_InBagMenuIndex = 0;
+			}
+
+			if (KEYMANAGER->isOnceKeyDown(P1_UP))
+			{
+				m_swapIndexSecond--;
+
+			}
+			else if (KEYMANAGER->isOnceKeyDown(P1_DOWN))
+			{
+				m_swapIndexSecond++;
+			}
+
+			if (m_swapIndexSecond < 0)
+			{
+				m_swapIndexSecond = m_swapIndexMax;
+			}
+			else if (m_swapIndexSecond > m_swapIndexMax)
+			{
+				m_swapIndexSecond = 0;
+			}
+
+			if (KEYMANAGER->isOnceKeyDown(P1_Z))
+			{
+				std::swap(Pocketmons[m_swapIndexFirst], Pocketmons[m_swapIndexSecond]);
+				m_InBagMenuIndex = 0;
+				isSwap = false;
+			}
+
+
+			if (m_swapIndexSecond == m_swapIndexMax && KEYMANAGER->isOnceKeyDown(P1_Z))
+			{
+				m_InBagMenuIndex = 0;
+			}
+
+
 		}
-	}
-
-	if (isSwap == true)
-	{
-		m_swapIndexMax = Pocketmons.size();
-
-		if (KEYMANAGER->isOnceKeyDown(P1_X))
-		{
-			isSwap = false;
-			m_InBagMenuIndex = 0;
-		}
-
-		if (KEYMANAGER->isOnceKeyDown(P1_UP))
-		{
-			m_swapIndexSecond--;
-
-		}
-		else if (KEYMANAGER->isOnceKeyDown(P1_DOWN))
-		{
-			m_swapIndexSecond++;
-		}
-		
-		if (m_swapIndexSecond < 0)
-		{
-			m_swapIndexSecond = m_swapIndexMax;
-		}
-		else if (m_swapIndexSecond > m_swapIndexMax)
-		{
-			m_swapIndexSecond = 0;
-		}
-
-		if (KEYMANAGER->isOnceKeyDown(P1_Z))
-		{
-			std::swap(Pocketmons[m_swapIndexFirst], Pocketmons[m_swapIndexSecond]);
-			m_InBagMenuIndex = 0;
-			isSwap = false;
-		}
-
-
-		if (m_swapIndexSecond == m_swapIndexMax && KEYMANAGER->isOnceKeyDown(P1_Z))
-		{
-			m_InBagMenuIndex = 0;
-		}
-
-
-	}
-
+	
 	//if (Pocketmons[0]->m_currentHp <= 0)isDieMain = true;
 	//if (Pocketmons[1]->m_currentHp <= 0)isDieSub0 = true;
 	//if (Pocketmons[2]->m_currentHp <= 0)isDieSub1 = true;
@@ -366,162 +395,174 @@ void PocketmoninfoScene::render(HDC hdc)
 {
 	m_Base->render(hdc);
 
-	if (m_InBagMenuIndex == 0)
+	if (m_isOnbattle == false) 
 	{
-		UTIL::PrintText(hdc, "포켓몬을 선택해 주십시오", "소야바른9", 45, 650, 80, RGB(208, 208, 200), true, RGB(160, 112, 240));
-		UTIL::PrintText(hdc, "포켓몬을 선택해 주십시오", "소야바른9", 40, 650, 80, RGB(50, 50, 50), true, RGB(160, 112, 240));
+		if (m_InBagMenuIndex == 0)
+		{
+			UTIL::PrintText(hdc, "포켓몬을 선택해 주십시오", "소야바른9", 45, 650, 80, RGB(208, 208, 200), true, RGB(160, 112, 240));
+			UTIL::PrintText(hdc, "포켓몬을 선택해 주십시오", "소야바른9", 40, 650, 80, RGB(50, 50, 50), true, RGB(160, 112, 240));
+		}
 	}
 
-	//포켓몬 선택
-	if (m_InBagMenuIndex == 1 && isSwap==false)
+	if (m_isOnbattle && !isItemUse)
 	{
-		UTIL::PrintText(hdc, Pocketmons[m_indexCursor]->m_name.c_str(), "소야바른9", 45, 650, 80, RGB(208, 208, 200), true, RGB(160, 112, 240));
-		UTIL::PrintText(hdc, Pocketmons[m_indexCursor]->m_name.c_str(), "소야바른9", 40, 650, 80, RGB(50, 50, 50), true, RGB(160, 112, 240));
-
-		UTIL::PrintText(hdc, "을(를) 어떻게 할까?", "소야바른9", 255, 650, 80, RGB(208, 208, 200), true, RGB(160, 112, 240));
-		UTIL::PrintText(hdc, "을(를) 어떻게 할까?", "소야바른9", 250, 650, 80, RGB(50, 50, 50), true, RGB(160, 112, 240));
+		UTIL::PrintText(hdc, "누구에게 사용할까?", "소야바른9", 45, 650, 80, RGB(208, 208, 200), true, RGB(160, 112, 240));
+		UTIL::PrintText(hdc, "누구에게 사용할까?", "소야바른9", 40, 650, 80, RGB(50, 50, 50), true, RGB(160, 112, 240));
 	}
+	
 
-	int cnt = 0;
-	for (auto e : Pocketmons)
-	{
-		//UTIL::PrintText(hdc, e->m_name.c_str(), "소야바른9", 100, 100 + cnt * 70, 30);
-		if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1)&& !isSwap && m_indexCursor == 0)
+		//포켓몬 선택
+		if (m_InBagMenuIndex == 1 && isSwap == false && !m_isOnbattle)
 		{
-			m_mainOn->render(hdc, m_mainRect.left - 5, m_mainRect.top + 2);
-		}
-		else if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor != 0)
-		{
-			m_mainOff->render(hdc, m_mainRect.left, m_mainRect.top + 3);
-		}
-		
-		if (Pocketmons.size() >= 2)
-		{
-			if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor == 1)
-			{
-				m_sub0On->render(hdc, m_subRect0.left, m_subRect0.top);
-			}
-			else if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor != 1)
-			{
-				m_sub0Off->render(hdc, m_subRect0.left, m_subRect0.top);
-			}
-			else if (m_InBagMenuIndex == 1 && isSwap && m_swapIndexSecond != 1)
-			{
-				m_sub0Off->render(hdc, m_subRect0.left, m_subRect0.top);
-			}
+			UTIL::PrintText(hdc, Pocketmons[m_indexCursor]->m_name.c_str(), "소야바른9", 45, 650, 80, RGB(208, 208, 200), true, RGB(160, 112, 240));
+			UTIL::PrintText(hdc, Pocketmons[m_indexCursor]->m_name.c_str(), "소야바른9", 40, 650, 80, RGB(50, 50, 50), true, RGB(160, 112, 240));
 
+			UTIL::PrintText(hdc, "을(를) 어떻게 할까?", "소야바른9", 255, 650, 80, RGB(208, 208, 200), true, RGB(160, 112, 240));
+			UTIL::PrintText(hdc, "을(를) 어떻게 할까?", "소야바른9", 250, 650, 80, RGB(50, 50, 50), true, RGB(160, 112, 240));
 		}
 
-		if (Pocketmons.size() >= 3)
+		int cnt = 0;
+		for (auto e : Pocketmons)
 		{
+			//UTIL::PrintText(hdc, e->m_name.c_str(), "소야바른9", 100, 100 + cnt * 70, 30);
+			if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor == 0)
+			{
+				m_mainOn->render(hdc, m_mainRect.left - 5, m_mainRect.top + 2);
+			}
+			else if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor != 0)
+			{
+				m_mainOff->render(hdc, m_mainRect.left, m_mainRect.top + 3);
+			}
 
-			if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor == 2)
+			if (Pocketmons.size() >= 2)
 			{
-				m_sub1On->render(hdc, m_subRect1.left, m_subRect1.top);
-			}
-			else if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor != 2)
-			{
-				m_sub1Off->render(hdc, m_subRect1.left, m_subRect1.top);
-			}
-			else if (m_InBagMenuIndex == 1 && isSwap && m_swapIndexSecond != 2)
-			{
-				m_sub1Off->render(hdc, m_subRect1.left, m_subRect1.top);
-			}
-		}
-
-		if (Pocketmons.size() >= 4)
-		{
-
-			if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor == 3)
-			{
-				m_sub2On->render(hdc, m_subRect2.left, m_subRect2.top);
-			}
-			else if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor != 3)
-			{
-				m_sub2Off->render(hdc, m_subRect2.left, m_subRect2.top);
-			}
-			else if (m_InBagMenuIndex == 1 && isSwap && m_swapIndexSecond != 3)
-			{
-				m_sub2Off->render(hdc, m_subRect2.left, m_subRect2.top);
-			}
-		}
-
-		if (Pocketmons.size() >= 5)
-		{
-
-			if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor == 4)
-			{
-				m_sub3On->render(hdc, m_subRect3.left, m_subRect3.top);
-			}
-			else if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor != 4)
-			{
-				m_sub3Off->render(hdc, m_subRect3.left, m_subRect3.top);
-			}
-			else if (m_InBagMenuIndex == 1 && isSwap && m_swapIndexSecond != 4)
-			{
-				m_sub3Off->render(hdc, m_subRect3.left, m_subRect3.top);
-			}
-		}
-
-		if (Pocketmons.size() >= 6)
-		{
-
-			if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor == 5)
-			{
-				m_sub4On->render(hdc, m_subRect4.left, m_subRect4.top);
-			}
-			else if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor != 5)
-			{
-				m_sub4Off->render(hdc, m_subRect4.left, m_subRect4.top);
-			}
-			else if (m_InBagMenuIndex == 1 && isSwap && m_swapIndexSecond != 5)
-			{
-				m_sub4Off->render(hdc, m_subRect4.left, m_subRect4.top);
-			}
-		}
-
-		if (isSwap && m_InBagMenuIndex == 1)
-		{
-			UTIL::PrintText(hdc, "어디로 이동할까?", "소야바른9", 45, 650, 80, RGB(208, 208, 200), true, RGB(160, 112, 240));
-			UTIL::PrintText(hdc, "어디로 이동할까?", "소야바른9", 40, 650, 80, RGB(0, 0, 0), true, RGB(160, 112, 240));
-
-			if (m_swapIndexFirst == 0 && m_swapIndexFirst == m_swapIndexSecond)
-			{
-				m_mainSwapOn->render(hdc, m_mainRect.left - 5, m_mainRect.top + 2);
-
-			}
-			else if (m_swapIndexFirst == 0 && m_swapIndexFirst != m_swapIndexSecond)
-			{
-				m_mainSwapOff->render(hdc, m_mainRect.left, m_mainRect.top + 3);
-
-				if (m_swapIndexSecond == m_swapIndexMax)m_cancleOn->render(hdc, m_cancle.left, m_cancle.top);
-
-				if (m_swapIndexMax == 1);//1마리
-				if (m_swapIndexMax >= 2)//2마리
+				if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor == 1)
 				{
-					if (m_swapIndexSecond == 1)m_sub0SwapOn->render(hdc, m_subRect0.left, m_subRect0.top);
+					m_sub0On->render(hdc, m_subRect0.left, m_subRect0.top);
 				}
-				if (m_swapIndexMax >= 3)//3마리
+				else if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor != 1)
 				{
-					if (m_swapIndexSecond == 2)m_sub1SwapOn->render(hdc, m_subRect1.left, m_subRect1.top);
+					m_sub0Off->render(hdc, m_subRect0.left, m_subRect0.top);
 				}
-				if (m_swapIndexMax >= 4)//4마리
+				else if (m_InBagMenuIndex == 1 && isSwap && m_swapIndexSecond != 1)
 				{
-					if (m_swapIndexSecond == 3)m_sub2SwapOn->render(hdc, m_subRect2.left, m_subRect2.top);
+					m_sub0Off->render(hdc, m_subRect0.left, m_subRect0.top);
 				}
-				if (m_swapIndexMax >= 5)//5마리
+
+			}
+
+			if (Pocketmons.size() >= 3)
+			{
+
+				if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor == 2)
 				{
-					if (m_swapIndexSecond == 4)m_sub3SwapOn->render(hdc, m_subRect3.left, m_subRect3.top);
+					m_sub1On->render(hdc, m_subRect1.left, m_subRect1.top);
 				}
-				if (m_swapIndexMax >= 6)//6마리
+				else if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor != 2)
 				{
-					if (m_swapIndexSecond == 5)m_sub4SwapOn->render(hdc, m_subRect4.left, m_subRect4.top);
+					m_sub1Off->render(hdc, m_subRect1.left, m_subRect1.top);
+				}
+				else if (m_InBagMenuIndex == 1 && isSwap && m_swapIndexSecond != 2)
+				{
+					m_sub1Off->render(hdc, m_subRect1.left, m_subRect1.top);
 				}
 			}
 
+			if (Pocketmons.size() >= 4)
+			{
+
+				if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor == 3)
+				{
+					m_sub2On->render(hdc, m_subRect2.left, m_subRect2.top);
+				}
+				else if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor != 3)
+				{
+					m_sub2Off->render(hdc, m_subRect2.left, m_subRect2.top);
+				}
+				else if (m_InBagMenuIndex == 1 && isSwap && m_swapIndexSecond != 3)
+				{
+					m_sub2Off->render(hdc, m_subRect2.left, m_subRect2.top);
+				}
+			}
+
+			if (Pocketmons.size() >= 5)
+			{
+
+				if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor == 4)
+				{
+					m_sub3On->render(hdc, m_subRect3.left, m_subRect3.top);
+				}
+				else if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor != 4)
+				{
+					m_sub3Off->render(hdc, m_subRect3.left, m_subRect3.top);
+				}
+				else if (m_InBagMenuIndex == 1 && isSwap && m_swapIndexSecond != 4)
+				{
+					m_sub3Off->render(hdc, m_subRect3.left, m_subRect3.top);
+				}
+			}
+
+			if (Pocketmons.size() >= 6)
+			{
+
+				if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor == 5)
+				{
+					m_sub4On->render(hdc, m_subRect4.left, m_subRect4.top);
+				}
+				else if ((m_InBagMenuIndex == 0 || m_InBagMenuIndex == 1) && !isSwap && m_indexCursor != 5)
+				{
+					m_sub4Off->render(hdc, m_subRect4.left, m_subRect4.top);
+				}
+				else if (m_InBagMenuIndex == 1 && isSwap && m_swapIndexSecond != 5)
+				{
+					m_sub4Off->render(hdc, m_subRect4.left, m_subRect4.top);
+				}
+			}
+
+			if (isSwap && m_InBagMenuIndex == 1)
+			{
+				UTIL::PrintText(hdc, "어디로 이동할까?", "소야바른9", 45, 650, 80, RGB(208, 208, 200), true, RGB(160, 112, 240));
+				UTIL::PrintText(hdc, "어디로 이동할까?", "소야바른9", 40, 650, 80, RGB(0, 0, 0), true, RGB(160, 112, 240));
+
+				if (m_swapIndexFirst == 0 && m_swapIndexFirst == m_swapIndexSecond)
+				{
+					m_mainSwapOn->render(hdc, m_mainRect.left - 5, m_mainRect.top + 2);
+
+				}
+				else if (m_swapIndexFirst == 0 && m_swapIndexFirst != m_swapIndexSecond)
+				{
+					m_mainSwapOff->render(hdc, m_mainRect.left, m_mainRect.top + 3);
+
+					if (m_swapIndexSecond == m_swapIndexMax)m_cancleOn->render(hdc, m_cancle.left, m_cancle.top);
+
+					if (m_swapIndexMax == 1);//1마리
+					if (m_swapIndexMax >= 2)//2마리
+					{
+						if (m_swapIndexSecond == 1)m_sub0SwapOn->render(hdc, m_subRect0.left, m_subRect0.top);
+					}
+					if (m_swapIndexMax >= 3)//3마리
+					{
+						if (m_swapIndexSecond == 2)m_sub1SwapOn->render(hdc, m_subRect1.left, m_subRect1.top);
+					}
+					if (m_swapIndexMax >= 4)//4마리
+					{
+						if (m_swapIndexSecond == 3)m_sub2SwapOn->render(hdc, m_subRect2.left, m_subRect2.top);
+					}
+					if (m_swapIndexMax >= 5)//5마리
+					{
+						if (m_swapIndexSecond == 4)m_sub3SwapOn->render(hdc, m_subRect3.left, m_subRect3.top);
+					}
+					if (m_swapIndexMax >= 6)//6마리
+					{
+						if (m_swapIndexSecond == 5)m_sub4SwapOn->render(hdc, m_subRect4.left, m_subRect4.top);
+					}
+				}
 
 
+
+			}
 		}
+	
 		//
 		Pocketmons[0]->m_pocketmonIconImg->frameRender(hdc, m_mainIconRect.left, m_mainIconRect.top, m_pocketMonFrameIdx, 0);
 		UTIL::PrintText(hdc, Pocketmons[0]->m_name.c_str(), "소야바른9", 175, 170, 60, RGB(112, 112, 112), true, RGB(160, 112, 240));
@@ -717,9 +758,9 @@ void PocketmoninfoScene::render(HDC hdc)
 		{
 			m_cancleOff->render(hdc, m_cancle.left, m_cancle.top);
 		}
-	}
+	
 
-	if (m_InBagMenuIndex == 1 && isSwap == false)
+	if (m_InBagMenuIndex == 1 && isSwap == false && !m_isOnbattle )
 	{
 		m_Menu->render(hdc, m_MenuRect.left, m_MenuRect.top);
 		m_MenuCursor->render(hdc, m_MenuCursorRect.left, m_MenuCursorRect.top);
@@ -734,10 +775,33 @@ void PocketmoninfoScene::render(HDC hdc)
 		UTIL::PrintText(hdc, "그만둔다", "소야바른9", 830, 650, 70, RGB(0, 0, 0), true, RGB(160, 112, 240));
 
 	}
-	if (m_InBagMenuIndex == 0 || isSwap == true)
+
+	if (m_InBagMenuIndex == 0 || isSwap == true )
 	{
 		UTIL::PrintText(hdc, "취소", "소야바른9", 900, 655, 75, RGB(112, 112, 112), true, RGB(160, 112, 240));
 		UTIL::PrintText(hdc, "취소", "소야바른9", 895, 655, 75, RGB(255, 255, 255), true, RGB(160, 112, 240));
+	}
+
+	if (m_isOnbattle)
+	{
+		UTIL::PrintText(hdc, "취소", "소야바른9", 900, 655, 75, RGB(112, 112, 112), true, RGB(160, 112, 240));
+		UTIL::PrintText(hdc, "취소", "소야바른9", 895, 655, 75, RGB(255, 255, 255), true, RGB(160, 112, 240));
+	}
+
+	if (isItemUse)
+	{
+		UTIL::PrintText(hdc, Pocketmons[m_indexCursor]->m_name.c_str(), "소야바른9", 25, 650, 80, RGB(208, 208, 208), true, RGB(160, 112, 240));
+		UTIL::PrintText(hdc, Pocketmons[m_indexCursor]->m_name.c_str(), "소야바른9", 20, 650, 80, RGB(0, 0, 0), true, RGB(160, 112, 240));
+
+		UTIL::PrintText(hdc, "의 HP가 ", "소야바른9", 185, 650, 80, RGB(208, 208, 208), true, RGB(160, 112, 240));
+		UTIL::PrintText(hdc, "의 HP가 ", "소야바른9", 180, 650, 80, RGB(50, 50, 50), true, RGB(160, 112, 240));
+
+		UTIL::PrintText(hdc, "30"/*아이템 회복량*/, "소야바른9", 385, 650, 80, RGB(208,208,208), true, RGB(160, 112, 240));
+		UTIL::PrintText(hdc, "30"/*아이템 회복량*/, "소야바른9", 380, 650, 80, RGB(50, 50, 50), true, RGB(160, 112, 240));
+	
+		UTIL::PrintText(hdc, " 회복 되었다!", "소야바른9", 465, 650, 80, RGB(208, 208, 208), true, RGB(160, 112, 240));
+		UTIL::PrintText(hdc, " 회복 되었다!", "소야바른9", 460, 650, 80, RGB(50, 50, 50), true, RGB(160, 112, 240));
+
 	}
 }
 
