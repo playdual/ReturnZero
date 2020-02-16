@@ -82,6 +82,7 @@ bool PocketmoninfoScene::init()
 	m_sub3SwapOff = IMAGEMANAGER->findImage("subSwapOff");
 	m_sub4SwapOn  = IMAGEMANAGER->findImage("subSwapOn");
 	m_sub4SwapOff = IMAGEMANAGER->findImage("subSwapOff");
+	m_PokemonDie = IMAGEMANAGER->findImage("PokemonDie");
 
 	m_Menu =IMAGEMANAGER->findImage("PokemonMenuimg");
 	m_MenuCursor=IMAGEMANAGER->findImage("PokemonMenuindeximg");
@@ -282,6 +283,13 @@ void PocketmoninfoScene::update(float _deltaTime)
 
 
 	}
+
+	if (Pocketmons[0]->m_currentHp <= 0)isDieMain = true;
+	if (Pocketmons[1]->m_currentHp <= 0)isDieSub0 = true;
+	if (Pocketmons[2]->m_currentHp <= 0)isDieSub1 = true;
+	if (Pocketmons[3]->m_currentHp <= 0)isDieSub2 = true;
+	if (Pocketmons[4]->m_currentHp <= 0)isDieSub3 = true;
+	if (Pocketmons[5]->m_currentHp <= 0)isDieSub4 = true;
 }
 
 void PocketmoninfoScene::release()
@@ -660,13 +668,6 @@ void PocketmoninfoScene::render(HDC hdc)
 		UTIL::PrintText(hdc, "그만둔다", "소야바른9", 830, 650, 70, RGB(0, 0, 0), true, RGB(160, 112, 240));
 
 	}
-
-
-	
-
-
-
-
 	if (m_InBagMenuIndex == 0 || isSwap == true)
 	{
 		UTIL::PrintText(hdc, "취소", "소야바른9", 900, 655, 75, RGB(112, 112, 112), true, RGB(160, 112, 240));

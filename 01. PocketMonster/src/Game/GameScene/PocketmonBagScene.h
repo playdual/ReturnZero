@@ -69,6 +69,7 @@ private:
 	Image* m_sub3SwapOff;
 	Image* m_sub4SwapOn;
 	Image* m_sub4SwapOff;
+	Image* m_PokemonDie;
 
 	UTIL::IRECT m_mainRect;
 	UTIL::IRECT m_mainIconRect;
@@ -100,6 +101,13 @@ private:
 	int m_InBagMenuFromBattleIndex;
 
 	bool isSwap = false;
+	bool isDieMain = false;
+	bool isDieSub0 = false;
+	bool isDieSub1 = false;
+	bool isDieSub2 = false;
+	bool isDieSub3 = false;
+	bool isDieSub4 = false;
+
 	int m_swapIndexFirst;
 	int m_swapIndexSecond;
 	int m_swapIndexMax;

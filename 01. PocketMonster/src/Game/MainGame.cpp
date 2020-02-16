@@ -134,6 +134,8 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("BagHpBarYellow","images/HpBarYellow.bmp",			0, 0, 208, 15, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("BagHpBarRed",	"images/HpBarRed.bmp",				0, 0, 208, 15, true, RGB(255, 0, 255));
 	
+	//Pokemon Status
+	IMAGEMANAGER->addImage("PokemonDie", "images/PokemonDie.bmp", 0, 0, 50, 30, true, RGB(255, 0, 255));
 
 	//Menu and Cursor
 	IMAGEMANAGER->addImage("MainMenuimg",			"images/menu.bmp",			0,0, 300, 530, true, RGB(255, 0, 255));
