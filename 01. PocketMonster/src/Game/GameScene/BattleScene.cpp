@@ -632,7 +632,7 @@ void BattleScene::playerStayMotion()
 		//플레이어 포켓몬
 		m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 324, 210, 209);
 		//플레이어 상태창
-		m_playerStatus = UTIL::IRectMake(m_playerStatusX, 341, 446, 180);
+		m_playerStatus = UTIL::IRectMake(m_playerStatusX, 346, 446, 180);
 		playerHpExpBarStayMotionOn = true;
 	}
 	else if (m_count % 20 == 0 && !motionUp)
