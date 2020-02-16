@@ -202,8 +202,7 @@ void PocketmoninfoScene::update(float _deltaTime)
 	//메뉴 인덱스 0
 	if (m_InBagMenuIndex == 0)
 	{
-		if (KEYMANAGER->isOnceKeyDown(P1_UP))
-		{
+		
 			if (KEYMANAGER->isOnceKeyDown(P1_UP))
 			{
 				m_indexCursor--;
@@ -255,36 +254,25 @@ void PocketmoninfoScene::update(float _deltaTime)
 			if (m_indexCursor != m_indexCursorMax && m_isOnbattle && KEYMANAGER->isOnceKeyDown(P1_Z))
 			{
 				isItemUse = true;
+
 				Pocketmons[m_indexCursor]->m_currentHp += rendedItemInfo->healPoint;
 			}
-		}
+			if (isItemUse)
+			{
 
-			//X누르면 기본화면으로 돌아가기
-			if (KEYMANAGER->isOnceKeyDown(P1_X))
-			{
-				SCENEMANAGER->scenePop();
-			}
-			
-			//Z를 누르면 포켓몬 관한 메뉴가 나오기
-			if (m_indexCursor != m_indexCursorMax && !m_isOnbattle &&KEYMANAGER->isOnceKeyDown(P1_Z))
-			{
-				m_InBagMenuIndex = 1;
-			}
-
-			//배틀씬에서 인벤씬에서 넘어왔을 때 포켓몬한테 아이템 사용
-			if (m_indexCursor != m_indexCursorMax && m_isOnbattle && KEYMANAGER->isOnceKeyDown(P1_Z))
-			{
-				isItemUse = true;
 				Pocketmons[m_indexCursor]->m_currentHp += 1;
-			
 			}
+
+	
+
+
 			/*if (isItemUse && KEYMANAGER->isOnceKeyDown(P1_T))
 			{
 				SCENEMANAGER->scenePop();
 				isItemUse = false;
 				m_isOnbattle = false;
 			}*/
-		}
+	}
 
 		//메뉴 인덱스 1
 		if (m_InBagMenuIndex == 1 && isSwap == false)
@@ -796,8 +784,10 @@ void PocketmoninfoScene::render(HDC hdc)
 		UTIL::PrintText(hdc, "의 HP가 ", "소야바른9", 185, 650, 80, RGB(208, 208, 208), true, RGB(160, 112, 240));
 		UTIL::PrintText(hdc, "의 HP가 ", "소야바른9", 180, 650, 80, RGB(50, 50, 50), true, RGB(160, 112, 240));
 
-		UTIL::PrintText(hdc, "30"/*아이템 회복량*/, "소야바른9", 385, 650, 80, RGB(208,208,208), true, RGB(160, 112, 240));
-		UTIL::PrintText(hdc, "30"/*아이템 회복량*/, "소야바른9", 380, 650, 80, RGB(50, 50, 50), true, RGB(160, 112, 240));
+
+		std::string m_HpRecover = std::to_string(rendedItemInfo->healPoint);
+		UTIL::PrintText(hdc, m_HpRecover.c_str(), "소야바른9", 385, 650, 80, RGB(208,208,208), true, RGB(160, 112, 240));
+		UTIL::PrintText(hdc, m_HpRecover.c_str(), "소야바른9", 380, 650, 80, RGB(50, 50, 50), true, RGB(160, 112, 240));
 	
 		UTIL::PrintText(hdc, " 회복 되었다!", "소야바른9", 465, 650, 80, RGB(208, 208, 208), true, RGB(160, 112, 240));
 		UTIL::PrintText(hdc, " 회복 되었다!", "소야바른9", 460, 650, 80, RGB(50, 50, 50), true, RGB(160, 112, 240));
