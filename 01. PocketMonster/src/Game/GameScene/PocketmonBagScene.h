@@ -116,5 +116,9 @@ private:
 	float frameDelay = 0.5f;
 	float pastTime = 0.f;
 
+	bool m_isOnbattle = false;
+	bool isItemUse = false;
+
+	ItemInfo* rendedItemInfo = nullptr;
 	std::vector<std::shared_ptr<PocketMon>>& Pocketmons;
 };

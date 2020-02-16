@@ -15,6 +15,7 @@ InvenScene::~InvenScene()
 bool InvenScene::init()
 {
 	//상점 연습 작업
+	isFromBattleScene = false;
 	ShopCount = 0;
 
 	moveCount = 0;
@@ -68,7 +69,7 @@ void InvenScene::update(float _deltaTime)
 		{
 			// 다음으로 넘긴씬에서 정보가 nullptr아니라면 ,
 			// lastSceneInfo
-			int lastSceneInfoType = *(int*)temp;
+			int lastSceneInfoType = *((int*)temp);
 			
 			switch (lastSceneInfoType)
 			{
@@ -320,20 +321,20 @@ void InvenScene::update(float _deltaTime)
 		// 배틀씬에서 아이템 쓴다를 선택한다.
 		if (KEYMANAGER->isOnceKeyDown(P1_Z))
 		{
-			sellPotion();
 			std::cout << "인배틀씬 아이템을 사용합니다." << std::endl;
 			if (pointerCount == 0 && invenSceneCount == 0)
 			{
+				setSettedItem();
 				ItemInfo* temp = new ItemInfo;
 				temp->name = m_settedItemInfo.name;
+				temp->healPoint = m_settedItemInfo.healPoint;
+				temp->catchRatio = m_settedItemInfo.catchRatio;
 				// 씬넘기기전에 현재 씬정보를 m_sceneResult에 남겨둔다(void*)로 캐스팅한다.
 				m_sceneResult = (void*)temp;
 				SCENEMANAGER->scenePush("PocketmonBagScene", temp, isFromBattleScene);
-				int a = 3;
-
 			}
-			if(pointerCount == 2 && invenSceneCount == 0)
-				sellPotion();
+			/*if(pointerCount == 2 && invenSceneCount == 0)
+				sellPosion();*/
 		}
 	}
 	// ====================== 아이템 버리기 카운트 ==================== //
@@ -365,13 +366,13 @@ void InvenScene::update(float _deltaTime)
 	//  =======================  인벤에서 물건 파는거 연습 ======================= //
 }
 
-//bool InvenScene::init(void * _info, bool isOnBattle)
-//{
-//	init();
-//	isFromBattleScene = isOnBattle;
-//	/*getItemInfo(_info);*/
-//	return true;
-//}
+bool InvenScene::init(void * _info, bool isOnBattle)
+{
+	init();
+	isFromBattleScene = isOnBattle;
+	//getItemInfo(_info);
+	return true;
+}
 
 void InvenScene::release()
 {
@@ -813,6 +814,28 @@ void InvenScene::sellPotion()
 			item++;
 		}
 	  else item++;
+	}
+}
+
+void InvenScene::setSettedItem()
+{
+	int countTemp = 0;
+	auto& itemVector = m_inven->getItemPotion();
+	int temp, a, b;
+
+	for (auto item = itemVector.begin(); item != itemVector.end();)
+	{
+		// 닫기버튼은 예외처리 해야함
+		if (m_inven->m_itemCount == (*item)->getItemNum() && (*item)->getItemName() != "닫기")
+		{
+			countTemp = (*item)->getCount();
+			countTemp--;
+			(*item)->m_count = countTemp;
+			// 한번 다시 보기(아이템 인포 넣어주기) //
+			m_settedItemInfo = (*item)->getItemInfo();
+			return;
+		}
+		else item++;
 	}
 }
 

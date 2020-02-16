@@ -126,7 +126,8 @@ struct ItemInfo
 {
 	int				InfoType = INFO_ITEM;
 	std::string		name;
-
+	int				healPoint;
+	int				catchRatio;
 	ItemInfo() 
 		: name("")
 	{}
@@ -137,10 +138,10 @@ struct ChangePocketInfo
 };
 struct UsedItemInfo
 {
+	int infoType = INFO_USEDITEM;
 	bool isUsed;
 	int poketIndex;
 	std::string itemKey;
-	int infoType = INFO_USEDITEM;
 };
 
 struct MenuBar {

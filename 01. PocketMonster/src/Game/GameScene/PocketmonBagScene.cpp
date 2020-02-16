@@ -1,6 +1,7 @@
 ﻿#include "stdafx.h"
 #include "PocketmonBagScene.h"
 #include "Common/SystemManagers.h"
+#include "Game/GameManager/ItemManager.h"
 
 PocketmoninfoScene::PocketmoninfoScene(std::vector<std::shared_ptr<PocketMon>>& _Pocketmons)
 	: Pocketmons(_Pocketmons)
@@ -95,14 +96,21 @@ bool PocketmoninfoScene::init()
 	m_indexCursorMenu1Max = 0;;
 
 
+	if (_info != nullptr)
+	{
+		int infoType = *(int*)_info;
+		switch (infoType)
+		{
+		case INFO_ITEM:
+			rendedItemInfo = (ItemInfo*)_info;
+			break;
+		default:
+			break;
+		}
+	}
 	return true;
 }
 
-bool PocketmoninfoScene::init(void * _info, bool isOnBattleScene)
-{
-	init();
-	return false;
-}
 
 void PocketmoninfoScene::update(float _deltaTime)
 {
@@ -126,6 +134,19 @@ void PocketmoninfoScene::update(float _deltaTime)
 	//	Pocketmons[5]->m_currentHp += 1;
 	//}
 	////endtemp
+
+	if (isItemUse && m_isOnbattle) {
+		if (isItemUse && KEYMANAGER->isOnceKeyDown(P1_Z)){
+			isItemUse = false;
+			m_isOnbattle = false;
+
+			auto temp = new UsedItemInfo;
+			temp->isUsed = true;
+			temp->itemKey = rendedItemInfo->name;
+			m_sceneResult = (void*)temp;
+			SCENEMANAGER->scenePop(true);
+		}
+	}
 
 	pastTime += _deltaTime;
 	if (pastTime > frameDelay) {
@@ -170,20 +191,59 @@ void PocketmoninfoScene::update(float _deltaTime)
 	{
 		if (KEYMANAGER->isOnceKeyDown(P1_UP))
 		{
-			m_indexCursor--;
-		}
-		else if (KEYMANAGER->isOnceKeyDown(P1_DOWN))
-		{
-			m_indexCursor++;
-		}
+			if (KEYMANAGER->isOnceKeyDown(P1_UP))
+			{
+				m_indexCursor--;
+			}
+			else if (KEYMANAGER->isOnceKeyDown(P1_DOWN))
+			{
+				m_indexCursor++;
+			}
 
-		//마지막 인덱스는 취소키
-		m_indexCursorMax = Pocketmons.size();
+			//마지막 인덱스는 취소키
+			m_indexCursorMax = Pocketmons.size();
 
-		//취소일때 확인누르면 기본화면으로 돌아가기
-		if (m_indexCursor == Pocketmons.size() && KEYMANAGER->isOnceKeyDown(P1_Z))
-		{
-			SCENEMANAGER->scenePop();
+			//취소일때 확인누르면 기본화면으로 돌아가기
+			if (m_indexCursor == Pocketmons.size() && KEYMANAGER->isOnceKeyDown(P1_Z) && !m_isOnbattle)
+			{
+				SCENEMANAGER->scenePop();
+			}
+			else if(m_indexCursor == Pocketmons.size() && 
+				KEYMANAGER->isStayKeyDown(P1_Z) && m_isOnbattle)
+			{
+				auto* temp = new UsedItemInfo;
+				temp->isUsed = false;
+				temp->infoType = INFO_USEDITEM;
+				m_sceneResult = (void*)temp;
+				SCENEMANAGER->scenePop(true);
+			}
+
+			//X누르면 기본화면으로 돌아가기
+			if (KEYMANAGER->isOnceKeyDown(P1_X) && !m_isOnbattle)
+			{
+ 				SCENEMANAGER->scenePop();
+			}
+			else if (KEYMANAGER->isStayKeyDown(P1_X) && m_isOnbattle)
+			{
+				auto* temp = new UsedItemInfo;
+				temp->infoType = INFO_USEDITEM;
+				temp->isUsed = false;
+				m_sceneResult = temp;
+				SCENEMANAGER->scenePop(true);
+			}
+			
+			//Z를 누르면 포켓몬 관한 메뉴가 나오기
+			if (m_indexCursor != m_indexCursorMax && !m_isOnbattle &&KEYMANAGER->isOnceKeyDown(P1_Z))
+			{
+				m_InBagMenuIndex = 1;
+			}
+
+			//배틀씬에서 인벤씬에서 넘어왔을 때 포켓몬한테 아이템 사용
+			if (m_indexCursor != m_indexCursorMax && m_isOnbattle && KEYMANAGER->isOnceKeyDown(P1_Z))
+			{
+				isItemUse = true;
+				Pocketmons[m_indexCursor]->m_currentHp += rendedItemInfo->healPoint;
+			}
 		}
 
 		//X누르면 기본화면으로 돌아가기
