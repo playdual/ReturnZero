@@ -47,13 +47,16 @@ bool TownScene::init()
 
 void TownScene::update(float _deltaTime)
 {
+	//temp handle last info
+	//타운씬에서는 아직까진 이전 씬정보를 사용할 필요가 없다.
+	if (SCENEMANAGER->getLastSceneReturnInfo() != nullptr) {
+		SCENEMANAGER->eraseLastInfo();
+	}
+
+
 	m_player->update(_deltaTime);
 	m_map->setPlayerPosition(m_player->getPlayerBlockX(), m_player->getPlayerBlockY());
 	m_map->update(_deltaTime);
-
-	/*if (KEYMANAGER->isOnceKeyDown(GAME_MENU)) {
-		SCENEMANAGER->scenePush("inven");
-	}*/
 
 	//야생배틀
 	if (m_player->getisBattle())

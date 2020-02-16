@@ -18,12 +18,16 @@ public:
 
 public:
 	virtual bool init() override;
-	virtual void update(float _deltaTime) override;
 	virtual bool init(void* _info, bool isOnBattle) override;
+	virtual void update(float _deltaTime) override;
+
+public:
 	virtual void release() override;
 	virtual void render(HDC hdc) override;
 	virtual void afterRender(HDC hdc) override;
 	virtual void debugRender(HDC hdc) override;
+
+public:
 
 	// 디폴트 파는 씬
 	void sellPotion();
@@ -37,6 +41,9 @@ public:
 	void buyPokeBallItem();
 
 	ItemInfo getItemInfo();
+
+private:
+	void checkSceneChangeInfo();
 
 private:
 	std::shared_ptr<Inventory> m_inven;

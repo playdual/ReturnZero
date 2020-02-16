@@ -180,7 +180,7 @@ HRESULT MainGame::init()
 	sceneInit = true;
 
 	//now! our First Sound!
-	SOUNDMANAGER->playSound("NewBarkTown", Channel::eChannelBgm);
+	//SOUNDMANAGER->playSound("NewBarkTown", Channel::eChannelBgm);
 	
 	return S_OK;
 }

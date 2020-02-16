@@ -22,10 +22,11 @@ public:
 	virtual void afterRender(HDC hdc) = 0;
 	virtual void debugRender(HDC hdc) = 0;
 	virtual void* getResult() { return m_sceneResult; }
+	void isOnChange() { isUpdateLastSceneData = false; }
 
 protected:
 	void* m_sceneResult = nullptr;
-
+	bool isUpdateLastSceneData = false;
 
 protected:
 	bool isFromBattleScene = false;   // 공통 

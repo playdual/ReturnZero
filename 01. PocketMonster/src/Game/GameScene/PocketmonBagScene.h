@@ -118,6 +118,7 @@ private:
 
 	bool m_isOnbattle = false;
 	bool isItemUse = false;
+	bool isEffectionItem = false;
 
 	ItemInfo* rendedItemInfo = nullptr;
 	std::vector<std::shared_ptr<PocketMon>>& Pocketmons;

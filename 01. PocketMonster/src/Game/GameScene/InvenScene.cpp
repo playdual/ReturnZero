@@ -12,10 +12,18 @@ InvenScene::~InvenScene()
 {
 }
 
+bool InvenScene::init(void * _info, bool isOnBattle)
+{
+	init();
+	isFromBattleScene = isOnBattle;
+	return true;
+}
+
 bool InvenScene::init()
 {
 	//상점 연습 작업
 	isFromBattleScene = false;
+	isUpdateLastSceneData = false;
 	ShopCount = 0;
 
 	moveCount = 0;
@@ -42,10 +50,10 @@ bool InvenScene::init()
 	m_invenSceneType = ITEM;    // 디폴트 아이템창  = ITEM
 	invenSceneCount = 0;		// 아이템창 렌더 시켜줄 카운트
 
-	isChangeScene = false; 
-	
+	isChangeScene = false;
+
 	// 우선 isTownInven은 false 처리  = Battle일 경우 창이 틀림0
-	isTownInven = false;		
+	isTownInven = false;
 	isBattleInven = false;
 
 	// 인벤 선택 메뉴
@@ -58,55 +66,61 @@ bool InvenScene::init()
 	return true;
 }
 
-void InvenScene::update(float _deltaTime)
-{
-	m_inven->update(_deltaTime);
-	if (isFromBattleScene == true) {
-		void* temp = SCENEMANAGER->getLastSceneReturnInfo();
-		bool isUsed = false;
-		std::string usedItem;
-		if (temp != nullptr)
+void InvenScene::checkSceneChangeInfo() {
+	//lastScene info가 nullptr아니라면
+	//변경된 사항이 있다는 것이고, 우리는 이를 처리해 주어야 한다.
+	void* temp = SCENEMANAGER->getLastSceneReturnInfo();
+	
+	//처리를 위한 지역변수
+	bool isUsed = false;
+	std::string usedItem;
+
+	if (temp != nullptr)
+	{
+		int lastSceneInfoType = *((int*)temp);
+
+		switch (lastSceneInfoType)
 		{
-			// 다음으로 넘긴씬에서 정보가 nullptr아니라면 ,
-			// lastSceneInfo
-			int lastSceneInfoType = *((int*)temp);
-			
-			switch (lastSceneInfoType)
-			{
-			case INFO_USEDITEM:
-				isUsed = ((UsedItemInfo*)temp)->isUsed;
-				usedItem= ((UsedItemInfo*)temp)->itemKey;
-				break;
-			default:
-				break;
-			}
+		case INFO_USEDITEM:
+			isUsed = ((UsedItemInfo*)temp)->isUsed;
+			usedItem = ((UsedItemInfo*)temp)->itemKey;
+			break;
 		}
-		if (isUsed == true)
+		
+	}
+	//정보를 확인했으면, 지워주고 isUpdateLastSceneData를 true로 만들어 주자(씬이 변경되고 한번만 체크해 주면 되므로)
+	SCENEMANAGER->eraseLastInfo();
+	isUpdateLastSceneData = true;
+
+	if (isUsed == true && isFromBattleScene)
+	{
+		auto& items = m_inven->getItemPotion();
+		for (auto item = items.begin(); item != items.end(); item++)
 		{
-			auto& items = m_inven->getItemPotion();
-			for (auto item = items.begin(); item != items.end(); )
+			if ((*item)->m_ItemName == usedItem)
 			{
-				if ((*item)->m_ItemName == usedItem)
+				(*item)->m_count -= 1;
+				if ((*item)->m_count <= 0)
 				{
-					(*item)->m_count -= 1;
-					if ((*item)->m_count <= 0)
-					{
-						items.erase(item);
-					}
-					auto temp = new UsedItemInfo;
-					temp->itemKey = usedItem;
-					temp->isUsed = true;
-					m_sceneResult = temp;
-					SCENEMANAGER->scenePop(true);
-					return;
+					items.erase(item);
 				}
-				else
-				{
-					item++;
-				}
+				auto temp = new UsedItemInfo;
+				temp->itemKey = usedItem;
+				temp->isUsed = true;
+				m_sceneResult = temp;
+				SCENEMANAGER->scenePop(true);
+				return;
 			}
 		}
 	}
+}
+
+void InvenScene::update(float _deltaTime)
+{
+	if (isUpdateLastSceneData == false)
+		checkSceneChangeInfo();
+
+	m_inven->update(_deltaTime);
 	//isFromBattleScene = true로 임시로 만든 키
 	if (KEYMANAGER->isOnceKeyDown(P1_P))
 	{
@@ -195,8 +209,8 @@ void InvenScene::update(float _deltaTime)
 	// UI 모션 작업
 	if (isUp)
 	{
-	    if (moveCount < 20)
-	    	moveCount++;
+		if (moveCount < 20)
+			moveCount++;
 		if (moveCount == 20)
 			isUp = false;
 	}
@@ -210,78 +224,78 @@ void InvenScene::update(float _deltaTime)
 	// 인벤씬에서 메뉴 나오게 하는 작업
 	if (!isTownInven && !isFromBattleScene)
 	{
-	  if (KEYMANAGER->isOnceKeyDown(P1_Z))
-	  {
-	  	isTownInven = true;
-	  	m_inven->setIsOpenMenu(true);
-	  }
+		if (KEYMANAGER->isOnceKeyDown(P1_Z))
+		{
+			isTownInven = true;
+			m_inven->setIsOpenMenu(true);
+		}
 	}
 
 	if (m_inven->getOpenMenu() == true && isTownInven == true)
 	{
-	   if (KEYMANAGER->isOnceKeyDown(P1_UP))
-	   {
-	   	  if (pointerCount != 0 )
-	   		pointerCount--;
-	   }
-	   if (KEYMANAGER->isOnceKeyDown(P1_DOWN))
-	   {
-	   	  if(pointerCount != 3 && invenSceneCount == 0 || 
-			  pointerCount !=2 && invenSceneCount == 1 ||
-			  pointerCount !=2 && invenSceneCount == 2)
-	   	   pointerCount++;  
-	   }
-	   
-	   // 타운인벤메뉴일 경우 메뉴에 따른 상호작용 //
-		  if (pointerCount == 3 && invenSceneCount == 0 ||
-			  pointerCount == 2 && invenSceneCount == 1 ||
-			  pointerCount == 2 && invenSceneCount == 2)
-		  {
-			  if (KEYMANAGER->isOnceKeyDown(P1_Z))
-			  {
-				  pointerCount = 0;
-				  isTownInven = false;
-				  m_inven->setIsOpenMenu(false);
-			  }
-		  }
+		if (KEYMANAGER->isOnceKeyDown(P1_UP))
+		{
+			if (pointerCount != 0)
+				pointerCount--;
+		}
+		if (KEYMANAGER->isOnceKeyDown(P1_DOWN))
+		{
+			if (pointerCount != 3 && invenSceneCount == 0 ||
+				pointerCount != 2 && invenSceneCount == 1 ||
+				pointerCount != 2 && invenSceneCount == 2)
+				pointerCount++;
+		}
 
-		  if ( pointerCount == 2 && invenSceneCount == 0)
-		  {
-			  if (KEYMANAGER->isOnceKeyDown(P1_Z))
-			  {
-				  m_isThrowItem = true;
-			  }
-		  }
+		// 타운인벤메뉴일 경우 메뉴에 따른 상호작용 //
+		if (pointerCount == 3 && invenSceneCount == 0 ||
+			pointerCount == 2 && invenSceneCount == 1 ||
+			pointerCount == 2 && invenSceneCount == 2)
+		{
+			if (KEYMANAGER->isOnceKeyDown(P1_Z))
+			{
+				pointerCount = 0;
+				isTownInven = false;
+				m_inven->setIsOpenMenu(false);
+			}
+		}
 
-		  //  그만하기 외 count 값 빼주기
-		  if (pointerCount != 3 && invenSceneCount == 0 )
-		  {
-			  if (KEYMANAGER->isOnceKeyDown(P1_Z))
-			  {
-				  sellPotion();
-			  }
-		  }
-		  if (pointerCount != 2 && invenSceneCount == 1)
-		  {
-			  if (KEYMANAGER->isOnceKeyDown(P1_Z))
-			  {
-				  sellImport();
-			  }
-		  }
-		  if (pointerCount != 2 && invenSceneCount == 2)
-		  {
-			  if (KEYMANAGER->isOnceKeyDown(P1_Z))
-			  {
-				  sellPokeBall();
-			  }
-		  }
-	
+		if (pointerCount == 2 && invenSceneCount == 0)
+		{
+			if (KEYMANAGER->isOnceKeyDown(P1_Z))
+			{
+				m_isThrowItem = true;
+			}
+		}
 
-       if (KEYMANAGER->isOnceKeyDown(P1_X))
-	   {
-	     isTownInven = false;
-	     m_inven->setIsOpenMenu(false);
-	   }
+		//  그만하기 외 count 값 빼주기
+		if (pointerCount != 3 && invenSceneCount == 0)
+		{
+			if (KEYMANAGER->isOnceKeyDown(P1_Z))
+			{
+				sellPotion();
+			}
+		}
+		if (pointerCount != 2 && invenSceneCount == 1)
+		{
+			if (KEYMANAGER->isOnceKeyDown(P1_Z))
+			{
+				sellImport();
+			}
+		}
+		if (pointerCount != 2 && invenSceneCount == 2)
+		{
+			if (KEYMANAGER->isOnceKeyDown(P1_Z))
+			{
+				sellPokeBall();
+			}
+		}
+
+
+		if (KEYMANAGER->isOnceKeyDown(P1_X))
+		{
+			isTownInven = false;
+			m_inven->setIsOpenMenu(false);
+		}
 	}
 	// ===================== 배틀인벤메뉴일 경우 메뉴에 따른 상호작용 ===================== //
 	if (m_inven->getOpenMenu() == false && isFromBattleScene == true)
@@ -309,8 +323,8 @@ void InvenScene::update(float _deltaTime)
 		}
 		if (pointerCount == 1 && invenSceneCount == 0 ||
 			pointerCount == 0 && invenSceneCount == 1 ||
-			pointerCount == 1 && invenSceneCount == 2 )
-		{			
+			pointerCount == 1 && invenSceneCount == 2)
+		{
 			if (KEYMANAGER->isOnceKeyDown(P1_Z))
 			{
 				isBattleInven = false;
@@ -332,6 +346,7 @@ void InvenScene::update(float _deltaTime)
 				// 씬넘기기전에 현재 씬정보를 m_sceneResult에 남겨둔다(void*)로 캐스팅한다.
 				m_sceneResult = (void*)temp;
 				SCENEMANAGER->scenePush("PocketmonBagScene", temp, isFromBattleScene);
+				return;
 			}
 			/*if(pointerCount == 2 && invenSceneCount == 0)
 				sellPosion();*/
@@ -345,8 +360,8 @@ void InvenScene::update(float _deltaTime)
 
 		if (KEYMANAGER->isOnceKeyUp(P1_UP))
 		{
-			if(m_throwItemCount != 0)
-			m_throwItemCount--;
+			if (m_throwItemCount != 0)
+				m_throwItemCount--;
 		}
 
 	}
@@ -354,7 +369,7 @@ void InvenScene::update(float _deltaTime)
 	//  =======================  인벤에서 물건 파는거 연습 ======================= //
 	if (KEYMANAGER->isOnceKeyDown(P1_Q))
 	{
-		if(m_inven->m_isItemTag)
+		if (m_inven->m_isItemTag)
 			sellPotion();
 
 		if (m_inven->m_isImportTag)
@@ -366,17 +381,10 @@ void InvenScene::update(float _deltaTime)
 	//  =======================  인벤에서 물건 파는거 연습 ======================= //
 }
 
-bool InvenScene::init(void * _info, bool isOnBattle)
-{
-	init();
-	isFromBattleScene = isOnBattle;
-	//getItemInfo(_info);
-	return true;
-}
 
 void InvenScene::release()
 {
-	
+
 }
 
 void InvenScene::render(HDC hdc)
@@ -413,8 +421,8 @@ void InvenScene::render(HDC hdc)
 				}
 				if ((*item)->getItemNum() == m_inven->m_itemCount && (*item)->getItemName() != "닫기")
 				{
-					if(!m_isThrowItem)
-					m_ItemInvenMenu->render(hdc, WINSIZEX / 2 + 200, WINSIZEY / 2 );
+					if (!m_isThrowItem)
+						m_ItemInvenMenu->render(hdc, WINSIZEX / 2 + 200, WINSIZEY / 2);
 
 					m_invenMenuBottom->render(hdc, 170, WINSIZEY / 2 + 173);
 					item++;
@@ -442,8 +450,8 @@ void InvenScene::render(HDC hdc)
 							if (m_inven->m_itemCount == (*item)->getItemNum())
 							{
 								UTIL::PrintText(hdc, (*item)->getItemName().c_str(), "소야바른9", 200, WINSIZEY - 170, 55, RGB(0, 0, 0), true);
-								if(!m_isThrowItem)
-								UTIL::PrintText(hdc, m_itemChoiceMenu[i].c_str(), "소야바른9", 200, WINSIZEY - 100, 55, RGB(0, 0, 0), true);
+								if (!m_isThrowItem)
+									UTIL::PrintText(hdc, m_itemChoiceMenu[i].c_str(), "소야바른9", 200, WINSIZEY - 100, 55, RGB(0, 0, 0), true);
 								break;
 							}
 						}
@@ -501,7 +509,7 @@ void InvenScene::render(HDC hdc)
 						item++;
 					}
 					else
-					item++;
+						item++;
 				}
 			}
 		}
@@ -526,18 +534,18 @@ void InvenScene::render(HDC hdc)
 				}
 				if ((*item)->getItemNum() == m_inven->m_importCount && (*item)->getItemName() != "임폴트닫기")
 				{
-				   m_otherInvenMenu->render(hdc, WINSIZEX / 2 + 200, WINSIZEY / 2 + 60);
-				   m_invenMenuBottom->render(hdc, 170, WINSIZEY / 2 + 173);
-				   item++;
+					m_otherInvenMenu->render(hdc, WINSIZEX / 2 + 200, WINSIZEY / 2 + 60);
+					m_invenMenuBottom->render(hdc, 170, WINSIZEY / 2 + 173);
+					item++;
 				}
 
-			  else item++;
+				else item++;
 			}
 
 			for (int i = 0; i < 4; i++)
 			{
 				for (auto item = itemVector.begin(); item != itemVector.end();)
-				{	
+				{
 					if ((*item)->getItemNum() == m_inven->m_importCount && (*item)->getItemName() != "임폴트닫기")
 					{
 						if (i <= 2)
@@ -553,7 +561,7 @@ void InvenScene::render(HDC hdc)
 								UTIL::PrintText(hdc, m_importChoiceMenu[i].c_str(), "소야바른9", 200, WINSIZEY - 100, 55, RGB(0, 0, 0), true);
 								break;
 							}
-						}	
+						}
 						item++;
 					}
 					else
@@ -721,7 +729,7 @@ void InvenScene::render(HDC hdc)
 
 		// =============== 아이템 버리는 작업 =============== //
 		if (m_isThrowItem)
-		{	
+		{
 			std::string frontNum = "X 00";
 			std::string Num = std::to_string(m_throwItemCount);
 
@@ -735,7 +743,7 @@ void InvenScene::render(HDC hdc)
 					UTIL::PrintText(hdc, (*item)->getItemName().c_str(), "소야바른9", 200, WINSIZEY - 170, 55, RGB(0, 0, 0), true);
 					UTIL::PrintText(hdc, Num.c_str(), "소야바른9", 250, WINSIZEY - 170, 55, RGB(0, 0, 0), true);
 					UTIL::PrintText(hdc, m_throwItem[0].c_str(), "소야바른9", 200, WINSIZEY - 100, 55, RGB(0, 0, 0), true);
-					
+
 					UTIL::PrintText(hdc, frontNum.c_str(), "소야바른9", 250, WINSIZEY - 170, 55, RGB(0, 0, 0), true);
 					m_currentPointer->render(hdc, WINSIZEX / 2 + 230, WINSIZEY / 2 + 210 + (pointerCount * 75));
 					item++;
@@ -745,11 +753,11 @@ void InvenScene::render(HDC hdc)
 				}
 				else item++;
 			}
-			
-		
+
+
 		}
 
-		
+
 
 
 
@@ -767,7 +775,7 @@ void InvenScene::render(HDC hdc)
 		break;
 
 	default:
-		break; 
+		break;
 	}
 
 }
@@ -783,7 +791,7 @@ void InvenScene::debugRender(HDC hdc)
 // ================인벤 파는 작업 ==================== //
 void InvenScene::sellPotion()
 {
-	int countTemp = 0; 
+	int countTemp = 0;
 	auto& itemVector = m_inven->getItemPotion();
 	int temp, a, b;
 
@@ -799,7 +807,7 @@ void InvenScene::sellPotion()
 			m_settedItemInfo = (*item)->getItemInfo();
 			// 한번 다시 보기(아이템 인포 넣어주기) //
 			a = (*item)->getItemNum();
-			b = (*(item+1))->getItemNum();
+			b = (*(item + 1))->getItemNum();
 
 			if (countTemp == 0)
 			{
@@ -813,7 +821,7 @@ void InvenScene::sellPotion()
 			}
 			item++;
 		}
-	  else item++;
+		else item++;
 	}
 }
 
@@ -829,7 +837,6 @@ void InvenScene::setSettedItem()
 		if (m_inven->m_itemCount == (*item)->getItemNum() && (*item)->getItemName() != "닫기")
 		{
 			countTemp = (*item)->getCount();
-			countTemp--;
 			(*item)->m_count = countTemp;
 			// 한번 다시 보기(아이템 인포 넣어주기) //
 			m_settedItemInfo = (*item)->getItemInfo();

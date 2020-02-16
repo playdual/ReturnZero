@@ -102,7 +102,7 @@ bool SceneManager::scenePush(std::string sceneName)
 	{
 		_currentScene = find->second;
 		sceneStack.push(find->second);
-
+		_currentScene->isOnChange();
 		return true;
 	}
 }
@@ -114,8 +114,8 @@ bool SceneManager::battleScenePush(std::shared_ptr<player> _player, std::shared_
 	if (SUCCEEDED(find->second->init(_player, _npc)))
 	{
 		_currentScene = find->second;
+		_currentScene->isOnChange();
 		sceneStack.push(find->second);
-
 		return true;
 	}
 	return false;
@@ -129,7 +129,7 @@ bool SceneManager::battleScenePush(std::shared_ptr<player> _player, PocketMon & 
 	{
 		_currentScene = find->second;
 		sceneStack.push(find->second);
-
+		_currentScene->isOnChange();
 		return true;
 	}
 }
@@ -140,6 +140,7 @@ bool SceneManager::scenePop()
 		sceneStack.top()->release();
 		sceneStack.pop();
 		_currentScene = sceneStack.top();
+		_currentScene->isOnChange();
 	}
 	return true;
 }
@@ -154,7 +155,7 @@ bool SceneManager::scenePush(std::string sceneName, void * pushInfo, bool isOnBa
 	{
 		_currentScene = find->second;
 		sceneStack.push(find->second);
-
+		_currentScene->isOnChange();
 		return true;
 	}
 }
@@ -194,6 +195,7 @@ bool SceneManager::scenePop(bool _isGetInfom)
 		sceneStack.top()->release();
 		sceneStack.pop();
 		_currentScene = sceneStack.top();
+		_currentScene->isOnChange();
 	}
 	return true;
 }
