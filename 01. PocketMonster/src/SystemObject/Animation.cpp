@@ -105,7 +105,6 @@ void Animation::setPlayFrame(int * playArr, int arrLen, bool loop)
 	{
 		_playList.push_back(playArr[i]);
 	}
-
 }
 
 //시작과 끝

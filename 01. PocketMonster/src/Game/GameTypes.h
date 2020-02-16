@@ -135,6 +135,7 @@ struct ItemInfo
 struct ChangePocketInfo
 {
 	int	infoType = INFO_CHANGEPOKE;
+	bool isChanged;
 };
 struct UsedItemInfo
 {

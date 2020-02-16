@@ -77,6 +77,12 @@ public:
 	int checkHpBarWigth();
 	int checkExpBarWigth();
 	bool checkPossiblePocketmon();
+	int playerCurrentHpLeft() { return m_playerStatus.left + 205; }
+	int playerCurrentHpTop() { return m_playerStatus.top+81; }
+	int playerCurrentExpLeft() { return m_playerStatus.left + 137; }
+	int playerCurrentExpTop() { return m_playerStatus.top+159; }
+
+
 
 	//시스템
 	void explainRect(HDC hdc);
@@ -89,7 +95,6 @@ public:
 	void moveSkillSelectButton();
 
 	void playerStayMotion();
-	void playerHpExpBarStayMotion(HDC hdc);
 
 	std::string selectEnemyskill();
 
@@ -134,6 +139,8 @@ private:
 	std::vector<std::shared_ptr<PocketMon>> m_playerPocketmons;
 	std::shared_ptr<PocketMon> selectPocketmon;
 	PocketMon m_wildPocketmon;
+	ChangePocketInfo cpInfo;
+	UsedItemInfo uiInfo;
 
 
 	//bool moveOn;
@@ -199,7 +206,6 @@ private:
 	bool uiObjectRegularPosition;
 	bool playerImgSlideOut;
 	bool explainEnemyName;
-	bool playerHpExpBarStayMotionOn;
 	//적	 UI
 	int m_enemyBottomX;
 	int m_enemyPocketmonX;
