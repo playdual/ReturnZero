@@ -125,14 +125,10 @@ struct PocketSkill
 struct ItemInfo
 {
 	int				InfoType = INFO_ITEM;
-	int				damage;
-	int				healHp;
-	int				pocketCatchRatio;
 	std::string		name;
-	ItemType		type;
 
 	ItemInfo() 
-		: name(""), type(ItemType::ItemTypeNone), damage(0), healHp(0), pocketCatchRatio(0)
+		: name("")
 	{}
 };
 struct ChangePocketInfo
@@ -141,6 +137,9 @@ struct ChangePocketInfo
 };
 struct UsedItemInfo
 {
+	bool isUsed;
+	int poketIndex;
+	std::string itemKey;
 	int infoType = INFO_USEDITEM;
 };
 

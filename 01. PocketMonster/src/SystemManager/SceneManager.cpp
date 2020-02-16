@@ -144,8 +144,19 @@ bool SceneManager::scenePop()
 	return true;
 }
 
-void SceneManager::scenePush(std::string sceneName, void * pushInfo, bool isOnBattleScene)
+bool SceneManager::scenePush(std::string sceneName, void * pushInfo, bool isOnBattleScene)
 {
+	auto find = _mSceneList.find(sceneName);
+	if (find == _mSceneList.end())
+		return false;
+
+	if (SUCCEEDED(find->second->init(pushInfo, isOnBattleScene)))
+	{
+		_currentScene = find->second;
+		sceneStack.push(find->second);
+
+		return true;
+	}
 }
 
 void SceneManager::eraseLastInfo()
@@ -175,13 +186,15 @@ void SceneManager::eraseLastInfo()
 	}	
 }
 
-void SceneManager::scenePop(bool _isGetInfom)
+bool SceneManager::scenePop(bool _isGetInfom)
 {
+	eraseLastInfo();
 	if (sceneStack.size() > 1) {
 		m_lastSceneReturnInfo = sceneStack.top()->getResult();
 		sceneStack.top()->release();
 		sceneStack.pop();
 		_currentScene = sceneStack.top();
 	}
+	return true;
 }
 

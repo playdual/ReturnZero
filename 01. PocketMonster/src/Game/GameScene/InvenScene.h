@@ -19,8 +19,8 @@ public:
 public:
 	virtual bool init() override;
 	virtual void update(float _deltaTime) override;
+	//virtual bool init(void* _info, bool isOnBattle) override;
 	virtual void release() override;
-
 	virtual void render(HDC hdc) override;
 	virtual void afterRender(HDC hdc) override;
 	virtual void debugRender(HDC hdc) override;

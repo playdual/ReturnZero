@@ -60,7 +60,52 @@ bool InvenScene::init()
 void InvenScene::update(float _deltaTime)
 {
 	m_inven->update(_deltaTime);
-	
+	if (isFromBattleScene == true) {
+		void* temp = SCENEMANAGER->getLastSceneReturnInfo();
+		bool isUsed = false;
+		std::string usedItem;
+		if (temp != nullptr)
+		{
+			// 다음으로 넘긴씬에서 정보가 nullptr아니라면 ,
+			// lastSceneInfo
+			int lastSceneInfoType = *(int*)temp;
+			
+			switch (lastSceneInfoType)
+			{
+			case INFO_USEDITEM:
+				isUsed = ((UsedItemInfo*)temp)->isUsed;
+				usedItem= ((UsedItemInfo*)temp)->itemKey;
+				break;
+			default:
+				break;
+			}
+		}
+		if (isUsed == true)
+		{
+			auto& items = m_inven->getItemPotion();
+			for (auto item = items.begin(); item != items.end(); )
+			{
+				if ((*item)->m_ItemName == usedItem)
+				{
+					(*item)->m_count -= 1;
+					if ((*item)->m_count <= 0)
+					{
+						items.erase(item);
+					}
+					auto temp = new UsedItemInfo;
+					temp->itemKey = usedItem;
+					temp->isUsed = true;
+					m_sceneResult = temp;
+					SCENEMANAGER->scenePop(true);
+					return;
+				}
+				else
+				{
+					item++;
+				}
+			}
+		}
+	}
 	//isFromBattleScene = true로 임시로 만든 키
 	if (KEYMANAGER->isOnceKeyDown(P1_P))
 	{
@@ -272,10 +317,21 @@ void InvenScene::update(float _deltaTime)
 				isFromBattleScene = false;
 			}
 		}
+		// 배틀씬에서 아이템 쓴다를 선택한다.
 		if (KEYMANAGER->isOnceKeyDown(P1_Z))
 		{
-			if (pointerCount == 0 && invenSceneCount == 0  )
-				sellPotion();
+			sellPotion();
+			std::cout << "인배틀씬 아이템을 사용합니다." << std::endl;
+			if (pointerCount == 0 && invenSceneCount == 0)
+			{
+				ItemInfo* temp = new ItemInfo;
+				temp->name = m_settedItemInfo.name;
+				// 씬넘기기전에 현재 씬정보를 m_sceneResult에 남겨둔다(void*)로 캐스팅한다.
+				m_sceneResult = (void*)temp;
+				SCENEMANAGER->scenePush("PocketmonBagScene", temp, isFromBattleScene);
+				int a = 3;
+
+			}
 			if(pointerCount == 2 && invenSceneCount == 0)
 				sellPotion();
 		}
@@ -308,6 +364,14 @@ void InvenScene::update(float _deltaTime)
 	}
 	//  =======================  인벤에서 물건 파는거 연습 ======================= //
 }
+
+//bool InvenScene::init(void * _info, bool isOnBattle)
+//{
+//	init();
+//	isFromBattleScene = isOnBattle;
+//	/*getItemInfo(_info);*/
+//	return true;
+//}
 
 void InvenScene::release()
 {
@@ -826,7 +890,6 @@ void InvenScene::sellPokeBall()
 
 ItemInfo InvenScene::getItemInfo()
 {
-
 	return m_settedItemInfo;
 }
 

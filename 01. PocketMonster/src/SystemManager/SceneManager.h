@@ -23,8 +23,8 @@ public:
 	bool battleScenePush(std::shared_ptr<player> _player, PocketMon& _pocketMon);
 	
 	bool scenePop();
-	void scenePop(bool _dummy);
-	void scenePush(std::string sceneName, void* pushInfo, bool isOnBattleScene);
+	bool scenePop(bool _dummy);
+	bool scenePush(std::string sceneName, void* pushInfo, bool isOnBattleScene);
 	void eraseLastInfo();
 	void* getLastSceneReturnInfo() { return m_lastSceneReturnInfo; }
 

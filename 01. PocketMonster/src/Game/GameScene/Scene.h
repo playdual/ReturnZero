@@ -13,9 +13,9 @@ public:
 	virtual bool init() = 0;
 	virtual bool init(std::shared_ptr<class player> _player, std::shared_ptr<player> _npc) { return true; };
 	virtual bool init(std::shared_ptr<player> _player, class PocketMon& _pocketmon) { return true; };
+	virtual bool init(void* _info, bool isOnBattle) { return true; }
 	virtual void update(float _deltaTime) = 0;
 	virtual void release() = 0;
-	
 
 public:
 	virtual void render(HDC hdc) = 0;
@@ -25,6 +25,7 @@ public:
 
 protected:
 	void* m_sceneResult = nullptr;
+
 
 protected:
 	bool isFromBattleScene = false;   // 공통 

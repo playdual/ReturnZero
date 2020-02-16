@@ -98,6 +98,12 @@ bool PocketmoninfoScene::init()
 	return true;
 }
 
+bool PocketmoninfoScene::init(void * _info, bool isOnBattleScene)
+{
+	init();
+	return false;
+}
+
 void PocketmoninfoScene::update(float _deltaTime)
 {
 	//temp
@@ -284,12 +290,12 @@ void PocketmoninfoScene::update(float _deltaTime)
 
 	}
 
-	if (Pocketmons[0]->m_currentHp <= 0)isDieMain = true;
-	if (Pocketmons[1]->m_currentHp <= 0)isDieSub0 = true;
-	if (Pocketmons[2]->m_currentHp <= 0)isDieSub1 = true;
-	if (Pocketmons[3]->m_currentHp <= 0)isDieSub2 = true;
-	if (Pocketmons[4]->m_currentHp <= 0)isDieSub3 = true;
-	if (Pocketmons[5]->m_currentHp <= 0)isDieSub4 = true;
+	//if (Pocketmons[0]->m_currentHp <= 0)isDieMain = true;
+	//if (Pocketmons[1]->m_currentHp <= 0)isDieSub0 = true;
+	//if (Pocketmons[2]->m_currentHp <= 0)isDieSub1 = true;
+	//if (Pocketmons[3]->m_currentHp <= 0)isDieSub2 = true;
+	//if (Pocketmons[4]->m_currentHp <= 0)isDieSub3 = true;
+	//if (Pocketmons[5]->m_currentHp <= 0)isDieSub4 = true;
 }
 
 void PocketmoninfoScene::release()
