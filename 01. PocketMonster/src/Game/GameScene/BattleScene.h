@@ -322,11 +322,13 @@ private:
 	bool playerPocketmonStatusPulsOn;
 	bool checkSkillGet;
 	bool pushBackSkill;
+	bool playerPocketmonLevelCheck;
 	bool getSkillDone;
 	
 	int m_loseAniCount;
 	int playerPocketmonsNumber;
 	int m_levelUpCount;
+	int m_levelCheckCount;
 
 	int tempHp;
 	int tempAtk;

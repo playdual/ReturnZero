@@ -199,9 +199,11 @@ bool BattleScene::init(std::shared_ptr<player> _player, PocketMon& _pocketmon)
 	getSkillDone = false;
 	checkSkillGet = false;
 	pushBackSkill = false;
+	playerPocketmonLevelCheck = false;
 	m_levelUpCount = 0;
 	m_loseAniCount = 0;
 	m_levelUpCount = 0;
+	m_levelCheckCount = 0;
 
 	//레벨업 시 능력치 업그레드
 	int tempHp = 0;
@@ -259,7 +261,7 @@ void BattleScene::render(HDC hdc)
 	EFFECTMANAGER->render(hdc);
 
 	//IMAGEMANAGER->render("playerStatus", hdc, 30, 30, 0, 0, 300, 100);
-	IMAGEMANAGER->render("currentExp", hdc, m_playerCurrentExp.left, m_playerCurrentExp.top, 0, 0, m_playerPocketmonExpBarWigth, 30);
+	//IMAGEMANAGER->render("currentExp", hdc, m_playerCurrentExp.left, m_playerCurrentExp.top, 0, 0, m_playerPocketmonExpBarWigth, 30);
 
 
 }
@@ -426,20 +428,6 @@ void BattleScene::explainRect(HDC hdc)
 		wsprintf(str, "도망간다");
 		TextOut(hdc, 854, 666, str, strlen(str));
 	}
-
-	if (enemyTurn && !enemyLose)
-	{
-		if (!enemyExplainEffect)
-		{
-			wsprintf(str, "상대 %s의", m_wildPocketmon.m_name.c_str());
-			TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 40, str, strlen(str));
-
-			wsprintf(str, "%s 공격!", m_enemySelectSkillName.c_str());
-			TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 70, str, strlen(str));
-		}
-	}
-
-
 
 }
 void BattleScene::selectRect(HDC hdc)
@@ -1200,7 +1188,7 @@ void BattleScene::skillEmberProto(std::string _skillName, HDC hdc)
 	{
 		m_enemyTwinkleCount++;
 		m_enemyAlpha = 0;
-		if (m_enemyTwinkleCount > 60)
+		if (m_enemyTwinkleCount > 40)
 		{
 			m_enemyAlpha = 255;
 			m_enemyTwinkleCount = 0;
@@ -1285,6 +1273,16 @@ void BattleScene::fireBlastProto(std::string _skillName, HDC hdc)
 //====================
 void BattleScene::quickAttackProto(std::string _skillName, HDC hdc)
 {
+	char str[100];
+	if (!enemyExplainEffect)
+	{
+		wsprintf(str, "상대 %s의", m_wildPocketmon.m_name.c_str());
+		TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 40, str, strlen(str));
+
+		wsprintf(str, "%s 공격!", _skillName.c_str());
+		TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 70, str, strlen(str));
+	}
+	
 	if (!enemySkillEffect && !enemySkillEffectDone)
 	{
 		EFFECTMANAGER->play(_skillName, 573, 317);
@@ -1424,7 +1422,7 @@ void BattleScene::enemyHpChangFromPlayerAtk()
 			m_enemyMinusHp = 0;
 			enemyLose = true;
 		}
-		m_wildPocketmonHpBarWigth = (230 * m_wildPocketmon.m_currentHp) / m_wildPocketmon.m_maxHp;
+		m_wildPocketmonHpBarWigth = (206 * m_wildPocketmon.m_currentHp) / m_wildPocketmon.m_maxHp;
 		if (m_enemyCurrentMinusHp == m_enemyMinusHp)
 		{
 			m_enemyCurrentMinusHp = 0;
@@ -1439,6 +1437,7 @@ void BattleScene::playerAtkResultOutput(HDC hdc)
 	if (attributeOn)
 	{
 		explainEffect = false;
+		explainRect(hdc);
 		if (plusAttribute)
 		{
 			m_skillCount++;
@@ -1483,6 +1482,7 @@ void BattleScene::playerAtkResultOutput(HDC hdc)
 
 	if (explainEffect)
 	{
+		explainRect(hdc);
 		m_skillCount++;
 		if (m_skillCount > 40)
 		{
@@ -1523,7 +1523,7 @@ void BattleScene::enemyAtkResultOutput(HDC hdc)
 	if (attributeOn)
 	{
 		enemyExplainEffect = false;
-		UTIL::DrawRect(hdc, m_explainRect);
+		explainRect(hdc);
 		if (plusAttribute)
 		{
 			m_skillCount++;
@@ -1603,7 +1603,7 @@ void BattleScene::wildBattleOutAni(HDC hdc)
 		wsprintf(str, "쓰러졌다!", m_wildPocketmon.m_name.c_str());
 		TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 70, str, strlen(str));
 
-		if (m_skillCount > 50)
+		if (m_skillCount > 40)
 		{
 			explainRect(hdc);
 			wsprintf(str, "%s는(은)", selectPocketmon->m_name.c_str());
@@ -1617,27 +1617,32 @@ void BattleScene::wildBattleOutAni(HDC hdc)
 			if (selectPocketmon->m_currentExp >= selectPocketmon->m_maxExp)
 			{
 				m_playerCurrentPlusExp--;
-				//UTIL::DrawRect(hdc, m_playerPocketmonLevelUpRect);
-				if (!playerPocketmonLevelUpOn)
-				{
-					playerPocketmonLevelUpOn = true;
-					selectPocketmon->m_level++;
-				}
-				explainRect(hdc);
-				wsprintf(str, "%s는(은)", selectPocketmon->m_name.c_str());
-				TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 40, str, strlen(str));
-
-				wsprintf(str, "레벨%d(으)로 올랐다!", selectPocketmon->m_level);
-				TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 70, str, strlen(str));
-
-				//능력치 변경 표시
-				playerPocketmonLevelUp(hdc);
 				
-				//레벨에 일정이상 올라가면 스킬을 추가로 배우는 부분
-				if (checkSkillGet)
+				if (m_skillCount > 80)
 				{
-					playerPocketmonGetNewSkill(hdc);
+					explainRect(hdc);
+					IMAGEMANAGER->findImage("levelUpRect")->render(hdc, m_playerPocketmonLevelUpRect.left, m_playerPocketmonLevelUpRect.top);
+					if (!playerPocketmonLevelUpOn)
+					{
+						playerPocketmonLevelUpOn = true;
+						selectPocketmon->m_level++;
+					}
+					wsprintf(str, "%s는(은)", selectPocketmon->m_name.c_str());
+					TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 40, str, strlen(str));
+
+					wsprintf(str, "레벨%d(으)로 올랐다!", selectPocketmon->m_level);
+					TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 70, str, strlen(str));
+
+					//능력치 변경 표시
+					playerPocketmonLevelUp(hdc);
 				}
+				
+			}
+			//레벨에 일정이상 올라가면 스킬을 추가로 배우는 부분
+			if (checkSkillGet)
+			{
+				//m_playerCurrentPlusExp--;
+				playerPocketmonGetNewSkill(hdc);
 			}
 			m_playerPocketmonExpBarWigth = checkExpBarWigth();
 			if (m_playerCurrentPlusExp == m_wildPocketmon.m_wildExp)
@@ -1667,8 +1672,7 @@ void BattleScene::playerPocketmonLevelUp(HDC hdc)
 	m_levelUpCount++;
 	//이미지 렌더
 
-	UTIL::DrawRect(hdc, m_playerPocketmonLevelUpRect);
-	//
+
 	wsprintf(str, "최대 HP");
 	TextOut(hdc, m_playerPocketmonLevelUpRect.left + 30, m_playerPocketmonLevelUpRect.top + 20, str, strlen(str));
 
@@ -1729,7 +1733,7 @@ void BattleScene::playerPocketmonLevelUp(HDC hdc)
 		wsprintf(str, "+ %d", tempSpeed);
 		TextOut(hdc, m_playerPocketmonLevelUpRect.left + 260, m_playerPocketmonLevelUpRect.top + 420, str, strlen(str));
 	}
-	else if (100 <= m_levelUpCount && m_levelUpCount <= 140)
+	else if (100 <= m_levelUpCount && m_levelUpCount <= 160)
 	{
 		//변한 능력치
 		wsprintf(str, " %d", selectPocketmon->m_maxHp);
@@ -1750,7 +1754,7 @@ void BattleScene::playerPocketmonLevelUp(HDC hdc)
 		wsprintf(str, " %d", selectPocketmon->m_speed);
 		TextOut(hdc, m_playerPocketmonLevelUpRect.left + 260, m_playerPocketmonLevelUpRect.top + 420, str, strlen(str));
 	}
-	else if (140 < m_levelUpCount)
+	else if (160 < m_levelUpCount)
 	{
 		m_wildPocketmon.m_wildExp = m_wildPocketmon.m_wildExp - m_playerCurrentPlusExp;
 		selectPocketmon->m_currentExp = 0;
@@ -1765,12 +1769,12 @@ void BattleScene::playerPocketmonLevelUp(HDC hdc)
 }
 void BattleScene::playerPocketmonGetNewSkill(HDC hdc)
 {
-	m_levelUpCount++;
+	m_levelCheckCount++;
 	char str[100];
 	PocketMon tempPocket;
 	if(!pushBackSkill) tempPocket = POCKETMONMANAGER->genPocketMon(selectPocketmon->m_EnglishName, selectPocketmon->m_level);
 
-	if (m_levelUpCount < 40)
+	if (m_levelCheckCount < 40)
 	{
 		explainRect(hdc);
 		switch (selectPocketmon->m_level)
@@ -1813,11 +1817,11 @@ void BattleScene::playerPocketmonGetNewSkill(HDC hdc)
 			break;
 		}
 	}
-	else if (m_levelUpCount >= 40)
+	else if (m_levelCheckCount >= 40)
 	{
-		getSkillDone = true;
+		//getSkillDone = true;
 		checkSkillGet = false;
-		m_levelUpCount = 0;
+		m_levelCheckCount = 0;
 	}
 
 }

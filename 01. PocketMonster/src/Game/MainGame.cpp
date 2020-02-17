@@ -184,7 +184,11 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("playerBottom",	"images/BattleUi/playerBottom.bmp",	0, 0, 120*4+34, 15*4+20, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("currentExp", "images/BattleUi/currentExp.bmp",	    0, 0, 7*4+246, 2*4+1, true, RGB(255, 0, 255));	
 	IMAGEMANAGER->addImage("greenHpBar", "images/BattleUi/greenHpBar.bmp",	    0, 0, 9*3+246, 3*5, true, RGB(255, 0, 255));	
+	IMAGEMANAGER->addImage("levelUpRect", "images/BattleUi/levelUpPopUp.bmp",    0, 0, 389, 491, true, RGB(255, 0, 255));	
 	
+	//==============
+	// battle ani //
+	//==============
 	IMAGEMANAGER->addFrameImage("trainerThrowBall", "Images/Trainers/trainersThrowBall.bmp", 320+5*140, 64*3+18, 5, 1, true, RGB(255, 0, 255));
 	ANIMANAGER->addDefAnimation("trainerThrowBallAni", "trainerThrowBall", 5, false, false);
 	//IMAGEMANAGER->addFrameImage("trainerThrowBall", "images/Trainers/trainerThrowBall.bmp", 320, 64, 5, 1, true, RGB(255, 0, 255));
