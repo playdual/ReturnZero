@@ -171,9 +171,9 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("playerBottom",	"images/BattleUi/playerBottom.bmp",	0, 0, 120*4+34, 15*4+20, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("currentExp", "images/BattleUi/currentExp.bmp",	    0, 0, 7*4+246, 2*4+1, true, RGB(255, 0, 255));	
 	IMAGEMANAGER->addImage("greenHpBar", "images/BattleUi/greenHpBar.bmp",	    0, 0, 9*3+246, 3*5, true, RGB(255, 0, 255));	
+	
 	IMAGEMANAGER->addFrameImage("trainerThrowBall", "images/Trainers/trainerThrowBall.bmp", 320, 64, 5, 1, true, RGB(255, 0, 255));
-	int tempArr[5] = { 0,1,2,3,4 };
-	ANIMANAGER->addDefAnimation("trainerThrowBallAni", "trainerThrowBall",2, false, false);
+	ANIMANAGER->addDefAnimation("trainerThrowBallAni", "trainerThrowBall", 2, false, false);
 	
 	//
 	MAPMANGER->init();
