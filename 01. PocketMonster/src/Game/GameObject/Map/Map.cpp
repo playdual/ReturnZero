@@ -79,7 +79,7 @@ TileType Map::getTileTypeFromIdex(int _x, int _y)
 
 Tile& Map::getSpecifyTile(int _blockPositionX, int _blockPositionY)
 {
-	return m_tiles[_blockPositionX + _blockPositionY * m_height];
+	return m_tiles[_blockPositionX + _blockPositionY * m_width];
 }
 
 void Map::setPlayerPosition(int _x, int _y)

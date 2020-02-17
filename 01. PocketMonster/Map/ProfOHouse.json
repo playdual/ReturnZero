@@ -1,0 +1,1862 @@
+{
+	"0" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 0,
+		"imageKey" : "ProfOHouse_1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"1" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 0,
+		"imageKey" : "ProfOHouse_2",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"10" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 0,
+		"imageKey" : "ProfOHouse_11",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"100" : 
+	{
+		"afterRenderImageKey" : "BookShelf2Top2",
+		"bPosX" : 9,
+		"bPosY" : 7,
+		"imageKey" : "ProfOHouse_101",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"101" : 
+	{
+		"afterRenderImageKey" : "BookShelf2Top1",
+		"bPosX" : 10,
+		"bPosY" : 7,
+		"imageKey" : "ProfOHouse_102",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"102" : 
+	{
+		"afterRenderImageKey" : "BookShelf2Top2",
+		"bPosX" : 11,
+		"bPosY" : 7,
+		"imageKey" : "ProfOHouse_103",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"103" : 
+	{
+		"afterRenderImageKey" : "BookShelf2Top2",
+		"bPosX" : 12,
+		"bPosY" : 7,
+		"imageKey" : "ProfOHouse_104",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"104" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 8,
+		"imageKey" : "ProfOHouse_105",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "BookShelf2",
+		"type" : 6
+	},
+	"105" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 8,
+		"imageKey" : "ProfOHouse_106",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "BookShelf2",
+		"type" : 6
+	},
+	"106" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 8,
+		"imageKey" : "ProfOHouse_107",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "BookShelf2",
+		"type" : 6
+	},
+	"107" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 8,
+		"imageKey" : "ProfOHouse_108",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "BookShelf2",
+		"type" : 6
+	},
+	"108" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 8,
+		"imageKey" : "ProfOHouse_109",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "BookShelf2",
+		"type" : 6
+	},
+	"109" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 8,
+		"imageKey" : "ProfOHouse_110",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"11" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 0,
+		"imageKey" : "ProfOHouse_12",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"110" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 8,
+		"imageKey" : "ProfOHouse_111",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"111" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 8,
+		"imageKey" : "ProfOHouse_112",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"112" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 8,
+		"imageKey" : "ProfOHouse_113",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "BookShelf2",
+		"type" : 6
+	},
+	"113" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 8,
+		"imageKey" : "ProfOHouse_114",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "BookShelf2",
+		"type" : 6
+	},
+	"114" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 8,
+		"imageKey" : "ProfOHouse_115",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "BookShelf2",
+		"type" : 6
+	},
+	"115" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 8,
+		"imageKey" : "ProfOHouse_116",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "BookShelf2",
+		"type" : 6
+	},
+	"116" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 8,
+		"imageKey" : "ProfOHouse_117",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "BookShelf2",
+		"type" : 6
+	},
+	"117" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 9,
+		"imageKey" : "ProfOHouse_118",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"118" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 9,
+		"imageKey" : "ProfOHouse_119",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"119" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 9,
+		"imageKey" : "ProfOHouse_120",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"12" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 0,
+		"imageKey" : "ProfOHouse_13",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"120" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 9,
+		"imageKey" : "ProfOHouse_121",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"121" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 9,
+		"imageKey" : "ProfOHouse_122",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"122" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 9,
+		"imageKey" : "ProfOHouse_123",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"123" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 9,
+		"imageKey" : "ProfOHouse_124",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"124" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 9,
+		"imageKey" : "ProfOHouse_125",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"125" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 9,
+		"imageKey" : "ProfOHouse_126",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"126" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 9,
+		"imageKey" : "ProfOHouse_127",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"127" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 9,
+		"imageKey" : "ProfOHouse_128",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"128" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 9,
+		"imageKey" : "ProfOHouse_129",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"129" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 9,
+		"imageKey" : "ProfOHouse_130",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"13" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 1,
+		"imageKey" : "ProfOHouse_14",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "OSome1",
+		"type" : 6
+	},
+	"130" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 10,
+		"imageKey" : "ProfOHouse_131",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"131" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 10,
+		"imageKey" : "ProfOHouse_132",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"132" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 10,
+		"imageKey" : "ProfOHouse_133",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"133" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 10,
+		"imageKey" : "ProfOHouse_134",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"134" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 10,
+		"imageKey" : "ProfOHouse_135",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"135" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 10,
+		"imageKey" : "ProfOHouse_136",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"136" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 10,
+		"imageKey" : "ProfOHouse_137",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"137" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 10,
+		"imageKey" : "ProfOHouse_138",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"138" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 10,
+		"imageKey" : "ProfOHouse_139",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"139" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 10,
+		"imageKey" : "ProfOHouse_140",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"14" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 1,
+		"imageKey" : "ProfOHouse_15",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "OSome2",
+		"type" : 6
+	},
+	"140" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 10,
+		"imageKey" : "ProfOHouse_141",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"141" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 10,
+		"imageKey" : "ProfOHouse_142",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"142" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 10,
+		"imageKey" : "ProfOHouse_143",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"143" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 11,
+		"imageKey" : "ProfOHouse_144",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"144" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 11,
+		"imageKey" : "ProfOHouse_145",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"145" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 11,
+		"imageKey" : "ProfOHouse_146",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"146" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 11,
+		"imageKey" : "ProfOHouse_147",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"147" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 11,
+		"imageKey" : "ProfOHouse_148",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"148" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 11,
+		"imageKey" : "ProfOHouse_149",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"149" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 11,
+		"imageKey" : "ProfOHouse_150",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"15" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 1,
+		"imageKey" : "ProfOHouse_16",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "OSome3",
+		"type" : 6
+	},
+	"150" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 11,
+		"imageKey" : "ProfOHouse_151",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"151" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 11,
+		"imageKey" : "ProfOHouse_152",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"152" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 11,
+		"imageKey" : "ProfOHouse_153",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"153" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 11,
+		"imageKey" : "ProfOHouse_154",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"154" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 11,
+		"imageKey" : "ProfOHouse_155",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"155" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 11,
+		"imageKey" : "ProfOHouse_156",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"156" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 12,
+		"imageKey" : "ProfOHouse_157",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "TreePot",
+		"type" : 6
+	},
+	"157" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 12,
+		"imageKey" : "ProfOHouse_158",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"158" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 12,
+		"imageKey" : "ProfOHouse_159",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"159" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 12,
+		"imageKey" : "ProfOHouse_160",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"16" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 1,
+		"imageKey" : "ProfOHouse_17",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "OSome3",
+		"type" : 6
+	},
+	"160" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 12,
+		"imageKey" : "ProfOHouse_161",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"161" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 12,
+		"imageKey" : "ProfOHouse_162",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"162" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 12,
+		"imageKey" : "ProfOHouse_163",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"163" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 12,
+		"imageKey" : "ProfOHouse_164",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"164" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 12,
+		"imageKey" : "ProfOHouse_165",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"165" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 12,
+		"imageKey" : "ProfOHouse_166",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"166" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 12,
+		"imageKey" : "ProfOHouse_167",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"167" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 12,
+		"imageKey" : "ProfOHouse_168",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"168" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 12,
+		"imageKey" : "ProfOHouse_169",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "TreePot",
+		"type" : 6
+	},
+	"169" : 
+	{
+		"afterRenderImageKey" : "OutOfRange",
+		"bPosX" : 0,
+		"bPosY" : 13,
+		"imageKey" : "OutOfRange",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"17" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 1,
+		"imageKey" : "ProfOHouse_18",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Desk",
+		"type" : 6
+	},
+	"170" : 
+	{
+		"afterRenderImageKey" : "OutOfRange",
+		"bPosX" : 1,
+		"bPosY" : 13,
+		"imageKey" : "OutOfRange",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"171" : 
+	{
+		"afterRenderImageKey" : "OutOfRange",
+		"bPosX" : 2,
+		"bPosY" : 13,
+		"imageKey" : "OutOfRange",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"172" : 
+	{
+		"afterRenderImageKey" : "OutOfRange",
+		"bPosX" : 3,
+		"bPosY" : 13,
+		"imageKey" : "OutOfRange",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"173" : 
+	{
+		"afterRenderImageKey" : "OutOfRange",
+		"bPosX" : 4,
+		"bPosY" : 13,
+		"imageKey" : "OutOfRange",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"174" : 
+	{
+		"afterRenderImageKey" : "Carpet1",
+		"bPosX" : 5,
+		"bPosY" : 13,
+		"imageKey" : "Carpet1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"175" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 13,
+		"imageKey" : "Carpet2",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "TechoTown",
+		"nextMapX" : 16,
+		"nextMapY" : 14,
+		"type" : 4
+	},
+	"176" : 
+	{
+		"afterRenderImageKey" : "Carpet3",
+		"bPosX" : 7,
+		"bPosY" : 13,
+		"imageKey" : "Carpet3",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"177" : 
+	{
+		"afterRenderImageKey" : "OutOfRange",
+		"bPosX" : 8,
+		"bPosY" : 13,
+		"imageKey" : "OutOfRange",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"178" : 
+	{
+		"afterRenderImageKey" : "OutOfRange",
+		"bPosX" : 9,
+		"bPosY" : 13,
+		"imageKey" : "OutOfRange",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"179" : 
+	{
+		"afterRenderImageKey" : "OutOfRange",
+		"bPosX" : 10,
+		"bPosY" : 13,
+		"imageKey" : "OutOfRange",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"18" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 1,
+		"imageKey" : "ProfOHouse_19",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Desk",
+		"type" : 6
+	},
+	"180" : 
+	{
+		"afterRenderImageKey" : "OutOfRange",
+		"bPosX" : 11,
+		"bPosY" : 13,
+		"imageKey" : "OutOfRange",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"181" : 
+	{
+		"afterRenderImageKey" : "OutOfRange",
+		"bPosX" : 12,
+		"bPosY" : 13,
+		"imageKey" : "OutOfRange",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"19" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 1,
+		"imageKey" : "ProfOHouse_20",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "ScheduleBoard",
+		"type" : 6
+	},
+	"2" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 0,
+		"imageKey" : "ProfOHouse_3",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"20" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 1,
+		"imageKey" : "ProfOHouse_21",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "ScheduleBoard",
+		"type" : 6
+	},
+	"21" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 1,
+		"imageKey" : "ProfOHouse_22",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Window",
+		"type" : 6
+	},
+	"22" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 1,
+		"imageKey" : "ProfOHouse_23",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "BookShelf2",
+		"type" : 6
+	},
+	"23" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 1,
+		"imageKey" : "ProfOHouse_24",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "BookShelf2",
+		"type" : 6
+	},
+	"24" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 1,
+		"imageKey" : "ProfOHouse_25",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "BookShelf2",
+		"type" : 6
+	},
+	"25" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 1,
+		"imageKey" : "ProfOHouse_26",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "BookShelf2",
+		"type" : 6
+	},
+	"26" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 2,
+		"imageKey" : "ProfOHouse_27",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"27" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 2,
+		"imageKey" : "ProfOHouse_28",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"28" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 2,
+		"imageKey" : "ProfOHouse_29",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"29" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 2,
+		"imageKey" : "ProfOHouse_30",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"3" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 0,
+		"imageKey" : "ProfOHouse_4",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"30" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 2,
+		"imageKey" : "ProfOHouse_31",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"31" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 2,
+		"imageKey" : "ProfOHouse_32",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"32" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 2,
+		"imageKey" : "ProfOHouse_33",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"33" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 2,
+		"imageKey" : "ProfOHouse_34",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"34" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 2,
+		"imageKey" : "ProfOHouse_35",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"35" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 2,
+		"imageKey" : "ProfOHouse_36",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"36" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 2,
+		"imageKey" : "ProfOHouse_37",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"37" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 2,
+		"imageKey" : "ProfOHouse_38",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"38" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 2,
+		"imageKey" : "ProfOHouse_39",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"39" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 3,
+		"imageKey" : "ProfOHouse_40",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"4" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 0,
+		"imageKey" : "ProfOHouse_5",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"40" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 3,
+		"imageKey" : "ProfOHouse_41",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"41" : 
+	{
+		"afterRenderImageKey" : "SpacialMachineTop2",
+		"bPosX" : 2,
+		"bPosY" : 3,
+		"imageKey" : "ProfOHouse_42",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"42" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 3,
+		"imageKey" : "ProfOHouse_43",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"43" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 3,
+		"imageKey" : "ProfOHouse_44",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"44" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 3,
+		"imageKey" : "ProfOHouse_45",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"45" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 3,
+		"imageKey" : "ProfOHouse_46",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"46" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 3,
+		"imageKey" : "ProfOHouse_47",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"47" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 3,
+		"imageKey" : "ProfOHouse_48",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"48" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 3,
+		"imageKey" : "ProfOHouse_49",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"49" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 3,
+		"imageKey" : "ProfOHouse_50",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"5" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 0,
+		"imageKey" : "ProfOHouse_6",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"50" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 3,
+		"imageKey" : "ProfOHouse_51",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"51" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 3,
+		"imageKey" : "ProfOHouse_52",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"52" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 4,
+		"imageKey" : "ProfOHouse_53",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "ResearchData",
+		"type" : 6
+	},
+	"53" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 4,
+		"imageKey" : "ProfOHouse_54",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "SpacialMachine",
+		"type" : 6
+	},
+	"54" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 4,
+		"imageKey" : "ProfOHouse_55",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "SpacialMachine",
+		"type" : 6
+	},
+	"55" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 4,
+		"imageKey" : "ProfOHouse_56",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"56" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 4,
+		"imageKey" : "ProfOHouse_57",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"57" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 4,
+		"imageKey" : "ProfOHouse_58",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"58" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 4,
+		"imageKey" : "ProfOHouse_59",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"59" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 4,
+		"imageKey" : "ProfOHouse_60",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"6" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 0,
+		"imageKey" : "ProfOHouse_7",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"60" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 4,
+		"imageKey" : "ProfOHouse_61",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "PocketDesk",
+		"type" : 6
+	},
+	"61" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 4,
+		"imageKey" : "ProfOHouse_62",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "PocketDesk",
+		"type" : 6
+	},
+	"62" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 4,
+		"imageKey" : "ProfOHouse_63",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "PocketDesk",
+		"type" : 6
+	},
+	"63" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 4,
+		"imageKey" : "ProfOHouse_64",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"64" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 4,
+		"imageKey" : "ProfOHouse_65",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"65" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 5,
+		"imageKey" : "ProfOHouse_66",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"66" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 5,
+		"imageKey" : "ProfOHouse_67",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "SpacialMachine",
+		"type" : 6
+	},
+	"67" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 5,
+		"imageKey" : "ProfOHouse_68",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "SpacialMachine",
+		"type" : 6
+	},
+	"68" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 5,
+		"imageKey" : "ProfOHouse_69",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"69" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 5,
+		"imageKey" : "ProfOHouse_70",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"7" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 0,
+		"imageKey" : "ProfOHouse_8",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"70" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 5,
+		"imageKey" : "ProfOHouse_71",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"71" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 5,
+		"imageKey" : "ProfOHouse_72",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"72" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 5,
+		"imageKey" : "ProfOHouse_73",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"73" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 5,
+		"imageKey" : "ProfOHouse_74",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"74" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 5,
+		"imageKey" : "ProfOHouse_75",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"75" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 5,
+		"imageKey" : "ProfOHouse_76",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"76" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 5,
+		"imageKey" : "ProfOHouse_77",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"77" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 5,
+		"imageKey" : "ProfOHouse_78",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"78" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 6,
+		"imageKey" : "ProfOHouse_79",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"79" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 6,
+		"imageKey" : "ProfOHouse_80",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"8" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 0,
+		"imageKey" : "ProfOHouse_9",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"80" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 6,
+		"imageKey" : "ProfOHouse_81",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"81" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 6,
+		"imageKey" : "ProfOHouse_82",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"82" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 6,
+		"imageKey" : "ProfOHouse_83",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"83" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 6,
+		"imageKey" : "ProfOHouse_84",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"84" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 6,
+		"imageKey" : "ProfOHouse_85",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"85" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 6,
+		"imageKey" : "ProfOHouse_86",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"86" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 6,
+		"imageKey" : "ProfOHouse_87",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"87" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 6,
+		"imageKey" : "ProfOHouse_88",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"88" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 6,
+		"imageKey" : "ProfOHouse_89",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"89" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 6,
+		"imageKey" : "ProfOHouse_90",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"9" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 0,
+		"imageKey" : "ProfOHouse_10",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"90" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 6,
+		"imageKey" : "ProfOHouse_91",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"91" : 
+	{
+		"afterRenderImageKey" : "BookShelf2Top1",
+		"bPosX" : 0,
+		"bPosY" : 7,
+		"imageKey" : "ProfOHouse_92",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"92" : 
+	{
+		"afterRenderImageKey" : "BookShelf2Top1",
+		"bPosX" : 1,
+		"bPosY" : 7,
+		"imageKey" : "ProfOHouse_93",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"93" : 
+	{
+		"afterRenderImageKey" : "BookShelf2Top2",
+		"bPosX" : 2,
+		"bPosY" : 7,
+		"imageKey" : "ProfOHouse_94",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"94" : 
+	{
+		"afterRenderImageKey" : "BookShelf2Top1",
+		"bPosX" : 3,
+		"bPosY" : 7,
+		"imageKey" : "ProfOHouse_95",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"95" : 
+	{
+		"afterRenderImageKey" : "BookShelf2Top2",
+		"bPosX" : 4,
+		"bPosY" : 7,
+		"imageKey" : "ProfOHouse_96",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"96" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 7,
+		"imageKey" : "ProfOHouse_97",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"97" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 7,
+		"imageKey" : "ProfOHouse_98",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"98" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 7,
+		"imageKey" : "ProfOHouse_99",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"99" : 
+	{
+		"afterRenderImageKey" : "BookShelf2Top1",
+		"bPosX" : 8,
+		"bPosY" : 7,
+		"imageKey" : "ProfOHouse_100",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"mapHeight" : 14,
+	"mapName" : "ProfOHouse",
+	"mapWidth" : 13,
+	"startX" : -842150451,
+	"startY" : -842150451
+}

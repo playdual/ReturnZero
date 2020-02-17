@@ -30,11 +30,24 @@ void MainGame::myloadImage(std::string defaultName, std::string path, int _size)
 HRESULT MainGame::init()
 {
 	GameNode::init();
-	myloadImage("TechoTown_",		"Images/TechoTown", 480);
 	myloadImage("BigTree",			"Images/afterRender", 2);
 	myloadImage("profOhouseTop",	"Images/afterRender", 7);
 	myloadImage("House0",			"Images/afterRender", 5);
+	myloadImage("BedTop", "Images/afterRender", 3);
+	myloadImage("Carpet", "Images/Tile/GeneralTile", 3);
+	myloadImage("SpacialMachineTop", "Images/afterRender", 2);
+	myloadImage("BookShelf2Top", "Images/afterRender", 2);
 
+	myloadImage("TechoTown_",	"Images/TechoTown", 480);
+	myloadImage("ProfOHouse_",	"Images/Tile/TechoTownInner/ProfOHouse", 169);
+	myloadImage("RedHouse_1F_", "Images/Tile/TechoTownInner/RedHouse_1F", 120);
+	myloadImage("RedHouse_2F_", "Images/Tile/TechoTownInner/RedHouse_2F", 99);
+	myloadImage("RivalHouse_",	"Images/Tile/TechoTownInner/RivalHouse", 118);
+	myloadImage("Route01_",		"Images/Route01", 960);
+
+	IMAGEMANAGER->addImage("OutOfRange", "Images/Tile/GeneralTile/OutOfRange.bmp", 50, 50, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("TreePotTop", "Images/afterRender/TreePotTop.bmp", TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("TvTop", "Images/afterRender/TvTop.bmp", TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("MailBox2",		"Images/afterRender/MailBox2.bmp", TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("trainersMan",	"Images/Trainers/trainers_man.bmp", 64 * 3, 64 * 3, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("pailiFront",	"Images/pocketmons/pailiFront.bmp", 60 * 3, 61 * 3, true, RGB(255, 0, 255));
@@ -172,8 +185,8 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("currentExp", "images/BattleUi/currentExp.bmp",	    0, 0, 7*4+246, 2*4+1, true, RGB(255, 0, 255));	
 	IMAGEMANAGER->addImage("greenHpBar", "images/BattleUi/greenHpBar.bmp",	    0, 0, 9*3+246, 3*5, true, RGB(255, 0, 255));	
 	
-	IMAGEMANAGER->addFrameImage("trainerThrowBall", "images/Trainers/trainerThrowBall.bmp", 320, 64, 5, 1, true, RGB(255, 0, 255));
-	ANIMANAGER->addDefAnimation("trainerThrowBallAni", "trainerThrowBall", 2, false, false);
+	//IMAGEMANAGER->addFrameImage("trainerThrowBall", "images/Trainers/trainerThrowBall.bmp", 320, 64, 5, 1, true, RGB(255, 0, 255));
+	//ANIMANAGER->addDefAnimation("trainerThrowBallAni", "trainerThrowBall", 2, false, false);
 	
 	//
 	MAPMANGER->init();

@@ -136,7 +136,7 @@ void Tile::debugRender(HDC hdc)
 void Tile::afterRender(HDC hdc)
 {
 	if (isCanprint && isAfterRender) {
-		if(m_afterRenderImg)
+		if (m_afterRenderImg)
 			m_afterRenderImg->render(hdc, m_outputTile.left, m_outputTile.top);
 	}
 

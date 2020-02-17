@@ -441,18 +441,15 @@ void player::isBattleStart()
 {
 	if (isBattle == false)
 	{
-		srand(time(NULL));
-		m_BattleStart = rand() % 10;
+		m_BattleStart = UTIL::GetRndInt(100);
 
-		if (m_BattleStart < 3)
+		if (m_BattleStart < 10)
 		{
 			isBattle = true;
-
 		}
 		else
 		{
 			isBattle = false;
-
 		}
 	}
 }

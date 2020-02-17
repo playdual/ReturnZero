@@ -1,0 +1,10399 @@
+{
+	"0" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 0,
+		"imageKey" : "Route01_1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"1" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 0,
+		"imageKey" : "Route01_2",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"10" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 0,
+		"imageKey" : "Route01_11",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"100" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 4,
+		"imageKey" : "Route01_101",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"101" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 4,
+		"imageKey" : "Route01_102",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"102" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 4,
+		"imageKey" : "Route01_103",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"103" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 4,
+		"imageKey" : "Route01_104",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"104" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 4,
+		"imageKey" : "Route01_105",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"105" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 4,
+		"imageKey" : "Route01_106",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"106" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 4,
+		"imageKey" : "Route01_107",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"107" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 4,
+		"imageKey" : "Route01_108",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"108" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 4,
+		"imageKey" : "Route01_109",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"109" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 4,
+		"imageKey" : "Route01_110",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"11" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 0,
+		"imageKey" : "Route01_12",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"110" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 4,
+		"imageKey" : "Route01_111",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"111" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 4,
+		"imageKey" : "Route01_112",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"112" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 4,
+		"imageKey" : "Route01_113",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"113" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 4,
+		"imageKey" : "Route01_114",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"114" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 4,
+		"imageKey" : "Route01_115",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"115" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 4,
+		"imageKey" : "Route01_116",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"116" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 4,
+		"imageKey" : "Route01_117",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"117" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 4,
+		"imageKey" : "Route01_118",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"118" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 4,
+		"imageKey" : "Route01_119",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"119" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 4,
+		"imageKey" : "Route01_120",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"12" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 0,
+		"imageKey" : "Route01_13",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"120" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 5,
+		"imageKey" : "Route01_121",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"121" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 5,
+		"imageKey" : "Route01_122",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"122" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 5,
+		"imageKey" : "Route01_123",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"123" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 5,
+		"imageKey" : "Route01_124",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"124" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 5,
+		"imageKey" : "Route01_125",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"125" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 5,
+		"imageKey" : "Route01_126",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"126" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 5,
+		"imageKey" : "Route01_127",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"127" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 5,
+		"imageKey" : "Route01_128",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"128" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 5,
+		"imageKey" : "Route01_129",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"129" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 5,
+		"imageKey" : "Route01_130",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"13" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 0,
+		"imageKey" : "Route01_14",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"130" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 5,
+		"imageKey" : "Route01_131",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"131" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 5,
+		"imageKey" : "Route01_132",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"132" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 5,
+		"imageKey" : "Route01_133",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"133" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 5,
+		"imageKey" : "Route01_134",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"134" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 5,
+		"imageKey" : "Route01_135",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"135" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 5,
+		"imageKey" : "Route01_136",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"136" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 5,
+		"imageKey" : "Route01_137",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"137" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 5,
+		"imageKey" : "Route01_138",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"138" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 5,
+		"imageKey" : "Route01_139",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"139" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 5,
+		"imageKey" : "Route01_140",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"14" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 0,
+		"imageKey" : "Route01_15",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"140" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 5,
+		"imageKey" : "Route01_141",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"141" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 5,
+		"imageKey" : "Route01_142",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"142" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 5,
+		"imageKey" : "Route01_143",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"143" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 5,
+		"imageKey" : "Route01_144",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"144" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 6,
+		"imageKey" : "Route01_145",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"145" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 6,
+		"imageKey" : "Route01_146",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"146" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 6,
+		"imageKey" : "Route01_147",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"147" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 6,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"148" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 6,
+		"imageKey" : "Route01_149",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"149" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 6,
+		"imageKey" : "Route01_150",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"15" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 0,
+		"imageKey" : "Route01_16",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"150" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 6,
+		"imageKey" : "Route01_151",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"151" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 6,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"152" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 6,
+		"imageKey" : "Route01_153",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"153" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 6,
+		"imageKey" : "Route01_154",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"154" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 6,
+		"imageKey" : "Route01_155",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"155" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 6,
+		"imageKey" : "Route01_156",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"156" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 6,
+		"imageKey" : "Route01_157",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"157" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 6,
+		"imageKey" : "Route01_158",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"158" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 6,
+		"imageKey" : "Route01_159",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"159" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 6,
+		"imageKey" : "Route01_160",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"16" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 0,
+		"imageKey" : "Route01_17",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"160" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 6,
+		"imageKey" : "Route01_161",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"161" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 6,
+		"imageKey" : "Route01_162",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"162" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 6,
+		"imageKey" : "Route01_163",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"163" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 6,
+		"imageKey" : "Route01_164",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"164" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 6,
+		"imageKey" : "Route01_165",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"165" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 6,
+		"imageKey" : "Route01_166",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"166" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 6,
+		"imageKey" : "Route01_167",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"167" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 6,
+		"imageKey" : "Route01_168",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"168" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 7,
+		"imageKey" : "Route01_169",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"169" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 7,
+		"imageKey" : "Route01_170",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"17" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 0,
+		"imageKey" : "Route01_18",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"170" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 7,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"171" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 7,
+		"imageKey" : "Route01_172",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"172" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 7,
+		"imageKey" : "Route01_173",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"173" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 7,
+		"imageKey" : "Route01_174",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"174" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 7,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"175" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 7,
+		"imageKey" : "Route01_176",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"176" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 7,
+		"imageKey" : "Route01_177",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"177" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 7,
+		"imageKey" : "Route01_178",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"178" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 7,
+		"imageKey" : "Route01_179",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"179" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 7,
+		"imageKey" : "Route01_180",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"18" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 0,
+		"imageKey" : "Route01_19",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"180" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 7,
+		"imageKey" : "Route01_181",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"181" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 7,
+		"imageKey" : "Route01_182",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"182" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 7,
+		"imageKey" : "Route01_183",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"183" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 7,
+		"imageKey" : "Route01_184",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"184" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 7,
+		"imageKey" : "Route01_185",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"185" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 7,
+		"imageKey" : "Route01_186",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"186" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 7,
+		"imageKey" : "Route01_187",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"187" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 7,
+		"imageKey" : "Route01_188",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"188" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 7,
+		"imageKey" : "Route01_189",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"189" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 7,
+		"imageKey" : "Route01_190",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"19" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 0,
+		"imageKey" : "Route01_20",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"190" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 7,
+		"imageKey" : "Route01_191",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"191" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 7,
+		"imageKey" : "Route01_192",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"192" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 8,
+		"imageKey" : "Route01_193",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"193" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 8,
+		"imageKey" : "Route01_194",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"194" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 8,
+		"imageKey" : "Route01_195",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"195" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 8,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"196" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 8,
+		"imageKey" : "Route01_197",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"197" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 8,
+		"imageKey" : "Route01_198",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"198" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 8,
+		"imageKey" : "Route01_199",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"199" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 8,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"2" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 0,
+		"imageKey" : "Route01_3",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"20" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 0,
+		"imageKey" : "Route01_21",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"200" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 8,
+		"imageKey" : "Route01_201",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"201" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 8,
+		"imageKey" : "Route01_202",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"202" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 8,
+		"imageKey" : "Route01_203",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"203" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 8,
+		"imageKey" : "Route01_204",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"204" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 8,
+		"imageKey" : "Route01_205",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"205" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 8,
+		"imageKey" : "Route01_206",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"206" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 8,
+		"imageKey" : "Route01_207",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"207" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 8,
+		"imageKey" : "Route01_208",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"208" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 8,
+		"imageKey" : "Route01_209",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"209" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 8,
+		"imageKey" : "Route01_210",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"21" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 0,
+		"imageKey" : "Route01_22",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"210" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 8,
+		"imageKey" : "Route01_211",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"211" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 8,
+		"imageKey" : "Route01_212",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"212" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 8,
+		"imageKey" : "Route01_213",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"213" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 8,
+		"imageKey" : "Route01_214",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"214" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 8,
+		"imageKey" : "Route01_215",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"215" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 8,
+		"imageKey" : "Route01_216",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"216" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 9,
+		"imageKey" : "Route01_217",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"217" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 9,
+		"imageKey" : "Route01_218",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"218" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 9,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"219" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 9,
+		"imageKey" : "Route01_220",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"22" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 0,
+		"imageKey" : "Route01_23",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"220" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 9,
+		"imageKey" : "Route01_221",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"221" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 9,
+		"imageKey" : "Route01_222",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"222" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 9,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"223" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 9,
+		"imageKey" : "Route01_224",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"224" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 9,
+		"imageKey" : "Route01_225",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"225" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 9,
+		"imageKey" : "Route01_226",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"226" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 9,
+		"imageKey" : "Route01_227",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"227" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 9,
+		"imageKey" : "Route01_228",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"228" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 9,
+		"imageKey" : "Route01_229",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"229" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 9,
+		"imageKey" : "Route01_230",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"23" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 0,
+		"imageKey" : "Route01_24",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"230" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 9,
+		"imageKey" : "Route01_231",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"231" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 9,
+		"imageKey" : "Route01_232",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"232" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 9,
+		"imageKey" : "Route01_233",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"233" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 9,
+		"imageKey" : "Route01_234",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"234" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 9,
+		"imageKey" : "Route01_235",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"235" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 9,
+		"imageKey" : "Route01_236",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"236" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 9,
+		"imageKey" : "Route01_237",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"237" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 9,
+		"imageKey" : "Route01_238",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"238" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 9,
+		"imageKey" : "Route01_239",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"239" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 9,
+		"imageKey" : "Route01_240",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"24" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 1,
+		"imageKey" : "Route01_25",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"240" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 10,
+		"imageKey" : "Route01_241",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"241" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 10,
+		"imageKey" : "Route01_242",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"242" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 10,
+		"imageKey" : "Route01_243",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"243" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 10,
+		"imageKey" : "Route01_244",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"244" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 10,
+		"imageKey" : "Route01_245",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"245" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 10,
+		"imageKey" : "Route01_246",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"246" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 10,
+		"imageKey" : "Route01_247",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"247" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 10,
+		"imageKey" : "Route01_248",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"248" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 10,
+		"imageKey" : "Route01_249",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"249" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 10,
+		"imageKey" : "Route01_250",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"25" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 1,
+		"imageKey" : "Route01_26",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"250" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 10,
+		"imageKey" : "Route01_251",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"251" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 10,
+		"imageKey" : "Route01_252",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"252" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 10,
+		"imageKey" : "Route01_253",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"253" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 10,
+		"imageKey" : "Route01_254",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"254" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 10,
+		"imageKey" : "Route01_255",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"255" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 10,
+		"imageKey" : "Route01_256",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"256" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 10,
+		"imageKey" : "Route01_257",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"257" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 10,
+		"imageKey" : "Route01_258",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"258" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 10,
+		"imageKey" : "Route01_259",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"259" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 10,
+		"imageKey" : "Route01_260",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"26" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 1,
+		"imageKey" : "Route01_27",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"260" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 10,
+		"imageKey" : "Route01_261",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"261" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 10,
+		"imageKey" : "Route01_262",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"262" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 10,
+		"imageKey" : "Route01_263",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"263" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 10,
+		"imageKey" : "Route01_264",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"264" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 11,
+		"imageKey" : "Route01_265",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"265" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 11,
+		"imageKey" : "Route01_266",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"266" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 11,
+		"imageKey" : "Route01_267",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"267" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 11,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"268" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 11,
+		"imageKey" : "Route01_269",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"269" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 11,
+		"imageKey" : "Route01_270",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"27" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 1,
+		"imageKey" : "Route01_28",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"270" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 11,
+		"imageKey" : "Route01_271",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"271" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 11,
+		"imageKey" : "Route01_272",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"272" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 11,
+		"imageKey" : "Route01_273",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"273" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 11,
+		"imageKey" : "Route01_274",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"274" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 11,
+		"imageKey" : "Route01_275",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"275" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 11,
+		"imageKey" : "Route01_276",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"276" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 11,
+		"imageKey" : "Route01_277",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"277" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 11,
+		"imageKey" : "Route01_278",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"278" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 11,
+		"imageKey" : "Route01_279",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"279" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 11,
+		"imageKey" : "Route01_280",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"28" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 1,
+		"imageKey" : "Route01_29",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"280" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 11,
+		"imageKey" : "Route01_281",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"281" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 11,
+		"imageKey" : "Route01_282",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"282" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 11,
+		"imageKey" : "Route01_283",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"283" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 11,
+		"imageKey" : "Route01_284",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"284" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 11,
+		"imageKey" : "Route01_285",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"285" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 11,
+		"imageKey" : "Route01_286",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"286" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 11,
+		"imageKey" : "Route01_287",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"287" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 11,
+		"imageKey" : "Route01_288",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"288" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 12,
+		"imageKey" : "Route01_289",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"289" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 12,
+		"imageKey" : "Route01_290",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"29" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 1,
+		"imageKey" : "Route01_30",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"290" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 12,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"291" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 12,
+		"imageKey" : "Route01_292",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"292" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 12,
+		"imageKey" : "Route01_293",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"293" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 12,
+		"imageKey" : "Route01_294",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"294" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 12,
+		"imageKey" : "Route01_295",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"295" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 12,
+		"imageKey" : "Route01_296",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"296" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 12,
+		"imageKey" : "Route01_297",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"297" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 12,
+		"imageKey" : "Route01_298",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"298" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 12,
+		"imageKey" : "Route01_299",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"299" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 12,
+		"imageKey" : "Route01_300",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"3" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 0,
+		"imageKey" : "Route01_4",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"30" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 1,
+		"imageKey" : "Route01_31",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"300" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 12,
+		"imageKey" : "Route01_301",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"301" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 12,
+		"imageKey" : "Route01_302",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"302" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 12,
+		"imageKey" : "Route01_303",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"303" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 12,
+		"imageKey" : "Route01_304",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"304" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 12,
+		"imageKey" : "Route01_305",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"305" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 12,
+		"imageKey" : "Route01_306",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"306" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 12,
+		"imageKey" : "Route01_307",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"307" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 12,
+		"imageKey" : "Route01_308",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"308" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 12,
+		"imageKey" : "Route01_309",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"309" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 12,
+		"imageKey" : "Route01_310",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"31" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 1,
+		"imageKey" : "Route01_32",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"310" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 12,
+		"imageKey" : "Route01_311",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"311" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 12,
+		"imageKey" : "Route01_312",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"312" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 13,
+		"imageKey" : "Route01_313",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"313" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 13,
+		"imageKey" : "Route01_314",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"314" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 13,
+		"imageKey" : "Route01_315",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"315" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 13,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"316" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 13,
+		"imageKey" : "Route01_317",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"317" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 13,
+		"imageKey" : "Route01_318",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"318" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 13,
+		"imageKey" : "Route01_319",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"319" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 13,
+		"imageKey" : "Route01_320",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"32" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 1,
+		"imageKey" : "Route01_33",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"320" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 13,
+		"imageKey" : "Route01_321",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"321" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 13,
+		"imageKey" : "Route01_322",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"322" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 13,
+		"imageKey" : "Route01_323",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"323" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 13,
+		"imageKey" : "Route01_324",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"324" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 13,
+		"imageKey" : "Route01_325",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"325" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 13,
+		"imageKey" : "Route01_326",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"326" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 13,
+		"imageKey" : "Route01_327",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"327" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 13,
+		"imageKey" : "Route01_328",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"328" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 13,
+		"imageKey" : "Route01_329",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"329" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 13,
+		"imageKey" : "Route01_330",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"33" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 1,
+		"imageKey" : "Route01_34",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"330" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 13,
+		"imageKey" : "Route01_331",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"331" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 13,
+		"imageKey" : "Route01_332",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"332" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 13,
+		"imageKey" : "Route01_333",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"333" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 13,
+		"imageKey" : "Route01_334",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"334" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 13,
+		"imageKey" : "Route01_335",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"335" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 13,
+		"imageKey" : "Route01_336",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"336" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 14,
+		"imageKey" : "Route01_337",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"337" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 14,
+		"imageKey" : "Route01_338",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"338" : 
+	{
+		"afterRenderImageKey" : "BigTree1",
+		"bPosX" : 2,
+		"bPosY" : 14,
+		"imageKey" : "Route01_339",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"339" : 
+	{
+		"afterRenderImageKey" : "BigTree2",
+		"bPosX" : 3,
+		"bPosY" : 14,
+		"imageKey" : "Route01_340",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"34" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 1,
+		"imageKey" : "Route01_35",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"340" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 14,
+		"imageKey" : "Route01_341",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"341" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 14,
+		"imageKey" : "Route01_342",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"342" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 14,
+		"imageKey" : "Route01_343",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"343" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 14,
+		"imageKey" : "Route01_344",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"344" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 14,
+		"imageKey" : "Route01_345",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"345" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 14,
+		"imageKey" : "Route01_346",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"346" : 
+	{
+		"afterRenderImageKey" : "BigTree1",
+		"bPosX" : 10,
+		"bPosY" : 14,
+		"imageKey" : "Route01_347",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"347" : 
+	{
+		"afterRenderImageKey" : "BigTree2",
+		"bPosX" : 11,
+		"bPosY" : 14,
+		"imageKey" : "Route01_348",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"348" : 
+	{
+		"afterRenderImageKey" : "BigTree1",
+		"bPosX" : 12,
+		"bPosY" : 14,
+		"imageKey" : "Route01_349",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"349" : 
+	{
+		"afterRenderImageKey" : "BigTree2",
+		"bPosX" : 13,
+		"bPosY" : 14,
+		"imageKey" : "Route01_350",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"35" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 1,
+		"imageKey" : "Route01_36",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"350" : 
+	{
+		"afterRenderImageKey" : "BigTree1",
+		"bPosX" : 14,
+		"bPosY" : 14,
+		"imageKey" : "Route01_351",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"351" : 
+	{
+		"afterRenderImageKey" : "BigTree2",
+		"bPosX" : 15,
+		"bPosY" : 14,
+		"imageKey" : "Route01_352",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"352" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 14,
+		"imageKey" : "Route01_353",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"353" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 14,
+		"imageKey" : "Route01_354",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"354" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 14,
+		"imageKey" : "Route01_355",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"355" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 14,
+		"imageKey" : "Route01_356",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"356" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 14,
+		"imageKey" : "Route01_357",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"357" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 14,
+		"imageKey" : "Route01_358",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"358" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 14,
+		"imageKey" : "Route01_359",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"359" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 14,
+		"imageKey" : "Route01_360",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"36" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 1,
+		"imageKey" : "Route01_37",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"360" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 15,
+		"imageKey" : "Route01_361",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"361" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 15,
+		"imageKey" : "Route01_362",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"362" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 15,
+		"imageKey" : "Route01_363",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"363" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 15,
+		"imageKey" : "Route01_364",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"364" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 15,
+		"imageKey" : "Route01_365",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"365" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 15,
+		"imageKey" : "Route01_366",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"366" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 15,
+		"imageKey" : "Route01_367",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"367" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 15,
+		"imageKey" : "Route01_368",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"368" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 15,
+		"imageKey" : "Route01_369",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"369" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 15,
+		"imageKey" : "Route01_370",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"37" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 1,
+		"imageKey" : "Route01_38",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"370" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 15,
+		"imageKey" : "Route01_371",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"371" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 15,
+		"imageKey" : "Route01_372",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"372" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 15,
+		"imageKey" : "Route01_373",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"373" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 15,
+		"imageKey" : "Route01_374",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"374" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 15,
+		"imageKey" : "Route01_375",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"375" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 15,
+		"imageKey" : "Route01_376",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"376" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 15,
+		"imageKey" : "Route01_377",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"377" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 15,
+		"imageKey" : "Route01_378",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"378" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 15,
+		"imageKey" : "Route01_379",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"379" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 15,
+		"imageKey" : "Route01_380",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"38" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 1,
+		"imageKey" : "Route01_39",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"380" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 15,
+		"imageKey" : "Route01_381",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"381" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 15,
+		"imageKey" : "Route01_382",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"382" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 15,
+		"imageKey" : "Route01_383",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"383" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 15,
+		"imageKey" : "Route01_384",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"384" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 16,
+		"imageKey" : "Route01_385",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"385" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 16,
+		"imageKey" : "Route01_386",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"386" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 16,
+		"imageKey" : "Route01_387",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"387" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 16,
+		"imageKey" : "Route01_388",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"388" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 16,
+		"imageKey" : "Route01_389",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"389" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 16,
+		"imageKey" : "Route01_390",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"39" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 1,
+		"imageKey" : "Route01_40",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"390" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 16,
+		"imageKey" : "Route01_391",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"391" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 16,
+		"imageKey" : "Route01_392",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"392" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 16,
+		"imageKey" : "Route01_393",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"393" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 16,
+		"imageKey" : "Route01_394",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"394" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 16,
+		"imageKey" : "Route01_395",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"395" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 16,
+		"imageKey" : "Route01_396",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"396" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 16,
+		"imageKey" : "Route01_397",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"397" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 16,
+		"imageKey" : "Route01_398",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"398" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 16,
+		"imageKey" : "Route01_399",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"399" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 16,
+		"imageKey" : "Route01_400",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"4" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 0,
+		"imageKey" : "Route01_5",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"40" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 1,
+		"imageKey" : "Route01_41",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"400" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 16,
+		"imageKey" : "Route01_401",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"401" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 16,
+		"imageKey" : "Route01_402",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"402" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 16,
+		"imageKey" : "Route01_403",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"403" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 16,
+		"imageKey" : "Route01_404",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"404" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 16,
+		"imageKey" : "Route01_405",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"405" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 16,
+		"imageKey" : "Route01_406",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"406" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 16,
+		"imageKey" : "Route01_407",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"407" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 16,
+		"imageKey" : "Route01_408",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"408" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 17,
+		"imageKey" : "Route01_409",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"409" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 17,
+		"imageKey" : "Route01_410",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"41" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 1,
+		"imageKey" : "Route01_42",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"410" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 17,
+		"imageKey" : "Route01_411",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"411" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 17,
+		"imageKey" : "Route01_412",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"412" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 17,
+		"imageKey" : "Route01_413",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"413" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 17,
+		"imageKey" : "Route01_414",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"414" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 17,
+		"imageKey" : "Route01_415",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"415" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 17,
+		"imageKey" : "Route01_416",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"416" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 17,
+		"imageKey" : "Route01_417",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"417" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 17,
+		"imageKey" : "Route01_418",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"418" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 17,
+		"imageKey" : "Route01_419",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"419" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 17,
+		"imageKey" : "Route01_420",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"42" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 1,
+		"imageKey" : "Route01_43",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"420" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 17,
+		"imageKey" : "Route01_421",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"421" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 17,
+		"imageKey" : "Route01_422",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"422" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 17,
+		"imageKey" : "Route01_423",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"423" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 17,
+		"imageKey" : "Route01_424",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"424" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 17,
+		"imageKey" : "Route01_425",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"425" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 17,
+		"imageKey" : "Route01_426",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"426" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 17,
+		"imageKey" : "Route01_427",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"427" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 17,
+		"imageKey" : "Route01_428",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"428" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 17,
+		"imageKey" : "Route01_429",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"429" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 17,
+		"imageKey" : "Route01_430",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"43" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 1,
+		"imageKey" : "Route01_44",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"430" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 17,
+		"imageKey" : "Route01_431",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"431" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 17,
+		"imageKey" : "Route01_432",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"432" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 18,
+		"imageKey" : "Route01_433",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"433" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 18,
+		"imageKey" : "Route01_434",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"434" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 18,
+		"imageKey" : "Route01_435",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"435" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 18,
+		"imageKey" : "Route01_436",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"436" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 18,
+		"imageKey" : "Route01_437",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"437" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 18,
+		"imageKey" : "Route01_438",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"438" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 18,
+		"imageKey" : "Route01_439",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"439" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 18,
+		"imageKey" : "Route01_440",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"44" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 1,
+		"imageKey" : "Route01_45",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"440" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 18,
+		"imageKey" : "Route01_441",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"441" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 18,
+		"imageKey" : "Route01_442",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"442" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 18,
+		"imageKey" : "Route01_443",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"443" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 18,
+		"imageKey" : "Route01_444",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"444" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 18,
+		"imageKey" : "Route01_445",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"445" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 18,
+		"imageKey" : "Route01_446",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"446" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 18,
+		"imageKey" : "Route01_447",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"447" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 18,
+		"imageKey" : "Route01_448",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"448" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 18,
+		"imageKey" : "Route01_449",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"449" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 18,
+		"imageKey" : "Route01_450",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"45" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 1,
+		"imageKey" : "Route01_46",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"450" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 18,
+		"imageKey" : "Route01_451",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"451" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 18,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"452" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 18,
+		"imageKey" : "Route01_453",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"453" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 18,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"454" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 18,
+		"imageKey" : "Route01_455",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"455" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 18,
+		"imageKey" : "Route01_456",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"456" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 19,
+		"imageKey" : "Route01_457",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"457" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 19,
+		"imageKey" : "Route01_458",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"458" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 19,
+		"imageKey" : "Route01_459",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"459" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 19,
+		"imageKey" : "Route01_460",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"46" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 1,
+		"imageKey" : "Route01_47",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"460" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 19,
+		"imageKey" : "Route01_461",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"461" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 19,
+		"imageKey" : "Route01_462",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"462" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 19,
+		"imageKey" : "Route01_463",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"463" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 19,
+		"imageKey" : "Route01_464",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"464" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 19,
+		"imageKey" : "Route01_465",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"465" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 19,
+		"imageKey" : "Route01_466",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"466" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 19,
+		"imageKey" : "Route01_467",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"467" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 19,
+		"imageKey" : "Route01_468",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"468" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 19,
+		"imageKey" : "Route01_469",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"469" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 19,
+		"imageKey" : "Route01_470",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"47" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 1,
+		"imageKey" : "Route01_48",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"470" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 19,
+		"imageKey" : "Route01_471",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"471" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 19,
+		"imageKey" : "Route01_472",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"472" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 19,
+		"imageKey" : "Route01_473",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"473" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 19,
+		"imageKey" : "Route01_474",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"474" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 19,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"475" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 19,
+		"imageKey" : "Route01_476",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"476" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 19,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"477" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 19,
+		"imageKey" : "Route01_478",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"478" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 19,
+		"imageKey" : "Route01_479",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"479" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 19,
+		"imageKey" : "Route01_480",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"48" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 2,
+		"imageKey" : "Route01_49",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"480" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 20,
+		"imageKey" : "Route01_481",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"481" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 20,
+		"imageKey" : "Route01_482",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"482" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 20,
+		"imageKey" : "Route01_483",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"483" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 20,
+		"imageKey" : "Route01_484",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"484" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 20,
+		"imageKey" : "Route01_485",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"485" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 20,
+		"imageKey" : "Route01_486",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"486" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 20,
+		"imageKey" : "Route01_487",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"487" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 20,
+		"imageKey" : "Route01_488",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"488" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 20,
+		"imageKey" : "Route01_489",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"489" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 20,
+		"imageKey" : "Route01_490",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"49" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 2,
+		"imageKey" : "Route01_50",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"490" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 20,
+		"imageKey" : "Route01_491",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"491" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 20,
+		"imageKey" : "Route01_492",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"492" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 20,
+		"imageKey" : "Route01_493",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"493" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 20,
+		"imageKey" : "Route01_494",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"494" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 20,
+		"imageKey" : "Route01_495",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"495" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 20,
+		"imageKey" : "Route01_496",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"496" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 20,
+		"imageKey" : "Route01_497",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"497" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 20,
+		"imageKey" : "Route01_498",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"498" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 20,
+		"imageKey" : "Route01_499",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"499" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 20,
+		"imageKey" : "Route01_500",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"5" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 0,
+		"imageKey" : "Route01_6",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"50" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 2,
+		"imageKey" : "Route01_51",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"500" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 20,
+		"imageKey" : "Route01_501",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"501" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 20,
+		"imageKey" : "Route01_502",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"502" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 20,
+		"imageKey" : "Route01_503",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"503" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 20,
+		"imageKey" : "Route01_504",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"504" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 21,
+		"imageKey" : "Route01_505",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"505" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 21,
+		"imageKey" : "Route01_506",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"506" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 21,
+		"imageKey" : "Route01_507",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"507" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 21,
+		"imageKey" : "Route01_508",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"508" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 21,
+		"imageKey" : "Route01_509",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"509" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 21,
+		"imageKey" : "Route01_510",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"51" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 2,
+		"imageKey" : "Route01_52",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"510" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 21,
+		"imageKey" : "Route01_511",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"511" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 21,
+		"imageKey" : "Route01_512",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"512" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 21,
+		"imageKey" : "Route01_513",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"513" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 21,
+		"imageKey" : "Route01_514",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"514" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 21,
+		"imageKey" : "Route01_515",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"515" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 21,
+		"imageKey" : "Route01_516",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"516" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 21,
+		"imageKey" : "Route01_517",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"517" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 21,
+		"imageKey" : "Route01_518",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"518" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 21,
+		"imageKey" : "Route01_519",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"519" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 21,
+		"imageKey" : "Route01_520",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"52" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 2,
+		"imageKey" : "Route01_53",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"520" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 21,
+		"imageKey" : "Route01_521",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"521" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 21,
+		"imageKey" : "Route01_522",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"522" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 21,
+		"imageKey" : "Route01_523",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"523" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 21,
+		"imageKey" : "Route01_524",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"524" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 21,
+		"imageKey" : "Route01_525",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"525" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 21,
+		"imageKey" : "Route01_526",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"526" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 21,
+		"imageKey" : "Route01_527",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"527" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 21,
+		"imageKey" : "Route01_528",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"528" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 22,
+		"imageKey" : "Route01_529",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"529" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 22,
+		"imageKey" : "Route01_530",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"53" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 2,
+		"imageKey" : "Route01_54",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"530" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 22,
+		"imageKey" : "Route01_531",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"531" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 22,
+		"imageKey" : "Route01_532",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"532" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 22,
+		"imageKey" : "Route01_533",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"533" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 22,
+		"imageKey" : "Route01_534",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"534" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 22,
+		"imageKey" : "Route01_535",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"535" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 22,
+		"imageKey" : "Route01_536",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"536" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 22,
+		"imageKey" : "Route01_537",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"537" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 22,
+		"imageKey" : "Route01_538",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"538" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 22,
+		"imageKey" : "Route01_539",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"539" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 22,
+		"imageKey" : "Route01_540",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"54" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 2,
+		"imageKey" : "Route01_55",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"540" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 22,
+		"imageKey" : "Route01_541",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"541" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 22,
+		"imageKey" : "Route01_542",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"542" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 22,
+		"imageKey" : "Route01_543",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"543" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 22,
+		"imageKey" : "Route01_544",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"544" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 22,
+		"imageKey" : "Route01_545",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"545" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 22,
+		"imageKey" : "Route01_546",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"546" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 22,
+		"imageKey" : "Route01_547",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"547" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 22,
+		"imageKey" : "Route01_548",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"548" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 22,
+		"imageKey" : "Route01_549",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"549" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 22,
+		"imageKey" : "Route01_550",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"55" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 2,
+		"imageKey" : "Route01_56",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"550" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 22,
+		"imageKey" : "Route01_551",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"551" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 22,
+		"imageKey" : "Route01_552",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"552" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 23,
+		"imageKey" : "Route01_553",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"553" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 23,
+		"imageKey" : "Route01_554",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"554" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 23,
+		"imageKey" : "Route01_555",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"555" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 23,
+		"imageKey" : "Route01_556",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"556" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 23,
+		"imageKey" : "Route01_557",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"557" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 23,
+		"imageKey" : "Route01_558",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"558" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 23,
+		"imageKey" : "Route01_559",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"559" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 23,
+		"imageKey" : "Route01_560",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"56" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 2,
+		"imageKey" : "Route01_57",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"560" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 23,
+		"imageKey" : "Route01_561",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"561" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 23,
+		"imageKey" : "Route01_562",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"562" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 23,
+		"imageKey" : "Route01_563",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"563" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 23,
+		"imageKey" : "Route01_564",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"564" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 23,
+		"imageKey" : "Route01_565",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"565" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 23,
+		"imageKey" : "Route01_566",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"566" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 23,
+		"imageKey" : "Route01_567",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"567" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 23,
+		"imageKey" : "Route01_568",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"568" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 23,
+		"imageKey" : "Route01_569",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"569" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 23,
+		"imageKey" : "Route01_570",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"57" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 2,
+		"imageKey" : "Route01_58",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"570" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 23,
+		"imageKey" : "Route01_571",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"571" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 23,
+		"imageKey" : "Route01_572",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"572" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 23,
+		"imageKey" : "Route01_573",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"573" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 23,
+		"imageKey" : "Route01_574",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"574" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 23,
+		"imageKey" : "Route01_575",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"575" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 23,
+		"imageKey" : "Route01_576",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"576" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 24,
+		"imageKey" : "Route01_577",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"577" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 24,
+		"imageKey" : "Route01_578",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"578" : 
+	{
+		"afterRenderImageKey" : "BigTree1",
+		"bPosX" : 2,
+		"bPosY" : 24,
+		"imageKey" : "Route01_579",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"579" : 
+	{
+		"afterRenderImageKey" : "BigTree2",
+		"bPosX" : 3,
+		"bPosY" : 24,
+		"imageKey" : "Route01_580",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"58" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 2,
+		"imageKey" : "Route01_59",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"580" : 
+	{
+		"afterRenderImageKey" : "BigTree1",
+		"bPosX" : 4,
+		"bPosY" : 24,
+		"imageKey" : "Route01_581",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"581" : 
+	{
+		"afterRenderImageKey" : "BigTree2",
+		"bPosX" : 5,
+		"bPosY" : 24,
+		"imageKey" : "Route01_582",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"582" : 
+	{
+		"afterRenderImageKey" : "BigTree1",
+		"bPosX" : 6,
+		"bPosY" : 24,
+		"imageKey" : "Route01_583",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"583" : 
+	{
+		"afterRenderImageKey" : "BigTree2",
+		"bPosX" : 7,
+		"bPosY" : 24,
+		"imageKey" : "Route01_584",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"584" : 
+	{
+		"afterRenderImageKey" : "BigTree1",
+		"bPosX" : 8,
+		"bPosY" : 24,
+		"imageKey" : "Route01_585",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"585" : 
+	{
+		"afterRenderImageKey" : "BigTree2",
+		"bPosX" : 9,
+		"bPosY" : 24,
+		"imageKey" : "Route01_586",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"586" : 
+	{
+		"afterRenderImageKey" : "BigTree1",
+		"bPosX" : 10,
+		"bPosY" : 24,
+		"imageKey" : "Route01_587",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"587" : 
+	{
+		"afterRenderImageKey" : "BigTree2",
+		"bPosX" : 11,
+		"bPosY" : 24,
+		"imageKey" : "Route01_588",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"588" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 24,
+		"imageKey" : "Route01_589",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"589" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 24,
+		"imageKey" : "Route01_590",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"59" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 2,
+		"imageKey" : "Route01_60",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"590" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 24,
+		"imageKey" : "Route01_591",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"591" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 24,
+		"imageKey" : "Route01_592",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"592" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 24,
+		"imageKey" : "Route01_593",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"593" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 24,
+		"imageKey" : "Route01_594",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"594" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 24,
+		"imageKey" : "Route01_595",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"595" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 24,
+		"imageKey" : "Route01_596",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"596" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 24,
+		"imageKey" : "Route01_597",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"597" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 24,
+		"imageKey" : "Route01_598",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"598" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 24,
+		"imageKey" : "Route01_599",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"599" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 24,
+		"imageKey" : "Route01_600",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"6" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 0,
+		"imageKey" : "Route01_7",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"60" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 2,
+		"imageKey" : "Route01_61",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"600" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 25,
+		"imageKey" : "Route01_601",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"601" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 25,
+		"imageKey" : "Route01_602",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"602" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 25,
+		"imageKey" : "Route01_603",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"603" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 25,
+		"imageKey" : "Route01_604",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"604" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 25,
+		"imageKey" : "Route01_605",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"605" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 25,
+		"imageKey" : "Route01_606",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"606" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 25,
+		"imageKey" : "Route01_607",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"607" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 25,
+		"imageKey" : "Route01_608",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"608" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 25,
+		"imageKey" : "Route01_609",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"609" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 25,
+		"imageKey" : "Route01_610",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"61" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 2,
+		"imageKey" : "Route01_62",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"610" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 25,
+		"imageKey" : "Route01_611",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"611" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 25,
+		"imageKey" : "Route01_612",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"612" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 25,
+		"imageKey" : "Route01_613",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"613" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 25,
+		"imageKey" : "Route01_614",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"614" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 25,
+		"imageKey" : "Route01_615",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"615" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 25,
+		"imageKey" : "Route01_616",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"616" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 25,
+		"imageKey" : "Route01_617",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"617" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 25,
+		"imageKey" : "Route01_618",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"618" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 25,
+		"imageKey" : "Route01_619",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"619" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 25,
+		"imageKey" : "Route01_620",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"62" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 2,
+		"imageKey" : "Route01_63",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"620" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 25,
+		"imageKey" : "Route01_621",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"621" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 25,
+		"imageKey" : "Route01_622",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"622" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 25,
+		"imageKey" : "Route01_623",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"623" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 25,
+		"imageKey" : "Route01_624",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"624" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 26,
+		"imageKey" : "Route01_625",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"625" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 26,
+		"imageKey" : "Route01_626",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"626" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 26,
+		"imageKey" : "Route01_627",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"627" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 26,
+		"imageKey" : "Route01_628",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"628" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 26,
+		"imageKey" : "Route01_629",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"629" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 26,
+		"imageKey" : "Route01_630",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"63" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 2,
+		"imageKey" : "Route01_64",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"630" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 26,
+		"imageKey" : "Route01_631",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"631" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 26,
+		"imageKey" : "Route01_632",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"632" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 26,
+		"imageKey" : "Route01_633",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"633" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 26,
+		"imageKey" : "Route01_634",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"634" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 26,
+		"imageKey" : "Route01_635",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"635" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 26,
+		"imageKey" : "Route01_636",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"636" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 26,
+		"imageKey" : "Route01_637",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"637" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 26,
+		"imageKey" : "Route01_638",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"638" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 26,
+		"imageKey" : "Route01_639",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"639" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 26,
+		"imageKey" : "Route01_640",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"64" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 2,
+		"imageKey" : "Route01_65",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"640" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 26,
+		"imageKey" : "Route01_641",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"641" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 26,
+		"imageKey" : "Route01_642",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"642" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 26,
+		"imageKey" : "Route01_643",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"643" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 26,
+		"imageKey" : "Route01_644",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"644" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 26,
+		"imageKey" : "Route01_645",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"645" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 26,
+		"imageKey" : "Route01_646",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"646" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 26,
+		"imageKey" : "Route01_647",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"647" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 26,
+		"imageKey" : "Route01_648",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"648" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 27,
+		"imageKey" : "Route01_649",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"649" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 27,
+		"imageKey" : "Route01_650",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"65" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 2,
+		"imageKey" : "Route01_66",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"650" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 27,
+		"imageKey" : "Route01_651",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"651" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 27,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"652" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 27,
+		"imageKey" : "Route01_653",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"653" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 27,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"654" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 27,
+		"imageKey" : "Route01_655",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"655" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 27,
+		"imageKey" : "Route01_656",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"656" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 27,
+		"imageKey" : "Route01_657",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"657" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 27,
+		"imageKey" : "Route01_658",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"658" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 27,
+		"imageKey" : "Route01_659",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"659" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 27,
+		"imageKey" : "Route01_660",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"66" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 2,
+		"imageKey" : "Route01_67",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"660" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 27,
+		"imageKey" : "Route01_661",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"661" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 27,
+		"imageKey" : "Route01_662",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"662" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 27,
+		"imageKey" : "Route01_663",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"663" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 27,
+		"imageKey" : "Route01_664",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"664" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 27,
+		"imageKey" : "Route01_665",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"665" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 27,
+		"imageKey" : "Route01_666",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"666" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 27,
+		"imageKey" : "Route01_667",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"667" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 27,
+		"imageKey" : "Route01_668",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"668" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 27,
+		"imageKey" : "Route01_669",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"669" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 27,
+		"imageKey" : "Route01_670",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"67" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 2,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"670" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 27,
+		"imageKey" : "Route01_671",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"671" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 27,
+		"imageKey" : "Route01_672",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"672" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 28,
+		"imageKey" : "Route01_673",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"673" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 28,
+		"imageKey" : "Route01_674",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"674" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 28,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"675" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 28,
+		"imageKey" : "Route01_676",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"676" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 28,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"677" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 28,
+		"imageKey" : "Route01_678",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"678" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 28,
+		"imageKey" : "Route01_679",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"679" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 28,
+		"imageKey" : "Route01_680",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"68" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 2,
+		"imageKey" : "Route01_69",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"680" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 28,
+		"imageKey" : "Route01_681",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"681" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 28,
+		"imageKey" : "Route01_682",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"682" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 28,
+		"imageKey" : "Route01_683",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"683" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 28,
+		"imageKey" : "Route01_684",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"684" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 28,
+		"imageKey" : "Route01_685",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"685" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 28,
+		"imageKey" : "Route01_686",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"686" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 28,
+		"imageKey" : "Route01_687",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"687" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 28,
+		"imageKey" : "Route01_688",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"688" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 28,
+		"imageKey" : "Route01_689",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"689" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 28,
+		"imageKey" : "Route01_690",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"69" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 2,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"690" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 28,
+		"imageKey" : "Route01_691",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"691" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 28,
+		"imageKey" : "Route01_692",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"692" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 28,
+		"imageKey" : "Route01_693",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"693" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 28,
+		"imageKey" : "Route01_694",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"694" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 28,
+		"imageKey" : "Route01_695",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"695" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 28,
+		"imageKey" : "Route01_696",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"696" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 29,
+		"imageKey" : "Route01_697",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"697" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 29,
+		"imageKey" : "Route01_698",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"698" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 29,
+		"imageKey" : "Route01_699",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"699" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 29,
+		"imageKey" : "Route01_700",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"7" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 0,
+		"imageKey" : "Route01_8",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"70" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 2,
+		"imageKey" : "Route01_71",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"700" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 29,
+		"imageKey" : "Route01_701",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"701" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 29,
+		"imageKey" : "Route01_702",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"702" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 29,
+		"imageKey" : "Route01_703",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"703" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 29,
+		"imageKey" : "Route01_704",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"704" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 29,
+		"imageKey" : "Route01_705",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"705" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 29,
+		"imageKey" : "Route01_706",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"706" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 29,
+		"imageKey" : "Route01_707",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"707" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 29,
+		"imageKey" : "Route01_708",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"708" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 29,
+		"imageKey" : "Route01_709",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"709" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 29,
+		"imageKey" : "Route01_710",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"71" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 2,
+		"imageKey" : "Route01_72",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"710" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 29,
+		"imageKey" : "Route01_711",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"711" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 29,
+		"imageKey" : "Route01_712",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"712" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 29,
+		"imageKey" : "Route01_713",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"713" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 29,
+		"imageKey" : "Route01_714",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"714" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 29,
+		"imageKey" : "Route01_715",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"715" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 29,
+		"imageKey" : "Route01_716",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"716" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 29,
+		"imageKey" : "Route01_717",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"717" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 29,
+		"imageKey" : "Route01_718",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"718" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 29,
+		"imageKey" : "Route01_719",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"719" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 29,
+		"imageKey" : "Route01_720",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"72" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 3,
+		"imageKey" : "Route01_73",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"720" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 30,
+		"imageKey" : "Route01_721",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"721" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 30,
+		"imageKey" : "Route01_722",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"722" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 30,
+		"imageKey" : "Route01_723",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"723" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 30,
+		"imageKey" : "Route01_724",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"724" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 30,
+		"imageKey" : "Route01_725",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"725" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 30,
+		"imageKey" : "Route01_726",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"726" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 30,
+		"imageKey" : "Route01_727",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"727" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 30,
+		"imageKey" : "Route01_728",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"728" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 30,
+		"imageKey" : "Route01_729",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"729" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 30,
+		"imageKey" : "Route01_730",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"73" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 3,
+		"imageKey" : "Route01_74",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"730" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 30,
+		"imageKey" : "Route01_731",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"731" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 30,
+		"imageKey" : "Route01_732",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"732" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 30,
+		"imageKey" : "Route01_733",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"733" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 30,
+		"imageKey" : "Route01_734",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"734" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 30,
+		"imageKey" : "Route01_735",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"735" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 30,
+		"imageKey" : "Route01_736",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"736" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 30,
+		"imageKey" : "Route01_737",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"737" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 30,
+		"imageKey" : "Route01_738",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"738" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 30,
+		"imageKey" : "Route01_739",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"739" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 30,
+		"imageKey" : "Route01_740",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"74" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 3,
+		"imageKey" : "Route01_75",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"740" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 30,
+		"imageKey" : "Route01_741",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"741" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 30,
+		"imageKey" : "Route01_742",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"742" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 30,
+		"imageKey" : "Route01_743",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"743" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 30,
+		"imageKey" : "Route01_744",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"744" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 31,
+		"imageKey" : "Route01_745",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"745" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 31,
+		"imageKey" : "Route01_746",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"746" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 31,
+		"imageKey" : "Route01_747",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"747" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 31,
+		"imageKey" : "Route01_748",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"748" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 31,
+		"imageKey" : "Route01_749",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"749" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 31,
+		"imageKey" : "Route01_750",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"75" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 3,
+		"imageKey" : "Route01_76",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"750" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 31,
+		"imageKey" : "Route01_751",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"751" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 31,
+		"imageKey" : "Route01_752",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"752" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 31,
+		"imageKey" : "Route01_753",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"753" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 31,
+		"imageKey" : "Route01_754",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "MileStone",
+		"type" : 6
+	},
+	"754" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 31,
+		"imageKey" : "Route01_755",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"755" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 31,
+		"imageKey" : "Route01_756",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"756" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 31,
+		"imageKey" : "Route01_757",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"757" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 31,
+		"imageKey" : "Route01_758",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"758" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 31,
+		"imageKey" : "Route01_759",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"759" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 31,
+		"imageKey" : "Route01_760",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"76" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 3,
+		"imageKey" : "Route01_77",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"760" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 31,
+		"imageKey" : "Route01_761",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"761" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 31,
+		"imageKey" : "Route01_762",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"762" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 31,
+		"imageKey" : "Route01_763",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"763" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 31,
+		"imageKey" : "Route01_764",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"764" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 31,
+		"imageKey" : "Route01_765",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"765" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 31,
+		"imageKey" : "Route01_766",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "UpDownMound",
+		"type" : 6
+	},
+	"766" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 31,
+		"imageKey" : "Route01_767",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"767" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 31,
+		"imageKey" : "Route01_768",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"768" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 32,
+		"imageKey" : "Route01_769",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"769" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 32,
+		"imageKey" : "Route01_770",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"77" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 3,
+		"imageKey" : "Route01_78",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"770" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 32,
+		"imageKey" : "Route01_771",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"771" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 32,
+		"imageKey" : "Route01_772",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"772" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 32,
+		"imageKey" : "Route01_773",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"773" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 32,
+		"imageKey" : "Route01_774",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"774" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 32,
+		"imageKey" : "Route01_775",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"775" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 32,
+		"imageKey" : "Route01_776",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"776" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 32,
+		"imageKey" : "Route01_777",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"777" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 32,
+		"imageKey" : "Route01_778",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"778" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 32,
+		"imageKey" : "Route01_779",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"779" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 32,
+		"imageKey" : "Route01_780",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"78" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 3,
+		"imageKey" : "Route01_79",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"780" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 32,
+		"imageKey" : "Route01_781",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"781" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 32,
+		"imageKey" : "Route01_782",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"782" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 32,
+		"imageKey" : "Route01_783",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"783" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 32,
+		"imageKey" : "Route01_784",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"784" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 32,
+		"imageKey" : "Route01_785",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"785" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 32,
+		"imageKey" : "Route01_786",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"786" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 32,
+		"imageKey" : "Route01_787",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"787" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 32,
+		"imageKey" : "Route01_788",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"788" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 32,
+		"imageKey" : "Route01_789",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"789" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 32,
+		"imageKey" : "Route01_790",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"79" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 3,
+		"imageKey" : "Route01_80",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"790" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 32,
+		"imageKey" : "Route01_791",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"791" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 32,
+		"imageKey" : "Route01_792",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"792" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 33,
+		"imageKey" : "Route01_793",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"793" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 33,
+		"imageKey" : "Route01_794",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"794" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 33,
+		"imageKey" : "Route01_795",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"795" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 33,
+		"imageKey" : "Route01_796",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"796" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 33,
+		"imageKey" : "Route01_797",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"797" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 33,
+		"imageKey" : "Route01_798",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"798" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 33,
+		"imageKey" : "Route01_799",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"799" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 33,
+		"imageKey" : "Route01_800",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"8" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 0,
+		"imageKey" : "Route01_9",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"80" : 
+	{
+		"afterRenderImageKey" : "BigTree1",
+		"bPosX" : 8,
+		"bPosY" : 3,
+		"imageKey" : "Route01_81",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"800" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 33,
+		"imageKey" : "Route01_801",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"801" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 33,
+		"imageKey" : "Route01_802",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"802" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 33,
+		"imageKey" : "Route01_803",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"803" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 33,
+		"imageKey" : "Route01_804",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"804" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 33,
+		"imageKey" : "Route01_805",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"805" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 33,
+		"imageKey" : "Route01_806",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"806" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 33,
+		"imageKey" : "Route01_807",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"807" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 33,
+		"imageKey" : "Route01_808",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"808" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 33,
+		"imageKey" : "Route01_809",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"809" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 33,
+		"imageKey" : "Route01_810",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"81" : 
+	{
+		"afterRenderImageKey" : "BigTree2",
+		"bPosX" : 9,
+		"bPosY" : 3,
+		"imageKey" : "Route01_82",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"810" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 33,
+		"imageKey" : "Route01_811",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"811" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 33,
+		"imageKey" : "Route01_812",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"812" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 33,
+		"imageKey" : "Route01_813",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"813" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 33,
+		"imageKey" : "Route01_814",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"814" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 33,
+		"imageKey" : "Route01_815",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"815" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 33,
+		"imageKey" : "Route01_816",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"816" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 34,
+		"imageKey" : "Route01_817",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"817" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 34,
+		"imageKey" : "Route01_818",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"818" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 34,
+		"imageKey" : "Route01_819",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"819" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 34,
+		"imageKey" : "Route01_820",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"82" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 3,
+		"imageKey" : "Route01_83",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"820" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 34,
+		"imageKey" : "Route01_821",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"821" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 34,
+		"imageKey" : "Route01_822",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"822" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 34,
+		"imageKey" : "Route01_823",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"823" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 34,
+		"imageKey" : "Route01_824",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"824" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 34,
+		"imageKey" : "Route01_825",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"825" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 34,
+		"imageKey" : "Route01_826",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"826" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 34,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"827" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 34,
+		"imageKey" : "Route01_828",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"828" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 34,
+		"imageKey" : "Route01_829",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"829" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 34,
+		"imageKey" : "Route01_830",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"83" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 3,
+		"imageKey" : "Route01_84",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"830" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 34,
+		"imageKey" : "Route01_831",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"831" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 34,
+		"imageKey" : "Route01_832",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"832" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 34,
+		"imageKey" : "Route01_833",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"833" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 34,
+		"imageKey" : "Route01_834",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"834" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 34,
+		"imageKey" : "Route01_835",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"835" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 34,
+		"imageKey" : "Route01_836",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"836" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 34,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"837" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 34,
+		"imageKey" : "Route01_838",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"838" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 34,
+		"imageKey" : "Route01_839",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"839" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 34,
+		"imageKey" : "Route01_840",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"84" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 3,
+		"imageKey" : "Route01_85",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"840" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 35,
+		"imageKey" : "Route01_841",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"841" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 35,
+		"imageKey" : "Route01_842",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"842" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 35,
+		"imageKey" : "Route01_843",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"843" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 35,
+		"imageKey" : "Route01_844",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"844" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 35,
+		"imageKey" : "Route01_845",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"845" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 35,
+		"imageKey" : "Route01_846",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"846" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 35,
+		"imageKey" : "Route01_847",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"847" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 35,
+		"imageKey" : "Route01_848",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"848" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 35,
+		"imageKey" : "Route01_849",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"849" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 35,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"85" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 3,
+		"imageKey" : "Route01_86",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"850" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 35,
+		"imageKey" : "Route01_851",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"851" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 35,
+		"imageKey" : "Route01_852",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"852" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 35,
+		"imageKey" : "Route01_853",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"853" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 35,
+		"imageKey" : "Route01_854",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"854" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 35,
+		"imageKey" : "Route01_855",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"855" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 35,
+		"imageKey" : "Route01_856",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"856" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 35,
+		"imageKey" : "Route01_857",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"857" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 35,
+		"imageKey" : "Route01_858",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"858" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 35,
+		"imageKey" : "Route01_859",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"859" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 35,
+		"imageKey" : "Route01_860",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"86" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 3,
+		"imageKey" : "Route01_87",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"860" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 35,
+		"imageKey" : "Route01_861",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"861" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 35,
+		"imageKey" : "Flower",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"862" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 35,
+		"imageKey" : "Route01_863",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"863" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 35,
+		"imageKey" : "Route01_864",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"864" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 36,
+		"imageKey" : "Route01_865",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"865" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 36,
+		"imageKey" : "Route01_866",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"866" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 36,
+		"imageKey" : "Route01_867",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"867" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 36,
+		"imageKey" : "Route01_868",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"868" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 36,
+		"imageKey" : "Route01_869",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"869" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 36,
+		"imageKey" : "Route01_870",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"87" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 3,
+		"imageKey" : "Route01_88",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"870" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 36,
+		"imageKey" : "Route01_871",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"871" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 36,
+		"imageKey" : "Route01_872",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"872" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 36,
+		"imageKey" : "Route01_873",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"873" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 36,
+		"imageKey" : "Route01_874",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"874" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 36,
+		"imageKey" : "Route01_875",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"875" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 36,
+		"imageKey" : "Route01_876",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"876" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 36,
+		"imageKey" : "Route01_877",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"877" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 36,
+		"imageKey" : "Route01_878",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"878" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 36,
+		"imageKey" : "Route01_879",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"879" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 36,
+		"imageKey" : "Route01_880",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"88" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 3,
+		"imageKey" : "Route01_89",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"880" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 36,
+		"imageKey" : "Route01_881",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"881" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 36,
+		"imageKey" : "Route01_882",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"882" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 36,
+		"imageKey" : "Route01_883",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"883" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 36,
+		"imageKey" : "Route01_884",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"884" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 36,
+		"imageKey" : "Route01_885",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"885" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 36,
+		"imageKey" : "Route01_886",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"886" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 36,
+		"imageKey" : "Route01_887",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"887" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 36,
+		"imageKey" : "Route01_888",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"888" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 37,
+		"imageKey" : "Route01_889",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"889" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 37,
+		"imageKey" : "Route01_890",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"89" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 3,
+		"imageKey" : "Route01_90",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"890" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 37,
+		"imageKey" : "Route01_891",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"891" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 37,
+		"imageKey" : "Route01_892",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"892" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 37,
+		"imageKey" : "Route01_893",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"893" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 37,
+		"imageKey" : "Route01_894",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"894" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 37,
+		"imageKey" : "Route01_895",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"895" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 37,
+		"imageKey" : "Route01_896",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"896" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 37,
+		"imageKey" : "Route01_897",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"897" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 37,
+		"imageKey" : "Route01_898",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"898" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 37,
+		"imageKey" : "Route01_899",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"899" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 37,
+		"imageKey" : "Route01_900",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"9" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 0,
+		"imageKey" : "Route01_10",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"90" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 3,
+		"imageKey" : "Route01_91",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"900" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 37,
+		"imageKey" : "Route01_901",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"901" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 37,
+		"imageKey" : "Route01_902",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"902" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 37,
+		"imageKey" : "Route01_903",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Fence",
+		"type" : 6
+	},
+	"903" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 37,
+		"imageKey" : "Route01_904",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"904" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 37,
+		"imageKey" : "Route01_905",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"905" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 37,
+		"imageKey" : "Route01_906",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"906" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 37,
+		"imageKey" : "Route01_907",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"907" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 37,
+		"imageKey" : "Route01_908",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"908" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 37,
+		"imageKey" : "Route01_909",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"909" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 37,
+		"imageKey" : "Route01_910",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"91" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 3,
+		"imageKey" : "Route01_92",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"910" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 37,
+		"imageKey" : "Route01_911",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"911" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 37,
+		"imageKey" : "Route01_912",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"912" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 38,
+		"imageKey" : "Route01_913",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"913" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 38,
+		"imageKey" : "Route01_914",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"914" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 38,
+		"imageKey" : "Route01_915",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"915" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 38,
+		"imageKey" : "Route01_916",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"916" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 38,
+		"imageKey" : "Route01_917",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"917" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 38,
+		"imageKey" : "Route01_918",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"918" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 38,
+		"imageKey" : "Route01_919",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"919" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 38,
+		"imageKey" : "Route01_920",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "MileStone",
+		"type" : 6
+	},
+	"92" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 3,
+		"imageKey" : "Route01_93",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"920" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 38,
+		"imageKey" : "Route01_921",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"921" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 38,
+		"imageKey" : "Route01_922",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"922" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 38,
+		"imageKey" : "Route01_923",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"923" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 38,
+		"imageKey" : "Route01_924",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "MileStone",
+		"type" : 6
+	},
+	"924" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 38,
+		"imageKey" : "Route01_925",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"925" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 38,
+		"imageKey" : "Route01_926",
+		"innerPocketLevel-0" : 5,
+		"innerPocketLevel-1" : 6,
+		"innerPocketMonCnt" : 2,
+		"innerPocketName-0" : "Pidgey",
+		"innerPocketName-1" : "Rattata",
+		"nextMapName" : "",
+		"type" : 2
+	},
+	"926" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 38,
+		"imageKey" : "Route01_927",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"927" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 38,
+		"imageKey" : "Route01_928",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"928" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 38,
+		"imageKey" : "Route01_929",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"929" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 38,
+		"imageKey" : "Route01_930",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"93" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 3,
+		"imageKey" : "Route01_94",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"930" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 38,
+		"imageKey" : "Route01_931",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"931" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 38,
+		"imageKey" : "Route01_932",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"932" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 38,
+		"imageKey" : "Route01_933",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"933" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 38,
+		"imageKey" : "Route01_934",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"934" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 38,
+		"imageKey" : "Route01_935",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"935" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 38,
+		"imageKey" : "Route01_936",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"936" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 39,
+		"imageKey" : "Route01_937",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"937" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 39,
+		"imageKey" : "Route01_938",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"938" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 39,
+		"imageKey" : "Route01_939",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"939" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 39,
+		"imageKey" : "Route01_940",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"94" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 3,
+		"imageKey" : "Route01_95",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"940" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 39,
+		"imageKey" : "Route01_941",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"941" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 39,
+		"imageKey" : "Route01_942",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"942" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 39,
+		"imageKey" : "Route01_943",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"943" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 39,
+		"imageKey" : "Route01_944",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"944" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 39,
+		"imageKey" : "Route01_945",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"945" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 39,
+		"imageKey" : "Route01_946",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"946" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 39,
+		"imageKey" : "Route01_947",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"947" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 39,
+		"imageKey" : "Route01_948",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"948" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 39,
+		"imageKey" : "Route01_949",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "TechoTown",
+		"nextMapX" : 13,
+		"nextMapY" : 0,
+		"type" : 4
+	},
+	"949" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 13,
+		"bPosY" : 39,
+		"imageKey" : "Route01_950",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "TechoTown",
+		"nextMapX" : 13,
+		"nextMapY" : 1,
+		"type" : 4
+	},
+	"95" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 3,
+		"imageKey" : "Route01_96",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"950" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 14,
+		"bPosY" : 39,
+		"imageKey" : "Route01_951",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"951" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 15,
+		"bPosY" : 39,
+		"imageKey" : "Route01_952",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"952" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 16,
+		"bPosY" : 39,
+		"imageKey" : "Route01_953",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"953" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 17,
+		"bPosY" : 39,
+		"imageKey" : "Route01_954",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"954" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 18,
+		"bPosY" : 39,
+		"imageKey" : "Route01_955",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"955" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 19,
+		"bPosY" : 39,
+		"imageKey" : "Route01_956",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"956" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 20,
+		"bPosY" : 39,
+		"imageKey" : "Route01_957",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"957" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 21,
+		"bPosY" : 39,
+		"imageKey" : "Route01_958",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"958" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 22,
+		"bPosY" : 39,
+		"imageKey" : "Route01_959",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"959" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 23,
+		"bPosY" : 39,
+		"imageKey" : "Route01_960",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"96" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 4,
+		"imageKey" : "Route01_97",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"97" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 4,
+		"imageKey" : "Route01_98",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 3
+	},
+	"98" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 4,
+		"imageKey" : "Route01_99",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"99" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 4,
+		"imageKey" : "Route01_100",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"mapHeight" : 40,
+	"mapName" : "Route01",
+	"mapWidth" : 24,
+	"startX" : 13,
+	"startY" : 32
+}

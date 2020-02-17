@@ -480,10 +480,10 @@ void BattleScene::playerUiImg(HDC hdc)
 	//UTIL::DrawRect(hdc, m_playerImg);
 	//IMAGEMANAGER->findImage("trainersMan")->alphaRender(hdc, m_playerImg.left, m_playerImg.top, m_playerAlpha);
 	//ANIMANAGER->findAnimation("trainerThorwBallAni")->;
-	Image* temp = IMAGEMANAGER->findImage("trainerThrowBall");
-	Animation * aniTemp = ANIMANAGER->findAnimation("trainerThrowBallAni");
-	ANIMANAGER->start("trainerThrowBallAni");
-	temp->aniRender(hdc, WINSIZEX / 2, WINSIZEY / 2, aniTemp);
+	//Image* temp = IMAGEMANAGER->findImage("trainerThrowBall");
+	//Animation * aniTemp = ANIMANAGER->findAnimation("trainerThrowBallAni");
+	//ANIMANAGER->start("trainerThrowBallAni");
+	//temp->aniRender(hdc, WINSIZEX / 2, WINSIZEY / 2, aniTemp);
 
 }
 void BattleScene::playerUiStatus(HDC hdc)

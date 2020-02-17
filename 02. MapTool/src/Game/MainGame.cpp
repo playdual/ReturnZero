@@ -36,6 +36,10 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("TvTopt",		"Images/afterRender/TvTop.bmp", 100, 100, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("Flower",	"Images/Tile/Object/Flower1Frame.bmp", 250, 50, 5, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("Flowert",	"Images/Tile/Object/Flower1Frame.bmp", 500, 100, 5, 1, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("TreePotTop",	"Images/afterRender/TreePotTop.bmp", 50, 50, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("TreePotTopt",	"Images/afterRender/TreePotTop.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("OutOfRange", "Images/Tile/GeneralTile/OutOfRange.bmp", 50, 50, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("OutOfRanget", "Images/Tile/GeneralTile/OutOfRange.bmp", 100, 100, true, RGB(255, 0, 255));
 
 	std::string house = "House";
 	std::string BuildingPath = "Images/Tile/Buildings/";
@@ -49,17 +53,24 @@ HRESULT MainGame::init()
 		}
 	}
 
-	myloadImage("RedHouse_2F_", "Images/Tile/TechoTownInner/RedHouse_2F", 100);
+	//myloadImage("RedHouse_1F_", "Images/Tile/TechoTownInner/RedHouse_1F", 120);
+	//myloadImage("RedHouse_2F_", "Images/Tile/TechoTownInner/RedHouse_2F", 99);
+	//myloadImage("RivalHouse_", "Images/Tile/TechoTownInner/RivalHouse", 118);
+	//myloadImage("ProfOHouse_", "Images/Tile/TechoTownInner/ProfOHouse", 169);
+	myloadImage("Route01_", "Images/Route01", 960);
+	myloadImage("Carpet", "Images/Tile/GeneralTile", 3);
 	myloadImage("profOhouseTop", "Images/afterRender", 7);
 	myloadImage("House0", "Images/afterRender", 5);
-	myloadImage("TechoTown_", "Images/TechoTown", 480);
+	//myloadImage("TechoTown_", "Images/TechoTown", 480);
 	myloadImage("MailBox", "Images/Tile/Object", 2);
 	myloadImage("BigTree", "Images/afterRender", 2);
 	myloadImage("BedTop", "Images/afterRender", 3);
+	myloadImage("SpacialMachineTop", "Images/afterRender", 2);
+	myloadImage("BookShelf2Top", "Images/afterRender", 2);
 
 	std::string name;
 	int width, height;
-	//std::cin >> name >> width >> height;
+	std::cin >> name >> width >> height;
 
 	//add Scene
 	SCENEMANAGER->addScene("MapTool", new MapToolScene(name, width, height));

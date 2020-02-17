@@ -39,6 +39,8 @@ bool MapToolScene::init()
 {
 	//tileSetup
 	if (mapName == "TechoTown") {
+		mapWidth = 24;
+		mapHeight = 20;
 		for (int i = 0; i < mapHeight; ++i) {
 			for (int j = 1; j <= mapWidth; ++j) {
 				std::string key = "TechoTown_" + std::to_string(i * mapWidth + j) + "t";
@@ -48,10 +50,60 @@ bool MapToolScene::init()
 			}
 		}
 	}
+	else if (mapName == "RedHouse1F") {
+		mapWidth = 12;
+		mapHeight = 10;
+		for (int i = 0; i < mapHeight; ++i) {
+			for (int j = 1; j <= mapWidth; ++j) {
+				std::string key = "RedHouse_1F_" + std::to_string(i * mapWidth + j) + "t";
+				auto tile = std::make_shared<Tile>();
+				tile->init(TileType::TileTypeFloor, key, (j - 1), i);
+				m_Tiles.push_back(tile);
+			}
+		}
+	}
 	else if (mapName == "RedHouse2F") {
-		for (int i = 0; i < 9; ++i) {
-			for (int j = 1; j <= 11; ++j) {
-				std::string key = "RedHouse2F_" + std::to_string(i * mapWidth + j) + "t";
+		mapWidth = 11;
+		mapHeight = 9;
+		for (int i = 0; i < mapHeight; ++i) {
+			for (int j = 1; j <= mapWidth; ++j) {
+				std::string key = "RedHouse_2F_" + std::to_string(i * mapWidth + j) + "t";
+				auto tile = std::make_shared<Tile>();
+				tile->init(TileType::TileTypeFloor, key, (j - 1), i);
+				m_Tiles.push_back(tile);
+			}
+		}
+	}
+	else if (mapName == "RivalHouse") {
+		mapWidth = 13;
+		mapHeight = 10;
+		for (int i = 0; i < mapHeight; ++i) {
+			for (int j = 1; j <= mapWidth; ++j) {
+				std::string key = "RivalHouse_" + std::to_string(i * mapWidth + j) + "t";
+				auto tile = std::make_shared<Tile>();
+				tile->init(TileType::TileTypeFloor, key, (j - 1), i);
+				m_Tiles.push_back(tile);
+			}
+		}
+	}
+	else if (mapName == "ProfOHouse") {
+		mapWidth = 13;
+		mapHeight = 14;
+		for (int i = 0; i < mapHeight; ++i) {
+			for (int j = 1; j <= mapWidth; ++j) {
+				std::string key = "ProfOHouse_" + std::to_string(i * mapWidth + j) + "t";
+				auto tile = std::make_shared<Tile>();
+				tile->init(TileType::TileTypeFloor, key, (j - 1), i);
+				m_Tiles.push_back(tile);
+			}
+		}
+	}
+	else if (mapName == "Route01") {
+		mapWidth = 24;
+		mapHeight = 40;
+		for (int i = 0; i < mapHeight; ++i) {
+			for (int j = 1; j <= mapWidth; ++j) {
+				std::string key = "Route01_" + std::to_string(i * mapWidth + j) + "t";
 				auto tile = std::make_shared<Tile>();
 				tile->init(TileType::TileTypeFloor, key, (j - 1), i);
 				m_Tiles.push_back(tile);
@@ -105,7 +157,7 @@ bool MapToolScene::init()
 
 	//TileBlockSetup
 	treeVectorInit(6);
-	tileVectorInit(6);
+	tileVectorInit(10);
 	bushVectorInit(6);
 	resetTileSelectedAttribute();
 
@@ -173,6 +225,7 @@ void MapToolScene::treeVectorInit(int _pageCount)
 	TileType type = TileType::TileTypeTree;
 	treeVector[0][0].setTileAttribute("Tree1Bottom", type, false);
 	treeVector[0][1].setTileAttribute("Tree1Top", type, false);
+	treeVector[0][2].setTileAttribute("TreePotTop", type, false);
 	treeVectorPush("BigTree", type, 1, 2, false);
 
 }
@@ -203,7 +256,6 @@ void MapToolScene::tileVectorInit(int _pageCount)
 	TileType type = TileType::TileTypeFloor;
 
 	//TODO : add another tile
-	tileVector[0][0].setTileAttribute("GrassTile1", type, false);
 	std::string House = "House";
 	for (int i = 0; i < 5; ++i) {
 		for (int j = 1; j < 6; ++j) {
@@ -211,11 +263,22 @@ void MapToolScene::tileVectorInit(int _pageCount)
 			tileVector[1][i + (j - 1) * 5].setTileAttribute(HouseKey, TileType::TileTypeHouse, false);
 		}
 	}	
-	tileVector[0][1].setTileAttribute("Flower", TileType::TileTypeFloor, false);
+	tileVectorPush("Carpet", type, 0, 3, false);
+	tileVector[0][3].setTileAttribute("OutOfRange", TileType::TileTypeOutRange, false);
+	tileVector[0][4].setTileAttribute("GrassTile1", type, false);
+	tileVector[0][5].setTileAttribute("Flower", TileType::TileTypeFloor, false);
+	tileVector[0][6].setTileAttribute("BookShelf2Top1", TileType::TileTypeFloor, false);
+	tileVector[0][7].setTileAttribute("BookShelf2Top2", TileType::TileTypeFloor, false);
+	tileVector[0][8].setTileAttribute("SpacialMachineTop1", TileType::TileTypeFloor, false);
+	tileVector[0][9].setTileAttribute("SpacialMachineTop2", TileType::TileTypeFloor, false);
+
 	tileVectorPush("TownTile", TileType::TileTypeFloor, 2, 13, false);
 	tileVectorPush("MailBox", TileType::TileTypeObject, 3, 2, false);
 	tileVectorPush("profOhouseTop", TileType::TileTypeHouse, 4, 7,  false);
 	tileVectorPush("House0", TileType::TileTypeFloor, 5, 5, false);
+	tileVectorPush("BedTop", TileType::TileTypeFloor, 6, 3, false);
+	tileVector[6][3].setTileAttribute("TvTop", TileType::TileTypeFloor, false);
+	tileVector[6][4].setTileAttribute("RedHouse_2F_1", TileType::TileTypeFloor, false);
 }
 
 void MapToolScene::bushVectorPush(std::string imageKey, TileType _type, int page, int _size, bool _afterRender)
@@ -431,11 +494,11 @@ void MapToolScene::tileSelectUpdate()
 	if (KEYMANAGER->isOnceKeyDown(GAME_LPAGE)) {
 		tileSelectPage -= 1;
 		if (tileSelectPage < 0)
-			tileSelectPage = bushSelectPageMax - 1;
+			tileSelectPage = tileSelectPageMax - 1;
 	}
 	if (KEYMANAGER->isOnceKeyDown(GAME_RPAGE)) {
 		tileSelectPage += 1;
-		if (tileSelectPage >= bushSelectPageMax)
+		if (tileSelectPage >= tileSelectPageMax)
 			tileSelectPage = 0;
 	}
 }

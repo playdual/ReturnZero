@@ -246,8 +246,10 @@
 		"bPosY" : 0,
 		"imageKey" : "TechoTown_13",
 		"innerPocketMonCnt" : 0,
-		"nextMapName" : "",
-		"type" : 0
+		"nextMapName" : "Route01",
+		"nextMapX" : 12,
+		"nextMapY" : 39,
+		"type" : 4
 	},
 	"120" : 
 	{
@@ -356,8 +358,10 @@
 		"bPosY" : 0,
 		"imageKey" : "TechoTown_14",
 		"innerPocketMonCnt" : 0,
-		"nextMapName" : "",
-		"type" : 0
+		"nextMapName" : "Route01",
+		"nextMapX" : 13,
+		"nextMapY" : 39,
+		"type" : 4
 	},
 	"130" : 
 	{
@@ -847,9 +851,9 @@
 		"bPosY" : 7,
 		"imageKey" : "TechoTown_175",
 		"innerPocketMonCnt" : 0,
-		"nextMapName" : "RedHouse",
-		"nextMapX" : 5,
-		"nextMapY" : 3,
+		"nextMapName" : "RivalHouse",
+		"nextMapX" : 4,
+		"nextMapY" : 8,
 		"type" : 4
 	},
 	"175" : 
@@ -950,9 +954,9 @@
 		"bPosY" : 7,
 		"imageKey" : "TechoTown_184",
 		"innerPocketMonCnt" : 0,
-		"nextMapName" : "RedHouse",
-		"nextMapX" : 5,
-		"nextMapY" : 3,
+		"nextMapName" : "RedHouse1F",
+		"nextMapX" : 3,
+		"nextMapY" : 8,
 		"type" : 4
 	},
 	"184" : 
@@ -2567,9 +2571,9 @@
 		"bPosY" : 13,
 		"imageKey" : "TechoTown_329",
 		"innerPocketMonCnt" : 0,
-		"nextMapName" : "profOHouse",
-		"nextMapX" : 4,
-		"nextMapY" : 8,
+		"nextMapName" : "ProfOHouse",
+		"nextMapX" : 6,
+		"nextMapY" : 12,
 		"type" : 4
 	},
 	"329" : 

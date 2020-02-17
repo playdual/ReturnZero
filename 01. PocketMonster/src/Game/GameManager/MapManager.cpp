@@ -9,6 +9,11 @@ MapManager::~MapManager() {}
 void MapManager::init()
 {
 	addMap("TechoTown", "TechoTown");
+	addMap("RedHouse1F", "RedHouse1F");
+	addMap("RedHouse2F", "RedHouse2F");
+	addMap("RivalHouse", "RivalHouse");
+	addMap("ProfOHouse", "ProfOHouse");
+	addMap("Route01", "Route01");
 }
 
 void MapManager::release()

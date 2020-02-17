@@ -1,0 +1,1324 @@
+{
+	"0" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 0,
+		"imageKey" : "RivalHouse_1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"1" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 0,
+		"imageKey" : "RivalHouse_2",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"10" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 0,
+		"imageKey" : "RivalHouse_11",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"100" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 7,
+		"imageKey" : "RivalHouse_101",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"101" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 7,
+		"imageKey" : "RivalHouse_102",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"102" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 7,
+		"imageKey" : "RivalHouse_103",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"103" : 
+	{
+		"afterRenderImageKey" : "TreePotTop",
+		"bPosX" : 12,
+		"bPosY" : 7,
+		"imageKey" : "RivalHouse_104",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"104" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 8,
+		"imageKey" : "RivalHouse_105",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "TreePot",
+		"type" : 6
+	},
+	"105" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 8,
+		"imageKey" : "RivalHouse_106",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"106" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 8,
+		"imageKey" : "RivalHouse_107",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"107" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 8,
+		"imageKey" : "RivalHouse_108",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"108" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 8,
+		"imageKey" : "RivalHouse_109",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"109" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 8,
+		"imageKey" : "RivalHouse_110",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"11" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 0,
+		"imageKey" : "RivalHouse_12",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"110" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 8,
+		"imageKey" : "RivalHouse_111",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"111" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 8,
+		"imageKey" : "RivalHouse_112",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"112" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 8,
+		"imageKey" : "RivalHouse_113",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"113" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 8,
+		"imageKey" : "RivalHouse_114",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"114" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 8,
+		"imageKey" : "RivalHouse_115",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"115" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 8,
+		"imageKey" : "RivalHouse_116",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"116" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 8,
+		"imageKey" : "RivalHouse_117",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "TreePot",
+		"type" : 6
+	},
+	"117" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 9,
+		"imageKey" : "OutOfRange",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"118" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 9,
+		"imageKey" : "OutOfRange",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"119" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 9,
+		"imageKey" : "OutOfRange",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"12" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 0,
+		"imageKey" : "RivalHouse_13",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"120" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 9,
+		"imageKey" : "Carpet1",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"121" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 9,
+		"imageKey" : "Carpet2",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "TechoTown",
+		"nextMapX" : 6,
+		"nextMapY" : 8,
+		"type" : 4
+	},
+	"122" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 9,
+		"imageKey" : "Carpet3",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"123" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 9,
+		"imageKey" : "OutOfRange",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"124" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 9,
+		"imageKey" : "OutOfRange",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"125" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 9,
+		"imageKey" : "OutOfRange",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"126" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 9,
+		"imageKey" : "OutOfRange",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"127" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 9,
+		"imageKey" : "OutOfRange",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"128" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 9,
+		"imageKey" : "OutOfRange",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"129" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 9,
+		"imageKey" : "OutOfRange",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"13" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 1,
+		"imageKey" : "RivalHouse_14",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Sink",
+		"type" : 6
+	},
+	"14" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 1,
+		"imageKey" : "RivalHouse_15",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Sink",
+		"type" : 6
+	},
+	"15" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 1,
+		"imageKey" : "RivalHouse_16",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Window",
+		"type" : 6
+	},
+	"16" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 1,
+		"imageKey" : "RivalHouse_17",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Window",
+		"type" : 6
+	},
+	"17" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 1,
+		"imageKey" : "RivalHouse_18",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"18" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 1,
+		"imageKey" : "RivalHouse_19",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "TV",
+		"type" : 6
+	},
+	"19" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 1,
+		"imageKey" : "RivalHouse_20",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"2" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 0,
+		"imageKey" : "RivalHouse_3",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"20" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 1,
+		"imageKey" : "RivalHouse_21",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Window",
+		"type" : 6
+	},
+	"21" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 1,
+		"imageKey" : "RivalHouse_22",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"22" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 1,
+		"imageKey" : "RivalHouse_23",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "PictureFrame",
+		"type" : 6
+	},
+	"23" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 1,
+		"imageKey" : "RivalHouse_24",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"24" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 1,
+		"imageKey" : "RivalHouse_25",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "BookShelf",
+		"type" : 6
+	},
+	"25" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 1,
+		"imageKey" : "RivalHouse_26",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "BookShelf",
+		"type" : 6
+	},
+	"26" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 2,
+		"imageKey" : "RivalHouse_27",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"27" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 2,
+		"imageKey" : "RivalHouse_28",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"28" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 2,
+		"imageKey" : "RivalHouse_29",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"29" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 2,
+		"imageKey" : "RivalHouse_30",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"3" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 0,
+		"imageKey" : "RivalHouse_4",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"30" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 2,
+		"imageKey" : "RivalHouse_31",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"31" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 2,
+		"imageKey" : "RivalHouse_32",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"32" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 2,
+		"imageKey" : "RivalHouse_33",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"33" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 2,
+		"imageKey" : "RivalHouse_34",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"34" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 2,
+		"imageKey" : "RivalHouse_35",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"35" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 2,
+		"imageKey" : "RivalHouse_36",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"36" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 2,
+		"imageKey" : "RivalHouse_37",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"37" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 2,
+		"imageKey" : "RivalHouse_38",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"38" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 2,
+		"imageKey" : "RivalHouse_39",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"39" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 3,
+		"imageKey" : "RivalHouse_40",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"4" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 0,
+		"imageKey" : "RivalHouse_5",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"40" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 3,
+		"imageKey" : "RivalHouse_41",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"41" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 3,
+		"imageKey" : "RivalHouse_42",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"42" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 3,
+		"imageKey" : "RivalHouse_43",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"43" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 3,
+		"imageKey" : "RivalHouse_44",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"44" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 3,
+		"imageKey" : "RivalHouse_45",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"45" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 3,
+		"imageKey" : "RivalHouse_46",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"46" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 3,
+		"imageKey" : "RivalHouse_47",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"47" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 3,
+		"imageKey" : "RivalHouse_48",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"48" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 3,
+		"imageKey" : "RivalHouse_49",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"49" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 3,
+		"imageKey" : "RivalHouse_50",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"5" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 0,
+		"imageKey" : "RivalHouse_6",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"50" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 3,
+		"imageKey" : "RivalHouse_51",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"51" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 3,
+		"imageKey" : "RivalHouse_52",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"52" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 4,
+		"imageKey" : "RivalHouse_53",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"53" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 4,
+		"imageKey" : "RivalHouse_54",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"54" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 4,
+		"imageKey" : "RivalHouse_55",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"55" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 4,
+		"imageKey" : "RivalHouse_56",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"56" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 4,
+		"imageKey" : "RivalHouse_57",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"57" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 4,
+		"imageKey" : "RivalHouse_58",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"58" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 4,
+		"imageKey" : "RivalHouse_59",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Table",
+		"type" : 6
+	},
+	"59" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 4,
+		"imageKey" : "RivalHouse_60",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Table",
+		"type" : 6
+	},
+	"6" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 0,
+		"imageKey" : "RivalHouse_7",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"60" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 4,
+		"imageKey" : "RivalHouse_61",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"61" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 4,
+		"imageKey" : "RivalHouse_62",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"62" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 4,
+		"imageKey" : "RivalHouse_63",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"63" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 4,
+		"imageKey" : "RivalHouse_64",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"64" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 4,
+		"imageKey" : "RivalHouse_65",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"65" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 5,
+		"imageKey" : "RivalHouse_66",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"66" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 5,
+		"imageKey" : "RivalHouse_67",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"67" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 5,
+		"imageKey" : "RivalHouse_68",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"68" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 5,
+		"imageKey" : "RivalHouse_69",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"69" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 5,
+		"imageKey" : "RivalHouse_70",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"7" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 0,
+		"imageKey" : "RivalHouse_8",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"70" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 5,
+		"imageKey" : "RivalHouse_71",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"71" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 5,
+		"imageKey" : "RivalHouse_72",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Table",
+		"type" : 6
+	},
+	"72" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 5,
+		"imageKey" : "RivalHouse_73",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"objName" : "Table",
+		"type" : 6
+	},
+	"73" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 5,
+		"imageKey" : "RivalHouse_74",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"74" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 5,
+		"imageKey" : "RivalHouse_75",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"75" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 5,
+		"imageKey" : "RivalHouse_76",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"76" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 5,
+		"imageKey" : "RivalHouse_77",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"77" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 5,
+		"imageKey" : "RivalHouse_78",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"78" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 0,
+		"bPosY" : 6,
+		"imageKey" : "RivalHouse_79",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"79" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 6,
+		"imageKey" : "RivalHouse_80",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"8" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 0,
+		"imageKey" : "RivalHouse_9",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"80" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 6,
+		"imageKey" : "RivalHouse_81",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"81" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 6,
+		"imageKey" : "RivalHouse_82",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"82" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 6,
+		"imageKey" : "RivalHouse_83",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"83" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 6,
+		"imageKey" : "RivalHouse_84",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"84" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 6,
+		"imageKey" : "RivalHouse_85",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"85" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 6,
+		"imageKey" : "RivalHouse_86",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"86" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 6,
+		"imageKey" : "RivalHouse_87",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"87" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 6,
+		"imageKey" : "RivalHouse_88",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"88" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 10,
+		"bPosY" : 6,
+		"imageKey" : "RivalHouse_89",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"89" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 11,
+		"bPosY" : 6,
+		"imageKey" : "RivalHouse_90",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"9" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 9,
+		"bPosY" : 0,
+		"imageKey" : "RivalHouse_10",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 5
+	},
+	"90" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 12,
+		"bPosY" : 6,
+		"imageKey" : "RivalHouse_91",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"91" : 
+	{
+		"afterRenderImageKey" : "TreePotTop",
+		"bPosX" : 0,
+		"bPosY" : 7,
+		"imageKey" : "RivalHouse_92",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"92" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 1,
+		"bPosY" : 7,
+		"imageKey" : "RivalHouse_93",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"93" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 2,
+		"bPosY" : 7,
+		"imageKey" : "RivalHouse_94",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"94" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 3,
+		"bPosY" : 7,
+		"imageKey" : "RivalHouse_95",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"95" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 4,
+		"bPosY" : 7,
+		"imageKey" : "RivalHouse_96",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"96" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 5,
+		"bPosY" : 7,
+		"imageKey" : "RivalHouse_97",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"97" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 6,
+		"bPosY" : 7,
+		"imageKey" : "RivalHouse_98",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"98" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 7,
+		"bPosY" : 7,
+		"imageKey" : "RivalHouse_99",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"99" : 
+	{
+		"afterRenderImageKey" : "",
+		"bPosX" : 8,
+		"bPosY" : 7,
+		"imageKey" : "RivalHouse_100",
+		"innerPocketMonCnt" : 0,
+		"nextMapName" : "",
+		"type" : 0
+	},
+	"mapHeight" : 10,
+	"mapName" : "RivalHouse",
+	"mapWidth" : 13,
+	"startX" : -842150451,
+	"startY" : -842150451
+}
