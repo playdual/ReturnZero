@@ -4,6 +4,11 @@
 #include "Game/GameManager/ItemManager.h"
 #include "Game/GameObject/Character/player.h"
 
+enum SHOPITEM
+{
+	MONSTERBALL = 0 , MEDICINE , GOODMEDICINE , LEVELUPCANDY , CLOSE
+};
+
 enum SHOPMAINMENU
 {
 	FIRSTMENU = 0 ,BUYITEM , SELLITEM ,  NOTHING
@@ -31,11 +36,6 @@ public:
 	void buyRender(HDC hdc);
 	void sellRender(HDC hdc);
 	void quitRender(HDC hdc);
-	void currentPointerCount();  // 화살표 방향 카운트 처리 함수
-	//void textPrint(HDC hdc, int _pastTime , int _deltaTime , std::string _printText , std::string _wantString , int _addCharDelay ,bool _printComplete );
-	/*void inOderText(std::string _printText , std::string _wantText ,int _indexNum, bool _printComplete ,
-		float _addCharDelay , float _pastTime , int _textIndex , int _prinStrLength);*/
-	void NpcTalkVowel();
 
 	void printTextConsequentlyFirst(HDC hdc, std::string _wantText, int _destX, int _destY);
 	void printTextConsequentlySecond(HDC hdc, std::string _wantText, int _destX, int _destY);
@@ -44,7 +44,9 @@ public:
 private:
 	std::shared_ptr<Inventory> m_inven;
 	std::vector<std::shared_ptr<Item>> m_shopItem;
+	std::shared_ptr<player> m_player;
 	SHOPMAINMENU shopMainMenu;
+	SHOPITEM m_shopBuyItem;
 
 	//이미지 리소스
 	Image* m_friendlyShop;
@@ -53,7 +55,11 @@ private:
 	Image* m_shopMainMenu;
 	Image* m_shopItemListMenu;
 	Image* m_currentPoint;
+	Image* m_shopBuyItemBottom;
+	Image* m_frinedlyShopBlowUp;
 	
+	// shop에 처음 들어왔을때
+	bool m_ShopIn;
 	// shop처음 충돌처리 대화
 	bool m_isFirstTalk;
 
@@ -64,6 +70,10 @@ private:
 
 	// shop 사러왔음 ( 그만둔다 -> 보여주는 대화상자)
 	bool m_isShowOutTalk; 
+
+	// shop 에서 Item을 살때
+	int m_ItemListNum;
+
 
 	// 인벤에 있는 아이템 팔때 
 	bool m_isSellChoiceItem;
@@ -109,7 +119,6 @@ private:
 	std::string m_printStr;
 
 private:
-	std::vector<std::string> talk;
-	void talkCount();
+	std::vector<std::string> talk; 
 };
 
