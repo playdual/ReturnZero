@@ -107,7 +107,7 @@ bool PocketmoninfoScene::init(void* _info, bool isOnbattle)
 	init();
 	m_isOnbattle = isOnbattle;
 
-	if (_info != nullptr)
+	/*if (_info != nullptr)
 	{
 		int infoType = *(int*)_info;
 		switch (infoType)
@@ -118,8 +118,13 @@ bool PocketmoninfoScene::init(void* _info, bool isOnbattle)
 		default:
 			break;
 		}
-	}
+	}*/
 	return true;
+}
+
+bool PocketmoninfoScene::init(void * _info, bool isOnBattleScene)
+{
+	return false;
 }
 
 

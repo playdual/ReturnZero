@@ -52,7 +52,7 @@
 #define P1_A            8
 #define P1_Q			9
 #define P1_P			10
-
+#define P1_T			11
 
 #define GAME_MENUPROTO	45
 #define GAME_CHANGEMAP  46

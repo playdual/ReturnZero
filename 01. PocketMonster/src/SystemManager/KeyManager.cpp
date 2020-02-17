@@ -30,6 +30,7 @@ HRESULT KeyManager::init()
 	playerKey[P1_A] = 'A';
 	playerKey[P1_Q] = 'Q';
 	playerKey[P1_P] = 'P';
+	playerKey[P1_T] = 'T';
 
 
 	playerKey[GAME_MENUPROTO] = 'C';

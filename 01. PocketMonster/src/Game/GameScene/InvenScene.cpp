@@ -748,7 +748,6 @@ void InvenScene::render(HDC hdc)
 					m_currentPointer->render(hdc, WINSIZEX / 2 + 230, WINSIZEY / 2 + 210 + (pointerCount * 75));
 					item++;
 
-
 					break;
 				}
 				else item++;

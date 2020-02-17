@@ -5,6 +5,7 @@
 #include "GameScene/BattleScene.h"
 #include "GameScene/InvenScene.h"
 #include "GameObject/Items/Inventory.h"
+#include "Game/GameObject/shop/shopScene.h"
 
 MainGame::MainGame()
 { 
@@ -62,6 +63,14 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("배틀씬인벤메뉴", "Images/menu.bmp", 63 * 5, 68 * 3, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("인벤메뉴상세", "Images/invenMenuBottom.bmp", 182 * 3, 29 * 7, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("playerimg", "images/newPlayer2.bmp", 64 * 4, 440, 4, 5, true, RGB(255, 0, 255));
+	
+	// shopImages
+	IMAGEMANAGER->addImage("프랜들리샵", "Images/friendShop.bmp", 176 * 4, 132 * 4, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("상점NPC대화상자", "Images/talkBox.bmp", 246 * 4, 46 * 4, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("상점메인메뉴", "Images/menu.bmp", 63 * 3, 63 * 3, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("상점돈상태창", "Images/invenMenuBottom.bmp", 182 * 2, 29 * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("상점아이템메뉴리스트", "Images/shopBuyIItemList.bmp", 446, 323, true, RGB(255, 0, 255));
+
 
 	//pocketmon Img
 	IMAGEMANAGER->addImage("CharmanderFront",		"images/pocketmons/CharmanderFront.bmp", 100*2, 100 * 2, true, RGB(255, 0, 255));
@@ -176,6 +185,7 @@ HRESULT MainGame::init()
 	SCENEMANAGER->addScene("town", new TownScene);
 	SCENEMANAGER->addScene("battle", new BattleScene);
 	SCENEMANAGER->addScene("inven", new InvenScene(inven));
+	SCENEMANAGER->addScene("friendlyShop", new shopScene(inven));
 	SCENEMANAGER->scenePush("town");
 	sceneInit = true;
 

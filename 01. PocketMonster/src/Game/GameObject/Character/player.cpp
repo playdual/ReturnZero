@@ -21,8 +21,6 @@ bool player::init()
 	bgX = 0;
 	bgY = 0;
 
-
-
 	//player img
 	m_playerImg = IMAGEMANAGER->findImage("playerimg");
 
@@ -371,6 +369,12 @@ void player::update(float _deltaTime)
 
 	}
 	CAMERAMANAGER->update();
+	
+	// 샵 임시작업 연동키 T ( 유영환 )
+	if (KEYMANAGER->isOnceKeyDown(P1_T))
+	{
+		SCENEMANAGER->scenePush("friendlyShop");
+	}
 }
 
 void player::render(HDC hdc)
