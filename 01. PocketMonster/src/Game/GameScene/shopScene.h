@@ -32,6 +32,14 @@ public:
 	void sellRender(HDC hdc);
 	void quitRender(HDC hdc);
 	void currentPointerCount();  // 화살표 방향 카운트 처리 함수
+	//void textPrint(HDC hdc, int _pastTime , int _deltaTime , std::string _printText , std::string _wantString , int _addCharDelay ,bool _printComplete );
+	/*void inOderText(std::string _printText , std::string _wantText ,int _indexNum, bool _printComplete ,
+		float _addCharDelay , float _pastTime , int _textIndex , int _prinStrLength);*/
+	void NpcTalkVowel();
+
+	void printTextConsequentlyFirst(HDC hdc, std::string _wantText, int _destX, int _destY);
+	void printTextConsequentlySecond(HDC hdc, std::string _wantText, int _destX, int _destY);
+	void resetPrintText();
 
 private:
 	std::shared_ptr<Inventory> m_inven;
@@ -66,11 +74,29 @@ private:
 	int m_pointerCount;
 
 	// 스트링형태를 char 형으로 하나씩 받아 한글자씩 보여주기 위해
-	char m_stringInput[100];  
-	int m_charCount;
+	int		 m_charCount;
+	bool     m_startTime;
+	bool	 m_nextTalk;
+	int		 m_count;
+	int		 m_forCount;
+
+	//문자열을 순차척으로 출력하기 위한 변수
+	float addCharDelay = 0.1f;
+	float pastTime = 0.f;
+	int printStrLength;
+	int firstTextIndex = 0;
+	int secondTextIndex = 0;
+
+	bool printFirstComplete = false;
+	bool printSecondComplete = false;
+	std::string printText[2] = { "", };
+	float m_deltaTime;
+
+	int wellcomeShopStrIndex = 0;
+	int textCount = 0;
 
 	// 대사 모음
-	std::string m_wellomeShop[2] = { "어서 오세요!" , "무엇을 도와 드릴까요?" }; // 처음에 npc와 충돌처리 났을 때
+	std::string m_wellomeShop[2] = { "WellCOME!" , "무엇을 도와 드릴까요?" }; // 처음에 npc와 충돌처리 났을 때
 	std::string m_otherHelpShop[2] = { "그 밖에 저희가 " ,"뭐 도와드릴 건 없습니까?" }; // 그만둔다 했을때
 	std::string m_menu[3] = { "사러 왔다" , "팔러 왔다" , "아닙니다" };  // 메인메뉴 
 	std::string m_sellItemCheck[4] = { "파시겠습니까?","입니다" , "을 ", " 원 에 팔았다!" }; //물건을 샀을때 
@@ -80,6 +106,10 @@ private:
 	std::string m_select[2] = { "예" , "아니오" }; // 구매하시겠습니까? 답변
 	std::string m_outShop = { "또 오세요!" };  // 메인메뉴에서 아닙니다.일때
 	std::string m_money[2] = { "돈" , "원" };
+	std::string m_printStr;
 
+private:
+	std::vector<std::string> talk;
+	void talkCount();
 };
 

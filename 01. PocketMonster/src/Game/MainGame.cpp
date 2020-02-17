@@ -5,7 +5,7 @@
 #include "GameScene/BattleScene.h"
 #include "GameScene/InvenScene.h"
 #include "GameObject/Items/Inventory.h"
-#include "Game/GameObject/shop/shopScene.h"
+#include "Game/GameScene/shopScene.h"
 
 MainGame::MainGame()
 { 
@@ -200,6 +200,8 @@ HRESULT MainGame::init()
 	ANIMANAGER->addDefAnimation("trainerThrowBallAni", "trainerThrowBall", 5, false, false);
 	//IMAGEMANAGER->addFrameImage("trainerThrowBall", "images/Trainers/trainerThrowBall.bmp", 320, 64, 5, 1, true, RGB(255, 0, 255));
 	//ANIMANAGER->addDefAnimation("trainerThrowBallAni", "trainerThrowBall", 2, false, false);
+	/*IMAGEMANAGER->addFrameImage("trainerThrowBall", "images/Trainers/trainerThrowBall.bmp", 320, 64, 5, 1, true, RGB(255, 0, 255));
+	ANIMANAGER->addDefAnimation("trainerThrowBallAni", "trainerThrowBall", 2, false, false);*/
 	
 	IMAGEMANAGER->addFrameImage("throwBall", "Images/BattleUi/throwBall.bmp", 1888, 341, 8, 1, true, RGB(255, 0, 255));
 	ANIMANAGER->addDefAnimation("throwBallAni", "throwBall", 5, false, false);

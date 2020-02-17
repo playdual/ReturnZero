@@ -485,7 +485,7 @@ namespace UTIL
 		TextOut(_hdc, _destX, _destY, _str, len);
 		SelectObject(_hdc, oldFont);
 
-		DeleteObject(curFont);
+ 		DeleteObject(curFont);
 		if (_fontColor != RGB(0, 0, 0))
 			SetTextColor(_hdc, oldFontColor);
 		if (_bgColor != RGB(255, 255, 255))
