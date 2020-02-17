@@ -15,6 +15,7 @@
 #define ENEMYPOCKETMONX 664
 #define ENEMYSTATUSX 55
 
+
 class player;
 class PocketMon;
 class BattleScene
@@ -47,6 +48,7 @@ public:
 	void playerPocketmonLoseAni(HDC hdc);
 	void playerLoseAni(HDC hdc);
 
+
 	//포켓몬 공격 및 피격 이팩트 관련
 	void pocketmonEffectInit();
 	bool playerSkillEffectAssemble(std::string _skillName, HDC hdc);
@@ -74,6 +76,7 @@ public:
 	void playerUiCurrentHp(HDC hdc, int _y);
 	void playerUiMaxExp(HDC hdc, int _y);
 	void plyaerUiCurrentExp(HDC hdc, int _y);
+	void playerPocketmonLevelUp(HDC hdc);
 	int checkHpBarWigth();
 	int checkExpBarWigth();
 	bool checkPossiblePocketmon();
@@ -89,6 +92,7 @@ public:
 	void selectRect(HDC hdc);
 	void skillSelectRect(HDC hdc);
 	void playerPocketmonChange();
+	void playerPocketmonGetNewSkill(HDC hdc);
 
 	//행동선택관련
 	void moveButton();
@@ -116,7 +120,7 @@ public:
 	//스킬 이팩트 모듬
 	//플레이어	
 	void tackleProto(std::string _skillName, HDC hdc);
-	void emberProto(std::string _skillName, HDC hdc);
+	void skillEmberProto(std::string _skillName, HDC hdc);
 	void flameThrowerProto(std::string _skillName, HDC hdc);
 	void fireBlastProto(std::string _skillName, HDC hdc);
 
@@ -185,6 +189,8 @@ private:
 	UTIL::IRECT m_playerMaxExp;
 	//플레이어 현재경험치
 	UTIL::IRECT m_playerCurrentExp;
+	//플레이어 렙업시 증가 능력창 보여주는 창
+	UTIL::IRECT m_playerPocketmonLevelUpRect;
 
 	//스킬 이펙트
 	UTIL::IRECT m_playerAtkSkillEffect;
@@ -206,6 +212,12 @@ private:
 	bool uiObjectRegularPosition;
 	bool playerImgSlideOut;
 	bool explainEnemyName;
+
+	Image* m_trainerThrowBall;
+	Animation * m_trainerThrowBallAni;
+	Image* m_throwBall;
+	Animation * m_throwBallAni;
+
 	//적	 UI
 	int m_enemyBottomX;
 	int m_enemyPocketmonX;
@@ -214,6 +226,8 @@ private:
 	int m_enemyHpX;
 	int m_wildPocketmonHpBarWigth;
 	//플레이어 UI
+	bool trainerAni;
+	bool playerImgSlideOutOn;
 	int m_playerBottomX;
 	int m_playerimgX;
 	int m_playerPocketmonX;
@@ -252,7 +266,7 @@ private:
 	//플레이어 대기상태 모션
 	bool motionUp;
 
-	//공격 이팩트 및 피격효과 구현
+	//공격 이팩트 및 효과 구현
 	//플레이어측
 	bool playerAtkSkillOn;
 	bool playerSkillMotionOn; 
@@ -266,6 +280,7 @@ private:
 	bool battleEnd;
 	bool attributeOn;
 	bool plusAttribute;
+	
 
 	int m_skillCount;
 	int m_enemyTwinkleCount;
@@ -303,8 +318,22 @@ private:
 	bool playerLose;
 	bool enemyLose;
 	bool emptyBattlePocketmon;
+	bool playerPocketmonLevelUpOn;
+	bool playerPocketmonStatusPulsOn;
+	bool checkSkillGet;
+	bool pushBackSkill;
+	bool getSkillDone;
+	
 	int m_loseAniCount;
 	int playerPocketmonsNumber;
+	int m_levelUpCount;
+
+	int tempHp;
+	int tempAtk;
+	int tempDef;
+	int tempSpecialAtk;
+	int tempSpecialDef;
+	int tempSpeed;
 	
 
 

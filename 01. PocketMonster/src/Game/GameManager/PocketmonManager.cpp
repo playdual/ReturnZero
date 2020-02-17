@@ -93,6 +93,7 @@ PocketMon PocketmonManager::genPocketMon(std::string _name, int level)
 PocketMon PocketmonManager::genCharmander(int level)
 {
 	PocketMon pocket;
+	pocket.m_EnglishName = "Charmander";
 	pocket.m_name = "파이리";
 	pocket.m_customName = "";
 	pocket.m_level = level;
@@ -124,6 +125,7 @@ PocketMon PocketmonManager::genCharmander(int level)
 PocketMon PocketmonManager::genBulbasaur(int level)
 {
 	PocketMon pocket;
+	pocket.m_EnglishName = "Bulbasaur";
 	pocket.m_name = "이상해씨";
 	pocket.m_customName = "";
 	pocket.m_level = level;
@@ -154,6 +156,7 @@ PocketMon PocketmonManager::genBulbasaur(int level)
 PocketMon PocketmonManager::genSquirtle(int level)
 {
 	PocketMon pocket;
+	pocket.m_EnglishName = "Squirtle";
 	pocket.m_name = "꼬부기";
 	pocket.m_customName = "";
 	pocket.m_level = level;
@@ -184,6 +187,7 @@ PocketMon PocketmonManager::genSquirtle(int level)
 PocketMon PocketmonManager::genPidgey(int level)
 {
 	PocketMon pocket;
+	pocket.m_EnglishName = "Pidgey";
 	pocket.m_name = "구구";
 	pocket.m_customName = "";
 	pocket.m_level = level;
@@ -215,6 +219,7 @@ PocketMon PocketmonManager::genPidgey(int level)
 PocketMon PocketmonManager::genPikachu(int level)
 {
 	PocketMon pocket;
+	pocket.m_EnglishName = "Pikachu";
 	pocket.m_name = "피카츄";
 	pocket.m_customName = "";
 	pocket.m_level = level;
@@ -247,6 +252,7 @@ PocketMon PocketmonManager::genPikachu(int level)
 PocketMon PocketmonManager::genCaterpie(int level)
 {
 	PocketMon pocket;
+	pocket.m_EnglishName = "Caterpie";
 	pocket.m_name = "캐터피";
 	pocket.m_customName = "";
 	pocket.m_level = level;
@@ -280,6 +286,7 @@ PocketMon PocketmonManager::genCaterpie(int level)
 PocketMon PocketmonManager::genRattata(int level)
 {
 	PocketMon pocket;
+	pocket.m_EnglishName = "Rattata";
 	pocket.m_name = "꼬렛";
 	pocket.m_customName = "";
 	pocket.m_level = level;
@@ -313,6 +320,7 @@ PocketMon PocketmonManager::genRattata(int level)
 PocketMon PocketmonManager::genVulpix(int level)
 {
 	PocketMon pocket;
+	pocket.m_EnglishName = "Vulpix";
 	pocket.m_name = "식스테일";
 	pocket.m_customName = "";
 	pocket.m_level = level;
@@ -344,6 +352,7 @@ PocketMon PocketmonManager::genVulpix(int level)
 PocketMon PocketmonManager::genOddish(int level)
 {
 	PocketMon pocket;
+	pocket.m_EnglishName = "Oddish";
 	pocket.m_name = "뚜벅초";
 	pocket.m_customName = "";
 	pocket.m_level = level;
@@ -375,6 +384,7 @@ PocketMon PocketmonManager::genOddish(int level)
 PocketMon PocketmonManager::genPoliwag(int level)
 {
 	PocketMon pocket;
+	pocket.m_EnglishName = "Poliwag";
 	pocket.m_name = "발챙이";
 	pocket.m_customName = "";
 	pocket.m_level = level;

@@ -106,6 +106,12 @@ void AnimationManager::resume(std::string animationKeyName)
 	anime->second->resume();
 }
 
+bool AnimationManager::isPlay(std::string animationKeyName)
+{
+	auto anime = _animation.find(animationKeyName);
+	return anime->second->isPlay();
+}
+
 Animation * AnimationManager::findAnimation(std::string animationKeyName)
 {
 	auto anime = _animation.find(animationKeyName);

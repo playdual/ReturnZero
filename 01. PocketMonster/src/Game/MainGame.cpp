@@ -185,9 +185,15 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("currentExp", "images/BattleUi/currentExp.bmp",	    0, 0, 7*4+246, 2*4+1, true, RGB(255, 0, 255));	
 	IMAGEMANAGER->addImage("greenHpBar", "images/BattleUi/greenHpBar.bmp",	    0, 0, 9*3+246, 3*5, true, RGB(255, 0, 255));	
 	
+	IMAGEMANAGER->addFrameImage("trainerThrowBall", "Images/Trainers/trainersThrowBall.bmp", 320+5*140, 64*3+18, 5, 1, true, RGB(255, 0, 255));
+	ANIMANAGER->addDefAnimation("trainerThrowBallAni", "trainerThrowBall", 5, false, false);
 	//IMAGEMANAGER->addFrameImage("trainerThrowBall", "images/Trainers/trainerThrowBall.bmp", 320, 64, 5, 1, true, RGB(255, 0, 255));
 	//ANIMANAGER->addDefAnimation("trainerThrowBallAni", "trainerThrowBall", 2, false, false);
 	
+	IMAGEMANAGER->addFrameImage("throwBall", "Images/BattleUi/throwBall.bmp", 1888, 341, 8, 1, true, RGB(255, 0, 255));
+	ANIMANAGER->addDefAnimation("throwBallAni", "throwBall", 5, false, false);
+
+
 	//
 	MAPMANGER->init();
 	ITEMMANAGER->init();
@@ -207,7 +213,7 @@ HRESULT MainGame::init()
 	sceneInit = true;
 
 	//now! our First Sound!
-	//SOUNDMANAGER->playSound("NewBarkTown", Channel::eChannelBgm);
+	SOUNDMANAGER->playSound("NewBarkTown", Channel::eChannelBgm);
 	
 	return S_OK;
 }
@@ -232,11 +238,12 @@ void MainGame::update()
 		m_showRect = !m_showRect;
 	if (KEYMANAGER->isOnceKeyDown(GAME_SHOWFPS))
 		m_showFPS = !m_showFPS;
-
+	
 	TIMEMANAGER->update(60.f);
 	deltaTime = TIMEMANAGER->getElapsedTime();
 	EFFECTMANAGER->update();
 	SCENEMANAGER->update(deltaTime);	ANIMANAGER->update(deltaTime);
+	
 }
 
 void MainGame::render()

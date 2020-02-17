@@ -20,6 +20,8 @@ public:
 	void setFPS(float framePerSec);
 	//프레임 업데이트 타임
 	void frameUpdate(float elapsedTime);
+	//프레임이 다 돌아갔는지을 확인
+	//bool isDone()
 
 public:
 	void start();

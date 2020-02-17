@@ -25,6 +25,9 @@ public:
 	void pause(std::string animationKeyName);
 	void resume(std::string animationKeyName);
 
+public:
+	bool isPlay(std::string animationKeyName);
+
 private:
 	typedef std::map<std::string, Animation*> arrAnimation;
 	arrAnimation _animation;

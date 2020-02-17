@@ -8,6 +8,7 @@ PocketMon::PocketMon()
 PocketMon::PocketMon(const PocketMon& _pocket)
 {
 	m_state = _pocket.m_state;
+	m_EnglishName = _pocket.m_EnglishName;
 	m_name = _pocket.m_name;
 	m_customName = _pocket.m_customName;
 	m_level = _pocket.m_level;

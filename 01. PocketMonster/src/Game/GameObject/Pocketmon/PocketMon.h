@@ -26,6 +26,7 @@ public:
 	Image* m_pocketmonFrontImg;
 	Image* m_pocketmonBackImg;
 	Image* m_pocketmonIconImg;
+	std::string m_EnglishName;
 	std::string m_name;
 	std::string m_customName;
 	PockemonAttibute m_Attribute;
@@ -41,5 +42,7 @@ public:
 	int m_maxExp;
 	int m_currentExp;
 	int m_wildExp;
+
+
 	std::vector<PocketSkill> skillList;	//MaxSize4
 };
