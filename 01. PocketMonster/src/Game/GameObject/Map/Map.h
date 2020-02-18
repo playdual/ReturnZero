@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "Tile.h"
+#include "Game/GameObject/Character/NPC.h"
 
 class Map
 {
@@ -18,7 +19,7 @@ public:
 	int getStartPositionX() { return m_playerStartPositionX; }
 	int getStartPositionY() { return m_playerStartPositionY; }
 	void setisAfter(bool isAfterValue) { isAfter = isAfterValue; }
-
+	void addNPC(std::shared_ptr<NPC> _npc) { m_NPCs.push_back(_npc); }
 
 public:
 	void render(HDC hdc);
@@ -38,6 +39,8 @@ private:
 
 	bool isAfter=true;
 	std::vector<Tile> m_tiles;
+	std::vector<std::shared_ptr<NPC>> m_NPCs;
+
 	//tilesVector
 	friend class JsonRWManager;
 	friend class MapManager;

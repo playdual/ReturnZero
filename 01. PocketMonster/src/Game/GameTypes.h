@@ -52,8 +52,8 @@ enum class ItemType
 
 enum Direction
 {
-	DirectionUp,
 	DirectionDown,
+	DirectionUp,
 	DirectionLeft,
 	DirectionRight
 };

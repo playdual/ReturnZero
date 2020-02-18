@@ -224,8 +224,6 @@ void shopScene::buyRender(HDC hdc)
 	default:
 		break;
 	}
-
-
 }
 
 void shopScene::sellRender(HDC hdc)

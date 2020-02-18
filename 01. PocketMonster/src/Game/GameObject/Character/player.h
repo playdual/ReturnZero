@@ -21,7 +21,7 @@ public:
 	void debugRender(HDC hdc) override;
 
 	void OnObjectEvent();
-	void ObjectHandle(std::string objName, Direction direction);
+	void ObjectHandle(std::string objName);
 	int getPlayRectX();
 	int getPlayRectY();
 	int getPlayerBlockX() { return m_blockPositionX; }
@@ -39,6 +39,7 @@ public:
 	std::vector<std::shared_ptr<class PocketMon>>& getPocketmons() { return Pocketmons; }
 	void setisMenu(bool ismenuvalue);
 	int getCountPocketMon() { return Pocketmons.size(); }
+	void checkAndActivateNPC();
 
 	void setMoney(int moneyValue) { m_money = moneyValue; }
 	int getMoney() { return m_money; }
@@ -78,6 +79,7 @@ private:
 	bool isRight = false;
 	bool isUp = false;
 	bool isDown = false;
+	Direction curDir;
 
 	bool isAfter = true;
 

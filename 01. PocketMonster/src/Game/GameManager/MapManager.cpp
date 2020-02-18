@@ -12,6 +12,7 @@ void MapManager::init()
 	addMap("RedHouse1F", "RedHouse1F");
 	addMap("RedHouse2F", "RedHouse2F");
 	addMap("RivalHouse", "RivalHouse");
+	findMap("RivalHouse")->addNPC(std::make_shared<NPC>(5, 4, "GrandFather"));
 	addMap("ProfOHouse", "ProfOHouse");
 	addMap("Route01", "Route01");
 }
@@ -49,4 +50,28 @@ TileType MapManager::getTileTypeFromIndex(int _x, int _y)
 std::string MapManager::getObjectNameFromIndex(int _x, int _y)
 {
 	return curMap->m_tiles[_x + _y * curMap->m_width].objName;
+}
+
+std::string MapManager::getNPCName(int _x, int _y)
+{
+	auto& NPCs = curMap->m_NPCs;
+
+	for (auto& npc : NPCs) 
+	{
+		if (npc->m_blockPositionX == _x && npc->m_blockPositionY == _y) 
+		{
+			return npc->m_Name;
+		}
+	}
+	return "";
+}
+
+std::string MapManager::ActivateNPC(std::string _name, Direction _dir)
+{
+	auto& NPCs = curMap->m_NPCs;
+	for (auto& npc : NPCs) {
+		if(npc->m_Name == _name)
+			npc->activateNPC(_dir);
+	}
+	return std::string();
 }

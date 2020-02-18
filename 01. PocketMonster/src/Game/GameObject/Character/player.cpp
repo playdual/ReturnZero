@@ -53,6 +53,7 @@ bool player::init()
 
 	//player Base Arrow(Start)
 	isDown = true;
+	curDir = DirectionDown;
 
 	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Rattata", 30)));
 	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Squirtle", 31)));
@@ -67,6 +68,8 @@ bool player::init()
 
 void player::moveLogic()
 {
+
+	static std::string npcName;
 	//Move left
 	if (isMoveLeft)
 	{
@@ -95,7 +98,6 @@ void player::moveLogic()
 			isAnotherMove = false;
 			m_blockPositionX -= 1;
 			isMoveLeft = false;
-
 		}
 	}
 	if (KEYMANAGER->isOnceKeyDown(P1_LEFT) && m_playerBeforeArrowMemory != 2)
@@ -105,7 +107,7 @@ void player::moveLogic()
 		isRight = false;
 		isUp = false;
 		isDown = false;
-
+		curDir = DirectionLeft;
 		m_CurrentTime = 0;
 
 	}
@@ -115,17 +117,20 @@ void player::moveLogic()
 		if (m_playerBeforeArrowMemory == 2 && m_playerCurrentArrowMemory == 2)
 		{
 			TileType type = MAPMANGER->getTileTypeFromIndex(m_blockPositionX - 1, m_blockPositionY);
-			if (type == TileType::TileTypeFloor || type == TileType::TileTypeNextMap || type == TileType::TileTypeBush)
+			npcName = MAPMANGER->getNPCName(m_blockPositionX - 1, m_blockPositionY);
+			if ((type == TileType::TileTypeFloor || type == TileType::TileTypeNextMap 
+				|| type == TileType::TileTypeBush) && npcName == "")
 			{
 				isLeft = false;
 				m_playerRectMemory = m_playerRect.left;
 				isAnotherMove = true;
 				isMoveLeft = true;
 				isMoveLeftTest = true;
+				curDir = DirectionLeft;
 			}
 			else if (type == TileType::TileTypeObject)
 			{
-				ObjectHandle(MAPMANGER->getObjectNameFromIndex(m_blockPositionX - 1, m_blockPositionY), DirectionLeft);
+				ObjectHandle(MAPMANGER->getObjectNameFromIndex(m_blockPositionX - 1, m_blockPositionY));
 			}
 		}
 	}
@@ -169,7 +174,7 @@ void player::moveLogic()
 		isUp = false;
 		isDown = false;
 		m_CurrentTime = 0;
-
+		curDir = DirectionRight;
 	}
 	else if (KEYMANAGER->isStayKeyDown(P1_RIGHT) && !isMoveRight && !isAnotherMove && m_CurrentTime > 0.2f)
 	{
@@ -179,17 +184,19 @@ void player::moveLogic()
 		if (m_playerBeforeArrowMemory == 3 && m_playerCurrentArrowMemory == 3)
 		{
 			TileType type = MAPMANGER->getTileTypeFromIndex(m_blockPositionX + 1, m_blockPositionY);
-			if (type == TileType::TileTypeFloor || type == TileType::TileTypeNextMap || type == TileType::TileTypeBush)
+			npcName = MAPMANGER->getNPCName(m_blockPositionX + 1, m_blockPositionY);
+			if ((type == TileType::TileTypeFloor || type == TileType::TileTypeNextMap
+				|| type == TileType::TileTypeBush) && npcName == "")
 			{
 				isRight = false;
 				m_playerRectMemory = m_playerRect.right;
 				isAnotherMove = true;
 				isMoveRight = true;
-
+				curDir = DirectionRight;
 			}
 			else if (type == TileType::TileTypeObject)
 			{
-				ObjectHandle(MAPMANGER->getObjectNameFromIndex(m_blockPositionX + 1, m_blockPositionY), DirectionRight);
+				ObjectHandle(MAPMANGER->getObjectNameFromIndex(m_blockPositionX + 1, m_blockPositionY));
 			}
 		}
 	}
@@ -221,7 +228,6 @@ void player::moveLogic()
 			m_blockPositionY -= 1;
 			isAnotherMove = false;
 			isMoveUp = false;
-
 		}
 	}
 	if (KEYMANAGER->isOnceKeyDown(P1_UP) && m_playerBeforeArrowMemory != 1)
@@ -231,6 +237,7 @@ void player::moveLogic()
 		isRight = false;
 		isUp = true;
 		isDown = false;
+		curDir = DirectionUp;
 		m_CurrentTime = 0;
 	}
 	else if (KEYMANAGER->isStayKeyDown(P1_UP) && !isMoveUp && !isAnotherMove && m_CurrentTime > 0.2f)
@@ -241,16 +248,19 @@ void player::moveLogic()
 		if (m_playerBeforeArrowMemory == 1 && m_playerCurrentArrowMemory == 1)
 		{
 			TileType type = MAPMANGER->getTileTypeFromIndex(m_blockPositionX , m_blockPositionY - 1);
-			if (type == TileType::TileTypeFloor || type == TileType::TileTypeNextMap || type == TileType::TileTypeBush)
+			npcName = MAPMANGER->getNPCName(m_blockPositionX, m_blockPositionY - 1);
+			if ((type == TileType::TileTypeFloor || type == TileType::TileTypeNextMap
+				|| type == TileType::TileTypeBush) && npcName == "")
 			{
 				isUp = false;
 				m_playerRectMemory = m_playerRect.top;
 				isAnotherMove = true;
 				isMoveUp = true;
+				curDir = DirectionUp;
 			}
 			else if (type == TileType::TileTypeObject)
 			{
-				ObjectHandle(MAPMANGER->getObjectNameFromIndex(m_blockPositionX, m_blockPositionY - 1), DirectionUp);
+				ObjectHandle(MAPMANGER->getObjectNameFromIndex(m_blockPositionX, m_blockPositionY - 1));
 			}
 		}
 	}
@@ -295,6 +305,7 @@ void player::moveLogic()
 		isUp = false;
 		isDown = true;
 		m_CurrentTime = 0;
+		curDir = DirectionDown;
 	}
 	else if (KEYMANAGER->isStayKeyDown(P1_DOWN) && !isMoveDown && !isAnotherMove && m_CurrentTime > 0.2f)
 	{
@@ -302,19 +313,28 @@ void player::moveLogic()
 		if (m_playerBeforeArrowMemory == 0 && m_playerCurrentArrowMemory == 0)
 		{
 			TileType type = MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY + 1);
-			if (type == TileType::TileTypeFloor || type == TileType::TileTypeNextMap || type == TileType::TileTypeBush)
+			npcName = MAPMANGER->getNPCName(m_blockPositionX, m_blockPositionY + 1);
+			if ((type == TileType::TileTypeFloor || type == TileType::TileTypeNextMap
+				|| type == TileType::TileTypeBush) && npcName == "")
 			{
 				isDown = false;
 				m_playerRectMemory = m_playerRect.bottom;
 				isAnotherMove = true;
 				isMoveDown = true;
+				curDir = DirectionDown;
 			}
 			else if (type == TileType::TileTypeObject)
 			{
-				ObjectHandle(MAPMANGER->getObjectNameFromIndex(m_blockPositionX , m_blockPositionY + 1), DirectionDown);
+				ObjectHandle(MAPMANGER->getObjectNameFromIndex(m_blockPositionX , m_blockPositionY + 1));
 			}
 		}
 	}
+
+	//NPC Activat
+	if (KEYMANAGER->isOnceKeyDown(P1_Z)) {
+		checkAndActivateNPC();
+	}
+
 
 	//animation handle
 	if (isMoveDown)ANIMANAGER->resume("playerMoveDown");
@@ -445,10 +465,10 @@ void player::OnObjectEvent()
 
 }
 
-void player::ObjectHandle(std::string objName, Direction direction)
+void player::ObjectHandle(std::string objName)
 {
 	if (objName == "UpDownMound") {
-		if (direction == DirectionDown) {
+		if (curDir == DirectionDown) {
 			isOnObjectEvent = true;
 			isOnMoundJumpDown = true;
 			jumpStartPosY = m_playerRect.bottom;
@@ -540,6 +560,27 @@ bool player::getisMenu()
 void player::setisMenu(bool ismenuvalue)
 {
 	ismenu = ismenuvalue;
+}
+
+void player::checkAndActivateNPC()
+{
+	std::string npcName;
+	switch (curDir)
+	{
+	case DirectionDown:
+		npcName = MAPMANGER->getNPCName(m_blockPositionX, m_blockPositionY + 1);
+		break;
+	case DirectionUp:
+		npcName = MAPMANGER->getNPCName(m_blockPositionX, m_blockPositionY - 1);
+		break;
+	case DirectionLeft:
+		npcName = MAPMANGER->getNPCName(m_blockPositionX - 1, m_blockPositionY);
+		break;
+	case DirectionRight:
+		npcName = MAPMANGER->getNPCName(m_blockPositionX + 1, m_blockPositionY);
+		break;
+	}
+	MAPMANGER->ActivateNPC(npcName, curDir);
 }
 
 void player::MoundJumpDown()

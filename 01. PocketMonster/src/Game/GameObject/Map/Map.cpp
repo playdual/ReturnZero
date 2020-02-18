@@ -93,7 +93,8 @@ void Map::render(HDC hdc)
 
 	for (auto& tile : m_tiles) 
 			tile.render(hdc);
-
+	for (auto& npc : m_NPCs)
+		npc->render(hdc);
 }
 
 void Map::update(float _deltaTime)
@@ -101,6 +102,8 @@ void Map::update(float _deltaTime)
 	
 	for (auto& tile : m_tiles)
 		tile.update(_deltaTime);
+	for (auto& npc : m_NPCs)
+		npc->update(_deltaTime);
 
 	
 }
@@ -109,11 +112,15 @@ void Map::debugRender(HDC hdc)
 {
 	for (auto& tile : m_tiles)
 		tile.debugRender(hdc);
+	for (auto& npc : m_NPCs)
+		npc->debugRender(hdc);
 }
 
 void Map::afterRender(HDC hdc)
 {
 	for (auto& tile : m_tiles)
 		tile.afterRender(hdc);
+	for (auto& npc : m_NPCs)
+		npc->afterRender(hdc);
 }
 
