@@ -53,7 +53,7 @@ bool player::init()
 	//player Base Arrow(Start)
 	isDown = true;
 
-	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Charmander", 30)));
+	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Rattata", 30)));
 	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Squirtle", 31)));
 	/*Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Bulbasaur", 8)));
 	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Pidgey", 8)));
@@ -447,7 +447,7 @@ void player::isBattleStart()
 	{
 		m_BattleStart = UTIL::GetRndInt(100);
 
-		if (m_BattleStart < 10)
+		if (m_BattleStart < 100)
 		{
 			isBattle = true;
 		}
@@ -492,6 +492,11 @@ bool player::getisMenu()
 void player::setisMenu(bool ismenuvalue)
 {
 	ismenu = ismenuvalue;
+}
+
+void player::pushBackPocketmon(PocketMon _pocketmon)
+{
+	Pocketmons.push_back(std::make_shared<PocketMon>(_pocketmon));
 }
 
 

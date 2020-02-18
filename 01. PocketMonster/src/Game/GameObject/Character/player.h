@@ -40,6 +40,8 @@ public:
 	void setMoney(int moneyValue) { m_money = moneyValue; }
 	int getMoney() { return m_money; }
 	//void rectInCamera(UTIL::IRECT& outRect, const UTIL::IRECT& realRect, bool& isOutput);
+	void pushBackPocketmon(PocketMon _pocketmon);
+
 private:
 	UTIL::IRECT m_playerRect;
 	UTIL::IRECT m_outPlayerRect;

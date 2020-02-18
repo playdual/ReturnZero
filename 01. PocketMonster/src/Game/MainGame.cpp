@@ -194,7 +194,11 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("currentExp", "images/BattleUi/currentExp.bmp",	    0, 0, 7*4+246, 2*4+1, true, RGB(255, 0, 255));	
 	IMAGEMANAGER->addImage("greenHpBar", "images/BattleUi/greenHpBar.bmp",	    0, 0, 9*3+246, 3*5, true, RGB(255, 0, 255));	
 	IMAGEMANAGER->addImage("levelUpRect", "images/BattleUi/levelUpPopUp.bmp",    0, 0, 389, 491, true, RGB(255, 0, 255));	
-	
+	IMAGEMANAGER->addImage("ball", "images/BattleUi/ball.bmp",    0, 0, 12*4, 12*4, true, RGB(255, 0, 255));	
+	IMAGEMANAGER->addImage("catchSuccess", "images/BattleUi/catchSuccess.bmp",    0, 0, 16*4, 16*4, true, RGB(255, 0, 255));	
+	EFFECTMANAGER->addEffect("catchSuccessEffect", "Images/BattleUi/catchSuccessEffect.bmp", 32*3, 24*3, 32*3, 12*3, 1, 0.1f, 100);
+
+
 	//==============
 	// battle ani //
 	//==============
@@ -207,6 +211,15 @@ HRESULT MainGame::init()
 	
 	IMAGEMANAGER->addFrameImage("throwBall", "Images/BattleUi/throwBall.bmp", 1888, 341, 8, 1, true, RGB(255, 0, 255));
 	ANIMANAGER->addDefAnimation("throwBallAni", "throwBall", 5, false, false);
+
+	IMAGEMANAGER->addFrameImage("ballOpen", "Images/BattleUi/ballOpen.bmp", 12*4, 45*4, 1, 3, true, RGB(255, 0, 255));
+	ANIMANAGER->addDefAnimation("ballOpenAni", "ballOpen", 10, true, false);
+
+	IMAGEMANAGER->addFrameImage("shakeBall", "Images/BattleUi/shakeBall.bmp", 112 * 4, 48 * 4, 7, 3, true, RGB(255, 0, 255));
+	ANIMANAGER->addDefAnimation("shakeBallAni", "shakeBall", 20, false, false);
+
+	IMAGEMANAGER->addFrameImage("pocketmonCatchEffect", "Images/BattleUi/pocketmonCatchEffect.bmp", 2000, 120, 8, 1, true, RGB(255, 0, 255));
+	ANIMANAGER->addDefAnimation("pocketmonCatchEffectAni", "pocketmonCatchEffect", 10, false, false);
 
 
 	//

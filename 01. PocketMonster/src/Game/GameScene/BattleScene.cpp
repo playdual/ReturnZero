@@ -118,6 +118,22 @@ bool BattleScene::init(std::shared_ptr<player> _player, PocketMon& _pocketmon)
 	uiObjectRegularPosition = false;
 	playerImgSlideOut = false;
 	playerImgSlideOutOn = false;
+	m_trainerThrowBall = IMAGEMANAGER->findImage("trainerThrowBall");
+	m_trainerThrowBallAni = ANIMANAGER->findAnimation("trainerThrowBallAni");
+	m_throwBall = IMAGEMANAGER->findImage("throwBall");
+	m_throwBallAni = ANIMANAGER->findAnimation("throwBallAni");
+	m_ballOpen = IMAGEMANAGER->findImage("ballOpen");
+	m_ballOpenAni = ANIMANAGER->findAnimation("ballOpenAni");
+	m_shakeBall = IMAGEMANAGER->findImage("shakeBall");
+	m_shakeBallAni = ANIMANAGER->findAnimation("shakeBallAni");
+	m_pocketmonCatchEffect = IMAGEMANAGER->findImage("pocketmonCatchEffect");
+	m_pocketmonCatchEffectAni = ANIMANAGER->findAnimation("pocketmonCatchEffectAni");
+
+	ANIMANAGER->stop("trainerThrowBallAni");
+	ANIMANAGER->stop("throwBallAni");
+	ANIMANAGER->stop("ballOpenAni");
+	ANIMANAGER->stop("shakeBallAni");
+	ANIMANAGER->stop("pocketmonCatchEffectAni");
 
 
 	//===================
@@ -162,9 +178,10 @@ bool BattleScene::init(std::shared_ptr<player> _player, PocketMon& _pocketmon)
 	battleEnd = false;
 	attributeOn = false;
 	plusAttribute = false;
+	comeBackEnemey = false;
 
 	m_skillCount = 0;
-	m_enemyTwinkleCount = 0;
+	m_enemyEffectCount = 0;
 	m_enemyMinusHp = 0;
 	m_enemyCurrentMinusHp = 0;
 	m_enemyAlpha = 255;
@@ -213,7 +230,29 @@ bool BattleScene::init(std::shared_ptr<player> _player, PocketMon& _pocketmon)
 	int tempSpecialDef = 0;
 	int tempSpeed = 0;
 
-
+	//==========================
+	// 포켓몬 잡기 관련 변수들 //
+	//==========================
+	chatchOn = false;
+	ballDownOn = false;
+	ballOpen = false;
+	ballDown = false;
+	shakitBallOn = false;
+	catchSuccess = false;
+	catchSuccessEffect = false;
+	catchSuccessEffectDone = false;
+	catchExplainOn = false;
+	catchOn = false;
+	catchStartExplainOn = false;
+	ballThrowOn = false;
+	m_catchStartCount = 0;
+	m_ballIndex = 0;
+	m_catchCount = 0;
+	m_ballOpenCount = 0;
+	m_ballDownIndex = 0;
+	m_ballSuccessAlpha = 0;
+	m_successCount = 0;
+	m_catchExplainCount = 0;
 	return true;	
 }
 
@@ -243,12 +282,24 @@ void BattleScene::update(float _deltaTime)
 	}
 
 	if (wildBattle) wildBattleFunctions();
+
 	//if (npcBattle) npcBattleFunctions();
+
+	if (KEYMANAGER->isOnceKeyDown(P1_DOWN))
+	{
+		chatchOn = false;
+		ballDownOn = false;
+		ballOpen = false;
+		ballDown = false;
+		m_catchCount = 0;
+		m_ballIndex = 0;
+		m_ballOpenCount = 0;
+		m_ballDownIndex = 0;
+	}
 }
 
 void BattleScene::render(HDC hdc)
 {
-
 	char str[200];
 	if (wildBattle) wildBattleRender(hdc);
 
@@ -259,6 +310,8 @@ void BattleScene::render(HDC hdc)
 	TextOut(hdc, 10, 40, str, strlen(str));
 
 	EFFECTMANAGER->render(hdc);
+
+	catchPocketmon(hdc);
 
 	//IMAGEMANAGER->render("playerStatus", hdc, 30, 30, 0, 0, 300, 100);
 	//IMAGEMANAGER->render("currentExp", hdc, m_playerCurrentExp.left, m_playerCurrentExp.top, 0, 0, m_playerPocketmonExpBarWigth, 30);
@@ -325,54 +378,6 @@ void BattleScene::wildBattleFunctions()
 	
 }
 
-void BattleScene::wildBattleIntroAni()
-{
-	if (!uiObjectRegularPosition)
-	{
-		m_enemyBottomX += 10;
-		m_enemyPocketmonX += 10;
-		m_playerBottomX -= 10;
-		m_playerimgX -= 10;
-		m_playerPocketmonX -= 10;
-		//적 바닥
-		m_enemyBottom = UTIL::IRectMake(m_enemyBottomX, 228, 547, 159);
-		//적 포켓몬
-		m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
-		//플레이어바닥
-		m_playerBottom = UTIL::IRectMake(m_playerBottomX, 467, 534, 159);
-		//플레이어 이미지
-		m_playerImg = UTIL::IRectMake(m_playerimgX, 329, 210, 209);
-		//플레이어 포켓몬
-		m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 329, 210, 209);
-	}
-
-	if (m_enemyBottomX >= ENEMYBOTTOMX) uiObjectRegularPosition = true;
-
-	if (uiObjectRegularPosition && !playerImgSlideOut)
-	{
-		m_enemyStatusX += 5;
-		//적 상태창 
-		m_enemyStatus = UTIL::IRectMake(m_enemyStatusX, 80, 425, 130);
-		if (m_enemyStatusX >= ENEMYSTATUSX)
-		{
-			//wildBattleIntroAni = false;
-			playerImgSlideOut = true;
-		}
-	}
-	if (playerImgSlideOut)
-	{
-		m_playerimgX -= 5;
-		m_playerStatusX -= 10;
-		//플레이어 이미지
-		m_playerImg = UTIL::IRectMake(m_playerimgX, 329, 210, 209);
-		//플레이어 상태창
-		m_playerStatus = UTIL::IRectMake(m_playerStatusX, 356, 446, 180);
-		m_playerMaxHp = UTIL::IRectMake(m_playerStatus.left + 181, 431, 230, 30);
-		//m_playerCurrentHp = UTIL::IRectMake(m_playerStatus.left + 200, 450, m_playerPocketmonHpBarWigth, 30);
-		m_playerCurrentHp = UTIL::IRectMake(playerCurrentHpLeft(), playerCurrentHpTop(), m_playerPocketmonHpBarWigth, 30);
-		if (m_playerStatusX <= PLAYERSTATUSX) wildBattleIntroAniOn = false;
-	}
-}
 void BattleScene::npcBattleIntroAni()
 {
 }
@@ -460,7 +465,6 @@ void BattleScene::enemyUiStatus(HDC hdc)
 	//레벨
 	wsprintf(str, "    %d", m_wildPocketmon.m_level);
 	TextOut(hdc, m_enemyStatus.left + 310, m_enemyStatus.top + 20, str, strlen(str));
-
 }
 void BattleScene::enemyUiBottom(HDC hdc)
 {
@@ -504,10 +508,6 @@ void BattleScene::playerUiImg(HDC hdc)
 	//UTIL::DrawRect(hdc, m_playerImg);
 	//IMAGEMANAGER->findImage("trainersMan")->alphaRender(hdc, m_playerImg.left, m_playerImg.top, m_playerAlpha);
 	//ANIMANAGER->findAnimation("trainerThorwBallAni")->;
-	m_trainerThrowBall = IMAGEMANAGER->findImage("trainerThrowBall");
-	m_trainerThrowBallAni = ANIMANAGER->findAnimation("trainerThrowBallAni");
-	m_throwBall = IMAGEMANAGER->findImage("throwBall");
-	m_throwBallAni = ANIMANAGER->findAnimation("throwBallAni");
 
 	if (playerImgSlideOutOn)
 	{
@@ -1005,19 +1005,26 @@ void BattleScene::wildBattleRender(HDC hdc)
 
 		if (playerTurn)
 		{
-			//설명 + 선택창
-			if (!playerAtkOn)
+			if (chatchOn)
 			{
-				explainRect(hdc);
-				//선택 커서
-				selectRect(hdc);
+				catchPocketmon(hdc);
 			}
-			
-			if (playerAtkOn)
+			else
 			{
-				playerUiSkillList(hdc);
-				playerUiSkillExplain(hdc);
-				skillSelectRect(hdc);
+				//설명 + 선택창
+				if (!playerAtkOn)
+				{
+					explainRect(hdc);
+					//선택 커서
+					selectRect(hdc);
+				}
+
+				if (playerAtkOn)
+				{
+					playerUiSkillList(hdc);
+					playerUiSkillExplain(hdc);
+					skillSelectRect(hdc);
+				}
 			}
 		}
 		if (playerSkillMotionOn)
@@ -1151,12 +1158,12 @@ void BattleScene::tackleProto(std::string _skillName, HDC hdc)
 	//2단계: 적 포켓몬 깜빡 깜빡
 	if (playerHitEffect)
 	{
-		m_enemyTwinkleCount++;
+		m_enemyEffectCount++;
 		m_enemyAlpha = 0;
-		if (m_enemyTwinkleCount > 60)
+		if (m_enemyEffectCount > 60)
 		{
 			m_enemyAlpha = 255;
-			m_enemyTwinkleCount = 0;
+			m_enemyEffectCount = 0;
 			playerHitEffect = false;
 			enemyHpChange = true;
 			m_enemyMinusHp = checkDamage();
@@ -1186,12 +1193,12 @@ void BattleScene::skillEmberProto(std::string _skillName, HDC hdc)
 	//2단계: 적 포켓몬 깜빡 깜빡
 	if (playerHitEffect)
 	{
-		m_enemyTwinkleCount++;
+		m_enemyEffectCount++;
 		m_enemyAlpha = 0;
-		if (m_enemyTwinkleCount > 40)
+		if (m_enemyEffectCount > 40)
 		{
 			m_enemyAlpha = 255;
-			m_enemyTwinkleCount = 0;
+			m_enemyEffectCount = 0;
 			playerHitEffect = false;
 			enemyHpChange = true;
 			m_enemyMinusHp = checkDamage();
@@ -1219,12 +1226,12 @@ void BattleScene::flameThrowerProto(std::string _skillName, HDC hdc)
 	//2단계: 적 포켓몬 깜빡 깜빡
 	if (playerHitEffect)
 	{
-		m_enemyTwinkleCount++;
+		m_enemyEffectCount++;
 		m_enemyAlpha = 0;
-		if (m_enemyTwinkleCount > 60)
+		if (m_enemyEffectCount > 60)
 		{
 			m_enemyAlpha = 255;
-			m_enemyTwinkleCount = 0;
+			m_enemyEffectCount = 0;
 			playerHitEffect = false;
 			enemyHpChange = true;
 			m_enemyMinusHp = checkDamage();
@@ -1252,12 +1259,50 @@ void BattleScene::fireBlastProto(std::string _skillName, HDC hdc)
 	//2단계: 적 포켓몬 깜빡 깜빡
 	if (playerHitEffect)
 	{
-		m_enemyTwinkleCount++;
+		m_enemyEffectCount++;
 		m_enemyAlpha = 0;
-		if (m_enemyTwinkleCount > 60)
+		if (m_enemyEffectCount > 60)
 		{
 			m_enemyAlpha = 255;
-			m_enemyTwinkleCount = 0;
+			m_enemyEffectCount = 0;
+			playerHitEffect = false;
+			enemyHpChange = true;
+			m_enemyMinusHp = checkDamage();
+		}
+	}
+
+	enemyHpChangFromPlayerAtk();
+	playerAtkResultOutput(hdc);
+}
+void BattleScene::scratchProto(std::string _skillName, HDC hdc)
+{
+	//1단계: 포켓몬 스킬 이팩트
+	if (!playerSkillEffect && !playerSkillEffectDone)
+	{
+		EFFECTMANAGER->play(_skillName, 810, 250);
+		playerSkillEffect = EFFECTMANAGER->getIsPlay();
+		playerHitEffect = true;
+
+	}
+	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		playerSkillEffect = false;
+		playerSkillEffectDone = true;
+	}
+
+	//2단계: 적 포켓몬 왼쪽으로 이동했다 돌아오기깜빡 깜빡
+	if (playerHitEffect)
+	{
+		m_enemyEffectCount++;
+		m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX + m_enemyEffectCount, 165, 165, 181);
+		if (m_enemyEffectCount > 30)	comeBackEnemey = true;
+		if(comeBackEnemey) m_enemyEffectCount -= 3;
+		
+		if (m_enemyEffectCount < 0)
+		{
+			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
+			m_enemyEffectCount = 0;
+			comeBackEnemey = false;
 			playerHitEffect = false;
 			enemyHpChange = true;
 			m_enemyMinusHp = checkDamage();
@@ -1585,6 +1630,55 @@ void BattleScene::enemyAtkResultOutput(HDC hdc)
 //==============
 // 상황별 Ani //
 //==============
+void BattleScene::wildBattleIntroAni()
+{
+	if (!uiObjectRegularPosition)
+	{
+		m_enemyBottomX += 10;
+		m_enemyPocketmonX += 10;
+		m_playerBottomX -= 10;
+		m_playerimgX -= 10;
+		m_playerPocketmonX -= 10;
+		//적 바닥
+		m_enemyBottom = UTIL::IRectMake(m_enemyBottomX, 228, 547, 159);
+		//적 포켓몬
+		m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
+		//플레이어바닥
+		m_playerBottom = UTIL::IRectMake(m_playerBottomX, 467, 534, 159);
+		//플레이어 이미지
+		m_playerImg = UTIL::IRectMake(m_playerimgX, 329, 210, 209);
+		//플레이어 포켓몬
+		m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 329, 210, 209);
+	}
+
+	if (m_enemyBottomX >= ENEMYBOTTOMX) uiObjectRegularPosition = true;
+
+	if (uiObjectRegularPosition && !playerImgSlideOut)
+	{
+		m_enemyStatusX += 5;
+		//적 상태창 
+		m_enemyStatus = UTIL::IRectMake(m_enemyStatusX, 80, 425, 130);
+		if (m_enemyStatusX >= ENEMYSTATUSX)
+		{
+			//wildBattleIntroAni = false;
+			playerImgSlideOut = true;
+		}
+	}
+	if (playerImgSlideOut)
+	{
+		m_playerimgX -= 5;
+		m_playerStatusX -= 10;
+		//플레이어 이미지
+		m_playerImg = UTIL::IRectMake(m_playerimgX, 329, 210, 209);
+		//플레이어 상태창
+		m_playerStatus = UTIL::IRectMake(m_playerStatusX, 356, 446, 180);
+		m_playerMaxHp = UTIL::IRectMake(m_playerStatus.left + 181, 431, 230, 30);
+		//m_playerCurrentHp = UTIL::IRectMake(m_playerStatus.left + 200, 450, m_playerPocketmonHpBarWigth, 30);
+		m_playerCurrentHp = UTIL::IRectMake(playerCurrentHpLeft(), playerCurrentHpTop(), m_playerPocketmonHpBarWigth, 30);
+		if (m_playerStatusX <= PLAYERSTATUSX) wildBattleIntroAniOn = false;
+	}
+}
+
 //플레이어 승리시
 void BattleScene::wildBattleOutAni(HDC hdc)
 {
@@ -1897,6 +1991,225 @@ void BattleScene::playerPocketmonLoseAni(HDC hdc)
 		}
 	}
 }
+void BattleScene::catchPocketmon(HDC hdc)
+{
+	if (!catchStartExplainOn)
+	{
+		m_catchStartCount++;
+		char str[100];
+		wsprintf(str, "플레이어는(은)");
+		TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 40, str, strlen(str));
+
+		wsprintf(str, "몬스터볼를(을) 사용했다!");
+		TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 70, str, strlen(str));
+		if (m_catchStartCount > 40)
+		{
+			catchStartExplainOn = true;
+			ballThrowOn = true;
+		}
+	}
+	if (ballThrowOn)
+	{
+		m_catchCount++;
+		if (m_catchCount % 4 == 0) m_ballIndex++;
+		switch (m_ballIndex)
+		{
+		case 0:
+			m_ballOpen->aniRender(hdc, 170, 302, m_ballOpenAni);
+			break;
+		case 1:
+			m_ballOpen->aniRender(hdc, 192, 270, m_ballOpenAni);
+			break;
+		case 2:
+			m_ballOpen->aniRender(hdc, 216, 219, m_ballOpenAni);
+			break;
+		case 3:
+			m_ballOpen->aniRender(hdc, 293, 130, m_ballOpenAni);
+			break;
+		case 4:
+			m_ballOpen->aniRender(hdc, 405, 47, m_ballOpenAni);
+			break;
+		case 5:
+			m_ballOpen->aniRender(hdc, 471, 16, m_ballOpenAni);
+			break;
+		case 6:
+			m_ballOpen->aniRender(hdc, 513, 13, m_ballOpenAni);
+			break;
+		case 7:
+			m_ballOpen->aniRender(hdc, 558, 14, m_ballOpenAni);
+			break;
+		case 8:
+			m_ballOpen->aniRender(hdc, 596, 22, m_ballOpenAni);
+			break;
+		case 9:
+			m_ballOpen->aniRender(hdc, 630, 44, m_ballOpenAni);
+			break;
+		case 10:
+			m_ballOpen->aniRender(hdc, 735, 118, m_ballOpenAni);
+			ANIMANAGER->start("ballOpenAni");
+			//m_ballIndex = 0;
+			ballThrowOn = false;
+			ballOpen = true;
+			break;
+		}
+	}
+	if (ballOpen)
+	{
+		m_ballOpenCount++;
+		m_ballOpen->aniRender(hdc, 735, 118, m_ballOpenAni);
+		if (20 < m_ballOpenCount && m_ballOpenCount <= 70)
+		{
+			ANIMANAGER->pause("ballOpenAni");
+		}
+		else if (m_ballOpenCount == 71)
+		{
+			ANIMANAGER->resume("ballOpenAni");
+		}
+		else if (m_ballOpenCount > 80)
+		{
+			m_ballOpenCount = 0;
+			ballOpen = false;
+			ballDown = true;
+		}
+	}
+	if (ballDown)
+	{
+		m_ballOpenCount++;
+		if (m_ballOpenCount % 5 == 0) m_ballDownIndex++;
+		switch (m_ballDownIndex)
+		{
+		case 0:
+			m_ballOpen->aniRender(hdc, 735, 118, m_ballOpenAni);
+			break;
+		case 1:
+			m_ballOpen->aniRender(hdc, 735, 138, m_ballOpenAni);
+			break;
+		case 2:
+			m_ballOpen->aniRender(hdc, 735, 163, m_ballOpenAni);
+			break;
+		case 3:
+			m_ballOpen->aniRender(hdc, 735, 211, m_ballOpenAni);
+			break;
+		case 4:
+			//바닥
+			m_ballOpen->aniRender(hdc, 735, 260, m_ballOpenAni); //160
+			break;
+		case 5:
+			m_ballOpen->aniRender(hdc, 735, 200, m_ballOpenAni);
+			break;
+		case 6:
+			m_ballOpen->aniRender(hdc, 735, 180, m_ballOpenAni);
+			break;
+		case 7:
+			//두번째 top
+			m_ballOpen->aniRender(hdc, 735, 160, m_ballOpenAni);
+			break;
+		case 8:
+			m_ballOpen->aniRender(hdc, 735, 180, m_ballOpenAni);
+			break;
+		case 9:
+			m_ballOpen->aniRender(hdc, 735, 200, m_ballOpenAni);
+			break;
+		case 10:
+			//바닥
+			m_ballOpen->aniRender(hdc, 735, 260, m_ballOpenAni); //200
+			break;
+		case 11:
+			m_ballOpen->aniRender(hdc, 735, 240, m_ballOpenAni);
+			break;
+		case 12:
+			m_ballOpen->aniRender(hdc, 735, 200, m_ballOpenAni);
+			break;
+		case 13:
+			m_ballOpen->aniRender(hdc, 735, 240, m_ballOpenAni);
+			break;
+		case 14:
+			//바닥
+			m_ballOpen->aniRender(hdc, 735, 260, m_ballOpenAni); 
+			break;
+		case 15:
+			m_ballOpen->aniRender(hdc, 735, 250, m_ballOpenAni);
+			break;
+		case 16:
+			//세번째 TOP
+			m_ballOpen->aniRender(hdc, 735, 245, m_ballOpenAni);
+			break;
+		case 17:
+			m_ballOpen->aniRender(hdc, 735, 250, m_ballOpenAni);
+			break;
+		case 18:
+			//바닥
+			m_ballOpen->aniRender(hdc, 735, 260, m_ballOpenAni);
+			break;
+		case 19:
+			m_ballOpen->aniRender(hdc, 735, 255, m_ballOpenAni);
+			break;
+		case 20:
+			m_ballOpen->aniRender(hdc, 735, 260, m_ballOpenAni);
+			ballDown = false;
+			shakitBallOn = true;
+			ANIMANAGER->start("shakeBallAni");
+			break;
+		}
+	}
+	if (shakitBallOn)
+	{
+		m_shakeBall->aniRender(hdc, 727, 260, m_shakeBallAni);
+		if (!ANIMANAGER->isPlay("shakeBallAni"))
+		{
+			shakitBallOn = false;
+			catchSuccess = true;
+		}
+	}
+	if (catchSuccess)
+	{
+		m_successCount++;
+		m_ballOpen->aniRender(hdc, 735, 257, m_ballOpenAni);
+		IMAGEMANAGER->findImage("catchSuccess")->alphaRender(hdc, 727, 260, m_ballSuccessAlpha);
+		if (m_successCount > 20) 
+		{
+			m_ballSuccessAlpha = 120;
+			if (m_successCount > 30)
+			{
+				if (!catchSuccessEffect)
+				{
+					EFFECTMANAGER->play("catchSuccessEffect", 759, 275);
+					EFFECTMANAGER->play("catchSuccessEffect", 759, 285);
+					catchSuccessEffect = true;
+				}
+				if (m_successCount > 40)
+				{
+					m_ballSuccessAlpha = 0;
+					catchSuccess = false;
+					catchExplainOn = true;
+				}
+			}
+		}
+	}
+	if (catchExplainOn)
+	{
+		m_catchExplainCount++;
+		char str[100];
+		wsprintf(str, "신난다!");
+		TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 40, str, strlen(str));
+
+		wsprintf(str, "%s를(을) 잡았다!!", m_wildPocketmon.m_name.c_str());
+		TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 70, str, strlen(str));
+		
+		if (!catchOn)
+		{
+			trainer->pushBackPocketmon(POCKETMONMANAGER->genPocketMon(m_wildPocketmon.m_EnglishName, m_wildPocketmon.m_level));
+			catchOn = true;
+		}
+
+		if (m_catchExplainCount > 40)
+		{
+			SCENEMANAGER->scenePop();
+		}
+	}
+	enemyUiStatus(hdc);
+	enemyUiCurrentHp(hdc);
+}
 
 
 //포켓몬 스킬 이펙트들 모음
@@ -1905,7 +2218,14 @@ void BattleScene::pocketmonEffectInit()
 {
 	//플레이어
 	//파이리 공격
-	EFFECTMANAGER->addEffect("불꽃세례", "images/pailiSkill_1.bmp", 35 * 3, 150 * 3, 35 * 3, 30 * 3, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("불꽃세례", "Images/attackEffect/pailiSkill_1.bmp", 35 * 3, 150 * 3, 35 * 3, 30 * 3, 1, 0.1f, 100);
+	
+	//캐터피, 꼬렛
+	EFFECTMANAGER->addEffect("할퀴기", "Images/attackEffect/Scratch.bmp", 32 * 7, 96 * 7, 32 * 7, 36 * 7, 1, 0.1f, 100);
+	
+	
+
+
 
 	//적
 	//피카츄 공격
@@ -1919,7 +2239,8 @@ bool BattleScene::playerSkillEffectAssemble(std::string _skillName, HDC hdc)
 	else if (_skillName == "불꽃세례") skillEmberProto(_skillName, hdc);
 	else if (_skillName == "화염방사") flameThrowerProto(_skillName, hdc);
 	else if (_skillName == "불대문자") fireBlastProto(_skillName, hdc);
-
+	else if (_skillName == "할퀴기") scratchProto(_skillName, hdc);
+	
 	return true;
 }
 

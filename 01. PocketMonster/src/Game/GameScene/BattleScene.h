@@ -123,6 +123,8 @@ public:
 	void skillEmberProto(std::string _skillName, HDC hdc);
 	void flameThrowerProto(std::string _skillName, HDC hdc);
 	void fireBlastProto(std::string _skillName, HDC hdc);
+	void scratchProto(std::string _skillName, HDC hdc);
+	 
 
 	//적
 	void quickAttackProto(std::string _skillName, HDC hdc);
@@ -136,12 +138,16 @@ public:
 
 	void playerAtkResultOutput(HDC hdc);
 	void enemyAtkResultOutput(HDC hdc);
+
+	//포켓몬 잡기
+	void catchPocketmon(HDC hdc);
 	
 private:
 	
 	std::shared_ptr<player> trainer;
 	std::vector<std::shared_ptr<PocketMon>> m_playerPocketmons;
 	std::shared_ptr<PocketMon> selectPocketmon;
+	std::shared_ptr<PocketMon> test;
 	PocketMon m_wildPocketmon;
 	ChangePocketInfo cpInfo;
 	UsedItemInfo uiInfo;
@@ -218,6 +224,7 @@ private:
 	Image* m_throwBall;
 	Animation * m_throwBallAni;
 
+
 	//적	 UI
 	int m_enemyBottomX;
 	int m_enemyPocketmonX;
@@ -280,10 +287,10 @@ private:
 	bool battleEnd;
 	bool attributeOn;
 	bool plusAttribute;
+	bool comeBackEnemey;
 	
-
 	int m_skillCount;
-	int m_enemyTwinkleCount;
+	int m_enemyEffectCount;
 	int m_enemyMinusHp;
 	int m_enemyCurrentMinusHp;
 	int m_enemyAlpha;
@@ -338,8 +345,36 @@ private:
 	int tempSpeed;
 	
 
+	//==========================
+	// 포켓몬 잡기 관련 변수들 //
+	//==========================
+	Image* m_ballOpen;
+	Animation * m_ballOpenAni;
+	Image* m_shakeBall;
+	Animation * m_shakeBallAni;
+	Image* m_pocketmonCatchEffect;
+	Animation * m_pocketmonCatchEffectAni;
 
-
+	bool chatchOn;
+	bool ballDownOn;
+	bool ballOpen;
+	bool ballDown;
+	bool shakitBallOn;
+	bool catchSuccess;
+	bool catchSuccessEffect;
+	bool catchSuccessEffectDone;
+	bool catchExplainOn;
+	bool catchOn;
+	bool catchStartExplainOn;
+	bool ballThrowOn;
+	int m_catchStartCount;
+	int m_ballIndex;
+	int m_catchCount;
+	int m_ballOpenCount;
+	int m_ballDownIndex;
+	int m_ballSuccessAlpha;
+	int m_successCount;
+	int m_catchExplainCount;
 
 	//init안에 들어갈 내용들
 	/*
