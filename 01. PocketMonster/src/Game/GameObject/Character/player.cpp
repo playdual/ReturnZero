@@ -405,6 +405,9 @@ void player::update(float _deltaTime)
 			ismenu = false;
 		}
 	}
+	if (KEYMANAGER->isOnceKeyDown(P1_B)) {
+		isBattle = true;
+	}
 
 	//배틀중이 아니고, 메뉴를 열지 않았고, 오브젝트 이벤트 중이 아니라면
 	if (!isBattle && !ismenu && !isOnObjectEvent && !isOnNpcEvent)
@@ -527,7 +530,7 @@ void player::isBattleStart()
 	{
 		m_BattleStart = UTIL::GetRndInt(100);
 
-		if (m_BattleStart < 100)
+		if (m_BattleStart < 10)
 		{
 			isBattle = true;
 		}

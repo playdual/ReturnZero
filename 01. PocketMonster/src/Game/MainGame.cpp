@@ -114,32 +114,32 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("SquirtleBack",			"images/pocketmons/SquirtleBack.bmp", 100 * 2, 100 * 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("SquirtleIcon",		"images/pocketmons/SquirtleIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addImage("PidgeyFront",			"images/pocketmons/PidgeyFront.bmp", 100, 100, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("PidgeyBack",			"images/pocketmons/PidgeyBack.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("PidgeyFront",			"images/pocketmons/PidgeyFront.bmp", 100 * 2 , 100 * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("PidgeyBack",			"images/pocketmons/PidgeyBack.bmp", 100 * 2 , 100 * 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("PidgeyIcon",		"images/pocketmons/PidgeyIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addImage("PikachuFront",			"images/pocketmons/PikachuFront.bmp", 100, 100, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("PikachuBack",			"images/pocketmons/PikachuBack.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("PikachuFront",			"images/pocketmons/PikachuFront.bmp", 100 * 2 , 100 * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("PikachuBack",			"images/pocketmons/PikachuBack.bmp", 100 * 2 , 100 * 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("PikachuIcon",		"images/pocketmons/PikachuIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addImage("CaterpieFront",			"images/pocketmons/CaterpieFront.bmp", 100, 100, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("CaterpieBack",			"images/pocketmons/CaterpieBack.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("CaterpieFront",			"images/pocketmons/CaterpieFront.bmp", 100 * 2 , 100 * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("CaterpieBack",			"images/pocketmons/CaterpieBack.bmp", 100 * 2 , 100 * 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("CaterpieIcon",		"images/pocketmons/CaterpieIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addImage("RattataFront",			"images/pocketmons/RattataFront.bmp", 100, 100, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("RattataBack",			"images/pocketmons/RattataBack.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("RattataFront",			"images/pocketmons/RattataFront.bmp", 100 * 2 , 100 * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("RattataBack",			"images/pocketmons/RattataBack.bmp", 100 * 2 , 100 * 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("RattataIcon",		"images/pocketmons/RattataIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addImage("VulpixFront",			"images/pocketmons/VulpixFront.bmp", 100, 100, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("VulpixBack",			"images/pocketmons/VulpixBack.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("VulpixFront",			"images/pocketmons/VulpixFront.bmp", 100 * 2 , 100 * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("VulpixBack",			"images/pocketmons/VulpixBack.bmp", 100 * 2 , 100 * 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("VulpixIcon",		"images/pocketmons/VulpixIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addImage("OddishFront",			"images/pocketmons/OddishFront.bmp", 100, 100, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("OddishBack",			"images/pocketmons/OddishBack.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("OddishFront",			"images/pocketmons/OddishFront.bmp", 100 * 2 , 100 * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("OddishBack",			"images/pocketmons/OddishBack.bmp", 100 * 2 , 100 * 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("OddishIcon",		"images/pocketmons/OddishIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addImage("PoliwagFront",			"images/pocketmons/PoliwagFront.bmp", 100, 100, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("PoliwagBack",			"images/pocketmons/PoliwagBack.bmp", 100, 100, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("PoliwagFront",			"images/pocketmons/PoliwagFront.bmp", 100 * 2 , 100 * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("PoliwagBack",			"images/pocketmons/PoliwagBack.bmp", 100 * 2 , 100 * 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("PoliwagIcon",		"images/pocketmons/PoliwagIcon.bmp", 230, 115, 2, 1, true, RGB(255, 0, 255));
 
 	//pocketMon Sex
@@ -238,22 +238,14 @@ HRESULT MainGame::init()
 	//==============
 	IMAGEMANAGER->addFrameImage("trainerThrowBall", "Images/Trainers/trainersThrowBall.bmp", 320+5*140, 64*3+18, 5, 1, true, RGB(255, 0, 255));
 	ANIMANAGER->addDefAnimation("trainerThrowBallAni", "trainerThrowBall", 5, false, false);
-	//IMAGEMANAGER->addFrameImage("trainerThrowBall", "images/Trainers/trainerThrowBall.bmp", 320, 64, 5, 1, true, RGB(255, 0, 255));
-	//ANIMANAGER->addDefAnimation("trainerThrowBallAni", "trainerThrowBall", 2, false, false);
-	/*IMAGEMANAGER->addFrameImage("trainerThrowBall", "images/Trainers/trainerThrowBall.bmp", 320, 64, 5, 1, true, RGB(255, 0, 255));
-	ANIMANAGER->addDefAnimation("trainerThrowBallAni", "trainerThrowBall", 2, false, false);*/
-	
 	IMAGEMANAGER->addFrameImage("throwBall", "Images/BattleUi/throwBall.bmp", 1888, 341, 8, 1, true, RGB(255, 0, 255));
 	ANIMANAGER->addDefAnimation("throwBallAni", "throwBall", 5, false, false);
-
 	IMAGEMANAGER->addFrameImage("ballOpen", "Images/BattleUi/ballOpen.bmp", 12*4, 45*4, 1, 3, true, RGB(255, 0, 255));
 	ANIMANAGER->addDefAnimation("ballOpenAni", "ballOpen", 10, true, false);
-
 	IMAGEMANAGER->addFrameImage("shakeBall", "Images/BattleUi/shakeBall.bmp", 112 * 4, 48 * 4, 7, 3, true, RGB(255, 0, 255));
-	ANIMANAGER->addDefAnimation("shakeBallAni", "shakeBall", 20, false, false);
-
-	IMAGEMANAGER->addFrameImage("pocketmonCatchEffect", "Images/BattleUi/pocketmonCatchEffect.bmp", 2000, 120, 8, 1, true, RGB(255, 0, 255));
-	ANIMANAGER->addDefAnimation("pocketmonCatchEffectAni", "pocketmonCatchEffect", 10, false, false);
+	ANIMANAGER->addDefAnimation("shakeBallAni", "shakeBall", 15, false, false);
+	IMAGEMANAGER->addFrameImage("pocketmonCatchEffect", "Images/BattleUi/pocketmonCatchEffect.bmp", 2000*3, 120*3, 8, 1, true, RGB(255, 0, 255));
+	ANIMANAGER->addDefAnimation("pocketmonCatchEffectAni", "pocketmonCatchEffect", 9, false, false);
 
 
 	//
@@ -273,6 +265,9 @@ HRESULT MainGame::init()
 	SCENEMANAGER->addScene("inven", new InvenScene(inven));
 	SCENEMANAGER->addScene("friendlyShop", new shopScene(inven));
 
+	SCENEMANAGER->scenePush("town");
+	//SCENEMANAGER->scenePush("battle");
+	//SCENEMANAGER->scenePush("town");
 
 	//=================== 최종적으로 적용되는 씬
 	//SCENEMANAGER->changeScene("intro");

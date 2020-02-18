@@ -355,7 +355,7 @@ private:
 	Image* m_pocketmonCatchEffect;
 	Animation * m_pocketmonCatchEffectAni;
 
-	bool chatchOn;
+	bool catchAniOn;
 	bool ballDownOn;
 	bool ballOpen;
 	bool ballDown;
@@ -375,6 +375,7 @@ private:
 	int m_ballSuccessAlpha;
 	int m_successCount;
 	int m_catchExplainCount;
+	int whiteBgAlpha;
 
 	//init안에 들어갈 내용들
 	/*
