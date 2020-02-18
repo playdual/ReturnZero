@@ -89,7 +89,8 @@ void TownScene::update(float _deltaTime)
 	if (m_player->getisChangeMap()) 
 	{
 		auto tile = MAPMANGER->getCurMap()->getSpecifyTile(m_player->getPlayerBlockX(), m_player->getPlayerBlockY());
-		m_map = MAPMANGER->findMap(tile.getNextMapKey());
+		std::string nextMapName = tile.getNextMapKey();
+		m_map = MAPMANGER->findMap(nextMapName);
 		m_player->reLocate(tile.getNextMapIdx().x, tile.getNextMapIdx().y);
 		m_player->MoveSetZero();
 		m_player->isNotChangeMap();

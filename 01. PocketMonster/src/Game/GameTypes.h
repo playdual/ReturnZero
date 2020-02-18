@@ -166,3 +166,11 @@ enum INVENSCENETYPE
 	ITEM = 0 , IMPORT , POKEBALL
 };
 
+enum class NPCEventType
+{
+	NPCShop,
+	NPCPocketCenter,
+	NPCNone
+};
+
+typedef std::vector<std::pair<std::wstring, std::wstring>> Senario;

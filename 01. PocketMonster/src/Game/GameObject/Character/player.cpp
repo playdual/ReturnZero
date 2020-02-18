@@ -389,7 +389,7 @@ void player::update(float _deltaTime)
 	}
 
 	//배틀중이 아니고, 메뉴를 열지 않았고, 오브젝트 이벤트 중이 아니라면
-	if (!isBattle && !ismenu && !isOnObjectEvent)
+	if (!isBattle && !ismenu && !isOnObjectEvent && !isOnNpcEvent)
 	{
 		m_CurrentTime += _deltaTime;
 		moveLogic(); // 이동 로직 실행
@@ -400,6 +400,10 @@ void player::update(float _deltaTime)
 		OnObjectEvent();
 	}
 
+	if (isOnNpcEvent) {
+		isOnNpcEvent = MAPMANGER->getCurNpc()->isOnActevated();
+	}
+
 	if (isBattle)
 	{
 		isMoveLeft = false;
@@ -408,13 +412,7 @@ void player::update(float _deltaTime)
 		isMoveDown = false;
 
 	}
-	CAMERAMANAGER->update();
-	
-	// 샵 임시작업 연동키 T ( 유영환 )
-	if (KEYMANAGER->isOnceKeyDown(P1_T))
-	{
-		SCENEMANAGER->scenePush("friendlyShop");
-	}
+	CAMERAMANAGER->update();	
 }
 
 void player::render(HDC hdc)
@@ -580,7 +578,7 @@ void player::checkAndActivateNPC()
 		npcName = MAPMANGER->getNPCName(m_blockPositionX + 1, m_blockPositionY);
 		break;
 	}
-	MAPMANGER->ActivateNPC(npcName, curDir);
+	isOnNpcEvent = MAPMANGER->ActivateNPC(npcName, curDir);
 }
 
 void player::MoundJumpDown()

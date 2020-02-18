@@ -74,6 +74,7 @@ private:
 	bool isAnotherMove = false;
 
 	bool isMoveLeftTest = false;
+	bool isOnNpcEvent = false;
 
 	bool isLeft = false;
 	bool isRight = false;

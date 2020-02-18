@@ -17,11 +17,16 @@ public:
 	TileType getTileTypeFromIndex(int _x, int _y);
 	std::string getObjectNameFromIndex(int _x, int _y);
 	std::string getNPCName(int _x, int _y);
-	std::string ActivateNPC(std::string _name, Direction _dir);
+	std::shared_ptr<NPC> getCurNpc() { return curNpc; }
+	bool ActivateNPC(std::string _name, Direction _dir);
+
+private:
+	void addDefaultNPC();
 
 private:
 	std::map<std::string, std::shared_ptr<Map>> MapList;
 	std::shared_ptr<Map> curMap;
+	std::shared_ptr<NPC> curNpc;
 
 private:
 	DECLARE_SINGLE(MapManager)

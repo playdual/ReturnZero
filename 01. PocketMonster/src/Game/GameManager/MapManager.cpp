@@ -12,9 +12,10 @@ void MapManager::init()
 	addMap("RedHouse1F", "RedHouse1F");
 	addMap("RedHouse2F", "RedHouse2F");
 	addMap("RivalHouse", "RivalHouse");
-	findMap("RivalHouse")->addNPC(std::make_shared<NPC>(5, 4, "GrandFather"));
 	addMap("ProfOHouse", "ProfOHouse");
 	addMap("Route01", "Route01");
+
+	addDefaultNPC();
 }
 
 void MapManager::release()
@@ -66,12 +67,35 @@ std::string MapManager::getNPCName(int _x, int _y)
 	return "";
 }
 
-std::string MapManager::ActivateNPC(std::string _name, Direction _dir)
+bool MapManager::ActivateNPC(std::string _name, Direction _dir)
 {
 	auto& NPCs = curMap->m_NPCs;
 	for (auto& npc : NPCs) {
-		if(npc->m_Name == _name)
+		if (npc->m_Name == _name) {
 			npc->activateNPC(_dir);
+			curNpc = npc;
+			return true;
+		}
 	}
-	return std::string();
+	curNpc = nullptr;
+	return false;
+}
+
+void MapManager::addDefaultNPC()
+{
+	auto npc1 = std::make_shared<NPC>(5, 4, "GrandFather", NPCEventType::NPCShop, true);
+	Senario tempSenario;
+	tempSenario.push_back({ L"안녕하신가.. 레드군", L"그동안 잘지냈는가?" });
+	tempSenario.push_back({ L"잘지낸것 같군..", L"살물건이 있는겐가?" });
+	npc1->addSenario("default", tempSenario);
+
+	auto npc2 = std::make_shared<NPC>(7, 4, "Mother");
+	tempSenario.clear();
+	tempSenario.push_back({ L"엄마 : 그래...", L"남자는 언젠가" });
+	tempSenario.push_back({ L"모험을 떠나는 거야!", L"TV에서 그랬어..." });
+	tempSenario.push_back({ L"오박사님이 널 찾고계셔!", L""});
+	npc2->addSenario("default", tempSenario);
+
+	findMap("RivalHouse")->addNPC(npc1);
+	findMap("RedHouse1F")->addNPC(npc2);
 }

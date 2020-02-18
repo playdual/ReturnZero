@@ -181,6 +181,8 @@ namespace UTIL
 	//Text 출력
 	void PrintText(HDC _hdc, const char* _str, const char* _font, int _destX, int _destY, 
 		int _fontSize = 20, COLORREF _fontColor = RGB(0, 0, 0), bool _isBgTransParent = false, COLORREF _bgColor = RGB(255, 255, 255));
+	void PrintText(HDC _hdc, const wchar_t* _str, const char * _font, int _destX, int _destY,
+		int _fontSize = 20, COLORREF _fontColor = RGB(0, 0, 0), bool _isBgTransParent = false, COLORREF _bgColor = RGB(255, 255, 255));
 
 //================== Collision Function ===========================
 	//원과 원 충돌

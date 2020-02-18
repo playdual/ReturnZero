@@ -175,7 +175,10 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("GrandFatherBack", "Images/NPC/GrandFatherBack.bmp", 0, 0, 80, 80, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("GrandFatherLeft", "Images/NPC/GrandFatherLeft.bmp", 0, 0, 80, 80, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("GrandFatherRight", "Images/NPC/GrandFatherRight.bmp", 0, 0, 80, 80, true, RGB(255, 0, 255));
-
+	IMAGEMANAGER->addImage("MotherFront", "Images/NPC/MotherFront.bmp", 0, 0, 80, 80, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("MotherBack", "Images/NPC/MotherBack.bmp", 0, 0, 80, 80, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("MotherLeft", "Images/NPC/MotherLeft.bmp", 0, 0, 80, 80, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("MotherRight", "Images/NPC/MotherRight.bmp", 0, 0, 80, 80, true, RGB(255, 0, 255));
 
 	//sound
 	SOUNDMANAGER->addStream("NewBarkTown", "Sounds/NewBarkTown.mp3", true);

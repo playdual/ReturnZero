@@ -493,6 +493,39 @@ namespace UTIL
 		if (_isBgTransParent)
 			SetBkMode(_hdc, OPAQUE);		
 	}
+	void PrintText(HDC _hdc, const wchar_t* _str, const char * _font, int _destX, int _destY,
+		int _fontSize, COLORREF _fontColor, bool _isBgTransParent, COLORREF _bgColor)
+	{
+		HFONT curFont, oldFont;
+		COLORREF oldBkColor, oldFontColor;
+		int len = wcslen(_str);
+		if (_fontColor != RGB(0, 0, 0))
+			oldFontColor = SetTextColor(_hdc, _fontColor);
+		if (_bgColor != RGB(255, 255, 255))
+			oldBkColor = SetBkColor(_hdc, _bgColor);
+		if (_isBgTransParent)
+			SetBkMode(_hdc, TRANSPARENT);
+		else
+			SetBkMode(_hdc, OPAQUE);
+
+		curFont = CreateFont(_fontSize, 0, 0, 0, FW_DONTCARE,
+			FALSE, FALSE, FALSE, DEFAULT_CHARSET,
+			OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY,
+			FF_DONTCARE, _font
+		);
+
+		oldFont = (HFONT)SelectObject(_hdc, curFont);
+		TextOutW(_hdc, _destX, _destY, _str, len);
+		SelectObject(_hdc, oldFont);
+
+		DeleteObject(curFont);
+		if (_fontColor != RGB(0, 0, 0))
+			SetTextColor(_hdc, oldFontColor);
+		if (_bgColor != RGB(255, 255, 255))
+			SetBkColor(_hdc, oldBkColor);
+		if (_isBgTransParent)
+			SetBkMode(_hdc, OPAQUE);
+	}
 
 	//?먭낵 ??異⑸룎
 	bool isCircleCircleCollision(const Circle& _circle1, const Circle& _circle2) 
