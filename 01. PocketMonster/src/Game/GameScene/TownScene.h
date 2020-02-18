@@ -33,11 +33,24 @@ private:
 	//Menu
 	UTIL::IRECT m_menurect;
 	UTIL::IRECT m_IndexMenuRect;
+	
+	UTIL::IRECT m_SceneChange[512];
+
 	int m_menuIndex;
 	int m_menuIndexMax;
+	int PlaytimeMin;
+	int PlaytimeSec;
+	int x;
+	int y;
+	int j;
 	Image* m_menuImg;
 	Image* m_IndexMenuImg;
+	Image* m_TrainnerCard;
+	Image* m_TrainnerCardPlayer;
+	Image* m_PokemonBelt;
 	bool isPocketmonMenuOn = false;
-
+	bool isTrainnerCard = false;
+	bool isColon = false;
+	bool isBattle = false;
 	std::vector<MenuBar> Menu;
 };

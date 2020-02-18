@@ -133,6 +133,8 @@ void InvenScene::update(float _deltaTime)
 	{
 		if (KEYMANAGER->isOnceKeyDown(P1_X))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			SCENEMANAGER->scenePop();
 		}
 	}
@@ -226,6 +228,8 @@ void InvenScene::update(float _deltaTime)
 	{
 		if (KEYMANAGER->isOnceKeyDown(P1_Z))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			isTownInven = true;
 			m_inven->setIsOpenMenu(true);
 		}
@@ -235,11 +239,15 @@ void InvenScene::update(float _deltaTime)
 	{
 		if (KEYMANAGER->isOnceKeyDown(P1_UP))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			if (pointerCount != 0)
 				pointerCount--;
 		}
 		if (KEYMANAGER->isOnceKeyDown(P1_DOWN))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			if (pointerCount != 3 && invenSceneCount == 0 ||
 				pointerCount != 2 && invenSceneCount == 1 ||
 				pointerCount != 2 && invenSceneCount == 2)
@@ -253,6 +261,8 @@ void InvenScene::update(float _deltaTime)
 		{
 			if (KEYMANAGER->isOnceKeyDown(P1_Z))
 			{
+				SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 				pointerCount = 0;
 				isTownInven = false;
 				m_inven->setIsOpenMenu(false);
@@ -263,6 +273,8 @@ void InvenScene::update(float _deltaTime)
 		{
 			if (KEYMANAGER->isOnceKeyDown(P1_Z))
 			{
+				SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 				m_isThrowItem = true;
 			}
 		}
@@ -272,6 +284,8 @@ void InvenScene::update(float _deltaTime)
 		{
 			if (KEYMANAGER->isOnceKeyDown(P1_Z))
 			{
+				SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 				sellPotion();
 			}
 		}
@@ -279,6 +293,8 @@ void InvenScene::update(float _deltaTime)
 		{
 			if (KEYMANAGER->isOnceKeyDown(P1_Z))
 			{
+				SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 				sellImport();
 			}
 		}
@@ -286,6 +302,8 @@ void InvenScene::update(float _deltaTime)
 		{
 			if (KEYMANAGER->isOnceKeyDown(P1_Z))
 			{
+				SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 				sellPokeBall();
 			}
 		}
@@ -293,6 +311,8 @@ void InvenScene::update(float _deltaTime)
 
 		if (KEYMANAGER->isOnceKeyDown(P1_X))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			isTownInven = false;
 			m_inven->setIsOpenMenu(false);
 		}
@@ -304,6 +324,8 @@ void InvenScene::update(float _deltaTime)
 		{
 			if (KEYMANAGER->isOnceKeyDown(P1_Z))
 			{
+				SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 				isBattleInven = true;
 				m_inven->setIsOpenMenu(true);
 			}
@@ -313,11 +335,15 @@ void InvenScene::update(float _deltaTime)
 	{
 		if (KEYMANAGER->isOnceKeyDown(P1_UP))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			if (pointerCount != 0)
 				pointerCount--;
 		}
 		if (KEYMANAGER->isOnceKeyDown(P1_DOWN))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			if (pointerCount == 0 && invenSceneCount != 1)
 				pointerCount++;
 		}
@@ -327,6 +353,8 @@ void InvenScene::update(float _deltaTime)
 		{
 			if (KEYMANAGER->isOnceKeyDown(P1_Z))
 			{
+				SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 				isBattleInven = false;
 				m_inven->setIsOpenMenu(false);
 				isFromBattleScene = false;
@@ -335,6 +363,8 @@ void InvenScene::update(float _deltaTime)
 		// 배틀씬에서 아이템 쓴다를 선택한다.
 		if (KEYMANAGER->isOnceKeyDown(P1_Z))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			std::cout << "인배틀씬 아이템을 사용합니다." << std::endl;
 			if (pointerCount == 0 && invenSceneCount == 0)
 			{
@@ -356,10 +386,15 @@ void InvenScene::update(float _deltaTime)
 	if (m_isThrowItem)
 	{
 		if (KEYMANAGER->isOnceKeyDown(P1_DOWN))
-			m_throwItemCount++;
+		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
 
+			m_throwItemCount++;
+		}
 		if (KEYMANAGER->isOnceKeyUp(P1_UP))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			if (m_throwItemCount != 0)
 				m_throwItemCount--;
 		}

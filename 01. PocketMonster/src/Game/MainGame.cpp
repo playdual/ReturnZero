@@ -157,15 +157,22 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("BagHpBarRed",	"images/HpBarRed.bmp",				0, 0, 208, 15, true, RGB(255, 0, 255));
 	
 	//Pokemon Status
-	IMAGEMANAGER->addImage("PokemonDie", "images/PokemonDie.bmp", 0, 0, 50, 30, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("PokemonDie", "images/PokemonDie.bmp", 0, 0, 110, 50, true, RGB(255, 0, 255));
 
 	//Menu and Cursor
 	IMAGEMANAGER->addImage("MainMenuimg",			"images/menu.bmp",			0,0, 300, 530, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("PokemonMenuimg",		"images/menu.bmp",			0,0, 250, 360, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("menuindeximg",			"images/menuindex.bmp",		0,0, 30, 50, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("PokemonMenuindeximg",	"images/menuindex.bmp",		0,0, 30, 50, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("TrainnerCardimg",		"images/TrainnerCard.bmp",	0,0, WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("TrainnerCardplayerimg",	"images/playerCard.bmp",	0,0, 150, 350, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("TrainnerCardBelt",		"images/PokemonBelt.bmp",	0,0, 1000, 95, true, RGB(255, 0, 255));
+
+
 	//sound
 	SOUNDMANAGER->addStream("NewBarkTown", "Sounds/NewBarkTown.mp3", true);
+	SOUNDMANAGER->addStream("Battle", "Sounds/Battle.mp3", true);
+	SOUNDMANAGER->addStream("Ok", "Sounds/Ok.mp3", false);
 	
 	//=============
 	// battle Ui //
@@ -219,6 +226,8 @@ HRESULT MainGame::init()
 	//now! our First Sound!
 	SOUNDMANAGER->playSound("NewBarkTown", Channel::eChannelBgm);
 	
+
+
 	return S_OK;
 }
 

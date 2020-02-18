@@ -112,13 +112,16 @@ private:
 	int m_swapIndexFirst;
 	int m_swapIndexSecond;
 	int m_swapIndexMax;
-
+	int realRecovery;
+	int m_memoryHp;
 	float frameDelay = 0.5f;
 	float pastTime = 0.f;
 
 	bool m_isOnbattle = false;
 	bool isItemUse = false;
 	bool isEffectionItem = false;
+	bool isMaxRecovery = false;
+
 
 	ItemInfo* rendedItemInfo = nullptr;
 	std::vector<std::shared_ptr<PocketMon>>& Pocketmons;

@@ -78,6 +78,8 @@ void player::update(float _deltaTime)
 	{
 		if (KEYMANAGER->isOnceKeyDown(GAME_MENU))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			ismenu = true;
 		}
 	}
@@ -85,6 +87,8 @@ void player::update(float _deltaTime)
 	{
 		if (KEYMANAGER->isOnceKeyDown(GAME_MENUPROTO) || KEYMANAGER->isOnceKeyDown(P1_X))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			ismenu = false;
 		}
 	}

@@ -36,6 +36,9 @@ public:
 	std::vector<std::shared_ptr<class PocketMon>>& getPocketmons() { return Pocketmons; }
 	void setisMenu(bool ismenuvalue);
 	int getCountPocketMon() { return Pocketmons.size(); }
+
+	void setMoney(int moneyValue) { m_money = moneyValue; }
+	int getMoney() { return m_money; }
 	//void rectInCamera(UTIL::IRECT& outRect, const UTIL::IRECT& realRect, bool& isOutput);
 private:
 	UTIL::IRECT m_playerRect;
@@ -81,7 +84,7 @@ private:
 	//badge
 	//
 	//QUESTSTATE == 遺덈같??
-	//money == int
+	int m_money=1000;
 	int m_blockPositionX;
 	int m_blockPositionY;
 
@@ -90,6 +93,7 @@ private:
 
 	//Menu
 	bool ismenu = false;
+
 
 
 	//player image

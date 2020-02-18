@@ -124,18 +124,26 @@ bool PocketmoninfoScene::init(void* _info, bool isOnbattle)
 
 void PocketmoninfoScene::update(float _deltaTime)
 {
+	if (KEYMANAGER->isStayKeyDown(P1_A))
+	{
+		Pocketmons[0]->m_currentHp -= 1;
+	}
+
 	if (isItemUse && m_isOnbattle) {
 		if (isItemUse && KEYMANAGER->isOnceKeyDown(P1_Z)) {
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			isItemUse = false;
 			m_isOnbattle = false;
 
 			auto temp = new UsedItemInfo;
-			/*if (isEffectionItem)
+			if (isEffectionItem)
 				temp->isUsed = true;
 			else
-				temp->isUsed = false;*/
+				temp->isUsed = false;
+
 			//일단은 사용한걸로
-			temp->isUsed = true;
+		/*	temp->isUsed = true;*/
 			temp->itemKey = rendedItemInfo->name;
 			m_sceneResult = (void*)temp;
 			SCENEMANAGER->scenePop(true);
@@ -181,15 +189,19 @@ void PocketmoninfoScene::update(float _deltaTime)
 	}
 
 	//메뉴 인덱스 0
-	if (m_InBagMenuIndex == 0)
+	if (m_InBagMenuIndex == 0 && !isItemUse && !isMaxRecovery)
 	{
 
 		if (KEYMANAGER->isOnceKeyDown(P1_UP))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			m_indexCursor--;
 		}
 		else if (KEYMANAGER->isOnceKeyDown(P1_DOWN))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			m_indexCursor++;
 		}
 
@@ -199,11 +211,15 @@ void PocketmoninfoScene::update(float _deltaTime)
 		//취소일때 확인누르면 기본화면으로 돌아가기
 		if (m_indexCursor == Pocketmons.size() && KEYMANAGER->isOnceKeyDown(P1_Z) && !m_isOnbattle)
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			SCENEMANAGER->scenePop();
 		}
 		else if (m_indexCursor == Pocketmons.size() &&
 			KEYMANAGER->isStayKeyDown(P1_Z) && m_isOnbattle)
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			auto* temp = new UsedItemInfo;
 			temp->isUsed = false;
 			temp->infoType = INFO_USEDITEM;
@@ -214,10 +230,14 @@ void PocketmoninfoScene::update(float _deltaTime)
 		//X누르면 기본화면으로 돌아가기
 		if (KEYMANAGER->isOnceKeyDown(P1_X) && !m_isOnbattle)
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			SCENEMANAGER->scenePop();
 		}
 		else if (KEYMANAGER->isStayKeyDown(P1_X) && m_isOnbattle)
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			auto* temp = new UsedItemInfo;
 			temp->infoType = INFO_USEDITEM;
 			temp->isUsed = false;
@@ -228,25 +248,44 @@ void PocketmoninfoScene::update(float _deltaTime)
 		//Z를 누르면 포켓몬 관한 메뉴가 나오기
 		if (m_indexCursor != m_indexCursorMax && !m_isOnbattle &&KEYMANAGER->isOnceKeyDown(P1_Z))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			m_InBagMenuIndex = 1;
 		}
 
 		//배틀씬에서 인벤씬에서 넘어왔을 때 포켓몬한테 아이템 사용
 		if (m_indexCursor != m_indexCursorMax && m_isOnbattle && KEYMANAGER->isOnceKeyDown(P1_Z))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			isItemUse = true;
-			int realRecovery = Pocketmons[m_indexCursor]->m_maxHp - Pocketmons[m_indexCursor]->m_currentHp;
+			realRecovery = Pocketmons[m_indexCursor]->m_maxHp - Pocketmons[m_indexCursor]->m_currentHp;
+	
 			if (realRecovery > rendedItemInfo->healPoint)
 				realRecovery = rendedItemInfo->healPoint;
-			if (realRecovery == 0) {
+			m_memoryHp = Pocketmons[m_indexCursor]->m_currentHp + realRecovery;
+			if (realRecovery == 0) 
+			{
 				isEffectionItem = false;
 			}
-			else {
-				isEffectionItem = true;
-				Pocketmons[m_indexCursor]->m_currentHp += rendedItemInfo->healPoint;
+			else 
+			{
+				isEffectionItem = true;			
 			}
+			
+			isMaxRecovery = true;
+
+			//Pocketmons[m_indexCursor]->m_currentHp += rendedItemInfo->healPoint;
 		}
 	}
+	if (isMaxRecovery)
+	{
+		if(Pocketmons[m_indexCursor]->m_currentHp<m_memoryHp)
+		Pocketmons[m_indexCursor]->m_currentHp += 1;
+		if (Pocketmons[m_indexCursor]->m_currentHp >= m_memoryHp)
+			isMaxRecovery = false;
+	}
+
 
 	//메뉴 인덱스 1
 	if (m_InBagMenuIndex == 1 && isSwap == false)
@@ -256,11 +295,15 @@ void PocketmoninfoScene::update(float _deltaTime)
 
 		if (KEYMANAGER->isOnceKeyDown(P1_UP) && isSwap == false)
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			m_indexCursorMenu1--;
 
 		}
 		else if (KEYMANAGER->isOnceKeyDown(P1_DOWN) && isSwap == false)
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			m_indexCursorMenu1++;
 		}
 
@@ -270,26 +313,36 @@ void PocketmoninfoScene::update(float _deltaTime)
 
 		if (m_indexCursorMenu1 == 0 && KEYMANAGER->isOnceKeyDown(P1_Z))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			//상태보기
 		}
 		if (m_indexCursorMenu1 == 1 && KEYMANAGER->isOnceKeyDown(P1_Z))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			//순서변경
 			isSwap = true;
 		}
 		if (m_indexCursorMenu1 == 2 && KEYMANAGER->isOnceKeyDown(P1_Z))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			//지닌물건
 		}
 
 		//그만둔다
 		if (KEYMANAGER->isOnceKeyDown(P1_X))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			isSwap = false;
 			m_InBagMenuIndex = 0;
 		}
 		if (m_indexCursorMenu1 == 3 && KEYMANAGER->isOnceKeyDown(P1_Z))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			isSwap = false;
 			m_InBagMenuIndex = 0;
 		}
@@ -302,17 +355,23 @@ void PocketmoninfoScene::update(float _deltaTime)
 
 		if (KEYMANAGER->isOnceKeyDown(P1_X))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			isSwap = false;
 			m_InBagMenuIndex = 0;
 		}
 
 		if (KEYMANAGER->isOnceKeyDown(P1_UP))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			m_swapIndexSecond--;
 
 		}
 		else if (KEYMANAGER->isOnceKeyDown(P1_DOWN))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			m_swapIndexSecond++;
 		}
 
@@ -327,6 +386,8 @@ void PocketmoninfoScene::update(float _deltaTime)
 
 		if (KEYMANAGER->isOnceKeyDown(P1_Z))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			std::swap(Pocketmons[m_swapIndexFirst], Pocketmons[m_swapIndexSecond]);
 			m_InBagMenuIndex = 0;
 			isSwap = false;
@@ -335,6 +396,8 @@ void PocketmoninfoScene::update(float _deltaTime)
 
 		if (m_swapIndexSecond == m_swapIndexMax && KEYMANAGER->isOnceKeyDown(P1_Z))
 		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+
 			m_InBagMenuIndex = 0;
 		}
 
@@ -747,22 +810,35 @@ void PocketmoninfoScene::render(HDC hdc)
 		UTIL::PrintText(hdc, "취소", "소야바른9", 895, 655, 75, RGB(255, 255, 255), true, RGB(160, 112, 240));
 	}
 
-	if (isItemUse)
+	if (isItemUse && !isMaxRecovery)
 	{
-		UTIL::PrintText(hdc, Pocketmons[m_indexCursor]->m_name.c_str(), "소야바른9", 25, 650, 80, RGB(208, 208, 208), true, RGB(160, 112, 240));
-		UTIL::PrintText(hdc, Pocketmons[m_indexCursor]->m_name.c_str(), "소야바른9", 20, 650, 80, RGB(0, 0, 0), true, RGB(160, 112, 240));
 
-		UTIL::PrintText(hdc, "의 HP가 ", "소야바른9", 185, 650, 80, RGB(208, 208, 208), true, RGB(160, 112, 240));
-		UTIL::PrintText(hdc, "의 HP가 ", "소야바른9", 180, 650, 80, RGB(50, 50, 50), true, RGB(160, 112, 240));
+		if (realRecovery > 0)
+		{
+			UTIL::PrintText(hdc, Pocketmons[m_indexCursor]->m_name.c_str(), "소야바른9", 25, 650, 80, RGB(208, 208, 208), true, RGB(160, 112, 240));
+			UTIL::PrintText(hdc, Pocketmons[m_indexCursor]->m_name.c_str(), "소야바른9", 20, 650, 80, RGB(0, 0, 0), true, RGB(160, 112, 240));
+
+			UTIL::PrintText(hdc, "의 HP가 ", "소야바른9", 185, 650, 80, RGB(208, 208, 208), true, RGB(160, 112, 240));
+			UTIL::PrintText(hdc, "의 HP가 ", "소야바른9", 180, 650, 80, RGB(50, 50, 50), true, RGB(160, 112, 240));
 
 
-		std::string m_HpRecover = std::to_string(rendedItemInfo->healPoint);
-		UTIL::PrintText(hdc, m_HpRecover.c_str(), "소야바른9", 385, 650, 80, RGB(208, 208, 208), true, RGB(160, 112, 240));
-		UTIL::PrintText(hdc, m_HpRecover.c_str(), "소야바른9", 380, 650, 80, RGB(50, 50, 50), true, RGB(160, 112, 240));
+			std::string m_HpRecover = std::to_string(rendedItemInfo->healPoint);
+			UTIL::PrintText(hdc, m_HpRecover.c_str(), "소야바른9", 385, 650, 80, RGB(208, 208, 208), true, RGB(160, 112, 240));
+			UTIL::PrintText(hdc, m_HpRecover.c_str(), "소야바른9", 380, 650, 80, RGB(50, 50, 50), true, RGB(160, 112, 240));
 
-		UTIL::PrintText(hdc, " 회복 되었다!", "소야바른9", 465, 650, 80, RGB(208, 208, 208), true, RGB(160, 112, 240));
-		UTIL::PrintText(hdc, " 회복 되었다!", "소야바른9", 460, 650, 80, RGB(50, 50, 50), true, RGB(160, 112, 240));
+			UTIL::PrintText(hdc, " 회복 되었다!", "소야바른9", 465, 650, 80, RGB(208, 208, 208), true, RGB(160, 112, 240));
+			UTIL::PrintText(hdc, " 회복 되었다!", "소야바른9", 460, 650, 80, RGB(50, 50, 50), true, RGB(160, 112, 240));
+		}
+		else if(realRecovery <= 0)
+		{
+			UTIL::PrintText(hdc, "효과가 없는 것 같다...", "소야바른9", 25, 650, 80, RGB(208, 208, 208), true, RGB(160, 112, 240));
+			UTIL::PrintText(hdc, "효과가 없는 것 같다...", "소야바른9", 20, 650, 80, RGB(0, 0, 0), true, RGB(160, 112, 240));
+		}
+	}
 
+	if (Pocketmons[0]->m_currentHp <= 0)
+	{
+		m_PokemonDie->render(hdc, 165, 220);
 	}
 }
 
