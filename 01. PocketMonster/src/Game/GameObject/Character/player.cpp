@@ -67,33 +67,18 @@ bool player::init()
 	return true;
 }
 
-void player::moveLogic()
+//move logic
+void player::moveLeftLogic()
 {
-	//temp
-	if (KEYMANAGER->isOnceKeyDown(P1_USEITEM)) {
-		Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Squirtle", 31)));
-	}
-	if (!ismenu)
-	{
-		if (KEYMANAGER->isOnceKeyDown(GAME_MENU))
-		{
-			SOUNDMANAGER->playSound("Menu", Channel::eChannelEffect);
-
-	static std::string npcName;
-	//Move left
+	//왼쪽으로 이동중
 	if (isMoveLeft)
 	{
-		if (KEYMANAGER->isOnceKeyDown(GAME_MENUPROTO) || KEYMANAGER->isOnceKeyDown(P1_X))
-		{
-			SOUNDMANAGER->playSound("Menu", Channel::eChannelEffect);
-
 		if (m_playerRect.left > m_playerRectMemory - TILE_WIDTH)
 		{
 			m_playerRect.moveLeft(5);
 		}
 		else
 		{
-
 			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX - 1, m_blockPositionY) == TileType::TileTypeBush)
 			{
 				isBattleStart();
@@ -113,6 +98,8 @@ void player::moveLogic()
 			isMoveLeft = false;
 		}
 	}
+
+	//방향 바꾸기 로직
 	if (KEYMANAGER->isOnceKeyDown(P1_LEFT) && m_playerBeforeArrowMemory != 2)
 	{
 		m_playerBeforeArrowMemory = 2;
@@ -122,49 +109,38 @@ void player::moveLogic()
 		isDown = false;
 		curDir = DirectionLeft;
 		m_CurrentTime = 0;
-
 	}
+	//이동 여부를 확인
 	else if (KEYMANAGER->isStayKeyDown(P1_LEFT) && !isMoveLeft && !isAnotherMove && m_CurrentTime > 0.2f)
 	{
 		m_playerCurrentArrowMemory = 2;
 		if (m_playerBeforeArrowMemory == 2 && m_playerCurrentArrowMemory == 2)
 		{
 			TileType type = MAPMANGER->getTileTypeFromIndex(m_blockPositionX - 1, m_blockPositionY);
-			npcName = MAPMANGER->getNPCName(m_blockPositionX - 1, m_blockPositionY);
-			if ((type == TileType::TileTypeFloor || type == TileType::TileTypeNextMap 
+			auto npcName = MAPMANGER->getNPCName(m_blockPositionX - 1, m_blockPositionY);
+			if ((type == TileType::TileTypeFloor || type == TileType::TileTypeNextMap
 				|| type == TileType::TileTypeBush) && npcName == "")
 			{
 				isLeft = false;
 				m_playerRectMemory = m_playerRect.left;
 				isAnotherMove = true;
 				isMoveLeft = true;
-				isMoveLeftTest = true;
 				curDir = DirectionLeft;
 			}
 			else if (type == TileType::TileTypeObject)
 			{
 				ObjectHandle(MAPMANGER->getObjectNameFromIndex(m_blockPositionX - 1, m_blockPositionY));
-
-				if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX - 1, m_blockPositionY) == TileType::TileTypeFloor ||
-					MAPMANGER->getTileTypeFromIndex(m_blockPositionX - 1, m_blockPositionY) == TileType::TileTypeNextMap ||
-					MAPMANGER->getTileTypeFromIndex(m_blockPositionX - 1, m_blockPositionY) == TileType::TileTypeBush)
-				{
-					isLeft = false;
-					m_playerRectMemory = m_playerRect.left;
-					isAnotherMove = true;
-					isMoveLeft = true;
-					isMoveLeftTest = true;
-				}
-				if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX - 1, m_blockPositionY) == TileType::TileTypeNextMap)
-					SOUNDMANAGER->playSound("MapMove", Channel::eChannelEffect);
 			}
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX - 1, m_blockPositionY) == TileType::TileTypeNextMap)
+				SOUNDMANAGER->playSound("MapMove", Channel::eChannelEffect);
 		}
 	}
-
-	//Move Right
+}
+void player::moveRightLogic()
+{
+	//오른쪽으로 이동중
 	if (isMoveRight)
 	{
-
 		if (m_playerRect.right < m_playerRectMemory + TILE_WIDTH)
 		{
 			m_playerRect.moveRight(5);
@@ -175,12 +151,10 @@ void player::moveLogic()
 			{
 				isBattleStart();
 			}
-
 			else if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX + 1, m_blockPositionY) == TileType::TileTypeNextMap)
 			{
 				isChangeMap = true;
 			}
-
 			isLeft = false;
 			isRight = true;
 			isUp = false;
@@ -188,10 +162,10 @@ void player::moveLogic()
 			isMoveRight = false;
 			m_blockPositionX += 1;
 			isAnotherMove = false;
-
-
 		}
 	}
+
+	//방향 바꾸기 로직
 	if (KEYMANAGER->isOnceKeyDown(P1_RIGHT) && m_playerBeforeArrowMemory != 3)
 	{
 		m_playerBeforeArrowMemory = 3;
@@ -202,22 +176,14 @@ void player::moveLogic()
 		m_CurrentTime = 0;
 		curDir = DirectionRight;
 	}
+	//이동 여부를 확인
 	else if (KEYMANAGER->isStayKeyDown(P1_RIGHT) && !isMoveRight && !isAnotherMove && m_CurrentTime > 0.2f)
 	{
 		m_playerCurrentArrowMemory = 3;
-
-
 		if (m_playerBeforeArrowMemory == 3 && m_playerCurrentArrowMemory == 3)
-				}
-				if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX + 1, m_blockPositionY) == TileType::TileTypeNextMap)
-					SOUNDMANAGER->playSound("MapMove", Channel::eChannelEffect);
-			}
-		}
-		
-		if (isMoveUp)
 		{
 			TileType type = MAPMANGER->getTileTypeFromIndex(m_blockPositionX + 1, m_blockPositionY);
-			npcName = MAPMANGER->getNPCName(m_blockPositionX + 1, m_blockPositionY);
+			auto npcName = MAPMANGER->getNPCName(m_blockPositionX + 1, m_blockPositionY);
 			if ((type == TileType::TileTypeFloor || type == TileType::TileTypeNextMap
 				|| type == TileType::TileTypeBush) && npcName == "")
 			{
@@ -231,10 +197,14 @@ void player::moveLogic()
 			{
 				ObjectHandle(MAPMANGER->getObjectNameFromIndex(m_blockPositionX + 1, m_blockPositionY));
 			}
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX + 1, m_blockPositionY) == TileType::TileTypeNextMap)
+				SOUNDMANAGER->playSound("MapMove", Channel::eChannelEffect);
 		}
 	}
-
-	//Move Up
+}
+void player::moveUpLogic()
+{
+	//위로 이동중
 	if (isMoveUp)
 	{
 		if (m_playerRect.top > m_playerRectMemory - TILE_HEIGHT)
@@ -243,17 +213,14 @@ void player::moveLogic()
 		}
 		else
 		{
-
 			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY - 1) == TileType::TileTypeBush)
 			{
 				isBattleStart();
 			}
-
 			else if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY - 1) == TileType::TileTypeNextMap)
 			{
 				isChangeMap = true;
 			}
-
 			isLeft = false;
 			isRight = false;
 			isUp = true;
@@ -263,6 +230,8 @@ void player::moveLogic()
 			isMoveUp = false;
 		}
 	}
+
+	//방향 바꾸기 로직
 	if (KEYMANAGER->isOnceKeyDown(P1_UP) && m_playerBeforeArrowMemory != 1)
 	{
 		m_playerBeforeArrowMemory = 1;
@@ -273,68 +242,52 @@ void player::moveLogic()
 		curDir = DirectionUp;
 		m_CurrentTime = 0;
 	}
+	//이동 여부를 확인
 	else if (KEYMANAGER->isStayKeyDown(P1_UP) && !isMoveUp && !isAnotherMove && m_CurrentTime > 0.2f)
 	{
 		m_playerCurrentArrowMemory = 1;
 
-
 		if (m_playerBeforeArrowMemory == 1 && m_playerCurrentArrowMemory == 1)
-				if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY - 1) == TileType::TileTypeFloor ||
-					MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY - 1) == TileType::TileTypeNextMap ||
-					MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY - 1) == TileType::TileTypeBush)
-				{
-					isUp = false;
-					m_playerRectMemory = m_playerRect.top;
-					isAnotherMove = true;
-					isMoveUp = true;
-				}
-				if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY -1) == TileType::TileTypeNextMap)
-					SOUNDMANAGER->playSound("MapMove", Channel::eChannelEffect);
-			}
-		}
-		
-		if (isMoveDown)
 		{
-			TileType type = MAPMANGER->getTileTypeFromIndex(m_blockPositionX , m_blockPositionY - 1);
-			npcName = MAPMANGER->getNPCName(m_blockPositionX, m_blockPositionY - 1);
+			TileType type = MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY - 1);
+			auto npcName = MAPMANGER->getNPCName(m_blockPositionX, m_blockPositionY - 1);
 			if ((type == TileType::TileTypeFloor || type == TileType::TileTypeNextMap
 				|| type == TileType::TileTypeBush) && npcName == "")
 			{
-				isUp = false;
+				isUp= false;
 				m_playerRectMemory = m_playerRect.top;
 				isAnotherMove = true;
-				isMoveUp = true;
+				isMoveUp= true;
 				curDir = DirectionUp;
 			}
 			else if (type == TileType::TileTypeObject)
 			{
 				ObjectHandle(MAPMANGER->getObjectNameFromIndex(m_blockPositionX, m_blockPositionY - 1));
 			}
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY - 1) == TileType::TileTypeNextMap)
+				SOUNDMANAGER->playSound("MapMove", Channel::eChannelEffect);
 		}
 	}
-
-
-	//Down Move
+}
+void player::moveDownLogic()
+{
+	//아래로 이동중
 	if (isMoveDown)
 	{
 		if (m_playerRect.bottom < m_playerRectMemory + TILE_HEIGHT)
 		{
-			isAfter = false;
 			m_playerRect.moveDown(5);
 		}
 		else
 		{
-
 			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY + 1) == TileType::TileTypeBush)
 			{
 				isBattleStart();
 			}
-
 			else if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY + 1) == TileType::TileTypeNextMap)
 			{
 				isChangeMap = true;
 			}
-
 			isAfter = true;
 			isLeft = false;
 			isRight = false;
@@ -345,6 +298,8 @@ void player::moveLogic()
 			isAnotherMove = false;
 		}
 	}
+
+	//방향 바꾸기 로직
 	if (KEYMANAGER->isOnceKeyDown(P1_DOWN) && m_playerBeforeArrowMemory != 0)
 	{
 		m_playerBeforeArrowMemory = 0;
@@ -355,13 +310,14 @@ void player::moveLogic()
 		m_CurrentTime = 0;
 		curDir = DirectionDown;
 	}
+	//이동 여부를 확인
 	else if (KEYMANAGER->isStayKeyDown(P1_DOWN) && !isMoveDown && !isAnotherMove && m_CurrentTime > 0.2f)
 	{
 		m_playerCurrentArrowMemory = 0;
 		if (m_playerBeforeArrowMemory == 0 && m_playerCurrentArrowMemory == 0)
 		{
 			TileType type = MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY + 1);
-			npcName = MAPMANGER->getNPCName(m_blockPositionX, m_blockPositionY + 1);
+			auto npcName = MAPMANGER->getNPCName(m_blockPositionX, m_blockPositionY + 1);
 			if ((type == TileType::TileTypeFloor || type == TileType::TileTypeNextMap
 				|| type == TileType::TileTypeBush) && npcName == "")
 			{
@@ -373,28 +329,29 @@ void player::moveLogic()
 			}
 			else if (type == TileType::TileTypeObject)
 			{
-				ObjectHandle(MAPMANGER->getObjectNameFromIndex(m_blockPositionX , m_blockPositionY + 1));
-
-				if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY + 1) == TileType::TileTypeFloor ||
-					MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY + 1) == TileType::TileTypeNextMap ||
-					MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY + 1) == TileType::TileTypeBush)
-				{
-					isDown = false;
-					m_playerRectMemory = m_playerRect.bottom;
-					isAnotherMove = true;
-					isMoveDown = true;
-				}
-				if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY + 1) == TileType::TileTypeNextMap)
-					SOUNDMANAGER->playSound("MapMove", Channel::eChannelEffect);
+				ObjectHandle(MAPMANGER->getObjectNameFromIndex(m_blockPositionX, m_blockPositionY + 1));
 			}
+			if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY + 1) == TileType::TileTypeNextMap)
+				SOUNDMANAGER->playSound("MapMove", Channel::eChannelEffect);
 		}
 	}
+}
+void player::moveLogic()
+{
+	std::string npcName;
+	
+	//Move left
+	moveLeftLogic();
+	moveRightLogic();
+	moveUpLogic();
+	moveDownLogic();
+	
 
 	//NPC Activat
-	if (KEYMANAGER->isOnceKeyDown(P1_Z)) {
+	if (KEYMANAGER->isOnceKeyDown(P1_Z)) 
+	{
 		checkAndActivateNPC();
 	}
-
 
 	//animation handle
 	if (isMoveDown)ANIMANAGER->resume("playerMoveDown");
@@ -423,6 +380,7 @@ void player::moveLogic()
 	else if (!isRight)ANIMANAGER->pause("playerRight");
 }
 
+
 void player::update(float _deltaTime)
 {
 	//temp
@@ -433,7 +391,7 @@ void player::update(float _deltaTime)
 	{
 		if (KEYMANAGER->isOnceKeyDown(GAME_MENU))
 		{
-			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+			SOUNDMANAGER->playSound("Menu", Channel::eChannelEffect);
 
 			ismenu = true;
 		}
@@ -442,7 +400,7 @@ void player::update(float _deltaTime)
 	{
 		if (KEYMANAGER->isOnceKeyDown(GAME_MENUPROTO) || KEYMANAGER->isOnceKeyDown(P1_X))
 		{
-			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+			SOUNDMANAGER->playSound("Menu", Channel::eChannelEffect);
 
 			ismenu = false;
 		}
@@ -478,7 +436,6 @@ void player::update(float _deltaTime)
 void player::render(HDC hdc)
 {
 
-
 	//player
 	if (isOnMoundJumpDown) {
 		m_playerShadow->render(hdc, m_outPlayerRect.left, WINSIZEY / 2);
@@ -500,9 +457,6 @@ void player::render(HDC hdc)
 		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top + PLAYER_OFFSETY, m_aniplayerLeft);
 	else if (isRight)
 		m_playerImg->aniRender(hdc, m_outPlayerRect.left, m_outPlayerRect.top + PLAYER_OFFSETY, m_aniplayerRight);
-
-	
-
 }
 
 void player::afterRender(HDC hdc)
@@ -649,7 +603,7 @@ void player::MoundJumpDown()
 	{
 		m_outPlayerRect.moveUp(3);
 	}
-	else if(jumpDx < TILE_HEIGHT * 2)
+	else if (jumpDx < TILE_HEIGHT * 2)
 	{
 		m_outPlayerRect.moveDown(3);
 	}
@@ -660,6 +614,8 @@ void player::MoundJumpDown()
 		isOnMoundJumpDown = false;
 		m_blockPositionY += 2;
 	}
+}
+
 void player::pushBackPocketmon(PocketMon _pocketmon)
 {
 	Pocketmons.push_back(std::make_shared<PocketMon>(_pocketmon));

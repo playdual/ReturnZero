@@ -17,11 +17,11 @@ bool TownScene::init()
 
 	//player init
 	m_player = std::make_shared<player>();
-	
-	m_map = MAPMANGER->findMap("Route01");
+
+	m_map = MAPMANGER->findMap("RedHouse2F");
 	m_player->reLocate(m_map->getStartPositionX(), m_map->getStartPositionY());
 	m_player->init();
-	
+
 	//menu
 	m_menurect = UTIL::IRectMake(WINSIZEX / 2 + 200, 10, 300, 530);
 	m_menuImg = IMAGEMANAGER->findImage("MainMenuimg");
@@ -42,7 +42,7 @@ bool TownScene::init()
 	Menu.push_back(MenuBar("가방", 1));
 	Menu.push_back(MenuBar("닫기", 5));
 	Menu.push_back(MenuBar("플레이어", 2));
-	
+
 
 
 
@@ -50,7 +50,98 @@ bool TownScene::init()
 	return true;
 }
 
+//menu 관련
+void TownScene::menuUpdate()
+{
+	std::sort(Menu.begin(), Menu.end(), [](const MenuBar& _e1, const MenuBar& _e2) {
+		if (_e1.menuNum < _e2.menuNum)
+			return true;
+		return false;
+	});
+	m_menuIndexMax = Menu.size() - 1;
+}
+void TownScene::onMenu()
+{
 
+
+	if (!isTrainnerCard)
+	{
+		if (KEYMANAGER->isOnceKeyDown(P1_DOWN))
+		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+			m_menuIndex++;
+		}
+		else if (KEYMANAGER->isOnceKeyDown(P1_UP))
+		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+			m_menuIndex--;
+		}
+
+		if (m_menuIndex < 0)
+		{
+			m_menuIndex = m_menuIndexMax;
+		}
+		else if (m_menuIndex > m_menuIndexMax)
+		{
+			m_menuIndex = 0;
+		}
+
+		//메뉴인덱스(화살표)
+		m_IndexMenuRect = UTIL::IRectMake(WINSIZEX / 2 + 230, 70 + m_menuIndex * 70, 15, 20);
+
+		//포켓몬 메뉴바 추가 삭제 알고리즘
+		if (m_player->getCountPocketMon() == 0) {
+			delMenu("포켓몬");
+			isPocketmonMenuOn = false;
+		}
+		else {
+			if (isPocketmonMenuOn == false) {
+				addMenu(MenuBar("포켓몬", 0));
+				isPocketmonMenuOn = true;
+			}
+		}
+
+		if (Menu[m_menuIndex].menuName == "포켓몬" && KEYMANAGER->isOnceKeyDown(P1_Z))
+		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+			SCENEMANAGER->scenePush("PocketmonBagScene");
+		}
+		if (Menu[m_menuIndex].menuName == "가방" && KEYMANAGER->isOnceKeyDown(P1_Z))
+		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+			SCENEMANAGER->scenePush("inven");
+		}
+
+		if (Menu[m_menuIndex].menuName == "닫기" && KEYMANAGER->isOnceKeyDown(P1_Z))
+		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+			m_player->setisMenu(false);
+		}
+
+		if (Menu[m_menuIndex].menuName == "플레이어" && KEYMANAGER->isOnceKeyDown(P1_Z))
+		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+			isTrainnerCard = true;
+		}
+
+		if (Menu[m_menuIndex].menuName == "설정" && KEYMANAGER->isOnceKeyDown(P1_Z))
+		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+		}
+
+
+	}
+
+	if (isTrainnerCard)
+	{
+		if (KEYMANAGER->isOnceKeyDown(GAME_MENU))
+		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+			isTrainnerCard = false;
+		}
+	}
+
+}
 void TownScene::update(float _deltaTime)
 {
 	PlaytimeSec = TIMEMANAGER->getWorldTime();
@@ -59,36 +150,36 @@ void TownScene::update(float _deltaTime)
 	if (PlaytimeSec % 2 == 0)isColon = true;
 	else isColon = false;
 
-	//temp handle last info
-	//타운씬에서는 아직까진 이전 씬정보를 사용할 필요가 없다.
-	if (SCENEMANAGER->getLastSceneReturnInfo() != nullptr) {
+	//temp handle last info : 타운씬에서는 아직까진 이전 씬정보를 사용할 필요가 없다.
+	if (SCENEMANAGER->getLastSceneReturnInfo() != nullptr)
+	{
 		SCENEMANAGER->eraseLastInfo();
 	}
 
-
+	//player와 map 업데이트
 	m_player->update(_deltaTime);
 	m_map->setPlayerPosition(m_player->getPlayerBlockX(), m_player->getPlayerBlockY());
 	m_map->update(_deltaTime);
 
+
 	//야생배틀
 	if (m_player->getisBattle())
 	{
-		SOUNDMANAGER->stopChannel(Channel::eChannelBgm);//start를 배틀끝날때 해줘야함
-		SOUNDMANAGER->playSound("Battle", Channel::eChannelBattleBgm);//stop을 배틀끝날때 해줘야함
+		SOUNDMANAGER->stopChannel(Channel::eChannelBgm);				//start를 배틀끝날때 해줘야함
+		SOUNDMANAGER->playSound("Battle", Channel::eChannelBattleBgm);	//stop을 배틀끝날때 해줘야함
 		isBattle = true;
 	}
-
 	if (isBattle)
 	{
 		Tile& curTile = m_map->getSpecifyTile(m_player->getPlayerBlockX(), m_player->getPlayerBlockY());
 		auto innerPocketmon = curTile.getInnerPocketMon();
 
-		isBattle = false;
+		BATTLEMANAGER->battleStart(m_player, nullptr, innerPocketmon.first, innerPocketmon.second);
 		m_player->BattleEnd();
-
 		isBattle = false;
 	}
 
+	//맵 체인지 확인
 	if (m_player->getisChangeMap())
 	{
 		auto tile = MAPMANGER->getCurMap()->getSpecifyTile(m_player->getPlayerBlockX(), m_player->getPlayerBlockY());
@@ -100,101 +191,12 @@ void TownScene::update(float _deltaTime)
 		m_player->isNotChangeMap();
 	}
 
-	//if (m_player->getisChangeMap()) 
-	//{
-	//	auto tile = MAPMANGER->getCurMap()->getSpecifyTile(m_player->getPlayerBlockX(), m_player->getPlayerBlockY());
-	//	m_map = MAPMANGER->findMap(tile.getNextMapKey());
-	//	m_player->reLocate(tile.getNextMapIdx().x, tile.getNextMapIdx().y);
-	//	m_player->MoveSetZero();
-	//	m_player->isNotChangeMap();
-	//} 
-
-	m_map->setisAfter(m_player->getisAfter());
-
+	//메뉴 열때
 	if (m_player->getisMenu())
 	{
-
-		if (!isTrainnerCard)
-		{
-			if (KEYMANAGER->isOnceKeyDown(P1_DOWN))
-			{
-				SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
-				m_menuIndex++;
-			}
-			else if (KEYMANAGER->isOnceKeyDown(P1_UP))
-			{
-				SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
-				m_menuIndex--;
-			}
-
-			if (m_menuIndex < 0)
-			{
-				m_menuIndex = m_menuIndexMax;
-			}
-			else if (m_menuIndex > m_menuIndexMax)
-			{
-				m_menuIndex = 0;
-			}
-
-			//메뉴인덱스(화살표)
-			m_IndexMenuRect = UTIL::IRectMake(WINSIZEX / 2 + 230, 70 + m_menuIndex * 70, 15, 20);
-
-			//포켓몬 메뉴바 추가 삭제 알고리즘
-			if (m_player->getCountPocketMon() == 0) {
-				delMenu("포켓몬");
-				isPocketmonMenuOn = false;
-			}
-			else {
-				if (isPocketmonMenuOn == false) {
-					addMenu(MenuBar("포켓몬", 0));
-					isPocketmonMenuOn = true;
-				}
-			}
-
-			if (Menu[m_menuIndex].menuName == "포켓몬" && KEYMANAGER->isOnceKeyDown(P1_Z))
-			{
-				SOUNDMANAGER->playSound("Ok",Channel::eChannelEffect);
-				SCENEMANAGER->scenePush("PocketmonBagScene");
-			}
-			if (Menu[m_menuIndex].menuName == "가방" && KEYMANAGER->isOnceKeyDown(P1_Z))
-			{
-				SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
-				SCENEMANAGER->scenePush("inven");
-			}
-
-			if (Menu[m_menuIndex].menuName == "닫기" && KEYMANAGER->isOnceKeyDown(P1_Z))
-			{
-				SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
-				m_player->setisMenu(false);
-			}
-
-			if (Menu[m_menuIndex].menuName == "플레이어" && KEYMANAGER->isOnceKeyDown(P1_Z))
-			{
-				SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
-				isTrainnerCard = true;
-			}
-
-			if (Menu[m_menuIndex].menuName == "설정" && KEYMANAGER->isOnceKeyDown(P1_Z))
-			{
-				SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
-			}
-
-
-		}
-
-		if (isTrainnerCard)
-		{
-			if (KEYMANAGER->isOnceKeyDown(GAME_MENU))
-			{
-				SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
-				isTrainnerCard = false;
-			}
-		}
-		
+		onMenu();
+		menuUpdate();
 	}
-
-	menuUpdate();
-	
 }
 
 void TownScene::render(HDC hdc)
@@ -212,8 +214,8 @@ void TownScene::render(HDC hdc)
 		UTIL::PrintText(hdc, "IDNo · 50726", "소야바른9", 590, 60, 80, RGB(208, 208, 200), true, RGB(0, 0, 0));
 		UTIL::PrintText(hdc, "IDNo · 50726", "소야바른9", 585, 60, 80, RGB(96, 96, 96), true, RGB(0, 0, 0));
 
-		UTIL::PrintText(hdc, "이름   플레이어", "소야바른9", 115, 160, 80, RGB(208, 208, 200),true,RGB(0,0,0));
-		UTIL::PrintText(hdc, "이름   플레이어", "소야바른9", 110, 160, 80, RGB(96, 96, 96),true,RGB(0,0,0));
+		UTIL::PrintText(hdc, "이름   플레이어", "소야바른9", 115, 160, 80, RGB(208, 208, 200), true, RGB(0, 0, 0));
+		UTIL::PrintText(hdc, "이름   플레이어", "소야바른9", 110, 160, 80, RGB(96, 96, 96), true, RGB(0, 0, 0));
 
 		UTIL::PrintText(hdc, "돈", "소야바른9", 115, 300, 80, RGB(208, 208, 200), true, RGB(0, 0, 0));
 		UTIL::PrintText(hdc, "돈", "소야바른9", 110, 300, 80, RGB(96, 96, 96), true, RGB(0, 0, 0));
@@ -249,7 +251,6 @@ void TownScene::render(HDC hdc)
 
 		m_PokemonBelt->render(hdc, 15, 620);
 	}
-
 }
 
 void TownScene::afterRender(HDC hdc)
@@ -273,8 +274,6 @@ void TownScene::afterRender(HDC hdc)
 			}
 		}
 	}
-
-
 }
 
 void TownScene::debugRender(HDC hdc)
@@ -303,16 +302,6 @@ void TownScene::delMenu(std::string _menuName)
 		}
 	}
 	menuUpdate();
-}
-
-void TownScene::menuUpdate()
-{
-	std::sort(Menu.begin(), Menu.end(), [](const MenuBar& _e1, const MenuBar& _e2) {
-		if (_e1.menuNum < _e2.menuNum)
-			return true;
-		return false;
-		});
-	m_menuIndexMax = Menu.size()-1;
 }
 
 void TownScene::release()

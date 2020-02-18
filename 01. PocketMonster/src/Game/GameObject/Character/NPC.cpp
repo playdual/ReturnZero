@@ -87,7 +87,7 @@ void NPC::updatePocketCenterEvent(float _deltaTime)
 }
 void NPC::updateShopEvent(float _deltaTime)
 {
-	isActivate = false;
+	SCENEMANAGER->scenePush("friendlyShop");
 }
 
 void NPC::resetSenarioIndexData()

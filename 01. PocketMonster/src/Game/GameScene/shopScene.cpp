@@ -350,9 +350,14 @@ void shopScene::buyRender(HDC hdc)
 }
 
 void shopScene::sellRender(HDC hdc)
-void shopScene::buyNextRender(HDC hdc)
 {
 }
+void shopScene::quitRender(HDC hdc)
+{
+}
+
+void shopScene::buyNextRender(HDC hdc)
+{
 	std::string str = "X0";
 	str += std::to_string(m_itemCount).c_str();
 
@@ -363,25 +368,15 @@ void shopScene::buyNextRender(HDC hdc)
 	m_upArrow->render(hdc, WINSIZEX / 2 + 155, WINSIZEY / 2 - 100 - m_arrowCount);
 	m_downArrow->render(hdc, WINSIZEX / 2 + 155, WINSIZEY / 2 + 30 + m_arrowCount);
 
-	UTIL::PrintText(hdc, str.c_str(), "소야바른9", WINSIZEX/2 + 140, WINSIZEY /2 - 15, 70, RGB(0, 0, 0), true);
-	if(itemCountPrice < 1000)
-	UTIL::PrintText(hdc, std::to_string(itemCountPrice).c_str(), "소야바른9", WINSIZEX/2 + 320, WINSIZEY /2 - 15, 70, RGB(0, 0, 0), true);
+	UTIL::PrintText(hdc, str.c_str(), "소야바른9", WINSIZEX / 2 + 140, WINSIZEY / 2 - 15, 70, RGB(0, 0, 0), true);
+	if (itemCountPrice < 1000)
+		UTIL::PrintText(hdc, std::to_string(itemCountPrice).c_str(), "소야바른9", WINSIZEX / 2 + 320, WINSIZEY / 2 - 15, 70, RGB(0, 0, 0), true);
 	else
-		UTIL::PrintText(hdc, std::to_string(itemCountPrice).c_str(), "소야바른9", WINSIZEX/2 + 300, WINSIZEY /2 - 15, 70, RGB(0, 0, 0), true);
+		UTIL::PrintText(hdc, std::to_string(itemCountPrice).c_str(), "소야바른9", WINSIZEX / 2 + 300, WINSIZEY / 2 - 15, 70, RGB(0, 0, 0), true);
+
+	UTIL::PrintText(hdc, m_money[1].c_str(), "소야바른9", WINSIZEX / 2 + 430, WINSIZEY / 2 - 15, 70, RGB(0, 0, 0), true);
+}
 	
-	UTIL::PrintText(hdc, m_money[1].c_str(), "소야바른9", WINSIZEX/2 + 430, WINSIZEY /2 - 15, 70, RGB(0, 0, 0), true);
-
-void shopScene::quitRender(HDC hdc)
-{
-}
-
-void shopScene::sellRender(HDC hdc)
-{
-}
-
-void shopScene::quitRender(HDC hdc)
-{
-}
 
 void shopScene::buyItemChoice()
 {

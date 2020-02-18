@@ -20,6 +20,13 @@ public:
 	void afterRender(HDC hdc) override;
 	void debugRender(HDC hdc) override;
 
+public:
+	int getCountPocketMon() { return Pocketmons.size(); }
+	void setMoney(int moneyValue) { m_money = moneyValue; }
+	int getMoney() { return m_money; }
+
+
+public:
 	void OnObjectEvent();
 	void ObjectHandle(std::string objName);
 	int getPlayRectX();
@@ -35,18 +42,21 @@ public:
 	void isNotChangeMap();
 	bool getisAfter();
 	bool getisMenu();
-	void moveLogic();
-	std::vector<std::shared_ptr<class PocketMon>>& getPocketmons() { return Pocketmons; }
 	void setisMenu(bool ismenuvalue);
-	int getCountPocketMon() { return Pocketmons.size(); }
 	void checkAndActivateNPC();
+	std::vector<std::shared_ptr<class PocketMon>>& getPocketmons() { return Pocketmons; }
+	void pushBackPocketmon(PocketMon _pocketmon);
 
-	void setMoney(int moneyValue) { m_money = moneyValue; }
-	int getMoney() { return m_money; }
-	
-	//Object EventHandle Var
+private:
+	//Object EventHandle Func
 	void MoundJumpDown();
 
+private:
+	void moveLogic();
+	void moveLeftLogic();
+	void moveRightLogic();
+	void moveUpLogic();
+	void moveDownLogic();
 
 private:
 	UTIL::IRECT m_playerRect;

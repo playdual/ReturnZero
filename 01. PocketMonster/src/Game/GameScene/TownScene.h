@@ -24,6 +24,8 @@ private:
 	void addMenu(MenuBar _newMenu);
 	void delMenu(std::string _menuName);
 	void menuUpdate();
+	void onMenu();
+
 
 private:
 	Image* image;
