@@ -5,9 +5,9 @@ class Potion
 	: public Item
 {
 public:
-	Potion(ItemType _type , class Image* _potionImage, UTIL::IRECT _rect , std::string _name ,
+	Potion(ItemType _type , Image* _img, UTIL::IRECT _rect , std::string _name ,
 		int _count , int _price , std::string _description 
-		, int _healHp ,int _hitDamage /*,char* _potionImage*/);
+		, int _healHp ,int _hitDamage);
 	~Potion();
 		
 	virtual bool init() override;
@@ -21,7 +21,7 @@ public:
 private:
      int	m_healHp;			//Hp
      int	m_hitDamage;		//PowerUp
-	 Image* m_potionImage;		//Image insert
+	// Image* m_potionImage;		//Image insert
 
 };
 

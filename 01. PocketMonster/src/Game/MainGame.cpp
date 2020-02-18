@@ -56,6 +56,7 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("GrassTile1",	"images/GrassTile1.bmp",		TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Bush1",			"images/Bush1.bmp",				TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Tree1",			"images/Tree1.bmp",				TILE_WIDTH, TILE_HEIGHT + 23, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("Flower", "Images/Tile/Object/Flower1Frame.bmp", TILE_WIDTH * 5, TILE_HEIGHT, 5, 1, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("Flower",	"Images/Tile/Object/Flower1Frame.bmp", TILE_WIDTH * 5, TILE_HEIGHT, 5, 1, true, RGB(255, 0, 255));
 
 	//rsc
@@ -84,7 +85,11 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("상점돈상태창", "Images/moneyBox.bmp", 417, 218, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("상점아이템메뉴리스트", "Images/shopBuyIItemList.bmp", 600, 500, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("상점아이템사기메뉴바텀", "Images/shopBuyItemBottom.bmp", 240*5, 48*5, true, RGB(255, 0, 255));
-
+	IMAGEMANAGER->addImage("상점인벤체크박스", "Images/shopInvenItemHaveBox.bmp", 450, 118, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("상점두번째NPC대화상자", "Images/shopInvenHaveNPCBox.bmp", 1021, 240, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("위로화살표" , "Images/upArrow.bmp" , 18 * 5, 17 * 5, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("아래화살표" , "Images/downArrow.bmp" , 18 * 5, 17 * 5, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("상점아이템카운트박스" , "Images/shopBuyCountBox.bmp" , 420, 211, true, RGB(255, 0, 255));
 
 	//pocketmon Img
 	IMAGEMANAGER->addImage("CharmanderFront",		"images/pocketmons/CharmanderFront.bmp", 100*2, 100 * 2, true, RGB(255, 0, 255));

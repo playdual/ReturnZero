@@ -82,7 +82,7 @@ enum class Skill
 enum KINDCOUNT
 {
 	ITEMKIND = 1, NAME, IMAGES, RECTX, RECTY, WIDTH, HEIGHT,
-	COUNT, PRICE, DESCRIPTION, HEALHP, DAMAGE, ADDABILITY, ATIBUTEKIND ,RANDOM
+	COUNT, PRICE, DESCRIPTION, HEALHP, DAMAGE, ADDABILITY, ATIBUTEKIND ,RANDOM , REVOLUTION
 };
 enum ITEMCOUNT
 {
@@ -105,6 +105,7 @@ struct itemText {
 	int					addAbility[100];	//12
 	PockemonAttibute   atibuteKind[100];	//13
 	int			 poketCatchPercent[100];	//14
+	bool				revolution[100];	//15
 };
 
 struct PocketSkill 

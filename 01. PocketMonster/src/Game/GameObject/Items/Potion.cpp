@@ -2,9 +2,9 @@
 #include "Potion.h"
 #include "Common/SystemManagers.h"
 
-Potion::Potion(ItemType _type, Image* _potionImage, UTIL::IRECT _rect, std::string _name, int _count,
+Potion::Potion(ItemType _type, Image* _img, UTIL::IRECT _rect, std::string _name, int _count,
 	int _price, std::string _description, int _healHp, int _hitDamage )
-	: Item(_type, _potionImage, _rect, _name, _count, _price, _description), m_healHp(_healHp), m_hitDamage(_hitDamage),m_potionImage(_potionImage)
+	: Item(_type, _img, _rect, _name, _count, _price, _description), m_healHp(_healHp), m_hitDamage(_hitDamage)
 {
 	m_itemInfo.name = _name;
 	m_itemInfo.healPoint = _healHp;

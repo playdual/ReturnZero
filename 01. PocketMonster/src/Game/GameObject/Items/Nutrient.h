@@ -6,7 +6,7 @@ class Nutrient
 {
 public:
 	Nutrient(ItemType _type , Image* _img, UTIL::IRECT _rect, std::string _name,
-		int _count, int _price, std::string _description, int _addAbility);
+		int _count, int _price, std::string _description, bool _isEvolution);
 	~Nutrient();
 
 	virtual bool init() override;
@@ -17,7 +17,7 @@ public:
 	virtual void debugRender(HDC hdc) override;
 		
 private:
-	int m_addAbility;
+	bool m_isEvolution;
 
 };
 

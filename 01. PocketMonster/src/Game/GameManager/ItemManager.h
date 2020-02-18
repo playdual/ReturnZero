@@ -21,8 +21,8 @@ public:
 	void addStateHeal(std::string _itemKey,/* char* _imageName,*/ int _x, int _y, int _imageW, int _imageH,
 		std::string _itemName, int _count, int _price, std::string _descript);
 
-	void addNutrient(std::string _itemKey,/* char* _imageName,*/ int _x, int _y, int _imageW, int _imageH,
-		std::string _itemName, int _count, int _price, std::string _descript , int _adddAbility);
+	void addNutrient(std::string _itemKey, const char* _imageName, int _x, int _y, int _imageW, int _imageH,
+		std::string _itemName, int _count, int _price, std::string _descript , bool _isRevolution);
 
 	void addSkillMachine(std::string _itemKey, PockemonAttibute _pokemonAttibute ,/* char* _imageName,*/ int _x, int _y, int _imageW, int _imageH,
 		std::string _itemName, int _count, int _price, std::string _descript, int _damage);

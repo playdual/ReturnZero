@@ -11,7 +11,7 @@ enum SHOPITEM
 
 enum SHOPMAINMENU
 {
-	FIRSTMENU = 0 ,BUYITEM , SELLITEM ,  NOTHING
+	FIRSTMENU = 0 ,BUYITEM , SELLITEM ,  NOTHING, DEFAULT
 };
 
 class shopScene  
@@ -34,6 +34,7 @@ public:
 	virtual void debugRender(HDC hdc) override;
 	void firstRender(HDC hdc);
 	void buyRender(HDC hdc);
+	void buyNextRender(HDC hdc);
 	void sellRender(HDC hdc);
 	void quitRender(HDC hdc);
 
@@ -53,11 +54,24 @@ private:
 	Image* m_npcTalkBox;
 	Image* m_moneyStatus;
 	Image* m_shopMainMenu;
-	Image* m_shopItemListMenu;
 	Image* m_currentPoint;
+	
+	/* BuyItem */
+	Image* m_shopItemListMenu;
 	Image* m_shopBuyItemBottom;
 	Image* m_frinedlyShopBlowUp;
+	Image* m_buyItemCount;
+	Image* m_invenHaveItemCheck;
+	Image* m_upArrow;
+	Image* m_downArrow;
+	Image* m_npcFrontTalkBox;
 	
+	// arrow Count
+	int m_arrowCount = 0;
+	bool m_isMaxCount = false;
+	int m_itemCount = 1;
+	bool m_isPlusFlow = false;
+
 	// shop에 처음 들어왔을때
 	bool m_ShopIn;
 	// shop처음 충돌처리 대화
@@ -68,12 +82,17 @@ private:
 	bool m_isSellItemShow;
 	bool m_isQuitShop;
 
-	// shop 사러왔음 ( 그만둔다 -> 보여주는 대화상자)
-	bool m_isShowOutTalk; 
+	// shop Buy 아이템을 골랐을때
+	bool m_isBuyItemChoice;
 
 	// shop 에서 Item을 살때
 	int m_ItemListNum;
 
+	// shop 에서 ITem을 살때 (아이템 설명 문장 나눠주기위해)
+	std::string shopItemDes_pokeBall[2] = { "", };
+	std::string shopItemDes_Medicine[2] = { "", };
+	std::string shopItemDes_GoodMedicine[2] = { "", };
+	std::string shopItemDes_FireStone[2] = { "", };
 
 	// 인벤에 있는 아이템 팔때 
 	bool m_isSellChoiceItem;
@@ -104,6 +123,7 @@ private:
 
 	int wellcomeShopStrIndex = 0;
 	int textCount = 0;
+	int itemCountPrice = 0;
 
 	// 대사 모음
 	std::string m_wellomeShop[2] = { "WellCOME!" , "무엇을 도와 드릴까요?" }; // 처음에 npc와 충돌처리 났을 때
@@ -117,8 +137,11 @@ private:
 	std::string m_outShop = { "또 오세요!" };  // 메인메뉴에서 아닙니다.일때
 	std::string m_money[2] = { "돈" , "원" };
 	std::string m_printStr;
+	//std::string str = "X0";
 
 private:
 	std::vector<std::string> talk; 
+	void stringSplit();
+	void buyItemChoice();
 };
 

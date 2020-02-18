@@ -55,9 +55,9 @@ bool ItemManager::init()
 			break;
 
 		case NUTRIENT:
-			addNutrient(itemPotion.name[i], WINSIZEX / 2 - 100, itemPotion.rectY[i],
+			addNutrient(itemPotion.name[i], itemPotion.imageFileName[i].c_str(), WINSIZEX / 2 - 100, itemPotion.rectY[i],
 				itemPotion.width[i], itemPotion.height[i], itemPotion.name[i],
-				itemPotion.count[i], itemPotion.price[i], itemPotion.description[i], itemPotion.addAbility[i]);
+				itemPotion.count[i], itemPotion.price[i], itemPotion.description[i], itemPotion.revolution[i]);
 			break;
 
 			//std::string _itemKey, PockemonAttibute _pokemonAttibute, int _x, int _y,
@@ -137,14 +137,19 @@ void ItemManager::addStateHeal(std::string _itemKey, int _x, int _y, int _imageW
 	m_ItemList.insert(std::make_pair(_itemKey, temp));*/
 }
 
-void ItemManager::addNutrient(std::string _itemKey, int _x, int _y, int _imageW, int _imageH, std::string _itemName, int _count, int _price, std::string _descript, int _addAbility)
+void ItemManager::addNutrient(std::string _itemKey, const char* _imageName, int _x, int _y, int _imageW, int _imageH, std::string _itemName, int _count, int _price, std::string _descript, bool _isRevolution)
 {
-	//나중에 작업하시오,,
-	/*std::shared_ptr<Item> temp = std::make_shared<Nutrient>(
-		ItemType::ItemTypeAbilityPotion, UTIL::IRectMake(_x, _y, _imageW, _imageH),
-		_itemName, _count, _price, _descript, _addAbility);
+	if (_imageName != NULL)
+		IMAGEMANAGER->addImage(_itemKey, _imageName, 100, 100);
 
-	m_ItemList.insert(std::make_pair(_itemKey, temp));*/
+	std::shared_ptr<Item> temp = std::make_shared<Nutrient>(
+		ItemType::ItemTypePotion,
+		IMAGEMANAGER->findImage(_itemKey),
+		UTIL::IRectMake(_x, _y, _imageW, _imageH),
+		_itemName, _count, _price, _descript , _isRevolution);
+
+	m_ItemList.insert(std::make_pair(_itemKey, temp));
+
 }
 
 void ItemManager::addSkillMachine(std::string _itemKey, PockemonAttibute _pokemonAttibute, int _x, int _y, int _imageW, int _imageH, std::string _itemName, int _count, int _price, std::string _descript, int _damage)
@@ -240,7 +245,8 @@ void ItemManager::itemTextInit()
 				ptr = strtok(NULL, "#");
 
  			if (itemPotion.itemKind[i] == 1 || itemPotion.itemKind[i] == 3 
- 				|| itemPotion.itemKind[i] == 2 || itemPotion.itemKind[i] == 7)
+ 				|| itemPotion.itemKind[i] == 2 || itemPotion.itemKind[i] == 7
+				|| itemPotion.itemKind[i] == 5)
 			{
 			case IMAGES:
 				itemPotion.imageFileName[i] = ptr;
@@ -294,18 +300,18 @@ void ItemManager::itemTextInit()
 
 			if (itemPotion.itemKind[i] == 3 || itemPotion.itemKind[i] == 6)
 			{
-			case DAMAGE:
+			case DAMAGE:  
 				itemPotion.damage[i] = atoi(ptr);
 				ptr = strtok(NULL, "#");
 			}
 
-			if (itemPotion.itemKind[i] == 5)
-			{
-			case ADDABILITY:
-				itemPotion.addAbility[i] = atoi(ptr);
-				ptr = strtok(NULL, "#");
+			//if (itemPotion.itemKind[i] == 5)
+			//{
+			//case ADDABILITY:
+			//	itemPotion.addAbility[i] = atoi(ptr);
+			//	ptr = strtok(NULL, "#");
 
-			}
+			//}
 
 			if (itemPotion.itemKind[i] == 2)
 			{
@@ -313,6 +319,13 @@ void ItemManager::itemTextInit()
 				itemPotion.poketCatchPercent[i] = atoi(ptr);
 				ptr = strtok(NULL, "#");
 			}
+			if (itemPotion.itemKind[i] == 5)
+			{
+			case REVOLUTION:
+				itemPotion.revolution[i] = ptr;
+				ptr = strtok(NULL, "#");
+			}
+
 			default:
 				count = 0;
 				//cout << endl;
