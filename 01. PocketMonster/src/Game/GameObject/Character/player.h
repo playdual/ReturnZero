@@ -20,6 +20,8 @@ public:
 	void afterRender(HDC hdc) override;
 	void debugRender(HDC hdc) override;
 
+	void OnObjectEvent();
+	void ObjectHandle(std::string objName, Direction direction);
 	int getPlayRectX();
 	int getPlayRectY();
 	int getPlayerBlockX() { return m_blockPositionX; }
@@ -27,20 +29,23 @@ public:
 	void reLocate(int blockX, int blockY);
 	void isBattleStart();
 	bool getisBattle() { return isBattle; }
-	void BattleEnd() { isBattle = false; }
+	void BattleEnd() { isBattle = false; isAnotherMove = false; }
 	void MoveSetZero();
 	bool getisChangeMap();
 	void isNotChangeMap();
 	bool getisAfter();
 	bool getisMenu();
+	void moveLogic();
 	std::vector<std::shared_ptr<class PocketMon>>& getPocketmons() { return Pocketmons; }
 	void setisMenu(bool ismenuvalue);
 	int getCountPocketMon() { return Pocketmons.size(); }
 
 	void setMoney(int moneyValue) { m_money = moneyValue; }
 	int getMoney() { return m_money; }
-	//void rectInCamera(UTIL::IRECT& outRect, const UTIL::IRECT& realRect, bool& isOutput);
-	void pushBackPocketmon(PocketMon _pocketmon);
+	
+	//Object EventHandle Var
+	void MoundJumpDown();
+
 
 private:
 	UTIL::IRECT m_playerRect;
@@ -96,10 +101,9 @@ private:
 	//Menu
 	bool ismenu = false;
 
-
-
 	//player image
 	Image* m_playerImg;
+	Image* m_playerShadow;
 	Animation* m_aniplayer;
 	Animation* m_aniplayerDown;
 	Animation* m_aniplayerUp;
@@ -113,4 +117,14 @@ private:
 	std::vector<std::shared_ptr<PocketMon>> Pocketmons;
 	std::shared_ptr<class Inventory> Inven;
 
+
+	//Object EventHandle Var
+	bool isOnObjectEvent = false;
+	bool isOnMoundJumpDown = false;
+	bool isOnMoundJumpUp = false;
+
+	int jumpStartPosX;
+	int jumpStartPosY;
+	int jumpDx;
+	int jumpDy;
 };

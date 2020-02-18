@@ -15,6 +15,7 @@ public:
 
 public:
 	TileType getTileTypeFromIndex(int _x, int _y);
+	std::string getObjectNameFromIndex(int _x, int _y);
 
 private:
 	std::map<std::string, std::shared_ptr<Map>> MapList;

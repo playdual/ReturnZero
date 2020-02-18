@@ -40,4 +40,5 @@ private:
 	std::vector<Tile> m_tiles;
 	//tilesVector
 	friend class JsonRWManager;
+	friend class MapManager;
 };

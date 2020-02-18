@@ -52,4 +52,5 @@ private:
 	POINT m_nextMapStartIdx;
 
 	friend class JsonRWManager;
+	friend class MapManager;
 };

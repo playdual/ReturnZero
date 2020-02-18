@@ -45,3 +45,8 @@ TileType MapManager::getTileTypeFromIndex(int _x, int _y)
 		return TileType::TileTypeOutRange;
 	return curMap->getTileTypeFromIdex(_x, _y);
 }
+
+std::string MapManager::getObjectNameFromIndex(int _x, int _y)
+{
+	return curMap->m_tiles[_x + _y * curMap->m_width].objName;
+}

@@ -50,6 +50,13 @@ enum class ItemType
 	ItemTypeNone
 };
 
+enum Direction
+{
+	DirectionUp,
+	DirectionDown,
+	DirectionLeft,
+	DirectionRight
+};
 
 enum class PockemonAttibute
 {
