@@ -78,7 +78,7 @@ Map JsonRWManager::MapDataRead(std::string _name)
 
 	Map map;
 
-	std::string mapName = root["mapName"].asString();
+	map.m_mapName = root["mapName"].asString();
 
 	int width = root["mapWidth"].asInt();
 	int height = root["mapHeight"].asInt();

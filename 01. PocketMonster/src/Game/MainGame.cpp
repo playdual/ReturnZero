@@ -6,6 +6,7 @@
 #include "GameScene/InvenScene.h"
 #include "GameObject/Items/Inventory.h"
 #include "Game/GameScene/shopScene.h"
+#include "GameScene/IntroScene.h"
 
 MainGame::MainGame()
 { 
@@ -57,6 +58,14 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("Bush1",			"images/Bush1.bmp",				TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("Tree1",			"images/Tree1.bmp",				TILE_WIDTH, TILE_HEIGHT + 23, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("Flower", "Images/Tile/Object/Flower1Frame.bmp", TILE_WIDTH * 5, TILE_HEIGHT, 5, 1, true, RGB(255, 0, 255));
+
+	//intro
+	IMAGEMANAGER->addImage("introBg",				"Images/introbg.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("introFire",		"Images/introFire1.bmp", 200, 600 ,1,3, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("pokemonMark",		"Images/pokemonMark.bmp", 2040, 136,6,1, true, RGB(255, 255, 255));
+	IMAGEMANAGER->addImage("pushStart",				"Images/PushStart.bmp", 500, 50,true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("Notice",				"Images/Notice.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("alpha",					"Images/alpha.bmp", WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("Flower",	"Images/Tile/Object/Flower1Frame.bmp", TILE_WIDTH * 5, TILE_HEIGHT, 5, 1, true, RGB(255, 0, 255));
 
 	//rsc
@@ -186,9 +195,14 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("MotherRight", "Images/NPC/MotherRight.bmp", 0, 0, 80, 80, true, RGB(255, 0, 255));
 
 	//sound
+	SOUNDMANAGER->addStream("Title", "Sounds/Title.mp3", true);
 	SOUNDMANAGER->addStream("NewBarkTown", "Sounds/NewBarkTown.mp3", true);
 	SOUNDMANAGER->addStream("Battle", "Sounds/Battle.mp3", true);
-	SOUNDMANAGER->addStream("Ok", "Sounds/Ok.mp3", false);
+	SOUNDMANAGER->addSound("Ok", "Sounds/Ok.mp3", false);
+	SOUNDMANAGER->addStream("Route", "Sounds/Route.mp3", true);
+	SOUNDMANAGER->addSound("MapMove", "Sounds/movemap.mp3", false);
+	SOUNDMANAGER->addSound("Heal", "Sounds/heal.mp3", false);
+	SOUNDMANAGER->addSound("Menu", "Sounds/menu.mp3", false);
 	
 	//=============
 	// battle Ui //
@@ -247,14 +261,18 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("현재아이템표시", "Images/itemPointer.bmp", 28 * 5, 28 * 5, true, RGB(255, 0, 255));
 	std::shared_ptr<Inventory> inven = std::make_shared<Inventory>();
 	inven->init();
+	SCENEMANAGER->addScene("intro", new IntroScene);
 	SCENEMANAGER->addScene("town", new TownScene);
 	SCENEMANAGER->addScene("battle", new BattleScene);
 	SCENEMANAGER->addScene("inven", new InvenScene(inven));
 	SCENEMANAGER->addScene("friendlyShop", new shopScene(inven));
-	SCENEMANAGER->scenePush("town");
+
+	SCENEMANAGER->changeScene("intro");
+	//SCENEMANAGER->scenePush("town");
 	sceneInit = true;
 
 	//now! our First Sound!
+
 	//SOUNDMANAGER->playSound("NewBarkTown", Channel::eChannelBgm);
 	
 

@@ -7,6 +7,8 @@ Map::Map()
 }
 Map::Map(const Map& map) 
 {
+	m_mapName = map.m_mapName;
+
 	m_width = map.m_width;
 	m_height = map.m_height;
 

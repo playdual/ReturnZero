@@ -39,6 +39,7 @@ private:
 
 	bool isAfter=true;
 	std::vector<Tile> m_tiles;
+	std::string m_mapName;
 	std::vector<std::shared_ptr<NPC>> m_NPCs;
 
 	//tilesVector

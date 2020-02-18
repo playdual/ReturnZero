@@ -32,14 +32,28 @@ void MapManager::addMap(std::string mapKey, std::string fileName)
 
 std::shared_ptr<Map> MapManager::findMap(std::string mapKey)
 {
+	std::string prevMapName;
+	if(curMap != nullptr)
+		prevMapName = curMap->m_mapName;
 	auto map = MapList.find(mapKey);
 	if (map == MapList.end()) {
 		return curMap;
 	}
 
 	curMap = map->second;
+	
+	if (curMap->m_mapName == "Route01") {
+		SOUNDMANAGER->stopChannel(Channel::eChannelBgm);
+		SOUNDMANAGER->playSound("Route", Channel::eChannelBgm);
+	}
+	if (prevMapName == "Route01" && curMap->m_mapName == "TechoTown") {
+		SOUNDMANAGER->stopChannel(Channel::eChannelBgm);
+		SOUNDMANAGER->playSound("NewBarkTown", Channel::eChannelBgm);
+	}
 	return map->second;
+
 }
+
 
 TileType MapManager::getTileTypeFromIndex(int _x, int _y)
 {

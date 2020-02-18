@@ -270,6 +270,7 @@ void PocketmoninfoScene::update(float _deltaTime)
 			}
 			else 
 			{
+				SOUNDMANAGER->playSound("Heal", Channel::eChannelEffect);
 				isEffectionItem = true;			
 			}
 			
@@ -280,6 +281,7 @@ void PocketmoninfoScene::update(float _deltaTime)
 	}
 	if (isMaxRecovery)
 	{
+		//stop을 배틀끝날때 해줘야함
 		if(Pocketmons[m_indexCursor]->m_currentHp<m_memoryHp)
 		Pocketmons[m_indexCursor]->m_currentHp += 1;
 		if (Pocketmons[m_indexCursor]->m_currentHp >= m_memoryHp)

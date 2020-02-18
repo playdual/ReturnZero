@@ -13,6 +13,8 @@ TownScene::~TownScene()
 
 bool TownScene::init()
 {
+	SOUNDMANAGER->playSound("NewBarkTown", Channel::eChannelBgm);
+
 	//player init
 	m_player = std::make_shared<player>();
 	
@@ -83,18 +85,29 @@ void TownScene::update(float _deltaTime)
 
 		isBattle = false;
 		m_player->BattleEnd();
-		BATTLEMANAGER->battleStart(m_player, nullptr, innerPocketmon.first, innerPocketmon.second);
+
+		isBattle = false;
 	}
 
-	if (m_player->getisChangeMap()) 
+	if (m_player->getisChangeMap())
 	{
 		auto tile = MAPMANGER->getCurMap()->getSpecifyTile(m_player->getPlayerBlockX(), m_player->getPlayerBlockY());
 		std::string nextMapName = tile.getNextMapKey();
+
 		m_map = MAPMANGER->findMap(nextMapName);
 		m_player->reLocate(tile.getNextMapIdx().x, tile.getNextMapIdx().y);
 		m_player->MoveSetZero();
 		m_player->isNotChangeMap();
 	}
+
+	//if (m_player->getisChangeMap()) 
+	//{
+	//	auto tile = MAPMANGER->getCurMap()->getSpecifyTile(m_player->getPlayerBlockX(), m_player->getPlayerBlockY());
+	//	m_map = MAPMANGER->findMap(tile.getNextMapKey());
+	//	m_player->reLocate(tile.getNextMapIdx().x, tile.getNextMapIdx().y);
+	//	m_player->MoveSetZero();
+	//	m_player->isNotChangeMap();
+	//} 
 
 	m_map->setisAfter(m_player->getisAfter());
 
@@ -160,6 +173,13 @@ void TownScene::update(float _deltaTime)
 				SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
 				isTrainnerCard = true;
 			}
+
+			if (Menu[m_menuIndex].menuName == "설정" && KEYMANAGER->isOnceKeyDown(P1_Z))
+			{
+				SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+			}
+
+
 		}
 
 		if (isTrainnerCard)

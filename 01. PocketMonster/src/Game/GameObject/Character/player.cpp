@@ -58,6 +58,7 @@ bool player::init()
 	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Rattata", 30)));
 	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Squirtle", 31)));
 
+
 	m_playerBeforeArrowMemory = 0;
 	m_playerCurrentArrowMemory = 0;
 
@@ -68,11 +69,23 @@ bool player::init()
 
 void player::moveLogic()
 {
+	//temp
+	if (KEYMANAGER->isOnceKeyDown(P1_USEITEM)) {
+		Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Squirtle", 31)));
+	}
+	if (!ismenu)
+	{
+		if (KEYMANAGER->isOnceKeyDown(GAME_MENU))
+		{
+			SOUNDMANAGER->playSound("Menu", Channel::eChannelEffect);
 
 	static std::string npcName;
 	//Move left
 	if (isMoveLeft)
 	{
+		if (KEYMANAGER->isOnceKeyDown(GAME_MENUPROTO) || KEYMANAGER->isOnceKeyDown(P1_X))
+		{
+			SOUNDMANAGER->playSound("Menu", Channel::eChannelEffect);
 
 		if (m_playerRect.left > m_playerRectMemory - TILE_WIDTH)
 		{
@@ -131,6 +144,19 @@ void player::moveLogic()
 			else if (type == TileType::TileTypeObject)
 			{
 				ObjectHandle(MAPMANGER->getObjectNameFromIndex(m_blockPositionX - 1, m_blockPositionY));
+
+				if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX - 1, m_blockPositionY) == TileType::TileTypeFloor ||
+					MAPMANGER->getTileTypeFromIndex(m_blockPositionX - 1, m_blockPositionY) == TileType::TileTypeNextMap ||
+					MAPMANGER->getTileTypeFromIndex(m_blockPositionX - 1, m_blockPositionY) == TileType::TileTypeBush)
+				{
+					isLeft = false;
+					m_playerRectMemory = m_playerRect.left;
+					isAnotherMove = true;
+					isMoveLeft = true;
+					isMoveLeftTest = true;
+				}
+				if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX - 1, m_blockPositionY) == TileType::TileTypeNextMap)
+					SOUNDMANAGER->playSound("MapMove", Channel::eChannelEffect);
 			}
 		}
 	}
@@ -182,6 +208,13 @@ void player::moveLogic()
 
 
 		if (m_playerBeforeArrowMemory == 3 && m_playerCurrentArrowMemory == 3)
+				}
+				if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX + 1, m_blockPositionY) == TileType::TileTypeNextMap)
+					SOUNDMANAGER->playSound("MapMove", Channel::eChannelEffect);
+			}
+		}
+		
+		if (isMoveUp)
 		{
 			TileType type = MAPMANGER->getTileTypeFromIndex(m_blockPositionX + 1, m_blockPositionY);
 			npcName = MAPMANGER->getNPCName(m_blockPositionX + 1, m_blockPositionY);
@@ -246,6 +279,21 @@ void player::moveLogic()
 
 
 		if (m_playerBeforeArrowMemory == 1 && m_playerCurrentArrowMemory == 1)
+				if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY - 1) == TileType::TileTypeFloor ||
+					MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY - 1) == TileType::TileTypeNextMap ||
+					MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY - 1) == TileType::TileTypeBush)
+				{
+					isUp = false;
+					m_playerRectMemory = m_playerRect.top;
+					isAnotherMove = true;
+					isMoveUp = true;
+				}
+				if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY -1) == TileType::TileTypeNextMap)
+					SOUNDMANAGER->playSound("MapMove", Channel::eChannelEffect);
+			}
+		}
+		
+		if (isMoveDown)
 		{
 			TileType type = MAPMANGER->getTileTypeFromIndex(m_blockPositionX , m_blockPositionY - 1);
 			npcName = MAPMANGER->getNPCName(m_blockPositionX, m_blockPositionY - 1);
@@ -326,6 +374,18 @@ void player::moveLogic()
 			else if (type == TileType::TileTypeObject)
 			{
 				ObjectHandle(MAPMANGER->getObjectNameFromIndex(m_blockPositionX , m_blockPositionY + 1));
+
+				if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY + 1) == TileType::TileTypeFloor ||
+					MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY + 1) == TileType::TileTypeNextMap ||
+					MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY + 1) == TileType::TileTypeBush)
+				{
+					isDown = false;
+					m_playerRectMemory = m_playerRect.bottom;
+					isAnotherMove = true;
+					isMoveDown = true;
+				}
+				if (MAPMANGER->getTileTypeFromIndex(m_blockPositionX, m_blockPositionY + 1) == TileType::TileTypeNextMap)
+					SOUNDMANAGER->playSound("MapMove", Channel::eChannelEffect);
 			}
 		}
 	}
