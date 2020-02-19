@@ -121,23 +121,41 @@ public:
 	//플레이어	
 	void tackleProto(std::string _skillName, HDC hdc);
 	void skillEmberProto(std::string _skillName, HDC hdc);
-	void flameThrowerProto(std::string _skillName, HDC hdc);
 	void fireBlastProto(std::string _skillName, HDC hdc);
 	void scratchProto(std::string _skillName, HDC hdc);
 	void playerThunderWaveProto(std::string _skillName, HDC hdc);
-
-	//적
+	void thunderBoltProto(std::string _skillName, HDC hdc);
 	void quickAttackProto(std::string _skillName, HDC hdc);
-	void thunderboltProto(std::string _skillName, HDC hdc);
-	void thunderProto(std::string _skillName, HDC hdc);
+	void wingAttackProto(std::string _skillName, HDC hdc);
+	void vineWhipProto(std::string _skillName, HDC hdc);
+	void razorLeafProto(std::string _skillName, HDC hdc);
+	void brineProto(std::string _skillName, HDC hdc);
+	void hydroPumpProto(std::string _skillName, HDC hdc);
+
+
+	//적	
+	void enemyTackleProto(std::string _skillName, HDC hdc);
 	void enemySkillEmberProto(std::string _skillName, HDC hdc);
 	void enemyScratchProto(std::string _skillName, HDC hdc);
 	void enemyThunderWaveProto(std::string _skillName, HDC hdc);
+	void enemyFireBlastProto(std::string _skillName, HDC hdc);
+	void enemyThunderboltProto(std::string _skillName, HDC hdc);
+	void enemyQuickAttackProto(std::string _skillName, HDC hdc);
+	void enemyWingAttackProto(std::string _skillName, HDC hdc);
+	void enemyVineWhipProto(std::string _skillName, HDC hdc);
+	void enemyRazorLeafProto(std::string _skillName, HDC hdc);
+	void enemyBrineProto(std::string _skillName, HDC hdc);
+	void enemyHydroPumpProto(std::string _skillName, HDC hdc);
+
+
+	//void thunderProto(std::string _skillName, HDC hdc);
+	void flameThrowerProto(std::string _skillName, HDC hdc);
 	
 	//공통 출력 문구
 	void enemyHpChangFromPlayerAtk();
 	void playerHpChangFromEnemyAtk();
 
+	void enemySkillExplain(std::string _skillName, HDC hdc);
 	void playerAtkResultOutput(HDC hdc);
 	void enemyAtkResultOutput(HDC hdc);
 
@@ -304,6 +322,7 @@ private:
 	int m_enemyAlpha;
 	int m_playerCurrentPlusExp;
 	int m_playerSelectSkillNumber;
+	int m_skillEffectCount;
 	
 
 

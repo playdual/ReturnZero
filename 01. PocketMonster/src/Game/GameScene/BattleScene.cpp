@@ -190,6 +190,7 @@ bool BattleScene::init(std::shared_ptr<player> _player, PocketMon& _pocketmon)
 	m_playerAlpha = 255;
 	m_playerCurrentPlusExp = 0;
 	m_playerSelectSkillNumber = 0;
+	m_skillEffectCount = 0;
 
 	//적
 	enemySkillEffect = false;
@@ -320,13 +321,6 @@ void BattleScene::render(HDC hdc)
 {
 	char str[200];
 	if (wildBattle) wildBattleRender(hdc);
-
-	wsprintf(str, "Exp: %d, m_skillCount: %d", selectPocketmon->m_currentExp, m_skillCount);
-	TextOut(hdc, 10, 25, str, strlen(str));
-
-	wsprintf(str, "%d, %d", m_wildPocketmon.m_currentHp, m_wildPocketmonHpBarWigth);
-	TextOut(hdc, 10, 40, str, strlen(str));
-
 	EFFECTMANAGER->render(hdc);
 }
 void BattleScene::afterRender(HDC hdc)
@@ -334,37 +328,6 @@ void BattleScene::afterRender(HDC hdc)
 }
 void BattleScene::debugRender(HDC hdc)
 {
-	//if (npcBattle) npcBattleRender(hdc);
-	
-	//========================
-	// 디버깅 출력 내용 모음 //
-	//========================
-	/*
-	if (KEYMANAGER->isOnceKeyDown(GAME_LMOUSE))
-	{
-		//EFFECTMANAGER->play("파이리스킬1", m_ptMouse.x, m_ptMouse.y);
-		//test = EFFECTMANAGER->getIsPlay();
-		//m_player->skillEffect(1);
-	}
-	
-	if(test) test = EFFECTMANAGER->getIsPlay();
-
-	wsprintf(str, "%d", test);
-	TextOut(hdc, 100, 100, str, strlen(str));
-
-	wsprintf(str, "%d, %d", m_ptMouse.x, m_ptMouse.y);
-	TextOut(hdc, m_ptMouse.x, m_ptMouse.y - 20, str, strlen(str));
-
-	wsprintf(str, "fight: %d, bag: %d, pocketmon: %d, run: %d", fight, bag, pocketmon, run);
-	TextOut(hdc, 10, 10, str, strlen(str));
-
-	wsprintf(str, "s_1: %d, s_2: %d, s_3: %d, s_4: %d", skill_1, skill_2, skill_3, skill_4);
-	TextOut(hdc, 10, 25, str, strlen(str));
-
-	wsprintf(str, "포켓몬 hp: %d, m_enemyMinusHp: %d", m_wildPocketmon.m_currentHp, m_enemyMinusHp);
-	TextOut(hdc, 500, 300, str, strlen(str));
-	*/
-
 }
 
 void BattleScene::wildBattleFunctions()
@@ -1153,8 +1116,6 @@ void BattleScene::wildBattleRender(HDC hdc)
 		}
 	}//end of atk/def
 
-	wsprintf(str, "%d, %d", m_ptMouse.x, m_ptMouse.y);
-	TextOut(hdc, m_ptMouse.x, m_ptMouse.y-20, str, strlen(str));
 	
 	EFFECTMANAGER->render(hdc);
 	SelectObject(hdc, oldFont);
@@ -1195,454 +1156,8 @@ void BattleScene::npcBattleRender(HDC hdc)
 {
 }
 
-//==========================
-// 플레이어 공격 스킬 모음 //
-//==========================
-void BattleScene::tackleProto(std::string _skillName, HDC hdc)
-{
-	//1단계: 포켓몬 스킬 이팩트
-	if (!playerSkillEffect && !playerSkillEffectDone)
-	{
-		EFFECTMANAGER->play(_skillName, 707, 195);
-		playerSkillEffect = EFFECTMANAGER->getIsPlay();
-	}
-	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
-	{
-		playerSkillEffect = false;
-		playerSkillEffectDone = true;
-		playerHitEffect = true;
-	}
-
-	//2단계: 적 포켓몬 깜빡 깜빡
-	if (playerHitEffect)
-	{
-		m_enemyEffectCount++;
-		m_enemyAlpha = 0;
-		if (m_enemyEffectCount > 60)
-		{
-			m_enemyAlpha = 255;
-			m_enemyEffectCount = 0;
-			playerHitEffect = false;
-			enemyHpChange = true;
-			m_enemyMinusHp = checkDamage();
-		}
-	}
-	enemyHpChangFromPlayerAtk();
-	playerAtkResultOutput(hdc);
-}
-void BattleScene::skillEmberProto(std::string _skillName, HDC hdc)
-{
-	//1단계: 포켓몬 스킬 이팩트
-	if (!playerSkillEffect && !playerSkillEffectDone)
-	{
-		EFFECTMANAGER->play(_skillName, 707, 195);
-		EFFECTMANAGER->play(_skillName, 774, 222);
-		EFFECTMANAGER->play(_skillName, 696, 287);
-		EFFECTMANAGER->play(_skillName, 778, 304);
-		playerSkillEffect = EFFECTMANAGER->getIsPlay();
-	}
-	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
-	{
-		playerSkillEffect = false;
-		playerSkillEffectDone = true;
-		playerHitEffect = true;
-	}
-
-	//2단계: 적 포켓몬 깜빡 깜빡
-	if (playerHitEffect)
-	{
-		m_enemyEffectCount++;
-		m_enemyAlpha = 0;
-		if (m_enemyEffectCount > 40)
-		{
-			m_enemyAlpha = 255;
-			m_enemyEffectCount = 0;
-			playerHitEffect = false;
-			enemyHpChange = true;
-			m_enemyMinusHp = checkDamage();
-		}
-	}
-
-	enemyHpChangFromPlayerAtk();
-	playerAtkResultOutput(hdc);
-}
-void BattleScene::flameThrowerProto(std::string _skillName, HDC hdc)
-{
-	//1단계: 포켓몬 스킬 이팩트
-	if (!playerSkillEffect && !playerSkillEffectDone)
-	{
-		EFFECTMANAGER->play(_skillName, 707, 195);
-		playerSkillEffect = EFFECTMANAGER->getIsPlay();
-	}
-	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
-	{
-		playerSkillEffect = false;
-		playerSkillEffectDone = true;
-		playerHitEffect = true;
-	}
-
-	//2단계: 적 포켓몬 깜빡 깜빡
-	if (playerHitEffect)
-	{
-		m_enemyEffectCount++;
-		m_enemyAlpha = 0;
-		if (m_enemyEffectCount > 60)
-		{
-			m_enemyAlpha = 255;
-			m_enemyEffectCount = 0;
-			playerHitEffect = false;
-			enemyHpChange = true;
-			m_enemyMinusHp = checkDamage();
-		}
-	}
-
-	enemyHpChangFromPlayerAtk();
-	playerAtkResultOutput(hdc);
-}
-void BattleScene::fireBlastProto(std::string _skillName, HDC hdc)
-{
-	//1단계: 포켓몬 스킬 이팩트
-	if (!playerSkillEffect && !playerSkillEffectDone)
-	{
-		EFFECTMANAGER->play(_skillName, 750, 210);//중심
-		//ㅣ
-		EFFECTMANAGER->play(_skillName, 750, 170);
-		EFFECTMANAGER->play(_skillName, 750, 130);
-		//ㅡ
-		EFFECTMANAGER->play(_skillName, 630, 210);
-		EFFECTMANAGER->play(_skillName, 690, 210);
-		EFFECTMANAGER->play(_skillName, 810, 210);
-		EFFECTMANAGER->play(_skillName, 870, 210);
-		// /
-		EFFECTMANAGER->play(_skillName, 690, 250);
-		EFFECTMANAGER->play(_skillName, 630, 290);
-		// 마지막 획
-		EFFECTMANAGER->play(_skillName, 810, 250);
-		EFFECTMANAGER->play(_skillName, 870, 290);
-
-		playerSkillEffect = EFFECTMANAGER->getIsPlay();
-	}
-	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
-	{
-		playerSkillEffect = false;
-		playerSkillEffectDone = true;
-		playerHitEffect = true;
-	}
-
-	//2단계: 적 포켓몬 깜빡 깜빡
-	if (playerHitEffect)
-	{
-		m_enemyEffectCount++;
-		m_enemyAlpha = 0;
-		if (m_enemyEffectCount > 60)
-		{
-			m_enemyAlpha = 255;
-			m_enemyEffectCount = 0;
-			playerHitEffect = false;
-			enemyHpChange = true;
-			m_enemyMinusHp = checkDamage();
-		}
-	}
-
-	enemyHpChangFromPlayerAtk();
-	playerAtkResultOutput(hdc);
-}
-void BattleScene::scratchProto(std::string _skillName, HDC hdc)
-{
-	//1단계: 포켓몬 스킬 이팩트
-	if (!playerSkillEffect && !playerSkillEffectDone)
-	{
-		EFFECTMANAGER->play(_skillName, 810, 250);
-		playerSkillEffect = EFFECTMANAGER->getIsPlay();
-		playerHitEffect = true;
-
-	}
-	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
-	{
-		playerSkillEffect = false;
-		playerSkillEffectDone = true;
-	}
-
-	//2단계: 적 포켓몬 왼쪽으로 이동했다 돌아오기깜빡 깜빡
-	if (playerHitEffect)
-	{
-		m_enemyEffectCount++;
-		m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX + m_enemyEffectCount, 165, 165, 181);
-		if (m_enemyEffectCount > 30)	comeBackEnemey = true;
-		if(comeBackEnemey) m_enemyEffectCount -= 3;
-		
-		if (m_enemyEffectCount < 0)
-		{
-			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
-			m_enemyEffectCount = 0;
-			comeBackEnemey = false;
-			playerHitEffect = false;
-			enemyHpChange = true;
-			m_enemyMinusHp = checkDamage();
-		}
-	}
-
-	enemyHpChangFromPlayerAtk();
-	playerAtkResultOutput(hdc);
-}
-void BattleScene::playerThunderWaveProto(std::string _skillName, HDC hdc)
-{
-	//1단계: 포켓몬 스킬 이팩트
-	if (!playerSkillEffect && !playerSkillEffectDone)
-	{
-		EFFECTMANAGER->play(_skillName, 780, 250);
-		playerSkillEffect = EFFECTMANAGER->getIsPlay();
-		playerHitEffect = true;
-
-	}
-	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
-	{
-		playerSkillEffect = false;
-		playerSkillEffectDone = true;
-	}
-
-	//2단계: 적 포켓몬 좌우로 흔들흔들
-	if (playerHitEffect)
-	{
-		m_enemyEffectCount++;
-		if (m_enemyEffectCount % 10 < 5)
-		{
-			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX+5, 165, 165, 181);
-		}
-		else if (m_enemyEffectCount % 10 >= 5)
-		{
-			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX - 5, 165, 165, 181);
-		}
-		if (m_enemyEffectCount > 100)
-		{
-			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
-			m_enemyEffectCount = 0;
-			playerHitEffect = false;
-			enemyHpChange = true;
-			m_enemyMinusHp = checkDamage();
-		}
-	}
-
-	enemyHpChangFromPlayerAtk();
-	playerAtkResultOutput(hdc);
-}
 
 
-//====================
-// 적 공격 스킬 모음 //
-//====================
-void BattleScene::quickAttackProto(std::string _skillName, HDC hdc)
-{
-	char str[100];
-	if (!enemyExplainEffect)
-	{
-		wsprintf(str, "상대 %s의", m_wildPocketmon.m_name.c_str());
-		TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 40, str, strlen(str));
-
-		wsprintf(str, "%s 공격!", _skillName.c_str());
-		TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 70, str, strlen(str));
-	}
-	
-	if (!enemySkillEffect && !enemySkillEffectDone)
-	{
-		EFFECTMANAGER->play(_skillName, 573, 317);
-		enemySkillEffect = true;
-	}
-	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
-	{
-		enemyHitEffect = true;
-		enemySkillEffect = false;
-		enemySkillEffectDone = true;
-	}
-
-	if (enemyHitEffect)
-	{
-		m_playerTwinkleCount++;
-		m_playerAlpha = 0;
-		if (m_playerTwinkleCount > 20)
-		{
-			m_playerAlpha = 255;
-			m_playerTwinkleCount = 0;
-			enemyHitEffect = false;
-			playerHpChange = true;
-			m_playerMinusHp = checkDamage();
-			if (m_playerMinusHp >= selectPocketmon->m_currentHp) m_playerMinusHp = selectPocketmon->m_currentHp;
-		}
-	}
-
-	playerHpChangFromEnemyAtk();
-	enemyAtkResultOutput(hdc);
-}
-void BattleScene::enemyScratchProto(std::string _skillName, HDC hdc)
-{
-	if (!enemySkillEffect && !enemySkillEffectDone)
-	{
-		EFFECTMANAGER->play(_skillName, 357, 440);
-		enemySkillEffect = true;
-	}
-	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
-	{
-		enemyHitEffect = true;
-		enemySkillEffect = false;
-		enemySkillEffectDone = true;
-	}
-	if (enemyHitEffect)
-	{
-		m_playerTwinkleCount++;
-		m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX - m_playerTwinkleCount, 329, 165, 181);
-		if (m_playerTwinkleCount > 30) comeBackPlayer = true;
-		if (comeBackPlayer) m_playerTwinkleCount -= 3;
-
-		if (m_playerTwinkleCount < 0)
-		{
-			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 329, 165, 181);
-			m_playerTwinkleCount = 0;
-			enemyHitEffect = false;
-			playerHpChange = true;
-			m_playerMinusHp = checkDamage();
-		}
-	}
-	playerHpChangFromEnemyAtk();
-	enemyAtkResultOutput(hdc);
-}
-void BattleScene::enemyThunderWaveProto(std::string _skillName, HDC hdc)
-{
-	if (!enemySkillEffect && !enemySkillEffectDone)
-	{
-		EFFECTMANAGER->play(_skillName, 310, 430);
-		enemySkillEffect = true;
-	}
-	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
-	{
-		enemyHitEffect = true;
-		enemySkillEffect = false;
-		enemySkillEffectDone = true;
-	}
-	//2단계: 플레이어 좌우로 흔들흔들
-	if (enemyHitEffect)
-	{
-		m_playerTwinkleCount++;
-		if (m_playerTwinkleCount % 10 < 5)
-		{
-			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX + 5, 329, 165, 181);
-		}
-		else if (m_playerTwinkleCount % 10 >= 5)
-		{
-			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX - 5, 329, 165, 181);
-		}
-		
-		if (m_playerTwinkleCount > 100)
-		{
-			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 329, 165, 181);
-			m_playerTwinkleCount = 0;
-			enemyHitEffect = false;
-			playerHpChange = true;
-			m_playerMinusHp = checkDamage();
-		}
-	}
-
-	playerHpChangFromEnemyAtk();
-	enemyAtkResultOutput(hdc);
-}
-void BattleScene::thunderboltProto(std::string _skillName, HDC hdc)
-{
-	if (!enemySkillEffect && !enemySkillEffectDone)
-	{
-		EFFECTMANAGER->play(_skillName, 573, 317);
-		enemySkillEffect = true;
-	}
-	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
-	{
-		enemyHitEffect = true;
-		enemySkillEffect = false;
-		enemySkillEffectDone = true;
-	}
-	//플레이어 깜빡깜빡
-	if (enemyHitEffect)
-	{
-		m_playerTwinkleCount++;
-		m_playerAlpha = 0;
-		if (m_playerTwinkleCount > 20)
-		{
-			m_playerAlpha = 255;
-			m_playerTwinkleCount = 0;
-			enemyHitEffect = false;
-			playerHpChange = true;
-			m_playerMinusHp = checkDamage();
-		}
-	}
-
-	playerHpChangFromEnemyAtk();
-	enemyAtkResultOutput(hdc);
-}
-void BattleScene::thunderProto(std::string _skillName, HDC hdc)
-{
-	if (!enemySkillEffect && !enemySkillEffectDone)
-	{
-		EFFECTMANAGER->play(_skillName, 573, 317);
-		enemySkillEffect = true;
-	}
-	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
-	{
-		enemyHitEffect = true;
-		enemySkillEffect = false;
-		enemySkillEffectDone = true;
-	}
-	//플레이어 깜빡깜빡
-	if (enemyHitEffect)
-	{
-		m_playerTwinkleCount++;
-		m_playerAlpha = 0;
-		if (m_playerTwinkleCount > 20)
-		{
-			m_playerAlpha = 255;
-			m_playerTwinkleCount = 0;
-			enemyHitEffect = false;
-			playerHpChange = true;
-			m_playerMinusHp = checkDamage();
-		}
-	}
-
-	playerHpChangFromEnemyAtk();
-	enemyAtkResultOutput(hdc);
-}
-
-void BattleScene::enemySkillEmberProto(std::string _skillName, HDC hdc)
-{
-	if (!enemySkillEffect && !enemySkillEffectDone)
-	{
-		int tempX, tempY;
-		tempX = 400;
-		tempY = 200;
-		EFFECTMANAGER->play(_skillName, 707-tempX, 195+tempY);
-		EFFECTMANAGER->play(_skillName, 774-tempX, 222+tempY);
-		EFFECTMANAGER->play(_skillName, 696-tempX, 287+tempY);
-		EFFECTMANAGER->play(_skillName, 778-tempX, 304+tempY);
-		enemySkillEffect = true;
-	}
-	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
-	{
-		enemyHitEffect = true;
-		enemySkillEffect = false;
-		enemySkillEffectDone = true;
-	}
-
-	if (enemyHitEffect)
-	{
-		m_playerTwinkleCount++;
-		m_playerAlpha = 0;
-		if (m_playerTwinkleCount > 20)
-		{
-			m_playerAlpha = 255;
-			m_playerTwinkleCount = 0;
-			enemyHitEffect = false;
-			playerHpChange = true;
-			m_playerMinusHp = checkDamage();
-		}
-	}
-	playerHpChangFromEnemyAtk();
-	enemyAtkResultOutput(hdc);
-}
 
 //======================
 // 공방 공통 함수 모음 //
@@ -1668,6 +1183,18 @@ void BattleScene::enemyHpChangFromPlayerAtk()
 			enemyHpChange = false;
 			explainEffect = true;
 		}
+	}
+}
+void BattleScene::enemySkillExplain(std::string _skillName, HDC hdc)
+{
+	char str[100];
+	if (!enemyExplainEffect)
+	{
+		wsprintf(str, "상대 %s의", m_wildPocketmon.m_name.c_str());
+		TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 40, str, strlen(str));
+
+		wsprintf(str, "%s 공격!", _skillName.c_str());
+		TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 70, str, strlen(str));
 	}
 }
 void BattleScene::playerAtkResultOutput(HDC hdc)
@@ -1876,10 +1403,10 @@ void BattleScene::wildBattleIntroAni()
 
 	}
 }
-
 //플레이어 승리시
 void BattleScene::wildBattleOutAni(HDC hdc)
 {
+	explainRect(hdc);
 	char str[100];
 	//적 포켓몬
 	m_enemyPocketmonY += 10;
@@ -1888,7 +1415,6 @@ void BattleScene::wildBattleOutAni(HDC hdc)
 	{
 		m_enemyPocketmon = UTIL::IRectMake(1000, 1000, 165, 181);
 		m_skillCount++;
-		explainRect(hdc);
 		wsprintf(str, "야생의 %s는(은)", m_wildPocketmon.m_name.c_str());
 		TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 40, str, strlen(str));
 
@@ -2564,7 +2090,6 @@ void BattleScene::pocketmonChange(HDC hdc)
 		}
 	}
 }
-
 void BattleScene::battleSceneEnd()
 {
 	SOUNDMANAGER->stopChannel(Channel::eChannelBattleBgm);
@@ -2572,62 +2097,1079 @@ void BattleScene::battleSceneEnd()
 	SCENEMANAGER->scenePop();
 }
 
+//==========================
+// 플레이어 공격 스킬 모음 //
+//==========================
+void BattleScene::tackleProto(std::string _skillName, HDC hdc)
+{
+	//1단계: 포켓몬 스킬 이팩트
+	if (!playerSkillEffect && !playerSkillEffectDone)
+	{
+		EFFECTMANAGER->play(_skillName, 760, 250);
+		playerSkillEffect = EFFECTMANAGER->getIsPlay();
+		playerHitEffect = true;
+
+	}
+	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		playerSkillEffect = false;
+		playerSkillEffectDone = true;
+	}
+
+	//2단계: 적 포켓몬 왼쪽으로 이동했다 돌아오기깜빡 깜빡
+	if (playerHitEffect)
+	{
+		m_enemyEffectCount++;
+		m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX + m_enemyEffectCount, 165, 165, 181);
+		if (m_enemyEffectCount > 30)	comeBackEnemey = true;
+		if (comeBackEnemey) m_enemyEffectCount -= 3;
+
+		if (m_enemyEffectCount < 0)
+		{
+			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
+			m_enemyEffectCount = 0;
+			comeBackEnemey = false;
+			playerHitEffect = false;
+			enemyHpChange = true;
+			m_enemyMinusHp = checkDamage();
+		}
+	}
+
+	enemyHpChangFromPlayerAtk();
+	playerAtkResultOutput(hdc);
+}
+void BattleScene::skillEmberProto(std::string _skillName, HDC hdc)
+{
+	//1단계: 포켓몬 스킬 이팩트
+	if (!playerSkillEffect && !playerSkillEffectDone)
+	{
+		EFFECTMANAGER->play(_skillName, 707, 195);
+		EFFECTMANAGER->play(_skillName, 774, 222);
+		EFFECTMANAGER->play(_skillName, 696, 287);
+		EFFECTMANAGER->play(_skillName, 778, 304);
+		playerSkillEffect = EFFECTMANAGER->getIsPlay();
+	}
+	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		playerSkillEffect = false;
+		playerSkillEffectDone = true;
+		playerHitEffect = true;
+	}
+
+	//2단계: 적 포켓몬 깜빡 깜빡
+	if (playerHitEffect)
+	{
+		m_enemyEffectCount++;
+		m_enemyAlpha = 0;
+		if (m_enemyEffectCount > 40)
+		{
+			m_enemyAlpha = 255;
+			m_enemyEffectCount = 0;
+			playerHitEffect = false;
+			enemyHpChange = true;
+			m_enemyMinusHp = checkDamage();
+		}
+	}
+
+	enemyHpChangFromPlayerAtk();
+	playerAtkResultOutput(hdc);
+}
+void BattleScene::fireBlastProto(std::string _skillName, HDC hdc)
+{
+	//1단계: 포켓몬 스킬 이팩트
+	if (!playerSkillEffect && !playerSkillEffectDone)
+	{
+		EFFECTMANAGER->play(_skillName, 750, 210);//중심
+		//ㅣ
+		EFFECTMANAGER->play(_skillName, 750, 170);
+		EFFECTMANAGER->play(_skillName, 750, 130);
+		EFFECTMANAGER->play(_skillName, 750, 90);
+		//ㅡ
+		EFFECTMANAGER->play(_skillName, 570, 210);
+		EFFECTMANAGER->play(_skillName, 630, 210);
+		EFFECTMANAGER->play(_skillName, 690, 210);
+		EFFECTMANAGER->play(_skillName, 810, 210);
+		EFFECTMANAGER->play(_skillName, 870, 210);
+		EFFECTMANAGER->play(_skillName, 930, 210);
+		// /
+		EFFECTMANAGER->play(_skillName, 690, 250);
+		EFFECTMANAGER->play(_skillName, 630, 290);
+		EFFECTMANAGER->play(_skillName, 570, 330);
+		// 마지막 획
+		EFFECTMANAGER->play(_skillName, 810, 250);
+		EFFECTMANAGER->play(_skillName, 870, 290);
+		EFFECTMANAGER->play(_skillName, 930, 340);
+
+		playerSkillEffect = EFFECTMANAGER->getIsPlay();
+	}
+	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		playerSkillEffect = false;
+		playerSkillEffectDone = true;
+		playerHitEffect = true;
+	}
+
+	//2단계: 적 포켓몬 깜빡 깜빡
+	if (playerHitEffect)
+	{
+		m_enemyEffectCount++;
+		m_enemyAlpha = 0;
+		if (m_enemyEffectCount > 60)
+		{
+			m_enemyAlpha = 255;
+			m_enemyEffectCount = 0;
+			playerHitEffect = false;
+			enemyHpChange = true;
+			m_enemyMinusHp = checkDamage();
+		}
+	}
+
+	enemyHpChangFromPlayerAtk();
+	playerAtkResultOutput(hdc);
+}
+void BattleScene::scratchProto(std::string _skillName, HDC hdc)
+{
+	//1단계: 포켓몬 스킬 이팩트
+	if (!playerSkillEffect && !playerSkillEffectDone)
+	{
+		EFFECTMANAGER->play(_skillName, 810, 250);
+		playerSkillEffect = EFFECTMANAGER->getIsPlay();
+		playerHitEffect = true;
+
+	}
+	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		playerSkillEffect = false;
+		playerSkillEffectDone = true;
+	}
+
+	//2단계: 적 포켓몬 왼쪽으로 이동했다 돌아오기깜빡 깜빡
+	if (playerHitEffect)
+	{
+		m_enemyEffectCount++;
+		m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX + m_enemyEffectCount, 165, 165, 181);
+		if (m_enemyEffectCount > 30)	comeBackEnemey = true;
+		if (comeBackEnemey) m_enemyEffectCount -= 3;
+
+		if (m_enemyEffectCount < 0)
+		{
+			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
+			m_enemyEffectCount = 0;
+			comeBackEnemey = false;
+			playerHitEffect = false;
+			enemyHpChange = true;
+			m_enemyMinusHp = checkDamage();
+		}
+	}
+
+	enemyHpChangFromPlayerAtk();
+	playerAtkResultOutput(hdc);
+}
+void BattleScene::playerThunderWaveProto(std::string _skillName, HDC hdc)
+{
+	//1단계: 포켓몬 스킬 이팩트
+	if (!playerSkillEffect && !playerSkillEffectDone)
+	{
+		EFFECTMANAGER->play(_skillName, 780, 250);
+		playerSkillEffect = EFFECTMANAGER->getIsPlay();
+		playerHitEffect = true;
+
+	}
+	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		playerSkillEffect = false;
+		playerSkillEffectDone = true;
+	}
+
+	//2단계: 적 포켓몬 좌우로 흔들흔들
+	if (playerHitEffect)
+	{
+		m_enemyEffectCount++;
+		if (m_enemyEffectCount % 10 < 5)
+		{
+			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX + 5, 165, 165, 181);
+		}
+		else if (m_enemyEffectCount % 10 >= 5)
+		{
+			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX - 5, 165, 165, 181);
+		}
+		if (m_enemyEffectCount > 100)
+		{
+			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
+			m_enemyEffectCount = 0;
+			playerHitEffect = false;
+			enemyHpChange = true;
+			m_enemyMinusHp = checkDamage();
+		}
+	}
+
+	enemyHpChangFromPlayerAtk();
+	playerAtkResultOutput(hdc);
+}
+void BattleScene::thunderBoltProto(std::string _skillName, HDC hdc)
+{
+	//1단계: 포켓몬 스킬 이팩트
+	if (!playerSkillEffect && !playerSkillEffectDone)
+	{
+		EFFECTMANAGER->play(_skillName, 780, 250);
+		playerSkillEffect = EFFECTMANAGER->getIsPlay();
+		playerHitEffect = true;
+
+	}
+	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		playerSkillEffect = false;
+		playerSkillEffectDone = true;
+	}
+
+	//2단계: 적 포켓몬 좌우로 흔들흔들
+	if (playerHitEffect)
+	{
+		m_enemyEffectCount++;
+		if (m_enemyEffectCount % 10 < 5)
+		{
+			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX + 5, 165, 165, 181);
+		}
+		else if (m_enemyEffectCount % 10 >= 5)
+		{
+			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX - 5, 165, 165, 181);
+		}
+		if (m_enemyEffectCount > 100)
+		{
+			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
+			m_enemyEffectCount = 0;
+			playerHitEffect = false;
+			enemyHpChange = true;
+			m_enemyMinusHp = checkDamage();
+		}
+	}
+
+	enemyHpChangFromPlayerAtk();
+	playerAtkResultOutput(hdc);
+}
+void BattleScene::quickAttackProto(std::string _skillName, HDC hdc)
+{
+	//1단계: 포켓몬 스킬 이팩트
+	if (!playerSkillEffect && !playerSkillEffectDone)
+	{
+		EFFECTMANAGER->play(_skillName, 760, 250);
+		playerSkillEffect = EFFECTMANAGER->getIsPlay();
+		playerHitEffect = true;
+
+	}
+	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		playerSkillEffect = false;
+		playerSkillEffectDone = true;
+	}
+
+	//2단계: 적 포켓몬 왼쪽으로 이동했다 돌아오기깜빡 깜빡
+	if (playerHitEffect)
+	{
+		m_enemyEffectCount++;
+		m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX + m_enemyEffectCount, 165, 165, 181);
+		if (m_enemyEffectCount > 30)	comeBackEnemey = true;
+		if (comeBackEnemey) m_enemyEffectCount -= 3;
+
+		if (m_enemyEffectCount < 0)
+		{
+			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
+			m_enemyEffectCount = 0;
+			comeBackEnemey = false;
+			playerHitEffect = false;
+			enemyHpChange = true;
+			m_enemyMinusHp = checkDamage();
+		}
+	}
+
+	enemyHpChangFromPlayerAtk();
+	playerAtkResultOutput(hdc);
+}
+void BattleScene::wingAttackProto(std::string _skillName, HDC hdc)
+{	
+	//1단계: 포켓몬 스킬 이팩트
+	if (!playerSkillEffect && !playerSkillEffectDone)
+	{
+		EFFECTMANAGER->play(_skillName, 760, 250);
+		playerSkillEffect = EFFECTMANAGER->getIsPlay();
+		playerHitEffect = true;
+
+	}
+	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		playerSkillEffect = false;
+		playerSkillEffectDone = true;
+	}
+
+	//2단계: 적 포켓몬 왼쪽으로 이동했다 돌아오기
+	if (playerHitEffect)
+	{
+		m_enemyEffectCount++;
+		m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX + m_enemyEffectCount, 165, 165, 181);
+		if (m_enemyEffectCount > 30)	comeBackEnemey = true;
+		if (comeBackEnemey) m_enemyEffectCount -= 3;
+
+		if (m_enemyEffectCount < 0)
+		{
+			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
+			m_enemyEffectCount = 0;
+			comeBackEnemey = false;
+			playerHitEffect = false;
+			enemyHpChange = true;
+			m_enemyMinusHp = checkDamage();
+		}
+	}
+
+	enemyHpChangFromPlayerAtk();
+	playerAtkResultOutput(hdc);
+}
+void BattleScene::vineWhipProto(std::string _skillName, HDC hdc)
+{
+	//1단계: 포켓몬 스킬 이팩트
+	if (!playerSkillEffect && !playerSkillEffectDone)
+	{
+		EFFECTMANAGER->play(_skillName, 760, 250);
+		playerSkillEffect = EFFECTMANAGER->getIsPlay();
+		playerHitEffect = true;
+
+	}
+	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		playerSkillEffect = false;
+		playerSkillEffectDone = true;
+	}
+
+	//2단계: 적 포켓몬 왼쪽으로 이동했다 돌아오기
+	if (playerHitEffect)
+	{
+		m_enemyEffectCount++;
+		m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX + m_enemyEffectCount, 165, 165, 181);
+		if (m_enemyEffectCount > 30)	comeBackEnemey = true;
+		if (comeBackEnemey) m_enemyEffectCount -= 3;
+
+		if (m_enemyEffectCount < 0)
+		{
+			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
+			m_enemyEffectCount = 0;
+			comeBackEnemey = false;
+			playerHitEffect = false;
+			enemyHpChange = true;
+			m_enemyMinusHp = checkDamage();
+		}
+	}
+
+	enemyHpChangFromPlayerAtk();
+	playerAtkResultOutput(hdc);
+
+}
+void BattleScene::razorLeafProto(std::string _skillName, HDC hdc)
+{
+	//1단계: 포켓몬 스킬 이팩트
+	if (!playerSkillEffect && !playerSkillEffectDone)
+	{
+		EFFECTMANAGER->play(_skillName, 760, 250);
+		playerSkillEffect = EFFECTMANAGER->getIsPlay();
+		playerHitEffect = true;
+
+	}
+	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		playerSkillEffect = false;
+		playerSkillEffectDone = true;
+	}
+
+	//2단계: 적 포켓몬 왼쪽으로 이동했다 돌아오기
+	if (playerHitEffect)
+	{
+		m_enemyEffectCount++;
+		m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX + m_enemyEffectCount, 165, 165, 181);
+		if (m_enemyEffectCount > 30)	comeBackEnemey = true;
+		if (comeBackEnemey) m_enemyEffectCount -= 3;
+
+		if (m_enemyEffectCount < 0)
+		{
+			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
+			m_enemyEffectCount = 0;
+			comeBackEnemey = false;
+			playerHitEffect = false;
+			enemyHpChange = true;
+			m_enemyMinusHp = checkDamage();
+		}
+	}
+
+	enemyHpChangFromPlayerAtk();
+	playerAtkResultOutput(hdc);
+}
+void BattleScene::brineProto(std::string _skillName, HDC hdc)
+{
+	//1단계: 포켓몬 스킬 이팩트
+	if (!playerSkillEffect && !playerSkillEffectDone)
+	{
+		EFFECTMANAGER->play(_skillName, 740, 250);
+		playerSkillEffect = EFFECTMANAGER->getIsPlay();
+		playerHitEffect = true;
+	}
+	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		playerSkillEffect = false;
+		playerSkillEffectDone = true;
+	}
+
+	//2단계: 적 포켓몬 왼쪽으로 이동했다 돌아오기
+	if (playerHitEffect)
+	{
+		m_enemyEffectCount++;
+		m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX + m_enemyEffectCount, 165, 165, 181);
+		if (m_enemyEffectCount > 30)	comeBackEnemey = true;
+		if (comeBackEnemey) m_enemyEffectCount -= 3;
+
+		if (m_enemyEffectCount < 0)
+		{
+			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
+			m_enemyEffectCount = 0;
+			comeBackEnemey = false;
+			playerHitEffect = false;
+			enemyHpChange = true;
+			m_enemyMinusHp = checkDamage();
+		}
+	}
+
+	enemyHpChangFromPlayerAtk();
+	playerAtkResultOutput(hdc);
+}
+void BattleScene::hydroPumpProto(std::string _skillName, HDC hdc)
+{
+	//1단계: 포켓몬 스킬 이팩트
+	if (!playerSkillEffect && !playerSkillEffectDone)
+	{
+		m_skillEffectCount++;
+		EFFECTMANAGER->play(_skillName, 780, 250);
+		if (m_skillEffectCount % 5 == 0)
+		{
+			EFFECTMANAGER->play(_skillName, 780 + UTIL::GetRndIntFromTo(-80, 60), 250 + UTIL::GetRndIntFromTo(-80, 60));
+		}
+		if (m_skillEffectCount >= 25)
+		{
+			m_skillEffectCount = 26;
+			playerSkillEffect = true;
+			playerHitEffect = true;
+		}
+	}
+	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		m_skillEffectCount = 0;
+		playerSkillEffect = false;
+		playerSkillEffectDone = true;
+	}
+
+	//2단계: 적 포켓몬 좌우로 흔들흔들
+	if (playerHitEffect)
+	{
+		m_enemyEffectCount++;
+		if (m_enemyEffectCount % 10 < 5)
+		{
+			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX + 5, 165, 165, 181);
+		}
+		else if (m_enemyEffectCount % 10 >= 5)
+		{
+			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX - 5, 165, 165, 181);
+		}
+		if (m_enemyEffectCount > 100)
+		{
+			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
+			m_enemyEffectCount = 0;
+			playerHitEffect = false;
+			enemyHpChange = true;
+			m_enemyMinusHp = checkDamage();
+		}
+	}
+
+	enemyHpChangFromPlayerAtk();
+	playerAtkResultOutput(hdc);
+}
+
+
+
+
+
+
+void BattleScene::flameThrowerProto(std::string _skillName, HDC hdc)
+{
+	//1단계: 포켓몬 스킬 이팩트
+	if (!playerSkillEffect && !playerSkillEffectDone)
+	{
+		EFFECTMANAGER->play(_skillName, 707, 195);
+		playerSkillEffect = EFFECTMANAGER->getIsPlay();
+	}
+	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		playerSkillEffect = false;
+		playerSkillEffectDone = true;
+		playerHitEffect = true;
+	}
+
+	//2단계: 적 포켓몬 깜빡 깜빡
+	if (playerHitEffect)
+	{
+		m_enemyEffectCount++;
+		m_enemyAlpha = 0;
+		if (m_enemyEffectCount > 60)
+		{
+			m_enemyAlpha = 255;
+			m_enemyEffectCount = 0;
+			playerHitEffect = false;
+			enemyHpChange = true;
+			m_enemyMinusHp = checkDamage();
+		}
+	}
+
+	enemyHpChangFromPlayerAtk();
+	playerAtkResultOutput(hdc);
+}
+
+//====================
+// 적 공격 스킬 모음 //
+//====================
+void BattleScene::enemyTackleProto(std::string _skillName, HDC hdc)
+{
+	enemySkillExplain(_skillName, hdc);
+	if (!enemySkillEffect && !enemySkillEffectDone)
+	{
+		EFFECTMANAGER->play(_skillName, 357, 440);
+		enemySkillEffect = true;
+	}
+	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		enemyHitEffect = true;
+		enemySkillEffect = false;
+		enemySkillEffectDone = true;
+	}
+	if (enemyHitEffect)
+	{
+		m_playerTwinkleCount++;
+		m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX - m_playerTwinkleCount, 329, 165, 181);
+		if (m_playerTwinkleCount > 30) comeBackPlayer = true;
+		if (comeBackPlayer) m_playerTwinkleCount -= 3;
+
+		if (m_playerTwinkleCount < 0)
+		{
+			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 329, 165, 181);
+			m_playerTwinkleCount = 0;
+			enemyHitEffect = false;
+			comeBackPlayer = false;
+			playerHpChange = true;
+			m_playerMinusHp = checkDamage();
+		}
+	}
+	playerHpChangFromEnemyAtk();
+	enemyAtkResultOutput(hdc);
+}
+void BattleScene::enemySkillEmberProto(std::string _skillName, HDC hdc)
+{
+	enemySkillExplain(_skillName, hdc);
+	if (!enemySkillEffect && !enemySkillEffectDone)
+	{
+		int tempX, tempY;
+		tempX = 400;
+		tempY = 200;
+		EFFECTMANAGER->play(_skillName, 707 - tempX, 195 + tempY);
+		EFFECTMANAGER->play(_skillName, 774 - tempX, 222 + tempY);
+		EFFECTMANAGER->play(_skillName, 696 - tempX, 287 + tempY);
+		EFFECTMANAGER->play(_skillName, 778 - tempX, 304 + tempY);
+		enemySkillEffect = true;
+	}
+	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		enemyHitEffect = true;
+		enemySkillEffect = false;
+		enemySkillEffectDone = true;
+	}
+
+	if (enemyHitEffect)
+	{
+		m_playerTwinkleCount++;
+		m_playerAlpha = 0;
+		if (m_playerTwinkleCount > 20)
+		{
+			m_playerAlpha = 255;
+			m_playerTwinkleCount = 0;
+			enemyHitEffect = false;
+			playerHpChange = true;
+			m_playerMinusHp = checkDamage();
+		}
+	}
+	playerHpChangFromEnemyAtk();
+	enemyAtkResultOutput(hdc);
+}
+void BattleScene::enemyScratchProto(std::string _skillName, HDC hdc)
+{
+	enemySkillExplain(_skillName, hdc);
+	if (!enemySkillEffect && !enemySkillEffectDone)
+	{
+		EFFECTMANAGER->play(_skillName, 357, 440);
+		enemySkillEffect = true;
+	}
+	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		enemyHitEffect = true;
+		enemySkillEffect = false;
+		enemySkillEffectDone = true;
+	}
+	if (enemyHitEffect)
+	{
+		m_playerTwinkleCount++;
+		m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX - m_playerTwinkleCount, 329, 165, 181);
+		if (m_playerTwinkleCount > 30) comeBackPlayer = true;
+		if (comeBackPlayer) m_playerTwinkleCount -= 3;
+
+		if (m_playerTwinkleCount < 0)
+		{
+			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 329, 165, 181);
+			m_playerTwinkleCount = 0;
+			enemyHitEffect = false;
+			comeBackPlayer = false;
+			playerHpChange = true;
+			m_playerMinusHp = checkDamage();
+		}
+	}
+	playerHpChangFromEnemyAtk();
+	enemyAtkResultOutput(hdc);
+}
+void BattleScene::enemyThunderWaveProto(std::string _skillName, HDC hdc)
+{
+	enemySkillExplain(_skillName, hdc);
+	if (!enemySkillEffect && !enemySkillEffectDone)
+	{
+		EFFECTMANAGER->play(_skillName, 310, 430);
+		enemySkillEffect = true;
+	}
+	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		enemyHitEffect = true;
+		enemySkillEffect = false;
+		enemySkillEffectDone = true;
+	}
+	//2단계: 플레이어 좌우로 흔들흔들
+	if (enemyHitEffect)
+	{
+		m_playerTwinkleCount++;
+		if (m_playerTwinkleCount % 10 < 5)
+		{
+			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX + 5, 329, 165, 181);
+		}
+		else if (m_playerTwinkleCount % 10 >= 5)
+		{
+			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX - 5, 329, 165, 181);
+		}
+
+		if (m_playerTwinkleCount > 100)
+		{
+			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 329, 165, 181);
+			m_playerTwinkleCount = 0;
+			enemyHitEffect = false;
+			playerHpChange = true;
+			m_playerMinusHp = checkDamage();
+		}
+	}
+
+	playerHpChangFromEnemyAtk();
+	enemyAtkResultOutput(hdc);
+}
+void BattleScene::enemyFireBlastProto(std::string _skillName, HDC hdc)
+{
+	enemySkillExplain(_skillName, hdc);
+	if (!enemySkillEffect && !enemySkillEffectDone)
+	{
+		int tempX, tempY;
+		tempX = 400;
+		tempY = 200;
+		EFFECTMANAGER->play(_skillName, 750 - tempX, 210 + tempY);//중심
+//ㅣ										 
+		EFFECTMANAGER->play(_skillName, 750 - tempX, 170 + tempY);
+		EFFECTMANAGER->play(_skillName, 750 - tempX, 130 + tempY);
+		EFFECTMANAGER->play(_skillName, 750 - tempX, 90 + tempY);
+		//ㅡ								 
+		EFFECTMANAGER->play(_skillName, 570 - tempX, 210 + tempY);
+		EFFECTMANAGER->play(_skillName, 630 - tempX, 210 + tempY);
+		EFFECTMANAGER->play(_skillName, 690 - tempX, 210 + tempY);
+		EFFECTMANAGER->play(_skillName, 810 - tempX, 210 + tempY);
+		EFFECTMANAGER->play(_skillName, 870 - tempX, 210 + tempY);
+		EFFECTMANAGER->play(_skillName, 930 - tempX, 210 + tempY);
+		// /							 
+		EFFECTMANAGER->play(_skillName, 690 - tempX, 250 + tempY);
+		EFFECTMANAGER->play(_skillName, 630 - tempX, 290 + tempY);
+		EFFECTMANAGER->play(_skillName, 570 - tempX, 330 + tempY);
+		// 마지막 획					
+		EFFECTMANAGER->play(_skillName, 810 - tempX, 250 + tempY);
+		EFFECTMANAGER->play(_skillName, 870 - tempX, 290 + tempY);
+		EFFECTMANAGER->play(_skillName, 930 - tempX, 340 + tempY);
+
+		enemySkillEffect = true;
+	}
+	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		enemyHitEffect = true;
+		enemySkillEffect = false;
+		enemySkillEffectDone = true;
+	}
+	if (enemyHitEffect)
+	{
+		m_playerTwinkleCount++;
+		m_playerAlpha = 0;
+		if (m_playerTwinkleCount > 40)
+		{
+			m_playerAlpha = 255;
+			m_playerTwinkleCount = 0;
+			enemyHitEffect = false;
+			playerHpChange = true;
+			m_playerMinusHp = checkDamage();
+		}
+	}
+	playerHpChangFromEnemyAtk();
+	enemyAtkResultOutput(hdc);
+}
+void BattleScene::enemyThunderboltProto(std::string _skillName, HDC hdc)
+{
+	enemySkillExplain(_skillName, hdc);
+	if (!enemySkillEffect && !enemySkillEffectDone)
+	{
+		EFFECTMANAGER->play(_skillName, 310, 430);
+		enemySkillEffect = true;
+	}
+	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		enemyHitEffect = true;
+		enemySkillEffect = false;
+		enemySkillEffectDone = true;
+	}
+	//2단계: 플레이어 좌우로 흔들흔들
+	if (enemyHitEffect)
+	{
+		m_playerTwinkleCount++;
+		if (m_playerTwinkleCount % 10 < 5)
+		{
+			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX + 5, 329, 165, 181);
+		}
+		else if (m_playerTwinkleCount % 10 >= 5)
+		{
+			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX - 5, 329, 165, 181);
+		}
+
+		if (m_playerTwinkleCount > 100)
+		{
+			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 329, 165, 181);
+			m_playerTwinkleCount = 0;
+			enemyHitEffect = false;
+			playerHpChange = true;
+			m_playerMinusHp = checkDamage();
+		}
+	}
+
+	playerHpChangFromEnemyAtk();
+	enemyAtkResultOutput(hdc);
+}
+void BattleScene::enemyQuickAttackProto(std::string _skillName, HDC hdc)
+{
+	enemySkillExplain(_skillName, hdc);
+	if (!enemySkillEffect && !enemySkillEffectDone)
+	{
+		EFFECTMANAGER->play(_skillName, 357, 440);
+		enemySkillEffect = true;
+	}
+	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		enemyHitEffect = true;
+		enemySkillEffect = false;
+		enemySkillEffectDone = true;
+	}
+	if (enemyHitEffect)
+	{
+		m_playerTwinkleCount++;
+		m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX - m_playerTwinkleCount, 329, 165, 181);
+		if (m_playerTwinkleCount > 30) comeBackPlayer = true;
+		if (comeBackPlayer) m_playerTwinkleCount -= 3;
+
+		if (m_playerTwinkleCount < 0)
+		{
+			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 329, 165, 181);
+			m_playerTwinkleCount = 0;
+			enemyHitEffect = false;
+			comeBackPlayer = false;
+			playerHpChange = true;
+			m_playerMinusHp = checkDamage();
+		}
+	}
+	playerHpChangFromEnemyAtk();
+	enemyAtkResultOutput(hdc);
+
+}
+void BattleScene::enemyWingAttackProto(std::string _skillName, HDC hdc)
+{
+	enemySkillExplain(_skillName, hdc);
+	if (!enemySkillEffect && !enemySkillEffectDone)
+	{
+		EFFECTMANAGER->play("날개치기(적)", 317, 440);
+		enemySkillEffect = true;
+	}
+	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		enemyHitEffect = true;
+		enemySkillEffect = false;
+		enemySkillEffectDone = true;
+	}
+	if (enemyHitEffect)
+	{
+		m_playerTwinkleCount++;
+		m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX - m_playerTwinkleCount, 329, 165, 181);
+		if (m_playerTwinkleCount > 30) comeBackPlayer = true;
+		if (comeBackPlayer) m_playerTwinkleCount -= 3;
+
+		if (m_playerTwinkleCount < 0)
+		{
+			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 329, 165, 181);
+			m_playerTwinkleCount = 0;
+			enemyHitEffect = false;
+			comeBackPlayer = false;
+			playerHpChange = true;
+			m_playerMinusHp = checkDamage();
+		}
+	}
+	playerHpChangFromEnemyAtk();
+	enemyAtkResultOutput(hdc);
+
+}
+void BattleScene::enemyVineWhipProto(std::string _skillName, HDC hdc)
+{
+	enemySkillExplain(_skillName, hdc);
+	if (!enemySkillEffect && !enemySkillEffectDone)
+	{
+		EFFECTMANAGER->play("덩쿨채찍(적)", 347, 440);
+		enemySkillEffect = true;
+	}
+	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		enemyHitEffect = true;
+		enemySkillEffect = false;
+		enemySkillEffectDone = true;
+	}
+	if (enemyHitEffect)
+	{
+		m_playerTwinkleCount++;
+		m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX - m_playerTwinkleCount, 329, 165, 181);
+		if (m_playerTwinkleCount > 30) comeBackPlayer = true;
+		if (comeBackPlayer) m_playerTwinkleCount -= 3;
+
+		if (m_playerTwinkleCount < 0)
+		{
+			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 329, 165, 181);
+			m_playerTwinkleCount = 0;
+			enemyHitEffect = false;
+			comeBackPlayer = false;
+			playerHpChange = true;
+			m_playerMinusHp = checkDamage();
+		}
+	}
+	playerHpChangFromEnemyAtk();
+	enemyAtkResultOutput(hdc);
+}
+void BattleScene::enemyRazorLeafProto(std::string _skillName, HDC hdc)
+{
+	enemySkillExplain(_skillName, hdc);
+	if (!enemySkillEffect && !enemySkillEffectDone)
+	{
+		EFFECTMANAGER->play("잎날가르기(적)", 317, 440);
+		enemySkillEffect = true;
+	}
+	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		enemyHitEffect = true;
+		enemySkillEffect = false;
+		enemySkillEffectDone = true;
+	}
+	if (enemyHitEffect)
+	{
+		m_playerTwinkleCount++;
+		m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX - m_playerTwinkleCount, 329, 165, 181);
+		if (m_playerTwinkleCount > 30) comeBackPlayer = true;
+		if (comeBackPlayer) m_playerTwinkleCount -= 3;
+
+		if (m_playerTwinkleCount < 0)
+		{
+			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 329, 165, 181);
+			m_playerTwinkleCount = 0;
+			enemyHitEffect = false;
+			comeBackPlayer = false;
+			playerHpChange = true;
+			m_playerMinusHp = checkDamage();
+		}
+	}
+	playerHpChangFromEnemyAtk();
+	enemyAtkResultOutput(hdc);
+
+}
+void BattleScene::enemyBrineProto(std::string _skillName, HDC hdc)
+{
+	enemySkillExplain(_skillName, hdc);
+	if (!enemySkillEffect && !enemySkillEffectDone)
+	{
+		EFFECTMANAGER->play("소금물(적)", 367, 440);
+		enemySkillEffect = true;
+	}
+	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		enemyHitEffect = true;
+		enemySkillEffect = false;
+		enemySkillEffectDone = true;
+	}
+	if (enemyHitEffect)
+	{
+		m_playerTwinkleCount++;
+		m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX - m_playerTwinkleCount, 329, 165, 181);
+		if (m_playerTwinkleCount > 30) comeBackPlayer = true;
+		if (comeBackPlayer) m_playerTwinkleCount -= 3;
+
+		if (m_playerTwinkleCount < 0)
+		{
+			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 329, 165, 181);
+			m_playerTwinkleCount = 0;
+			enemyHitEffect = false;
+			comeBackPlayer = false;
+			playerHpChange = true;
+			m_playerMinusHp = checkDamage();
+		}
+	}
+	playerHpChangFromEnemyAtk();
+	enemyAtkResultOutput(hdc);
+}
+
+void BattleScene::enemyHydroPumpProto(std::string _skillName, HDC hdc)
+{
+	enemySkillExplain(_skillName, hdc);
+	if (!enemySkillEffect && !enemySkillEffectDone)
+	{
+		int tempX, tempY;
+		tempX = -480;
+		tempY = 230;
+
+		m_skillEffectCount++;
+		EFFECTMANAGER->play(_skillName, 780+tempX, 250+tempY);
+		if (m_skillEffectCount % 5 == 0)
+		{
+			EFFECTMANAGER->play(_skillName, 780 + UTIL::GetRndIntFromTo(-80, 60)+tempX, 250 + UTIL::GetRndIntFromTo(-80, 60)+tempY);
+		}
+		if (m_skillEffectCount >= 25)
+		{
+			m_skillEffectCount = 26;
+			enemySkillEffect = true;
+		}
+	}
+	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		m_skillEffectCount = 0;
+		enemyHitEffect = true;
+		enemySkillEffect = false;
+		enemySkillEffectDone = true;
+	}
+	//2단계: 플레이어 좌우로 흔들흔들
+	if (enemyHitEffect)
+	{
+		m_playerTwinkleCount++;
+		if (m_playerTwinkleCount % 10 < 5)
+		{
+			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX + 5, 329, 165, 181);
+		}
+		else if (m_playerTwinkleCount % 10 >= 5)
+		{
+			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX - 5, 329, 165, 181);
+		}
+
+		if (m_playerTwinkleCount > 100)
+		{
+			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 329, 165, 181);
+			m_playerTwinkleCount = 0;
+			enemyHitEffect = false;
+			playerHpChange = true;
+			m_playerMinusHp = checkDamage();
+		}
+	}
+
+	playerHpChangFromEnemyAtk();
+	enemyAtkResultOutput(hdc);
+}
+
+
 //포켓몬 스킬 이펙트들 모음
 void BattleScene::pocketmonEffectInit()
 {
 	//완료
 	//공용 이팩트
+	EFFECTMANAGER->addEffect("몸통박치기", "Images/attackEffect/QuickAttack.bmp", 32 * 3, 32 * 3, 32 * 3, 32 * 3, 1, 0.1f, 100);
 	EFFECTMANAGER->addEffect("불꽃세례", "Images/attackEffect/pailiSkill_1.bmp", 35 * 3, 150 * 3, 35 * 3, 30 * 3, 1, 0.1f, 100);
 	EFFECTMANAGER->addEffect("할퀴기", "Images/attackEffect/Scratch.bmp", 32 * 7, 96 * 7, 32 * 7, 36 * 7, 1, 0.1f, 100);
 	EFFECTMANAGER->addEffect("전기자석파", "images/attackEffect/ThunderWave.bmp", 32 * 4, 96 * 4, 32 * 4, 32 * 4, 1, 0.1f, 100);
-
-	//플레이어
-	
-		
-	//적
-	//피카츄
-	EFFECTMANAGER->addEffect("번개", "images/attackEffect/100v.bmp", 159 * 4, 550 * 4, 159 * 4, 110 * 4, 1, 0.1f, 100);
-	//파이리,식스테일 공격
 	EFFECTMANAGER->addEffect("불대문자", "Images/attackEffect/fireBlast.bmp", 32 * 3, 128 * 3, 32 * 3, 32 * 3, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("십만볼트", "images/attackEffect/Thunder.bmp", 32 * 4, 160 * 4, 32 * 4, 32 * 4, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("전광석화", "Images/attackEffect/QuickAttack.bmp", 32 * 3, 32 * 3, 32 * 3, 32 * 3, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("하이드로펌프", "Images/attackEffect/HydroPump.bmp", 16 * 4, 128 * 4, 16 * 4, 32 * 4, 1, 0.1f, 100);
+
+
+	//분류 이팩트
+	EFFECTMANAGER->addEffect("날개치기", "Images/attackEffect/wingAttack.bmp", 16 * 8, 48 * 8, 16 * 8, 16 * 8, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("날개치기(적)", "Images/attackEffect/wingAttack_Enemy.bmp", 16 * 8, 48 * 8, 16 * 8, 16 * 8, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("덩쿨채찍", "Images/attackEffect/VineWhip.bmp", 32 * 4, 160 * 4, 32 * 4, 32 * 4, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("덩쿨채찍(적)", "Images/attackEffect/VineWhip_Enemy.bmp", 32 * 4, 160 * 4, 32 * 4, 32 * 4, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("잎날가르기", "Images/attackEffect/razorLeaf.bmp", 16 * 4, 144 * 4, 16 * 4, 48 * 4, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("잎날가르기(적)", "Images/attackEffect/razorLeaf_Enemy.bmp", 16 * 4, 144 * 4, 16 * 4, 48 * 4, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("소금물", "Images/attackEffect/brine.bmp", 32 * 5, 160 * 5, 32 * 5, 32 * 5, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("소금물(적)", "Images/attackEffect/brine_Enemy.bmp", 32 * 5, 160 * 5, 32 * 5, 32 * 5, 1, 0.1f, 100);
+	
+
+	
+	//미완
+	//피카츄
+	//파이리,식스테일 공격
 	//캐터피, 꼬렛
-	EFFECTMANAGER->addEffect("전광석화", "Images/attackEffect/QuickAttack.bmp", 32 * 3, 32 * 3, 32 * 3, 32 * 3, 10, 0.1f, 100);
-	EFFECTMANAGER->addEffect("날개치기", "Images/attackEffect/wingAttack.bmp", 16 * 3, 48 * 3, 16 * 3, 16 * 3, 1, 0.1f, 100);
-	EFFECTMANAGER->addEffect("날개치기(적)", "Images/attackEffect/wingAttack_Enemy.bmp", 16 * 3, 48 * 3, 16 * 3, 16 * 3, 1, 0.1f, 100);
-	EFFECTMANAGER->addEffect("덩쿨채찍", "Images/attackEffect/VineWhip.bmp", 32 * 3, 160 * 3, 32 * 3, 32 * 3, 1, 0.1f, 100);
-	EFFECTMANAGER->addEffect("덩쿨채찍(적)", "Images/attackEffect/VineWhip_Enemy.bmp", 32 * 3, 160 * 3, 32 * 3, 32 * 3, 1, 0.1f, 100);
-	EFFECTMANAGER->addEffect("잎날가르기", "Images/attackEffect/razorLeaf.bmp", 16 * 3, 144 * 3, 16 * 3, 48 * 3, 1, 0.1f, 100);
-	EFFECTMANAGER->addEffect("잎날가르기(적)", "Images/attackEffect/razorLeaf_Enemy.bmp", 16 * 3, 144 * 3, 16 * 3, 16 * 3, 1, 0.1f, 100);
-	EFFECTMANAGER->addEffect("소금물", "Images/attackEffect/brine.bmp", 32 * 3, 160 * 3, 32 * 3, 32 * 3, 1, 0.1f, 100);
-	EFFECTMANAGER->addEffect("소금물(적)", "Images/attackEffect/brine_Enemy.bmp", 32 * 3, 160 * 3, 32 * 3, 32 * 3, 1, 0.1f, 100);
-	EFFECTMANAGER->addEffect("하이드로펌프", "Images/attackEffect/HydroPump.bmp", 16 * 3, 128 * 3, 16 * 3, 32 * 3, 1, 0.1f, 100);
 	//피카츄 공격
-	EFFECTMANAGER->addEffect("번개", "images/attackEffect/100v.bmp", 159 * 4, 550 * 4, 159 * 4, 110 * 4, 1, 0.1f, 100);
-	EFFECTMANAGER->addEffect("10만볼트", "images/attackEffect/Thunder.bmp", 32 * 4, 160 * 4, 32 * 4, 32 * 4, 1, 0.1f, 100);
+	//EFFECTMANAGER->addEffect("번개", "images/attackEffect/100v.bmp", 159 * 4, 550 * 4, 159 * 4, 110 * 4, 1, 0.1f, 100);
 
 }
 bool BattleScene::playerSkillEffectAssemble(std::string _skillName, HDC hdc)
 {
-	//파이리 스킬
 	if (_skillName == "몸통박치기") tackleProto(_skillName, hdc);
 	else if (_skillName == "화염방사") flameThrowerProto(_skillName, hdc);
-	else if (_skillName == "불대문자") fireBlastProto(_skillName, hdc);
 	//공통모음
 	else if (_skillName == "불꽃세례") skillEmberProto(_skillName, hdc);
 	else if (_skillName == "할퀴기") scratchProto(_skillName, hdc);
 	else if (_skillName == "전기자석파") playerThunderWaveProto(_skillName, hdc);
+	else if (_skillName == "불대문자") fireBlastProto(_skillName, hdc);
+	else if (_skillName == "십만볼트") thunderBoltProto(_skillName, hdc);
+	else if (_skillName == "전광석화") quickAttackProto(_skillName, hdc);
+	else if (_skillName == "날개치기") wingAttackProto(_skillName, hdc);
+	else if (_skillName == "덩쿨채찍") vineWhipProto(_skillName, hdc);
+	else if (_skillName == "잎날가르기") razorLeafProto(_skillName, hdc);
+	else if (_skillName == "소금물") brineProto(_skillName, hdc);
+	else if (_skillName == "하이드로펌프") hydroPumpProto(_skillName, hdc);
+
 	
 	return true;
 }
 void BattleScene::enemySkillEffectAssemble(std::string _skillName, HDC hdc)
 {
-	_skillName = "불꽃세례";
-	if (_skillName == "전광석화") quickAttackProto(_skillName, hdc);
-	else if (_skillName == "십만볼트") thunderboltProto(_skillName, hdc);
-	else if (_skillName == "번개") thunderProto(_skillName, hdc);
+//	_skillName = "하이드로펌프";
+	if (_skillName == "몸통박치기") enemyTackleProto(_skillName, hdc);
 	//공통모음
 	else if (_skillName == "불꽃세례") enemySkillEmberProto(_skillName, hdc);
 	else if (_skillName == "할퀴기") enemyScratchProto(_skillName, hdc);
 	else if (_skillName == "전기자석파") enemyThunderWaveProto(_skillName, hdc);
+	else if (_skillName == "불대문자") enemyFireBlastProto(_skillName, hdc);
+	else if (_skillName == "십만볼트") enemyThunderboltProto(_skillName, hdc);
+	else if (_skillName == "전광석화") enemyQuickAttackProto(_skillName, hdc);
+	else if (_skillName == "날개치기") enemyWingAttackProto(_skillName, hdc);
+	else if (_skillName == "덩쿨채찍") enemyVineWhipProto(_skillName, hdc);
+	else if (_skillName == "잎날가르기") enemyRazorLeafProto(_skillName, hdc);
+	else if (_skillName == "소금물") enemyBrineProto(_skillName, hdc);
+	else if (_skillName == "하이드로펌프") enemyHydroPumpProto(_skillName, hdc);
+
 }
 
 int BattleScene::checkDamage()

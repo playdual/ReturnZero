@@ -57,8 +57,12 @@ bool player::init()
 	isDown = true;
 	curDir = DirectionDown;
 
-	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Charmander", 31)));
 	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Squirtle", 31)));
+	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Pikachu", 31)));
+	/*Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Squirtle", 31)));
+	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Charmander", 31)));
+	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Bulbasaur", 31)));
+	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Pidgey", 31)));*/
 
 
 	m_playerBeforeArrowMemory = 0;
@@ -416,9 +420,6 @@ void player::update(float _deltaTime)
 
 			ismenu = false;
 		}
-	}
-	if (KEYMANAGER->isOnceKeyDown(P1_B)) {
-		isBattle = true;
 	}
 
 	//배틀중이 아니고, 메뉴를 열지 않았고, 오브젝트 이벤트 중이 아니고, 이동중지 상태가 아니라면
