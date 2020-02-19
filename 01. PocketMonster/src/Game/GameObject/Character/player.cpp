@@ -658,6 +658,12 @@ void player::ObjectHandle(std::string objName)
 		isMoveStop = true;
 		printOriginalStr = "잎을 꺾지 말자. 식물을 사랑하자.";
 		}
+		else if (objName == "MailBox")
+		{
+		isOnStrPrintEvent = true;
+		isMoveStop = true;
+		printOriginalStr = "이번달 카드 청구서가 들어있다.";
+		}
 	}
 
 
