@@ -86,7 +86,6 @@ public:
 	int playerCurrentExpTop() { return m_playerStatus.top+159; }
 
 
-
 	//시스템
 	void explainRect(HDC hdc);
 	void selectRect(HDC hdc);
@@ -100,7 +99,6 @@ public:
 	void moveSkillSelectButton();
 	void playerStayMotion();
 	void changePocketmon();
-	void changePocketmon(int _num);
 
 	std::string selectEnemyskill();
 
@@ -126,13 +124,34 @@ public:
 	void flameThrowerProto(std::string _skillName, HDC hdc);
 	void fireBlastProto(std::string _skillName, HDC hdc);
 	void scratchProto(std::string _skillName, HDC hdc);
+	void playerThunderWaveProto(std::string _skillName, HDC hdc);
 	 
+
+	//2단계: 적 포켓몬 왼쪽으로 이동했다 돌아오기깜빡 깜빡
+	/*if (playerHitEffect)
+	{
+		m_enemyEffectCount++;
+		m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX + m_enemyEffectCount, 165, 165, 181);
+		if (m_enemyEffectCount > 30)	comeBackEnemey = true;
+		if (comeBackEnemey) m_enemyEffectCount -= 3;
+
+		if (m_enemyEffectCount < 0)
+		{
+			m_enemyPocketmon = UTIL::IRectMake(m_enemyPocketmonX, 165, 165, 181);
+			m_enemyEffectCount = 0;
+			comeBackEnemey = false;
+			playerHitEffect = false;
+			enemyHpChange = true;
+			m_enemyMinusHp = checkDamage();
+		}
+	}*/
 
 	//적
 	void quickAttackProto(std::string _skillName, HDC hdc);
-	void thunderWaveProto(std::string _skillName, HDC hdc);
 	void thunderboltProto(std::string _skillName, HDC hdc);
 	void thunderProto(std::string _skillName, HDC hdc);
+	void enemyThunderWaveProto(std::string _skillName, HDC hdc);
+	void enemyScratchProto(std::string _skillName, HDC hdc);
 	
 	//공통 출력 문구
 	void enemyHpChangFromPlayerAtk();
@@ -315,6 +334,7 @@ private:
 	bool enemySkillNameExplain;
 	bool enemySkillResultExplain;
 	bool enemySkillSelect;
+	bool comeBackPlayer;
 	int m_playerAlpha;
 	int m_playerTwinkleCount;
 	int m_playerMinusHp;

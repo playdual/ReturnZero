@@ -57,7 +57,7 @@ bool player::init()
 	isDown = true;
 	curDir = DirectionDown;
 
-	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Rattata", 30)));
+	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Pikachu", 30)));
 	Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Squirtle", 31)));
 
 

@@ -249,7 +249,7 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("stayArrow",	"images/BattleUi/stayArrow.bmp",		0, 0, 10*4, 6*4, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("enemyBottom",	"images/BattleUi/enemyBottom.bmp",	0, 0, 128*4+34, 34*4+20, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("playerBottom",	"images/BattleUi/playerBottom.bmp",	0, 0, 120*4+34, 15*4+20, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("currentExp", "images/BattleUi/currentExp.bmp",	    0, 0, 7*4+246, 2*4+1, true, RGB(255, 0, 255));	
+	IMAGEMANAGER->addImage("currentExp", "images/BattleUi/currentExp.bmp",	    0, 0, 7*4+300, 2*4+1, true, RGB(255, 0, 255));	
 	IMAGEMANAGER->addImage("greenHpBar", "images/BattleUi/greenHpBar.bmp",	    0, 0, 9*3+246, 3*5, true, RGB(255, 0, 255));	
 	IMAGEMANAGER->addImage("levelUpRect", "images/BattleUi/levelUpPopUp.bmp",    0, 0, 389, 491, true, RGB(255, 0, 255));	
 	IMAGEMANAGER->addImage("ball", "images/BattleUi/ball.bmp",    0, 0, 12*4, 12*4, true, RGB(255, 0, 255));	

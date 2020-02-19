@@ -219,6 +219,17 @@ void TownScene::update(float _deltaTime)
 		SOUNDMANAGER->playSound("Battle", Channel::eChannelBattleBgm);	//stop을 배틀끝날때 해줘야함
 		isBattle = true;
 	}
+	if (isBattle)
+	{
+		Tile& curTile = m_map->getSpecifyTile(m_player->getPlayerBlockX(), m_player->getPlayerBlockY());
+		auto innerPocketmon = curTile.getInnerPocketMon();
+
+		if(innerPocketmon.first != "")
+			//BATTLEMANAGER->battleStart(m_player, nullptr, innerPocketmon.first, innerPocketmon.second);
+			BATTLEMANAGER->battleStart(m_player, nullptr, innerPocketmon.first, 15);
+		m_player->BattleEnd();
+		isBattle = false;
+	}
 	
 
 	//맵 체인지 확인

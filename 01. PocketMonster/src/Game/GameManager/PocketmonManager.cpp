@@ -274,9 +274,9 @@ PocketMon PocketmonManager::genCaterpie(int level)
 
 
 	pocket.skillList.push_back(tackleProto);
-	if (level > 4)pocket.skillList.push_back(scratchProto);
-	if (level > 10)pocket.skillList.push_back(quickAttackProto);
-	if (level > 20)pocket.skillList.push_back(megaPunchProto);
+	if (level > 7)pocket.skillList.push_back(scratchProto);
+	if (level > 13)pocket.skillList.push_back(quickAttackProto);
+	if (level > 30)pocket.skillList.push_back(megaPunchProto);
 
 
 
@@ -308,9 +308,9 @@ PocketMon PocketmonManager::genRattata(int level)
 
 
 	pocket.skillList.push_back(tackleProto);
-	if (level > 4)pocket.skillList.push_back(scratchProto);
-	if (level > 10)pocket.skillList.push_back(quickAttackProto);
-	if (level > 20)pocket.skillList.push_back(megaPunchProto);
+	if (level > 7)pocket.skillList.push_back(scratchProto);
+	if (level > 13)pocket.skillList.push_back(quickAttackProto);
+	if (level > 30)pocket.skillList.push_back(megaPunchProto);
 
 
 
@@ -343,8 +343,8 @@ PocketMon PocketmonManager::genVulpix(int level)
 
 	pocket.skillList.push_back(quickAttackProto);
 	if (level > 7)pocket.skillList.push_back(emberProto);
-	if (level > 15)pocket.skillList.push_back(flameThrowerProto);
-	if (level > 23)pocket.skillList.push_back(fireBlastProto);
+	if (level > 13)pocket.skillList.push_back(flameThrowerProto);
+	if (level > 30)pocket.skillList.push_back(fireBlastProto);
 
 	return pocket;
 }
@@ -374,9 +374,9 @@ PocketMon PocketmonManager::genOddish(int level)
 
 
 	pocket.skillList.push_back(tackleProto);
-	if (level > 6)pocket.skillList.push_back(vineWhipProto);
+	if (level > 7)pocket.skillList.push_back(vineWhipProto);
 	if (level > 13)pocket.skillList.push_back(razorLeafProto);
-	if (level > 25)pocket.skillList.push_back(solarBeamProto);
+	if (level > 30)pocket.skillList.push_back(solarBeamProto);
 
 	return pocket;
 }
@@ -406,9 +406,9 @@ PocketMon PocketmonManager::genPoliwag(int level)
 
 
 	pocket.skillList.push_back(tackleProto);
-	if (level > 6)pocket.skillList.push_back(waterSaluteProto);
+	if (level > 7)pocket.skillList.push_back(waterSaluteProto);
 	if (level > 13)pocket.skillList.push_back(brineProto);
-	if (level > 25)pocket.skillList.push_back(hydroPumpProto);
+	if (level > 30)pocket.skillList.push_back(hydroPumpProto);
 
 	return pocket;
 }
