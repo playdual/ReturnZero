@@ -34,6 +34,8 @@ NPC::NPC(int _bPosX, int _bPosY, std::string _name, NPCEventType _anotherEventTy
 	hasAnotherEvent = true;
 	if (anoterEventType == NPCEventType::NPCNone)
 		hasAnotherEvent = false;
+	if (anoterEventType == NPCEventType::NPCShop)
+		onSenarioPrint = false;
 
 }
 
@@ -53,7 +55,7 @@ void NPC::updateSenario(float _deltaTime)
 		else if (pastTime > addCharacterDelay) {
 			pastTime = 0.f;
 			firstOutStr += m_curSenario[senarioIndex].first[firstStrIndex++];
-			if (firstOutStr.size() == m_curSenario[senarioIndex].first.size()) {
+			if (firstOutStr.size() >= m_curSenario[senarioIndex].first.size()) {
 				completedFirstOut = true;
 			}
 		}
@@ -198,5 +200,6 @@ void NPC::activateNPC(Direction _dir)
 	m_curSenario = (m_Scripts.find("default"))->second;
 	
 	senarioIndex = 0;
-	onSenarioPrint = true;
+	if(anoterEventType != NPCEventType::NPCShop)
+		onSenarioPrint = true;
 }

@@ -99,8 +99,6 @@ void MapManager::addDefaultNPC()
 {
 	auto npc1 = std::make_shared<NPC>(5, 4, "GrandFather", NPCEventType::NPCShop, true);
 	Senario tempSenario;
-	tempSenario.push_back({ L"안녕하신가.. 레드군", L"그동안 잘지냈는가?" });
-	tempSenario.push_back({ L"잘지낸것 같군..", L"살물건이 있는겐가?" });
 	npc1->addSenario("default", tempSenario);
 
 	auto npc2 = std::make_shared<NPC>(7, 4, "Mother");
