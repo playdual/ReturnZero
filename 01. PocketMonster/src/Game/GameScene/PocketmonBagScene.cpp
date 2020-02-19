@@ -15,7 +15,7 @@ PocketmoninfoScene::~PocketmoninfoScene()
 bool PocketmoninfoScene::init()
 {
 	//temp
-	//isFromBattle = false;
+	//isFromBattle = true;
 	// 
 
 	m_Base = IMAGEMANAGER->findImage("Base");
@@ -120,7 +120,7 @@ bool PocketmoninfoScene::init(void* _info, bool isOnbattle)
 			break;
 		case INFO_FROMBATTLE:
 			isFromBattle = true;
-
+			delete (ChangeSceneFromBattle*)_info;
 			break;
 		default:
 			break;
@@ -264,7 +264,7 @@ void PocketmoninfoScene::update(float _deltaTime)
 			
 		}
 		//배틀에서 바로 인벤으로 넘어왔을때 포켓몬 선택시 관련메뉴 나오게하기
-		if (isFromBattle && m_indexCursor != m_indexCursorMax && !m_isOnbattle)
+		if (isFromBattle && m_indexCursor != m_indexCursorMax && m_isOnbattle)
 		{
 			if (KEYMANAGER->isOnceKeyDown(P1_Z))
 			{
@@ -275,7 +275,7 @@ void PocketmoninfoScene::update(float _deltaTime)
 
 
 		//배틀씬에서 인벤씬에서 넘어왔을 때 포켓몬한테 아이템 사용
-		if (m_indexCursor != m_indexCursorMax && m_isOnbattle && KEYMANAGER->isOnceKeyDown(P1_Z))
+		if (m_indexCursor != m_indexCursorMax && m_isOnbattle && !isFromBattle && KEYMANAGER->isOnceKeyDown(P1_Z))
 		{
 			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
 
@@ -482,7 +482,10 @@ void PocketmoninfoScene::update(float _deltaTime)
 
 				if (isFromBattle)
 				{
-					SCENEMANAGER->scenePop();
+					ChangePocketInfo* info = new ChangePocketInfo;
+					info->isChanged = true;
+					m_sceneResult = (void*)info;
+					SCENEMANAGER->scenePop(true);
 					isFromBattle = false;
 				}
 			}

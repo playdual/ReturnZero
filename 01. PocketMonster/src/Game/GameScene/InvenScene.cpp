@@ -12,7 +12,7 @@ InvenScene::~InvenScene()
 {
 }
 
-bool InvenScene::init(void * _info, bool isOnBattle)
+bool InvenScene::init(void* _info, bool isOnBattle)
 {
 	init();
 	isFromBattleScene = isOnBattle;
@@ -70,7 +70,7 @@ void InvenScene::checkSceneChangeInfo() {
 	//lastScene info가 nullptr아니라면
 	//변경된 사항이 있다는 것이고, 우리는 이를 처리해 주어야 한다.
 	void* temp = SCENEMANAGER->getLastSceneReturnInfo();
-	
+
 	//처리를 위한 지역변수
 	bool isUsed = false;
 	std::string usedItem;
@@ -86,7 +86,7 @@ void InvenScene::checkSceneChangeInfo() {
 			usedItem = ((UsedItemInfo*)temp)->itemKey;
 			break;
 		}
-		
+
 	}
 	//정보를 확인했으면, 지워주고 isUpdateLastSceneData를 true로 만들어 주자(씬이 변경되고 한번만 체크해 주면 되므로)
 	SCENEMANAGER->eraseLastInfo();
@@ -391,7 +391,7 @@ void InvenScene::update(float _deltaTime)
 		}
 		if (pointerCount == 0 && invenSceneCount == 2)
 		{
-			if (KEYMANAGER->isOnceKeyDown(P1_Z))
+			/*if (KEYMANAGER->isOnceKeyDown(P1_Z))
 			{
 				SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
 				std::cout << "인배틀씬 몬스터볼을 사용합니다." << std::endl;
@@ -403,12 +403,12 @@ void InvenScene::update(float _deltaTime)
 				m_sceneResult = (void*)temp;
 				SCENEMANAGER->scenePop(true);
 				return;
-			}
-			if (pointerCount == 0 && invenSceneCount == 2)
-			{
+			}*/
+			if (KEYMANAGER->isOnceKeyDown(P1_Z)) {
+				SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
 				setSettedItem();
 				ItemInfo* temp = new ItemInfo;
-				temp->name = m_settedItemInfo.name;
+				temp->name = "몬스터볼";
 				temp->catchRatio = m_settedItemInfo.catchRatio;
 				// 씬넘기기전에 현재 씬정보를 m_sceneResult에 남겨둔다(void*)로 캐스팅한다.
 				m_sceneResult = (void*)temp;
@@ -416,7 +416,6 @@ void InvenScene::update(float _deltaTime)
 				SCENEMANAGER->scenePop(true);
 				return;
 			}
-
 		}
 	}
 	// ====================== 아이템 버리기 카운트 ==================== //t

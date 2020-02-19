@@ -292,11 +292,11 @@ void BattleScene::update(float _deltaTime)
 		{
 		case INFO_ITEM:
 			itempInfo = *(ItemInfo*)lastSceneInfo;
-			if (itempInfo.name == "몬스터볼") pocketmonChangeOn = true;
+			if (itempInfo.name == "몬스터볼") catchAniOn = true;
 			break;
 		case INFO_CHANGEPOKE:
 			cpInfo = *(ChangePocketInfo*)lastSceneInfo;
-			cpInfo.isChanged;
+			pocketmonChangeOn = cpInfo.isChanged;
 			break;
 		case INFO_USEDITEM:
 			uiInfo = *(UsedItemInfo*)lastSceneInfo;
@@ -819,7 +819,8 @@ void BattleScene::moveButton()
 	if (pocketmon && KEYMANAGER->isOnceKeyDown(P1_Z))
 	{
 		//포켓몬으로 씬체인지
-		SCENEMANAGER->scenePush("PocketmonBagScene"/*, nullptr, true*/);
+		auto info = new ChangeSceneFromBattle;
+		SCENEMANAGER->scenePush("PocketmonBagScene", info, true);
 	}
 	if (run && KEYMANAGER->isOnceKeyDown(P1_Z))
 	{
