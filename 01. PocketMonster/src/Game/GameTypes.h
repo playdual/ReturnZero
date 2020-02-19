@@ -7,7 +7,7 @@
 #define INFO_ITEM		1
 #define INFO_CHANGEPOKE 2
 #define INFO_USEDITEM	3
-
+#define INFO_FROMBATTLE 4
 
 enum class TileType
 {
@@ -151,6 +151,11 @@ struct UsedItemInfo
 	bool isUsed;
 	int poketIndex;
 	std::string itemKey;
+};
+
+struct ChangeSceneFromBattle
+{
+	int infoType = INFO_FROMBATTLE;
 };
 
 struct MenuBar {

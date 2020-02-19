@@ -45,14 +45,17 @@ private:
 	int x;
 	int y;
 	int j;
+	int reportCnt=0;
 	Image* m_menuImg;
 	Image* m_IndexMenuImg;
 	Image* m_TrainnerCard;
 	Image* m_TrainnerCardPlayer;
 	Image* m_PokemonBelt;
+	Image* m_chat;
 	bool isPocketmonMenuOn = false;
 	bool isTrainnerCard = false;
 	bool isColon = false;
 	bool isBattle = false;
+	bool isReport = false;
 	std::vector<MenuBar> Menu;
 };

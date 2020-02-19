@@ -177,13 +177,15 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("PokemonDie", "images/PokemonDie.bmp", 0, 0, 110, 50, true, RGB(255, 0, 255));
 
 	//Menu and Cursor
-	IMAGEMANAGER->addImage("MainMenuimg",			"images/menu.bmp",			0,0, 300, 530, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("MainMenuimg",			"images/menu.bmp",			0,0, 300, 450, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("FromBattleMenuimg",		"images/menu.bmp",			0,0, 260, 240, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("PokemonMenuimg",		"images/menu.bmp",			0,0, 250, 360, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("menuindeximg",			"images/menuindex.bmp",		0,0, 30, 50, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("PokemonMenuindeximg",	"images/menuindex.bmp",		0,0, 30, 50, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("TrainnerCardimg",		"images/TrainnerCard.bmp",	0,0, WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("TrainnerCardplayerimg",	"images/playerCard.bmp",	0,0, 150, 350, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("TrainnerCardBelt",		"images/PokemonBelt.bmp",	0,0, 1000, 95, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("DialCopleteArrow",		"Images/DialComplete.bmp",	0, 0, 56, 36, true, RGB(255, 0, 255));
 
 	//NPC
 	IMAGEMANAGER->addImage("GrandFatherFront", "Images/NPC/GrandFatherFront.bmp", 0, 0, 80, 80, true, RGB(255, 0, 255));
@@ -209,6 +211,7 @@ HRESULT MainGame::init()
 	SOUNDMANAGER->addSound("MapMove", "Sounds/movemap.mp3", false);
 	SOUNDMANAGER->addSound("Heal", "Sounds/heal.mp3", false);
 	SOUNDMANAGER->addSound("Menu", "Sounds/menu.mp3", false);
+	SOUNDMANAGER->addSound("Report", "Sounds/report.mp3", false);
 	
 	//=============
 	// battle Ui //
@@ -265,7 +268,6 @@ HRESULT MainGame::init()
 	SCENEMANAGER->addScene("inven", new InvenScene(inven));
 	SCENEMANAGER->addScene("friendlyShop", new shopScene(inven));
 
-	SCENEMANAGER->scenePush("town");
 	//SCENEMANAGER->scenePush("battle");
 	//SCENEMANAGER->scenePush("town");
 

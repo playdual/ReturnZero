@@ -40,6 +40,8 @@ bool player::init()
 	ANIMANAGER->addAnimation("playerMoveLeft", "playerimg", 12, 15, 8, false, true);
 	ANIMANAGER->addAnimation("playerMoveRight", "playerimg", 16, 19, 8, false, true);
 
+	m_chat = IMAGEMANAGER->findImage("상점NPC대화상자");
+	m_chatCursor = IMAGEMANAGER->findImage("DialCopleteArrow");
 
 	m_aniplayerDown = ANIMANAGER->findAnimation("playerDown");
 	m_aniplayerUp = ANIMANAGER->findAnimation("playerUp");
@@ -383,13 +385,23 @@ void player::moveLogic()
 
 void player::update(float _deltaTime)
 {
+	isCursortemp = TIMEMANAGER->getWorldTime();
+	if (isCursortemp % 2 == 0)
+	{
+		isCursor = true;
+	}
+	else
+	{
+		isCursor = false;
+	}
+
 	//temp
 	if (KEYMANAGER->isOnceKeyDown(P1_USEITEM)) {
 		Pocketmons.push_back(std::make_shared<PocketMon>(POCKETMONMANAGER->genPocketMon("Squirtle", 31)));
 	}
 	if (!ismenu)
 	{
-		if (KEYMANAGER->isOnceKeyDown(GAME_MENU))
+		if (!isMoveStop && KEYMANAGER->isOnceKeyDown(GAME_MENU))
 		{
 			SOUNDMANAGER->playSound("Menu", Channel::eChannelEffect);
 
@@ -398,7 +410,7 @@ void player::update(float _deltaTime)
 	}
 	else if (ismenu)
 	{
-		if (KEYMANAGER->isOnceKeyDown(GAME_MENUPROTO) || KEYMANAGER->isOnceKeyDown(P1_X))
+		if (!isMoveStop && KEYMANAGER->isOnceKeyDown(GAME_MENU) || KEYMANAGER->isOnceKeyDown(P1_X))
 		{
 			SOUNDMANAGER->playSound("Menu", Channel::eChannelEffect);
 
@@ -409,13 +421,23 @@ void player::update(float _deltaTime)
 		isBattle = true;
 	}
 
-	//배틀중이 아니고, 메뉴를 열지 않았고, 오브젝트 이벤트 중이 아니라면
-	if (!isBattle && !ismenu && !isOnObjectEvent && !isOnNpcEvent)
+	//배틀중이 아니고, 메뉴를 열지 않았고, 오브젝트 이벤트 중이 아니고, 이동중지 상태가 아니라면
+	if (!isBattle && !ismenu && !isOnObjectEvent && !isOnNpcEvent && !isMoveStop)
 	{
 		m_CurrentTime += _deltaTime;
 		moveLogic(); // 이동 로직 실행
 	}
+	if (isOnStrPrintEvent)
+	{
+		isMoveStop = true;
 
+		if (KEYMANAGER->isOnceKeyDown(P1_X))
+		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+			isOnStrPrintEvent = false;
+			isMoveStop = false;
+		}
+	}
 	if (isOnObjectEvent)
 	{
 		OnObjectEvent();
@@ -438,6 +460,7 @@ void player::update(float _deltaTime)
 
 void player::render(HDC hdc)
 {
+
 
 	//player
 	if (isOnMoundJumpDown) {
@@ -464,11 +487,29 @@ void player::render(HDC hdc)
 
 void player::afterRender(HDC hdc)
 {
+
+	if (isOnStrPrintEvent)
+	{
+		m_chat->render(hdc, 0, 590);
+		UTIL::PrintText(hdc, printOriginalStr.c_str(), "소야바른9", 55, 625, 65, RGB(208, 208, 200), true, RGB(0, 0, 0));
+		UTIL::PrintText(hdc, printOriginalStr.c_str(), "소야바른9", 50, 625, 65, RGB(0, 0, 0), true, RGB(0, 0, 0));
+
+		if (isCursor)
+		{
+			m_chatCursor->render(hdc, 512, 713);
+		}
+	}
+	else if (!isOnStrPrintEvent)
+	{
+		printOriginalStr = "";
+	}
 }
 
 void player::debugRender(HDC hdc)
 {
 	UTIL::DrawColorRect(hdc, m_outPlayerRect, RGB(153, 255, 30), true);
+
+
 
 }
 
@@ -493,6 +534,116 @@ void player::ObjectHandle(std::string objName)
 			ANIMANAGER->start("playerMoveDown");
 		}
 	}
+	else
+	{
+		
+
+		if (objName == "TV")
+		{
+			isOnStrPrintEvent = true;
+			isMoveStop = true;
+			printOriginalStr = "반짝이는 티비다!";
+		}
+		else if(objName == "SuzaeCoumputer")
+		{
+			isOnStrPrintEvent = true;
+			isMoveStop = true;
+			printOriginalStr = "이수재의 낡은 컴퓨터가 켜져있다..";
+		}
+		else if (objName == "Bed")
+		{
+			isOnStrPrintEvent = true;
+			isMoveStop = true;
+			printOriginalStr = "푹신한 침대가 잘 정돈되어있다.";
+		}
+		else if (objName == "BookShelf")
+		{
+			isOnStrPrintEvent = true;
+			isMoveStop = true;
+			printOriginalStr = "포켓몬대백과라는 책이 눈에 띈다.";
+		}
+		else if (objName == "Drawer")
+		{
+			isOnStrPrintEvent = true;
+			isMoveStop = true;
+			printOriginalStr = "서랍이 잠겨있다.";
+		}
+		else if (objName == "Desk")
+		{
+			isOnStrPrintEvent = true;
+			isMoveStop = true;
+			printOriginalStr = "최신형 책상이다.";
+		}
+		else if (objName == "Map")
+		{
+			isOnStrPrintEvent = true;
+			isMoveStop = true;
+			printOriginalStr = "우리나라 지도가 그려져 있다.";
+		}
+		else if (objName == "Nintendo")
+		{
+			isOnStrPrintEvent = true;
+			isMoveStop = true;
+			printOriginalStr = "최신형 닌텐도 게임기가 있다!";
+		}
+		else if (objName == "Sink")
+		{
+			isOnStrPrintEvent = true;
+			isMoveStop = true;
+			printOriginalStr = "어머니 설거지를 도와드려야 할텐데...";
+		}
+		else if (objName == "Cabinet")
+		{
+			isOnStrPrintEvent = true;
+			isMoveStop = true;
+			printOriginalStr = "이쁜 식기류가 나열 되어있다.";
+		}
+		else if (objName == "PictureFrame")
+		{
+			isOnStrPrintEvent = true;
+			isMoveStop = true;
+			printOriginalStr = "선생님의 리즈시절 사진이 걸려있다.";
+		}
+		else if (objName == "Table")
+		{
+			isOnStrPrintEvent = true;
+			isMoveStop = true;
+			printOriginalStr = "테이블을 닦아야 할텐데...";
+		}
+		else if (objName == "ScheduleBoard")
+		{
+			isOnStrPrintEvent = true;
+			isMoveStop = true;
+			printOriginalStr = "이번주는 코딩공부로 꽉차 있다.";
+		}
+		else if (objName == "BookShelf2")
+		{
+			isOnStrPrintEvent = true;
+			isMoveStop = true;
+			printOriginalStr = "박사님의 비밀책장에는 무엇이...";
+		}
+		else if (objName == "PocketDesk")
+		{
+			isOnStrPrintEvent = true;
+			isMoveStop = true;
+			printOriginalStr = "포켓몬을 처음 골랐던 책상이다.";
+		}
+		else if (objName == "SpacialMachine")
+		{
+			isOnStrPrintEvent = true;
+			isMoveStop = true;
+			printOriginalStr = "박사님이 이상한 음모를 꾸미는 것 같다.";
+		}
+		else if (objName == "ResearchData")
+		{
+			isOnStrPrintEvent = true;
+			isMoveStop = true;
+			printOriginalStr = "포켓몬은 동물일까? 라는 연구자료다.";
+		}
+
+	}
+
+
 }
 
 

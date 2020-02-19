@@ -57,6 +57,8 @@ private:
 	Image* m_sub4HpBarRed;
 	Image* m_Menu;
 	Image* m_MenuCursor;
+	Image* m_fromBattleMenu;
+	Image* m_fromBattleCursor;
 
 	Image* m_mainSwapOn;
 	Image* m_mainSwapOff;
@@ -88,6 +90,9 @@ private:
 
 	UTIL::IRECT m_MenuRect;
 	UTIL::IRECT m_MenuCursorRect;
+	UTIL::IRECT m_fromBattleMenuRect;
+	UTIL::IRECT m_fromBattleCursorRect;
+
 
 
 	int m_indexCursor;
@@ -121,6 +126,7 @@ private:
 	bool isItemUse = false;
 	bool isEffectionItem = false;
 	bool isMaxRecovery = false;
+	bool isFromBattle = false;
 
 
 	ItemInfo* rendedItemInfo = nullptr;

@@ -14,6 +14,7 @@ TownScene::~TownScene()
 bool TownScene::init()
 {
 	SOUNDMANAGER->playSound("NewBarkTown", Channel::eChannelBgm);
+	m_chat = IMAGEMANAGER->findImage("상점NPC대화상자");
 
 	//player init
 	m_player = std::make_shared<player>();
@@ -39,7 +40,7 @@ bool TownScene::init()
 
 	//최대 메뉴갯수
 	Menu.push_back(MenuBar("리포트", 3));
-	Menu.push_back(MenuBar("설정", 4));
+//	Menu.push_back(MenuBar("설정", 4));
 	Menu.push_back(MenuBar("가방", 1));
 	Menu.push_back(MenuBar("닫기", 5));
 	Menu.push_back(MenuBar("플레이어", 2));
@@ -65,7 +66,7 @@ void TownScene::onMenu()
 {
 
 
-	if (!isTrainnerCard)
+	if (!isTrainnerCard && !isReport)
 	{
 		if (KEYMANAGER->isOnceKeyDown(P1_DOWN))
 		{
@@ -125,22 +126,24 @@ void TownScene::onMenu()
 			isTrainnerCard = true;
 		}
 
+		if (Menu[m_menuIndex].menuName == "리포트" && KEYMANAGER->isOnceKeyDown(P1_Z))
+		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+		
+			isReport = true;
+			m_player->setisMoveStop(true);
+		}
+
 		if (Menu[m_menuIndex].menuName == "설정" && KEYMANAGER->isOnceKeyDown(P1_Z))
 		{
 			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
 		}
-
+			
 
 	}
 
-	if (isTrainnerCard)
-	{
-		if (KEYMANAGER->isOnceKeyDown(GAME_MENU))
-		{
-			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
-			isTrainnerCard = false;
-		}
-	}
+
+
 
 }
 void TownScene::update(float _deltaTime)
@@ -150,6 +153,31 @@ void TownScene::update(float _deltaTime)
 	PlaytimeMin = TIMEMANAGER->getWorldTime() / 60;
 	if (PlaytimeSec % 2 == 0)isColon = true;
 	else isColon = false;
+
+	if (isReport)
+	{
+		reportCnt += 1;
+	}
+
+	if (reportCnt == 180)
+	{
+		SOUNDMANAGER->playSound("Report", Channel::eChannelEffect);
+	}
+	else if (reportCnt >= 250)
+	{
+		isReport = false;
+		m_player->setisMoveStop(false);
+		reportCnt = 0;
+	}
+
+	if (isTrainnerCard)
+	{
+		if (KEYMANAGER->isOnceKeyDown(GAME_MENU) || KEYMANAGER->isOnceKeyDown(P1_X))
+		{
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+			isTrainnerCard = false;
+		}
+	}
 
 	//temp handle last info : 타운씬에서는 아직까진 이전 씬정보를 사용할 필요가 없다.
 	if (SCENEMANAGER->getLastSceneReturnInfo() != nullptr)
@@ -175,8 +203,8 @@ void TownScene::update(float _deltaTime)
 		Tile& curTile = m_map->getSpecifyTile(m_player->getPlayerBlockX(), m_player->getPlayerBlockY());
 		auto innerPocketmon = curTile.getInnerPocketMon();
 
-		//BATTLEMANAGER->battleStart(m_player, nullptr, innerPocketmon.first, innerPocketmon.second);
-		BATTLEMANAGER->battleStart(m_player, nullptr, "Charmander", 15);
+		if(innerPocketmon.first != "")
+			BATTLEMANAGER->battleStart(m_player, nullptr, innerPocketmon.first, innerPocketmon.second);
 		m_player->BattleEnd();
 		isBattle = false;
 	}
@@ -203,6 +231,7 @@ void TownScene::update(float _deltaTime)
 
 void TownScene::render(HDC hdc)
 {
+
 	if (!isTrainnerCard)
 	{
 		m_map->render(hdc);
@@ -276,6 +305,25 @@ void TownScene::afterRender(HDC hdc)
 			}
 		}
 	}
+	m_player->afterRender(hdc);
+
+	if (isReport && reportCnt <= 150)
+	{
+		m_chat->render(hdc, 0, 590);
+
+		UTIL::PrintText(hdc, "리포트를 쓰는 중 입니다.", "소야바른9", 55, 625, 65, RGB(208, 208, 200), true, RGB(0, 0, 0));
+		UTIL::PrintText(hdc, "리포트를 쓰는 중 입니다.", "소야바른9", 50, 625, 65, RGB(0, 0, 0), true, RGB(0, 0, 0));
+
+		UTIL::PrintText(hdc, "잠시만 기다려주세요...", "소야바른9", 55, 695, 65, RGB(208, 208, 200), true, RGB(0, 0, 0));
+		UTIL::PrintText(hdc, "잠시만 기다려주세요...", "소야바른9", 50, 690, 65, RGB(0, 0, 0), true, RGB(0, 0, 0));
+	}
+	else if (isReport && reportCnt > 150)
+	{
+		m_chat->render(hdc, 0, 590);
+		UTIL::PrintText(hdc, "리포트를 꼼꼼히 기록했다!", "소야바른9", 55, 625, 65, RGB(208, 208, 200), true, RGB(0, 0, 0));
+		UTIL::PrintText(hdc, "리포트를 꼼꼼히 기록했다!", "소야바른9", 50, 625, 65, RGB(0, 0, 0), true, RGB(0, 0, 0));
+	}
+
 }
 
 void TownScene::debugRender(HDC hdc)

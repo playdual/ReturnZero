@@ -46,7 +46,7 @@ public:
 	void checkAndActivateNPC();
 	std::vector<std::shared_ptr<class PocketMon>>& getPocketmons() { return Pocketmons; }
 	void pushBackPocketmon(PocketMon _pocketmon);
-
+	void setisMoveStop(bool moveValue) { isMoveStop = moveValue; }
 private:
 	//Object EventHandle Func
 	void MoundJumpDown();
@@ -57,7 +57,7 @@ private:
 	void moveRightLogic();
 	void moveUpLogic();
 	void moveDownLogic();
-
+	
 private:
 	UTIL::IRECT m_playerRect;
 	UTIL::IRECT m_outPlayerRect;
@@ -66,6 +66,8 @@ private:
 	HDC viewhdc;
 
 	Image* m_bg;
+	Image* m_chat;
+	Image* m_chatCursor;
 	int bgX;
 	int bgY;
 	int bgOutX;
@@ -93,13 +95,15 @@ private:
 	Direction curDir;
 
 	bool isAfter = true;
-
+	bool isOnStrPrintEvent = false;
+	std::string printOriginalStr;
 	float m_CurrentTime=0;
 	
 	int count;
 	int m_BattleStart;
 	bool isBattle=false;
 	bool isBattleTemp=false;
+	bool isMoveStop = false;
 	//status == 遺덈같??
 	//badge
 	//
@@ -110,6 +114,11 @@ private:
 
 	//Change Map
 	bool isChangeMap = false;
+
+	//chat
+	int isCursortemp = 0;
+	bool isCursor = false;
+	
 
 	//Menu
 	bool ismenu = false;
