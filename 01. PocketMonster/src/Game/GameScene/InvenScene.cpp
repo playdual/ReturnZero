@@ -395,7 +395,7 @@ void InvenScene::update(float _deltaTime)
 
 		}
 	}
-	// ====================== 아이템 버리기 카운트 ==================== //
+	// ====================== 아이템 버리기 카운트 ==================== //t
 	if (m_isThrowItem)
 	{
 		if (KEYMANAGER->isOnceKeyDown(P1_DOWN))

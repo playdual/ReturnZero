@@ -84,6 +84,7 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("그외인벤메뉴", "Images/menu.bmp", 63 * 5, 63 * 5, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("배틀씬인벤메뉴", "Images/menu.bmp", 63 * 5, 68 * 3, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("인벤메뉴상세", "Images/invenMenuBottom.bmp", 182 * 3, 29 * 7, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("yesOrNoBox", "Images/yesOrNo.bmp", 370, 308, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("playerimg", "images/newPlayer2.bmp", 64 * 4, 440, 4, 5, true, RGB(255, 0, 255));
 	
 	// shopImages

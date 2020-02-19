@@ -4,6 +4,10 @@
 #include "Game/GameManager/ItemManager.h"
 #include "Game/GameObject/Character/player.h"
 
+enum DECISIONMAKING
+{ 
+	YES = 0, NO
+};
 enum SHOPITEM
 {
 	MONSTERBALL = 0 , MEDICINE , GOODMEDICINE , LEVELUPCANDY , CLOSE
@@ -33,8 +37,12 @@ public:
 	virtual void afterRender(HDC hdc) override;
 	virtual void debugRender(HDC hdc) override;
 	void firstRender(HDC hdc);
+
+	/* buy */
 	void buyRender(HDC hdc);
-	void buyNextRender(HDC hdc);
+	void buySecondRender(HDC hdc);
+	void buyThirdRender(HDC hdc);
+
 	void sellRender(HDC hdc);
 	void quitRender(HDC hdc);
 
@@ -48,6 +56,7 @@ private:
 	std::shared_ptr<player> m_player;
 	SHOPMAINMENU shopMainMenu;
 	SHOPITEM m_shopBuyItem;
+	DECISIONMAKING m_decision;
 
 	//이미지 리소스
 	Image* m_friendlyShop;
@@ -65,6 +74,7 @@ private:
 	Image* m_upArrow;
 	Image* m_downArrow;
 	Image* m_npcFrontTalkBox;
+	Image* m_yesOrNoBox;
 	
 	// arrow Count
 	int m_arrowCount = 0;
@@ -83,10 +93,12 @@ private:
 	bool m_isQuitShop;
 
 	// shop Buy 아이템을 골랐을때
-	bool m_isBuyItemChoice;
+	bool m_isBuyItemChoice;  /* buySecondRender() */
+	bool m_isBuyItemCheck;	 /* buyThircRender() */
 
 	// shop 에서 Item을 살때
 	int m_ItemListNum;
+	
 
 	// shop 에서 ITem을 살때 (아이템 설명 문장 나눠주기위해)
 	std::string shopItemDes_pokeBall[2] = { "", };
@@ -131,7 +143,7 @@ private:
 	std::string m_menu[3] = { "사러 왔다" , "팔러 왔다" , "아닙니다" };  // 메인메뉴 
 	std::string m_sellItemCheck[4] = { "파시겠습니까?","입니다" , "을 ", " 원 에 팔았다!" }; //물건을 샀을때 
 	std::string m_buyItem[8] =
-	{ "(를)을" , "몇개 구입하시겠습니까?" , "개 갖고 있음","개로군요." ,
+	{ "(를)을" , "몇개 구입하시겠습니까?" , "개 갖고 있음"," 개로군요." ,
 		"총 ", "원입니다.","네 여기 있습니다.", "대단히 감사합니다." }; // 아이템 구매 1번째 창
 	std::string m_select[2] = { "예" , "아니오" }; // 구매하시겠습니까? 답변
 	std::string m_outShop = { "또 오세요!" };  // 메인메뉴에서 아닙니다.일때

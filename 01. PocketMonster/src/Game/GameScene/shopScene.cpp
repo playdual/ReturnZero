@@ -42,6 +42,7 @@ bool shopScene::init()
 	m_invenHaveItemCheck	= IMAGEMANAGER->findImage("상점인벤체크박스");
 	m_npcFrontTalkBox		= IMAGEMANAGER->findImage("상점두번째NPC대화상자");
 	m_buyItemCount			= IMAGEMANAGER->findImage("상점아이템카운트박스");
+	m_yesOrNoBox			= IMAGEMANAGER->findImage("yesOrNoBox");
 
 	// bool값 초기화
 	m_ShopIn				= true;
@@ -54,6 +55,7 @@ bool shopScene::init()
 	m_isSellCheckItem		= false;
 	m_isSellCompleteItem	= false;
 	m_startTime				= false;
+	m_isBuyItemCheck		= false;
 
 	// 화살 포인터(카운트)
 	m_pointerCount			= 1;
@@ -68,6 +70,7 @@ bool shopScene::init()
 
 	//디폴트 설정
 	shopMainMenu = DEFAULT;
+	m_decision = YES;
 
 	// BUYITEM 할때 아이템 넘버 체크
 
@@ -123,10 +126,12 @@ void shopScene::update(float _deltaTime)
 	}
 	
 	//if (KEYMANAGER->isOnceKeyDown(P1_Z)) {
-	//	resetPrintText();
+	//	
 	//}
 
 	// 샵 메인메뉴 ( 사러왔다 , 팔러 왔다 , 아닙니다. ) -> 지목할 currentImage포인터
+
+	// ======================== KEYMANAGER->isOnceKeyDown(P1_DOWN || P1_UP ) 키 모음 ======================== //
 	if (printSecondComplete && shopMainMenu == FIRSTMENU)
 	{
 	    if (KEYMANAGER->isOnceKeyDown(P1_DOWN) && m_pointerCount < 3)
@@ -135,7 +140,7 @@ void shopScene::update(float _deltaTime)
 	    	m_pointerCount--;
 	}
 
-	if (shopMainMenu == BUYITEM && !m_isBuyItemChoice)
+	if (shopMainMenu == BUYITEM && !m_isBuyItemChoice && !m_isBuyItemCheck)
 	{
 		 if (KEYMANAGER->isOnceKeyDown(P1_DOWN) && m_pointerCount < 4)
 	    	m_pointerCount++;
@@ -144,9 +149,9 @@ void shopScene::update(float _deltaTime)
 	}
 	if (m_isBuyItemChoice)
 	{
-		if (KEYMANAGER->isOnceKeyDown(P1_DOWN) && !m_isPlusFlow)
+		if (KEYMANAGER->isOnceKeyDown(P1_UP) && !m_isPlusFlow)
 			m_itemCount++;
-		if (KEYMANAGER->isOnceKeyDown(P1_UP) && m_itemCount >= 1)
+		if (KEYMANAGER->isOnceKeyDown(P1_DOWN) && m_itemCount >= 1)
 		{
 			if(m_itemCount > 1)
 			m_itemCount--;
@@ -154,10 +159,29 @@ void shopScene::update(float _deltaTime)
 			m_isPlusFlow = false;
 		}
 	}
+	if (m_isBuyItemCheck)
+	{
+		if (KEYMANAGER->isOnceKeyDown(P1_DOWN)) 
+		{ m_decision = NO; }
+		if (KEYMANAGER->isOnceKeyDown(P1_UP)) 
+		{ m_decision = YES; }
+	}
+
+	// ======================== KEYMANAGER->isOnceKeyDown(P1_X) 키 모음 ======================== //
+	if (m_isBuyItemChoice)
+	{
+		if (KEYMANAGER->isOnceKeyDown(P1_X))
+		{
+			m_isBuyItemChoice = false;
+			m_ShopIn = true;
+			m_itemCount = 1;
+			//m_isBuyItemShow = false;
+		}
+	}
 
 	// ======================== KEYMANAGER->isOnceKeyDown(P1_Z) 키 모음 ======================== //
 	/*  BUYITEM 관련된  Z */
-	if (printSecondComplete == true && m_pointerCount == BUYITEM && !m_isBuyItemShow)
+	if (printSecondComplete == true && m_pointerCount == BUYITEM && !m_isBuyItemShow && !m_isBuyItemCheck)
 	{
 		if (KEYMANAGER->isOnceKeyDown(P1_Z))
 		{
@@ -172,8 +196,32 @@ void shopScene::update(float _deltaTime)
 		m_isBuyItemShow = false;
 	}
 
-	if (!m_isBuyItemChoice && shopMainMenu == BUYITEM && m_pointerCount != CLOSE && KEYMANAGER->isOnceKeyDown(P1_Z))
+	if (!m_isBuyItemChoice && !m_isBuyItemCheck && shopMainMenu == BUYITEM && m_pointerCount != CLOSE && KEYMANAGER->isOnceKeyDown(P1_Z))
+	{
+		resetPrintText();
 		m_isBuyItemChoice = true;
+	}
+
+	if (m_isBuyItemChoice && !m_isBuyItemCheck)
+	{
+		if (KEYMANAGER->isOnceKeyDown(P1_Z))
+		{
+			m_isBuyItemCheck = true;
+			m_isBuyItemChoice = false;
+			resetPrintText();
+		}
+	}
+	if (m_isBuyItemCheck && m_decision == NO)
+	{
+		if (KEYMANAGER->isOnceKeyDown(P1_Z))
+		{
+			m_isBuyItemCheck = false;
+		}
+	}
+	else if (m_isBuyItemCheck && m_decision == YES)
+	{
+
+	}
 
 
 	/* 초기 메인메뉴 NOTHING */
@@ -311,7 +359,8 @@ void shopScene::buyRender(HDC hdc)
 		m_shopItem[0]->getImage()->render(hdc, 52, WINSIZEY - 210);
 		UTIL::PrintText(hdc, shopItemDes_pokeBall[0].c_str(), "소야바른9", 200, WINSIZEY - 230 , 70, RGB(255, 255, 255), true);
 		UTIL::PrintText(hdc, shopItemDes_pokeBall[1].c_str(), "소야바른9", 200, WINSIZEY - 150 , 70, RGB(255, 255, 255), true);
-		if (m_isBuyItemChoice) buyNextRender(hdc);
+		if (m_isBuyItemChoice) buySecondRender(hdc);
+		if (m_isBuyItemCheck) buyThirdRender(hdc);
 		break;
 
 	case MEDICINE:
@@ -319,7 +368,8 @@ void shopScene::buyRender(HDC hdc)
 		m_shopItem[1]->getImage()->render(hdc, 52, WINSIZEY - 210);
 		UTIL::PrintText(hdc, shopItemDes_Medicine[0].c_str(), "소야바른9", 200, WINSIZEY - 230, 68, RGB(255, 255, 255), true);
 		UTIL::PrintText(hdc, shopItemDes_Medicine[1].c_str(), "소야바른9", 200, WINSIZEY - 150, 68, RGB(255, 255, 255), true);
-		if (m_isBuyItemChoice) buyNextRender(hdc);
+		if (m_isBuyItemChoice) buySecondRender(hdc);
+		if (m_isBuyItemCheck) buyThirdRender(hdc);
 		break;
 
 	case GOODMEDICINE:
@@ -327,7 +377,8 @@ void shopScene::buyRender(HDC hdc)
 		m_shopItem[2]->getImage()->render(hdc, 52, WINSIZEY - 210);
 		UTIL::PrintText(hdc, shopItemDes_GoodMedicine[0].c_str(), "소야바른9", 200, WINSIZEY - 230, 68, RGB(255, 255, 255), true);
 		UTIL::PrintText(hdc, shopItemDes_GoodMedicine[1].c_str(), "소야바른9", 200, WINSIZEY - 150, 68, RGB(255, 255, 255), true);
-		if (m_isBuyItemChoice) buyNextRender(hdc);
+		if (m_isBuyItemChoice) buySecondRender(hdc);
+		if (m_isBuyItemCheck) buyThirdRender(hdc);
 		break;
 
 	case LEVELUPCANDY:
@@ -335,7 +386,8 @@ void shopScene::buyRender(HDC hdc)
 		m_shopItem[3]->getImage()->render(hdc, 52, WINSIZEY - 210);
 		UTIL::PrintText(hdc, shopItemDes_FireStone[0].c_str(), "소야바른9", 200, WINSIZEY - 230, 68, RGB(255, 255, 255), true);
 		UTIL::PrintText(hdc, shopItemDes_FireStone[1].c_str(), "소야바른9", 200, WINSIZEY - 150, 68, RGB(255, 255, 255), true);
-		if (m_isBuyItemChoice) buyNextRender(hdc);
+		if (m_isBuyItemChoice) buySecondRender(hdc);
+		if (m_isBuyItemCheck) buyThirdRender(hdc);
 		break;
 
 	case CLOSE:
@@ -349,30 +401,105 @@ void shopScene::buyRender(HDC hdc)
 	}
 }
 
-void shopScene::sellRender(HDC hdc)
-{
-}
-void shopScene::quitRender(HDC hdc)
-{
-}
-
-void shopScene::buyNextRender(HDC hdc)
+void shopScene::buySecondRender(HDC hdc)
 {
 	std::string str = "X0";
 	str += std::to_string(m_itemCount).c_str();
+	std::string name = m_shopItem[m_pointerCount]->getItemName();
+	name += m_buyItem[0];
 
+	int inCount = 0;
+
+	/* 인벤에 있는지 확인 */
+	if (m_shopItem[m_pointerCount]->getItemName() != "몬스터볼")
+	{
+	    for (auto item : m_inven->getItemPotion())
+	    {
+	    	if (item->getItemName() == m_shopItem[m_pointerCount]->getItemName())
+	    	{
+	    		inCount = item->getCount();
+	    	}
+	    }
+	}
+	else if (m_shopItem[m_pointerCount]->getItemName() == "몬스터볼")
+	{
+	    for (auto item : m_inven->getPokeBall())
+	    {
+	    	if (item->getItemName() == m_shopItem[m_pointerCount]->getItemName())
+	    	{
+	    		inCount = item->getCount();
+	    	}
+	    }
+	}
+
+	//---------------------------------------------------------------------------------------------------------//
 	/* 랜더 부분 */
 	m_npcFrontTalkBox->render(hdc, 0, WINSIZEY - 270);
 	m_invenHaveItemCheck->render(hdc, 10, WINSIZEY / 2 - 20);
 	m_buyItemCount->render(hdc, WINSIZEX / 2 + 95, WINSIZEY / 2 - 100);
 	m_upArrow->render(hdc, WINSIZEX / 2 + 155, WINSIZEY / 2 - 100 - m_arrowCount);
 	m_downArrow->render(hdc, WINSIZEX / 2 + 155, WINSIZEY / 2 + 30 + m_arrowCount);
+	//------------------------------------------------------------------------------------------------------//
 
 	UTIL::PrintText(hdc, str.c_str(), "소야바른9", WINSIZEX / 2 + 140, WINSIZEY / 2 - 15, 70, RGB(0, 0, 0), true);
 	if (itemCountPrice < 1000)
 		UTIL::PrintText(hdc, std::to_string(itemCountPrice).c_str(), "소야바른9", WINSIZEX / 2 + 320, WINSIZEY / 2 - 15, 70, RGB(0, 0, 0), true);
 	else
-		UTIL::PrintText(hdc, std::to_string(itemCountPrice).c_str(), "소야바른9", WINSIZEX / 2 + 300, WINSIZEY / 2 - 15, 70, RGB(0, 0, 0), true);
+		UTIL::PrintText(hdc, std::to_string(itemCountPrice).c_str(), "소야바른9", WINSIZEX/2 + 300, WINSIZEY /2 - 15, 70, RGB(0, 0, 0), true);
+	
+	UTIL::PrintText(hdc, m_money[1].c_str(), "소야바른9", WINSIZEX/2 + 430, WINSIZEY /2 - 15, 70, RGB(0, 0, 0), true);
+	
+	if (inCount != 0)
+		UTIL::PrintText(hdc, std::to_string(inCount).c_str() , "소야바른9", 100, WINSIZEY / 2 + 7, 70, RGB(0, 0, 0), true);
+	else if(inCount == 0)
+		UTIL::PrintText(hdc, std::to_string(inCount).c_str() , "소야바른9", 100, WINSIZEY / 2 + 7, 70, RGB(0, 0, 0), true);
+
+	UTIL::PrintText(hdc, m_buyItem[2].c_str(), "소야바른9", 140 , WINSIZEY / 2 + 7, 70, RGB(0, 0, 0), true);
+
+	// NPC 대화상자 //
+	
+	printTextConsequentlyFirst(hdc, name.c_str(), 80, WINSIZEY - 225);
+	printTextConsequentlySecond(hdc, m_buyItem[1], 80, WINSIZEY - 145);
+	//UTIL::PrintText(hdc, name.c_str(), "소야바른9", 80 , WINSIZEY - 225, 70, RGB(0, 0, 0), true);
+	//UTIL::PrintText(hdc, m_buyItem[1].c_str(), "소야바른9", 80 , WINSIZEY - 145, 70, RGB(0, 0, 0), true);
+	//------------------------------------------------------------------------------------------------------//
+	
+}
+
+void shopScene::buyThirdRender(HDC hdc)
+{
+	std::string itemBuyCheck = m_shopItem[m_pointerCount]->getItemName().c_str();
+	itemBuyCheck += std::to_string(m_itemCount).c_str();
+	itemBuyCheck += m_buyItem[3].c_str();
+
+	std::string itemPrice = m_buyItem[4].c_str();
+	itemPrice += std::to_string(itemCountPrice);
+	itemPrice += m_buyItem[5].c_str();
+
+	//-------------------------------------------------------------------
+	m_npcFrontTalkBox->render(hdc, 0, WINSIZEY - 270);
+	m_yesOrNoBox->render(hdc, WINSIZEX / 2 +130, WINSIZEY / 2 - 160);
+	//-------------------------------------------------------------------
+	for (int i = 0; i < 2; i++)
+	{
+	   UTIL::PrintText(hdc, m_select[i].c_str(), "소야바른9", WINSIZEX / 2 + 260, WINSIZEY /2 - 70  + (i *70), 80, RGB(0, 0, 0), true);
+	}
+	printTextConsequentlyFirst(hdc, itemBuyCheck.c_str(), 80, WINSIZEY - 225);
+	printTextConsequentlySecond(hdc, itemPrice.c_str(), 80, WINSIZEY - 145);
+	
+	switch (m_decision)
+	{
+	case YES:
+		m_currentPoint->render(hdc, WINSIZEX / 2 + 165, WINSIZEY / 2 - 100);
+		break;
+
+	case NO:
+		m_currentPoint->render(hdc, WINSIZEX / 2 + 165, WINSIZEY / 2 - 30);
+		break;
+
+	default:
+		break;
+	}
 
 	UTIL::PrintText(hdc, m_money[1].c_str(), "소야바른9", WINSIZEX / 2 + 430, WINSIZEY / 2 - 15, 70, RGB(0, 0, 0), true);
 }
@@ -402,7 +529,7 @@ void shopScene::printTextConsequentlyFirst(HDC hdc, std::string _wantText, int _
 				printFirstComplete = true;
 		}
 	}
-	UTIL::PrintText(hdc, printText[0].c_str(), "소야바른9", _destX, _destY, 60, RGB(0, 0, 0), true);
+	UTIL::PrintText(hdc, printText[0].c_str(), "소야바른9", _destX, _destY, 70, RGB(0, 0, 0), true);
 }
 
 void shopScene::printTextConsequentlySecond(HDC hdc, std::string _wantText, int _destX, int _destY)
@@ -424,7 +551,7 @@ void shopScene::printTextConsequentlySecond(HDC hdc, std::string _wantText, int 
 				printSecondComplete = true;
 		}
 	}
-	UTIL::PrintText(hdc, printText[1].c_str(), "소야바른9", _destX, _destY, 60, RGB(0, 0, 0), true);
+	UTIL::PrintText(hdc, printText[1].c_str(), "소야바른9", _destX, _destY, 70, RGB(0, 0, 0), true);
 }
 void shopScene::resetPrintText()
 {
