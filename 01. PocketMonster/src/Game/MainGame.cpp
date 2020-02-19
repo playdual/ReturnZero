@@ -213,6 +213,26 @@ HRESULT MainGame::init()
 	SOUNDMANAGER->addSound("Heal", "Sounds/heal.mp3", false);
 	SOUNDMANAGER->addSound("Menu", "Sounds/menu.mp3", false);
 	SOUNDMANAGER->addSound("Report", "Sounds/report.mp3", false);
+	SOUNDMANAGER->addSound("FireBlast", "Sounds/Fire_Blast.mp3", false);
+	SOUNDMANAGER->addSound("HydroPump", "Sounds/Hydro_Pump.mp3", false);
+	SOUNDMANAGER->addSound("QuickAttack", "Sounds/Quick_Attack.mp3", false);
+	SOUNDMANAGER->addSound("RazorLeaf", "Sounds/Razor_Leaf.mp3", false);
+	SOUNDMANAGER->addSound("Tackle", "Sounds/Tackle.mp3", false);
+	SOUNDMANAGER->addSound("ThunderWave", "Sounds/Thunder_Wave.mp3", false);
+	SOUNDMANAGER->addSound("Thunderbolt", "Sounds/Thunderbolt.mp3", false);
+	SOUNDMANAGER->addSound("WingAttack", "Sounds/Wing_Attack.mp3", false);
+
+	//Skill sound
+	SOUNDMANAGER->addSound("Thunder", "Sounds/Thunder.mp3", false); //번개
+	SOUNDMANAGER->addSound("Scratch", "Sounds/Scratch.mp3", false); //할퀴기
+	SOUNDMANAGER->addSound("Ember", "Sounds/Ember.mp3", false);		//불꽃세례
+	SOUNDMANAGER->addSound("Watergun", "Sounds/Water_Gun.mp3", false);//물대포
+	SOUNDMANAGER->addSound("Vinewhip", "Sounds/Vine_Whip.mp3", false);//덩쿨채찍
+	SOUNDMANAGER->addSound("Vinewhip", "Sounds/Vine_Whip.mp3", false);//덩쿨채찍
+	SOUNDMANAGER->addSound("Vinewhip", "Sounds/Vine_Whip.mp3", false);//덩쿨채찍
+	SOUNDMANAGER->addSound("Vinewhip", "Sounds/Vine_Whip.mp3", false);//덩쿨채찍
+	SOUNDMANAGER->addSound("Vinewhip", "Sounds/Vine_Whip.mp3", false);//덩쿨채찍
+	
 	SOUNDMANAGER->addSound("pocketmonRecovery", "Sounds/Recovery.mp3", false);
 	//=============
 	// battle Ui //

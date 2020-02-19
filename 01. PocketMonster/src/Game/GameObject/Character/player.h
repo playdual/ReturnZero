@@ -36,7 +36,7 @@ public:
 	void reLocate(int blockX, int blockY);
 	void isBattleStart();
 	bool getisBattle() { return isBattle; }
-	void BattleEnd() { isBattle = false; isAnotherMove = false; }
+	void BattleEnd() { isBattle = false; isAnotherMove = false; isDown = true; }
 	void MoveSetZero();
 	bool getisChangeMap();
 	void isNotChangeMap();

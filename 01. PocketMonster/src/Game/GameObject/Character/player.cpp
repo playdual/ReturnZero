@@ -544,11 +544,11 @@ void player::ObjectHandle(std::string objName)
 			isMoveStop = true;
 			printOriginalStr = "반짝이는 티비다!";
 		}
-		else if(objName == "SuzaeCoumputer")
+		else if(objName == "SuzaeComputer")
 		{
 			isOnStrPrintEvent = true;
 			isMoveStop = true;
-			printOriginalStr = "이수재의 낡은 컴퓨터가 켜져있다..";
+			printOriginalStr = "내 컴퓨터는 386이다... 그냥 끄자.";
 		}
 		else if (objName == "Bed")
 		{
@@ -640,7 +640,24 @@ void player::ObjectHandle(std::string objName)
 			isMoveStop = true;
 			printOriginalStr = "포켓몬은 동물일까? 라는 연구자료다.";
 		}
-
+		else if (objName == "MileStone")
+		{
+		isOnStrPrintEvent = true;
+		isMoveStop = true;
+		printOriginalStr = "이곳의 위치를 알려주는 이정표이다.";
+		}
+		else if (objName == "MileStone2")
+		{
+		isOnStrPrintEvent = true;
+		isMoveStop = true;
+		printOriginalStr = "이곳은 태초마을.";
+		}
+		else if (objName == "TreePot")
+		{
+		isOnStrPrintEvent = true;
+		isMoveStop = true;
+		printOriginalStr = "잎을 꺾지 말자. 식물을 사랑하자.";
+		}
 	}
 
 

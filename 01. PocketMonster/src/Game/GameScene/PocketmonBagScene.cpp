@@ -943,7 +943,7 @@ void PocketmoninfoScene::render(HDC hdc)
 		UTIL::PrintText(hdc, "취소", "소야바른9", 895, 655, 75, RGB(255, 255, 255), true, RGB(160, 112, 240));
 	}
 
-	if (m_isOnbattle)
+	if (m_isOnbattle && isSwap)
 	{
 		UTIL::PrintText(hdc, "취소", "소야바른9", 900, 655, 75, RGB(112, 112, 112), true, RGB(160, 112, 240));
 		UTIL::PrintText(hdc, "취소", "소야바른9", 895, 655, 75, RGB(255, 255, 255), true, RGB(160, 112, 240));

@@ -2423,19 +2423,31 @@ void BattleScene::pocketmonChange(HDC hdc)
 void BattleScene::pocketmonEffectInit()
 {
 	//플레이어
-	//파이리 공격
+	//파이리,식스테일 공격
 	EFFECTMANAGER->addEffect("불꽃세례", "Images/attackEffect/pailiSkill_1.bmp", 35 * 3, 150 * 3, 35 * 3, 30 * 3, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("불대문자", "Images/attackEffect/fireBlast.bmp", 32 * 3, 128 * 3, 32 * 3, 32 * 3, 1, 0.1f, 100);
 	
 	//캐터피, 꼬렛
 	EFFECTMANAGER->addEffect("할퀴기", "Images/attackEffect/Scratch.bmp", 32 * 7, 96 * 7, 32 * 7, 36 * 7, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("전광석화", "Images/attackEffect/QuickAttack.bmp", 32 * 3, 32 * 3, 32 * 3, 32 * 3, 10, 0.1f, 100);
+
+	EFFECTMANAGER->addEffect("날개치기", "Images/attackEffect/wingAttack.bmp", 16 * 3, 48 * 3, 16 * 3, 16 * 3, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("날개치기", "Images/attackEffect/wingAttack_Enemy.bmp", 16 * 3, 48 * 3, 16 * 3, 16 * 3, 1, 0.1f, 100);
+
+	//
+	EFFECTMANAGER->addEffect("덩쿨채찍", "Images/attackEffect/VineWhip.bmp", 32 * 3, 160 * 3, 32 * 3, 32 * 3, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("덩쿨채찍(적)", "Images/attackEffect/VineWhip_Enemy.bmp", 32 * 3, 160 * 3, 32 * 3, 32 * 3, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("잎날가르기", "Images/attackEffect/razorLeaf.bmp", 16 * 3, 144 * 3, 16 * 3, 48 * 3, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("잎날가르기(적)", "Images/attackEffect/razorLeaf_Enemy.bmp", 16 * 3, 144 * 3, 16 * 3, 16 * 3, 1, 0.1f, 100);
 	
+	EFFECTMANAGER->addEffect("소금물", "Images/attackEffect/brine.bmp", 32 * 3, 160 * 3, 32 * 3, 32 * 3, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("소금물(적)", "Images/attackEffect/brine_Enemy.bmp", 32 * 3, 160 * 3, 32 * 3, 32 * 3, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("하이드로펌프", "Images/attackEffect/HydroPump.bmp", 16 * 3, 128 * 3, 16 * 3, 32 * 3, 1, 0.1f, 100);
 	
-
-
-
-	//적
 	//피카츄 공격
-	EFFECTMANAGER->addEffect("전광석화", "images/attackEffect/100v.bmp", 159 * 4, 550 * 4, 159 * 4, 110 * 4, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("번개", "images/attackEffect/100v.bmp", 159 * 4, 550 * 4, 159 * 4, 110 * 4, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("10만볼트", "images/attackEffect/Thunder.bmp", 32 * 4, 160 * 4, 32 * 4, 32 * 4, 1, 0.1f, 100);
+
 }
 bool BattleScene::playerSkillEffectAssemble(std::string _skillName, HDC hdc)
 {
