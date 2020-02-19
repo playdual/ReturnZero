@@ -1,6 +1,7 @@
 ﻿#include "stdafx.h"
 #include "NPC.h"
 #include "Common/SystemManagers.h"
+#include "Game/GameManager/MapManager.h"
 
 NPC::NPC()
 {
@@ -14,6 +15,8 @@ NPC::NPC(int _bPosX, int _bPosY, std::string _name, NPCEventType _anotherEventTy
 	m_Img[DirectionRight] = IMAGEMANAGER->findImage(_name + "Right");
 	m_Dialog = IMAGEMANAGER->findImage("상점NPC대화상자");
 	m_DialCopleteArrow = IMAGEMANAGER->findImage("DialCopleteArrow");
+	m_SelectBox = IMAGEMANAGER->findImage("yesOrNoBox");
+	m_SelectPointer = IMAGEMANAGER->findImage("현재아이템표시");
 
 	m_Name = _name;
 	isADHD = _ADHD;
@@ -47,7 +50,8 @@ bool NPC::init()
 void NPC::updateSenario(float _deltaTime)
 {
 	pastTime += _deltaTime;
-	if (completedFirstOut == false) {
+	if (completedFirstOut == false) 
+	{
 		if (KEYMANAGER->isOnceKeyDown(P1_X)) {
 			firstOutStr = m_curSenario[senarioIndex].first;
 			completedFirstOut = true;
@@ -75,25 +79,80 @@ void NPC::updateSenario(float _deltaTime)
 	}
 	if (completedSecondOut) {
 		if (KEYMANAGER->isStayKeyDown(P1_Z) || KEYMANAGER->isOnceKeyDown(P1_X)) {
-			resetSenarioIndexData();
 			senarioIndex++;
 			if (senarioIndex == m_curSenario.size()) {
-				onSenarioPrint = false;
+				//onSenarioPrint = false;
 				if (!hasAnotherEvent) {
 					m_PrintDirection = m_DefaultDirection;
 					isActivate = false;
 				}
+				else{
+					isOnSelectAction = true;
+				}
 			}
+			if(!isOnSelectAction)
+				resetSenarioIndexData();
 		}
 	}
 }
+
+void NPC::selectActionUpdate()
+{
+	if (KEYMANAGER->isOnceKeyDown(P1_UP)) {
+		if (curArrowY == SelectArrowY1)
+			curArrowY = SelectArrowY2;
+		else
+			curArrowY = SelectArrowY1;
+	}
+	if (KEYMANAGER->isOnceKeyDown(P1_DOWN)) {
+		if (curArrowY == SelectArrowY1)
+			curArrowY = SelectArrowY2;
+		else
+			curArrowY = SelectArrowY1;
+	}
+	if (KEYMANAGER->isOnceKeyDown(P1_Z)) {
+		resetSenarioIndexData();
+		isOnSelectAction = false;
+		if (curArrowY == SelectArrowY1) {
+			isOnSelectAction = false;
+			curePocket();
+			m_curSenario = m_Scripts.find("curing")->second;
+			senarioIndex = 0;
+		}
+		else {
+			isActivate = false;
+		}	
+	}
+
+	
+}
+
+void NPC::selectActionRender(HDC _hdc)
+{
+	m_SelectBox->render(_hdc, 620, 300);
+	m_SelectPointer->render(_hdc, 640, curArrowY);
+	UTIL::PrintText(_hdc, cureStr.c_str(), "소야바른9", 730, 390, 65, RGB(0, 0, 0), true);
+	UTIL::PrintText(_hdc, noncureStr.c_str(), "소야바른9", 730, 460, 65, RGB(0, 0, 0), true);
+}
+
+void NPC::curePocket()
+{
+	for (auto& pocketMon : playerPokemons) {
+		pocketMon->m_currentHp = pocketMon->m_maxHp;
+		for (auto& skill : pocketMon->skillList){
+			skill.currentpp = skill.maxpp;
+		}
+	}
+}
+
 void NPC::updatePocketCenterEvent(float _deltaTime)
 {
-	isActivate = false;
+	selectActionUpdate();
 }
 void NPC::updateShopEvent(float _deltaTime)
 {
 	SCENEMANAGER->scenePush("friendlyShop");
+	isActivate = false;
 }
 
 void NPC::resetSenarioIndexData()
@@ -127,17 +186,29 @@ void NPC::update(float _deltaTime)
 		if (UTIL::GetRndInt(100) <= 2)
 			m_PrintDirection = (Direction)UTIL::GetRndInt(4);
 	}
-	else {
+	else if(isActivate){
 		if (onSenarioPrint){
-			updateSenario(_deltaTime);
-			if (completedSecondOut)
-				updateDialArrowPosition();
+			if (!isOnSelectAction) {
+				updateSenario(_deltaTime);
+				if (completedSecondOut)
+					updateDialArrowPosition();
+			}		
 		}
-		if (hasAnotherEvent && !onSenarioPrint) {
+		if (hasAnotherEvent && isOnSelectAction) {
 			if (anoterEventType == NPCEventType::NPCShop)
 				updateShopEvent(_deltaTime);
-			if (anoterEventType == NPCEventType::NPCPocketCenter)
-				updatePocketCenterEvent(_deltaTime);
+			if (anoterEventType == NPCEventType::NPCPocketCenter) {
+				if (m_curSenario == m_Scripts.find("curing")->second) {
+					resetSenarioIndexData();
+					senarioIndex = 0;
+					isOnSelectAction = false;
+					m_curSenario = m_Scripts.find("default")->second;
+					isActivate = false;
+				}
+				else {
+					updatePocketCenterEvent(_deltaTime);
+				}			
+			}
 		}
 	}
 }
@@ -156,13 +227,18 @@ void NPC::afterRender(HDC hdc)
 	{
 		m_Img[m_PrintDirection]->render(hdc, (m_outRect.left - 10), (m_outRect.top - 20), 0, 0, 80, 40);
 	}
-	if (onSenarioPrint)
-	{
-		m_Dialog->render(hdc, 20, WINSIZEY - 185);
-		UTIL::PrintText(hdc, firstOutStr.c_str(), "소야바른9", 100, WINSIZEY - 160, 65, RGB(0, 0, 0), true);
-		UTIL::PrintText(hdc, secondOutStr.c_str(), "소야바른9", 100, WINSIZEY - 90, 65, RGB(0, 0, 0), true);
-		if (completedSecondOut)
-			m_DialCopleteArrow->render(hdc, m_DialCompleteArrowRect.left, m_DialCompleteArrowRect.top);
+	if (isActivate) {
+		if (onSenarioPrint)
+		{
+			m_Dialog->render(hdc, 20, WINSIZEY - 185);
+			UTIL::PrintText(hdc, firstOutStr.c_str(), "소야바른9", 100, WINSIZEY - 160, 65, RGB(0, 0, 0), true);
+			UTIL::PrintText(hdc, secondOutStr.c_str(), "소야바른9", 100, WINSIZEY - 90, 65, RGB(0, 0, 0), true);
+			if (completedSecondOut && !isOnSelectAction)
+				m_DialCopleteArrow->render(hdc, m_DialCompleteArrowRect.left, m_DialCompleteArrowRect.top);
+		}
+		if (isOnSelectAction) {
+			selectActionRender(hdc);
+		}
 	}
 }
 
@@ -200,6 +276,8 @@ void NPC::activateNPC(Direction _dir)
 	m_curSenario = (m_Scripts.find("default"))->second;
 	
 	senarioIndex = 0;
-	if(anoterEventType != NPCEventType::NPCShop)
+	if (anoterEventType != NPCEventType::NPCShop) {
 		onSenarioPrint = true;
+		playerPokemons = MAPMANGER->getPlayer()->getPocketmons();
+	}
 }

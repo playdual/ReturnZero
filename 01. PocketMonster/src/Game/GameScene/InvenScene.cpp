@@ -399,7 +399,6 @@ void InvenScene::update(float _deltaTime)
 				m_sceneResult = (void*)temp;
 				sellPokeBall();
 				SCENEMANAGER->scenePop(true);
-
 				return;
 			}
 

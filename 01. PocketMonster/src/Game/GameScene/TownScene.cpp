@@ -18,7 +18,8 @@ bool TownScene::init()
 	//player init
 	m_player = std::make_shared<player>();
 
-	m_map = MAPMANGER->findMap("RedHouse2F");
+	m_map = MAPMANGER->findMap("Route01");
+	MAPMANGER->connectPlayerInfo(m_player);
 	m_player->reLocate(m_map->getStartPositionX(), m_map->getStartPositionY());
 	m_player->init();
 

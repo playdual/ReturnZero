@@ -257,9 +257,9 @@ HRESULT MainGame::init()
 
 
 	//
-	MAPMANGER->init();
 	ITEMMANAGER->init();
 	POCKETMONMANAGER->init();
+	MAPMANGER->init();
 
 	//add Scene
 	IMAGEMANAGER->addImage("bg", "Images/temp.bmp", 0, 0, WINSIZEX, WINSIZEY);
@@ -273,8 +273,13 @@ HRESULT MainGame::init()
 	SCENEMANAGER->addScene("inven", new InvenScene(inven));
 	SCENEMANAGER->addScene("friendlyShop", new shopScene(inven));
 
-	SCENEMANAGER->changeScene("intro");
-	//SCENEMANAGER->scenePush("town");
+
+	//=================== 최종적으로 적용되는 씬
+	//SCENEMANAGER->changeScene("intro");
+	
+	//temp
+	SCENEMANAGER->scenePush("town");
+	
 	sceneInit = true;
 
 	//now! our First Sound!
