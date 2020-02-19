@@ -733,20 +733,6 @@ void BattleScene::changePocketmon()
 		break;
 	}
 }
-//void BattleScene::changePocketmon(int _num)
-//{
-//	int temp = 0;
-//	for (auto it = m_playerPocketmons.begin(); it != m_playerPocketmons.end(); ++it)
-//	{
-//		if (temp == _num)
-//		{
-//			selectPocketmon = (*it);
-//			break;
-//		}
-//		temp++;
-//	}
-//
-//}
 void BattleScene::moveButton()
 {
 	//싸운다: 618, 595, 20, 40
@@ -820,8 +806,7 @@ void BattleScene::moveButton()
 	if (run && KEYMANAGER->isOnceKeyDown(P1_Z))
 	{
 		//추가할꺼 - 플레이어에 setisBattle 함수를 써서 isbattle false로 바꿔주기
-		SOUNDMANAGER->stopChannel(Channel::eChannelBattleBgm);
-		SCENEMANAGER->scenePop();
+		battleSceneEnd();
 	}
 
 }
@@ -1319,7 +1304,22 @@ void BattleScene::fireBlastProto(std::string _skillName, HDC hdc)
 	//1단계: 포켓몬 스킬 이팩트
 	if (!playerSkillEffect && !playerSkillEffectDone)
 	{
-		EFFECTMANAGER->play(_skillName, 707, 195);
+		EFFECTMANAGER->play(_skillName, 750, 210);//중심
+		//ㅣ
+		EFFECTMANAGER->play(_skillName, 750, 170);
+		EFFECTMANAGER->play(_skillName, 750, 130);
+		//ㅡ
+		EFFECTMANAGER->play(_skillName, 630, 210);
+		EFFECTMANAGER->play(_skillName, 690, 210);
+		EFFECTMANAGER->play(_skillName, 810, 210);
+		EFFECTMANAGER->play(_skillName, 870, 210);
+		// /
+		EFFECTMANAGER->play(_skillName, 690, 250);
+		EFFECTMANAGER->play(_skillName, 630, 290);
+		// 마지막 획
+		EFFECTMANAGER->play(_skillName, 810, 250);
+		EFFECTMANAGER->play(_skillName, 870, 290);
+
 		playerSkillEffect = EFFECTMANAGER->getIsPlay();
 	}
 	else if (playerSkillEffect && !EFFECTMANAGER->getIsPlay())
@@ -1426,6 +1426,8 @@ void BattleScene::playerThunderWaveProto(std::string _skillName, HDC hdc)
 	enemyHpChangFromPlayerAtk();
 	playerAtkResultOutput(hdc);
 }
+
+
 //====================
 // 적 공격 스킬 모음 //
 //====================
@@ -1605,6 +1607,43 @@ void BattleScene::thunderProto(std::string _skillName, HDC hdc)
 	enemyAtkResultOutput(hdc);
 }
 
+void BattleScene::enemySkillEmberProto(std::string _skillName, HDC hdc)
+{
+	if (!enemySkillEffect && !enemySkillEffectDone)
+	{
+		int tempX, tempY;
+		tempX = 400;
+		tempY = 200;
+		EFFECTMANAGER->play(_skillName, 707-tempX, 195+tempY);
+		EFFECTMANAGER->play(_skillName, 774-tempX, 222+tempY);
+		EFFECTMANAGER->play(_skillName, 696-tempX, 287+tempY);
+		EFFECTMANAGER->play(_skillName, 778-tempX, 304+tempY);
+		enemySkillEffect = true;
+	}
+	else if (enemySkillEffect && !EFFECTMANAGER->getIsPlay())
+	{
+		enemyHitEffect = true;
+		enemySkillEffect = false;
+		enemySkillEffectDone = true;
+	}
+
+	if (enemyHitEffect)
+	{
+		m_playerTwinkleCount++;
+		m_playerAlpha = 0;
+		if (m_playerTwinkleCount > 20)
+		{
+			m_playerAlpha = 255;
+			m_playerTwinkleCount = 0;
+			enemyHitEffect = false;
+			playerHpChange = true;
+			m_playerMinusHp = checkDamage();
+		}
+	}
+	playerHpChangFromEnemyAtk();
+	enemyAtkResultOutput(hdc);
+}
+
 //======================
 // 공방 공통 함수 모음 //
 //======================
@@ -1643,7 +1682,7 @@ void BattleScene::playerAtkResultOutput(HDC hdc)
 			char str[100];
 			wsprintf(str, "효과는 굉장했다!!");
 			TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 40, str, strlen(str));
-			if (m_skillCount > 40)
+			if (m_skillCount > 60)
 			{
 				UTIL::DrawRect(hdc, m_explainRect);
 				m_skillCount = 0;
@@ -1663,7 +1702,7 @@ void BattleScene::playerAtkResultOutput(HDC hdc)
 			char str[100];
 			wsprintf(str, "효과가 별로인 것 같다..");
 			TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 40, str, strlen(str));
-			if (m_skillCount > 40)
+			if (m_skillCount > 60)
 			{
 				UTIL::DrawRect(hdc, m_explainRect);
 				m_skillCount = 0;
@@ -1683,7 +1722,7 @@ void BattleScene::playerAtkResultOutput(HDC hdc)
 	{
 		explainRect(hdc);
 		m_skillCount++;
-		if (m_skillCount > 40)
+		if (m_skillCount > 60)
 		{
 			m_skillCount = 0;
 			playerSkillEffect = false;
@@ -1731,7 +1770,7 @@ void BattleScene::enemyAtkResultOutput(HDC hdc)
 			char str[100];
 			wsprintf(str, "효과는 굉장했다!!");
 			TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 40, str, strlen(str));
-			if (m_skillCount > 40)
+			if (m_skillCount > 60)
 			{
 				m_skillCount = 0;
 				enemySkillEffectDone = false;
@@ -1750,7 +1789,7 @@ void BattleScene::enemyAtkResultOutput(HDC hdc)
 			char str[100];
 			wsprintf(str, "효과가 별로인 것 같다..");
 			TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 40, str, strlen(str));
-			if (m_skillCount > 40)
+			if (m_skillCount > 60)
 			{
 				m_skillCount = 0;
 				enemySkillEffectDone = false;
@@ -1768,7 +1807,7 @@ void BattleScene::enemyAtkResultOutput(HDC hdc)
 	if (enemyExplainEffect)
 	{
 		m_skillCount++;
-		if (m_skillCount > 50)
+		if (m_skillCount > 60)
 		{
 			m_skillCount = 0;
 			enemySkillEffectDone = false;
@@ -1909,8 +1948,7 @@ void BattleScene::wildBattleOutAni(HDC hdc)
 			
 			if (battleEnd)
 			{
-				SOUNDMANAGER->stopChannel(Channel::eChannelBattleBgm);
-				SCENEMANAGER->scenePop();
+				battleSceneEnd();
 			}
 		}
 	}
@@ -2162,8 +2200,7 @@ void BattleScene::playerPocketmonLoseAni(HDC hdc)
 
 							if (m_loseAniCount > 170)
 							{
-								SOUNDMANAGER->stopChannel(Channel::eChannelBattleBgm);
-								SCENEMANAGER->scenePop();
+								battleSceneEnd();						
 							}
 						}
 					}
@@ -2393,8 +2430,7 @@ void BattleScene::catchPocketmon(HDC hdc)
 
 		if (m_catchExplainCount > 40)
 		{
-			SOUNDMANAGER->stopChannel(Channel::eChannelBattleBgm);
-			SCENEMANAGER->scenePop();
+			battleSceneEnd();			
 		}
 	}
 }
@@ -2529,42 +2565,41 @@ void BattleScene::pocketmonChange(HDC hdc)
 	}
 }
 
+void BattleScene::battleSceneEnd()
+{
+	SOUNDMANAGER->stopChannel(Channel::eChannelBattleBgm);
+	SOUNDMANAGER->playSound("Route", Channel::eChannelBgm);
+	SCENEMANAGER->scenePop();
+}
+
 //포켓몬 스킬 이펙트들 모음
 void BattleScene::pocketmonEffectInit()
 {
+	//완료
+	//공용 이팩트
+	EFFECTMANAGER->addEffect("불꽃세례", "Images/attackEffect/pailiSkill_1.bmp", 35 * 3, 150 * 3, 35 * 3, 30 * 3, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("할퀴기", "Images/attackEffect/Scratch.bmp", 32 * 7, 96 * 7, 32 * 7, 36 * 7, 1, 0.1f, 100);
+	EFFECTMANAGER->addEffect("전기자석파", "images/attackEffect/ThunderWave.bmp", 32 * 4, 96 * 4, 32 * 4, 32 * 4, 1, 0.1f, 100);
+
 	//플레이어
-	//파이리 공격
-	//캐터피, 꼬렛
+	
 		
 	//적
 	//피카츄
 	EFFECTMANAGER->addEffect("번개", "images/attackEffect/100v.bmp", 159 * 4, 550 * 4, 159 * 4, 110 * 4, 1, 0.1f, 100);
-
-	//플레이어와 적의 이미지의 방향에 상관이 없는 이팩트들 모음
-	EFFECTMANAGER->addEffect("불꽃세례", "Images/attackEffect/pailiSkill_1.bmp", 35 * 3, 150 * 3, 35 * 3, 30 * 3, 1, 0.1f, 100);
-	EFFECTMANAGER->addEffect("할퀴기", "Images/attackEffect/Scratch.bmp", 32 * 7, 96 * 7, 32 * 7, 36 * 7, 1, 0.1f, 100);
-	EFFECTMANAGER->addEffect("전기자석파", "images/attackEffect/ThunderWave.bmp", 32 * 4, 96 * 4, 32 * 4, 32 * 4, 1, 0.1f, 100);
 	//파이리,식스테일 공격
-	EFFECTMANAGER->addEffect("불꽃세례", "Images/attackEffect/pailiSkill_1.bmp", 35 * 3, 150 * 3, 35 * 3, 30 * 3, 1, 0.1f, 100);
 	EFFECTMANAGER->addEffect("불대문자", "Images/attackEffect/fireBlast.bmp", 32 * 3, 128 * 3, 32 * 3, 32 * 3, 1, 0.1f, 100);
-	
 	//캐터피, 꼬렛
-	EFFECTMANAGER->addEffect("할퀴기", "Images/attackEffect/Scratch.bmp", 32 * 7, 96 * 7, 32 * 7, 36 * 7, 1, 0.1f, 100);
 	EFFECTMANAGER->addEffect("전광석화", "Images/attackEffect/QuickAttack.bmp", 32 * 3, 32 * 3, 32 * 3, 32 * 3, 10, 0.1f, 100);
-
 	EFFECTMANAGER->addEffect("날개치기", "Images/attackEffect/wingAttack.bmp", 16 * 3, 48 * 3, 16 * 3, 16 * 3, 1, 0.1f, 100);
-	EFFECTMANAGER->addEffect("날개치기", "Images/attackEffect/wingAttack_Enemy.bmp", 16 * 3, 48 * 3, 16 * 3, 16 * 3, 1, 0.1f, 100);
-
-	//
+	EFFECTMANAGER->addEffect("날개치기(적)", "Images/attackEffect/wingAttack_Enemy.bmp", 16 * 3, 48 * 3, 16 * 3, 16 * 3, 1, 0.1f, 100);
 	EFFECTMANAGER->addEffect("덩쿨채찍", "Images/attackEffect/VineWhip.bmp", 32 * 3, 160 * 3, 32 * 3, 32 * 3, 1, 0.1f, 100);
 	EFFECTMANAGER->addEffect("덩쿨채찍(적)", "Images/attackEffect/VineWhip_Enemy.bmp", 32 * 3, 160 * 3, 32 * 3, 32 * 3, 1, 0.1f, 100);
 	EFFECTMANAGER->addEffect("잎날가르기", "Images/attackEffect/razorLeaf.bmp", 16 * 3, 144 * 3, 16 * 3, 48 * 3, 1, 0.1f, 100);
 	EFFECTMANAGER->addEffect("잎날가르기(적)", "Images/attackEffect/razorLeaf_Enemy.bmp", 16 * 3, 144 * 3, 16 * 3, 16 * 3, 1, 0.1f, 100);
-	
 	EFFECTMANAGER->addEffect("소금물", "Images/attackEffect/brine.bmp", 32 * 3, 160 * 3, 32 * 3, 32 * 3, 1, 0.1f, 100);
 	EFFECTMANAGER->addEffect("소금물(적)", "Images/attackEffect/brine_Enemy.bmp", 32 * 3, 160 * 3, 32 * 3, 32 * 3, 1, 0.1f, 100);
 	EFFECTMANAGER->addEffect("하이드로펌프", "Images/attackEffect/HydroPump.bmp", 16 * 3, 128 * 3, 16 * 3, 32 * 3, 1, 0.1f, 100);
-	
 	//피카츄 공격
 	EFFECTMANAGER->addEffect("번개", "images/attackEffect/100v.bmp", 159 * 4, 550 * 4, 159 * 4, 110 * 4, 1, 0.1f, 100);
 	EFFECTMANAGER->addEffect("10만볼트", "images/attackEffect/Thunder.bmp", 32 * 4, 160 * 4, 32 * 4, 32 * 4, 1, 0.1f, 100);
@@ -2585,15 +2620,15 @@ bool BattleScene::playerSkillEffectAssemble(std::string _skillName, HDC hdc)
 }
 void BattleScene::enemySkillEffectAssemble(std::string _skillName, HDC hdc)
 {
-	_skillName = "전기자석파";
+	_skillName = "불꽃세례";
 	if (_skillName == "전광석화") quickAttackProto(_skillName, hdc);
 	else if (_skillName == "십만볼트") thunderboltProto(_skillName, hdc);
 	else if (_skillName == "번개") thunderProto(_skillName, hdc);
 	//공통모음
+	else if (_skillName == "불꽃세례") enemySkillEmberProto(_skillName, hdc);
 	else if (_skillName == "할퀴기") enemyScratchProto(_skillName, hdc);
 	else if (_skillName == "전기자석파") enemyThunderWaveProto(_skillName, hdc);
 }
-
 
 int BattleScene::checkDamage()
 {
