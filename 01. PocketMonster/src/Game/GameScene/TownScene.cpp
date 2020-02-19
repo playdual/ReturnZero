@@ -15,11 +15,11 @@ bool TownScene::init()
 {
 	SOUNDMANAGER->playSound("NewBarkTown", Channel::eChannelBgm);
 	m_chat = IMAGEMANAGER->findImage("상점NPC대화상자");
-
+	battleInit = IMAGEMANAGER->findImage("BattleInit");
 	//player init
 	m_player = std::make_shared<player>();
 
-	m_map = MAPMANGER->findMap("Route01");
+	m_map = MAPMANGER->findMap("ProfOHouse");
 	MAPMANGER->connectPlayerInfo(m_player);
 	m_player->reLocate(m_map->getStartPositionX(), m_map->getStartPositionY());
 	m_player->init();
@@ -138,16 +138,37 @@ void TownScene::onMenu()
 		{
 			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
 		}
-			
-
 	}
-
-
-
-
 }
 void TownScene::update(float _deltaTime)
 {
+	if (isBattle)
+	{
+		pastTime += _deltaTime;
+		if (pastTime > battleInitFrameDelay) {
+			pastTime = 0.f;
+			battleInitIdex++;
+			if (battleInitIdex >= battleInit->getMaxFrameX()) {
+				Tile& curTile = m_map->getSpecifyTile(m_player->getPlayerBlockX(), m_player->getPlayerBlockY());
+				auto innerPocketmon = curTile.getInnerPocketMon();
+				if (innerPocketmon.first != "")
+					BATTLEMANAGER->battleStart(m_player, nullptr, innerPocketmon.first, innerPocketmon.second);
+				m_player->BattleEnd();
+				isBattle = false;
+				battleInitIdex = 0;
+			}
+		}
+		return;
+	}
+
+	if (!isBattle) {
+		if (!SOUNDMANAGER->isPlaying(Channel::eChannelBgm)) {
+			if (MAPMANGER->getCurMapName() == "Route01")
+				SOUNDMANAGER->playSound("Route", Channel::eChannelBgm);
+			if (MAPMANGER->getCurMapName() == "TechoTown")
+				SOUNDMANAGER->playSound("NewBarkTown", Channel::eChannelBgm);
+		}
+	}	
 	PlaytimeSec = TIMEMANAGER->getWorldTime();
 	if (PlaytimeSec > 59)PlaytimeSec %= 60;
 	PlaytimeMin = TIMEMANAGER->getWorldTime() / 60;
@@ -198,16 +219,7 @@ void TownScene::update(float _deltaTime)
 		SOUNDMANAGER->playSound("Battle", Channel::eChannelBattleBgm);	//stop을 배틀끝날때 해줘야함
 		isBattle = true;
 	}
-	if (isBattle)
-	{
-		Tile& curTile = m_map->getSpecifyTile(m_player->getPlayerBlockX(), m_player->getPlayerBlockY());
-		auto innerPocketmon = curTile.getInnerPocketMon();
-
-		if(innerPocketmon.first != "")
-			BATTLEMANAGER->battleStart(m_player, nullptr, innerPocketmon.first, innerPocketmon.second);
-		m_player->BattleEnd();
-		isBattle = false;
-	}
+	
 
 	//맵 체인지 확인
 	if (m_player->getisChangeMap())
@@ -323,7 +335,9 @@ void TownScene::afterRender(HDC hdc)
 		UTIL::PrintText(hdc, "리포트를 꼼꼼히 기록했다!", "소야바른9", 55, 625, 65, RGB(208, 208, 200), true, RGB(0, 0, 0));
 		UTIL::PrintText(hdc, "리포트를 꼼꼼히 기록했다!", "소야바른9", 50, 625, 65, RGB(0, 0, 0), true, RGB(0, 0, 0));
 	}
-
+	if (isBattle) {
+		battleInit->frameRender(hdc, 0, 0, battleInitIdex, 0);
+	}
 }
 
 void TownScene::debugRender(HDC hdc)

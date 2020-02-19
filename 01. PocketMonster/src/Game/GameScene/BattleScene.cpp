@@ -825,6 +825,7 @@ void BattleScene::moveButton()
 	if (run && KEYMANAGER->isOnceKeyDown(P1_Z))
 	{
 		//추가할꺼 - 플레이어에 setisBattle 함수를 써서 isbattle false로 바꿔주기
+		SOUNDMANAGER->stopChannel(Channel::eChannelBattleBgm);
 		SCENEMANAGER->scenePop();
 	}
 
@@ -1797,6 +1798,7 @@ void BattleScene::wildBattleOutAni(HDC hdc)
 			
 			if (battleEnd)
 			{
+				SOUNDMANAGER->stopChannel(Channel::eChannelBattleBgm);
 				SCENEMANAGER->scenePop();
 			}
 		}
@@ -2049,6 +2051,7 @@ void BattleScene::playerPocketmonLoseAni(HDC hdc)
 
 							if (m_loseAniCount > 170)
 							{
+								SOUNDMANAGER->stopChannel(Channel::eChannelBattleBgm);
 								SCENEMANAGER->scenePop();
 							}
 						}
@@ -2279,6 +2282,7 @@ void BattleScene::catchPocketmon(HDC hdc)
 
 		if (m_catchExplainCount > 40)
 		{
+			SOUNDMANAGER->stopChannel(Channel::eChannelBattleBgm);
 			SCENEMANAGER->scenePop();
 		}
 	}

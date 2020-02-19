@@ -30,13 +30,13 @@ private:
 	void resetSenarioIndexData();
 	void updateDialArrowPosition();
 
-	//포켓몬 센터용 변수
+	//포켓몬 센터용 함수
 private:
 	void selectActionUpdate();
 	void selectActionRender(HDC _hdc);
 	void curePocket();
 
-	//포켓몬 센터용 함수
+	//포켓몬 센터용 변수
 private:
 	class Image* m_SelectPointer;
 	bool isOnSelectAction = false;
@@ -46,6 +46,15 @@ private:
 	int SelectArrowY1 = 360;
 	int SelectArrowY2 = 420;
 	int curArrowY = 360;
+
+	//AlphaEffect
+private:
+	Image* alphaEffect;
+	int curAlpha = 0;
+	bool isOnAlphaEffect = false;
+	bool completeAlphaEffect = false;
+	bool negative = false;
+	void alphaUpdate();
 
 private:
 	Image* m_Img[4];

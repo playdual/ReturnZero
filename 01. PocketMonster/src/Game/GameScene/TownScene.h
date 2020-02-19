@@ -29,6 +29,7 @@ private:
 
 private:
 	Image* image;
+	Image* battleInit;
 	std::shared_ptr<player> m_player;
 	std::shared_ptr<Map> m_map;
 
@@ -58,4 +59,9 @@ private:
 	bool isBattle = false;
 	bool isReport = false;
 	std::vector<MenuBar> Menu;
+
+	//battleInit
+	int battleInitIdex = 0;
+	float battleInitFrameDelay = 0.05f;
+	float pastTime = 0.f;
 };

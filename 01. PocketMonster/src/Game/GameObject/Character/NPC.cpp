@@ -17,6 +17,7 @@ NPC::NPC(int _bPosX, int _bPosY, std::string _name, NPCEventType _anotherEventTy
 	m_DialCopleteArrow = IMAGEMANAGER->findImage("DialCopleteArrow");
 	m_SelectBox = IMAGEMANAGER->findImage("yesOrNoBox");
 	m_SelectPointer = IMAGEMANAGER->findImage("현재아이템표시");
+	alphaEffect = IMAGEMANAGER->findImage("alpha");
 
 	m_Name = _name;
 	isADHD = _ADHD;
@@ -79,6 +80,7 @@ void NPC::updateSenario(float _deltaTime)
 	}
 	if (completedSecondOut) {
 		if (KEYMANAGER->isStayKeyDown(P1_Z) || KEYMANAGER->isOnceKeyDown(P1_X)) {
+			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
 			senarioIndex++;
 			if (senarioIndex == m_curSenario.size()) {
 				//onSenarioPrint = false;
@@ -88,6 +90,7 @@ void NPC::updateSenario(float _deltaTime)
 				}
 				else{
 					isOnSelectAction = true;
+					//onSenarioPrint = false;
 				}
 			}
 			if(!isOnSelectAction)
@@ -99,27 +102,36 @@ void NPC::updateSenario(float _deltaTime)
 void NPC::selectActionUpdate()
 {
 	if (KEYMANAGER->isOnceKeyDown(P1_UP)) {
+		SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
 		if (curArrowY == SelectArrowY1)
 			curArrowY = SelectArrowY2;
 		else
 			curArrowY = SelectArrowY1;
 	}
 	if (KEYMANAGER->isOnceKeyDown(P1_DOWN)) {
+		SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
 		if (curArrowY == SelectArrowY1)
 			curArrowY = SelectArrowY2;
 		else
 			curArrowY = SelectArrowY1;
 	}
 	if (KEYMANAGER->isOnceKeyDown(P1_Z)) {
+		SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
 		resetSenarioIndexData();
-		isOnSelectAction = false;
 		if (curArrowY == SelectArrowY1) {
+			isOnAlphaEffect = true;
 			isOnSelectAction = false;
-			curePocket();
-			m_curSenario = m_Scripts.find("curing")->second;
+			onSenarioPrint = true;
 			senarioIndex = 0;
+			curePocket();
+			SOUNDMANAGER->pauseChannel(Channel::eChannelBgm);
+			SOUNDMANAGER->playSound("pocketmonRecovery", Channel::eChannelEffect);
 		}
 		else {
+			isOnAlphaEffect = false;
+			isOnSelectAction = false;
+			onSenarioPrint = true;
+			senarioIndex = 0;
 			isActivate = false;
 		}	
 	}
@@ -145,10 +157,31 @@ void NPC::curePocket()
 	}
 }
 
+void NPC::alphaUpdate()
+{
+	if (isOnAlphaEffect) {
+		if (negative) curAlpha -= 3;
+		else curAlpha += 3;
+
+		if (curAlpha == 255) {
+			negative = true;
+		}
+		if (curAlpha == 0) {
+			negative = false;
+			completeAlphaEffect = true;
+			isOnAlphaEffect = false;
+			isActivate = false;
+			SOUNDMANAGER->resumeChannel(Channel::eChannelBgm);
+		}
+	}
+}
+
 void NPC::updatePocketCenterEvent(float _deltaTime)
 {
-	selectActionUpdate();
+
 }
+
+
 void NPC::updateShopEvent(float _deltaTime)
 {
 	SCENEMANAGER->scenePush("friendlyShop");
@@ -186,29 +219,21 @@ void NPC::update(float _deltaTime)
 		if (UTIL::GetRndInt(100) <= 2)
 			m_PrintDirection = (Direction)UTIL::GetRndInt(4);
 	}
-	else if(isActivate){
-		if (onSenarioPrint){
-			if (!isOnSelectAction) {
-				updateSenario(_deltaTime);
-				if (completedSecondOut)
-					updateDialArrowPosition();
-			}		
+	else if (isActivate) {
+		if (isOnAlphaEffect) {
+			alphaUpdate();
+			return;
+		}
+		if (onSenarioPrint && !isOnSelectAction) {
+			updateSenario(_deltaTime);
+			if (completedSecondOut)
+				updateDialArrowPosition();
 		}
 		if (hasAnotherEvent && isOnSelectAction) {
 			if (anoterEventType == NPCEventType::NPCShop)
 				updateShopEvent(_deltaTime);
-			if (anoterEventType == NPCEventType::NPCPocketCenter) {
-				if (m_curSenario == m_Scripts.find("curing")->second) {
-					resetSenarioIndexData();
-					senarioIndex = 0;
-					isOnSelectAction = false;
-					m_curSenario = m_Scripts.find("default")->second;
-					isActivate = false;
-				}
-				else {
-					updatePocketCenterEvent(_deltaTime);
-				}			
-			}
+			if (anoterEventType == NPCEventType::NPCPocketCenter)
+				selectActionUpdate();
 		}
 	}
 }
@@ -228,17 +253,22 @@ void NPC::afterRender(HDC hdc)
 		m_Img[m_PrintDirection]->render(hdc, (m_outRect.left - 10), (m_outRect.top - 20), 0, 0, 80, 40);
 	}
 	if (isActivate) {
-		if (onSenarioPrint)
-		{
-			m_Dialog->render(hdc, 20, WINSIZEY - 185);
-			UTIL::PrintText(hdc, firstOutStr.c_str(), "소야바른9", 100, WINSIZEY - 160, 65, RGB(0, 0, 0), true);
-			UTIL::PrintText(hdc, secondOutStr.c_str(), "소야바른9", 100, WINSIZEY - 90, 65, RGB(0, 0, 0), true);
-			if (completedSecondOut && !isOnSelectAction)
-				m_DialCopleteArrow->render(hdc, m_DialCompleteArrowRect.left, m_DialCompleteArrowRect.top);
-		}
-		if (isOnSelectAction) {
-			selectActionRender(hdc);
-		}
+		if (!isOnAlphaEffect) {
+			if (onSenarioPrint)
+			{
+				m_Dialog->render(hdc, 20, WINSIZEY - 185);
+				UTIL::PrintText(hdc, firstOutStr.c_str(), "소야바른9", 100, WINSIZEY - 160, 65, RGB(0, 0, 0), true);
+				UTIL::PrintText(hdc, secondOutStr.c_str(), "소야바른9", 100, WINSIZEY - 90, 65, RGB(0, 0, 0), true);
+				if (completedSecondOut && !isOnSelectAction)
+					m_DialCopleteArrow->render(hdc, m_DialCompleteArrowRect.left, m_DialCompleteArrowRect.top);
+			}
+			if (isOnSelectAction) {
+				selectActionRender(hdc);
+			}
+		}	
+	}
+	if (isOnAlphaEffect) {
+		alphaEffect->alphaRender(hdc, curAlpha);
 	}
 }
 
@@ -258,6 +288,7 @@ void NPC::addSenario(std::string _scriptKey, Senario _senario)
 void NPC::activateNPC(Direction _dir)
 {
 	isActivate = true;
+	SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
 	switch (_dir)
 	{
 	case DirectionDown:

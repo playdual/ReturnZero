@@ -112,15 +112,9 @@ void MapManager::addDefaultNPC()
 	tempSenario.clear();
 	tempSenario.push_back({ L"오.. 레드군..", L"남자는 언젠가" });
 	tempSenario.push_back({ L"모험을 떠나는 거야!", L"TV에서 그랬어..." });
-	tempSenario.push_back({ L"너희 엄마가 널 찾고계셔!", L"" });
-	tempSenario.push_back({ L"포켓몬을 치유할거니?", L"" });
+	tempSenario.push_back({ L"너희 엄마가 널 찾고계셔!", L"포켓몬은 열정이란다!" });
+	tempSenario.push_back({ L"레드야 전설이 되어라", L"포켓몬을 치유할거니?" });
 	npc3->addSenario("default", tempSenario);
-	tempSenario.clear();
-	tempSenario.push_back({ L"... ... ...", L"... ... ..." });
-	tempSenario.push_back({ L"... ... ...", L"아 지금 치료중이란다!" });
-	tempSenario.push_back({ L"... ... ...", L"... ... ..." });
-	tempSenario.push_back({ L"다 치료했단다 ^^", L"포켓몬은 소중히 다루렴" });
-	npc3->addSenario("curing", tempSenario);
 
 	findMap("RivalHouse")->addNPC(npc1);
 	findMap("RedHouse1F")->addNPC(npc2);

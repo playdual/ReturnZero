@@ -146,6 +146,7 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("WomanSex",				"images/sexwoman.bmp", 30, 48, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("ManSex",				"images/sexman.bmp", 30, 48, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("playerShadow",			"images/playerShadow.bmp", TILE_WIDTH, TILE_HEIGHT, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addFrameImage("BattleInit", "images/ChangeSceneEffect.bmp", WINSIZEX * 24, WINSIZEY, 24, 1, true, RGB(255, 0, 255));
 
 	//pocketMon Bag UI
 	IMAGEMANAGER->addImage("Base",			"images/poketmonbagBase.bmp",		0, 0, WINSIZEX, WINSIZEY, true, RGB(255, 0, 255));
@@ -212,7 +213,7 @@ HRESULT MainGame::init()
 	SOUNDMANAGER->addSound("Heal", "Sounds/heal.mp3", false);
 	SOUNDMANAGER->addSound("Menu", "Sounds/menu.mp3", false);
 	SOUNDMANAGER->addSound("Report", "Sounds/report.mp3", false);
-	
+	SOUNDMANAGER->addSound("pocketmonRecovery", "Sounds/Recovery.mp3", false);
 	//=============
 	// battle Ui //
 	//=============
