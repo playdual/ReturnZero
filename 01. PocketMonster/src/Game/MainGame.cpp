@@ -293,8 +293,7 @@ HRESULT MainGame::init()
 	//SCENEMANAGER->scenePush("town");
 
 	//=================== 최종적으로 적용되는 씬
-	//SCENEMANAGER->changeScene("intro");
-	SCENEMANAGER->scenePush("town");
+	SCENEMANAGER->changeScene("intro");
 	
 	sceneInit = true;
 

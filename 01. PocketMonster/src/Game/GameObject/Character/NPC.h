@@ -25,7 +25,6 @@ public:
 
 private:
 	void updateSenario(float _deltaTime);
-	void updatePocketCenterEvent(float _deltaTime);
 	void updateShopEvent(float _deltaTime);
 	void resetSenarioIndexData();
 	void updateDialArrowPosition();

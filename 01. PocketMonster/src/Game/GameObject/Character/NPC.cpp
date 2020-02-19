@@ -176,12 +176,6 @@ void NPC::alphaUpdate()
 	}
 }
 
-void NPC::updatePocketCenterEvent(float _deltaTime)
-{
-
-}
-
-
 void NPC::updateShopEvent(float _deltaTime)
 {
 	SCENEMANAGER->scenePush("friendlyShop");
