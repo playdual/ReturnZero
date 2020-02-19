@@ -115,11 +115,8 @@ void IntroScene::update(float _deltaTime)
 
 	if (m_alphaValueTwo >= 255)
 	{
-		SCENEMANAGER->changeScene("town");
+		SCENEMANAGER->scenePush("town");
 	}
-
-
-
 }
 
 void IntroScene::render(HDC hdc)

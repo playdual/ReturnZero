@@ -84,6 +84,7 @@ private:
 	bool isTownInven;
 	bool isBattleInven;
 
+
 	//아이템 버릴때 쓰는 문장
 	std::string  m_throwItem[5] = { "몇개 버릴까요?", "개 버려도" , "괜찮겠습니까?" , "를(을)" ,"개 버렸습니다."};
 	std::string  m_throwAnser[2] = { "예", "아니오" };
@@ -100,7 +101,7 @@ private:
 
 	// 메뉴창 작업
 	int pointerCount;
-
+	bool m_isMainClose = false;
 
 private:
 	ItemInfo m_settedItemInfo;

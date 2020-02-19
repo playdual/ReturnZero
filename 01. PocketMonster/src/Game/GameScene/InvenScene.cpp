@@ -225,6 +225,16 @@ void InvenScene::update(float _deltaTime)
 			isUp = true;
 	}
 	// 인벤씬에서 메뉴 나오게 하는 작업
+
+	if (!isTownInven && m_inven->getOpenMenu() == false && m_isMainClose)
+	{
+		if (KEYMANAGER->isOnceKeyDown(P1_Z))
+		{
+			m_isMainClose = false;
+			SCENEMANAGER->scenePop();
+		}
+	}
+
 	if (!isTownInven && !isFromBattleScene)
 	{
 		if (KEYMANAGER->isOnceKeyDown(P1_Z))
@@ -466,6 +476,8 @@ void InvenScene::render(HDC hdc)
 				{
 					m_inven->setIsOpenMenu(false);
 					isTownInven = false;
+					m_isMainClose = true;
+					m_inven->m_isItemTag = true;
 				}
 				if ((*item)->getItemNum() == m_inven->m_itemCount && (*item)->getItemName() != "닫기")
 				{
@@ -523,6 +535,8 @@ void InvenScene::render(HDC hdc)
 				{
 					m_inven->setIsOpenMenu(false);
 					isTownInven = false;
+					m_isMainClose = true;
+					m_inven->m_isItemTag = true;
 				}
 				if ((*item)->getItemNum() == m_inven->m_itemCount && (*item)->getItemName() != "닫기")
 				{
@@ -579,6 +593,9 @@ void InvenScene::render(HDC hdc)
 				{
 					m_inven->setIsOpenMenu(false);
 					isTownInven = false;
+					m_isMainClose = true;
+					m_inven->m_isImportTag = true;
+					m_inven->m_itemCount = 0;
 				}
 				if ((*item)->getItemNum() == m_inven->m_importCount && (*item)->getItemName() != "임폴트닫기")
 				{
@@ -628,6 +645,8 @@ void InvenScene::render(HDC hdc)
 				{
 					m_inven->setIsOpenMenu(false);
 					isTownInven = false;
+					m_isMainClose = true;
+					m_inven->m_isImportTag = true;
 				}
 				if ((*item)->getItemNum() == m_inven->m_importCount && (*item)->getItemName() != "임폴트닫기")
 				{
@@ -687,6 +706,8 @@ void InvenScene::render(HDC hdc)
 				{
 					m_inven->setIsOpenMenu(false);
 					isTownInven = false;
+					m_isMainClose = true;
+					m_inven->m_isPokeBallTag = true;
 				}
 				if ((*item)->getItemNum() == m_inven->m_pokeBallCount && (*item)->getItemName() != "몬스터볼닫기")
 				{
@@ -736,6 +757,8 @@ void InvenScene::render(HDC hdc)
 				{
 					m_inven->setIsOpenMenu(false);
 					isTownInven = false;
+					m_isMainClose = true;
+					m_inven->m_isPokeBallTag = true;
 				}
 				if ((*item)->getItemNum() == m_inven->m_pokeBallCount && (*item)->getItemName() != "몬스터볼닫기")
 				{

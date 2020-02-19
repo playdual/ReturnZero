@@ -101,7 +101,7 @@ void Inventory::update(float _deltaTime)
 				}
 			}
 			// 임포트 아이템 순서 //
-			else if (m_isImportTag)
+			if (m_isImportTag)
 			{
 				for (auto&item : m_importItem)
 				{
@@ -116,7 +116,7 @@ void Inventory::update(float _deltaTime)
 				}
 			}
 			// 포켓볼 아이템 순서 //
-			else if (m_isPokeBallTag)
+			 if (m_isPokeBallTag)
 			{
 				for (auto&item : m_pockeBallItem)
 				{

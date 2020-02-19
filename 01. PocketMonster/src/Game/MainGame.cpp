@@ -263,7 +263,7 @@ HRESULT MainGame::init()
 
 	//add Scene
 	IMAGEMANAGER->addImage("bg", "Images/temp.bmp", 0, 0, WINSIZEX, WINSIZEY);
-	SOUNDMANAGER->addStream("bgs", "Sounds/NewBarkTown.mp3", true);
+	//SOUNDMANAGER->addStream("bgs", "Sounds/NewBarkTown.mp3", true);
 	IMAGEMANAGER->addImage("현재아이템표시", "Images/itemPointer.bmp", 28 * 5, 28 * 5, true, RGB(255, 0, 255));
 	std::shared_ptr<Inventory> inven = std::make_shared<Inventory>();
 	inven->init();

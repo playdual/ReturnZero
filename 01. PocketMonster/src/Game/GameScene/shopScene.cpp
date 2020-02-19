@@ -77,12 +77,6 @@ bool shopScene::init()
 	return true;
 }
 
-bool shopScene::init(void * _info, bool isOnBattle)
-{
-	init();
-	return true;
-}
-
 void shopScene::update(float _deltaTime)
 { 
 	m_deltaTime = _deltaTime;
@@ -501,13 +495,18 @@ void shopScene::buyThirdRender(HDC hdc)
 		break;
 	}
 
-	UTIL::PrintText(hdc, m_money[1].c_str(), "소야바른9", WINSIZEX / 2 + 430, WINSIZEY / 2 - 15, 70, RGB(0, 0, 0), true);
+}
+
+void shopScene::sellRender(HDC hdc)
+{
+}
+
+void shopScene::quitRender(HDC hdc)
+{
 }
 	
-
 void shopScene::buyItemChoice()
 {
-
 }
 
 void shopScene::printTextConsequentlyFirst(HDC hdc, std::string _wantText, int _destX, int _destY)

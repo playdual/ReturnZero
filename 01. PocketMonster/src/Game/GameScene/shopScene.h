@@ -28,7 +28,6 @@ public:
 
 public:
 	virtual bool init() override;
-	virtual bool init(void* _info, bool isOnBattle) override;
 	virtual void update(float _deltaTime) override;
 	virtual void release() override;
 
