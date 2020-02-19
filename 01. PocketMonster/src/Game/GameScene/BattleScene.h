@@ -93,12 +93,14 @@ public:
 	void skillSelectRect(HDC hdc);
 	void playerPocketmonChange();
 	void playerPocketmonGetNewSkill(HDC hdc);
+	void sceneChageEffect(HDC hdc);
 
 	//행동선택관련
 	void moveButton();
 	void moveSkillSelectButton();
-
 	void playerStayMotion();
+	void changePocketmon();
+	void changePocketmon(int _num);
 
 	std::string selectEnemyskill();
 
@@ -141,6 +143,9 @@ public:
 
 	//포켓몬 잡기
 	void catchPocketmon(HDC hdc);
+
+	//포켓몬 변경
+	void pocketmonChange(HDC hdc);
 	
 private:
 	
@@ -149,6 +154,7 @@ private:
 	std::shared_ptr<PocketMon> selectPocketmon;
 	std::shared_ptr<PocketMon> test;
 	PocketMon m_wildPocketmon;
+	ItemInfo itempInfo;
 	ChangePocketInfo cpInfo;
 	UsedItemInfo uiInfo;
 
@@ -377,19 +383,25 @@ private:
 	int m_catchExplainCount;
 	int whiteBgAlpha;
 
-	//init안에 들어갈 내용들
-	/*
-	1. 배경 이미지 저장 (메인에서 로딩으로 진행하게 될 수 있음)
-	2. m_selectRect 위치 초기화
-	
-	*/
+	//================
+	// 포켓몬 체인지 //
+	//================
+	bool pocketmonChangeOn;
+	bool blackBgOn;
+	bool throwBallOn;
+	bool ballThrowStart;
+	bool ballThrowAniOn;
+	bool statusMoveOn;
+	bool setPlayerStatus;
+	bool moveEnemyStatus;
+	bool whiteBgAlpahReversOn;
+	bool setNewPocketmon;
+	bool comeBackPocketmon;
+	bool bufferTimeOn;
+	bool pocketmonCatchEffectAniOn;
+	int blackBgAlpha;
+	int whiteBgAlpah;
+	int bufferTimeCount;
 
-	/* 
-
-	*/
-	//update안에 들어갈 내용들
-	/*
-	1. 배경 이
-	*/
 };
 

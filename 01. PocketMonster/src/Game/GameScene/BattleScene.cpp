@@ -37,6 +37,7 @@ bool BattleScene::init(std::shared_ptr<player> _player, PocketMon& _pocketmon)
 		break;
 	}
 
+	//changePocketmon();
 	m_wildPocketmon = _pocketmon;
 	
 	//===============
@@ -254,6 +255,27 @@ bool BattleScene::init(std::shared_ptr<player> _player, PocketMon& _pocketmon)
 	m_successCount = 0;
 	m_catchExplainCount = 0;
 	whiteBgAlpha = 255;
+
+	//================
+	// 포켓몬 체인지 //
+	//================
+	pocketmonChangeOn = false;
+	blackBgOn = false;
+	throwBallOn = false;
+	ballThrowStart = false;
+	ballThrowAniOn = false;
+	statusMoveOn = false;
+	setPlayerStatus = false;
+	moveEnemyStatus = false;
+	whiteBgAlpahReversOn = false;
+	setNewPocketmon = false;
+	comeBackPocketmon = false;
+	bufferTimeOn = false;
+	pocketmonCatchEffectAniOn = false;
+
+	blackBgAlpha = 255;
+	whiteBgAlpah = 0;
+	bufferTimeCount = 0;
 	return true;	
 }
 
@@ -269,14 +291,18 @@ void BattleScene::update(float _deltaTime)
 		switch (infoType)
 		{
 		case INFO_ITEM:
+			itempInfo = *(ItemInfo*)lastSceneInfo;
+			if (itempInfo.name == "몬스터볼") pocketmonChangeOn = true;
 			break;
 		case INFO_CHANGEPOKE:
 			cpInfo = *(ChangePocketInfo*)lastSceneInfo;
+			cpInfo.isChanged;
 			break;
 		case INFO_USEDITEM:
 			uiInfo = *(UsedItemInfo*)lastSceneInfo;
 			break;
 		}
+		SCENEMANAGER->eraseLastInfo();
 	}
 
 	if (wildBattle) wildBattleFunctions();
@@ -285,7 +311,7 @@ void BattleScene::update(float _deltaTime)
 
 	if (KEYMANAGER->isStayKeyDown(P1_N))
 	{
-		catchAniOn = true;
+		pocketmonChangeOn = true;
 	}
 }
 void BattleScene::render(HDC hdc)
@@ -392,7 +418,7 @@ void BattleScene::explainRect(HDC hdc)
 		}
 	}
 	
-	if (!wildBattleIntroAniOn && !playerAtkOn && !catchAniOn)
+	if (playerTurn && !wildBattleIntroAniOn && !playerAtkOn && !catchAniOn && !pocketmonChangeOn)
 	{
 		wsprintf(str, "%s는(은)", selectPocketmon->m_name.c_str());
 		TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 40, str, strlen(str));
@@ -439,11 +465,12 @@ void BattleScene::enemyUiStatus(HDC hdc)
 	IMAGEMANAGER->render("enemyStatus", hdc, m_enemyStatus.left, m_enemyStatus.top);
 	//이름
 	wsprintf(str, "%s", m_wildPocketmon.m_name.c_str());
-	TextOut(hdc, m_enemyStatus.left+30, m_enemyStatus.top+20, str, strlen(str));
+	TextOut(hdc, m_enemyStatus.left+30, m_enemyStatus.top + 25, str, strlen(str));
 
 	//레벨
 	wsprintf(str, "    %d", m_wildPocketmon.m_level);
-	TextOut(hdc, m_enemyStatus.left + 310, m_enemyStatus.top + 20, str, strlen(str));
+	TextOut(hdc, m_enemyStatus.left + 300, m_enemyStatus.top + 25, str, strlen(str));
+	enemyUiCurrentHp(hdc);
 }
 void BattleScene::enemyUiBottom(HDC hdc)
 {
@@ -513,14 +540,16 @@ void BattleScene::playerUiStatus(HDC hdc)
 	IMAGEMANAGER->render("playerStatus", hdc, m_playerStatus.left, m_playerStatus.top);
 
 	wsprintf(str, "%s", selectPocketmon->m_name.c_str());
-	TextOut(hdc, m_playerStatus.left + 70, m_playerStatus.top + 20, str, strlen(str));
+	TextOut(hdc, m_playerStatus.left + 70, m_playerStatus.top + 25, str, strlen(str));
 
 	wsprintf(str, "   %d", selectPocketmon->m_level);
-	TextOut(hdc, m_playerStatus.left + 360, m_playerStatus.top + 25, str, strlen(str));
+	TextOut(hdc, m_playerStatus.left + 350, m_playerStatus.top + 25, str, strlen(str));
 
 	wsprintf(str, "%d/  %d", selectPocketmon->m_currentHp, selectPocketmon->m_maxHp);
-	TextOut(hdc, m_playerStatus.left + 290, m_playerStatus.top + 115, str, strlen(str));
+	TextOut(hdc, m_playerStatus.left + 260, m_playerStatus.top + 110, str, strlen(str));
 
+	playerUiCurrentHp(hdc, 0);
+	plyaerUiCurrentExp(hdc, 0);
 }
 void BattleScene::playerUiSkillList(HDC hdc)
 {
@@ -677,25 +706,50 @@ bool BattleScene::checkPossiblePocketmon()
 }
 void BattleScene::playerStayMotion()
 {
-	m_count++;
-	if (m_count % 20 == 0 && motionUp)
+	if (!catchAniOn && !pocketmonChangeOn)
 	{
-		motionUp = false;
-		//플레이어 포켓몬
-		m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 324, 210, 209);
-		//플레이어 상태창
-		m_playerStatus = UTIL::IRectMake(m_playerStatusX, 346, 446, 180);
-	}
-	else if (m_count % 20 == 0 && !motionUp)
-	{
-		motionUp = true;
-		//플레이어 포켓몬
-		m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 329, 210, 209);
-		//플레이어 상태창
-		m_playerStatus = UTIL::IRectMake(m_playerStatusX, 351, 446, 180);
+		m_count++;
+		if (m_count % 20 == 0 && motionUp)
+		{
+			motionUp = false;
+			//플레이어 포켓몬
+			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 324, 210, 209);
+			//플레이어 상태창
+			m_playerStatus = UTIL::IRectMake(m_playerStatusX, 346, 446, 180);
+		}
+		else if (m_count % 20 == 0 && !motionUp)
+		{
+			motionUp = true;
+			//플레이어 포켓몬
+			m_playerPocketmonImg = UTIL::IRectMake(m_playerPocketmonX, 329, 210, 209);
+			//플레이어 상태창
+			m_playerStatus = UTIL::IRectMake(m_playerStatusX, 351, 446, 180);
+		}
+
+		if (m_count > 10000) m_count = 0;
 	}
 
-	if (m_count > 10000) m_count = 0;
+}
+void BattleScene::changePocketmon()
+{
+	for (auto it = m_playerPocketmons.begin(); it != m_playerPocketmons.end(); ++it)
+	{
+		selectPocketmon = (*it);
+		break;
+	}
+}
+void BattleScene::changePocketmon(int _num)
+{
+	int temp = 0;
+	for (auto it = m_playerPocketmons.begin(); it != m_playerPocketmons.end(); ++it)
+	{
+		if (temp == _num)
+		{
+			selectPocketmon = (*it);
+			break;
+		}
+		temp++;
+	}
 
 }
 void BattleScene::moveButton()
@@ -760,7 +814,7 @@ void BattleScene::moveButton()
 	if (bag && KEYMANAGER->isOnceKeyDown(P1_Z))
 	{
 		//가방으로 씬체인지
-		SCENEMANAGER->scenePush("inven"/*, nullptr ,true*/);
+		SCENEMANAGER->scenePush("inven", nullptr ,true);
 	}
 	if (pocketmon && KEYMANAGER->isOnceKeyDown(P1_Z))
 	{
@@ -924,13 +978,61 @@ std::string BattleScene::selectEnemyskill()
 		return m_wildPocketmon.skillList[m_enemySelectSkillNumber].name;
 	}
 }
+int BattleScene::basicDamage()
+{
+	int temp = UTIL::GetRndIntFromTo(0, 9);
+	if (temp < 3)
+	{
+		return selectPocketmon->skillList[m_playerSelectSkillNumber].power * selectPocketmon->m_atk * (selectPocketmon->m_level * 2 * 2 / 5 + 2) / m_wildPocketmon.m_def / 50 + 2;
+	}
+	else
+	{
+		return selectPocketmon->skillList[m_playerSelectSkillNumber].power * selectPocketmon->m_atk * (selectPocketmon->m_level * 1 * 2 / 5 + 2) / m_wildPocketmon.m_def / 50 + 2;
+	}
+}
+int BattleScene::spacialBasicDamage()
+{
+	int temp = UTIL::GetRndIntFromTo(0, 9);
+	if (temp < 3)
+	{
+		return selectPocketmon->skillList[m_playerSelectSkillNumber].power * selectPocketmon->m_specialAtk * (selectPocketmon->m_level * 2 * 2 / 5 + 2) / m_wildPocketmon.m_specialDef / 50 + 2;
+	}
+	else
+	{
+		return selectPocketmon->skillList[m_playerSelectSkillNumber].power * selectPocketmon->m_specialAtk * (selectPocketmon->m_level * 1 * 2 / 5 + 2) / m_wildPocketmon.m_specialDef / 50 + 2;
+	}
+}
+int BattleScene::enemyBasicDamage()
+{
+	int temp = UTIL::GetRndIntFromTo(0, 9);
+	if (temp < 3)
+	{
+		return m_wildPocketmon.skillList[m_enemySelectSkillNumber].power * m_wildPocketmon.m_atk * (m_wildPocketmon.m_level * 2 * 2 / 5 + 2) / selectPocketmon->m_def / 50 + 2;
+	}
+	else
+	{
+		return m_wildPocketmon.skillList[m_enemySelectSkillNumber].power * m_wildPocketmon.m_atk * (m_wildPocketmon.m_level * 1 * 2 / 5 + 2) / selectPocketmon->m_def / 50 + 2;
+	}
+}
+int BattleScene::enemySpacialBasicDamage()
+{
+	int temp = UTIL::GetRndIntFromTo(0, 9);
+	if (temp < 3)
+	{
+		return m_wildPocketmon.skillList[m_enemySelectSkillNumber].power * m_wildPocketmon.m_specialAtk * (m_wildPocketmon.m_level * 2 * 2 / 5 + 2) / selectPocketmon->m_specialDef / 50 + 2;
+	}
+	else
+	{
+		return m_wildPocketmon.skillList[m_enemySelectSkillNumber].power * m_wildPocketmon.m_specialAtk * (m_wildPocketmon.m_level * 1 * 2 / 5 + 2) / selectPocketmon->m_specialDef / 50 + 2;
+	}
+}
 
-//============
-// 렌더 함수 //
-//============
+//=================
+// main 렌더 함수 //
+//=================
 void BattleScene::wildBattleRender(HDC hdc)
 {
-	HFONT myFont = CreateFont(30, 0, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, "소야바른9");
+	HFONT myFont = CreateFont(35, 15, 0, 0, 0, 0, 0, 0, DEFAULT_CHARSET, 0, 0, 0, 0, "소야바른9");
 	HFONT oldFont = (HFONT)SelectObject(hdc, myFont);
 	SetBkMode(hdc, TRANSPARENT);
 
@@ -946,7 +1048,6 @@ void BattleScene::wildBattleRender(HDC hdc)
 		enemyUiStatus(hdc);
 		enemyUiBottom(hdc);
 		enemyUiPocketmon(hdc);
-		enemyUiMaxHp(hdc);
 		enemyUiCurrentHp(hdc);
 
 		//플레이어
@@ -954,10 +1055,6 @@ void BattleScene::wildBattleRender(HDC hdc)
 		playerUiPoketmon(hdc);
 		playerUiImg(hdc);
 		playerUiStatus(hdc);
-		playerUiMaxHp(hdc, 0);
-		playerUiCurrentHp(hdc, 0);
-		playerUiMaxExp(hdc, 0);
-		plyaerUiCurrentExp(hdc, 0);
 
 
 		//설명창
@@ -971,16 +1068,24 @@ void BattleScene::wildBattleRender(HDC hdc)
 			enemyUiBottom(hdc);
 			playerUiBottom(hdc);
 			explainRect(hdc);
-			//기준
-			catchPocketmon(hdc);
+			catchPocketmon(hdc);	//기준
 			enemyUiStatus(hdc);
 			enemyUiCurrentHp(hdc);
 			playerUiPoketmon(hdc);
 			playerUiStatus(hdc);
-			playerUiCurrentHp(hdc, 0);
-			plyaerUiCurrentExp(hdc, 0);
 		}
-		else if (!catchAniOn)
+		else if (pocketmonChangeOn)
+		{
+			enemyUiBottom(hdc);
+			playerUiBottom(hdc);
+			enemyUiStatus(hdc);
+			playerUiStatus(hdc);
+			enemyUiPocketmon(hdc);
+			pocketmonChange(hdc);//기준
+			sceneChageEffect(hdc);
+
+		}
+		else if (!catchAniOn && !pocketmonChangeOn)
 		{
 			//적
 			enemyUiStatus(hdc);
@@ -991,8 +1096,6 @@ void BattleScene::wildBattleRender(HDC hdc)
 			playerUiBottom(hdc);
 			playerUiPoketmon(hdc);
 			playerUiStatus(hdc);
-			playerUiCurrentHp(hdc, 0);
-			plyaerUiCurrentExp(hdc, 0);
 
 			if (playerTurn)
 			{
@@ -1061,54 +1164,6 @@ void BattleScene::playerPockatmonAttack(HDC hdc)
 	if (playerSkillExplainDone)
 	{
 		playerSkillEffectAssemble(m_selectSkill, hdc);
-	}
-}
-int BattleScene::basicDamage()
-{
-	int temp = UTIL::GetRndIntFromTo(0, 9);
-	if (temp < 3)
-	{
-		return selectPocketmon->skillList[m_playerSelectSkillNumber].power * selectPocketmon->m_atk * (selectPocketmon->m_level * 2 * 2 / 5 + 2) / m_wildPocketmon.m_def / 50 + 2;
-	}
-	else
-	{
-		return selectPocketmon->skillList[m_playerSelectSkillNumber].power * selectPocketmon->m_atk * (selectPocketmon->m_level * 1 * 2 / 5 + 2) / m_wildPocketmon.m_def / 50 + 2;
-	}
-}
-int BattleScene::spacialBasicDamage()
-{
-	int temp = UTIL::GetRndIntFromTo(0, 9);
-	if (temp < 3)
-	{
-		return selectPocketmon->skillList[m_playerSelectSkillNumber].power * selectPocketmon->m_specialAtk * (selectPocketmon->m_level * 2 * 2 / 5 + 2) / m_wildPocketmon.m_specialDef / 50 + 2;
-	}
-	else
-	{
-		return selectPocketmon->skillList[m_playerSelectSkillNumber].power * selectPocketmon->m_specialAtk * (selectPocketmon->m_level * 1 * 2 / 5 + 2) / m_wildPocketmon.m_specialDef / 50 + 2;
-	}
-}
-int BattleScene::enemyBasicDamage()
-{
-	int temp = UTIL::GetRndIntFromTo(0, 9);
-	if (temp < 3)
-	{
-		return m_wildPocketmon.skillList[m_enemySelectSkillNumber].power * m_wildPocketmon.m_atk * (m_wildPocketmon.m_level * 2 * 2 / 5 + 2) / selectPocketmon->m_def / 50 + 2;
-	}
-	else
-	{
-		return m_wildPocketmon.skillList[m_enemySelectSkillNumber].power * m_wildPocketmon.m_atk * (m_wildPocketmon.m_level * 1 * 2 / 5 + 2) / selectPocketmon->m_def / 50 + 2;
-	}
-}
-int BattleScene::enemySpacialBasicDamage()
-{
-	int temp = UTIL::GetRndIntFromTo(0, 9);
-	if (temp < 3)
-	{
-		return m_wildPocketmon.skillList[m_enemySelectSkillNumber].power * m_wildPocketmon.m_specialAtk * (m_wildPocketmon.m_level * 2 * 2 / 5 + 2) / selectPocketmon->m_specialDef / 50 + 2;
-	}
-	else
-	{
-		return m_wildPocketmon.skillList[m_enemySelectSkillNumber].power * m_wildPocketmon.m_specialAtk * (m_wildPocketmon.m_level * 1 * 2 / 5 + 2) / selectPocketmon->m_specialDef / 50 + 2;
 	}
 }
 
@@ -1438,8 +1493,9 @@ void BattleScene::thunderProto(std::string _skillName, HDC hdc)
 }
 
 //======================
-// 공통 출력 문구 모음 //
+// 공방 공통 함수 모음 //
 //======================
+//플레이어
 void BattleScene::enemyHpChangFromPlayerAtk()
 {
 	if (enemyHpChange)
@@ -1527,10 +1583,12 @@ void BattleScene::playerAtkResultOutput(HDC hdc)
 		}
 	}
 }
+//적
 void BattleScene::playerHpChangFromEnemyAtk()
 {
 	if (playerHpChange)
 	{
+		enemyExplainEffect = false;
 		m_playerCurrentMinusHp++;
 		selectPocketmon->m_currentHp--;
 		if (selectPocketmon->m_currentHp <= 0)
@@ -1597,7 +1655,7 @@ void BattleScene::enemyAtkResultOutput(HDC hdc)
 	if (enemyExplainEffect)
 	{
 		m_skillCount++;
-		if (m_skillCount > 100)
+		if (m_skillCount > 50)
 		{
 			m_skillCount = 0;
 			enemySkillEffectDone = false;
@@ -1609,7 +1667,6 @@ void BattleScene::enemyAtkResultOutput(HDC hdc)
 
 		}
 	}
-
 }
 
 //==============
@@ -1658,9 +1715,13 @@ void BattleScene::wildBattleIntroAni()
 		//플레이어 상태창
 		m_playerStatus = UTIL::IRectMake(m_playerStatusX, 356, 446, 180);
 		m_playerMaxHp = UTIL::IRectMake(m_playerStatus.left + 181, 431, 230, 30);
-		//m_playerCurrentHp = UTIL::IRectMake(m_playerStatus.left + 200, 450, m_playerPocketmonHpBarWigth, 30);
 		m_playerCurrentHp = UTIL::IRectMake(playerCurrentHpLeft(), playerCurrentHpTop(), m_playerPocketmonHpBarWigth, 30);
-		if (m_playerStatusX <= PLAYERSTATUSX) wildBattleIntroAniOn = false;
+		if (m_playerStatusX <= PLAYERSTATUSX)
+		{
+			playerImgSlideOut = false;
+			wildBattleIntroAniOn = false;
+		}
+
 	}
 }
 
@@ -1904,6 +1965,26 @@ void BattleScene::playerPocketmonGetNewSkill(HDC hdc)
 	}
 
 }
+void BattleScene::sceneChageEffect(HDC hdc)
+{
+	//포켓몬 체인지
+	if (pocketmonChangeOn)
+	{
+		if (!blackBgOn)
+		{
+			playerUiPoketmon(hdc);
+			IMAGEMANAGER->render("explainRect", hdc, m_explainRect.left, m_explainRect.top);
+			IMAGEMANAGER->findImage("alpha")->alphaRender(hdc, blackBgAlpha);
+			blackBgAlpha -= 5;
+			if (blackBgAlpha < 0)
+			{
+				blackBgOn = true;
+				comeBackPocketmon = true;
+				blackBgAlpha = 0;
+			}
+		}
+	}
+}
 void BattleScene::playerPocketmonLoseAni(HDC hdc)
 {
 	char str[100];
@@ -1978,7 +2059,7 @@ void BattleScene::playerPocketmonLoseAni(HDC hdc)
 }
 void BattleScene::catchPocketmon(HDC hdc)
 {
-	if(whiteBgAlpha!=215) enemyUiPocketmon(hdc);
+	if (whiteBgAlpha != 215) enemyUiPocketmon(hdc);
 
 	if (!catchStartExplainOn)
 	{
@@ -2043,7 +2124,7 @@ void BattleScene::catchPocketmon(HDC hdc)
 	if (ballOpen)
 	{
 		m_ballOpenCount++;
-		IMAGEMANAGER->findImage("backGroundImg")->alphaRender(hdc,0,0,0,0,WINSIZEX,WINSIZEY-(m_explainRect.bottom-m_explainRect.top), whiteBgAlpha);
+		IMAGEMANAGER->findImage("backGroundImg")->alphaRender(hdc, 0, 0, 0, 0, WINSIZEX, WINSIZEY - (m_explainRect.bottom - m_explainRect.top), whiteBgAlpha);
 		m_ballOpen->aniRender(hdc, 735, 118, m_ballOpenAni);
 		m_pocketmonCatchEffect->aniRender(hdc, 380, -30, m_pocketmonCatchEffectAni);
 		if (20 < m_ballOpenCount && m_ballOpenCount <= 70)
@@ -2054,7 +2135,7 @@ void BattleScene::catchPocketmon(HDC hdc)
 		else if (m_ballOpenCount == 71)
 		{
 			ANIMANAGER->resume("ballOpenAni");
-			whiteBgAlpha -= 40; 
+			whiteBgAlpha -= 40;
 			if (whiteBgAlpha <= 0) whiteBgAlpha = 0;
 		}
 		else if (m_ballOpenCount > 80)
@@ -2117,7 +2198,7 @@ void BattleScene::catchPocketmon(HDC hdc)
 			break;
 		case 14:
 			//바닥
-			m_ballOpen->aniRender(hdc, 735, 260, m_ballOpenAni); 
+			m_ballOpen->aniRender(hdc, 735, 260, m_ballOpenAni);
 			break;
 		case 15:
 			m_ballOpen->aniRender(hdc, 735, 250, m_ballOpenAni);
@@ -2159,7 +2240,7 @@ void BattleScene::catchPocketmon(HDC hdc)
 		m_successCount++;
 		m_ballOpen->aniRender(hdc, 735, 257, m_ballOpenAni);
 		IMAGEMANAGER->findImage("catchSuccess")->alphaRender(hdc, 727, 260, m_ballSuccessAlpha);
-		if (m_successCount > 20) 
+		if (m_successCount > 20)
 		{
 			m_ballSuccessAlpha = 120;
 			if (m_successCount > 30)
@@ -2188,7 +2269,7 @@ void BattleScene::catchPocketmon(HDC hdc)
 
 		wsprintf(str, "%s를(을) 잡았다!!", m_wildPocketmon.m_name.c_str());
 		TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 70, str, strlen(str));
-		
+
 		if (!catchOn)
 		{
 			trainer->pushBackPocketmon(POCKETMONMANAGER->genPocketMon(m_wildPocketmon.m_EnglishName, m_wildPocketmon.m_level));
@@ -2201,10 +2282,139 @@ void BattleScene::catchPocketmon(HDC hdc)
 		}
 	}
 }
+//포켓몬 변경
+void BattleScene::pocketmonChange(HDC hdc)
+{
+	if (comeBackPocketmon)
+	{
+		if (!pocketmonCatchEffectAniOn)
+		{
+			ANIMANAGER->start("pocketmonCatchEffectAni");
+			pocketmonCatchEffectAniOn = true;
+		}
+		if (!whiteBgAlpahReversOn)	playerUiPoketmon(hdc);
+		IMAGEMANAGER->findImage("backGroundImg")->alphaRender(hdc, whiteBgAlpah);
+		m_pocketmonCatchEffect->aniRender(hdc, -75, 330, m_pocketmonCatchEffectAni);
+		IMAGEMANAGER->render("explainRect", hdc, m_explainRect.left, m_explainRect.top);
 
+		whiteBgAlpah += 10;
+		if (whiteBgAlpah > 255)
+		{
+			//플레이어 상태창 위치 초기화
+			m_playerStatusX = 1324;
+			m_playerStatus = UTIL::IRectMake(m_playerStatusX, 356, 446, 180);
+			whiteBgAlpahReversOn = true;
+		}
+		
+		
+		if (whiteBgAlpahReversOn)
+		{
+			whiteBgAlpah -= 20;
+			if (whiteBgAlpah < 0)
+			{
+				whiteBgAlpah = 0;
+				comeBackPocketmon = false;
+				whiteBgAlpahReversOn = false;
+				throwBallOn = true;
+				pocketmonCatchEffectAniOn = false;
+				//포켓몬 교체
+				changePocketmon(1);
+			}
+		}
+	}
+	if (throwBallOn)
+	{
+		if (!ballThrowStart)
+		{
+			ANIMANAGER->start("throwBallAni");
+			ballThrowStart = true;
+			ballThrowAniOn = true;
+		}
+		if (ballThrowAniOn)
+		{
+			m_throwBall->aniRender(hdc, m_playerPocketmonImg.left, m_playerPocketmonImg.top, m_throwBallAni);
+		}
+		if (!ANIMANAGER->isPlay("throwBallAni"))
+		{
+			throwBallOn = false;
+			ballThrowAniOn = false;
+			statusMoveOn = true;
+		}
+		IMAGEMANAGER->render("explainRect", hdc, m_explainRect.left, m_explainRect.top);
+	}
+	if (statusMoveOn)
+	{
+		if (!setPlayerStatus)
+		{
+			if (!pocketmonCatchEffectAniOn)
+			{
+				ANIMANAGER->start("pocketmonCatchEffectAni");
+				pocketmonCatchEffectAniOn = true;
+			}
+
+			whiteBgAlpah += 10;
+			if (whiteBgAlpah > 255) whiteBgAlpahReversOn = true;
+			if (whiteBgAlpahReversOn)
+			{
+				playerUiPoketmon(hdc);
+				whiteBgAlpah -= 20;
+				if (whiteBgAlpah < 0)
+				{
+					whiteBgAlpah = 0;
+				}
+			}
+			IMAGEMANAGER->findImage("backGroundImg")->alphaRender(hdc, whiteBgAlpah);
+			m_pocketmonCatchEffect->aniRender(hdc, -75, 330, m_pocketmonCatchEffectAni);
+			IMAGEMANAGER->render("explainRect", hdc, m_explainRect.left, m_explainRect.top);
+
+
+			//플레이어 상태창
+			m_playerStatusX -= 10;
+			m_playerStatus = UTIL::IRectMake(m_playerStatusX, 356, 446, 180);
+			if (m_playerStatusX <= PLAYERSTATUSX)
+			{
+				statusMoveOn = false;
+				pocketmonCatchEffectAniOn = false;
+				whiteBgAlpahReversOn = false;
+				setPlayerStatus = true;
+				bufferTimeOn = true;
+			}
+		}
+	}
+	if (bufferTimeOn)
+	{
+		playerUiPoketmon(hdc);
+		IMAGEMANAGER->render("explainRect", hdc, m_explainRect.left, m_explainRect.top);
+
+		bufferTimeCount++;
+		if (bufferTimeCount > 100)
+		{
+			//관련변수 모두 초기화
+			pocketmonChangeOn = false;
+			blackBgOn = false;
+			throwBallOn = false;
+			ballThrowStart = false;
+			ballThrowAniOn = false;
+			statusMoveOn = false;
+			setPlayerStatus = false;
+			moveEnemyStatus = false;
+			whiteBgAlpahReversOn = false;
+			setNewPocketmon = false;
+			comeBackPocketmon = false;
+			bufferTimeOn = false;
+			pocketmonCatchEffectAniOn = false;
+
+			blackBgAlpha = 255;
+			whiteBgAlpah = 0;
+			bufferTimeCount = 0;
+
+			playerTurn = false;
+			enemyTurn = true;
+		}
+	}
+}
 
 //포켓몬 스킬 이펙트들 모음
-
 void BattleScene::pocketmonEffectInit()
 {
 	//플레이어

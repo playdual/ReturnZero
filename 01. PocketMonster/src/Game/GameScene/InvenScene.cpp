@@ -372,13 +372,12 @@ void InvenScene::update(float _deltaTime)
 			}
 		}
 		// 배틀씬에서 아이템 쓴다를 선택한다.
-		if (KEYMANAGER->isOnceKeyDown(P1_Z))
+		if (pointerCount == 0 && invenSceneCount == 0)
 		{
-			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
-
-			std::cout << "인배틀씬 아이템을 사용합니다." << std::endl;
-			if (pointerCount == 0 && invenSceneCount == 0)
+			if (KEYMANAGER->isOnceKeyDown(P1_Z))
 			{
+				SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+				std::cout << "인배틀씬 아이템을 사용합니다." << std::endl;
 				setSettedItem();
 				ItemInfo* temp = new ItemInfo;
 				temp->name = m_settedItemInfo.name;
@@ -387,6 +386,22 @@ void InvenScene::update(float _deltaTime)
 				// 씬넘기기전에 현재 씬정보를 m_sceneResult에 남겨둔다(void*)로 캐스팅한다.
 				m_sceneResult = (void*)temp;
 				SCENEMANAGER->scenePush("PocketmonBagScene", temp, isFromBattleScene);
+				return;
+			}
+		}
+		if (pointerCount == 0 && invenSceneCount == 2)
+		{
+			if (KEYMANAGER->isOnceKeyDown(P1_Z))
+			{
+				SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
+				std::cout << "인배틀씬 몬스터볼을 사용합니다." << std::endl;
+				setSettedItem();
+				ItemInfo* temp = new ItemInfo;
+				temp->name = m_settedItemInfo.name;
+				temp->healPoint = m_settedItemInfo.healPoint;
+				temp->catchRatio = m_settedItemInfo.catchRatio;
+				m_sceneResult = (void*)temp;
+				SCENEMANAGER->scenePop(true);
 				return;
 			}
 			if (pointerCount == 0 && invenSceneCount == 2)
