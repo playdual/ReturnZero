@@ -19,12 +19,12 @@ bool TownScene::init()
 	//player init
 	m_player = std::make_shared<player>();
 
-	m_map = MAPMANGER->findMap("ProfOHouse");
+	m_map = MAPMANGER->findMap("RedHouse2F");
 	MAPMANGER->connectPlayerInfo(m_player);
 	m_player->reLocate(m_map->getStartPositionX(), m_map->getStartPositionY());
 	m_player->init();
 
-	//menu
+	//menus
 	m_menurect = UTIL::IRectMake(WINSIZEX / 2 + 200, 10, 300, 530);
 	m_menuImg = IMAGEMANAGER->findImage("MainMenuimg");
 

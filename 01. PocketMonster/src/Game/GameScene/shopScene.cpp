@@ -23,10 +23,6 @@ bool shopScene::init()
 	m_shopItem.push_back(ITEMMANAGER->findItem("닫기"));
 
 	// 아이템 순서 재정의
-	for (int i = 0; i < 5; i++)
-	{
-		m_shopItem[i]->setItemNum(i);
-	}
 
 	// 이미지 리소스 
 	m_friendlyShop			= IMAGEMANAGER->findImage("프랜들리샵");
@@ -48,7 +44,7 @@ bool shopScene::init()
 	m_ShopIn				= true;
 	m_isFirstTalk			= false;
 	m_isBuyItemShow			= false;
-	m_isSellItemShow		= false;
+	m_sellItemShop			= false;
 	m_isQuitShop			= false;
 	m_isBuyItemChoice		= false;
 	m_isSellChoiceItem		= false;
@@ -70,8 +66,9 @@ bool shopScene::init()
 	printStrLength = m_wellomeShop[1].length();
 
 	//디폴트 설정
-	shopMainMenu = DEFAULT;
+
 	m_decision = YES;
+	m_changMoney = 0;
 
 	// BUYITEM 할때 아이템 넘버 체크
 
@@ -81,7 +78,7 @@ bool shopScene::init()
 void shopScene::update(float _deltaTime)
 { 
 	m_deltaTime = _deltaTime;
-	
+
 	/* 아이템 카운트 */
 	if (m_isBuyItemChoice)
 	{
@@ -216,7 +213,21 @@ void shopScene::update(float _deltaTime)
 	else if (m_isBuyItemCheck && m_decision == YES)
 	{
 		if (KEYMANAGER->isOnceKeyDown(P1_Z))
+		{
 			m_isBuyConfirm = true;
+			resetPrintText();
+			m_changMoney = m_player->getMoney();
+			m_changMoney -= itemCountPrice;
+			m_player->setMoney(m_changMoney);
+		}
+	}
+	if (!m_isBuyItemChoice && !m_isBuyItemCheck && m_pointerCount == SELLITEM && KEYMANAGER->isOnceKeyDown(P1_Z))
+	{
+		m_sellItemShop = true;
+		m_inven->setSellItem(true);
+		auto info = new ItemInfo;
+		info->name = m_shopItem[m_pointerCount]->getItemName();
+		SCENEMANAGER->scenePush("inven", info, false);
 	}
 
 
@@ -225,9 +236,10 @@ void shopScene::update(float _deltaTime)
 	{
 		if (KEYMANAGER->isOnceKeyDown(P1_Z))
 		{
-			shopMainMenu = DEFAULT;
+			shopMainMenu = NOTHING;
 			m_ShopIn = true;
 			m_pointerCount = 1;
+			m_isQuitShop = true;
 		}
 	}
 	// ======================== KEYMANAGER->isOnceKeyDown(P1_Z) 키 모음 ======================== //
@@ -249,6 +261,11 @@ void shopScene::release()
 
 void shopScene::render(HDC hdc)
 {
+	if (!m_isQuitShop)
+	{
+		shopMainMenu = DEFAULT;
+		m_isQuitShop = true;
+	}
 	switch (shopMainMenu)
 	{
 	case DEFAULT:
@@ -271,7 +288,8 @@ void shopScene::render(HDC hdc)
 
 	case NOTHING:
 		m_ShopIn = false;
-		quitRender(hdc);
+		if(m_isQuitShop) 
+		{ SCENEMANAGER->scenePop(true); }
 		break;
 
 	default:
@@ -471,7 +489,7 @@ void shopScene::buyThirdRender(HDC hdc)
 	std::string itemPrice = m_buyItem[4].c_str();
 	itemPrice += std::to_string(itemCountPrice);
 	itemPrice += m_buyItem[5].c_str();
-
+	m_npcFrontTalkBox->render(hdc, 0, WINSIZEY - 270);
 	//-------------------------------------------------------------------
 	if (!m_isBuyConfirm) // YES가 아닐때 (기본상태)
 	{
@@ -480,23 +498,29 @@ void shopScene::buyThirdRender(HDC hdc)
 	   {
 	   	UTIL::PrintText(hdc, m_select[i].c_str(), "소야바른9", WINSIZEX / 2 + 260, WINSIZEY / 2 - 70 + (i * 70), 80, RGB(0, 0, 0), true);
 	   }
-	   printTextConsequentlyFirst(hdc, itemBuyCheck.c_str(), 80, WINSIZEY - 225);
+	    printTextConsequentlyFirst(hdc, itemBuyCheck.c_str(), 80, WINSIZEY - 225);
 	   printTextConsequentlySecond(hdc, itemPrice.c_str(), 80, WINSIZEY - 145);
 	}
 	//-------------------------------------------------------------------
-	m_npcFrontTalkBox->render(hdc, 0, WINSIZEY - 270);
-	//-------------------------------------------------------------------
-	for (int i = 0; i < 2; i++)
+	if (m_isBuyConfirm)
 	{
-	   UTIL::PrintText(hdc, m_select[i].c_str(), "소야바른9", WINSIZEX / 2 + 260, WINSIZEY /2 - 70  + (i *70), 80, RGB(0, 0, 0), true);
+		int money ;
+	    printTextConsequentlyFirst(hdc, m_buyItem[6].c_str(), 80, WINSIZEY - 225);
+	    printTextConsequentlySecond(hdc, m_buyItem[7].c_str(), 80, WINSIZEY - 145);
+		
+		
 	}
-	printTextConsequentlyFirst(hdc, itemBuyCheck.c_str(), 80, WINSIZEY - 225);
-	printTextConsequentlySecond(hdc, itemPrice.c_str(), 80, WINSIZEY - 145);
-	
+	//-------------------------------------------------------------------
+
 	switch (m_decision)
 	{
 	case YES:
-		m_currentPoint->render(hdc, WINSIZEX / 2 + 165, WINSIZEY / 2 - 100);
+		if(!m_isBuyConfirm)m_currentPoint->render(hdc, WINSIZEX / 2 + 165, WINSIZEY / 2 - 100);
+		if (m_isBuyConfirm && printSecondComplete)
+		{ m_isBuyConfirm = false; m_isBuyItemCheck = false;
+		  m_isBuyItemChoice = false; 
+		  buyItemInputInven();
+		}
 		break;
 
 	case NO:
@@ -509,9 +533,50 @@ void shopScene::buyThirdRender(HDC hdc)
 
 }
 
+void shopScene::buyItemInputInven()
+{
+	int itemCount;
+	std::vector<std::shared_ptr<Item>> buyItem;
+	// 작업해야 하는 구간
+	//m_shopItem[m_pointerCount]->getCount();
+
+	for (auto& item : m_inven->getItemPotion())
+	{
+		if (item->getItemName() == m_shopItem[m_pointerCount]->getItemName())
+		{
+			itemCount = item->getCount();
+			itemCount += m_itemCount;
+			item->setCount(itemCount);
+		}
+		if (item->getItemName() != m_shopItem[m_pointerCount]->getItemName())
+		{
+			m_shopItem[m_pointerCount]->setItemNum(0);
+			buyItem.push_back(m_shopItem[m_pointerCount]);
+			m_inven->m_potionItem.insert(m_inven->m_potionItem.begin(), buyItem[0]);
+			
+			m_inven->setItemCount(m_inven->getitemCount() +1);
+			m_inven->setChangeitemCount(true);
+			break;
+			//m_inven->m_potionItem.push_back(m_shopItem[m_pointerCount]);
+			//m_inven->setItemPotion(m_inve)
+		}
+	}
+
+
+	//if(m_inven->m_potionItem)
+	// m_inven->m_potionItem.push_back(m_shopItem[m_pointerCount]);
+	 
+
+	if (m_isBuyConfirm)
+	{
+	//	m_inven->setItemPotion(m_inven->m_potionItem.push_back(m_shopItem[m_pointerCount]));
+	}
+}
+
 
 void shopScene::sellRender(HDC hdc)
 {
+
 }
 
 void shopScene::quitRender(HDC hdc)

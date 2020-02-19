@@ -41,6 +41,7 @@ public:
 	void buyRender(HDC hdc);
 	void buySecondRender(HDC hdc);
 	void buyThirdRender(HDC hdc);
+	void buyItemInputInven();
 
 	void sellRender(HDC hdc);
 	void quitRender(HDC hdc);
@@ -48,6 +49,9 @@ public:
 	void printTextConsequentlyFirst(HDC hdc, std::string _wantText, int _destX, int _destY);
 	void printTextConsequentlySecond(HDC hdc, std::string _wantText, int _destX, int _destY);
 	void resetPrintText();
+
+	
+
 
 private:
 	std::shared_ptr<Inventory> m_inven;
@@ -88,7 +92,7 @@ private:
 
 	// shop 메인 메뉴 ( 사러왔다 , 팔러 왔다 , 아닙니다. )
 	bool m_isBuyItemShow;
-	bool m_isSellItemShow;
+	bool m_sellItemShop;
 	bool m_isQuitShop;
 
 	// shop Buy 아이템을 골랐을때
@@ -98,7 +102,7 @@ private:
 
 	// shop 에서 Item을 살때
 	int m_ItemListNum;
-	
+	int m_changMoney;
 
 	// shop 에서 ITem을 살때 (아이템 설명 문장 나눠주기위해)
 	std::string shopItemDes_pokeBall[2] = { "", };
@@ -138,15 +142,15 @@ private:
 	int itemCountPrice = 0;
 
 	// 대사 모음
-	std::string m_wellomeShop[2] = { "WellCOME!" , "무엇을 도와 드릴까요?" }; // 처음에 npc와 충돌처리 났을 때
-	std::string m_otherHelpShop[2] = { "그 밖에 저희가 " ,"뭐 도와드릴 건 없습니까?" }; // 그만둔다 했을때
-	std::string m_menu[3] = { "사러 왔다" , "팔러 왔다" , "아닙니다" };  // 메인메뉴 
+	std::string m_wellomeShop[2] = { "어서와라~" , "어떤 물건이 필요하니?" }; // 처음에 npc와 충돌처리 났을 때
+	std::string m_otherHelpShop[2] = { "그 밖에 내가 " ,"뭐 더이상 할 건 없니?" }; // 그만둔다 했을때
+	std::string m_menu[3] = { "사러 왔습니다." , "팔러 왔습니다." , "아닙니다." };  // 메인메뉴 
 	std::string m_sellItemCheck[4] = { "파시겠습니까?","입니다" , "을 ", " 원 에 팔았다!" }; //물건을 샀을때 
 	std::string m_buyItem[8] =
-	{ "(를)을" , "몇개 구입하시겠습니까?" , "개 갖고 있음"," 개로군요." ,
-		"총 ", "원입니다.","네 여기 있습니다.", "대단히 감사합니다." }; // 아이템 구매 1번째 창
+	{ "(를)을" , "몇개 구입 할 꺼니?" , "개 갖고 있음"," 개이구나." ,
+		"총 ", "원이다.","그래 물건 받거라.", "구매해줘 대단히 고맙구나." }; // 아이템 구매 1번째 창
 	std::string m_select[2] = { "예" , "아니오" }; // 구매하시겠습니까? 답변
-	std::string m_outShop = { "또 오세요!" };  // 메인메뉴에서 아닙니다.일때
+	std::string m_outShop = { "또 오거라!" };  // 메인메뉴에서 아닙니다.일때
 	std::string m_money[2] = { "돈" , "원" };
 	std::string m_printStr;
 	//std::string str = "X0";

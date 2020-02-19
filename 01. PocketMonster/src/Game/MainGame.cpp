@@ -88,8 +88,8 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addFrameImage("playerimg", "images/newPlayer2.bmp", 64 * 4, 440, 4, 5, true, RGB(255, 0, 255));
 	
 	// shopImages
-	IMAGEMANAGER->addImage("프랜들리샵", "Images/friendShop2.bmp", 176 * 4, 132 * 4, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage("프랜들리샵확대", "Images/friendShop2.bmp", 792, 594, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("프랜들리샵", "Images/friendShop3.bmp", 176 * 4, 132 * 4, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("프랜들리샵확대", "Images/friendShop3.bmp", 792, 594, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("상점NPC대화상자", "Images/talkBox.bmp", 246 * 4, 46 * 4, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("상점메인메뉴", "Images/menu.bmp", 63 * 7, 63 * 4, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("상점돈상태창", "Images/moneyBox.bmp", 417, 218, true, RGB(255, 0, 255));
@@ -287,14 +287,13 @@ HRESULT MainGame::init()
 	SCENEMANAGER->addScene("inven", new InvenScene(inven));
 	SCENEMANAGER->addScene("friendlyShop", new shopScene(inven));
 
+	//SCENEMANAGER->scenePush("town");
+	//SCENEMANAGER->changeScene("intro");
 	//SCENEMANAGER->scenePush("battle");
 	//SCENEMANAGER->scenePush("town");
 
 	//=================== 최종적으로 적용되는 씬
-	//SCENEMANAGER->changeScene("intro");
-	
-	//temp
-	SCENEMANAGER->scenePush("town");
+	SCENEMANAGER->changeScene("intro");
 	
 	sceneInit = true;
 

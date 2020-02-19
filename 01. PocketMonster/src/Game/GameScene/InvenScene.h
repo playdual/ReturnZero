@@ -2,6 +2,10 @@
 #include "Game/GameScene/Scene.h"
 #include "Game/GameObject/Items/Inventory.h"
 
+enum SELLDECISION
+{
+	INVEN_YES = 0 , INVEN_NO
+};
 
 struct InventoryResult {
 	//std::shre usedImtem = nullptr;
@@ -27,6 +31,7 @@ public:
 	virtual void afterRender(HDC hdc) override;
 	virtual void debugRender(HDC hdc) override;
 
+
 public:
 
 	// 디폴트 파는 씬
@@ -34,11 +39,10 @@ public:
 	void setSettedItem();
 	void sellImport();
 	void sellPokeBall();
+	void setSellInven(bool _isSell) { m_isSell = _isSell; }
 
 	// 디폴트 아이템 획득씬
-	void buyPotionScene();
-	void buyImportItem();
-	void buyPokeBallItem();
+	void buyPotionScene(HDC hdc); // 상점에서 팔때
 
 	ItemInfo getItemInfo();
 
@@ -47,6 +51,8 @@ private:
 
 private:
 	std::shared_ptr<Inventory> m_inven;
+	SELLDECISION sellDecision;
+
 	Image* m_BackGround;
 	
 	// 인벤창 가방 이미지 //
@@ -67,6 +73,15 @@ private:
 
 	Image* m_invenMenuBottom;
 	Image* m_currentPointer;
+
+	// 아이템 파는 작업
+	Image* m_moneyBox;
+	Image* m_yesOrNoBox;
+	Image* m_NpcBox;
+	Image* m_currentArrow;
+	bool	m_isSell = false;
+	int		m_sellCount = 0;
+
 
 	INVENSCENETYPE m_invenSceneType;
 	//인벤씬 변경시 사용할 카운트
@@ -103,8 +118,11 @@ private:
 	int pointerCount;
 	bool m_isMainClose = false;
 
+	//샵이랑 연계
+	std::string sellItem;
+
 private:
 	ItemInfo m_settedItemInfo;
-
+	
 };
 

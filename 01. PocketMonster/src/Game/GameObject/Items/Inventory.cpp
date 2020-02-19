@@ -80,6 +80,17 @@ void Inventory::update(float _deltaTime)
 	// 첫번째 m_itemName 을 담을 변수
 	std::string temp;
 
+	if (m_isChangeitemCount)
+	{
+		isItemDelete = true;
+		for (int i = 0; i < m_potionItem.size(); ++i)
+		{
+			m_potionItem[i]->setItemNum(i);
+			if(i == 4)
+				m_isChangeitemCount = false;
+		}
+	}
+
 	// add item to inven (change Rect width, height) 
 	if (!m_isOpenMenu)
 	{
@@ -411,6 +422,7 @@ void Inventory::pokeBallRender(HDC hdc)
 // 아이템 순서대로 위치 잡고 랜더 해주기 //
 void Inventory::itemTagInit()
 {
+	count = 0;
 	for (auto&item : m_potionItem)
 	{    // Item을 erase하게 될경우 다시 RECT값을 초기화 해준후 자리를 재배치 해준다.
 		if (isItemDelete)

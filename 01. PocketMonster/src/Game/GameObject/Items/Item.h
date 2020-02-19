@@ -33,7 +33,10 @@ public:
 	void		setRect(UTIL::IRECT _iRect) { m_iRect = _iRect; }
 	Image*		getImage()	  { return m_img; }
   	int			getCount()	  { return m_count; }
+	void		setCount(int _count) { m_count = _count; }
 	int			getPrice()		{ return m_price;  }
+
+
 
 	std::string getItemName() { return m_ItemName; }
 	std::string getDescript() { return m_description; }

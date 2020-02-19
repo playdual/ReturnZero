@@ -26,6 +26,8 @@ public :
 	bool getSameNameInven() { return m_isSameNameClose; }
 	bool getitemCount() { return m_itemCount; }
 	int  getItemNum() { return itemNum; }
+	bool getChangeitemCount() { return m_isChangeitemCount; }
+
 
 	bool getOpenMenu() { return m_isOpenMenu; }
 
@@ -33,7 +35,8 @@ public :
 	void setSameNameInven(bool _isSame) { m_isSameNameClose = _isSame; }
 	void setItemCount(int _itemCount) { m_itemCount = _itemCount; }
 	void setItemNum(int _itemNum) { itemNum = _itemNum; }
-	
+	void setChangeitemCount(bool _isChange) { m_isChangeitemCount = _isChange; }
+
 	void setItemTag(bool _isItemTag) {m_isItemTag = _isItemTag;}
 	void setImportTag(bool _isImportTag) { m_isImportTag = _isImportTag;}
 	void setPokeBallTag(bool _isPokeBallTag) { m_isPokeBallTag = _isPokeBallTag;}
@@ -44,6 +47,9 @@ public :
 	std::vector<std::shared_ptr<Item>> &getItemPotion() { return m_potionItem; }
 	std::vector<std::shared_ptr<Item>> &getImportItem() { return m_importItem; }
 	std::vector<std::shared_ptr<Item>> &getPokeBall()   { return m_pockeBallItem; }
+
+	void setItemPotion(std::vector<std::shared_ptr<Item>> _itemPotion) { m_potionItem = _itemPotion; }
+	void setItemPokeBall(std::vector<std::shared_ptr<Item>> _itemPokeBall) { m_pockeBallItem = _itemPokeBall; }
 
 	void itemTagInit();
 	void ImportTagInit();
@@ -66,11 +72,15 @@ public :
 	bool m_isImportTag;
 	bool m_isPokeBallTag;
 
+	bool getSellItem() { return m_isSellItemShow; }
+	void setSellItem(bool _sellItem) { m_isSellItemShow = _sellItem; }
 
 
 private:
+	bool m_isSellItemShow = false;
 	int		insertNum;
 	bool	m_isItemTagCheck;
+	bool	m_isChangeitemCount;
 
 	int		m_importNum;
 	int		m_importPlaceCount;
@@ -87,7 +97,7 @@ private:
 	Image* m_currentArrow;
 
 	// 인벤에서 메뉴창이 뜨면 카운트를 막아야한다.
-	bool m_isOpenMenu;
+	bool m_isOpenMenu = false;
 
 	//bool	nextText;
 };

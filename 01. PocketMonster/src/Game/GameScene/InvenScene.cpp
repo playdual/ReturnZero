@@ -47,6 +47,12 @@ bool InvenScene::init()
 	m_currentPointer = IMAGEMANAGER->findImage("현재아이템표시");
 	m_battleSceneInvenMenu = IMAGEMANAGER->findImage("배틀씬인벤메뉴");
 
+	// 상점 아이템 파는 작업
+	m_moneyBox = IMAGEMANAGER->findImage("상점돈상태창");
+	m_yesOrNoBox = IMAGEMANAGER->findImage("yesOrNoBox");
+	m_NpcBox = IMAGEMANAGER->findImage("상점두번째NPC대화상자");
+	m_currentArrow = IMAGEMANAGER->findImage("현재아이템표시");
+
 	m_invenSceneType = ITEM;    // 디폴트 아이템창  = ITEM
 	invenSceneCount = 0;		// 아이템창 렌더 시켜줄 카운트
 
@@ -118,10 +124,14 @@ void InvenScene::checkSceneChangeInfo() {
 
 void InvenScene::update(float _deltaTime)
 {
+	m_inven->update(_deltaTime);
+
 	if (isUpdateLastSceneData == false)
 		checkSceneChangeInfo();
 
-	m_inven->update(_deltaTime);
+	if (m_inven->getSellItem() == true)
+		m_isSell = true;
+
 	//isFromBattleScene = true로 임시로 만든 키
 	if (KEYMANAGER->isOnceKeyDown(P1_P))
 	{
@@ -147,7 +157,7 @@ void InvenScene::update(float _deltaTime)
 		SCENEMANAGER->scenePop();
 	}
 
-	if (m_inven->getOpenMenu() == false)
+	if (m_inven->getOpenMenu() == false && m_inven->getSellItem()== false)
 	{
 		if (KEYMANAGER->isOnceKeyDown(P1_RIGHT))
 		{
@@ -180,7 +190,7 @@ void InvenScene::update(float _deltaTime)
 	}
 
 
-	if (m_inven->getOpenMenu() == false)
+	if (m_inven->getOpenMenu() == false && m_inven->getSellItem() == false)
 	{
 		if (KEYMANAGER->isOnceKeyDown(P1_LEFT))
 		{
@@ -245,6 +255,7 @@ void InvenScene::update(float _deltaTime)
 			m_inven->setIsOpenMenu(true);
 		}
 	}
+
 
 	if (m_inven->getOpenMenu() == true && isTownInven == true)
 	{
@@ -476,6 +487,7 @@ void InvenScene::render(HDC hdc)
 		m_inven->debugRender(hdc);
 
 		// 움직이는 작업을 해야함 //
+		if(m_inven->getSellItem() == false)
 		m_nextArrow->render(hdc, 250 + moveCount, WINSIZEY / 2 - 110);
 
 		// =============== 타운에서 인벤 꺼냈을때 메뉴창 =============== //
@@ -494,9 +506,9 @@ void InvenScene::render(HDC hdc)
 				}
 				if ((*item)->getItemNum() == m_inven->m_itemCount && (*item)->getItemName() != "닫기")
 				{
-					if (!m_isThrowItem)
+					if (!m_isThrowItem && m_inven->getSellItem() == false)
 						m_ItemInvenMenu->render(hdc, WINSIZEX / 2 + 200, WINSIZEY / 2);
-
+					if(m_inven->getSellItem() == false)
 					m_invenMenuBottom->render(hdc, 170, WINSIZEY / 2 + 173);
 					item++;
 				}
@@ -510,22 +522,32 @@ void InvenScene::render(HDC hdc)
 				{
 					if ((*item)->getItemNum() == m_inven->m_itemCount && (*item)->getItemName() != "닫기")
 					{
-						if (i <= 3)
+						if (m_inven->getSellItem() == false)
 						{
-							if (!m_isThrowItem)
+							if (i <= 3)
 							{
-								UTIL::PrintText(hdc, m_itemChoiceMenu[i].c_str(), "소야바른9", WINSIZEX / 2 + 315, WINSIZEY / 2 + 55 + (i * 75), 55, RGB(0, 0, 0));
-								m_currentPointer->render(hdc, WINSIZEX / 2 + 230, WINSIZEY / 2 + 20 + (pointerCount * 75));
+								if (!m_isThrowItem)
+								{
+									UTIL::PrintText(hdc, m_itemChoiceMenu[i].c_str(), "소야바른9", WINSIZEX / 2 + 315, WINSIZEY / 2 + 55 + (i * 75), 55, RGB(0, 0, 0));
+									m_currentPointer->render(hdc, WINSIZEX / 2 + 230, WINSIZEY / 2 + 20 + (pointerCount * 75));
+								}
+							}
+							if (i == 4)
+							{
+								if (m_inven->m_itemCount == (*item)->getItemNum())
+								{
+									UTIL::PrintText(hdc, (*item)->getItemName().c_str(), "소야바른9", 200, WINSIZEY - 170, 55, RGB(0, 0, 0), true);
+									if (!m_isThrowItem)
+										UTIL::PrintText(hdc, m_itemChoiceMenu[i].c_str(), "소야바른9", 200, WINSIZEY - 100, 55, RGB(0, 0, 0), true);
+									break;
+								}
 							}
 						}
-						if (i == 4)
+						else if (m_inven->getSellItem() == true)
 						{
-							if (m_inven->m_itemCount == (*item)->getItemNum())
+							if (m_isSell)
 							{
-								UTIL::PrintText(hdc, (*item)->getItemName().c_str(), "소야바른9", 200, WINSIZEY - 170, 55, RGB(0, 0, 0), true);
-								if (!m_isThrowItem)
-									UTIL::PrintText(hdc, m_itemChoiceMenu[i].c_str(), "소야바른9", 200, WINSIZEY - 100, 55, RGB(0, 0, 0), true);
-								break;
+								buyPotionScene(hdc);
 							}
 						}
 						item++;
@@ -841,18 +863,6 @@ void InvenScene::render(HDC hdc)
 		}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 		// 움직이는 작업을 해야함
 		m_beforeArrow->render(hdc, 10 - moveCount, WINSIZEY / 2 - 110);
 		break;
@@ -995,6 +1005,28 @@ void InvenScene::sellPokeBall()
 		}
 		else item++;
 	}
+}
+void InvenScene::buyPotionScene(HDC hdc)
+{
+	// 렌더
+	m_moneyBox->render(hdc, 0, 5);
+	m_yesOrNoBox->render(hdc, WINSIZEX / 2 + 130, WINSIZEY / 2 - 160);
+	m_NpcBox->render(hdc, 0, WINSIZEY - 270);
+
+	switch (sellDecision)
+	{
+	case INVEN_YES:
+		m_currentArrow->render(hdc, WINSIZEX / 2 + 165, WINSIZEY / 2 - 100);
+		break;
+
+	case INVEN_NO:
+		m_currentArrow->render(hdc, WINSIZEX / 2 + 165, WINSIZEY / 2 - 30);
+		break;
+	default:
+		break;
+	}
+	
+
 }
 // ================인벤 파는 작업 ==================== //
 
