@@ -56,6 +56,7 @@ bool shopScene::init()
 	m_isSellCompleteItem	= false;
 	m_startTime				= false;
 	m_isBuyItemCheck		= false;
+	m_isBuyConfirm			= false;
 
 	// 화살 포인터(카운트)
 	m_pointerCount			= 1;
@@ -201,7 +202,7 @@ void shopScene::update(float _deltaTime)
 		if (KEYMANAGER->isOnceKeyDown(P1_Z))
 		{
 			m_isBuyItemCheck = true;
-			m_isBuyItemChoice = false;
+			m_isBuyItemChoice = false;	
 			resetPrintText();
 		}
 	}
@@ -214,7 +215,8 @@ void shopScene::update(float _deltaTime)
 	}
 	else if (m_isBuyItemCheck && m_decision == YES)
 	{
-
+		if (KEYMANAGER->isOnceKeyDown(P1_Z))
+			m_isBuyConfirm = true;
 	}
 
 
@@ -471,8 +473,18 @@ void shopScene::buyThirdRender(HDC hdc)
 	itemPrice += m_buyItem[5].c_str();
 
 	//-------------------------------------------------------------------
+	if (!m_isBuyConfirm) // YES가 아닐때 (기본상태)
+	{
+	   m_yesOrNoBox->render(hdc, WINSIZEX / 2 +130, WINSIZEY / 2 - 160);
+	   for (int i = 0; i < 2; i++)
+	   {
+	   	UTIL::PrintText(hdc, m_select[i].c_str(), "소야바른9", WINSIZEX / 2 + 260, WINSIZEY / 2 - 70 + (i * 70), 80, RGB(0, 0, 0), true);
+	   }
+	   printTextConsequentlyFirst(hdc, itemBuyCheck.c_str(), 80, WINSIZEY - 225);
+	   printTextConsequentlySecond(hdc, itemPrice.c_str(), 80, WINSIZEY - 145);
+	}
+	//-------------------------------------------------------------------
 	m_npcFrontTalkBox->render(hdc, 0, WINSIZEY - 270);
-	m_yesOrNoBox->render(hdc, WINSIZEX / 2 +130, WINSIZEY / 2 - 160);
 	//-------------------------------------------------------------------
 	for (int i = 0; i < 2; i++)
 	{
@@ -496,6 +508,7 @@ void shopScene::buyThirdRender(HDC hdc)
 	}
 
 }
+
 
 void shopScene::sellRender(HDC hdc)
 {

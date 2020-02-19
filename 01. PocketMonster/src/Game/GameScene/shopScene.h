@@ -92,8 +92,9 @@ private:
 	bool m_isQuitShop;
 
 	// shop Buy 아이템을 골랐을때
-	bool m_isBuyItemChoice;  /* buySecondRender() */
+	bool m_isBuyItemChoice;  /* buySecondRender()*/
 	bool m_isBuyItemCheck;	 /* buyThircRender() */
+	bool m_isBuyConfirm;     /* buyFourRender()  */
 
 	// shop 에서 Item을 살때
 	int m_ItemListNum;
