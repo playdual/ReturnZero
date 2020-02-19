@@ -110,6 +110,14 @@ void MapManager::addDefaultNPC()
 	tempSenario.push_back({ L"오박사님이 널 찾고계셔!", L""});
 	npc2->addSenario("default", tempSenario);
 
+	auto npc3 = std::make_shared<NPC>(7, 4, "ProfO");
+	tempSenario.clear();
+	tempSenario.push_back({ L"오.. 레드군..", L"남자는 언젠가" });
+	tempSenario.push_back({ L"모험을 떠나는 거야!", L"TV에서 그랬어..." });
+	tempSenario.push_back({ L"너희 엄마가 널 찾고계셔!", L"" });
+	npc3->addSenario("default", tempSenario);
+
 	findMap("RivalHouse")->addNPC(npc1);
 	findMap("RedHouse1F")->addNPC(npc2);
+	findMap("ProfOHouse")->addNPC(npc3);
 }

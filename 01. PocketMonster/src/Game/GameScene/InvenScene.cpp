@@ -104,6 +104,7 @@ void InvenScene::checkSceneChangeInfo() {
 				{
 					items.erase(item);
 				}
+
 				auto temp = new UsedItemInfo;
 				temp->itemKey = usedItem;
 				temp->isUsed = true;
@@ -378,8 +379,20 @@ void InvenScene::update(float _deltaTime)
 				SCENEMANAGER->scenePush("PocketmonBagScene", temp, isFromBattleScene);
 				return;
 			}
-			/*if(pointerCount == 2 && invenSceneCount == 0)
-				sellPosion();*/
+			if (pointerCount == 0 && invenSceneCount == 2)
+			{
+				setSettedItem();
+				ItemInfo* temp = new ItemInfo;
+				temp->name = m_settedItemInfo.name;
+				temp->catchRatio = m_settedItemInfo.catchRatio;
+				// 씬넘기기전에 현재 씬정보를 m_sceneResult에 남겨둔다(void*)로 캐스팅한다.
+				m_sceneResult = (void*)temp;
+				sellPokeBall();
+				SCENEMANAGER->scenePop(true);
+
+				return;
+			}
+
 		}
 	}
 	// ====================== 아이템 버리기 카운트 ==================== //

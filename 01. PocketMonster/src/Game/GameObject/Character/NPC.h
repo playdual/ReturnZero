@@ -27,17 +27,22 @@ private:
 	void updatePocketCenterEvent(float _deltaTime);
 	void updateShopEvent(float _deltaTime);
 	void resetSenarioIndexData();
+	void updateDialArrowPosition();
 
 private:
 	class Image* m_Img[4];
+	Image* m_Dialog;
+	Image* m_DialCopleteArrow;
 	UTIL::IRECT m_absRect;
 	UTIL::IRECT m_outRect;
+	UTIL::IRECT m_DialCompleteArrowRect;
 
 	std::map<std::string, Senario> m_Scripts;
 	Senario m_curSenario;
 	std::string m_Name;
 
 	Direction m_PrintDirection;
+	Direction m_DefaultDirection;
 	int m_blockPositionX;
 	int m_blockPositionY;
 	bool isADHD = false;
@@ -63,6 +68,9 @@ private:
 	int firstStrIndex = 0;
 	int secondStrIndex = 0;
 	int senarioIndex = 0;
+	int movedArrowDist = 0;
+	int arrowDirection = 1;
+	const int dialArrowDistLimit = 7;
 
 private:
 	friend class MapManager;

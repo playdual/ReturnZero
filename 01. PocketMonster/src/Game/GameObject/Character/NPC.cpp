@@ -12,19 +12,23 @@ NPC::NPC(int _bPosX, int _bPosY, std::string _name, NPCEventType _anotherEventTy
 	m_Img[DirectionDown] = IMAGEMANAGER->findImage(_name + "Front");
 	m_Img[DirectionLeft] = IMAGEMANAGER->findImage(_name + "Left");
 	m_Img[DirectionRight] = IMAGEMANAGER->findImage(_name + "Right");
-	
+	m_Dialog = IMAGEMANAGER->findImage("상점NPC대화상자");
+	m_DialCopleteArrow = IMAGEMANAGER->findImage("DialCopleteArrow");
+
 	m_Name = _name;
 	isADHD = _ADHD;
 	m_blockPositionX = _bPosX;
 	m_blockPositionY = _bPosY;
-	m_PrintDirection = DirectionDown;
+	m_DefaultDirection = DirectionDown;
 	if(m_Name == "Mother")
-		m_PrintDirection = DirectionLeft;
+		m_DefaultDirection = DirectionLeft;
+	m_PrintDirection = m_DefaultDirection;
 
 	m_absRect.left = _bPosX * TILE_WIDTH;
 	m_absRect.right = _bPosX * TILE_WIDTH + TILE_WIDTH;
 	m_absRect.top = _bPosY * TILE_HEIGHT;
 	m_absRect.bottom = _bPosY * TILE_HEIGHT + TILE_HEIGHT;
+	m_DialCompleteArrowRect = UTIL::IRectMakeCenter(WINSIZEX / 2, WINSIZEY - 55, 14, 9);
 
 	anoterEventType = _anotherEventType;
 	hasAnotherEvent = true;
@@ -74,7 +78,7 @@ void NPC::updateSenario(float _deltaTime)
 			if (senarioIndex == m_curSenario.size()) {
 				onSenarioPrint = false;
 				if (!hasAnotherEvent) {
-					m_PrintDirection = DirectionLeft;
+					m_PrintDirection = m_DefaultDirection;
 					isActivate = false;
 				}
 			}
@@ -104,18 +108,28 @@ void NPC::resetSenarioIndexData()
 	secondStrIndex = 0;
 }
 
+void NPC::updateDialArrowPosition()
+{
+	movedArrowDist += arrowDirection;
+	m_DialCompleteArrowRect.move(0, arrowDirection);
+	if (std::abs(movedArrowDist) == dialArrowDistLimit) {
+		movedArrowDist = 0;
+		arrowDirection = -arrowDirection;
+	}
+}
+
 void NPC::update(float _deltaTime)
 {
 	CAMERAMANAGER->rectInCamera(m_outRect, m_absRect, isCanprint);
 	if (!isActivate && isADHD) {
-		if (UTIL::GetRndInt(100) <= 2) {
+		if (UTIL::GetRndInt(100) <= 2)
 			m_PrintDirection = (Direction)UTIL::GetRndInt(4);
-		}
 	}
 	else {
-		if (onSenarioPrint)
-		{
+		if (onSenarioPrint){
 			updateSenario(_deltaTime);
+			if (completedSecondOut)
+				updateDialArrowPosition();
 		}
 		if (hasAnotherEvent && !onSenarioPrint) {
 			if (anoterEventType == NPCEventType::NPCShop)
@@ -132,12 +146,6 @@ void NPC::render(HDC hdc)
 	{
 		m_Img[m_PrintDirection]->render(hdc, (m_outRect.left - 10), (m_outRect.top - 20) + 40, 0, 40, 80, 40);
 	}
-	if (onSenarioPrint)
-	{
-		UTIL::PrintText(hdc, firstOutStr.c_str(), "명조", 100, WINSIZEY - 100, 65, RGB(255, 255, 255), true);
-		UTIL::PrintText(hdc, secondOutStr.c_str(), "명조", 100, WINSIZEY - 30, 65, RGB(255, 255, 255), true);
-	}
-
 }
 
 void NPC::afterRender(HDC hdc)
@@ -145,6 +153,14 @@ void NPC::afterRender(HDC hdc)
 	if (isCanprint)
 	{
 		m_Img[m_PrintDirection]->render(hdc, (m_outRect.left - 10), (m_outRect.top - 20), 0, 0, 80, 40);
+	}
+	if (onSenarioPrint)
+	{
+		m_Dialog->render(hdc, 20, WINSIZEY - 185);
+		UTIL::PrintText(hdc, firstOutStr.c_str(), "소야바른9", 100, WINSIZEY - 160, 65, RGB(0, 0, 0), true);
+		UTIL::PrintText(hdc, secondOutStr.c_str(), "소야바른9", 100, WINSIZEY - 90, 65, RGB(0, 0, 0), true);
+		if (completedSecondOut)
+			m_DialCopleteArrow->render(hdc, m_DialCompleteArrowRect.left, m_DialCompleteArrowRect.top);
 	}
 }
 

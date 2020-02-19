@@ -193,7 +193,12 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addImage("MotherBack", "Images/NPC/MotherBack.bmp", 0, 0, 80, 80, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("MotherLeft", "Images/NPC/MotherLeft.bmp", 0, 0, 80, 80, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("MotherRight", "Images/NPC/MotherRight.bmp", 0, 0, 80, 80, true, RGB(255, 0, 255));
-
+	IMAGEMANAGER->addImage("ProfOFront",	"Images/NPC/ProfOFront.bmp", 0, 0, 80, 80, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("ProfOBack",		"Images/NPC/ProfOBack.bmp", 0, 0, 80, 80, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("ProfOLeft",		"Images/NPC/ProfOLeft.bmp", 0, 0, 80, 80, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("ProfORight",	"Images/NPC/ProfORight.bmp", 0, 0, 80, 80, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage("DialCopleteArrow", "Images/DialComplete.bmp", 0, 0, 56, 36, true, RGB(255, 0, 255));
+	
 	//sound
 	SOUNDMANAGER->addStream("Title", "Sounds/Title.mp3", true);
 	SOUNDMANAGER->addStream("NewBarkTown", "Sounds/NewBarkTown.mp3", true);
