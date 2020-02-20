@@ -16,7 +16,6 @@ bool PocketmoninfoScene::init()
 {
 	//temp
 	//isFromBattle = true;
-	// 
 
 	m_Base = IMAGEMANAGER->findImage("Base");
 

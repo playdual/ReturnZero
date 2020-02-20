@@ -1,5 +1,6 @@
 ﻿#include "stdafx.h"
 #include "shopScene.h"
+#include "Game/GameManager/MapManager.h"
 
 shopScene::shopScene(std::shared_ptr<Inventory> _inven)
 {
@@ -12,8 +13,7 @@ shopScene::~shopScene()
 
 bool shopScene::init()
 {
-	m_player = std::make_shared<player>();
-	//m_player->init();
+	m_player = MAPMANGER->getPlayer();
 
 	// 아이템 PUSH
 	m_shopItem.push_back(ITEMMANAGER->findItem("몬스터볼"));
@@ -266,10 +266,11 @@ void shopScene::render(HDC hdc)
 		shopMainMenu = DEFAULT;
 		m_isQuitShop = true;
 	}
+	
 	switch (shopMainMenu)
 	{
 	case DEFAULT:
-		if (m_ShopIn) { m_friendlyShop->render(hdc, 160, 110); }
+		if (m_ShopIn) { m_friendlyShop->render(hdc, 179, 50); }
 		break;
 
 	case FIRSTMENU:
@@ -289,7 +290,10 @@ void shopScene::render(HDC hdc)
 	case NOTHING:
 		m_ShopIn = false;
 		if(m_isQuitShop) 
-		{ SCENEMANAGER->scenePop(true); }
+		{ 
+			SCENEMANAGER->scenePop(); 
+			return;
+		}
 		break;
 
 	default:

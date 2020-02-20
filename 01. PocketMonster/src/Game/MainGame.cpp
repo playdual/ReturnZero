@@ -88,7 +88,8 @@ HRESULT MainGame::init()
 	IMAGEMANAGER->addFrameImage("playerimg", "images/newPlayer2.bmp", 64 * 4, 440, 4, 5, true, RGB(255, 0, 255));
 	
 	// shopImages
-	IMAGEMANAGER->addImage("프랜들리샵", "Images/friendShop3.bmp", 176 * 4, 132 * 4, true, RGB(255, 0, 255));
+	//764, 528
+	IMAGEMANAGER->addImage("프랜들리샵", "Images/friendShop3.bmp", 780, 562, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("프랜들리샵확대", "Images/friendShop3.bmp", 792, 594, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("상점NPC대화상자", "Images/talkBox.bmp", 246 * 4, 46 * 4, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage("상점메인메뉴", "Images/menu.bmp", 63 * 7, 63 * 4, true, RGB(255, 0, 255));

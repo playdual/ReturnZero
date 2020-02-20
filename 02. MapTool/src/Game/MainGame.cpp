@@ -53,15 +53,15 @@ HRESULT MainGame::init()
 		}
 	}
 
-	//myloadImage("RedHouse_1F_", "Images/Tile/TechoTownInner/RedHouse_1F", 120);
-	//myloadImage("RedHouse_2F_", "Images/Tile/TechoTownInner/RedHouse_2F", 99);
-	//myloadImage("RivalHouse_", "Images/Tile/TechoTownInner/RivalHouse", 118);
-	//myloadImage("ProfOHouse_", "Images/Tile/TechoTownInner/ProfOHouse", 169);
-	myloadImage("Route01_", "Images/Route01", 960);
+	myloadImage("RedHouse_1F_", "Images/Tile/TechoTownInner/RedHouse_1F", 120);
+	myloadImage("RedHouse_2F_", "Images/Tile/TechoTownInner/RedHouse_2F", 99);
+	myloadImage("RivalHouse_", "Images/Tile/TechoTownInner/RivalHouse", 118);
+	myloadImage("ProfOHouse_", "Images/Tile/TechoTownInner/ProfOHouse", 169);
+	//myloadImage("Route01_", "Images/Route01", 960);
 	myloadImage("Carpet", "Images/Tile/GeneralTile", 3);
 	myloadImage("profOhouseTop", "Images/afterRender", 7);
 	myloadImage("House0", "Images/afterRender", 5);
-	//myloadImage("TechoTown_", "Images/TechoTown", 480);
+	myloadImage("TechoTown_", "Images/TechoTown", 480);
 	myloadImage("MailBox", "Images/Tile/Object", 2);
 	myloadImage("BigTree", "Images/afterRender", 2);
 	myloadImage("BedTop", "Images/afterRender", 3);

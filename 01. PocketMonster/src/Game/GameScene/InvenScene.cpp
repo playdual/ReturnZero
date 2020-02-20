@@ -1,7 +1,7 @@
 ﻿#include "stdafx.h"
 #include "InvenScene.h"
 #include "Game/GameObject/Items/Item.h"
-
+#include "Game/GameManager/MapManager.h"
 
 InvenScene::InvenScene(std::shared_ptr<Inventory> _inven)
 {
@@ -22,9 +22,7 @@ bool InvenScene::init(void* _info, bool isOnBattle)
 bool InvenScene::init()
 {
 	//상점 연습 작업
-	m_player = std::make_shared<player>();
-	m_player->init();
-
+	m_player = MAPMANGER->getPlayer();
 	isFromBattleScene = false;
 	isUpdateLastSceneData = false;
 	ShopCount = 0;
@@ -185,6 +183,7 @@ void InvenScene::update(float _deltaTime)
 			SOUNDMANAGER->playSound("Ok", Channel::eChannelEffect);
 
 			SCENEMANAGER->scenePop();
+			return;
 		}
 	}
 	if (m_inven->getCloseInven())

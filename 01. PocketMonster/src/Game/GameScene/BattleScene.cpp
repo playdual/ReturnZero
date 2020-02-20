@@ -375,7 +375,7 @@ void BattleScene::explainRect(HDC hdc)
 		}
 		if (playerImgSlideOut)
 		{
-			wsprintf(str, "가랏 %s!!!!", selectPocketmon->m_customName.c_str());
+			wsprintf(str, "가랏 %s!!!!", selectPocketmon->m_name.c_str());
 			TextOut(hdc, m_explainRect.left + 40, m_explainRect.top + 40, str, strlen(str));
 			playerImgSlideOutOn = true;
 		}

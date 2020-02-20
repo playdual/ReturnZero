@@ -33,7 +33,7 @@
 //======================================
 //##			디파인문			  ##
 //======================================
-#define WINNAME		(LPTSTR)(TEXT("경일 프로그래밍 18기"))
+#define WINNAME		(LPTSTR)(TEXT("PocketMon FireRed"))
 #define WINSTARTX   100
 #define WINSTARTY   100
 #define WINSIZEX	1024

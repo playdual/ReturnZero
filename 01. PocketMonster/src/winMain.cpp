@@ -1,9 +1,9 @@
 ﻿#include "stdafx.h"
 #include "Game/MainGame.h"
 
-#ifdef _DEBUG
-	#pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console" )
-#endif
+//#ifdef _DEBUG
+//	#pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console" )
+//#endif
 
 
 MainGame mg;
@@ -14,7 +14,7 @@ bool m_bLoop = true;
 bool m_showFPS = false;
 bool m_showRect = false;
 bool m_debugMode = false;
-LPTSTR m_lpszClass = TEXT("경일 프로그래밍 18기");
+LPTSTR m_lpszClass = TEXT("PocketMon FireRed");
 
 //메인게임
 
