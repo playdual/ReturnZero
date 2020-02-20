@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Game/GameScene/Scene.h"
 #include "Game/GameObject/Items/Inventory.h"
+#include "Game/GameObject/Character/player.h"
 
 enum SELLDECISION
 {
@@ -43,7 +44,8 @@ public:
 
 	// 디폴트 아이템 획득씬
 	void buyPotionScene(HDC hdc); // 상점에서 팔때
-
+	void buyPotionFirstScene(HDC hdc);
+	void buyPotionSecondScene(HDC hdc);
 	ItemInfo getItemInfo();
 
 private:
@@ -81,7 +83,8 @@ private:
 	Image* m_currentArrow;
 	bool	m_isSell = false;
 	int		m_sellCount = 0;
-
+	bool	m_isSellSecond = false;
+	int		m_count = 0;
 
 	INVENSCENETYPE m_invenSceneType;
 	//인벤씬 변경시 사용할 카운트
@@ -113,7 +116,10 @@ private:
 
 	std::string m_battleSceneItemMenu[3] = { "쓴다" , "그만둠" , "어떻게 할까요?" };
 	std::string m_battleSceneImportMenu[2] = { "그만둠" , "어떻게 할까요?" };
-
+	std::string m_select[2] = { "예" , "아니오" };
+	std::string m_money[2] = { "돈" , "원" };
+	std::string m_sellItem[3] = { "이로구나~"," 건네주고", " 을 받았다!!" };
+	
 	// 메뉴창 작업
 	int pointerCount;
 	bool m_isMainClose = false;
@@ -121,8 +127,23 @@ private:
 	//샵이랑 연계
 	std::string sellItem;
 
+	void printTextConsequentlyFirst(HDC hdc, std::string _wantText, int _destX, int _destY);
+	void printTextConsequentlySecond(HDC hdc, std::string _wantText, int _destX, int _destY);
+	void resetPrintText();
 private:
 	ItemInfo m_settedItemInfo;
-	
+	std::shared_ptr<player> m_player;
+	std::string printText[2] = { "", };
+	bool printFirstComplete = false;
+	bool printSecondComplete = false;
+	bool isSellFirst = false;
+	float m_deltaTime;
+	float pastTime = 0.f;
+	float addCharDelay = 0.1f;
+	int firstTextIndex = 0;
+	int secondTextIndex = 0;
+	int returnMoney = 0;
+	int sellAfterMoney = 0;
+
 };
 

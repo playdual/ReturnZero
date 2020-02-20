@@ -55,6 +55,9 @@ public :
 	void ImportTagInit();
 	void pocketBallTagInit();
 
+	// 상점에서 아이템 팔기작업
+	void sellItem();
+
 	// 인벤씬에서 카운트 받기 위해 public에 놔둠
 	int	 count;
 	int	 itemNum; 

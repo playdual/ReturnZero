@@ -24,7 +24,7 @@ NPC::NPC(int _bPosX, int _bPosY, std::string _name, NPCEventType _anotherEventTy
 	m_blockPositionX = _bPosX;
 	m_blockPositionY = _bPosY;
 	m_DefaultDirection = DirectionDown;
-	if(m_Name == "Mother")
+	if (m_Name == "Mother")
 		m_DefaultDirection = DirectionLeft;
 	m_PrintDirection = m_DefaultDirection;
 
@@ -51,7 +51,7 @@ bool NPC::init()
 void NPC::updateSenario(float _deltaTime)
 {
 	pastTime += _deltaTime;
-	if (completedFirstOut == false) 
+	if (completedFirstOut == false)
 	{
 		if (KEYMANAGER->isOnceKeyDown(P1_X)) {
 			firstOutStr = m_curSenario[senarioIndex].first;
@@ -65,7 +65,7 @@ void NPC::updateSenario(float _deltaTime)
 			}
 		}
 	}
-	else if(!completedSecondOut){
+	else if (!completedSecondOut) {
 		if (KEYMANAGER->isOnceKeyDown(P1_X)) {
 			secondOutStr = m_curSenario[senarioIndex].second;
 			completedSecondOut = true;
@@ -88,12 +88,12 @@ void NPC::updateSenario(float _deltaTime)
 					m_PrintDirection = m_DefaultDirection;
 					isActivate = false;
 				}
-				else{
+				else {
 					isOnSelectAction = true;
 					//onSenarioPrint = false;
 				}
 			}
-			if(!isOnSelectAction)
+			if (!isOnSelectAction)
 				resetSenarioIndexData();
 		}
 	}
@@ -133,10 +133,10 @@ void NPC::selectActionUpdate()
 			onSenarioPrint = true;
 			senarioIndex = 0;
 			isActivate = false;
-		}	
+		}
 	}
 
-	
+
 }
 
 void NPC::selectActionRender(HDC _hdc)
@@ -151,7 +151,7 @@ void NPC::curePocket()
 {
 	for (auto& pocketMon : playerPokemons) {
 		pocketMon->m_currentHp = pocketMon->m_maxHp;
-		for (auto& skill : pocketMon->skillList){
+		for (auto& skill : pocketMon->skillList) {
 			skill.currentpp = skill.maxpp;
 		}
 	}
@@ -219,6 +219,9 @@ void NPC::update(float _deltaTime)
 		if (UTIL::GetRndInt(100) <= 2)
 			m_PrintDirection = (Direction)UTIL::GetRndInt(4);
 	}
+	if (isActivate && anoterEventType == NPCEventType::NPCShop) {
+		updateShopEvent(_deltaTime);
+	}
 	else if (isActivate) {
 		if (isOnAlphaEffect) {
 			alphaUpdate();
@@ -230,8 +233,6 @@ void NPC::update(float _deltaTime)
 				updateDialArrowPosition();
 		}
 		if (hasAnotherEvent && isOnSelectAction) {
-			if (anoterEventType == NPCEventType::NPCShop)
-				updateShopEvent(_deltaTime);
 			if (anoterEventType == NPCEventType::NPCPocketCenter)
 				selectActionUpdate();
 		}
@@ -265,7 +266,7 @@ void NPC::afterRender(HDC hdc)
 			if (isOnSelectAction) {
 				selectActionRender(hdc);
 			}
-		}	
+		}
 	}
 	if (isOnAlphaEffect) {
 		alphaEffect->alphaRender(hdc, curAlpha);
@@ -305,7 +306,7 @@ void NPC::activateNPC(Direction _dir)
 		break;
 	}
 	m_curSenario = (m_Scripts.find("default"))->second;
-	
+
 	senarioIndex = 0;
 	if (anoterEventType != NPCEventType::NPCShop) {
 		onSenarioPrint = true;

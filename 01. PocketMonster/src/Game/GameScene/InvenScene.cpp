@@ -22,10 +22,13 @@ bool InvenScene::init(void* _info, bool isOnBattle)
 bool InvenScene::init()
 {
 	//상점 연습 작업
+	m_player = std::make_shared<player>();
+	m_player->init();
+
 	isFromBattleScene = false;
 	isUpdateLastSceneData = false;
 	ShopCount = 0;
-
+	sellDecision = INVEN_NO;
 	moveCount = 0;
 	isUp = true;
 	// 인벤창 가방 이미지 add //
@@ -68,7 +71,7 @@ bool InvenScene::init()
 	// 아이템을 버리겠습니까?
 	m_isThrowItem = false;
 	m_throwItemCount = 0;
-
+	resetPrintText();
 	return true;
 }
 
@@ -125,18 +128,53 @@ void InvenScene::checkSceneChangeInfo() {
 void InvenScene::update(float _deltaTime)
 {
 	m_inven->update(_deltaTime);
+	m_deltaTime = _deltaTime;
 
 	if (isUpdateLastSceneData == false)
 		checkSceneChangeInfo();
 
-	if (m_inven->getSellItem() == true)
+	if (m_inven->getSellItem() == true && !m_isSellSecond && !isSellFirst)
+	{
 		m_isSell = true;
+	}
+	if (m_inven->getSellItem() == true && !m_isSellSecond && !isSellFirst && m_isSell)
+	{
+		if (KEYMANAGER->isOnceKeyDown(P1_Z))
+		{
+			for (auto& item : m_inven->getItemPotion())
+			{
+				if (item->getItemName() != "닫기")
+				{
+				isSellFirst = true;	
+				m_inven->setIsOpenMenu(true);
+				}
+			}
+		}
+	}
+	//if (m_inven->getSellItem() == true && isSellFirst
+	//	&& sellDecision == INVEN_NO && KEYMANAGER->isOnceKeyDown(P1_Z))
+	//{
+	//	m_isSell = false;
+	//	m_inven->setIsOpenMenu(false);
+	//}
 
+	if ( sellDecision == INVEN_YES && KEYMANAGER->isOnceKeyDown(P1_Z) && isSellFirst)
+	{
+		resetPrintText();
+		m_isSellSecond = true;
+	}
 	//isFromBattleScene = true로 임시로 만든 키
 	if (KEYMANAGER->isOnceKeyDown(P1_P))
 	{
 		isFromBattleScene = true;
 		isTownInven = false;
+	}
+	if (m_inven->getSellItem() == true)
+	{
+		if (KEYMANAGER->isOnceKeyDown(P1_DOWN))
+			sellDecision = INVEN_NO;
+		if (KEYMANAGER->isOnceKeyDown(P1_UP))
+			sellDecision = INVEN_YES;
 	}
 
 
@@ -302,7 +340,7 @@ void InvenScene::update(float _deltaTime)
 		}
 
 		//  그만하기 외 count 값 빼주기
-		if (pointerCount != 3 && invenSceneCount == 0)
+		if (pointerCount != 3 && invenSceneCount == 0 && m_inven->getSellItem() == false)
 		{
 			if (KEYMANAGER->isOnceKeyDown(P1_Z))
 			{
@@ -550,6 +588,9 @@ void InvenScene::render(HDC hdc)
 								buyPotionScene(hdc);
 							}
 						}
+						if (*item == nullptr)
+							break;
+						else
 						item++;
 					}
 					else
@@ -858,11 +899,7 @@ void InvenScene::render(HDC hdc)
 				}
 				else item++;
 			}
-
-
 		}
-
-
 		// 움직이는 작업을 해야함
 		m_beforeArrow->render(hdc, 10 - moveCount, WINSIZEY / 2 - 110);
 		break;
@@ -894,7 +931,7 @@ void InvenScene::sellPotion()
 		if (m_inven->m_itemCount == (*item)->getItemNum() && (*item)->getItemName() != "닫기")
 		{
 			countTemp = (*item)->getCount();
-			countTemp--;
+			//countTemp--;
 			(*item)->m_count = countTemp;
 			// 한번 다시 보기(아이템 인포 넣어주기) //
 			m_settedItemInfo = (*item)->getItemInfo();
@@ -902,7 +939,7 @@ void InvenScene::sellPotion()
 			a = (*item)->getItemNum();
 			b = (*(item + 1))->getItemNum();
 
-			if (countTemp == 0)
+			if (countTemp <= 0)
 			{
 				temp = a;
 				a = b;
@@ -911,6 +948,7 @@ void InvenScene::sellPotion()
 				item = itemVector.erase(item);
 				(*(item))->setItemNum(b);
 				m_inven->setIsDeleteItem(true);
+				break;
 			}
 			item++;
 		}
@@ -1008,33 +1046,174 @@ void InvenScene::sellPokeBall()
 }
 void InvenScene::buyPotionScene(HDC hdc)
 {
-	// 렌더
-	m_moneyBox->render(hdc, 0, 5);
-	m_yesOrNoBox->render(hdc, WINSIZEX / 2 + 130, WINSIZEY / 2 - 160);
-	m_NpcBox->render(hdc, 0, WINSIZEY - 270);
-
 	switch (sellDecision)
 	{
 	case INVEN_YES:
-		m_currentArrow->render(hdc, WINSIZEX / 2 + 165, WINSIZEY / 2 - 100);
+		if (isSellFirst)
+		{
+			buyPotionFirstScene(hdc);
+			m_currentArrow->render(hdc, WINSIZEX / 2 + 165, WINSIZEY / 2 - 100);
+		}
+		if (m_isSellSecond) { 
+			isSellFirst = false;
+			buyPotionSecondScene(hdc);
+			if (printSecondComplete)
+			{
+				m_isSellSecond = false;
+				isSellFirst = false;
+				resetPrintText();
+				m_inven->setIsOpenMenu(false); 
+				m_count = 0;
+			}
+		}
+		
 		break;
 
 	case INVEN_NO:
-		m_currentArrow->render(hdc, WINSIZEX / 2 + 165, WINSIZEY / 2 - 30);
+		if (isSellFirst)
+		{
+			buyPotionFirstScene(hdc);
+			m_currentArrow->render(hdc, WINSIZEX / 2 + 165, WINSIZEY / 2 - 30);
+		}
 		break;
 	default:
 		break;
 	}
+}
 	
 
+void InvenScene::buyPotionFirstScene(HDC hdc)
+{
+	returnMoney;
+	// 렌더
+	m_moneyBox->render(hdc, 0, 5);
+	m_NpcBox->render(hdc, 0, WINSIZEY - 270);
+
+	UTIL::PrintText(hdc, std::to_string(m_player->getMoney()).c_str(), "소야바른9", 200, 120, 70, RGB(0, 0, 0), true);
+	UTIL::PrintText(hdc, m_money[0].c_str(), "소야바른9", 40, 40, 90, RGB(0, 0, 0), true);
+	UTIL::PrintText(hdc, m_money[1].c_str(), "소야바른9", 335, 115, 70, RGB(0, 0, 0), true);
+
+	for (auto& sellItem : m_inven->getItemPotion())
+	{
+		if (sellItem->getItemNum() == m_inven->m_itemCount)
+		{
+			returnMoney = sellItem->getPrice() / 2;
+			std::string won = std::to_string(returnMoney).c_str();
+			won += m_money[1];
+
+			printTextConsequentlyFirst(hdc, won.c_str(), 120, WINSIZEY - 225);
+			printTextConsequentlySecond(hdc, m_sellItem[0].c_str(), 120, WINSIZEY - 145);
+			m_yesOrNoBox->render(hdc, WINSIZEX / 2 + 130, WINSIZEY / 2 - 160);
+		}
+	}
+	for (int i = 0; i < 2; i++)
+	{
+		UTIL::PrintText(hdc, m_select[i].c_str(), "소야바른9", WINSIZEX / 2 + 260, WINSIZEY / 2 - 70 + (i * 70), 80, RGB(0, 0, 0), true);
+	}
+
+}
+void InvenScene::buyPotionSecondScene(HDC hdc)
+{
+	std::string name;
+	std::string payBack;
+	int count;
+	m_moneyBox->render(hdc, 0, 5);
+	m_NpcBox->render(hdc, 0, WINSIZEY - 270);
+	UTIL::PrintText(hdc, std::to_string(m_player->getMoney()).c_str(), "소야바른9", 200, 120, 70, RGB(0, 0, 0), true);
+	UTIL::PrintText(hdc, m_money[0].c_str(), "소야바른9", 40, 40, 90, RGB(0, 0, 0), true);
+	UTIL::PrintText(hdc, m_money[1].c_str(), "소야바른9", 335, 115, 70, RGB(0, 0, 0), true);
+
+	for (auto& item : m_inven->getItemPotion())
+	{
+		if (item == nullptr)
+			break;
+
+		if (item->getItemNum() == m_inven->m_itemCount)
+		{
+			name = item->getItemName().c_str();
+			name += m_sellItem[1];
+			
+			if (m_count < 1)
+			{
+				sellAfterMoney = returnMoney + m_player->getMoney();
+			    count = item->getCount();
+			    item->setCount(count-=1);
+				if (item->getCount() == 0)
+				{
+					sellPotion();
+				}
+				m_count += 1;
+			}
+			payBack = std::to_string(returnMoney).c_str();
+			payBack += m_sellItem[2];
+
+			m_player->setMoney(sellAfterMoney);
+		}
+	}
+	if (m_isSellSecond)
+	{
+	printTextConsequentlyFirst(hdc, name.c_str(), 120, WINSIZEY - 225);
+	printTextConsequentlySecond(hdc, payBack.c_str(), 120, WINSIZEY - 145);
+	}
+	
 }
 // ================인벤 파는 작업 ==================== //
-
-
-
 
 ItemInfo InvenScene::getItemInfo()
 {
 	return m_settedItemInfo;
 }
+void InvenScene::printTextConsequentlyFirst(HDC hdc, std::string _wantText, int _destX, int _destY)
+{
+	if (printFirstComplete == false)
+	{
+		if (KEYMANAGER->isOnceKeyDown(P1_X))
+		{
+			printText[0] = _wantText;
+			printFirstComplete = true;
+		}
+		pastTime += m_deltaTime;
+		if (addCharDelay < pastTime)
+		{
+			pastTime = 0.f;
+			if (printText[0].length() < _wantText.length())
+				printText[0] += _wantText[firstTextIndex++];
+			else
+				printFirstComplete = true;
+		}
+	}
+	UTIL::PrintText(hdc, printText[0].c_str(), "소야바른9", _destX, _destY, 70, RGB(0, 0, 0), true);
+}
 
+void InvenScene::printTextConsequentlySecond(HDC hdc, std::string _wantText, int _destX, int _destY)
+{
+	if (printFirstComplete == true && printSecondComplete == false)
+	{
+		if (KEYMANAGER->isOnceKeyDown(P1_X))
+		{
+			printText[1] = _wantText;
+			printSecondComplete = true;
+		}
+		pastTime += m_deltaTime;
+		if (addCharDelay < pastTime)
+		{
+			pastTime = 0.f;
+			if (printText[1].length() < _wantText.length())
+				printText[1] += _wantText[secondTextIndex++];
+			else
+				printSecondComplete = true;
+		}
+	}
+	UTIL::PrintText(hdc, printText[1].c_str(), "소야바른9", _destX, _destY, 70, RGB(0, 0, 0), true);
+}
+void InvenScene::resetPrintText()
+{
+	printText[0] = "";
+	printText[1] = "";
+
+	printFirstComplete = false;
+	printSecondComplete = false;
+
+	firstTextIndex = 0;
+	secondTextIndex = 0;
+}
